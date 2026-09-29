@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Deutsch lernen</title>
-<meta name="description" content="telc A1 und B1 Prüfungstraining, 25 Gesprächsthemen und Wörter erkennen – mit Übersetzung, Lösungen und Vorlesen.">
+<meta name="description" content="telc A1 und B1 Prüfungstraining, 25 Gesprächsthemen Wörter erkennen und B1 Grammatik – mit Übersetzung, Lösungen und Vorlesen.">
 <meta name="theme-color" content="#2f5bd3">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -29,7 +29,7 @@ header{flex:none;padding:calc(env(safe-area-inset-top,0px) + 8px) 16px 8px;borde
 nav{display:flex;gap:4px;background:var(--surface);border-radius:999px;padding:3px;max-width:100%;overflow-x:auto;scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
 nav button{--c:var(--b1);font:inherit;font-size:14px;font-weight:700;border:none;border-radius:999px;padding:6px 12px;background:transparent;color:var(--ink);cursor:pointer;white-space:nowrap}
-nav button[data-m="a1"]{--c:var(--a1)}nav button[data-m="themen"]{--c:var(--a2)}nav button[data-m="woerter"]{--c:#8a3fa8}
+nav button[data-m="a1"]{--c:var(--a1)}nav button[data-m="themen"]{--c:var(--a2)}nav button[data-m="woerter"]{--c:#8a3fa8}nav button[data-m="grammatik"]{--c:#c25e00}
 nav .s{display:none}
 nav button[aria-selected="true"]{background:var(--c);color:#fff}
 #upd{font:inherit;font-size:12px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap}
@@ -38,8 +38,8 @@ main{flex:1;min-height:0;position:relative}
 iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--paper)}
 iframe[hidden]{display:none}
 button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
-@media (max-width:720px){nav .l{display:none}nav .s{display:inline}}
-@media (max-width:520px){.brand{font-size:18px}nav{order:3;width:100%}nav button{flex:1;padding:6px 8px}}
+@media (max-width:900px){nav .l{display:none}nav .s{display:inline}}
+@media (max-width:520px){.brand{font-size:18px}nav{order:3;width:100%}nav button{flex:1;padding:6px 4px;font-size:13px}}
 </style>
 </head>
 <body>
@@ -51,12 +51,13 @@ button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
   <button role="tab" data-m="b1" aria-selected="false"><span class="l">B1 Prüfung</span><span class="s">B1</span></button>
   <button role="tab" data-m="themen" aria-selected="false"><span class="l">Gesprächsthemen</span><span class="s">Themen</span></button>
   <button role="tab" data-m="woerter" aria-selected="false"><span class="l">Wörter erkennen</span><span class="s">Wörter</span></button>
+  <button role="tab" data-m="grammatik" aria-selected="false"><span class="l">B1 Grammatik</span><span class="s">Gramm.</span></button>
  </nav>
 </div></header>
 <main id="stage"></main>
 <script>
-const APP_VERSION = "1.1.0";
-const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html" };
+const APP_VERSION = "1.2.0";
+const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
 const frames = {};
