@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alltag</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#ffffff;--surface:#eef1f6;--ink:#1b2230;--muted:#5b6475;--line:#d9dee8;--b1:#2f5bd3;--a2:#b87d00;--a1:#1b8a6b;--ans:#8a3fa8;--hlbg:#e7edfc;--sheet:#fffdf7}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--ans:#d49bf0;--hlbg:#232c47;--sheet:#1a1f2b}}
+:root[data-theme="dark"]{--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--ans:#d49bf0;--hlbg:#232c47;--sheet:#1a1f2b}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
+header.hero{padding:24px 20px 12px;max-width:1100px;margin:0 auto}
+.ladder{display:flex;gap:6px;margin-bottom:12px}
+.ladder span{font-weight:700;font-size:13px;padding:3px 10px;border-radius:4px;color:#fff}
+h1{font-size:clamp(28px,5.5vw,46px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
+.sub{color:var(--muted);max-width:70ch;margin:10px 0 0}
+.bar{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 20px 8px}
+.bar-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+input[type=search]{flex:1 1 180px;min-width:0;font:inherit;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.tg{--c:var(--muted);font:inherit;font-size:14px;font-weight:700;padding:5px 11px;border-radius:999px;border:2px solid var(--c);background:var(--c);color:#fff;cursor:pointer}
+.tg[aria-pressed="false"]{background:transparent;color:var(--c)}
+.tg.speed{--c:var(--a1)}
+main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
+.split{display:grid;grid-template-columns:minmax(220px,320px) 1fr;gap:18px;align-items:start}
+.list{display:flex;flex-direction:column;gap:5px}
+.it{font:inherit;text-align:left;display:flex;flex-direction:column;gap:1px;width:100%;border:1.5px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);padding:8px 12px;cursor:pointer}
+.it b{font-size:15px}
+.it small{color:var(--muted);font-size:12px}
+.it:hover{background:var(--surface)}
+.it[aria-expanded="true"]{border-color:var(--b1);background:var(--hlbg)}
+.detail{position:sticky;top:78px;max-height:calc(100vh - 90px);overflow:auto}
+.ph0{color:var(--muted);border:1.5px dashed var(--line);border-radius:12px;padding:30px 20px;text-align:center}
+.dcard{border:1.5px solid var(--line);border-radius:14px;padding:14px 16px}
+.dcard h2{font-size:24px;font-weight:800;color:var(--b1)}
+.dcard .den{color:var(--muted);font-size:14px;margin-bottom:8px}
+.box{background:var(--surface);border-radius:10px;padding:10px 12px;margin:8px 0;font-size:15px}
+.box > b:first-child{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin-bottom:3px}
+.box ul{margin:4px 0 0;padding-left:20px}
+.tools{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}
+.tools .lab{font-size:12px;font-weight:700;color:var(--muted)}
+.chip{font:inherit;font-size:13px;font-weight:700;padding:4px 11px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip.play{border-color:var(--b1);color:var(--b1)}
+.chip.play.on{background:var(--b1);color:#fff}
+/* dialogue */
+.ln{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;padding:8px 0;border-top:1px solid var(--line)}
+.ln:first-child{border-top:none}
+.who{font-size:12px;font-weight:700;color:#fff;background:var(--c);border-radius:999px;padding:2px 9px;align-self:start;margin-top:3px;white-space:nowrap}
+.ln.A{--c:var(--a2)}.ln.B{--c:var(--b1)}
+.ln.B .body{background:var(--hlbg);border-radius:10px;padding:4px 8px}
+.ln.now .body{outline:2px solid var(--c);outline-offset:2px;border-radius:10px}
+.de{font-size:18px;line-height:1.55}
+.hideme .de .s{filter:blur(7px);user-select:none;cursor:pointer}
+.hideme .de::after{content:"Deine Rolle – sprich selbst, dann tippen";display:block;font-size:12px;color:var(--c);font-weight:700}
+.acts{display:flex;gap:8px;align-items:center;margin-top:4px}
+.enb{font:inherit;font-size:12px;font-weight:700;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:2px 10px;cursor:pointer}
+.en{display:none;color:var(--muted);font-style:italic;margin-top:4px;font-size:15px}
+.en-on > .en,.en-on .en,body.all-en .en{display:block}
+.hideme .en{display:none!important}
+/* letter */
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px 20px;box-shadow:0 2px 10px rgba(20,30,60,.08)}
+.sheet.hidden-letter .part{filter:blur(8px);user-select:none;pointer-events:none}
+.part{padding:6px 0}
+.part.m .de{font-size:13px;color:var(--muted);text-align:right}
+.part.b .de{font-weight:700}
+.part.g .de{white-space:pre-line}
+.part .acts{margin-top:2px}
+.say{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--b1);background:transparent;color:var(--b1);cursor:pointer;padding:0;flex:none}
+.say::before{content:"";width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:2px}
+.say.on{background:var(--b1);color:#fff}
+.say.on::before{border:none;width:8px;height:8px;background:currentColor;margin:0}
+body.no-tts .say,body.no-tts .play,body.no-tts #sp{display:none}
+.phr{display:flex;align-items:center;gap:8px;padding:4px 0;border-top:1px dashed var(--line)}
+.phr:first-of-type{border-top:none}
+.phr .t{flex:1}
+.phr .t i{display:block;color:var(--muted);font-size:13px}
+.ph{color:var(--ans);font-weight:700}
+.w{cursor:pointer;border-radius:3px}
+.w:hover{background:var(--surface)}
+.w.sel{background:var(--b1);color:#fff}
+.inl{margin:4px 0 10px}
+.empty{display:none;color:var(--muted);padding:20px 0}
+#pop{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);max-width:440px;margin:0 auto;background:var(--paper);color:var(--ink);border:2px solid var(--b1);border-radius:12px;padding:12px 14px;z-index:20;box-shadow:0 8px 28px rgba(20,30,60,.28)}
+#pop[hidden]{display:none}
+#pop .p1{display:flex;justify-content:space-between;align-items:center;gap:8px}
+#pw{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:22px;color:var(--b1);word-break:break-word}
+#px{font:inherit;font-size:20px;line-height:1;background:none;border:none;color:var(--muted);cursor:pointer;padding:4px 8px}
+.pen{font-size:18px;font-weight:700;margin-top:2px}
+.pm{color:var(--muted);font-size:14px;margin-top:2px}
+.pn{font-size:14px;margin-top:6px;font-style:italic}
+.muted{color:var(--muted)}
+.fb{margin-top:6px;font-size:15px}.fb a{color:var(--b1);font-weight:700}
+button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
+@media (max-width:760px){.bar,main,header.hero{padding-left:14px;padding-right:14px}.split{display:block}.detail{display:none}.de{font-size:17px}.sheet{padding:12px}.ln{grid-template-columns:1fr}.who{justify-self:start}}
+@media (min-width:761px){.inl{display:none}}
+</style>
+</head>
+<body>
+<header class="hero">
+ <div class="ladder"><span style="background:var(--b1)">B1</span><span style="background:var(--a2)" id="kind"></span></div>
+ <h1 id="h1"></h1>
+ <p class="sub" id="sub"></p>
+</header>
+<div class="bar"><div class="bar-inner">
+ <input type="search" id="q" placeholder="Suchen …" aria-label="Suchen">
+ <button class="tg" id="allen" aria-pressed="false">EN immer</button>
+ <button class="tg speed" id="sp" aria-pressed="false">Tempo: normal</button>
+</div></div>
+<main>
+ <div class="split">
+  <div class="list" id="list"></div>
+  <div class="detail" id="detail"></div>
+ </div>
+ <p class="empty" id="empty">Nichts gefunden.</p>
+</main>
+<div id="pop" hidden role="dialog" aria-live="polite"><div class="p1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
+<script src="gespraeche-data.js"></script>
+<script src="briefe-data.js"></script>
+<script src="translate.js"></script>
+<script>
+/* One page, two tabs: ?t=dialog (Gespräche) or ?t=brief (Briefe). */
+const MODE=new URLSearchParams(location.search).get("t")==="brief"?"brief":"dialog";
+const DATA=MODE==="brief"?BR:GS;
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const W=s=>s.replace(/[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g,m=>`<span class="w">${m}</span>`);
+const PH=s=>s.replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>');
+const de=s=>s.split("\n").map(l=>PH(W(esc(l)))).join("\n");
+const spoken=s=>s.replace(/[\[\]]/g,"");
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+
+document.getElementById("kind").textContent=MODE==="brief"?"Schreiben":"Sprechen";
+document.getElementById("h1").textContent=MODE==="brief"?"Briefe für den Alltag":"Gespräche im Alltag";
+document.getElementById("sub").textContent=MODE==="brief"
+ ?"Wähle links eine Situation. Du siehst die Aufgabe wie in der B1-Prüfung und einen Musterbrief. Mit „Selbst schreiben“ versteckst du den Brief und versuchst es zuerst allein. ▶ liest vor, „EN“ übersetzt, jedes Wort kannst du antippen."
+ :"Wähle links eine Situation. ▶ liest einen Satz vor, „Ganzes Gespräch“ spielt den Dialog mit zwei Stimmen. Mit „Rolle üben“ wird eine Rolle versteckt – sprich sie selbst und tippe dann zum Kontrollieren.";
+document.title=MODE==="brief"?"Briefe":"Gespräche";
+
+const listEl=document.getElementById("list"),detailEl=document.getElementById("detail"),q=document.getElementById("q"),empty=document.getElementById("empty");
+const narrow=matchMedia("(max-width:760px)");
+let open=null;
+listEl.innerHTML=DATA.map((d,i)=>`<button type="button" class="it" data-k="${i}" aria-expanded="false"><b>${esc(d.de)}</b><small>${esc(d.en)}</small></button><div class="inl" data-for="${i}" hidden></div>`).join("");
+detailEl.innerHTML=`<div class="ph0">Wähle links eine Situation.</div>`;
+
+function sayBtn(text,voice){return `<button class="say" type="button" aria-label="Vorlesen" data-say="${esc(spoken(text))}"${voice?` data-v="${voice}"`:""}></button>`}
+function block(g,en,voice){return `<div class="de"><span class="s" lang="de">${de(g)}</span></div><div class="acts">${sayBtn(g,voice)}<button class="enb" type="button">EN</button></div><div class="en">${esc(en)}</div>`}
+function phrases(tips){return `<div class="box"><b>Wichtige Sätze</b>${tips.map(([g,e])=>`<div class="phr"><div class="t"><span class="s" lang="de">${de(g)}</span><i>${esc(e)}</i></div>${sayBtn(g)}</div>`).join("")}</div>`}
+
+function dialogCard(d){
+ return `<div class="dcard"><h2>${esc(d.de)}</h2><div class="den">${esc(d.en)}</div>
+  <div class="box en-wrap"><b>Situation</b><span class="s" lang="de">${de(d.sit)}</span> <button class="enb" type="button">EN</button><div class="en">${esc(d.sitEn)}</div></div>
+  <div class="tools"><button class="chip play" type="button" data-all>▶ Ganzes Gespräch</button><span class="lab">Rolle üben:</span>
+   <button class="chip" type="button" data-role="" aria-pressed="true">aus</button>
+   <button class="chip" type="button" data-role="A" aria-pressed="false">${esc(d.who.A)}</button>
+   <button class="chip" type="button" data-role="B" aria-pressed="false">${esc(d.who.B)}</button></div>
+  <div class="lines">${d.lines.map(([r,g,e])=>`<div class="ln ${r}"><span class="who">${esc(d.who[r])}</span><div class="body">${block(g,e,r)}</div></div>`).join("")}</div>
+  ${phrases(d.tips)}</div>`}
+
+function letterCard(d){
+ return `<div class="dcard"><h2>${esc(d.de)}</h2><div class="den">${esc(d.en)} · ${d.formal?"formell":"informell"}</div>
+  <div class="box en-wrap"><b>Aufgabe</b><span class="s" lang="de">${de(d.task)}</span> <button class="enb" type="button">EN</button><div class="en">${esc(d.taskEn)}</div>
+   <ul>${d.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>
+  <div class="tools"><button class="chip" type="button" data-hide aria-pressed="false">Selbst schreiben (Brief verstecken)</button><button class="chip play" type="button" data-all>▶ Ganzen Brief vorlesen</button></div>
+  <div class="sheet">${d.parts.map(([k,g,e])=>`<div class="part ${k}">${block(g,e)}</div>`).join("")}</div>
+  ${phrases(d.tips)}</div>`}
+
+function show(k){
+ const btn=listEl.querySelector(`[data-k="${k}"]`),again=open===k;
+ listEl.querySelectorAll(".it").forEach(b=>b.setAttribute("aria-expanded","false"));
+ listEl.querySelectorAll(".inl").forEach(d=>{d.hidden=true;d.innerHTML=""});
+ closePop();stopAll();
+ if(again&&narrow.matches){open=null;return}
+ open=k;btn.setAttribute("aria-expanded","true");
+ const d=DATA[+k],html=MODE==="brief"?letterCard(d):dialogCard(d);
+ if(narrow.matches){const box=listEl.querySelector(`[data-for="${k}"]`);box.innerHTML=html;box.hidden=false;btn.scrollIntoView({block:"start",behavior:"smooth"})}
+ else{detailEl.innerHTML=html;detailEl.scrollTop=0}}
+listEl.addEventListener("click",e=>{const b=e.target.closest(".it");if(b)show(b.dataset.k)});
+
+q.oninput=()=>{const v=q.value.trim().toLowerCase();let any=false;
+ listEl.querySelectorAll(".it").forEach(b=>{const d=DATA[+b.dataset.k];const hit=!v||JSON.stringify(d).toLowerCase().includes(v);b.hidden=!hit;if(hit)any=true});
+ empty.style.display=any?"none":"block"};
+const allen=document.getElementById("allen");
+allen.onclick=()=>{const on=allen.getAttribute("aria-pressed")!=="true";allen.setAttribute("aria-pressed",String(on));document.body.classList.toggle("all-en",on);store("al:allen",on?"1":"0")};
+if(store("al:allen")==="1")allen.click();
+
+/* ---- speech: one sentence, or a whole dialogue / letter in turn ---- */
+const synth=window.speechSynthesis;let rate=1,playing=null,queue=null;
+if(!synth||typeof SpeechSynthesisUtterance==="undefined")document.body.classList.add("no-tts");
+function voices(){if(!synth)return[];const vs=synth.getVoices().filter(v=>v.lang&&v.lang.toLowerCase().startsWith("de"));
+ const pref=["premium","enhanced","google","natural","anna","helena","katja","markus","yannick"];
+ return vs.sort((a,b)=>{const sa=pref.findIndex(p=>a.name.toLowerCase().includes(p)),sb=pref.findIndex(p=>b.name.toLowerCase().includes(p));return (sa<0?99:sa)-(sb<0?99:sb)})}
+if(synth){synth.getVoices();synth.onvoiceschanged=()=>synth.getVoices()}
+/* The two people in a dialogue get different voices when the device has two. */
+function voiceFor(v){const vs=voices();return v==="B"&&vs.length>1?vs[1]:vs[0]||null}
+function utter(text,v){const u=new SpeechSynthesisUtterance(text);u.lang="de-DE";u.rate=rate;const vo=voiceFor(v);if(vo)u.voice=vo;if(v==="B"&&vs2()<2)u.pitch=1.25;return u}
+function vs2(){return voices().length}
+function stopAll(){if(synth)synth.cancel();if(playing)playing.classList.remove("on");playing=null;
+ if(queue){queue.btn.classList.remove("on");document.querySelectorAll(".ln.now").forEach(x=>x.classList.remove("now"));queue=null}}
+function speak(btn){if(!synth)return;if(playing===btn){stopAll();return}stopAll();
+ const u=utter(btn.dataset.say,btn.dataset.v);
+ u.onend=u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
+ playing=btn;btn.classList.add("on");synth.speak(u)}
+function playAll(btn){if(!synth)return;if(queue&&queue.btn===btn){stopAll();return}stopAll();
+ const card=btn.closest(".dcard"),items=[...card.querySelectorAll(".lines .say, .sheet .say")];
+ queue={btn,i:0};btn.classList.add("on");
+ const next=()=>{if(!queue||queue.btn!==btn)return;
+  card.querySelectorAll(".ln.now").forEach(x=>x.classList.remove("now"));
+  if(queue.i>=items.length){stopAll();return}
+  const s=items[queue.i++],ln=s.closest(".ln");if(ln){ln.classList.add("now");ln.scrollIntoView({block:"nearest",behavior:"smooth"})}
+  const u=utter(s.dataset.say,s.dataset.v);u.onend=()=>setTimeout(next,350);u.onerror=()=>stopAll();synth.speak(u)};
+ next()}
+const sp=document.getElementById("sp");
+sp.onclick=()=>{rate=rate===1?0.75:1;sp.setAttribute("aria-pressed",String(rate!==1));sp.textContent=rate===1?"Tempo: normal":"Tempo: langsam"};
+
+/* ---- tap a word: the same in-popup translation as the other tabs ---- */
+const pop=document.getElementById("pop"),pw=document.getElementById("pw"),pb=document.getElementById("pb");
+let selEl=null,cur=null;
+function FB(t){const e=encodeURIComponent(t);const a=(u,l)=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`;
+ return `<div class="fb">Nachschlagen: ${a("https://translate.google.com/?sl=de&tl=en&op=translate&text="+e,"Google Übersetzer")} · ${a("https://www.deepl.com/translator#de/en/"+e,"DeepL")} · ${a("https://www.dict.cc/?s="+e,"dict.cc")}</div>`}
+function closePop(){pop.hidden=true;if(selEl)selEl.classList.remove("sel");selEl=null;if(cur)cur.abort();cur=null}
+document.getElementById("px").onclick=closePop;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closePop()});
+function cget(k){try{return JSON.parse(localStorage.getItem("al:"+k)||"null")}catch(e){return null}}
+function cset(k,v){try{localStorage.setItem("al:"+k,JSON.stringify(v))}catch(e){}}
+async function lookup(el){
+ if(selEl)selEl.classList.remove("sel");selEl=el;el.classList.add("sel");
+ const word=el.textContent,sent=el.closest(".s").textContent.replace(/"/g,"'").trim();
+ pw.textContent=word;pb.innerHTML='<span class="muted">Übersetze …</span>';pop.hidden=false;
+ const key=word+"|"+sent,hit=cget(key);if(hit){showWord(hit);return}
+ if(!window.freeSample){pb.innerHTML=FB(word);return}
+ if(cur)cur.abort();cur=new AbortController();const my=cur;
+ try{const d=await window.freeSample.json(`You are a German-English dictionary for a B1 learner. Translate the German word "${word}" as it is used in this sentence: "${sent}".
+Reply with ONLY a JSON object.`,{signal:my.signal});cset(key,d);if(selEl===el)showWord(d)}
+ catch(err){if(err&&err.code==="cancelled")return;pb.innerHTML='<span class="muted">Übersetzung fehlgeschlagen (offline?).</span>'+FB(word)}}
+function showWord(d){const s=x=>esc(x||"");
+ pb.innerHTML=`<div class="pen">${s(d.en)}</div><div class="pm">${s(d.lemma)}${d.pos?" · "+s(d.pos):""}${d.plural?" · Pl. "+s(d.plural):""}</div>${d.note?`<div class="pn">${s(d.note)}</div>`:""}`}
+
+document.querySelector("main").addEventListener("click",e=>{
+ const all=e.target.closest("[data-all]");if(all){playAll(all);return}
+ const sb=e.target.closest(".say");if(sb){speak(sb);return}
+ const eb=e.target.closest(".enb");if(eb){eb.parentElement.classList.toggle("en-on");if(eb.parentElement.classList.contains("acts"))eb.parentElement.parentElement.classList.toggle("en-on");return}
+ const rb=e.target.closest("[data-role]");if(rb){const card=rb.closest(".dcard");card.querySelectorAll("[data-role]").forEach(x=>x.setAttribute("aria-pressed",String(x===rb)));
+  card.querySelectorAll(".ln").forEach(l=>l.classList.toggle("hideme",!!rb.dataset.role&&l.classList.contains(rb.dataset.role)));return}
+ const hd=e.target.closest("[data-hide]");if(hd){const on=hd.getAttribute("aria-pressed")!=="true";hd.setAttribute("aria-pressed",String(on));hd.closest(".dcard").querySelector(".sheet").classList.toggle("hidden-letter",on);hd.textContent=on?"Musterbrief zeigen":"Selbst schreiben (Brief verstecken)";return}
+ const hid=e.target.closest(".hideme");if(hid){hid.classList.remove("hideme");return}
+ const w=e.target.closest(".w");if(w)lookup(w)});
+</script>
+</body>
+</html>

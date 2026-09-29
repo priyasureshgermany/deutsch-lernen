@@ -6,6 +6,64 @@
    tools/check-grammatik.mjs checks every item has at least four examples
    with distinct explanations, a marked word and an English line. */
 window.GD = [
+{id:"zeit", de:"Zeitformen", en:"Tenses",
+ intro:"Deutsch hat sechs Zeitformen: Präsens, Präteritum, Perfekt, Plusquamperfekt, Futur I und Futur II. Eine Verlaufsform wie im Englischen (I am working) gibt es nicht – man benutzt das Präsens, oft mit „gerade“. Im Alltag spricht man über die Vergangenheit meist im Perfekt, nur bei sein, haben und Modalverben im Präteritum.",
+ groups:[
+ {g:"Überblick", items:[
+  {w:"ein Verb – sechs Zeiten", tag:"machen / fahren", ex:[
+   ["Präsens: jetzt / immer", "Ich [[mache]] jeden Tag meine Hausaufgaben.", "I do my homework every day."],
+   ["Präteritum: geschriebene Vergangenheit", "Früher [[machte]] ich meine Hausaufgaben immer abends.", "In the past I always did my homework in the evening."],
+   ["Perfekt: gesprochene Vergangenheit", "Ich [[habe]] meine Hausaufgaben schon [[gemacht]].", "I've already done my homework."],
+   ["Plusquamperfekt: noch früher in der Vergangenheit", "Ich [[hatte]] die Hausaufgaben schon [[gemacht]], als mein Freund anrief.", "I had already done my homework when my friend called."],
+   ["Futur I: Zukunft / Plan", "Morgen [[werde]] ich die Hausaufgaben früher [[machen]].", "Tomorrow I'll do my homework earlier."],
+   ["Futur II: in der Zukunft schon fertig", "Bis 18 Uhr [[werde]] ich die Hausaufgaben [[gemacht haben]].", "By 6 pm I will have done my homework."]]}
+ ]},
+ {g:"Gegenwart", items:[
+  {w:"Präsens", tag:"ich mache", ex:[
+   ["jetzt, in diesem Moment", "Ich [[koche]] gerade das Abendessen.", "I'm cooking dinner right now."],
+   ["Gewohnheit: immer, oft, jeden Tag", "Wir [[fahren]] jeden Morgen mit dem Bus zur Arbeit.", "We take the bus to work every morning."],
+   ["Zukunft mit Zeitangabe (sehr häufig)", "Nächste Woche [[fliege]] ich nach Spanien.", "Next week I'm flying to Spain."],
+   ["mit seit: dauert bis jetzt", "Ich [[wohne]] seit drei Jahren in Frankfurt.", "I have been living in Frankfurt for three years."],
+   ["allgemeine Wahrheit", "Wasser [[kocht]] bei 100 Grad.", "Water boils at 100 degrees."]]},
+  {w:"„Verlaufsform“", tag:"gerade / am … sein", ex:[
+   ["Präsens + gerade (I am doing)", "Ich kann nicht telefonieren, ich [[bin gerade]] im Meeting.", "I can't talk on the phone, I'm in a meeting right now."],
+   ["am + Infinitiv + sein (gesprochen)", "Mein Mann [[ist]] noch [[am Arbeiten]].", "My husband is still working."],
+   ["dabei sein, … zu + Infinitiv", "Wir [[sind gerade dabei]], die Wohnung [[zu]] streichen.", "We're in the middle of painting the flat."],
+   ["Vergangenheit: Präteritum + gerade, als …", "Ich [[war gerade]] unter der Dusche, als es klingelte.", "I was just in the shower when the doorbell rang."]]}
+ ]},
+ {g:"Vergangenheit", items:[
+  {w:"Präteritum", tag:"ich machte", ex:[
+   ["sein und haben: im Gespräch fast immer Präteritum", "Gestern [[war]] ich müde und [[hatte]] keine Lust auf Sport.", "Yesterday I was tired and didn't feel like doing sport."],
+   ["Modalverben: Präteritum statt Perfekt", "Ich [[musste]] lange warten und [[konnte]] den Bus nicht nehmen.", "I had to wait a long time and couldn't take the bus."],
+   ["regelmäßige Verben: -te (Erzählung, Zeitung)", "Die Firma [[suchte]] damals dringend neue Mitarbeiter.", "At that time the company was urgently looking for new staff."],
+   ["unregelmäßige Verben: Vokalwechsel", "Wir [[gingen]] spazieren und [[sahen]] einen Regenbogen.", "We went for a walk and saw a rainbow."],
+   ["es gab (there was / there were)", "Im Hotel [[gab]] es leider kein warmes Wasser.", "Unfortunately there was no hot water in the hotel."]]},
+  {w:"Perfekt", tag:"habe / bin + Partizip", ex:[
+   ["haben + regelmäßiges Partizip (ge-…-t)", "Ich [[habe]] am Wochenende meine Eltern [[besucht]].", "I visited my parents at the weekend."],
+   ["sein bei Bewegung (gehen, fahren, fliegen)", "Wir [[sind]] im Sommer nach Italien [[gefahren]].", "We went to Italy in the summer."],
+   ["sein bei Veränderung (einschlafen, aufwachen)", "Das Baby [[ist]] endlich [[eingeschlafen]].", "The baby has finally fallen asleep."],
+   ["trennbare Verben: ge in der Mitte", "Hast du schon [[eingekauft]]?", "Have you done the shopping yet?"],
+   ["-ieren und be-/ver-/er-: ohne ge-", "Ich [[habe]] die Rechnung schon [[bezahlt]] und die Tickets [[reserviert]].", "I've already paid the bill and reserved the tickets."]]},
+  {w:"Plusquamperfekt", tag:"hatte / war + Partizip", ex:[
+   ["hatte + Partizip: vor einem anderen Ereignis", "Ich [[hatte]] meinen Schlüssel im Büro [[vergessen]], deshalb musste ich auf meinen Mann warten.", "I had left my key at the office, so I had to wait for my husband."],
+   ["war + Partizip bei Bewegung", "Er [[war]] schon nach Hause [[gegangen]], als ich ihn anrufen wollte.", "He had already gone home when I wanted to call him."],
+   ["nach nachdem", "Nachdem wir [[gegessen hatten]], gingen wir ins Kino.", "After we had eaten, we went to the cinema."],
+   ["mit schon / vorher: Erklärung", "Ich kannte die Stadt, weil ich vorher schon zweimal dort [[gewesen war]].", "I knew the city because I had been there twice before."]]}
+ ]},
+ {g:"Zukunft", items:[
+  {w:"Futur I", tag:"werde + Infinitiv", ex:[
+   ["Vorhersage (Wetter, Prognose)", "Morgen [[wird]] es stark [[regnen]].", "It will rain heavily tomorrow."],
+   ["Versprechen / fester Plan", "Ich [[werde]] dir morgen bestimmt [[helfen]].", "I'll definitely help you tomorrow."],
+   ["Vermutung über jetzt: wird wohl", "Er ist nicht da, er [[wird]] wohl krank [[sein]].", "He's not here; he's probably ill."],
+   ["deutliche Aufforderung", "Du [[wirst]] jetzt sofort dein Zimmer [[aufräumen]]!", "You will tidy your room right now!"],
+   ["im Nebensatz: werde am Ende", "Ich hoffe, dass ich die Prüfung [[bestehen werde]].", "I hope that I will pass the exam."]]},
+  {w:"Futur II", tag:"werde + Partizip + haben/sein", ex:[
+   ["in der Zukunft schon fertig (by then)", "Bis Freitag [[werde]] ich den Bericht [[geschrieben haben]].", "By Friday I will have written the report."],
+   ["mit sein bei Bewegung", "Um diese Zeit [[werden]] wir schon in Hamburg [[angekommen sein]].", "By this time we'll already have arrived in Hamburg."],
+   ["Vermutung über die Vergangenheit", "Sie [[wird]] den Termin wohl [[vergessen haben]].", "She has probably forgotten the appointment."],
+   ["im Alltag oft Perfekt statt Futur II", "Bis morgen [[habe]] ich alles [[erledigt]].", "I'll have done everything by tomorrow."]]}
+ ]}
+]},
 {id:"praep", de:"Präpositionen", en:"Prepositions",
  intro:"Die Präposition bestimmt den Kasus. Lerne sie in Gruppen: immer Dativ, immer Akkusativ, Wechselpräpositionen (Wo? → Dativ, Wohin? → Akkusativ) und Genitiv.",
  groups:[
