@@ -21,7 +21,7 @@ for (const t of window.GD) {
       if (!/\[\[[^\]]+\]\]/.test(de)) fail(where, "example " + (i + 1) + " marks no word");
       if ((de.match(/\[\[/g) || []).length !== (de.match(/\]\]/g) || []).length) fail(where, "unbalanced [[ ]]");
       if (/"/.test(de)) fail(where, "straight quote in the sentence breaks the word popup");
-      if (!/[.!?]$/.test(de.trim()) && !/Grüßen$/.test(de)) fail(where, "example " + (i + 1) + " has no end punctuation");
+      if (!/[.!?…]$/.test(de.trim()) && !/Grüßen$/.test(de)) fail(where, "example " + (i + 1) + " has no end punctuation");
     });
     const whys = it.ex.map(x => x[0]);
     if (new Set(whys).size !== whys.length) fail(where, "two examples share an explanation");
