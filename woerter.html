@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wörter erkennen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#ffffff;--surface:#eef1f6;--ink:#1b2230;--muted:#5b6475;--line:#d9dee8;--b1:#2f5bd3;--a2:#b87d00;--a1:#1b8a6b;--ok:#1b8a6b;--no:#c62828;
+--c-N:#2f5bd3;--c-V:#c62828;--c-P:#8a3fa8;--c-A:#00838f;--c-J:#b35900;--c-ADV:#2e7d32;--c-PR:#6d4c41;--c-K:#ad1457;--c-Z:#8d6e00;--c-T:#5b6475;
+--k-N:#2f5bd3;--k-A:#c62828;--k-D:#2e7d32;--k-G:#a07800;
+--r-S:#2f5bd3;--r-P:#c62828;--r-AO:#b35900;--r-DO:#2e7d32;--r-GA:#a07800;--r-AB:#00838f;--r-PO:#8a3fa8;--r-PN:#ad1457;--r-AT:#6d4c41;--r-K:#5b6475;
+--s1:#2f5bd3;--s2:#c62828;--s3:#2e7d32;--s4:#b35900;--s5:#8a3fa8;--s6:#00838f;--s7:#ad1457;
+--t-te:#2f5bd3;--t-ka:#c62828;--t-mo:#2e7d32;--t-lo:#b35900}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--ok:#4cc79f;--no:#ff7d7d;
+--c-N:#8fa8ff;--c-V:#ff7d7d;--c-P:#d49bf0;--c-A:#4dd0e1;--c-J:#ffa65c;--c-ADV:#72d677;--c-PR:#d2a896;--c-K:#f48fb1;--c-Z:#e8c547;--c-T:#aab3c5;
+--k-N:#8fa8ff;--k-A:#ff7d7d;--k-D:#72d677;--k-G:#e8c547;
+--r-S:#8fa8ff;--r-P:#ff7d7d;--r-AO:#ffa65c;--r-DO:#72d677;--r-GA:#e8c547;--r-AB:#4dd0e1;--r-PO:#d49bf0;--r-PN:#f48fb1;--r-AT:#d2a896;--r-K:#aab3c5;
+--s1:#8fa8ff;--s2:#ff7d7d;--s3:#72d677;--s4:#ffa65c;--s5:#d49bf0;--s6:#4dd0e1;--s7:#f48fb1;
+--t-te:#8fa8ff;--t-ka:#ff7d7d;--t-mo:#72d677;--t-lo:#ffa65c}}
+:root[data-theme="dark"]{--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--ok:#4cc79f;--no:#ff7d7d;
+--c-N:#8fa8ff;--c-V:#ff7d7d;--c-P:#d49bf0;--c-A:#4dd0e1;--c-J:#ffa65c;--c-ADV:#72d677;--c-PR:#d2a896;--c-K:#f48fb1;--c-Z:#e8c547;--c-T:#aab3c5;
+--k-N:#8fa8ff;--k-A:#ff7d7d;--k-D:#72d677;--k-G:#e8c547;
+--r-S:#8fa8ff;--r-P:#ff7d7d;--r-AO:#ffa65c;--r-DO:#72d677;--r-GA:#e8c547;--r-AB:#4dd0e1;--r-PO:#d49bf0;--r-PN:#f48fb1;--r-AT:#d2a896;--r-K:#aab3c5;
+--s1:#8fa8ff;--s2:#ff7d7d;--s3:#72d677;--s4:#ffa65c;--s5:#d49bf0;--s6:#4dd0e1;--s7:#f48fb1;
+--t-te:#8fa8ff;--t-ka:#ff7d7d;--t-mo:#72d677;--t-lo:#ffa65c}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:170px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
+header.hero{padding:28px 20px 16px;max-width:1100px;margin:0 auto}
+.ladder{display:flex;gap:6px;margin-bottom:14px}
+.ladder span{font-weight:700;font-size:13px;padding:3px 10px;border-radius:4px;color:#fff}
+h1{font-size:clamp(30px,6vw,52px);font-weight:800;line-height:1.02;letter-spacing:-.02em}
+.sub{color:var(--muted);max-width:66ch;margin:12px 0 0}
+.bar{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 20px 8px}
+.bar-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:flex;background:var(--surface);border-radius:999px;padding:3px;gap:2px}
+.seg button{font:inherit;font-size:14px;font-weight:700;border:none;border-radius:999px;padding:5px 12px;background:transparent;color:var(--ink);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.tg{--c:var(--muted);font:inherit;font-size:14px;font-weight:700;padding:5px 11px;border-radius:999px;border:2px solid var(--c);background:var(--c);color:#fff;cursor:pointer}
+.tg[aria-pressed="false"]{background:transparent;color:var(--c)}
+.tg.a1{--c:var(--a1)}.tg.b1{--c:var(--b1)}.tg.en{--c:var(--muted)}.tg.quiz{--c:var(--ink)}.tg.speed{--c:var(--a1)}
+.tg.quiz[aria-pressed="true"]{color:var(--paper)}
+.tg.fill{--c:var(--b1);background:transparent;color:var(--c)}
+.tg.fill:active{background:var(--c);color:#fff}
+#score{font-size:14px;font-weight:700;color:var(--muted);display:none}
+body.quiz #score{display:inline}
+.legend{max-width:1100px;margin:8px auto 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{font:inherit;font-size:13px;display:inline-flex;align-items:center;gap:6px;padding:3px 10px 3px 8px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.chip i{width:12px;height:12px;border-radius:3px;background:var(--sw);flex:none}
+.chip[aria-pressed="true"]{border-color:var(--sw);box-shadow:inset 0 0 0 1px var(--sw)}
+.chip.pick{font-weight:700}
+.chip.pick[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink);box-shadow:none}
+.legend .lab{font-size:12px;font-weight:700;color:var(--muted)}
+.legend .hint{font-size:12px;color:var(--muted)}
+.legend .br{flex-basis:100%;height:0}
+.topics{max-width:1100px;margin:6px auto 0;display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin}
+.topics a{flex:none;font-size:13px;color:var(--ink);text-decoration:none;padding:3px 10px;border-radius:6px;background:var(--surface);white-space:nowrap}
+main{max-width:1100px;margin:0 auto;padding:8px 20px 140px}
+section{margin-top:34px}
+.th{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.th .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:15px;color:var(--muted)}
+h2{font-size:clamp(24px,4vw,34px);font-weight:800;letter-spacing:-.01em}
+.th .en{color:var(--muted);font-size:17px}
+.card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:14px}
+.card-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:8px}
+.lvl{font-weight:700;font-size:13px;padding:2px 10px;border-radius:4px;color:#fff}
+.lvl.A1{background:var(--a1)}.lvl.B1{background:var(--b1)}
+.cases{display:flex;gap:4px;flex-wrap:wrap;font-size:12px}
+.cases span{padding:1px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.cases span b{color:var(--kc)}
+.para{font-size:19px;line-height:2.05;margin:0}
+.card[data-lvl="B1"] .para{line-height:2.35}
+/* A word's colour is --col, set per view below; A1 draws it as coloured
+   text with an underline, B1 as a tinted rounded box. */
+/* Words start plain; a word switched on (.on) shows its colour --col. */
+.tk{--col:var(--ink);--ds:solid;cursor:pointer;border-radius:4px;padding:1px 1px;color:var(--ink);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:transparent;text-decoration-style:var(--ds);border:1.5px solid transparent;transition:opacity .15s,background .15s}
+.tk:hover{background:var(--surface)}
+.card[data-lvl="B1"] .tk{border-radius:8px;padding:1px 6px}
+.card[data-lvl="A1"] .tk.on{color:var(--col);text-decoration-color:var(--col)}
+.card[data-lvl="B1"] .tk.on{background:color-mix(in srgb,var(--col) 20%,transparent);border:1.5px var(--ds) color-mix(in srgb,var(--col) 75%,transparent)}
+.tk.on.off{color:var(--muted)!important;text-decoration-color:transparent!important;background:none!important;border-color:transparent!important}
+.tk.sel{outline:2px solid var(--col);outline-offset:1px;background:var(--surface)}
+.tk.dim{opacity:.2}
+.card-h .tb{font:inherit;font-size:13px;font-weight:700;padding:3px 10px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.card-h .tb[aria-expanded="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.sb{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+.card.sbo .sb{display:block}
+.rule{font-size:13px;color:var(--muted);background:var(--surface);border-radius:8px;padding:8px 10px;margin-bottom:10px}
+.rule b{color:var(--ink)}
+.rule .tm{font-weight:700;padding:0 5px;border-radius:4px;color:#fff}
+.srow{display:flex;flex-wrap:wrap;gap:6px;align-items:stretch;margin:0 0 12px}
+.srow .no{font-size:12px;font-weight:700;color:var(--muted);align-self:center;min-width:1.4em}
+.ch{display:flex;flex-direction:column;border-radius:8px;border:1.5px solid color-mix(in srgb,var(--cc) 70%,transparent);background:color-mix(in srgb,var(--cc) 14%,transparent);padding:3px 8px;min-width:0}
+.ch .cw{font-size:16px}
+.ch .cl{font-size:11px;font-weight:700;color:var(--cc);text-transform:uppercase;letter-spacing:.02em}
+.ch.v{border-width:2.5px}
+.sen-en{flex-basis:100%;font-size:13px;color:var(--muted);font-style:italic;margin-left:1.9em}
+.trl{display:none;margin:10px 0 0;padding:8px 0 0 22px;border-top:1px dashed var(--line);color:var(--muted);font-style:italic;font-size:15px}
+body.show-en .trl{display:block}
+body.hide-A1 .card[data-lvl="A1"],body.hide-B1 .card[data-lvl="B1"]{display:none}
+.say{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;width:28px;height:28px;border-radius:50%;border:1.5px solid currentColor;background:transparent;color:var(--muted);cursor:pointer;padding:0;flex:none}
+.say::before{content:"";width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:2px}
+.say.on{background:var(--b1);border-color:var(--b1);color:#fff}
+.say.on::before{border:none;width:8px;height:8px;background:currentColor;margin:0}
+body.no-tts .say,body.no-tts #sp{display:none}
+#pop{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);max-width:500px;max-height:72vh;overflow:auto;margin:0 auto;background:var(--paper);color:var(--ink);border:2px solid var(--pc,var(--b1));border-radius:14px;padding:12px 14px;z-index:20;box-shadow:0 8px 28px rgba(20,30,60,.28)}
+#pop[hidden]{display:none}
+.ph1{display:flex;align-items:center;gap:8px;position:sticky;top:-12px;background:var(--paper);padding-top:2px}
+#pw{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:24px;color:var(--pc,var(--b1));margin-right:auto;word-break:break-word}
+#px{font:inherit;font-size:22px;line-height:1;background:none;border:none;color:var(--muted);cursor:pointer;padding:4px 8px}
+.pen{font-size:17px;font-weight:700}
+.pm{color:var(--muted);font-size:14px}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;margin:10px 0 4px;font-size:14px;align-items:baseline}
+.facts dt{color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.facts dd{margin:0}
+.pill{display:inline-block;font-weight:700;padding:1px 9px;border-radius:999px;color:#fff;background:var(--sw)}
+.q{color:var(--muted)}
+.box{margin-top:8px;padding:8px 10px;border-radius:8px;background:var(--surface);font-size:14px}
+.box > b:first-child{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin-bottom:2px}
+.ft{border-collapse:collapse;font-size:13px;margin:4px 0;width:100%}
+.ft th,.ft td{border:1px solid var(--line);padding:3px 6px;text-align:left}
+.ft th{color:var(--muted);font-weight:700;background:var(--paper)}
+.ft td{background:var(--paper)}
+.ft .hi,.fl .hi{background:var(--pc);color:#fff;font-weight:700;border-radius:3px}
+.ft tr.hr th{color:var(--ink)}
+.fl{margin:4px 0;font-size:13px}
+.fl span.hi{padding:0 4px}
+.ctx{margin-top:8px;font-size:14px}
+.ctx mark{background:none;color:var(--pc);font-weight:700;text-decoration:underline}
+.ctx .en{color:var(--muted);font-style:italic;display:block;margin-top:2px}
+.qz{margin-top:8px}
+.qz p{margin:0 0 6px;font-weight:700}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opts button{font:inherit;font-size:14px;font-weight:700;padding:5px 11px;border-radius:999px;border:2px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.opts button.right{border-color:var(--ok);background:var(--ok);color:#fff}
+.opts button.wrong{border-color:var(--no);background:var(--no);color:#fff}
+.res{margin:6px 0 0;font-weight:700}
+.res.ok{color:var(--ok)}.res.no{color:var(--no)}
+.pact{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.pbtn{font:inherit;font-size:14px;font-weight:700;padding:6px 14px;border-radius:999px;border:2px solid var(--b1);background:var(--b1);color:#fff;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
+@media (max-width:760px){.bar,main,header.hero{padding-left:14px;padding-right:14px}.para{font-size:18px}
+ .legend{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.legend::-webkit-scrollbar{display:none}.chip{flex:none}.legend .hint,.legend .br{display:none}
+ .bar-inner{gap:6px}.seg button,.tg{font-size:13px;padding:4px 9px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body class="m-pos">
+<header class="hero">
+ <div class="ladder"><span style="background:var(--a1)">A1</span><span style="background:var(--b1)">B1</span><span style="background:var(--a2)">Grammatik</span></div>
+ <h1>Wörter erkennen</h1>
+ <p class="sub">Fünf Themen, je ein Text auf A1- und B1-Niveau. Tippe ein Wort einmal an – es bekommt seine Farbe nach <b>Wortart</b>, <b>Unterart</b>, <b>Kasus</b>, <b>Satzglied</b> oder <b>TeKaMoLo</b>. Tippe noch einmal: Du siehst, was es genau ist, warum es diese Form hat, und alle Formen. <b>Alle färben</b> färbt alles, <b>Leeren</b> macht den Text wieder neutral. Mit <b>Satzbau</b> siehst du jeden Satz in seinen Teilen. Im <b>Übungsmodus</b> rätst du selbst.</p>
+</header>
+<div class="bar"><div class="bar-inner">
+ <div class="seg" role="group" aria-label="Farben nach">
+  <button data-mode="pos" aria-pressed="true">Wortart</button>
+  <button data-mode="sub" aria-pressed="false">Unterart</button>
+  <button data-mode="case" aria-pressed="false">Kasus</button>
+  <button data-mode="role" aria-pressed="false">Satzglied</button>
+  <button data-mode="tm" aria-pressed="false">TeKaMoLo</button>
+ </div>
+ <button class="tg fill" id="fill" type="button">Alle färben</button>
+ <button class="tg fill" id="clear" type="button">Leeren</button>
+ <button class="tg a1" data-lv="A1" aria-pressed="true">A1</button>
+ <button class="tg b1" data-lv="B1" aria-pressed="true">B1</button>
+ <button class="tg en" id="en" aria-pressed="false">EN</button>
+ <button class="tg quiz" id="qz" aria-pressed="false">Übungsmodus</button>
+ <button class="tg speed" id="sp" aria-pressed="false">Tempo: normal</button>
+ <span id="score"></span>
+</div>
+<div class="legend" id="legend"></div>
+<nav class="topics" id="nav" aria-label="Themen"></nav></div>
+<main id="main"></main>
+<div id="pop" hidden role="dialog" aria-live="polite"><div class="ph1"><span id="pw"></span><button class="say" id="psay" type="button" aria-label="Wort vorlesen"></button><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
+<script src="woerter-data.js"></script>
+<script src="woerter-lex.js"></script>
+<script src="translate.js"></script>
+<script>
+/* ---- what the tags mean ---- */
+const POSL={N:["Nomen","noun"],V:["Verb","verb (conjugated)"],VT:["Verbteil","verb part: infinitive, participle or prefix"],P:["Pronomen","pronoun"],A:["Artikel","article / determiner"],J:["Adjektiv","adjective"],ADV:["Adverb","adverb"],PR:["Präposition","preposition"],PA:["Präposition + Artikel","preposition fused with article"],K:["Konjunktion","conjunction"],Z:["Zahlwort","numeral"],T:["Partikel","particle"]};
+const GROUP=WL.GROUP;
+const GROUPS=["N","V","P","A","J","ADV","PR","K","Z","T"];
+const CASEL={N:["Nominativ","Wer? Was?"],A:["Akkusativ","Wen? Was?"],D:["Dativ","Wem?"],G:["Genitiv","Wessen?"]};
+const GEN={m:"maskulin",f:"feminin",n:"neutral",p:"Plural"};
+const TMC={te:"var(--t-te)",ka:"var(--t-ka)",mo:"var(--t-mo)",lo:"var(--t-lo)"};
+const ROLEL={S:["Subjekt","subject"],P:["Prädikat","predicate – the verb"],AO:["Akkusativobjekt","direct object"],DO:["Dativobjekt","indirect object"],GA:["Genitivattribut","genitive – whose?"],AB:["Adverbiale","adverbial – when, where, how, why"],PO:["Präpositionalobjekt","prepositional object"],PN:["Prädikativ","predicative – after sein, heißen"],AT:["Attribut","attribute – describes a noun"],K:["Verbindung","connector"]};
+const ROLEWHY={S:"Wer oder was? The subject is always in the nominative.",AO:"Wen oder was? → accusative object.",DO:"Wem? → dative object.",GA:"Wessen? Whose? → genitive.",PN:"After sein, werden and heißen the noun stays in the nominative."};
+
+/* ---- parse ---- */
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const TOK=[];
+function parse(src){const out=[];
+ for(const raw of src.split("~").map(t=>t.trim()).filter(Boolean)){
+  if(!raw.includes("|")){if(out.length)out[out.length-1].punct+=raw;continue}
+  const [w,tag,c="",role="",lemma="",en="",note=""]=raw.split("|");
+  const [pos,sub]=tag.split(".");
+  const k={w,pos,sub,g:GROUP[pos]||pos,c:c[0]||"",gen:c[1]||"",role,lemma,en,note,punct:""};
+  k.si=WL.subInfo(k);out.push(k)}
+ WL.tekamolo(out);return out}
+
+/* ---- draw ---- */
+let h="",n="";
+WD.forEach((t,ti)=>{
+ n+=`<a href="#t${ti}">${ti+1}. ${esc(t.de)}</a>`;
+ h+=`<section id="t${ti}"><div class="th"><span class="n">${ti+1}</span><h2>${esc(t.de)}</h2><span class="en">${esc(t.en)}</span></div>`;
+ t.p.forEach((p,pi)=>{
+  const cnt={N:0,A:0,D:0,G:0},sents=[];let body="",tr="";
+  p.s.forEach(([src,en],si)=>{
+   const toks=parse(src);sents.push([toks,en]);const sid=`${ti}-${pi}-${si}`;
+   body+=`<span class="sent">`+toks.map(k=>{
+    const i=TOK.length;TOK.push(Object.assign(k,{i,sid,sen:toks,senEn:en}));
+    if(k.c)cnt[k.c]++;
+    return `<span class="tk" data-i="${i}" data-g="${k.g}" data-p="${k.pos}" data-s="${k.si.code}"${k.c?` data-k="${k.c}"`:""} data-r="${k.role}"${k.tm?` data-t="${k.tm}"`:""}>${esc(k.w)}</span>${esc(k.punct)}`}).join(" ")+`</span> `;
+   tr+=`<li>${esc(en)}</li>`});
+  h+=`<div class="card" data-lvl="${p.lvl}"><div class="card-h"><span class="lvl ${p.lvl}">${p.lvl}</span><div class="cases">${"NADG".split("").map(c=>`<span style="--kc:var(--k-${c})"><b>${CASEL[c][0].slice(0,3)}</b> ${cnt[c]}</span>`).join("")}</div><button class="tb" type="button" data-sb aria-expanded="false" style="margin-left:auto">Satzbau</button><button class="say" type="button" data-para aria-label="Text vorlesen"></button></div><p class="para" lang="de">${body}</p><ol class="trl" lang="en">${tr}</ol><div class="sb">${satzbau(sents)}</div></div>`});
+ h+=`</section>`});
+
+/* Satzbau: each sentence cut into its parts, labelled by role, with the
+   adverbials named by TeKaMoLo, under a reminder of the word-order rules. */
+function satzbau(sents){
+ let out=`<div class="rule"><b>Hauptsatz:</b> das konjugierte Verb steht auf <b>Position 2</b>, Infinitiv / Partizip / Vorsilbe am <b>Ende</b>. <b>Nebensatz</b> (weil, obwohl, wenn, dass …): Verb ganz am Ende. <b>Mittelfeld:</b> meist <span class="tm" style="background:var(--t-te)">Te</span> wann? → <span class="tm" style="background:var(--t-ka)">Ka</span> warum? → <span class="tm" style="background:var(--t-mo)">Mo</span> wie? → <span class="tm" style="background:var(--t-lo)">Lo</span> wo?</div>`;
+ sents.forEach(([toks,en],si)=>{
+  const parts=[];
+  toks.forEach((t,i)=>{
+   const prev=toks[i-1],last=parts[parts.length-1];
+   const same=last&&!prev.punct&&t.role===last.role&&t.role!=="P"&&t.role!=="K"&&(t.role!=="AB"||t.ph===prev.ph);
+   if(same)last.toks.push(t);else parts.push({role:t.role,toks:[t]})});
+  out+=`<div class="srow"><span class="no">${si+1}</span>`+parts.map(pt=>{
+   const t=pt.toks[0],words=pt.toks.map(x=>esc(x.w)+esc(x.punct)).join(" ");
+   let lab,col,v="";
+   if(pt.role==="AB"&&t.tm){lab=WL.TM[t.tm][0];col=TMC[t.tm]}
+   else if(pt.role==="P"){lab=t.pos==="V"?"Verb":"Verb · Ende";col=`var(--r-P)`;v=" v"}
+   else{lab=ROLEL[pt.role][0];col=`var(--r-${pt.role})`}
+   return `<span class="ch${v}" style="--cc:${col}"><span class="cw">${words}</span><span class="cl">${esc(lab)}</span></span>`}).join("")+`<span class="sen-en">${esc(en)}</span></div>`});
+ return out}
+
+const main=document.getElementById("main");
+main.innerHTML=h;document.getElementById("nav").innerHTML=n;
+const TKEL=[...main.querySelectorAll(".tk")];
+
+/* Colours: one rule per tag and view, each setting --col, so a view is a
+   class on <body> and the Unterart view also names its word type. */
+(function(){let css="";
+ GROUPS.forEach(g=>{css+=`body.m-pos .tk[data-g="${g}"]{--col:var(--c-${g})}`});
+ css+=`.tk[data-p="VT"]{--ds:dashed}.tk[data-p="PA"]{--ds:dotted}`;
+ "NADG".split("").forEach(c=>{css+=`body.m-case .tk[data-k="${c}"]{--col:var(--k-${c})}`});
+ css+=`body.m-case .tk:not([data-k]){--col:var(--muted)}`;
+ Object.keys(ROLEL).forEach(r=>{css+=`body.m-role .tk[data-r="${r}"]{--col:var(--r-${r})}`});
+ css+=`body.m-sub .tk{--col:var(--muted)}`;
+ Object.keys(TMC).forEach(t=>{css+=`body.m-tm .tk[data-t="${t}"]{--col:${TMC[t]}}`});
+ GROUPS.forEach(g=>WL.SUBS[g].forEach(([s],i)=>{css+=`body.m-sub[data-sp="${g}"] .tk[data-s="${g}-${s}"]{--col:var(--s${i+1})}`}));
+ const st=document.createElement("style");st.textContent=css;document.head.appendChild(st)})();
+
+/* ---- views and legend ---- */
+let mode="pos",only=null,subPos="A";
+const legend=document.getElementById("legend");
+function legendItems(){
+ if(mode==="pos")return GROUPS.map(g=>[g,POSL[g][0],`var(--c-${g})`]);
+ if(mode==="case")return "NADG".split("").map(c=>[c,CASEL[c][0]+" · "+CASEL[c][1],`var(--k-${c})`]);
+ if(mode==="sub")return WL.SUBS[subPos].map(([s,de],i)=>[subPos+"-"+s,de,`var(--s${i+1})`]);
+ if(mode==="tm")return Object.keys(TMC).map(t=>[t,WL.TM[t][0]+" · "+WL.TM[t][1],TMC[t]]);
+ return Object.keys(ROLEL).map(r=>[r,ROLEL[r][0],`var(--r-${r})`])}
+function drawLegend(){
+ let pre="";
+ if(mode==="sub")pre=`<span class="lab">Wortart:</span>`+GROUPS.map(g=>`<button class="chip pick" data-pick="${g}" aria-pressed="${g===subPos}">${esc(POSL[g][0])}</button>`).join("")+`<span class="br"></span><span class="lab">Unterarten:</span>`;
+ legend.innerHTML=pre+legendItems().map(([k,l,col])=>`<button class="chip" data-k="${k}" style="--sw:${col}" aria-pressed="${only===k}"><i></i>${esc(l)}</button>`).join("")+
+  `<span class="hint">${mode==="pos"||mode==="sub"?"gestrichelt = Verbteil · gepunktet = Präp. + Artikel · ":""}Farbe antippen = nur diese zeigen</span>`}
+function attrOf(){return {pos:"g",sub:"s",case:"k",role:"r",tm:"t"}[mode]}
+function applyOnly(){
+ const a=attrOf();
+ TKEL.forEach(el=>{
+  el.classList.toggle("dim",!!only&&el.dataset[a]!==only);
+  el.classList.toggle("off",(mode==="case"&&!el.dataset.k)||(mode==="tm"&&!el.dataset.t)||(mode==="sub"&&el.dataset.g!==subPos))})}
+function setMode(m){mode=m;only=null;document.body.classList.remove("m-pos","m-sub","m-case","m-role","m-tm");document.body.classList.add("m-"+m);
+ document.body.dataset.sp=subPos;
+ document.querySelectorAll(".seg button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mode===m)));
+ drawLegend();applyOnly();try{localStorage.setItem("wd:mode",m)}catch(e){}}
+document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
+legend.addEventListener("click",e=>{
+ const p=e.target.closest("[data-pick]");if(p){subPos=p.dataset.pick;setMode("sub");return}
+ const c=e.target.closest(".chip[data-k]");if(!c)return;only=only===c.dataset.k?null:c.dataset.k;drawLegend();applyOnly()});
+let saved=null;try{saved=localStorage.getItem("wd:mode")}catch(e){}
+setMode(["pos","sub","case","role","tm"].includes(saved)?saved:"pos");
+
+document.querySelectorAll(".tg[data-lv]").forEach(b=>b.onclick=()=>{const on=b.getAttribute("aria-pressed")==="true";b.setAttribute("aria-pressed",String(!on));document.body.classList.toggle("hide-"+b.dataset.lv,on)});
+const enB=document.getElementById("en");
+enB.onclick=()=>{const on=enB.getAttribute("aria-pressed")!=="true";enB.setAttribute("aria-pressed",String(on));document.body.classList.toggle("show-en",on)};
+
+/* ---- speech ---- */
+const synth=window.speechSynthesis;let rate=1,playing=null;
+if(!synth||typeof SpeechSynthesisUtterance==="undefined")document.body.classList.add("no-tts");
+function voiceFor(lang){if(!synth)return null;const vs=synth.getVoices().filter(v=>v.lang&&v.lang.toLowerCase().startsWith(lang));
+ const pref=["premium","enhanced","google","natural","anna","helena","katja","markus"];
+ for(const p of pref){const v=vs.find(v=>v.name.toLowerCase().includes(p));if(v)return v}return vs[0]||null}
+if(synth){synth.getVoices();synth.onvoiceschanged=()=>synth.getVoices()}
+function stopSay(){if(synth)synth.cancel();if(playing)playing.classList.remove("on");playing=null}
+function speak(btn,text){if(!synth)return;if(playing===btn){stopSay();return}stopSay();
+ const u=new SpeechSynthesisUtterance(text);u.lang="de-DE";u.rate=rate;const v=voiceFor("de");if(v)u.voice=v;
+ u.onend=u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
+ playing=btn;btn.classList.add("on");synth.speak(u)}
+const sp=document.getElementById("sp");
+sp.onclick=()=>{rate=rate===1?0.75:1;sp.setAttribute("aria-pressed",String(rate!==1));sp.textContent=rate===1?"Tempo: normal":"Tempo: langsam"};
+
+/* ---- the popup ---- */
+const pop=document.getElementById("pop"),pw=document.getElementById("pw"),pb=document.getElementById("pb"),psay=document.getElementById("psay");
+let cur=null;
+function colourOf(k){
+ if(mode==="case"&&k.c)return `var(--k-${k.c})`;
+ if(mode==="role")return `var(--r-${k.role})`;
+ if(mode==="tm"&&k.tm)return TMC[k.tm];
+ if(mode==="sub"&&k.g===subPos)return `var(--s${k.si.idx+1})`;
+ return `var(--c-${k.g})`}
+
+/* Why this word has this form: the hand-written note, else the preposition
+   that governs it, else what its role means, else what its subtype is. */
+function why(k){
+ if(k.note)return k.note;
+ if(k.c){
+  if(ROLEWHY[k.role])return ROLEWHY[k.role];
+  const at=k.sen.indexOf(k);
+  for(let j=at-1;j>=0;j--){const t=k.sen[j];if(t.pos==="V"||t.pos==="VT"||t.punct)break;
+   if(t.pos==="PR"||t.pos==="PA")return `After "${t.w}" → ${CASEL[k.c][0]}.`}
+  return `${CASEL[k.c][0]}: ${CASEL[k.c][1]}`}
+ return ROLEWHY[k.role]||""}
+
+function facts(k){
+ const pl=POSL[k.pos];
+ let f=`<dl class="facts"><dt>Wortart</dt><dd><span class="pill" style="--sw:var(--c-${k.g})">${esc(pl[0])}</span> <span class="q">${esc(pl[1])}</span></dd>`;
+ f+=`<dt>Unterart</dt><dd><span class="pill" style="--sw:var(--s${k.si.idx+1})">${esc(k.si.de)}</span> <span class="q">${esc(k.si.en)}</span></dd>`;
+ if(k.c)f+=`<dt>Kasus</dt><dd><span class="pill" style="--sw:var(--k-${k.c})">${CASEL[k.c][0]}</span> <span class="q">${CASEL[k.c][1]}${k.gen?" · "+GEN[k.gen]:""}</span></dd>`;
+ f+=`<dt>Satzglied</dt><dd><span class="pill" style="--sw:var(--r-${k.role})">${esc(ROLEL[k.role][0])}</span> <span class="q">${esc(ROLEL[k.role][1])}</span></dd>`;
+ if(k.tm)f+=`<dt>TeKaMoLo</dt><dd><span class="pill" style="--sw:${TMC[k.tm]}">${WL.TM[k.tm][0]}</span> <span class="q">${WL.TM[k.tm][1]}</span></dd>`;
+ f+=`</dl>`;
+ const w=why(k);
+ f+=`<div class="box"><b>Warum?</b>${w?esc(w)+" ":""}<span class="q">${esc(k.si.de)}: ${esc(k.si.why)}</span></div>`;
+ const fm=WL.forms(k);
+ if(fm===null)f+=`<div class="box" id="formsBox"><b>Alle Formen</b><span class="q">Lade Tabelle …</span></div>`;
+ else if(fm)f+=`<div class="box"><b>Alle Formen</b>${fm}</div>`;
+ f+=`<div class="ctx">${k.sen.map(t=>(t===k?`<mark>${esc(t.w)}</mark>`:esc(t.w))+esc(t.punct)).join(" ")}<span class="en">${esc(k.senEn)}</span></div>`;
+ return f}
+function head(k){return `<div class="pen">${esc(k.en)}</div>${k.lemma?`<div class="pm">Grundform: ${esc(k.lemma)}</div>`:""}`}
+
+/* A noun's eight forms come from Wiktionary, so they arrive after the popup. */
+const ARTS={m:["der","den","dem","des"],f:["die","die","der","der"],n:["das","das","dem","des"]};
+async function nounForms(k){
+ const box=document.getElementById("formsBox");if(!box||!window.dlNounTable)return;
+ const t=await window.dlNounTable(k.w,k.lemma||"");
+ if(cur&&cur.k!==k)return;
+ const b=document.getElementById("formsBox");if(!b)return;
+ if(!t||!t.cases){b.innerHTML=`<b>Alle Formen</b><span class="q">Keine Tabelle gefunden (oder offline).</span>`;return}
+ const rows=[["N","Nom."],["A","Akk."],["D","Dat."],["G","Gen."]];
+ let tb=`<p class="fl"><b>${esc(ARTS[t.g][0]+" "+t.sg)}</b> · ${esc(GEN[t.g])}${t.pl?` · Plural: <b>die ${esc(t.pl)}</b>`:""}</p><table class="ft"><tr><th></th><th>Singular</th><th>Plural</th></tr>`;
+ rows.forEach(([c,l],ri)=>{const [s,p]=t.cases[c]||["",""];
+  tb+=`<tr><th>${l}</th><td${k.c===c&&k.gen!=="p"?' class="hi"':""}>${s?esc(ARTS[t.g][ri]+" "+s):"–"}</td><td${k.c===c&&k.gen==="p"?' class="hi"':""}>${p?esc(["die","die","den","der"][ri]+" "+p):"–"}</td></tr>`});
+ b.innerHTML=`<b>Alle Formen</b>`+tb+`</table>`}
+
+function openFor(el){
+ if(cur)cur.el.classList.remove("sel");
+ const k=TOK[+el.dataset.i];cur={k,el};el.classList.add("sel");
+ pw.textContent=k.w;pop.hidden=false;pop.scrollTop=0;
+ if(quiz&&!el.classList.contains("done"))return askPos(k,el);
+ show(k)}
+function show(k){pop.style.setProperty("--pc",colourOf(k));pb.innerHTML=head(k)+facts(k)+(quiz?nextBtn():"");wireNext();if(k.pos==="N"&&k.si.code!=="N-eigen")nounForms(k)}
+function closePop(){pop.hidden=true;if(cur)cur.el.classList.remove("sel");cur=null}
+document.getElementById("px").onclick=closePop;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closePop()});
+psay.onclick=()=>{if(cur)speak(psay,cur.k.w)};
+
+/* ---- practice: guess the type, then the case ---- */
+let quiz=false,right=0,tries=0;
+const scoreEl=document.getElementById("score");
+function score(){scoreEl.textContent=`✓ ${right} / ${tries}`}
+const qzB=document.getElementById("qz");
+qzB.onclick=()=>{quiz=qzB.getAttribute("aria-pressed")!=="true";qzB.setAttribute("aria-pressed",String(quiz));document.body.classList.toggle("quiz",quiz);
+ TKEL.forEach(el=>el.classList.remove("done","on"));right=tries=0;score();closePop()};
+function opts(list,cls){return `<div class="opts">${list.map(([k,l])=>`<button type="button" data-${cls}="${k}">${esc(l)}</button>`).join("")}</div>`}
+function askPos(k,el){
+ pop.style.setProperty("--pc","var(--ink)");
+ pb.innerHTML=`<div class="qz"><p>Welche Wortart ist „${esc(k.w)}“?</p>${opts(GROUPS.map(g=>[g,POSL[g][0]]),"g")}<div id="qres"></div></div>`;
+ pb.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{
+  const ok=b.dataset.g===k.g;tries++;if(ok)right++;score();
+  pb.querySelectorAll("[data-g]").forEach(x=>{x.disabled=true;if(x.dataset.g===k.g)x.classList.add("right");else if(x===b)x.classList.add("wrong")});
+  document.getElementById("qres").innerHTML=`<p class="res ${ok?"ok":"no"}">${ok?"Richtig!":"Nicht ganz – es ist: "+esc(POSL[k.pos][0])}</p>`;
+  setTimeout(()=>askSub(k,el),ok?500:1100)})}
+function askSub(k,el){
+ const list=WL.SUBS[k.g];
+ if(list.length<2)return k.c?askCase(k,el):reveal(k,el);
+ pb.innerHTML=`<div class="qz"><p>Welche ${esc(POSL[k.g][0])}-Art ist „${esc(k.w)}“?</p>${opts(list.map(([s,de])=>[k.g+"-"+s,de]),"s")}<div id="qres"></div></div>`;
+ pb.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{
+  const ok=b.dataset.s===k.si.code;tries++;if(ok)right++;score();
+  pb.querySelectorAll("[data-s]").forEach(x=>{x.disabled=true;if(x.dataset.s===k.si.code)x.classList.add("right");else if(x===b)x.classList.add("wrong")});
+  document.getElementById("qres").innerHTML=`<p class="res ${ok?"ok":"no"}">${ok?"Richtig!":"Nicht ganz – es ist: "+esc(k.si.de)}</p>`;
+  setTimeout(()=>k.c?askCase(k,el):reveal(k,el),ok?500:1100)})}
+function askCase(k,el){
+ pb.innerHTML=`<div class="qz"><p>Und der Kasus von „${esc(k.w)}“?</p>${opts("NADG".split("").map(c=>[c,CASEL[c][0]]),"c")}<div id="qres"></div></div>`;
+ pb.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{
+  const ok=b.dataset.c===k.c;tries++;if(ok)right++;score();
+  pb.querySelectorAll("[data-c]").forEach(x=>{x.disabled=true;if(x.dataset.c===k.c)x.classList.add("right");else if(x===b)x.classList.add("wrong")});
+  document.getElementById("qres").innerHTML=`<p class="res ${ok?"ok":"no"}">${ok?"Richtig!":"Nicht ganz – es ist: "+CASEL[k.c][0]}</p>`;
+  setTimeout(()=>reveal(k,el),ok?500:1100)})}
+function reveal(k,el){el.classList.add("done","on");show(k)}
+function nextBtn(){return `<div class="pact"><button type="button" class="pbtn" id="nx">Nächstes Wort →</button></div>`}
+function wireNext(){const b=document.getElementById("nx");if(!b)return;b.onclick=()=>{
+ const from=cur?TKEL.indexOf(cur.el):-1;
+ const vis=el=>el.offsetParent!==null&&!el.classList.contains("done");
+ const nx=TKEL.slice(from+1).find(vis)||TKEL.find(vis);
+ if(!nx){pb.innerHTML=`<p class="res ok">Alle Wörter geschafft! ✓ ${right} / ${tries}</p>`;return}
+ nx.scrollIntoView({block:"center",behavior:"smooth"});openFor(nx)}}
+
+/* ---- clicks ---- */
+main.addEventListener("click",e=>{
+ const sb=e.target.closest(".say");
+ if(sb&&sb.hasAttribute("data-para")){speak(sb,sb.closest(".card").querySelector(".para").textContent.replace(/\s+/g," ").trim());return}
+ const tb=e.target.closest("[data-sb]");if(tb){const c=tb.closest(".card");c.classList.toggle("sbo");tb.setAttribute("aria-expanded",String(c.classList.contains("sbo")));return}
+ const tk=e.target.closest(".tk");if(!tk)return;
+ /* A plain word takes its colour on the first tap; the second opens it. */
+ if(!quiz&&!tk.classList.contains("on")){tk.classList.add("on");return}
+ openFor(tk)});
+document.getElementById("fill").onclick=()=>{if(quiz)return;TKEL.forEach(el=>el.classList.add("on"))};
+document.getElementById("clear").onclick=()=>{closePop();TKEL.forEach(el=>el.classList.remove("on","done"))};
+</script>
+</body>
+</html>
