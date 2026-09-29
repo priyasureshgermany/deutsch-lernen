@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>B1 Gesprächsthemen – A1/A2/B1 + Beispielantworten</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--paper:#ffffff;--surface:#eef1f6;--ink:#1b2230;--muted:#5b6475;--line:#d9dee8;
+--en:#5b6475;--b1:#2f5bd3;--a2:#b87d00;--a1:#1b8a6b;--ans:#8a3fa8;--ansbg:#f6effa}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--en:#9aa3b5;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--ans:#d49bf0;--ansbg:#2a2036}}
+:root[data-theme="dark"]{--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--en:#9aa3b5;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--ans:#d49bf0;--ansbg:#2a2036}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 120px)}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
+header.hero{padding:28px 20px 20px;max-width:1280px;margin:0 auto}
+.ladder{display:flex;gap:6px;margin-bottom:14px}
+.ladder span{font-weight:700;font-size:13px;padding:3px 10px;border-radius:4px;color:#fff}
+.ladder .l1{background:var(--a1)}.ladder .l2{background:var(--a2)}.ladder .l3{background:var(--b1)}
+h1{font-size:clamp(30px,6vw,52px);font-weight:800;line-height:1.02;letter-spacing:-.02em;max-width:18ch}
+.sub{color:var(--muted);max-width:62ch;margin:12px 0 0}
+.bar{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 20px 8px}
+.bar-inner{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+input[type=search]{flex:1 1 200px;min-width:0;font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.toggles{display:flex;flex-wrap:wrap;gap:6px}
+.tg{font:inherit;font-size:14px;font-weight:700;padding:6px 11px;border-radius:999px;border:2px solid var(--c);background:var(--c);color:#fff;cursor:pointer}
+.tg[aria-pressed="false"]{background:transparent;color:var(--c)}
+.tg.en{--c:var(--en)}.tg.b1{--c:var(--b1)}.tg.a2{--c:var(--a2)}.tg.a1{--c:var(--a1)}.tg.ans{--c:var(--ans)}
+.tg.practice{--c:var(--ink)}.tg.multi{--c:var(--b1)}.tg.speed{--c:var(--a1)}
+.topics{max-width:1280px;margin:8px auto 0;display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.topics a{flex:none;font-size:13px;color:var(--ink);text-decoration:none;padding:4px 10px;border-radius:6px;background:var(--surface);white-space:nowrap}
+.topics a:hover{background:var(--line)}
+main{max-width:1280px;margin:0 auto;padding:8px 20px 60px}
+section{margin-top:36px}
+.th{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.th .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:15px;color:var(--muted)}
+h2{font-size:clamp(24px,4vw,34px);font-weight:800;letter-spacing:-.01em}
+.th .en{color:var(--muted);font-size:17px}
+.wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{text-align:left;font-size:13px;font-weight:700;padding:8px 10px;border-bottom:2px solid var(--line);vertical-align:bottom}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+th.c-en{color:var(--en)}th.c-b1{color:var(--b1)}th.c-a2{color:var(--a2)}th.c-a1{color:var(--a1)}th.c-ans{color:var(--ans)}
+td.num{color:var(--muted);font-weight:700;width:2.2em}
+td.c-en{color:var(--en);font-style:italic}
+td.c-b1{border-left:3px solid var(--b1)}
+td.c-a2{border-left:3px solid var(--a2)}
+td.c-a1{border-left:3px solid var(--a1)}
+td.c-ans{background:var(--ansbg);border-left:3px solid var(--ans)}
+.ph{color:var(--ans);font-weight:700}
+body.hide-en .c-en,body.hide-b1 .c-b1,body.hide-a2 .c-a2,body.hide-a1 .c-a1,body.hide-ans .c-ans{display:none}
+body.practice td.c-ans .t{filter:blur(6px);cursor:pointer;user-select:none;transition:filter .2s}
+body.practice td.c-ans.shown .t{filter:none}
+body.practice td.c-ans:not(.shown)::after{content:"Tippen zum Aufdecken";display:block;font-size:12px;color:var(--ans);margin-top:4px}
+td.c-ans{cursor:pointer}
+td.c-ans .tr{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--ans);color:var(--muted);font-style:italic}
+td.c-ans.en-on .tr{display:block}
+.trb{display:block;margin-top:6px;font:inherit;font-size:12px;font-weight:700;color:var(--ans);background:none;border:1px solid var(--ans);border-radius:999px;padding:2px 10px;cursor:pointer}
+body.practice td.c-ans:not(.shown) .trb{display:none}
+.w{cursor:pointer;border-radius:3px;transition:background .15s}
+.w:hover{background:var(--surface)}
+.w.sel{background:var(--b1);color:#fff}
+#pop{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);max-width:440px;margin:0 auto;background:var(--paper);color:var(--ink);border:2px solid var(--b1);border-radius:12px;padding:12px 14px;z-index:20;box-shadow:0 8px 28px rgba(20,30,60,.25)}
+#pop[hidden]{display:none}
+#pop .ph1{display:flex;justify-content:space-between;align-items:center;gap:8px}
+#pw{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:22px;color:var(--b1)}
+#px{font:inherit;font-size:20px;line-height:1;background:none;border:none;color:var(--muted);cursor:pointer;padding:4px 8px}
+.pen{font-size:18px;font-weight:700;margin-top:2px}
+.pm{color:var(--muted);font-size:14px;margin-top:2px}
+.pn{font-size:14px;margin-top:6px;font-style:italic}
+.muted{color:var(--muted)}
+.say{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;width:26px;height:26px;margin-left:6px;border-radius:50%;border:1.5px solid currentColor;background:transparent;color:var(--muted);cursor:pointer;padding:0;flex:none}
+.say::before{content:"";width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:2px}
+.say.on{background:var(--b1);border-color:var(--b1);color:#fff}
+.say.on::before{border:none;width:8px;height:8px;background:currentColor;margin:0}
+td.c-b1 .say{color:var(--b1)}td.c-a2 .say{color:var(--a2)}td.c-a1 .say{color:var(--a1)}td.c-ans .say{color:var(--ans)}td.c-ans .say.on{color:#fff}
+body.no-tts .say,body.no-tts #sp{display:none}
+body.practice td.c-ans:not(.shown) > .say{display:none}
+.w.pk{background:var(--a2);color:#fff}
+.pact{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.pbtn{font:inherit;font-size:14px;font-weight:700;padding:6px 14px;border-radius:999px;border:2px solid var(--b1);background:var(--b1);color:#fff;cursor:pointer}
+.pbtn.ghost{background:transparent;color:var(--b1)}
+#pw{word-break:break-word}
+.empty{display:none;color:var(--muted);padding:40px 0}
+.note{font-size:14px;color:var(--muted);max-width:62ch;margin-top:10px}
+@media (max-width:760px){
+ table,tbody,tr,td{display:block;width:100%}
+ thead{display:none}
+ tr{border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden}
+ td{border-bottom:none;padding:8px 12px}
+ td.num{padding-bottom:0;width:auto}
+ td[data-l]::before{content:attr(data-l);display:block;font-size:11px;font-weight:700;font-style:normal;margin-bottom:2px}
+ td.c-en::before{color:var(--en)}td.c-b1::before{color:var(--b1)}td.c-a2::before{color:var(--a2)}td.c-a1::before{color:var(--a1)}td.c-ans::before{color:var(--ans)}
+ .bar{padding-left:14px;padding-right:14px}main,header.hero{padding-left:14px;padding-right:14px}
+}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.fb{margin-top:6px;font-size:15px}.fb a{color:var(--b1);font-weight:700}
+</style>
+</head>
+<body>
+<header class="hero">
+ <div class="ladder"><span class="l1">A1</span><span class="l2">A2</span><span class="l3">B1</span></div>
+ <h1>25 Gesprächsthemen, drei Niveaus</h1>
+ <p class="sub">Jede Frage aus dem Deutsch Gym B1-Heft: zuerst Englisch, dann das B1-Original, eine A2- und eine A1-Version – und eine Beispielantwort auf B1-Niveau zum Nachsprechen. Tippe auf ein deutsches Wort für seine Übersetzung, oder auf „Englisch zeigen“ für die ganze Antwort. Mit „Mehrere Wörter“ wählst du mehrere Wörter zusammen aus. Der ▶-Knopf liest jeden Satz vor.</p>
+ <p class="note">Wörter in <span class="ph">[Klammern]</span> sind Platzhalter – setz dort dein Heimatland, dein Fest oder dein Gericht ein. Die Beispielantworten sind Vorschläge; pass sie an dein Leben an.</p>
+</header>
+<div class="bar"><div class="bar-inner">
+ <input type="search" id="q" placeholder="Suchen (Deutsch oder Englisch)…" aria-label="Fragen durchsuchen">
+ <div class="toggles">
+  <button class="tg en" data-k="en" aria-pressed="true">EN</button>
+  <button class="tg b1" data-k="b1" aria-pressed="true">B1</button>
+  <button class="tg a2" data-k="a2" aria-pressed="true">A2</button>
+  <button class="tg a1" data-k="a1" aria-pressed="true">A1</button>
+  <button class="tg ans" data-k="ans" aria-pressed="true">Antwort</button>
+  <button class="tg practice" id="pr" aria-pressed="false">Übungsmodus</button>
+  <button class="tg multi" id="mw" aria-pressed="false">Mehrere Wörter</button>
+  <button class="tg speed" id="sp" aria-pressed="false">Tempo: normal</button>
+ </div>
+</div><nav class="topics" id="nav" aria-label="Themen"></nav></div>
+<main id="main"></main>
+<div id="pop" hidden role="dialog" aria-live="polite"><div class="ph1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
+<p class="empty" id="empty">Keine Frage passt zu deiner Suche. Versuch ein anderes Wort.</p>
+<script>
+const T=[];
+T.push({de:"Wohnraum",en:"Housing",q:[
+["How has housing changed in the last 50 years?","Wie hat sich der Wohnraum in den letzten 50 Jahren verändert?","Wie haben sich Wohnungen in den letzten 50 Jahren verändert?","Sind Wohnungen heute anders als früher?","Die Wohnungen sind heute kleiner und viel teurer. Früher hatten viele Familien ein Haus, heute wohnen mehr Menschen allein in einer Wohnung."],
+["Are there more people living in cities than in rural areas?","Wohnen mehr Menschen in Städten als auf dem Land?","Leben mehr Leute in der Stadt oder auf dem Land?","Wohnen viele Menschen in der Stadt?","Ja, heute wohnen mehr Menschen in Städten, weil es dort mehr Jobs gibt. In Deutschland lebt die große Mehrheit in Städten."],
+["Are shared apartments more popular these days? Why?","Sind Wohngemeinschaften heutzutage beliebter geworden? Warum?","Wohnen heute mehr Leute in einer WG? Warum?","Wohnst du in einer WG?","Ja, WGs sind beliebter geworden, weil die Mieten so hoch sind. Außerdem ist man nicht allein."],
+["Housing costs have increased for this generation. Why is this?","Die Wohnungspreise haben sich in der letzten Generation verteuert. Woran liegt das?","Warum sind Wohnungen heute so teuer?","Sind Wohnungen teuer?","Es gibt zu wenige Wohnungen, und viele Menschen wollen in der Stadt wohnen. Auch das Bauen ist viel teurer geworden."],
+["Are the rent/housing costs in your city affordable?","Sind die Mieten/Hauspreise in deiner Stadt bezahlbar?","Ist die Miete in deiner Stadt zu teuer?","Wie teuer ist die Miete in deiner Stadt?","In Frankfurt sind die Mieten leider sehr hoch. Für Familien mit normalem Einkommen ist es schwer, eine bezahlbare Wohnung zu finden."],
+["Is it better to rent or buy a house/apartment?","Ist es besser, zur Miete zu wohnen oder eine Wohnung/ein Haus zu kaufen?","Ist Mieten oder Kaufen besser?","Mietest du oder kaufst du?","Das hängt von der Situation ab. Mieten ist flexibler, aber mit einer eigenen Wohnung zahlt man im Alter keine Miete mehr."],
+["Do you agree with a city imposing rent control?","Bist du damit einverstanden, dass eine Stadt eine Mietpreisbremse einführt?","Findest du eine Mietpreisbremse gut?","Soll die Miete billig sein?","Im Prinzip finde ich die Mietpreisbremse gut, weil sie Mieter schützt. Aber sie baut keine neuen Wohnungen – das Problem bleibt."],
+["What does your dream house look like?","Wie sieht dein Traumhaus aus?","Wie ist dein Traumhaus?","Ist dein Traumhaus groß oder klein?","Mein Traumhaus ist hell und modern, mit einem großen Garten und einem Arbeitszimmer. Es liegt ruhig, aber nicht weit von der Stadt."],
+["Would you like to live in the countryside? Why/why not?","Würdest du gerne auf dem Land wohnen? Warum/warum nicht?","Möchtest du auf dem Land wohnen? Warum?","Wohnst du gern auf dem Land?","Vielleicht später. Auf dem Land ist es ruhig und grün, aber im Moment brauche ich die Stadt für meine Arbeit und meine Freunde."],
+["Would you ever live in a “tiny house”?","Würdest du in einem „Tiny House“ wohnen?","Möchtest du in einem sehr kleinen Haus wohnen?","Ist ein kleines Haus gut?","Für ein Wochenende gern, aber nicht für immer. Ich brauche mehr Platz, besonders für meinen Schreibtisch."]]});
+T.push({de:"Persönlichkeit",en:"Personality",q:[
+["What makes you happy?","Was macht dich glücklich?","Was macht dich froh?","Bist du glücklich? Warum?","Zeit mit Freunden, gutes Essen und Sport machen mich glücklich. Und wenn ich bei der Arbeit ein schwieriges Problem gelöst habe."],
+["What are some things that make you angry?","Was sind einige Dinge, die dich wütend machen?","Was macht dich wütend?","Bist du oft wütend?","Unpünktlichkeit und Unehrlichkeit machen mich wütend. Auch Verspätungen bei der Bahn ärgern mich."],
+["If you could remove one aspect of your personality, what would it be?","Wenn du einen Aspekt deiner Persönlichkeit entfernen könntest, welcher wäre das?","Was möchtest du an dir ändern?","Was magst du an dir nicht?","Ich würde meine Ungeduld entfernen. Manchmal möchte ich, dass alles sofort funktioniert."],
+["Are you a stubborn person?","Bist du ein dickköpfiger Mensch?","Bist du manchmal dickköpfig?","Bist du stur?","Ein bisschen, ja. Wenn ich von einer Lösung überzeugt bin, ändere ich meine Meinung nicht so schnell – aber gute Argumente akzeptiere ich."],
+["Are you shy? On what occasions?","Bist du schüchtern? Bei welchen Gelegenheiten bist du schüchtern?","Bist du schüchtern? Wann?","Bist du schüchtern?","Manchmal, besonders wenn ich mit fremden Leuten Deutsch sprechen muss. Mit Freunden bin ich überhaupt nicht schüchtern."],
+["Is your personality suitable for your work?","Ist deine Persönlichkeit für deine Arbeit geeignet?","Passt deine Persönlichkeit zu deinem Job?","Passt dein Job zu dir?","Ja, ich denke schon. Ich bin analytisch und geduldig bei technischen Problemen, und das braucht man als Entwickler."],
+["Do you think your personality has changed over time?","Glaubst du, dass sich deine Persönlichkeit im Laufe der Zeit verändert hat?","Hast du dich mit der Zeit verändert?","Bist du heute anders als früher?","Ja, ich bin ruhiger und selbstbewusster geworden. Das Leben im Ausland hat mich sehr verändert."],
+["What are the personalities of your family members?","Welche Art von Persönlichkeit haben deine Familienmitglieder?","Wie sind die Menschen in deiner Familie?","Wie ist deine Familie?","In meiner Familie sind alle sehr unterschiedlich: Manche sind ruhig und ernst, andere lustig und laut."],
+["What qualities are important in a partner?","Welche Eigenschaften sind bei einem Freund oder einer Freundin wichtig?","Was ist bei einem Partner wichtig?","Wie soll dein Partner sein?","Ehrlichkeit, Humor und Respekt sind für mich am wichtigsten."],
+["What qualities are unimportant in a partner?","Welche Eigenschaften sind bei einem Freund oder einer Freundin unwichtig?","Was ist bei einem Partner nicht wichtig?","Was ist nicht wichtig?","Aussehen und Geld sind nicht so wichtig. Auch die gleichen Hobbys braucht man nicht unbedingt."],
+["Do two strong personalities go together?","Passen zwei starke Persönlichkeiten zusammen?","Passen zwei starke Menschen gut zusammen?","Sind zwei starke Menschen ein gutes Team?","Ja, wenn beide Kompromisse machen können. Sonst gibt es viel Streit."],
+["What shapes/influences a personality?","Was formt/beeinflusst die Persönlichkeit?","Was macht deine Persönlichkeit?","Was macht dich so, wie du bist?","Die Familie, die Kultur und die Erfahrungen, die man macht. Auch Freunde und die Arbeit beeinflussen uns."]]});
+T.push({de:"Die Umwelt",en:"The Environment",q:[
+["Are we doing enough to protect the environment?","Tun wir genug, um die Umwelt zu schützen?","Machen wir genug für die Umwelt?","Hilfst du der Umwelt?","Nein, ich glaube nicht. Wir reden viel, aber wir fliegen und konsumieren immer noch zu viel."],
+["Should cars be banned from city centres?","Denkst du, Autos sollten aus den Innenstädten verbannt werden?","Sollen Autos nicht mehr in die Innenstadt fahren?","Sind Autos in der Stadt gut?","Teilweise ja. Mit guten Bussen und Bahnen braucht man in der Innenstadt kein Auto. Aber für Lieferungen und Menschen mit Behinderung braucht man Ausnahmen."],
+["What is more important: increasing prosperity or environmental protection?","Was denkst du ist wichtiger: Zunehmender Wohlstand oder Umweltschutz?","Was ist wichtiger: mehr Geld oder Umweltschutz?","Ist Geld oder Natur wichtiger?","Beides ist wichtig, aber ohne gesunde Umwelt gibt es langfristig keinen Wohlstand. Man muss beides verbinden."],
+["Who bears more responsibility for pollution: individuals or the government?","Wer, glaubst du, trägt mehr Verantwortung für Umweltverschmutzung: Der einzelne Mensch oder die Regierung? Erkläre.","Wer ist mehr verantwortlich: die Menschen oder die Regierung?","Wer macht die Umwelt kaputt?","Ich denke, die Regierung und große Firmen tragen mehr Verantwortung, weil sie die Regeln machen. Aber jeder Einzelne muss auch mitmachen."],
+["What more can we do to protect forests?","Was können wir tun, um die Wälder (besser) zu schützen?","Wie können wir den Wald schützen?","Magst du den Wald?","Weniger Holz und Papier verbrauchen, neue Bäume pflanzen und illegale Abholzung stoppen."],
+["Is nuclear power a safe alternative to fossil fuels?","Denkst du, Atomkraft ist eine sichere Alternative zu fossilen Energieträgern?","Ist Atomkraft sicher?","Ist Atomkraft gut oder schlecht?","Das ist schwierig. Atomkraft produziert wenig CO₂, aber der Atommüll bleibt ein großes Problem. Deutschland hat sich dagegen entschieden."],
+["Who should be allowed to use nuclear power? Who monitors the rules?","Wer sollte Atomkraft verwenden dürfen? Wer kann die Regeln überwachen?","Welche Länder dürfen Atomkraft haben? Wer kontrolliert das?","Wer kontrolliert Atomkraft?","Nur Länder mit strengen Sicherheitsregeln. Eine internationale Organisation wie die IAEA sollte das kontrollieren."],
+["What has been done in your homeland to protect the environment?","Was wird in deinem Heimatland für den Umweltschutz getan?","Was macht dein Heimatland für die Umwelt?","Ist die Umwelt in deinem Land wichtig?","In [Heimatland] wird mehr in Solar- und Windenergie investiert, und manche Plastikprodukte sind verboten. Aber es gibt noch viel zu tun."],
+["How can children be taught to protect the environment?","Wie kann Kindern beigebracht werden, die Umwelt zu schützen?","Wie lernen Kinder, die Umwelt zu schützen?","Lernen Kinder etwas über die Umwelt?","In der Schule und zu Hause, zum Beispiel durch Mülltrennung, Ausflüge in die Natur und gute Vorbilder."],
+["What can each individual do to protect the environment?","Was kann jeder Einzelne tun, um die Umwelt zu schützen?","Was kannst du für die Umwelt machen?","Was machst du für die Umwelt?","Weniger fliegen, mit dem Fahrrad oder der Bahn fahren, weniger Fleisch essen und Müll trennen."]]});
+T.push({de:"Fernsehen",en:"Television",q:[
+["How often do you watch TV?","Wie oft siehst du fern?","Wie oft schaust du fern?","Siehst du fern?","Klassisches Fernsehen fast nie, aber ich streame zwei- oder dreimal pro Woche Serien."],
+["Should everyone have a TV in their home?","Sollte jeder einen Fernseher in seiner Wohnung haben?","Braucht jeder einen Fernseher?","Hast du einen Fernseher?","Nein, heute reicht auch ein Laptop oder Handy. Aber für Filme ist ein großer Fernseher schön."],
+["What is the best way to watch TV? TV set, computer, tablet or phone?","Wie kann man am besten fernsehen? Mit einem Fernsehgerät, Computer, Tablet oder Handy?","Womit siehst du am liebsten fern: Fernseher, Computer, Tablet oder Handy?","Siehst du am Handy fern?","Am besten mit einem großen Fernseher auf dem Sofa. Unterwegs benutze ich das Tablet."],
+["Which TV programmes are popular in your country?","Welche Fernsehprogramme sind in deinem Land beliebt?","Welche Sendungen sind in deinem Land bekannt?","Was sehen die Leute in deinem Land?","Sport, Serien und Realityshows sind sehr beliebt. In Deutschland schauen viele Leute am Sonntag den „Tatort“."],
+["What will the future of TV look like?","Was denkst du, wie die Zukunft des Fernsehens aussehen wird?","Wie wird Fernsehen in der Zukunft sein?","Gibt es in Zukunft noch Fernsehen?","Ich glaube, fast alles wird gestreamt. Nur Sport und Nachrichten schaut man vielleicht noch live."],
+["Do people watch too much television?","Sehen die Leute zu viel fern?","Schauen die Leute zu viel fern?","Siehst du viel fern?","Viele Leute ja – aber heute ist das Handy das größere Problem."],
+["If you had your own TV programme, what would it be like?","Wenn du deine eigene Fernsehsendung hättest, wie würde sie aussehen?","Wie wäre deine eigene Fernsehsendung?","Was möchtest du im Fernsehen zeigen?","Ich würde eine Sendung über Reisen und Essen machen: jede Woche eine neue Stadt und ihre typischen Gerichte."],
+["Do you fall asleep in front of the TV?","Schläfst du vor dem Fernseher ein?","Schläfst du manchmal beim Fernsehen ein?","Schläfst du vor dem Fernseher?","Ja, manchmal nach einem langen Arbeitstag, besonders bei langsamen Filmen."],
+["Do you prefer TV or streaming? Why?","Fernsehen oder streamen – was ist dir lieber und wieso?","Was magst du lieber: Fernsehen oder Streaming? Warum?","Magst du Streaming?","Streaming, weil ich selbst entscheiden kann, was und wann ich schaue. Und es gibt weniger Werbung."],
+["Do you have to pay a TV licence fee in your home country?","Musst du in deinem Heimatland eine Fernsehgebühr zahlen?","Zahlst du in deinem Land Geld für das Fernsehen?","Zahlst du für Fernsehen?","In Deutschland zahlt jeder Haushalt den Rundfunkbeitrag, etwa 18 Euro im Monat. In [Heimatland] gibt es so etwas nicht."]]});
+T.push({de:"Jobs & Beruf",en:"Jobs & Career",q:[
+["At what age do people in your country usually start working?","In welchem Alter fangen die Leute in deinem Land normalerweise an zu arbeiten?","Wann fangen die Leute in deinem Land an zu arbeiten?","Wann arbeiten junge Leute?","Nach dem Studium, meistens mit 22 bis 25 Jahren. Mit einer Ausbildung fängt man früher an."],
+["At what age do people in your country normally retire?","In welchem Alter gehen die Menschen in deinem Land normalerweise in Rente?","Wann gehen die Leute in Rente?","Wann hören die Leute auf zu arbeiten?","In Deutschland geht man mit etwa 67 Jahren in Rente."],
+["At what age would you like to retire?","In welchem Alter würdest du gerne in Rente gehen?","Wann möchtest du in Rente gehen?","Wann willst du aufhören zu arbeiten?","Am liebsten mit 55, wenn ich genug gespart und investiert habe."],
+["What will you do when you retire?","Was denkst du, wirst du tun, wenn du in Rente gehst?","Was machst du in der Rente?","Was machst du, wenn du alt bist?","Ich werde viel reisen, Sport machen und vielleicht ein kleines eigenes Projekt programmieren."],
+["What does a typical day in your job look like?","Wie sieht ein typischer Tag in deinem Job aus?","Wie ist ein normaler Arbeitstag für dich?","Was machst du bei der Arbeit?","Morgens gibt es ein kurzes Team-Meeting. Danach programmiere ich, prüfe den Code von Kollegen und löse Probleme in unseren Systemen."],
+["What was your first job?","Was war dein erster Job?","Was war deine erste Arbeit?","Wo hast du zuerst gearbeitet?","Mein erster Job war als Junior-Entwickler in einer kleinen Softwarefirma."],
+["Do you ever work overtime? Do you get paid for it?","Machst du jemals Überstunden? Wirst du dafür bezahlt?","Arbeitest du manchmal länger? Bekommst du dafür Geld?","Arbeitest du viel?","Manchmal, besonders vor einem wichtigen Release. Ich bekomme kein extra Geld, aber ich kann die Stunden später freinehmen."],
+["Do you have to attend many meetings in your job?","Musst du in deinem Job an vielen Meetings teilnehmen?","Hast du viele Meetings?","Hast du Meetings?","Leider ja, fast jeden Tag zwei oder drei. Ich finde, einige davon könnten eine E-Mail sein."],
+["Do you like your job? Why or why not?","Magst du deinen Job? Warum oder warum nicht?","Gefällt dir dein Job? Warum?","Magst du deinen Job?","Ja, weil ich jeden Tag etwas Neues lerne und gern technische Probleme löse."],
+["Do you work on weekends?","Arbeitest du an den Wochenenden?","Arbeitest du am Wochenende?","Arbeitest du am Samstag?","Normalerweise nicht. Nur wenn es während der Rufbereitschaft einen Notfall gibt."],
+["Have you attended courses/training that helped you in your job?","Hast du Kurse/Schulungen besucht, die dir bei deiner Arbeit geholfen haben?","Hast du Kurse gemacht, die dir bei der Arbeit helfen?","Machst du Kurse?","Ja, Cloud-Zertifizierungen und natürlich Deutschkurse. Beide helfen mir sehr im Job."],
+["Is it easy to find a job in Germany? What is the application process like?","Ist es einfach, in Deutschland einen Job zu finden? Wie sieht der Bewerbungsprozess aus?","Ist es leicht, in Deutschland Arbeit zu finden? Wie bewirbt man sich?","Ist es leicht, hier Arbeit zu finden?","In der IT ist es relativ einfach. Man schickt einen Lebenslauf und ein Anschreiben, danach gibt es meistens zwei oder drei Interviews."],
+["Does your CV have to be different in Germany than in your home country?","Muss dein Lebenslauf in Deutschland anders sein als in deinem Heimatland?","Ist ein deutscher Lebenslauf anders?","Wie ist dein Lebenslauf?","Ja, in Deutschland ist er tabellarisch, oft mit Foto und Geburtsdatum. In vielen anderen Ländern ist das nicht üblich."]]});
+T.push({de:"Schlaf",en:"Sleep",q:[
+["At what time do you usually go to sleep?","Um wie viel Uhr schläfst du normalerweise ein?","Wann schläfst du normalerweise?","Wann gehst du ins Bett?","Normalerweise gegen 23 Uhr."],
+["Do you have tips on how to sleep better?","Hast du Tipps, wie man besser schlafen kann?","Wie kann man besser schlafen?","Schläfst du gut?","Kein Handy vor dem Schlafen, jeden Tag zur gleichen Zeit ins Bett gehen und abends keinen Kaffee trinken."],
+["At what time do you usually get up?","Um wie viel Uhr stehst du normalerweise auf?","Wann stehst du normalerweise auf?","Wann stehst du auf?","Unter der Woche um 7 Uhr, am Wochenende etwas später."],
+["Why do some people sleep well and others badly?","Warum schlafen manche Menschen gut und andere schlafen schlecht?","Warum schlafen manche Leute gut und andere schlecht?","Schlafen alle Menschen gut?","Stress, Kaffee, Lärm und zu viel Bildschirmzeit sind oft der Grund. Manche Menschen haben auch einfach Glück."],
+["What do you do when you have trouble sleeping?","Was machst du, wenn du Schlafprobleme hast?","Was machst du, wenn du nicht schlafen kannst?","Was machst du in der Nacht, wenn du wach bist?","Ich lese ein Buch oder höre einen ruhigen Podcast. Das Handy lege ich weg."],
+["Have you ever slept in a strange place without a bed?","Hast du schon einmal an einem fremden Ort geschlafen, wo kein Bett war?","Hast du schon mal ohne Bett geschlafen? Wo?","Schläfst du manchmal auf dem Sofa?","Ja, einmal am Flughafen auf dem Boden, weil mein Flug gestrichen wurde. Das war sehr unbequem!"],
+["Should we sleep more?","Sollten wir mehr schlafen?","Sollen wir mehr schlafen?","Schläfst du genug?","Ja, viele Menschen schlafen weniger als sieben Stunden. Das ist nicht gesund."],
+["Do you use an alarm clock?","Benutzt du einen Wecker?","Hast du einen Wecker?","Brauchst du einen Wecker?","Ja, den Wecker auf meinem Handy. Leider drücke ich oft auf „Schlummern“."],
+["Do you use your laptop in bed?","Benutzt du deinen Laptop im Bett?","Arbeitest du im Bett am Laptop?","Hast du deinen Laptop im Bett?","Manchmal, aber ich versuche es zu vermeiden. Das Bett ist zum Schlafen da."],
+["Do you take naps?","Machst du manchmal ein Nickerchen?","Schläfst du manchmal am Tag?","Schläfst du mittags?","Am Wochenende gern, etwa 20 Minuten nach dem Mittagessen."]]});
+T.push({de:"Feiertage",en:"Public Holidays",q:[
+["What is your favourite public holiday?","Was ist dein Lieblingsfeiertag?","Welcher Feiertag gefällt dir am besten?","Welchen Feiertag magst du?","In Deutschland gefällt mir Weihnachten sehr, wegen der Weihnachtsmärkte und der Stimmung."],
+["Which public holiday do you think is the least important?","Welchen Feiertag hältst du für den unwichtigsten?","Welcher Feiertag ist für dich nicht wichtig?","Welcher Feiertag ist nicht wichtig?","Vielleicht Pfingstmontag – viele Leute wissen gar nicht, was man da feiert. Aber einen freien Tag nehme ich gern!"],
+["If you could create your own holiday, what would be celebrated? How?","Wenn du deinen eigenen Feiertag bestimmen könntest, was würde gefeiert werden? Wie würdest du feiern?","Wenn du einen neuen Feiertag machen könntest, was würdest du feiern?","Was möchtest du feiern?","Einen „Tag der Freundschaft“. Man trifft alte Freunde, kocht zusammen und macht einen Ausflug."],
+["What is your favourite holiday tradition?","Was ist deine Lieblingstradition für einen Feiertag?","Welche Feiertagstradition magst du am liebsten?","Was machst du an Feiertagen gern?","Ich mag es, an Feiertagen mit Familie oder Freunden lange und gemütlich zu essen."],
+["Which festivals and holidays are important in your home country, and what do they celebrate?","Welche Feste und Feiertage sind in deinem Heimatland besonders wichtig und was wird gefeiert?","Welche Feste sind in deinem Land wichtig?","Welche Feste gibt es in deinem Land?","In [Heimatland] sind [Fest] und der Nationalfeiertag sehr wichtig. Man feiert mit der Familie, gutem Essen und manchmal Feuerwerk."],
+["Are there traditional festive meals?","Gibt es traditionelle Festessen?","Gibt es besonderes Essen an Feiertagen?","Was isst du an Feiertagen?","Ja, zu jedem Fest gibt es typische Gerichte und viele Süßigkeiten. In Deutschland isst man an Weihnachten oft Gans oder Würstchen mit Kartoffelsalat."],
+["For which festivals are there gifts? Are there traditional gifts?","Zu welchen Festen gibt es Geschenke? Gibt es traditionelle Geschenke?","Wann bekommt man Geschenke?","Bekommst du Geschenke?","Zu Weihnachten und zum Geburtstag. Typische Geschenke sind Süßigkeiten, Kleidung oder Geld."],
+["Are there festivals or holidays you don't like at all? Why?","Gibt es Feste und Feiertage, die dir gar nicht gefallen? Aus welchem Grund?","Gibt es Feste, die du nicht magst? Warum?","Magst du Silvester?","Silvester ist mir manchmal zu laut und chaotisch wegen der vielen Böller."],
+["Are there enough public holidays, or should there be more?","Gibt es im Jahr genug Feiertage oder sollte es mehr geben?","Gibt es genug Feiertage?","Gibt es viele Feiertage?","In Hessen gibt es weniger Feiertage als in Bayern. Ein paar mehr wären schön!"],
+["If a holiday falls on a weekend, is the following Monday a holiday in your country? Should it be?","Fällt in einigen Ländern ein Feiertag auf ein Wochenende, wird der folgende Montag zum Feiertag erklärt. Ist das in deinem Heimatland so? Sollte das so sein?","In manchen Ländern ist der Montag frei, wenn ein Feiertag am Wochenende ist. Ist das bei dir auch so?","Ist Montag frei, wenn der Feiertag am Sonntag ist?","In Deutschland leider nicht – der Feiertag ist dann einfach verloren. Ich finde, das sollte sich ändern."]]});
+T.push({de:"Extremsport",en:"Extreme Sports",q:[
+["What extreme sports are there?","Welche Extremsportarten gibt es?","Welche Extremsportarten kennst du?","Kennst du Extremsport?","Fallschirmspringen, Bungee-Jumping, Freeclimbing, Base-Jumping und Ultramarathon."],
+["Which extreme sport would you like to try? Why?","Welche Extremsportart würdest du gerne mal ausprobieren? Warum?","Welchen Extremsport möchtest du machen? Warum?","Möchtest du Fallschirmspringen?","Ich würde gern einmal einen Tandem-Fallschirmsprung machen – das Gefühl zu fliegen muss unglaublich sein."],
+["Which extreme sport would you not like to try? Why not?","Welchen Extremsport würdest du nicht gern ausprobieren? Warum nicht?","Welchen Extremsport möchtest du nicht machen?","Was ist zu gefährlich für dich?","Base-Jumping nie – das ist mir viel zu gefährlich."],
+["Why do people do extreme sports?","Warum machen Menschen Extremsport?","Warum machen Leute Extremsport?","Warum machen Leute gefährlichen Sport?","Wegen des Adrenalins und um ihre eigenen Grenzen zu testen."],
+["Do extreme sports have more negative or positive aspects?","Hat Extremsport mehr negative oder mehr positive Seiten?","Ist Extremsport eher gut oder eher schlecht?","Ist Extremsport gut?","Er stärkt das Selbstvertrauen, aber das Verletzungsrisiko ist hoch. Mit guter Ausrüstung und Training überwiegen die positiven Seiten."],
+["To what extent can extreme sports become addictive?","Inwieweit kann Extremsport zur Sucht werden?","Kann Extremsport süchtig machen?","Macht Sport süchtig?","Ja, das Adrenalin kann süchtig machen. Man will immer mehr Risiko."],
+["What is the difference between competitive and extreme sports?","Was ist der Unterschied zwischen Leistungssport und Extremsport?","Was ist anders bei Leistungssport und Extremsport?","Ist Leistungssport gefährlich?","Beim Leistungssport geht es um Wettkampf und Ergebnisse. Beim Extremsport geht es um Risiko und Grenzerfahrungen."],
+["Have you ever had a borderline (dangerous) experience while doing sport?","Hattest du beim Sport schon einmal eine Grenzerfahrung?","Hattest du beim Sport schon mal eine gefährliche Situation?","Hattest du beim Sport einen Unfall?","Ja, beim Wandern in den Bergen wurde das Wetter plötzlich sehr schlecht. Das war beängstigend."],
+["Will many more extreme sports be invented? What is possible with technology?","Denkst du, es werden noch viele weitere Extremsportarten erfunden? Was ist mithilfe von Technologie möglich?","Gibt es in Zukunft neue Extremsportarten?","Gibt es bald neuen Sport?","Sicher. Mit Jetpacks oder Drohnen ist vieles möglich – vielleicht bald sogar Sport im Weltraum."],
+["Are extreme athletes role models?","Haben Extremsportler eine Vorbildfunktion?","Sind Extremsportler Vorbilder?","Magst du Extremsportler?","Teilweise. Sie zeigen Mut und Disziplin, aber junge Leute sollten ihre gefährlichen Tricks nicht einfach nachmachen."]]});
+T.push({de:"Die Nacht",en:"The Night",q:[
+["Are you a night person or a day person?","Bist du ein Nachtmensch oder ein Tagmensch?","Bist du lieber morgens oder abends aktiv?","Bist du morgens oder abends fit?","Ich bin eher ein Nachtmensch. Abends kann ich mich am besten konzentrieren."],
+["Do you feel different at night than during the day?","Fühlst du dich nachts anders als tagsüber?","Fühlst du dich in der Nacht anders?","Wie fühlst du dich in der Nacht?","Ja, nachts bin ich ruhiger und kreativer, aber manchmal denke ich auch zu viel nach."],
+["Do you have a favourite night of the week?","Hast du eine Lieblingsnacht in der Woche?","Welcher Abend in der Woche gefällt dir am besten?","Magst du den Freitagabend?","Freitagabend, weil dann das Wochenende beginnt."],
+["What did you do last night?","Was hast du gestern Abend gemacht?","Was hast du gestern Abend gemacht?","Was machst du am Abend?","Ich habe gekocht, eine Serie geschaut und bin früh ins Bett gegangen."],
+["Have you ever had nightmares?","Hattest du jemals Alpträume?","Hattest du schon mal schlechte Träume?","Träumst du schlecht?","Ja, manchmal träume ich, dass ich eine Prüfung verpasse – obwohl ich schon lange keine Prüfungen mehr habe!"],
+["What was the best night you ever had?","Was war die beste Nacht, die du je hattest?","Was war deine schönste Nacht?","Was war eine schöne Nacht?","Eine Silvesternacht mit Freunden am Main, mit Feuerwerk über der Skyline."],
+["Would you prefer to work a night shift or a day shift?","Würdest du es vorziehen, eine Nacht- oder eine Tagschicht zu arbeiten?","Arbeitest du lieber in der Nacht oder am Tag?","Arbeitest du am Tag?","Lieber tagsüber. Nachtschichten sind schlecht für die Gesundheit."],
+["Is it safe to walk the streets in your city at night?","Ist es sicher, nachts in deiner Stadt durch die Straßen zu gehen?","Ist deine Stadt in der Nacht sicher?","Ist deine Stadt sicher?","Meistens ja. Nur in einigen Gegenden, zum Beispiel am Hauptbahnhof, bin ich nachts vorsichtig."],
+["How does nature change when day turns to night?","Wie verändert sich die Natur, wenn der Tag zur Nacht wird?","Wie ist die Natur in der Nacht?","Ist es in der Nacht still?","Es wird ruhig, die Vögel schlafen, und andere Tiere wie Fledermäuse und Eulen werden aktiv."],
+["Have you ever stayed awake all night?","Bist du schon einmal die ganze Nacht wach geblieben?","Warst du schon mal die ganze Nacht wach?","Schläfst du jede Nacht?","Ja, während des Studiums vor einer Prüfung und einmal wegen eines Server-Problems bei der Arbeit."]]});
+T.push({de:"Rauchen",en:"Smoking",q:[
+["Did you smoke when you were younger? Do you smoke now?","Hast du geraucht, als du jünger warst? Rauchst du jetzt?","Hast du früher geraucht? Rauchst du jetzt?","Rauchst du?","Nein, ich habe nie geraucht und rauche auch jetzt nicht."],
+["What is the youngest age at which a person should be allowed to smoke?","Welches ist das jüngste Alter, in dem es einer Person erlaubt sein sollte zu rauchen?","Ab wie vielen Jahren darf man rauchen?","Dürfen Kinder rauchen?","Ich denke, ab 18 Jahren. In Deutschland darf man erst ab 18 Zigaretten kaufen."],
+["Can you smoke indoors in public places in your home country? And where you live now?","Darf man in deinem Heimatland an öffentlichen Orten in geschlossenen Räumen rauchen? Und in dem Land, in dem du derzeit lebst?","Darf man in deinem Land drinnen rauchen, zum Beispiel im Restaurant? Und in Deutschland?","Darf man im Restaurant rauchen?","In Deutschland ist es in Restaurants meistens verboten, aber es gibt noch Raucherkneipen. In [Heimatland] ist es in öffentlichen Räumen auch verboten."],
+["Is it expensive to smoke where you live? How much is a pack of cigarettes?","Ist es teuer zu rauchen, wo du derzeit lebst? Ist es teuer, in deinem Heimatland zu rauchen? Wie viel kostet eine Schachtel Zigaretten?","Sind Zigaretten in Deutschland teuer? Wie viel kostet eine Packung?","Sind Zigaretten teuer?","Ja, eine Schachtel kostet in Deutschland etwa 8 bis 9 Euro. Wer jeden Tag raucht, gibt sehr viel Geld aus."],
+["Barack Obama smoked. Why didn't the media show photos of him smoking?","Barack Obama rauchte. Warum haben die Medien keine Fotos von ihm gezeigt, auf denen er rauchte?","Obama hat geraucht. Warum gab es keine Fotos davon?","Hat Obama geraucht?","Weil er ein gutes Vorbild sein wollte. Sein Team hat darauf geachtet, dass es keine Fotos gab."],
+["Some countries have a high tax on tobacco. Is this fair?","Einige Länder haben eine hohe Tabaksteuer. Ist das gerecht?","Ist eine hohe Steuer auf Zigaretten fair?","Sollen Zigaretten teuer sein?","Ja, ich finde das gerecht, weil Rauchen hohe Kosten für das Gesundheitssystem verursacht."],
+["Does a high tax make smokers stop smoking?","Bringt eine hohe Steuer die Raucher dazu, mit dem Rauchen aufzuhören?","Hören Raucher wegen hoher Preise auf?","Rauchen Leute weniger, wenn es teuer ist?","Manche ja, besonders junge Leute. Aber viele Raucher sind süchtig und zahlen trotzdem."],
+["Smoking has declined in many places but increased in China. Why?","In vielen Teilen der Welt ist das Rauchen zurückgegangen. In China hat die Zahl der Raucher zugenommen. Wie kommt das?","In China rauchen mehr Menschen als früher. Warum?","Rauchen viele Menschen in China?","Die Menschen haben mehr Geld, Zigaretten sind billig, und Rauchen gehört oft zur Kultur, zum Beispiel bei Geschäftsessen."],
+["Does smoking give you a better image?","Verleiht das Rauchen dir ein besseres Image?","Sieht man mit einer Zigarette cooler aus?","Ist Rauchen cool?","Nein, heute nicht mehr. In alten Filmen vielleicht, aber heute finden es die meisten Leute eher unattraktiv."],
+["Would you ever work for a tobacco company?","Würdest du jemals für einen Tabakkonzern arbeiten?","Möchtest du bei einer Tabakfirma arbeiten?","Arbeitest du gern für eine Zigarettenfirma?","Nein, auch nicht für viel Geld. Das passt nicht zu meinen Werten."]]});
+T.push({de:"Wintermuffel",en:"Winter Grouch",q:[
+["Does the cold bother you? Have you considered moving somewhere with milder winters?","Stört dich die Kälte im Winter? Hast du schon einmal überlegt, an einen Ort mit einem milderen Winter zu ziehen?","Magst du die Kälte im Winter nicht? Möchtest du irgendwo wohnen, wo es wärmer ist?","Ist dir im Winter kalt?","Ja, die Kälte stört mich. Ich denke manchmal an Spanien oder Portugal, wo der Winter milder ist."],
+["Do you look forward to the warmer season? Do you miss sunlight in winter?","Freust du dich im Winter ständig auf die wärmere Jahreszeit? Vermisst du im Winter mehr Sonnenlicht?","Wartest du im Winter auf den Sommer? Fehlt dir die Sonne?","Magst du den Sommer mehr?","Ja, besonders im Januar und Februar. Um halb fünf ist es schon dunkel – das Sonnenlicht fehlt mir sehr."],
+["Does it bother you to dress in layers and heat your home?","Stört es dich, dich im Winter mit mehreren Schichten anziehen und die Wohnung heizen zu müssen?","Findest du es schlimm, viel Kleidung zu tragen und zu heizen?","Trägst du im Winter viel Kleidung?","Die warme Kleidung ist okay, aber die hohen Heizkosten ärgern mich."],
+["Are there winter activities you enjoy?","Gibt es Winteraktivitäten, die dir gefallen?","Was machst du gern im Winter?","Was machst du im Winter?","Ich gehe gern auf den Weihnachtsmarkt und trinke Glühwein. Skifahren möchte ich noch lernen."],
+["Do you tend to hole up at home and wait for spring?","Hast du im Winter Tendenz, dich zuhause zu verkriechen und auf den Frühling zu warten?","Bleibst du im Winter lieber zu Hause?","Bist du im Winter oft zu Hause?","Ein bisschen, ja – mit Tee, Decke und einer guten Serie."],
+["Do you move less in winter because you don't feel like going outside?","Nimmst du im Winter zu, weil du zu wenig Bewegung machst und keine Lust hast, nach draußen zu gehen?","Machst du im Winter weniger Sport, weil es draußen kalt ist?","Machst du im Winter Sport?","Draußen bewege ich mich weniger, aber ich gehe regelmäßig ins Fitnessstudio. Das hilft mir durch den Winter."],
+["How would you avoid this? Holiday? Do you have a winter routine?","Wie würdest du das vermeiden? In den Urlaub fahren? Eine Diät machen? Hast du eine Winterroutine?","Was machst du dagegen? Hast du eine Routine im Winter?","Was machst du jeden Tag im Winter?","Meine Winterroutine: Sport im Studio, mittags kurz spazieren gehen für das Tageslicht und im Februar eine Woche in den Süden fliegen."],
+["Are you less energetic, active or positive in winter?","Bist du im Winter weniger energetisch, aktiv oder positiv?","Hast du im Winter weniger Energie?","Bist du im Winter müde?","Ja, ich bin öfter müde und weniger motiviert. Das Wetter drückt auf die Stimmung."],
+["Are there winter traditions in your home country?","Gibt es in deinem Heimatland irgendwelche Wintertraditionen (Essen, Feste, Eisschwimmen usw.)?","Welche Traditionen gibt es im Winter in deinem Land?","Was macht man im Winter in deinem Land?","In Deutschland gibt es Weihnachtsmärkte, Adventskalender und Grünkohl. In [Heimatland] ist der Winter ganz anders: [Tradition]."],
+["With remote work, could you convince your employer to let you move south for a while?","Kannst du deinen Arbeitgeber davon überzeugen, dass du für eine Weile in den Süden ziehen darfst, wenn du aus der Ferne arbeitest?","Darfst du im Winter aus einem warmen Land arbeiten?","Kannst du von zu Hause arbeiten?","Vielleicht für ein paar Wochen. Viele Firmen erlauben eine „Workation“ im EU-Ausland, aber meistens nur begrenzt."]]});
+T.push({de:"Reisen",en:"Travelling",q:[
+["Where would you like to travel to?","Wohin möchtest du gerne reisen?","Wohin möchtest du reisen?","Wohin reist du gern?","Ich möchte gern nach Japan reisen – wegen der Kultur, des Essens und der Natur."],
+["Where have you travelled to so far?","Wohin bist du bis jetzt gereist?","In welchen Ländern warst du schon?","Wo warst du schon?","Ich war schon in mehreren europäischen Ländern, zum Beispiel in Italien, Frankreich und Spanien."],
+["What was your best trip? Your best travel experiences?","Was war deine schönste Reise? Was waren die schönsten Reiseerlebnisse?","Was war deine schönste Reise?","Wo war es schön?","Meine schönste Reise war nach Italien. Das Essen, das Meer und die alten Städte waren wunderbar."],
+["Did you have difficulties when travelling? Was anything exhausting or frightening?","Gab es bei Reisen auch Schwierigkeiten? War etwas anstrengend oder beängstigend?","Hattest du auf einer Reise Probleme?","Hattest du Probleme auf einer Reise?","Einmal ist mein Gepäck verloren gegangen. Drei Tage ohne Koffer waren sehr anstrengend."],
+["Do you prefer to travel spontaneously or plan in advance?","Möchtest du deine Reisen eher frei und spontan machen oder viel vorher planen?","Planst du deine Reisen oder reist du spontan?","Planst du deine Reise?","Ich plane Flug und Hotel vorher, aber vor Ort bin ich gern spontan."],
+["Do you prefer to travel alone, with friends, or in an organised group?","Möchtest du lieber allein mit dem Rucksack, mit Freunden oder in einer organisierten Gruppe verreisen?","Reist du lieber allein, mit Freunden oder in einer Gruppe?","Reist du allein?","Am liebsten mit Freunden. Eine organisierte Gruppe ist mir zu unflexibel."],
+["Are you more interested in culture, nature, sport or relaxation?","Interessiert dich beim Reisen mehr die Kultur, die Natur, sportliche Aktivität oder Entspannung? Oder von allem etwas?","Was ist dir auf Reisen wichtig: Kultur, Natur, Sport oder Entspannung?","Magst du Kultur oder Natur?","Von allem etwas, aber Kultur und Essen sind mir am wichtigsten."],
+["Do you want contact with local people, or is it better to keep your distance?","Möchtest du beim Reisen Kontakt zu den Menschen der Gegend haben oder „sollte man besser Abstand wahren“?","Sprichst du auf Reisen gern mit den Menschen dort?","Sprichst du mit Leuten auf Reisen?","Ja, sehr gern. Man lernt die Kultur am besten durch die Menschen kennen."],
+["Do you prefer city trips or the countryside?","Möchtest du eher Reisen in Städte machen oder aufs Land?","Reist du lieber in Städte oder aufs Land?","Magst du Städte?","Ich mag beides: ein paar Tage Stadt und danach ein paar Tage Natur."],
+["Travel has become much cheaper. Is this a good thing?","Reisen ist viel billiger geworden. Ist das eine gute Sache?","Reisen ist heute billig. Ist das gut?","Ist Reisen billig?","Ja und nein. Mehr Menschen können die Welt sehen, aber billige Flüge sind schlecht für die Umwelt, und manche Städte sind zu voll."]]});
+T.push({de:"Fotografie",en:"Photography",q:[
+["Do you like taking photos? Of what?","Machst du gerne Fotos? Wenn ja, wovon?","Fotografierst du gern? Was?","Machst du Fotos?","Ja, vor allem auf Reisen – Landschaften, Architektur und Essen."],
+["Do you prefer colour or black-and-white photos? Why?","Gefallen dir Farbfotos oder Schwarz-Weiß-Fotos besser? Warum?","Magst du Farbfotos oder Schwarz-Weiß-Fotos lieber?","Magst du Farbfotos?","Meistens Farbfotos, aber für Porträts finde ich Schwarz-Weiß sehr stimmungsvoll."],
+["Do you like looking at photos of celebrities? Why?","Schaust du dir gerne Fotos von Prominenten an? Warum?","Siehst du gern Fotos von Stars?","Magst du Fotos von Stars?","Nicht wirklich. Das Leben von Prominenten interessiert mich nicht so sehr."],
+["What kind of photo exhibition would interest you?","Welche Art von Fotoausstellung würde dich interessieren?","Welche Fotoausstellung möchtest du sehen?","Gehst du ins Museum?","Eine Ausstellung über Naturfotografie oder über Städte früher und heute."],
+["What is the best way to take good photos?","Wie kann man am besten gute Fotos machen?","Wie macht man gute Fotos?","Sind deine Fotos gut?","Auf gutes Licht achten, zum Beispiel am Morgen oder am Abend, und die Drittel-Regel benutzen."],
+["What is your absolute favourite photo?","Was ist dein absolutes Lieblingsfoto?","Was ist dein Lieblingsfoto?","Hast du ein Lieblingsfoto?","Ein Foto von einem Sonnenuntergang am Meer, das ich im Urlaub gemacht habe."],
+["Do you like how you look in photos?","Gefällst du dir selbst auf Fotos?","Magst du Fotos von dir?","Bist du gern auf Fotos?","Nicht immer. Ich bin lieber hinter der Kamera."],
+["How many photos do you take on holiday? Do you look at them later?","Wie viele Fotos machst du im Urlaub? Schaust du dir deine Urlaubsfotos später oft an?","Wie viele Fotos machst du im Urlaub? Schaust du sie später an?","Machst du viele Fotos im Urlaub?","Zu viele – oft mehrere hundert. Leider schaue ich sie später fast nie an."],
+["What do you think about parents posting photos of their children on social media?","Was hältst du davon, wenn Eltern Fotos von ihren Kindern in den sozialen Medien posten?","Ist es gut, wenn Eltern Fotos von Kindern online posten?","Ist es gut, Fotos von Kindern online zu zeigen?","Ich finde das problematisch. Die Kinder können nicht selbst entscheiden, und das Internet vergisst nichts."],
+["Is an expensive camera worth it, or is a smartphone enough?","Lohnt es sich, eine teure Kamera zu kaufen? Oder reicht auch ein Smartphone?","Braucht man eine teure Kamera oder reicht ein Handy?","Hast du eine Kamera?","Für die meisten Menschen reicht heute ein gutes Smartphone. Eine teure Kamera lohnt sich nur für echte Hobbyfotografen."]]});
+T.push({de:"Flohmarkt",en:"Flea Market",q:[
+["Have you ever bought anything at a flea market?","Hast du schon mal etwas auf einem Flohmarkt gekauft?","Hast du schon mal auf dem Flohmarkt etwas gekauft? Was?","Gehst du auf den Flohmarkt?","Ja, einmal ein altes Fahrrad und ein paar Bücher."],
+["What do you like / not like about flea markets?","Was gefällt dir/was gefällt dir nicht auf einem Flohmarkt?","Was magst du am Flohmarkt und was nicht?","Magst du Flohmärkte?","Mir gefallen die Atmosphäre und die günstigen Preise. Nicht so gut: Es ist oft sehr voll."],
+["What treasures can you sometimes discover at a flea market?","Welche Schätze kann man manchmal auf einem Flohmarkt entdecken?","Was Tolles kann man auf dem Flohmarkt finden?","Was kann man auf dem Flohmarkt kaufen?","Alte Schallplatten, Vintage-Kleidung, Antiquitäten – manchmal sogar echte Wertsachen."],
+["What products would you never buy secondhand, and why?","Welche Produkte würdest du nie secondhand kaufen und warum nicht?","Was kaufst du nie gebraucht? Warum?","Kaufst du alte Sachen?","Unterwäsche, Matratzen und Fahrradhelme – aus hygienischen Gründen oder wegen der Sicherheit."],
+["What would you sell at a flea market?","Welche Dinge würdest du auf einem Flohmarkt verkaufen?","Was möchtest du auf dem Flohmarkt verkaufen?","Was verkaufst du?","Alte Bücher, Kleidung, die ich nicht mehr trage, und alte Elektronik."],
+["How would you sell your things and attract passers-by?","Wie würdest du deine Sachen auf einem Flohmarkt verkaufen? Wie würdest du die Aufmerksamkeit der Passanten erregen?","Wie verkaufst du deine Sachen? Wie findest du Kunden?","Wie verkaufst du etwas?","Ich würde alles schön sortieren, klare Preise aufschreiben und freundlich mit den Leuten sprechen."],
+["Do you like to haggle? Any tips for improving haggling skills?","Feilschst du gerne? Welche Tipps hast du für jemanden, der seine Feilschkünste verbessern will?","Handelst du gern um den Preis? Hast du Tipps?","Fragst du nach einem billigeren Preis?","Ja, ein bisschen. Mein Tipp: freundlich bleiben, zuerst einen niedrigen Preis nennen und mehrere Sachen zusammen kaufen."],
+["Is there a flea market you particularly like? Why?","Gibt es einen Flohmarkt, der dir besonders gut gefällt? Warum?","Welchen Flohmarkt magst du besonders?","Kennst du einen Flohmarkt?","Den Flohmarkt am Museumsufer in Frankfurt. Er ist groß und liegt direkt am Main."],
+["Would a charity flea market be a good idea? What would you sell, and for what cause?","Wäre es eine gute Idee, einen Flohmarkt für einen guten Zweck zu veranstalten? Was würdest du verkaufen? Welchem Zweck würde er zugutekommen?","Ist ein Flohmarkt für einen guten Zweck eine gute Idee? Was würdest du verkaufen?","Möchtest du Geld für andere sammeln?","Ja, eine sehr gute Idee! Ich würde Bücher und Kuchen verkaufen und das Geld einem Tierheim spenden."],
+["Can flea markets survive competition from the internet?","Können Flohmärkte gegen die Konkurrenz des Internets bestehen?","Gibt es in Zukunft trotz Internet noch Flohmärkte?","Kaufst du lieber online?","Ja, ich denke schon. Online-Plattformen wie Kleinanzeigen sind praktisch, aber auf dem Flohmarkt geht es auch um das Erlebnis."]]});
+T.push({de:"Lottogewinn",en:"The Lottery",q:[
+["Do you play the lottery?","Spielst du Lotto?","Kaufst du manchmal einen Lottoschein?","Spielst du Lotto?","Nein, sehr selten. Ich investiere mein Geld lieber in ETFs."],
+["How do you choose your lottery numbers?","Wie suchst du dir die Lottozahlen aus?","Wie wählst du die Zahlen?","Welche Zahlen magst du?","Wenn ich spiele, nehme ich Geburtstage – oder ich lasse den Computer zufällige Zahlen wählen."],
+["Do you know anyone who has won the lottery?","Kennst du jemanden, der schon mal etwas im Lotto gewonnen hat?","Kennst du jemanden, der im Lotto gewonnen hat?","Hat dein Freund im Lotto gewonnen?","Nur kleine Beträge, zum Beispiel 10 oder 20 Euro. Einen Millionär kenne ich leider nicht."],
+["How does a lottery draw work?","Wie läuft eine Lottoziehung ab?","Wie funktioniert eine Lottoziehung?","Wann ist die Lottoziehung?","Bei „6 aus 49“ werden am Mittwoch und am Samstag sechs Zahlen und eine Superzahl gezogen."],
+["How do you estimate the chances of winning?","Wie schätzt du die Chancen ein, im Lotto zu gewinnen?","Wie groß ist die Chance, im Lotto zu gewinnen?","Gewinnt man oft im Lotto?","Sehr, sehr klein. Die Chance auf den Jackpot liegt bei etwa 1 zu 140 Millionen."],
+["Suppose you won €1 million. What would you do with it?","Angenommen, du gewinnst 1 Million Euro im Lotto. Was würdest du mit dem Geld machen?","Was machst du mit 1 Million Euro?","Was kaufst du mit viel Geld?","Ich würde eine Wohnung kaufen, einen Teil investieren, eine große Reise machen und etwas spenden."],
+["With whom would you share your winnings? Why?","Mit wem würdest du deinen Lottogewinn teilen, und warum?","Mit wem teilst du das Geld?","Gibst du deiner Familie Geld?","Mit meiner Familie, weil sie mich immer unterstützt hat."],
+["How would you protect your winnings from thieves?","Wie würdest du deinen Lottogewinn vor Dieben schützen?","Wie schützt du das Geld vor Dieben?","Wo ist dein Geld sicher?","Ich würde niemandem davon erzählen und das Geld auf verschiedene Banken und Anlagen verteilen."],
+["As a millionaire, would you keep working or quit? Why?","Würdest du als Millionär weiterhin arbeiten oder deinen Job kündigen? Warum?","Arbeitest du als Millionär weiter? Warum?","Arbeitest du, wenn du reich bist?","Ich würde weniger arbeiten, vielleicht Teilzeit. Ohne Arbeit wird mir schnell langweilig."],
+["Would you announce your win or stay anonymous? Why?","Würdest du deinen Lottogewinn an die große Glocke hängen oder lieber anonym bleiben? Warum?","Erzählst du allen von deinem Gewinn oder bleibst du anonym?","Sagst du es allen?","Ich würde anonym bleiben. Sonst wollen plötzlich viele Leute etwas von mir."]]});
+T.push({de:"Ärger",en:"Anger",q:[
+["Why do people get angry?","Warum werden Menschen wütend?","Warum werden Leute wütend?","Warum sind Menschen wütend?","Wenn sie sich ungerecht behandelt fühlen, gestresst sind oder wenn etwas nicht so läuft, wie sie wollen."],
+["What makes you angry?","Was macht dich wütend?","Worüber ärgerst du dich?","Was macht dich wütend?","Wenn Leute im Zug laut telefonieren oder wenn jemand nicht zuhört."],
+["Do you stay angry for long, or is it short-lived?","Bleibst du lange wütend, oder ist es nur von kurzer Dauer?","Bist du lange wütend oder nur kurz?","Bist du lange wütend?","Meistens nur kurz. Nach ein paar Minuten ist es vorbei."],
+["Do men get angrier than women?","Werden Männer wütender als Frauen?","Werden Männer schneller wütend als Frauen?","Sind Männer oft wütend?","Das glaube ich nicht. Vielleicht zeigen Männer ihre Wut nur öfter offen."],
+["When was the last time you got angry?","Wann bist du das letzte Mal wütend geworden?","Wann warst du das letzte Mal wütend?","Warst du heute wütend?","Letzte Woche, als mein Zug zum dritten Mal Verspätung hatte."],
+["What are the disadvantages of anger?","Was sind die Nachteile von Ärger?","Was ist schlecht an Wut?","Ist Wut schlecht?","Man sagt Dinge, die man später bereut, und Stress ist schlecht für die Gesundheit."],
+["How can you avoid anger?","Wie kannst du Ärger vermeiden?","Was machst du gegen Wut?","Was hilft dir, wenn du wütend bist?","Tief atmen, kurz spazieren gehen oder Sport machen. Sport hilft mir am meisten."],
+["Do you do meditation or breathing techniques?","Machst du Meditation oder Atemtechniken?","Meditierst du?","Meditierst du?","Manchmal mache ich zehn Minuten Meditation mit einer App, besonders an stressigen Tagen."],
+["Have you ever had a boss who was in a bad mood?","Hattest du jemals einen Chef, der schlechte Laune hatte?","Hattest du schon mal einen Chef mit schlechter Laune?","Ist dein Chef nett?","Ja, einmal. Wenn er schlechte Laune hatte, war das ganze Team nervös."],
+["Have you seen someone angry in a public place? What happened?","Hast du jemanden an einem öffentlichen Ort wütend gesehen? Was ist passiert?","Hast du schon mal gesehen, wie jemand draußen wütend war?","Hast du wütende Leute gesehen?","Ja, am Bahnhof hat ein Mann laut mit einem Mitarbeiter gestritten, weil sein Zug ausgefallen ist."]]});
+T.push({de:"Radfahren",en:"Cycling",q:[
+["Is your country bicycle-friendly?","Ist dein Land fahrradfreundlich?","Kann man in deinem Land gut Fahrrad fahren?","Fährst du Fahrrad?","Deutschland ist ziemlich fahrradfreundlich, aber nicht so gut wie die Niederlande. In Frankfurt gibt es immer mehr Radwege."],
+["What are the advantages and disadvantages of cycling?","Welche Vor- und Nachteile hat Fahrradfahren?","Was ist gut und was ist schlecht am Radfahren?","Ist Radfahren gut?","Vorteile: gesund, billig und gut für die Umwelt. Nachteile: Regen, Kälte und manchmal gefährlicher Verkehr."],
+["Should helmets be compulsory for cyclists? Why/why not?","Sollte es eine Helmpflicht für Radfahrer geben? Warum/warum nicht?","Sollen Radfahrer immer einen Helm tragen?","Trägst du einen Helm?","Ich trage immer einen Helm, aber eine Pflicht finde ich nicht nötig. Sonst fahren vielleicht weniger Leute Rad."],
+["Have you ever fallen off your bike? Did you get hurt?","Bist du schon mal vom Fahrrad gefallen? In welcher Situation und hast du dich verletzt?","Bist du schon mal vom Fahrrad gefallen? Was ist passiert?","Bist du vom Fahrrad gefallen?","Ja, als Kind. Ich bin auf nassem Laub ausgerutscht, hatte aber nur ein paar Kratzer."],
+["Have you ever gone on a bike trip? With whom and where?","Hast du schon mal einen Fahrradausflug gemacht? Mit wem und wohin?","Hast du schon mal eine Radtour gemacht? Mit wem?","Machst du Radtouren?","Ja, mit Freunden am Main entlang – über 50 Kilometer. Das war anstrengend, aber schön."],
+["When would you rather cycle, and when drive?","In welchen Situationen würdest du lieber mit dem Rad fahren und wann mit dem Auto?","Wann fährst du Rad und wann Auto?","Fährst du lieber Rad oder Auto?","Kurze Strecken in der Stadt mit dem Rad. Für Großeinkäufe oder lange Strecken nehme ich das Auto oder den Zug."],
+["Cyclists who break traffic rules have to pay a fine. What do you think?","Müssen Fahrradfahrer, die sich nicht an die Verkehrsregeln halten, ein Bußgeld bezahlen? Was hältst du davon?","Sollen Radfahrer eine Strafe zahlen, wenn sie Regeln brechen?","Müssen Radfahrer die Regeln kennen?","Ja, das finde ich richtig. Regeln gelten für alle – auch für Radfahrer."],
+["You're normally not allowed to cycle drunk. What's it like in your country?","Normalerweise darf man nicht betrunken Fahrrad fahren. Wie sieht es in deinem Land aus?","Darf man in deinem Land betrunken Fahrrad fahren?","Darf man betrunken Rad fahren?","In Deutschland ist es ab 1,6 Promille eine Straftat. Aber auch mit weniger Alkohol gibt es Probleme, wenn man unsicher fährt."],
+["Will bikes be used more or less in the future? Why?","Glaubst du, dass Fahrräder in Zukunft häufiger oder seltener verwendet werden? Warum?","Fahren die Leute in Zukunft mehr oder weniger Rad?","Fahren bald mehr Leute Rad?","Häufiger, weil Städte mehr Radwege bauen und E-Bikes immer beliebter werden."],
+["What do you think of e-bikes? Would you buy one?","Was hältst du von E-Bikes? Würdest du eines kaufen?","Magst du E-Bikes? Möchtest du eins kaufen?","Hast du ein E-Bike?","Ich finde sie praktisch, besonders bei Bergen oder langen Wegen. Vielleicht kaufe ich später eins."]]});
+T.push({de:"Smartphones",en:"Smartphones",q:[
+["How long have you had your smartphone?","Wie lange hast du schon dein Smartphone?","Seit wann hast du dein Handy?","Wie alt ist dein Handy?","Seit etwa zwei Jahren."],
+["How old were you when you got your first mobile phone?","Wie alt warst du, als du dein erstes Mobiltelefon bekommen hast?","Wann hast du dein erstes Handy bekommen?","Wann war dein erstes Handy?","Ich war ungefähr 16. Es war ein einfaches Handy ohne Internet."],
+["At what age is it typical to have a phone in your country?","Wie ist es in deinem Land, ab welchem Alter ist es typisch, ein Mobiltelefon zu haben?","Wann bekommen Kinder in deinem Land ein Handy?","Haben Kinder ein Handy?","Heute bekommen viele Kinder schon mit 10 oder 11 Jahren ein Smartphone."],
+["Could you live without a smartphone? Why/why not?","Könntest du ohne Smartphone leben? Wieso/wieso nicht?","Kannst du ohne Handy leben? Warum?","Brauchst du dein Handy?","Schwer. Ich brauche es für Banking, Karten, Tickets und die Arbeit. Aber ein Wochenende ohne Handy wäre gut."],
+["Which apps do you use every day?","Welche Apps benutzt du täglich auf deinem Mobiltelefon?","Welche Apps benutzt du jeden Tag?","Welche App magst du?","WhatsApp, Google Maps, die DB-App, meine Banking-App und eine App zum Deutschlernen."],
+["Why do you use these apps daily? For what purpose?","Wieso benutzt du diese Apps täglich? Zu welchem Zweck?","Warum benutzt du diese Apps?","Warum brauchst du diese App?","Um mit Familie und Freunden zu kommunizieren, zu reisen, meine Finanzen zu kontrollieren und Deutsch zu üben."],
+["What are the advantages and disadvantages of apps?","Was sind die Vor- und Nachteile von Apps?","Was ist gut und schlecht an Apps?","Sind Apps gut?","Apps sind praktisch und sparen Zeit. Aber sie sammeln viele Daten und können süchtig machen."],
+["Do you like playing games on your phone? Why/why not?","Spielst du gerne auf deinem Handy Spiele über Apps? Wieso/wieso nicht?","Spielst du gern Spiele auf dem Handy?","Spielst du am Handy?","Nicht oft. Nur manchmal Schach oder ein Rätselspiel in der Bahn."],
+["Which apps does almost everyone use in your country?","Wie ist es in deinem Land: Welche Apps sind sehr typisch und werden von fast jedem benutzt?","Welche Apps benutzt fast jeder in deinem Land?","Welche App haben alle?","In Deutschland benutzt fast jeder WhatsApp, die DB-App und PayPal."],
+["What do you think of countries banning certain social network apps?","Was hältst du von Ländern, die bestimmte soziale Netzwerk-Apps verbieten?","Ist es gut, wenn ein Land bestimmte Apps verbietet?","Darf ein Land Apps verbieten?","Das ist kompliziert. Datenschutz ist wichtig, aber Verbote können auch die Meinungsfreiheit einschränken."]]});
+T.push({de:"Ein Gang zur Post",en:"A Trip to the Post Office",q:[
+["When did you last send a letter or postcard? When are letters better than email?","Wann hast du das letzte Mal einen Brief oder eine Postkarte verschickt? Zu welchen Anlässen sind Briefe besser als E-Mails?","Wann hast du zuletzt einen Brief geschrieben? Wann ist ein Brief besser als eine E-Mail?","Schreibst du Briefe?","Vor ein paar Monaten eine Postkarte aus dem Urlaub. Für Dankeschön, Beileid oder offizielle Dokumente sind Briefe besser."],
+["Have you ever sent a parcel?","Hast du schon mal ein Paket verschickt?","Hast du schon mal ein Paket geschickt?","Schickst du Pakete?","Ja, zum Beispiel Geschenke an Freunde oder Sachen, die ich online verkauft habe."],
+["Do you prefer to receive or send parcels?","Empfängst oder versendest du lieber Pakete?","Bekommst du lieber Pakete oder schickst du sie lieber?","Bekommst du gern Pakete?","Ich bekomme lieber Pakete – das ist wie ein kleines Geschenk."],
+["Do you look forward to parcels more on your birthday or at Christmas?","Freust du dich mehr am Geburtstag oder an Weihnachten auf Pakete?","Freust du dich mehr über Pakete zum Geburtstag oder zu Weihnachten?","Magst du Geschenke zum Geburtstag?","Zum Geburtstag, weil die Pakete dann nur für mich sind."],
+["Have you ever sent something forbidden (alcohol, cake…)?","Hast du schon mal etwas Verbotenes verschickt (Alkohol, Kuchen …)?","Hast du schon mal etwas Verbotenes geschickt?","Was darf man nicht schicken?","Nein, nie. Ich lese vorher immer die Regeln, besonders für Pakete ins Ausland."],
+["How expensive is it to send something to your home country? Should it be cheaper?","Wie teuer ist es, etwas in deine Heimat zu schicken? Sollte es günstiger sein?","Ist es teuer, ein Paket in dein Heimatland zu schicken?","Ist ein Paket teuer?","Ziemlich teuer – für ein größeres Paket oft 40 bis 60 Euro. Es sollte günstiger sein."],
+["Which is the best shipping company? (Post, DHL, Hermes…)","Welches ist das beste Versandunternehmen? (Post, DHL, Hermes …?)","Welche Paketfirma ist am besten?","Magst du DHL?","Meiner Erfahrung nach DHL, weil es viele Packstationen gibt."],
+["Do you get a lot of advertising/spam mail?","Bekommst du viel Werbung/Spam-Mails?","Bekommst du viel Werbung?","Bekommst du Werbung?","Ja, sehr viel. Deshalb habe ich einen „Bitte keine Werbung“-Aufkleber am Briefkasten."],
+["Has the post office ever lost something you sent?","Hat die Post schon einmal etwas verloren, das du verschickt hast?","Hat die Post schon mal etwas verloren?","Hat die Post etwas verloren?","Einmal war ein Paket zwei Wochen verschwunden, aber dann ist es doch angekommen."],
+["Did you order much more online because of Corona?","Hast du wegen Corona viel mehr Dinge online bestellt?","Hast du in der Corona-Zeit mehr online gekauft?","Kaufst du online?","Ja, während der Pandemie fast alles – sogar Lebensmittel. Heute kaufe ich wieder mehr im Geschäft."]]});
+T.push({de:"Besprechung/Sitzung",en:"Meetings",q:[
+["How often do you have to attend meetings?","Wie oft musst du an Sitzungen teilnehmen?","Wie oft hast du Meetings?","Hast du oft Meetings?","Fast jeden Tag, meistens zwei oder drei."],
+["What kind of meetings are they? (formal, informal, large, small…)","Welche Art von Sitzungen sind das? (geschäftlich, formell, informell, zwanglos, groß, klein)","Was für Meetings sind das?","Sind deine Meetings groß oder klein?","Meistens kleine, informelle Team-Meetings. Einmal im Monat gibt es ein großes, formelles Meeting."],
+["How should you behave in a meeting?","Wie sollst du dich in einer Sitzung verhalten?","Was soll man in einem Meeting machen?","Was macht man in einem Meeting?","Pünktlich und gut vorbereitet sein, zuhören und kurz und klar sprechen."],
+["How should you not behave in a meeting?","Wie solltest du dich in einer Sitzung nicht verhalten?","Was soll man in einem Meeting nicht machen?","Was macht man nicht im Meeting?","Andere nicht unterbrechen, nicht aufs Handy schauen und nicht zu lange reden."],
+["Have you ever had to chair a meeting?","Musstest du schon einmal eine Besprechung leiten?","Hast du schon mal ein Meeting geleitet?","Leitest du Meetings?","Ja, manchmal leite ich technische Besprechungen, zum Beispiel Architektur-Reviews."],
+["What should a good chairperson do?","Was sollte ein guter Vorsitzender tun?","Was macht ein guter Meetingleiter?","Was macht der Chef im Meeting?","Eine klare Tagesordnung haben, auf die Zeit achten, alle zu Wort kommen lassen und am Ende die Aufgaben zusammenfassen."],
+["What was the most difficult meeting you've attended?","Was war das schwierigste Meeting, an dem du teilgenommen hast?","Was war dein schwierigstes Meeting?","War ein Meeting schwer?","Ein Meeting nach einem großen Systemausfall. Alle waren gestresst und haben einen Schuldigen gesucht."],
+["What are the advantages of Zoom meetings?","Was sind die Vorteile von Zoom-Meetings?","Was ist gut an Online-Meetings?","Magst du Online-Meetings?","Man spart Zeit, weil man nicht reisen muss, und Kollegen aus anderen Ländern können leicht teilnehmen."],
+["What are the disadvantages of Zoom meetings?","Was sind die Nachteile von Zoom-Meetings?","Was ist schlecht an Online-Meetings?","Was ist schlecht an Zoom?","Technische Probleme, weniger persönlicher Kontakt, und viele Leute machen nebenbei andere Dinge."],
+["Do your meetings usually run too long? What do you do then?","Dauern die Treffen, an denen du teilnimmst, normalerweise zu lange? Was tust du, wenn das passiert?","Sind deine Meetings oft zu lang? Was machst du dann?","Sind Meetings lang?","Ja, oft. Dann schlage ich vor, das Thema später in einer kleineren Gruppe zu besprechen."]]});
+T.push({de:"Sport und Training",en:"Sport and Exercise",q:[
+["Is physical activity important to you?","Ist dir körperliche Betätigung wichtig?","Ist Sport für dich wichtig?","Machst du Sport?","Ja, sehr. Ich mache mehrmals pro Woche Sport, meistens Krafttraining und Laufen."],
+["Is sport important for living to an old age?","Denkst du, Sport ist wichtig, um ein hohes Alter zu erreichen?","Lebt man mit Sport länger?","Ist Sport gesund?","Ja, Bewegung ist sehr wichtig für ein langes, gesundes Leben – zusammen mit guter Ernährung und genug Schlaf."],
+["Which sports have you already tried?","Welche Sportarten hast du bereits probiert?","Welche Sportarten hast du schon gemacht?","Welchen Sport machst du?","Fußball, Schwimmen, Badminton, Laufen und Krafttraining."],
+["Are there people who overdo it?","Gibt es Leute, die es übertreiben?","Machen manche Leute zu viel Sport?","Machen manche Leute viel Sport?","Ja, manche trainieren jeden Tag ohne Pause. Das kann zu Verletzungen führen."],
+["Have you heard of CrossFit? What do you think? Would you try it?","Hast du schon mal von CrossFit gehört? Was hältst du davon? Würdest du es auch probieren?","Kennst du CrossFit? Möchtest du es probieren?","Kennst du CrossFit?","Ja, es ist sehr intensiv. Ich würde es gern einmal probieren, aber mit einem guten Trainer."],
+["Are fit people vain? Or just health-conscious? Or both?","Sind fitte Menschen eitel? Oder einfach nur gesundheitsbewusst? Oder beides?","Sind sportliche Menschen eitel oder nur gesund?","Sind sportliche Menschen eitel?","Meistens beides. Die meisten wollen gesund sein, aber gut aussehen ist natürlich auch schön."],
+["Do you prefer to train alone or with others?","Magst du alleine trainieren oder lieber mit anderen Menschen?","Trainierst du lieber allein oder mit anderen?","Trainierst du allein?","Krafttraining lieber allein, aber Laufen macht mit Freunden mehr Spaß."],
+["What do you think of charging “unfit” people higher health fees?","Was hältst du von der Idee, dass Krankenhäuser höhere Gebühren für „Unfitte“ erheben?","Sollen unsportliche Menschen mehr für die Krankenversicherung zahlen?","Sollen unsportliche Leute mehr zahlen?","Ich finde das ungerecht. Viele Menschen sind krank, ohne selbst schuld zu sein. Besser sind Belohnungen für Sport."],
+["Do you use your phone or a smartwatch to track your health?","Verwendest du dein Handy oder eine Smartwatch, um deine Gesundheit zu überwachen?","Benutzt du eine Smartwatch für deine Gesundheit?","Hast du eine Smartwatch?","Ja, ich zähle meine Schritte und messe meinen Schlaf und mein Training."],
+["Which sport is famous in your home country? Which sports stars?","Welche Sportart ist in deinem Heimatland berühmt? Welche Sportstars sind berühmt?","Welcher Sport ist in deinem Land bekannt?","Welcher Sport ist in deinem Land beliebt?","In [Heimatland] ist [Sportart] sehr beliebt. In Deutschland ist Fußball die Nummer eins, zum Beispiel mit Jamal Musiala."]]});
+T.push({de:"Kochen",en:"Cooking",q:[
+["Who usually cooks in your home?","Wer kocht normalerweise bei euch zu Hause?","Wer kocht bei dir zu Hause?","Wer kocht bei dir?","Meistens ich. Am Wochenende kochen wir manchmal zusammen mit Freunden."],
+["What is your favourite thing to cook?","Was kochst du am liebsten?","Was kochst du gern?","Was kochst du?","Am liebsten Curry oder Pasta – schnell und lecker."],
+["Do you have a special family recipe?","Habt ihr ein spezielles Familienrezept?","Hat deine Familie ein besonderes Rezept?","Hast du ein Familienrezept?","Ja, meine Mutter hat ein besonderes Rezept für [Gericht]. Ich koche es, wenn ich Heimweh habe."],
+["What is your comfort food?","Was ist deine Komfortnahrung (dein Wohlfühlessen)?","Was isst du, wenn es dir nicht gut geht?","Was isst du gern?","Eine warme Suppe oder Reis mit Curry."],
+["What do you do when you don't feel like cooking?","Was machst du, wenn du keine Lust zum Kochen hast?","Was machst du, wenn du nicht kochen willst?","Kochst du jeden Tag?","Ich bestelle etwas beim Lieferdienst oder mache mir einfach ein Brot."],
+["Is it better to shop at the supermarket or the farmers' market? Why?","Ist es besser, im Supermarkt oder auf dem Bauernmarkt einzukaufen? Warum?","Kaufst du lieber im Supermarkt oder auf dem Markt ein?","Wo kaufst du Essen?","Auf dem Markt ist das Gemüse frischer und regional, im Supermarkt ist es billiger und schneller. In Frankfurt gehe ich gern auf den Markt an der Konstablerwache."],
+["Should you buy organic products even though they're more expensive?","Sollte man Bio-Produkte kaufen, obwohl diese teurer sind?","Soll man Bio-Produkte kaufen, auch wenn sie teurer sind?","Kaufst du Bio?","Bei manchen Produkten ja, zum Beispiel bei Eiern und Milch. Aber nicht alles muss Bio sein."],
+["Is it important to cook with fresh ingredients? Why?","Findest du es wichtig, mit frischen Zutaten zu kochen? Warum?","Ist frisches Essen wichtig? Warum?","Kochst du mit frischem Gemüse?","Ja, frische Zutaten schmecken besser und sind gesünder. Tiefkühlgemüse ist aber auch okay."],
+["What food is your home country famous for? Do you like it?","Für welches Essen ist dein Heimatland berühmt? Isst du es gerne?","Welches Essen ist in deinem Land bekannt?","Was isst man in deinem Land?","[Heimatland] ist für [Gericht] berühmt, und ich esse es sehr gern. In Frankfurt mag ich auch die Grüne Soße."],
+["Do you like inviting friends for dinner, or going to a restaurant?","Lädst du gerne Freunde zum Essen ein oder gehst du stattdessen in ein Restaurant?","Lädst du Freunde zum Essen ein oder gehst du ins Restaurant?","Kochst du für Freunde?","Ich lade Freunde gern zu mir ein. Das ist gemütlicher und billiger als ein Restaurant."]]});
+T.push({de:"Das Krankenhaus",en:"Hospital",q:[
+["When do you have to go to hospital?","Wann muss man ins Krankenhaus?","Wann geht man ins Krankenhaus?","Wann gehst du ins Krankenhaus?","Bei einem Unfall, für eine Operation oder wenn man sehr krank ist."],
+["Have you ever been in hospital? What was it like?","Warst du schon mal im Krankenhaus? Wie war deine Erfahrung?","Warst du schon mal im Krankenhaus? Wie war es?","Warst du im Krankenhaus?","Nur einmal zu Besuch bei einem Freund. Das Personal war sehr freundlich, aber alles war ziemlich hektisch."],
+["Would you prefer a single room or a shared room?","Würdest du im Krankenhaus lieber ein Einzelzimmer haben oder ein Zimmer teilen? Musstest du jemals eine Station teilen?","Möchtest du im Krankenhaus allein oder mit anderen im Zimmer liegen?","Möchtest du ein Zimmer allein?","Lieber ein Einzelzimmer, weil es ruhiger ist. Ein Zimmer mit anderen ist aber weniger langweilig."],
+["What are a nurse's duties? Could you do the job?","Welche Aufgaben haben Krankenschwestern? Könntest du den Job einer Krankenschwester machen?","Was machen Pflegekräfte? Könntest du das machen?","Was macht eine Krankenschwester?","Sie geben Medikamente, helfen den Patienten und sprechen mit den Ärzten. Ich könnte das nicht – der Job ist körperlich und emotional sehr schwer."],
+["What gift would you bring to someone in hospital?","Was kann man jemandem als Geschenk mitbringen, der im Krankenhaus liegt?","Was bringst du jemandem ins Krankenhaus mit?","Was schenkst du im Krankenhaus?","Obst, ein Buch, eine Zeitschrift oder eine Karte mit guten Wünschen."],
+["How can you pass the time in hospital?","Wie kann man sich im Krankenhaus die Zeit vertreiben?","Was kann man im Krankenhaus machen, wenn es langweilig ist?","Was machst du im Krankenhaus?","Lesen, Serien schauen, Musik oder Podcasts hören und mit Besuchern sprechen."],
+["How could a hospital be made more pleasant?","Wie könnte man ein Krankenhaus angenehmer gestalten?","Wie kann ein Krankenhaus schöner sein?","Ist ein Krankenhaus schön?","Mit hellen Farben, Pflanzen, besserem Essen, gutem WLAN und flexiblen Besuchszeiten."],
+["What happens in an intensive care unit?","Was passiert auf einer Intensivstation?","Was macht man auf der Intensivstation?","Was ist eine Intensivstation?","Dort liegen schwer kranke Patienten. Sie werden rund um die Uhr von Ärzten und Pflegekräften überwacht."],
+["What is healthcare like in your home country?","Wie sieht die Gesundheitsversorgung in deinem Heimatland aus?","Wie ist das Gesundheitssystem in deinem Land?","Ist der Arzt in deinem Land teuer?","In Deutschland ist sie sehr gut, aber man wartet oft lange auf einen Facharzttermin. In [Heimatland] ist es [anders/ähnlich]."],
+["Are you insured? Have you ever had to pay a big medical bill?","Bist du krankenversichert? Musstest du schon einmal eine hohe Gesundheitsrechnung bezahlen?","Hast du eine Krankenversicherung? Musstest du schon mal viel für den Arzt bezahlen?","Hast du eine Krankenversicherung?","Ja, in Deutschland muss jeder krankenversichert sein. Eine hohe Rechnung musste ich zum Glück noch nie bezahlen."]]});
+T.push({de:"Taschengeld",en:"Pocket Money",q:[
+["Is it important for children to have their own pocket money? What are the benefits?","Findest du es wichtig, dass Kinder ihr eigenes Taschengeld zur Verfügung haben? Was sind die Vorteile von Taschengeld?","Sollen Kinder Taschengeld bekommen? Warum?","Bekommen Kinder Taschengeld?","Ja, so lernen Kinder früh, mit Geld umzugehen und zu sparen."],
+["How much pocket money should a child get?","Wie viel Taschengeld sollte ein Kind bekommen?","Wie viel Taschengeld soll ein Kind bekommen?","Wie viel Geld bekommt ein Kind?","Das hängt vom Alter ab. Für ein zehnjähriges Kind sind etwa 20 Euro im Monat okay."],
+["Should a child decide for themselves what to do with their pocket money?","Sollte ein Kind selbst entscheiden dürfen, was es mit seinem Taschengeld macht?","Darf ein Kind selbst entscheiden, was es kauft?","Kauft ein Kind selbst?","Ja, meistens. Nur so lernt es aus seinen Fehlern."],
+["Is it common in your home country for children to get pocket money?","Ist es in deinem Heimatland üblich, dass Kinder Taschengeld bekommen?","Bekommen Kinder in deinem Land Taschengeld?","Gibt es Taschengeld in deinem Land?","In Deutschland ist es sehr üblich. In [Heimatland] ist es [mehr/weniger] verbreitet."],
+["Did you get pocket money as a child? How much?","Hast du selbst als Kind Taschengeld bekommen? Wenn ja, wie viel?","Hast du als Kind Taschengeld bekommen? Wie viel?","Hattest du Taschengeld?","Ja, ein bisschen, meistens zu besonderen Anlässen. Ich habe viel davon gespart."],
+["Does pocket money teach children about personal finance? Should they learn this?","Bringt man Kindern mit Taschengeld etwas über persönliche Finanzen bei? Sollten Kinder das lernen?","Lernen Kinder mit Taschengeld etwas über Geld?","Lernen Kinder mit Geld?","Ja, unbedingt. Sparen, planen und vielleicht sogar die Grundlagen vom Investieren sollten Kinder früh lernen."],
+["Should the amount be graded by age? Why/why not?","Sollte die Höhe des Taschengeldes nach dem Alter gestaffelt sein? Warum/warum nicht?","Sollen ältere Kinder mehr Taschengeld bekommen?","Bekommen große Kinder mehr Geld?","Ja, ältere Kinder haben mehr Ausgaben und mehr Verantwortung."],
+["In some countries the minimum wage for teenagers is lower than for adults. Is this fair?","In einigen Ländern ist der Mindestlohn für Jugendliche niedriger als der für Erwachsene. Ist das gerecht?","Jugendliche verdienen manchmal weniger als Erwachsene. Ist das fair?","Sollen alle gleich viel verdienen?","Ich finde es nicht gerecht, wenn sie die gleiche Arbeit machen. Gleiche Arbeit, gleicher Lohn."],
+["What should a child pay for with pocket money?","Was sollte ein Kind alles von seinem Taschengeld zahlen müssen?","Was soll ein Kind mit seinem Taschengeld bezahlen?","Was kauft ein Kind?","Süßigkeiten, Spielzeug, Kino und kleine Extras."],
+["What should a child not have to buy with pocket money?","Welche Dinge sollte ein Kind nicht von seinem Taschengeld kaufen müssen?","Was müssen die Eltern bezahlen?","Was kaufen die Eltern?","Kleidung, Schulsachen, Essen und Arztbesuche – das bezahlen die Eltern."]]});
+T.push({de:"Müll",en:"Rubbish",q:[
+["Do you create a lot of rubbish?","Verursachst du viel Müll?","Hast du viel Müll?","Hast du viel Müll?","Leider ja, vor allem Verpackungen von Online-Bestellungen."],
+["Do you always put your rubbish in bins?","Gibst du deinen Müll immer in Mülleimer?","Wirfst du deinen Müll immer in den Mülleimer?","Wo ist dein Müll?","Ja, immer. Wenn ich keinen Mülleimer finde, nehme ich den Müll mit nach Hause."],
+["What are the recycling rules in your town?","Welche Gesetze gelten in deiner Stadt für das Recycling von Müll?","Welche Regeln gibt es in deiner Stadt für Mülltrennung?","Trennst du deinen Müll?","In Frankfurt trennt man Papier, Verpackungen (Gelbe Tonne), Bioabfall, Glas und Restmüll. Für viele Flaschen gibt es Pfand."],
+["Are landfills bad? Why or why not?","Sind Mülldeponien schlecht? Oder nicht? Und warum?","Sind Mülldeponien schlecht? Warum?","Ist eine Mülldeponie gut?","Ja, meistens. Sie brauchen viel Platz und können Boden und Wasser verschmutzen."],
+["How much rubbish does Germany produce each year?","Wie viel Müll, glaubst du, produziert Deutschland pro Jahr?","Wie viel Müll hat Deutschland pro Jahr?","Hat Deutschland viel Müll?","Sehr viel – insgesamt rund 400 Millionen Tonnen, wenn man Bauabfälle mitzählt. Pro Person sind es gut 400 Kilo Haushaltsabfall."],
+["What has to happen so that we produce less rubbish?","Was glaubst du, muss passieren, damit wir Menschen weniger Müll verursachen?","Was müssen wir tun, damit es weniger Müll gibt?","Wie machen wir weniger Müll?","Weniger Verpackung, mehr Mehrwegprodukte und Reparieren statt Wegwerfen."],
+["Dumpster diving has become more popular. Have you heard of it? Would you try it?","Dumpster-Diving ist immer beliebter geworden. Hast du schon davon gehört? Wenn nicht, google es. Würdest du es ausprobieren?","Kennst du Dumpster-Diving („Containern“)? Würdest du es machen?","Kennst du Containern?","Ja, ich habe davon gehört. Die Idee gegen Lebensmittelverschwendung finde ich gut, aber ich würde es selbst wahrscheinlich nicht machen."],
+["Why do some people throw rubbish on the street?","Warum werfen manche Menschen ihren Müll einfach auf die Straße?","Warum werfen Leute Müll auf die Straße?","Ist Müll auf der Straße schlimm?","Aus Faulheit oder weil ihnen die Umwelt egal ist. Manchmal gibt es auch zu wenige Mülleimer."],
+["Have you ever thrown something away by mistake? What?","Hast du schon einmal etwas aus Versehen weggeschmissen? Was war es?","Hast du schon mal etwas aus Versehen weggeworfen?","Hast du etwas Wichtiges weggeworfen?","Ja, einmal einen Zettel mit einer wichtigen Telefonnummer. Zum Glück hatte ich sie noch in einer E-Mail."],
+["How was rubbish disposed of in the past?","Wie wurde früher Müll entsorgt?","Was hat man früher mit Müll gemacht?","Gab es früher viel Müll?","Früher gab es viel weniger Verpackung. Man hat vieles repariert, wiederverwendet oder im Garten kompostiert."]]});
+const E=[
+["Homes today are smaller and much more expensive. In the past many families had a house; today more people live alone in an apartment.",
+"Yes, today more people live in cities because there are more jobs there. In Germany the great majority live in cities.",
+"Yes, shared flats have become more popular because rents are so high. Also, you're not alone.",
+"There are too few apartments, and many people want to live in the city. Building has also become much more expensive.",
+"Unfortunately rents in Frankfurt are very high. For families on a normal income it's hard to find an affordable apartment.",
+"It depends on the situation. Renting is more flexible, but with your own apartment you pay no rent in old age.",
+"In principle I think rent control is good because it protects tenants. But it doesn't build new apartments – the problem remains.",
+"My dream house is bright and modern, with a big garden and a study. It's in a quiet spot, but not far from the city.",
+"Maybe later. The countryside is quiet and green, but right now I need the city for my work and my friends.",
+"Happily for a weekend, but not forever. I need more space, especially for my desk."],
+["Time with friends, good food and sport make me happy. And when I've solved a difficult problem at work.",
+"Unpunctuality and dishonesty make me angry. Train delays annoy me too.",
+"I would remove my impatience. Sometimes I want everything to work immediately.",
+"A little, yes. When I'm convinced of a solution I don't change my mind so quickly – but I accept good arguments.",
+"Sometimes, especially when I have to speak German with strangers. With friends I'm not shy at all.",
+"Yes, I think so. I'm analytical and patient with technical problems, and a developer needs that.",
+"Yes, I've become calmer and more self-confident. Living abroad has changed me a lot.",
+"Everyone in my family is very different: some are quiet and serious, others funny and loud.",
+"Honesty, humour and respect are the most important to me.",
+"Looks and money aren't so important. You don't necessarily need the same hobbies either.",
+"Yes, if both can make compromises. Otherwise there's a lot of arguing.",
+"Family, culture and the experiences you have. Friends and work also influence us."],
+["No, I don't think so. We talk a lot, but we still fly and consume too much.",
+"Partly yes. With good buses and trains you don't need a car in the city centre. But deliveries and people with disabilities need exceptions.",
+"Both are important, but without a healthy environment there's no prosperity in the long run. You have to combine both.",
+"I think the government and big companies bear more responsibility because they make the rules. But every individual has to take part too.",
+"Use less wood and paper, plant new trees and stop illegal logging.",
+"That's difficult. Nuclear power produces little CO₂, but nuclear waste remains a big problem. Germany decided against it.",
+"Only countries with strict safety rules. An international organisation like the IAEA should monitor it.",
+"In [home country] more is being invested in solar and wind energy, and some plastic products are banned. But there's still a lot to do.",
+"At school and at home, for example through separating rubbish, trips into nature and good role models.",
+"Fly less, go by bike or train, eat less meat and separate rubbish."],
+["Almost never traditional TV, but I stream series two or three times a week.",
+"No, today a laptop or phone is enough. But a big TV is nice for films.",
+"Best on a big TV on the sofa. When I'm out I use the tablet.",
+"Sport, series and reality shows are very popular. In Germany many people watch “Tatort” on Sundays.",
+"I think almost everything will be streamed. Maybe only sport and news will still be watched live.",
+"Many people do – but today the phone is the bigger problem.",
+"I'd make a show about travel and food: every week a new city and its typical dishes.",
+"Yes, sometimes after a long working day, especially during slow films.",
+"Streaming, because I can decide myself what and when I watch. And there are fewer ads.",
+"In Germany every household pays the broadcasting fee, about 18 euros a month. In [home country] there's no such thing."],
+["After university, usually at 22 to 25. With vocational training you start earlier.",
+"In Germany people retire at about 67.",
+"Ideally at 55, once I've saved and invested enough.",
+"I'll travel a lot, do sport and maybe program a small project of my own.",
+"In the morning there's a short team meeting. After that I program, review colleagues' code and solve problems in our systems.",
+"My first job was as a junior developer at a small software company.",
+"Sometimes, especially before an important release. I don't get extra money, but I can take the hours off later.",
+"Unfortunately yes, two or three almost every day. I think some of them could be an email.",
+"Yes, because I learn something new every day and I like solving technical problems.",
+"Normally not. Only if there's an emergency during on-call duty.",
+"Yes, cloud certifications and of course German courses. Both help me a lot at work.",
+"In IT it's relatively easy. You send a CV and a cover letter, then there are usually two or three interviews.",
+"Yes, in Germany it's in table form, often with a photo and date of birth. In many other countries that's not usual."],
+["Usually around 11 pm.",
+"No phone before sleeping, go to bed at the same time every day and don't drink coffee in the evening.",
+"At 7 am during the week, a bit later at the weekend.",
+"Stress, coffee, noise and too much screen time are often the reason. Some people are also just lucky.",
+"I read a book or listen to a calm podcast. I put the phone away.",
+"Yes, once on the floor at an airport because my flight was cancelled. It was very uncomfortable!",
+"Yes, many people sleep less than seven hours. That's not healthy.",
+"Yes, the alarm on my phone. Unfortunately I often press “snooze”.",
+"Sometimes, but I try to avoid it. The bed is for sleeping.",
+"Happily at weekends, about 20 minutes after lunch."],
+["In Germany I really like Christmas because of the Christmas markets and the atmosphere.",
+"Maybe Whit Monday – many people don't even know what's celebrated. But I'm happy to take a day off!",
+"A “Day of Friendship”. You meet old friends, cook together and go on a trip.",
+"I like having a long, cosy meal with family or friends on holidays.",
+"In [home country] [festival] and the national holiday are very important. People celebrate with family, good food and sometimes fireworks.",
+"Yes, every festival has typical dishes and lots of sweets. In Germany people often eat goose or sausages with potato salad at Christmas.",
+"At Christmas and on birthdays. Typical gifts are sweets, clothes or money.",
+"New Year's Eve is sometimes too loud and chaotic for me because of all the firecrackers.",
+"Hesse has fewer public holidays than Bavaria. A few more would be nice!",
+"Unfortunately not in Germany – the holiday is simply lost. I think that should change."],
+["Skydiving, bungee jumping, free climbing, base jumping and ultramarathons.",
+"I'd like to do a tandem skydive once – the feeling of flying must be incredible.",
+"Never base jumping – that's far too dangerous for me.",
+"For the adrenaline and to test their own limits.",
+"It boosts self-confidence, but the risk of injury is high. With good equipment and training the positive sides outweigh.",
+"Yes, the adrenaline can be addictive. You always want more risk.",
+"Competitive sport is about competition and results. Extreme sport is about risk and pushing limits.",
+"Yes, while hiking in the mountains the weather suddenly got very bad. That was frightening.",
+"Certainly. With jetpacks or drones a lot is possible – maybe soon even sport in space.",
+"Partly. They show courage and discipline, but young people shouldn't just copy their dangerous tricks."],
+["I'm more of a night person. I can concentrate best in the evening.",
+"Yes, at night I'm calmer and more creative, but sometimes I also overthink.",
+"Friday evening, because that's when the weekend starts.",
+"I cooked, watched a series and went to bed early.",
+"Yes, sometimes I dream that I miss an exam – even though I haven't had exams for a long time!",
+"A New Year's Eve with friends by the Main, with fireworks over the skyline.",
+"Rather during the day. Night shifts are bad for your health.",
+"Mostly yes. Only in some areas, for example around the main station, am I careful at night.",
+"It gets quiet, the birds sleep, and other animals like bats and owls become active.",
+"Yes, during my studies before an exam and once because of a server problem at work."],
+["No, I never smoked and I don't smoke now.",
+"I think from 18. In Germany you can only buy cigarettes from 18.",
+"In Germany it's mostly banned in restaurants, but there are still smoking pubs. In [home country] it's also banned in public indoor spaces.",
+"Yes, a pack costs about 8 to 9 euros in Germany. If you smoke every day you spend a lot of money.",
+"Because he wanted to be a good role model. His team made sure there were no photos.",
+"Yes, I think it's fair because smoking causes high costs for the health system.",
+"Some, yes, especially young people. But many smokers are addicted and pay anyway.",
+"People have more money, cigarettes are cheap, and smoking is often part of the culture, for example at business dinners.",
+"No, not anymore. In old films maybe, but today most people find it rather unattractive.",
+"No, not even for a lot of money. It doesn't fit my values."],
+["Yes, the cold bothers me. I sometimes think about Spain or Portugal, where the winter is milder.",
+"Yes, especially in January and February. It's already dark at half past four – I really miss the sunlight.",
+"The warm clothes are okay, but the high heating costs annoy me.",
+"I like going to the Christmas market and drinking mulled wine. I still want to learn to ski.",
+"A little, yes – with tea, a blanket and a good series.",
+"I move less outdoors, but I go to the gym regularly. That helps me get through the winter.",
+"My winter routine: sport at the gym, a short walk at lunchtime for daylight, and a week down south in February.",
+"Yes, I'm tired more often and less motivated. The weather weighs on my mood.",
+"In Germany there are Christmas markets, Advent calendars and kale. In [home country] winter is completely different: [tradition].",
+"Maybe for a few weeks. Many companies allow a “workation” in another EU country, but usually only for a limited time."],
+["I'd like to travel to Japan – because of the culture, the food and the nature.",
+"I've been to several European countries, for example Italy, France and Spain.",
+"My best trip was to Italy. The food, the sea and the old cities were wonderful.",
+"Once my luggage got lost. Three days without a suitcase were very exhausting.",
+"I plan the flight and hotel in advance, but once there I like being spontaneous.",
+"Preferably with friends. An organised group is too inflexible for me.",
+"A bit of everything, but culture and food matter most to me.",
+"Yes, very much. You get to know the culture best through the people.",
+"I like both: a few days in the city and then a few days in nature.",
+"Yes and no. More people can see the world, but cheap flights are bad for the environment and some cities are too crowded."],
+["Yes, mainly when travelling – landscapes, architecture and food.",
+"Mostly colour photos, but for portraits I find black and white very atmospheric.",
+"Not really. The lives of celebrities don't interest me that much.",
+"An exhibition on nature photography or on cities then and now.",
+"Pay attention to good light, for example in the morning or evening, and use the rule of thirds.",
+"A photo of a sunset by the sea that I took on holiday.",
+"Not always. I prefer being behind the camera.",
+"Too many – often several hundred. Unfortunately I almost never look at them later.",
+"I find it problematic. The children can't decide for themselves, and the internet never forgets.",
+"For most people a good smartphone is enough today. An expensive camera is only worth it for real hobby photographers."],
+["Yes, once an old bike and a few books.",
+"I like the atmosphere and the low prices. Not so good: it's often very crowded.",
+"Old records, vintage clothes, antiques – sometimes even real valuables.",
+"Underwear, mattresses and bike helmets – for hygiene reasons or for safety.",
+"Old books, clothes I don't wear anymore and old electronics.",
+"I'd sort everything nicely, write clear prices and talk to people in a friendly way.",
+"Yes, a bit. My tip: stay friendly, name a low price first and buy several things together.",
+"The flea market at the Museumsufer in Frankfurt. It's big and right on the Main.",
+"Yes, a very good idea! I'd sell books and cake and donate the money to an animal shelter.",
+"Yes, I think so. Online platforms like Kleinanzeigen are practical, but a flea market is also about the experience."],
+["No, very rarely. I prefer to invest my money in ETFs.",
+"When I play, I use birthdays – or I let the computer choose random numbers.",
+"Only small amounts, like 10 or 20 euros. Unfortunately I don't know a millionaire.",
+"In “6 out of 49”, six numbers and a bonus number are drawn on Wednesday and Saturday.",
+"Very, very small. The chance of the jackpot is about 1 in 140 million.",
+"I'd buy an apartment, invest part of it, go on a big trip and donate some.",
+"With my family, because they've always supported me.",
+"I wouldn't tell anyone and I'd spread the money across different banks and investments.",
+"I'd work less, maybe part-time. Without work I get bored quickly.",
+"I'd stay anonymous. Otherwise suddenly lots of people would want something from me."],
+["When they feel treated unfairly, are stressed, or when something doesn't go the way they want.",
+"When people make loud phone calls on the train or when someone doesn't listen.",
+"Usually only briefly. After a few minutes it's over.",
+"I don't think so. Maybe men just show their anger openly more often.",
+"Last week, when my train was delayed for the third time.",
+"You say things you regret later, and stress is bad for your health.",
+"Breathe deeply, go for a short walk or do sport. Sport helps me the most.",
+"Sometimes I do ten minutes of meditation with an app, especially on stressful days.",
+"Yes, once. When he was in a bad mood, the whole team was nervous.",
+"Yes, at the station a man argued loudly with an employee because his train was cancelled."],
+["Germany is quite bike-friendly, but not as good as the Netherlands. Frankfurt has more and more bike lanes.",
+"Advantages: healthy, cheap and good for the environment. Disadvantages: rain, cold and sometimes dangerous traffic.",
+"I always wear a helmet, but I don't think it needs to be compulsory. Otherwise maybe fewer people would cycle.",
+"Yes, as a child. I slipped on wet leaves but only had a few scratches.",
+"Yes, with friends along the Main – over 50 kilometres. It was exhausting but lovely.",
+"Short distances in the city by bike. For big shopping trips or long distances I take the car or train.",
+"Yes, I think that's right. Rules apply to everyone – cyclists too.",
+"In Germany it's a criminal offence from 1.6 per mille. But even with less alcohol there are problems if you ride unsafely.",
+"More often, because cities are building more bike lanes and e-bikes are becoming more popular.",
+"I find them practical, especially for hills or long distances. Maybe I'll buy one later."],
+["For about two years.",
+"I was about 16. It was a simple phone without internet.",
+"Today many children get a smartphone at 10 or 11.",
+"Hard. I need it for banking, maps, tickets and work. But a weekend without a phone would be good.",
+"WhatsApp, Google Maps, the DB app, my banking app and an app for learning German.",
+"To communicate with family and friends, to travel, to keep track of my finances and to practise German.",
+"Apps are practical and save time. But they collect a lot of data and can be addictive.",
+"Not often. Just sometimes chess or a puzzle game on the train.",
+"In Germany almost everyone uses WhatsApp, the DB app and PayPal.",
+"It's complicated. Data protection is important, but bans can also restrict freedom of speech."],
+["A few months ago, a postcard from holiday. For thank-yous, condolences or official documents letters are better.",
+"Yes, for example gifts to friends or things I sold online.",
+"I prefer receiving parcels – it's like a little present.",
+"On my birthday, because then the parcels are just for me.",
+"No, never. I always read the rules first, especially for parcels abroad.",
+"Quite expensive – often 40 to 60 euros for a bigger parcel. It should be cheaper.",
+"In my experience DHL, because there are lots of parcel lockers.",
+"Yes, a lot. That's why I have a “No advertising please” sticker on my letterbox.",
+"Once a parcel disappeared for two weeks, but then it arrived after all.",
+"Yes, during the pandemic almost everything – even groceries. Today I shop in stores more again."],
+["Almost every day, usually two or three.",
+"Mostly small, informal team meetings. Once a month there's a big, formal meeting.",
+"Be on time and well prepared, listen, and speak briefly and clearly.",
+"Don't interrupt others, don't look at your phone and don't talk too long.",
+"Yes, sometimes I lead technical meetings, for example architecture reviews.",
+"Have a clear agenda, watch the time, let everyone have a say and summarise the tasks at the end.",
+"A meeting after a big system outage. Everyone was stressed and looking for someone to blame.",
+"You save time because you don't have to travel, and colleagues from other countries can easily join.",
+"Technical problems, less personal contact, and many people do other things on the side.",
+"Yes, often. Then I suggest discussing the topic later in a smaller group."],
+["Yes, very. I do sport several times a week, mostly strength training and running.",
+"Yes, exercise is very important for a long, healthy life – together with good nutrition and enough sleep.",
+"Football, swimming, badminton, running and strength training.",
+"Yes, some people train every day without a break. That can lead to injuries.",
+"Yes, it's very intense. I'd like to try it once, but with a good trainer.",
+"Mostly both. Most want to be healthy, but looking good is of course nice too.",
+"Strength training preferably alone, but running is more fun with friends.",
+"I find that unfair. Many people are ill through no fault of their own. Rewards for sport are better.",
+"Yes, I count my steps and track my sleep and my workouts.",
+"In [home country] [sport] is very popular. In Germany football is number one, for example with Jamal Musiala."],
+["Mostly me. At weekends we sometimes cook together with friends.",
+"Most of all curry or pasta – quick and tasty.",
+"Yes, my mother has a special recipe for [dish]. I cook it when I'm homesick.",
+"A warm soup or rice with curry.",
+"I order from a delivery service or just make myself a sandwich.",
+"At the market the vegetables are fresher and local; the supermarket is cheaper and faster. In Frankfurt I like going to the market at Konstablerwache.",
+"For some products yes, for example eggs and milk. But not everything has to be organic.",
+"Yes, fresh ingredients taste better and are healthier. Frozen vegetables are okay too, though.",
+"[Home country] is famous for [dish], and I love eating it. In Frankfurt I also like Green Sauce.",
+"I like inviting friends over. It's cosier and cheaper than a restaurant."],
+["After an accident, for an operation or when you're very ill.",
+"Only once, visiting a friend. The staff were very friendly, but everything was quite hectic.",
+"Preferably a single room because it's quieter. A room with others is less boring, though.",
+"They give medication, help patients and talk to the doctors. I couldn't do it – the job is physically and emotionally very hard.",
+"Fruit, a book, a magazine or a card with good wishes.",
+"Reading, watching series, listening to music or podcasts, and talking to visitors.",
+"With bright colours, plants, better food, good Wi-Fi and flexible visiting hours.",
+"Seriously ill patients are there. They're monitored around the clock by doctors and nurses.",
+"In Germany it's very good, but you often wait a long time for a specialist appointment. In [home country] it's [different/similar].",
+"Yes, in Germany everyone must have health insurance. Luckily I've never had to pay a big bill."],
+["Yes, this way children learn early to handle money and to save.",
+"It depends on age. For a ten-year-old about 20 euros a month is okay.",
+"Yes, mostly. That's the only way they learn from their mistakes.",
+"In Germany it's very common. In [home country] it's [more/less] common.",
+"Yes, a little, mostly on special occasions. I saved a lot of it.",
+"Yes, definitely. Children should learn early to save, plan and maybe even the basics of investing.",
+"Yes, older children have more expenses and more responsibility.",
+"I don't think it's fair if they do the same work. Equal work, equal pay.",
+"Sweets, toys, cinema and small extras.",
+"Clothes, school supplies, food and doctor's visits – the parents pay for those."],
+["Unfortunately yes, mainly packaging from online orders.",
+"Yes, always. If I can't find a bin, I take the rubbish home.",
+"In Frankfurt you separate paper, packaging (yellow bin), organic waste, glass and residual waste. Many bottles have a deposit.",
+"Yes, mostly. They take up a lot of space and can pollute soil and water.",
+"A lot – around 400 million tonnes in total if you count construction waste. Per person it's just over 400 kilos of household waste.",
+"Less packaging, more reusable products and repairing instead of throwing away.",
+"Yes, I've heard of it. I like the idea against food waste, but I probably wouldn't do it myself.",
+"Out of laziness or because they don't care about the environment. Sometimes there are also too few bins.",
+"Yes, once a note with an important phone number. Luckily I still had it in an email.",
+"There used to be much less packaging. People repaired, reused or composted a lot in the garden."]
+];
+function FB(t,single){const e=encodeURIComponent(t);const a=(u,l)=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`;
+ return `<div class="fb">Nachschlagen: ${a("https://translate.google.com/?sl=de&tl=en&op=translate&text="+e,"Google Übersetzer")} · ${a("https://www.deepl.com/translator#de/en/"+e,"DeepL")}${single?" · "+a("https://www.dict.cc/?s="+e,"dict.cc"):""}</div>`}
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const W=s=>s.replace(/[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g,m=>`<span class="w">${m}</span>`);
+const ph=s=>s.replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>');
+const main=document.getElementById("main"),nav=document.getElementById("nav");
+let h="",n="";
+T.forEach((t,i)=>{const id="t"+(i+1);
+ n+=`<a href="#${id}">${i+1}. ${esc(t.de)}</a>`;
+ h+=`<section id="${id}"><div class="th"><span class="n">${i+1}</span><h2>${esc(t.de)}</h2><span class="en">${esc(t.en)}</span></div><div class="wrap"><table><thead><tr><th>#</th><th class="c-en">English</th><th class="c-b1">B1 Deutsch</th><th class="c-a2">A2 Deutsch</th><th class="c-a1">A1 Deutsch</th><th class="c-ans">Beispielantwort</th></tr></thead><tbody>`;
+ t.q.forEach((r,j)=>{h+=`<tr data-s="${esc((r.join(" ")+" "+t.de+" "+t.en).toLowerCase())}"><td class="num">${j+1}</td><td class="c-en" data-l="English"><span class="s" lang="en">${esc(r[0])}</span><button class="say" type="button" aria-label="Vorlesen"></button></td><td class="c-b1" data-l="B1"><span class="s" lang="de">${W(esc(r[1]))}</span><button class="say" type="button" aria-label="Vorlesen"></button></td><td class="c-a2" data-l="A2"><span class="s" lang="de">${W(esc(r[2]))}</span><button class="say" type="button" aria-label="Vorlesen"></button></td><td class="c-a1" data-l="A1"><span class="s" lang="de">${W(esc(r[3]))}</span><button class="say" type="button" aria-label="Vorlesen"></button></td><td class="c-ans" data-l="Beispielantwort"><span class="t s" lang="de">${ph(W(esc(r[4])))}</span><button class="say" type="button" aria-label="Vorlesen"></button><button class="trb" type="button">Englisch zeigen</button><span class="tr"><span class="s" lang="en">${ph(esc(E[i][j]))}</span><button class="say" type="button" aria-label="Vorlesen"></button></span></td></tr>`});
+ h+=`</tbody></table></div></section>`});
+main.innerHTML=h;nav.innerHTML=n;
+document.querySelectorAll(".tg[data-k]").forEach(b=>b.onclick=()=>{const on=b.getAttribute("aria-pressed")==="true";b.setAttribute("aria-pressed",String(!on));document.body.classList.toggle("hide-"+b.dataset.k,on)});
+const pr=document.getElementById("pr");
+pr.onclick=()=>{const on=pr.getAttribute("aria-pressed")!=="true";pr.setAttribute("aria-pressed",String(on));document.body.classList.toggle("practice",on);document.querySelectorAll("td.c-ans").forEach(c=>{c.classList.remove("shown","en-on");c.querySelector(".trb").textContent="Englisch zeigen"})};
+main.addEventListener("click",e=>{const sb=e.target.closest(".say");if(sb){say(sb);return}
+ const c=e.target.closest("td.c-ans");
+ if(c&&document.body.classList.contains("practice")&&!c.classList.contains("shown")){c.classList.add("shown");return}
+ const w=e.target.closest(".w");if(w){multi?pick(w):lookup(w);return}
+ if(c){c.classList.toggle("en-on");const b=c.querySelector(".trb");if(b)b.textContent=c.classList.contains("en-on")?"Englisch ausblenden":"Englisch zeigen"}});
+const pop=document.getElementById("pop"),pw=document.getElementById("pw"),pb=document.getElementById("pb");
+let sampleP=null,cur=null,selEl=null;
+const cache={};
+function getSample(){if(!sampleP)sampleP=(window.claude&&window.claude.use)?window.claude.use("sample").catch(()=>null):Promise.resolve(null);return sampleP}
+function closePop(){pop.hidden=true;if(selEl)selEl.classList.remove("sel");selEl=null;if(cur)cur.abort();cur=null}
+document.getElementById("px").onclick=()=>{closePop();clearPick();if(multi){multi=false;mw.setAttribute("aria-pressed","false")}};
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closePop()});
+async function lookup(el){
+ if(selEl)selEl.classList.remove("sel");selEl=el;el.classList.add("sel");
+ const word=el.textContent,sent=el.closest(".t,td").textContent.trim();
+ pw.textContent=word;pb.innerHTML='<span class="muted">Übersetze …</span>';pop.hidden=false;
+ const key=word+"|"+sent;
+ let hit=cache[key];
+ if(!hit){try{hit=JSON.parse(localStorage.getItem("wd:"+key)||"null")}catch(e){}}
+ if(hit){show(hit);return}
+ const sample=await getSample();
+ if(!sample){pb.innerHTML=FB(word,true);return}
+ if(cur)cur.abort();cur=new AbortController();const my=cur;
+ try{
+  const d=await sample.json(`You are a German-English dictionary for a language learner. Translate the German word "${word}" as it is used in this sentence: "${sent}".
+Reply with ONLY a JSON object, no other text:
+{"en":"English meaning in this context (1-4 words)","lemma":"dictionary base form; for nouns include article, e.g. 'die Wohnung'","pos":"part of speech in English","plural":"plural form for nouns, else empty string","note":"one short learner note in English (grammar form used here, e.g. 'dative plural', 'separable verb, 2nd person'), max 12 words"}`,{modelTier:"quick",signal:my.signal});
+  cache[key]=d;try{localStorage.setItem("wd:"+key,JSON.stringify(d))}catch(e){}
+  if(selEl===el)show(d);
+ }catch(err){if(err&&err.code==="cancelled")return;
+  pb.innerHTML='<span class="muted">'+(err&&err.code==="not_granted"?"Übersetzung wurde nicht erlaubt.":err&&err.code==="rate_limited"?"Zu viele Anfragen – bitte kurz warten.":"Übersetzung fehlgeschlagen. Tippe das Wort noch einmal.")+'</span>'+FB(word,true)}
+}
+
+const synth=window.speechSynthesis;let rate=1,playing=null;
+if(!synth||typeof SpeechSynthesisUtterance==="undefined"){document.body.classList.add("no-tts")}
+function voiceFor(lang){const vs=synth.getVoices().filter(v=>v.lang&&v.lang.toLowerCase().startsWith(lang));
+ if(!vs.length)return null;const pref=["premium","enhanced","google","natural","anna","helena","katja","daniel","samantha"];
+ for(const p of pref){const v=vs.find(v=>v.name.toLowerCase().includes(p));if(v)return v}
+ return vs.find(v=>/-(de|gb|us)$/i.test(v.lang))||vs[0]}
+if(synth){synth.getVoices();synth.onvoiceschanged=()=>synth.getVoices()}
+function stopSay(){if(synth)synth.cancel();if(playing)playing.classList.remove("on");playing=null}
+function say(btn){if(!synth)return;
+ if(playing===btn){stopSay();return}
+ stopSay();
+ const s=btn.previousElementSibling;const lang=s.getAttribute("lang")||"de";
+ const text=s.textContent.replace(/[\[\]]/g,"").trim();
+ const u=new SpeechSynthesisUtterance(text);u.lang=lang==="de"?"de-DE":"en-GB";u.rate=rate;
+ const v=voiceFor(lang);if(v)u.voice=v;
+ u.onend=u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
+ playing=btn;btn.classList.add("on");synth.speak(u)}
+const sp=document.getElementById("sp");
+sp.onclick=()=>{rate=rate===1?0.75:1;sp.setAttribute("aria-pressed",String(rate!==1));sp.textContent=rate===1?"Tempo: normal":"Tempo: langsam"};
+let multi=false,picked=[],pickCell=null;
+const mw=document.getElementById("mw");
+mw.onclick=()=>{multi=!multi;mw.setAttribute("aria-pressed",String(multi));clearPick();closePop();
+ if(multi){pw.textContent="Mehrere Wörter";pb.innerHTML='<span class="muted">Tippe Wörter in einem Satz an. Dann „Übersetzen“.</span>';pop.hidden=false}};
+function clearPick(){picked.forEach(x=>x.classList.remove("pk"));picked=[];pickCell=null}
+function phrase(){const all=[...pickCell.querySelectorAll(".w")];const idx=picked.map(x=>all.indexOf(x)).sort((a,b)=>a-b);
+ let out="";idx.forEach((k,n)=>{out+=(n===0?"":(k===idx[n-1]+1?" ":" … "))+all[k].textContent});return out}
+function renderPick(){
+ if(!picked.length){pw.textContent="Mehrere Wörter";pb.innerHTML='<span class="muted">Tippe Wörter in einem Satz an. Dann „Übersetzen“.</span>';return}
+ pw.textContent=phrase();
+ pb.innerHTML='<div class="pact"><button type="button" class="pbtn" id="go">Übersetzen</button><button type="button" class="pbtn ghost" id="clr">Auswahl leeren</button></div>';
+ document.getElementById("go").onclick=translatePick;
+ document.getElementById("clr").onclick=()=>{clearPick();renderPick()};
+}
+function pick(el){const cell=el.closest("td");
+ if(pickCell&&pickCell!==cell)clearPick();pickCell=cell;
+ const i=picked.indexOf(el);if(i>=0){picked.splice(i,1);el.classList.remove("pk")}else{picked.push(el);el.classList.add("pk")}
+ if(!picked.length)pickCell=null;
+ if(cur){cur.abort();cur=null}
+ pop.hidden=false;renderPick()}
+async function translatePick(){
+ const ph=phrase(),sent=pickCell.querySelector(".t")?pickCell.querySelector(".t").textContent.trim():pickCell.textContent.trim();
+ const key="m|"+ph+"|"+sent;
+ pb.innerHTML='<span class="muted">Übersetze …</span>';
+ let hit=cache[key];if(!hit){try{hit=JSON.parse(localStorage.getItem("wd:"+key)||"null")}catch(e){}}
+ if(hit){showPick(hit);return}
+ const sample=await getSample();
+ if(!sample){pb.innerHTML=FB(ph,false);return}
+ if(cur)cur.abort();cur=new AbortController();const my=cur;
+ try{
+  const d=await sample.json(`You are a German-English tutor for a language learner. Translate the German words "${ph}" as they are used together in this sentence: "${sent}". ("…" means words were skipped between them.)
+Reply with ONLY a JSON object, no other text:
+{"en":"natural English translation of these words in this context","literal":"word-by-word literal gloss, e.g. 'ich (I) + habe (have) + gekocht (cooked)'","note":"one short learner note in English about the grammar or idiom, max 15 words"}`,{modelTier:"quick",signal:my.signal});
+  cache[key]=d;try{localStorage.setItem("wd:"+key,JSON.stringify(d))}catch(e){}
+  if(multi&&phrase()===ph)showPick(d);
+ }catch(err){if(err&&err.code==="cancelled")return;
+  pb.innerHTML='<span class="muted">'+(err&&err.code==="not_granted"?"Übersetzung wurde nicht erlaubt.":err&&err.code==="rate_limited"?"Zu viele Anfragen – bitte kurz warten.":"Übersetzung fehlgeschlagen. Versuch es noch einmal.")+'</span>'+FB(ph,false)}
+}
+function showPick(d){const s=x=>esc(String(x||""));
+ pb.innerHTML=`<div class="pen">${s(d.en)}</div>${d.literal?`<div class="pm">${s(d.literal)}</div>`:''}${d.note?`<div class="pn">${s(d.note)}</div>`:''}<div class="pact"><button type="button" class="pbtn ghost" id="clr">Neue Auswahl</button></div>`;
+ document.getElementById("clr").onclick=()=>{clearPick();renderPick()}}
+function show(d){const s=x=>esc(String(x||""));
+ pb.innerHTML=`<div class="pen">${s(d.en)}</div><div class="pm">${s(d.lemma)}${d.pos?' · '+s(d.pos):''}${d.plural?' · Pl. '+s(d.plural):''}</div>${d.note?`<div class="pn">${s(d.note)}</div>`:''}`}
+const q=document.getElementById("q"),empty=document.getElementById("empty");
+q.oninput=()=>{const v=q.value.trim().toLowerCase();let any=false;
+ document.querySelectorAll("section").forEach(s=>{let vis=0;s.querySelectorAll("tbody tr").forEach(tr=>{const m=!v||tr.dataset.s.includes(v);tr.style.display=m?"":"none";if(m)vis++});s.style.display=vis?"":"none";if(vis)any=true});
+ empty.style.display=any?"none":"block"};
+</script>
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>telc Deutsch B1 – Prüfungstraining</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--paper:#ffffff;--surface:#eef1f6;--ink:#1b2230;--muted:#5b6475;--line:#d9dee8;
+--en:#5b6475;--b1:#2f5bd3;--a2:#b87d00;--a1:#1b8a6b;--ans:#8a3fa8;--ansbg:#f6effa}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--en:#9aa3b5;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--ans:#d49bf0;--ansbg:#2a2036}}
+:root[data-theme="dark"]{--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--en:#9aa3b5;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--ans:#d49bf0;--ansbg:#2a2036}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 120px)}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
+header.hero{padding:28px 20px 20px;max-width:1280px;margin:0 auto}
+.ladder{display:flex;gap:6px;margin-bottom:14px}
+.ladder span{font-weight:700;font-size:13px;padding:3px 10px;border-radius:4px;color:#fff}
+.ladder .l1{background:var(--a1)}.ladder .l2{background:var(--a2)}.ladder .l3{background:var(--b1)}
+h1{font-size:clamp(30px,6vw,52px);font-weight:800;line-height:1.02;letter-spacing:-.02em;max-width:18ch}
+.sub{color:var(--muted);max-width:62ch;margin:12px 0 0}
+.bar{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 20px 8px}
+.bar-inner{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+input[type=search]{flex:1 1 200px;min-width:0;font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.toggles{display:flex;flex-wrap:wrap;gap:6px}
+.tg{font:inherit;font-size:14px;font-weight:700;padding:6px 11px;border-radius:999px;border:2px solid var(--c);background:var(--c);color:#fff;cursor:pointer}
+.tg[aria-pressed="false"]{background:transparent;color:var(--c)}
+.tg.en{--c:var(--en)}.tg.b1{--c:var(--b1)}.tg.a2{--c:var(--a2)}.tg.a1{--c:var(--a1)}.tg.ans{--c:var(--ans)}
+.tg.practice{--c:var(--ink)}.tg.multi{--c:var(--b1)}.tg.speed{--c:var(--a1)}
+.topics{max-width:1280px;margin:8px auto 0;display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.topics a{flex:none;font-size:13px;color:var(--ink);text-decoration:none;padding:4px 10px;border-radius:6px;background:var(--surface);white-space:nowrap}
+.topics a:hover{background:var(--line)}
+main{max-width:1280px;margin:0 auto;padding:8px 20px 60px}
+section{margin-top:36px}
+.th{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.th .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:15px;color:var(--muted)}
+h2{font-size:clamp(24px,4vw,34px);font-weight:800;letter-spacing:-.01em}
+.th .en{color:var(--muted);font-size:17px}
+.wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{text-align:left;font-size:13px;font-weight:700;padding:8px 10px;border-bottom:2px solid var(--line);vertical-align:bottom}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+th.c-en{color:var(--en)}th.c-b1{color:var(--b1)}th.c-a2{color:var(--a2)}th.c-a1{color:var(--a1)}th.c-ans{color:var(--ans)}
+td.num{color:var(--muted);font-weight:700;width:2.2em}
+td.c-en{color:var(--en);font-style:italic}
+td.c-b1{border-left:3px solid var(--b1)}
+td.c-a2{border-left:3px solid var(--a2)}
+td.c-a1{border-left:3px solid var(--a1)}
+td.c-ans{background:var(--ansbg);border-left:3px solid var(--ans)}
+.ph{color:var(--ans);font-weight:700}
+body.hide-en .c-en,body.hide-b1 .c-b1,body.hide-a2 .c-a2,body.hide-a1 .c-a1,body.hide-ans .c-ans{display:none}
+body.practice td.c-ans .t{filter:blur(6px);cursor:pointer;user-select:none;transition:filter .2s}
+body.practice td.c-ans.shown .t{filter:none}
+body.practice td.c-ans:not(.shown)::after{content:"Tippen zum Aufdecken";display:block;font-size:12px;color:var(--ans);margin-top:4px}
+
+td.c-ans .tr{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--ans);color:var(--muted);font-style:italic}
+td.c-ans.en-on .tr{display:block}
+.trb{display:block;margin-top:6px;font:inherit;font-size:12px;font-weight:700;color:var(--ans);background:none;border:1px solid var(--ans);border-radius:999px;padding:2px 10px;cursor:pointer}
+body.practice td.c-ans:not(.shown) .trb{display:none}
+.w{cursor:pointer;border-radius:3px;transition:background .15s}
+.w:hover{background:var(--surface)}
+.w.sel{background:var(--b1);color:#fff}
+#pop{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);max-width:440px;margin:0 auto;background:var(--paper);color:var(--ink);border:2px solid var(--b1);border-radius:12px;padding:12px 14px;z-index:20;box-shadow:0 8px 28px rgba(20,30,60,.25)}
+#pop[hidden]{display:none}
+#pop .ph1{display:flex;justify-content:space-between;align-items:center;gap:8px}
+#pw{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:22px;color:var(--b1)}
+#px{font:inherit;font-size:20px;line-height:1;background:none;border:none;color:var(--muted);cursor:pointer;padding:4px 8px}
+.pen{font-size:18px;font-weight:700;margin-top:2px}
+.pm{color:var(--muted);font-size:14px;margin-top:2px}
+.pn{font-size:14px;margin-top:6px;font-style:italic}
+.muted{color:var(--muted)}
+.say{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;width:26px;height:26px;margin-left:6px;border-radius:50%;border:1.5px solid currentColor;background:transparent;color:var(--muted);cursor:pointer;padding:0;flex:none}
+.say::before{content:"";width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:2px}
+.say.on{background:var(--b1);border-color:var(--b1);color:#fff}
+.say.on::before{border:none;width:8px;height:8px;background:currentColor;margin:0}
+td.c-b1 .say{color:var(--b1)}td.c-a2 .say{color:var(--a2)}td.c-a1 .say{color:var(--a1)}td.c-ans .say{color:var(--ans)}td.c-ans .say.on{color:#fff}
+body.no-tts .say,body.no-tts #sp{display:none}
+body.practice td.c-ans:not(.shown) > .say{display:none}
+.w.pk{background:var(--a2);color:#fff}
+.pact{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.pbtn{font:inherit;font-size:14px;font-weight:700;padding:6px 14px;border-radius:999px;border:2px solid var(--b1);background:var(--b1);color:#fff;cursor:pointer}
+.pbtn.ghost{background:transparent;color:var(--b1)}
+#pw{word-break:break-word}
+.empty{display:none;color:var(--muted);padding:40px 0}
+.note{font-size:14px;color:var(--muted);max-width:62ch;margin-top:10px}
+@media (max-width:760px){
+ table,tbody,tr,td{display:block;width:100%}
+ thead{display:none}
+ tr{border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden}
+ td{border-bottom:none;padding:8px 12px}
+ td.num{padding-bottom:0;width:auto}
+ td[data-l]::before{content:attr(data-l);display:block;font-size:11px;font-weight:700;font-style:normal;margin-bottom:2px}
+ td.c-en::before{color:var(--en)}td.c-b1::before{color:var(--b1)}td.c-a2::before{color:var(--a2)}td.c-a1::before{color:var(--a1)}td.c-ans::before{color:var(--ans)}
+ .bar{padding-left:14px;padding-right:14px}main,header.hero{padding-left:14px;padding-right:14px}
+}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.skill-info{color:var(--muted);font-size:14px}
+.intro{background:var(--surface);border-radius:10px;padding:10px 14px;margin:8px 0 12px}
+.intro .en-line{color:var(--muted);font-style:italic;font-size:14px;margin-top:4px}
+.ttext{border:2px solid var(--line);border-radius:10px;padding:12px 14px;margin:0 0 12px}
+.ttext .lab{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:4px}
+h3{font-family:"Bricolage Grotesque",sans-serif;font-size:20px;font-weight:800;margin:26px 0 2px}
+h3 .en{font-family:"Atkinson Hyperlegible",sans-serif;font-weight:400;font-size:15px;color:var(--muted);margin-left:8px}
+.ln{display:block}
+td.c-tx{border-left:3px solid var(--a2)}
+th.c-tx,td.c-tx::before{color:var(--a2)}
+td.c-de{border-left:3px solid var(--b1)}
+th.c-de,td.c-de::before{color:var(--b1)}
+body.practice .rv:not(.shown) > .s{filter:blur(6px);user-select:none;cursor:pointer}
+body.practice .rv:not(.shown)::after{content:"Tippen zum Aufdecken";display:block;font-size:12px;color:var(--ans);margin-top:4px}
+body.practice .rv.hear:not(.shown)::after{content:"▶ anhören, dann tippen zum Aufdecken"}
+body.practice .rv:not(.shown) > .trb,body.practice .rv:not(.shown) > .tr{display:none}
+body.practice .rv:not(.hear):not(.shown) > .say{display:none}
+.en-on > .tr{display:block}
+.tr{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--ans);color:var(--muted);font-style:italic}
+.tip{font-size:14px;color:var(--muted);max-width:70ch}
+.fb{margin-top:6px;font-size:15px}.fb a{color:var(--b1);font-weight:700}
+</style>
+</head>
+<body>
+<header class="hero">
+ <div class="ladder"><span class="l3">B1</span><span class="l2">telc</span><span class="l1">Zertifikat Deutsch</span></div>
+ <h1>telc Deutsch B1: alle Prüfungsteile</h1>
+ <p class="sub">Übungsaufgaben im Stil der Prüfung für Leseverstehen, Sprachbausteine, Hörverstehen, Schriftlichen und Mündlichen Ausdruck – mit englischer Übersetzung, Lösungen, Wortübersetzung per Tippen und Vorlesen.</p>
+ <p class="note">So übst du Hören: Schalte den <b>Übungsmodus</b> ein. Dann sind Hörtexte und Lösungen verdeckt – tippe ▶, hör zu, wähle deine Antwort und decke dann Text und Lösung auf. Wörter in <span class="ph">[Klammern]</span> ersetzt du mit deinen eigenen Angaben. Bestanden, wenn Sie in der schriftlichen und in der mündlichen Prüfung jeweils mindestens 60 % erreichen.</p>
+</header>
+<div class="bar"><div class="bar-inner">
+ <input type="search" id="q" placeholder="Suchen (Deutsch oder Englisch)…" aria-label="Aufgaben durchsuchen">
+ <div class="toggles">
+  <button class="tg en" data-k="en" aria-pressed="true">EN</button>
+  <button class="tg ans" data-k="ans" aria-pressed="true">Lösung</button>
+  <button class="tg practice" id="pr" aria-pressed="false">Übungsmodus</button>
+  <button class="tg multi" id="mw" aria-pressed="false">Mehrere Wörter</button>
+  <button class="tg speed" id="sp" aria-pressed="false">Tempo: normal</button>
+ </div>
+</div><nav class="topics" id="nav" aria-label="Prüfungsteile"></nav></div>
+<main id="main"></main>
+<p class="empty" id="empty">Keine Aufgabe passt zu deiner Suche.</p>
+<div id="pop" hidden role="dialog" aria-live="polite"><div class="ph1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
+<script>
+const S=[
+{de:"Leseverstehen",en:"Reading",info:"3 Teile · zusammen mit Sprachbausteinen 90 Minuten",infoEn:"3 parts · 90 minutes together with Language elements",parts:[
+{t:"Teil 1 – Globalverstehen",te:"Part 1 – Gist",
+ intro:"Lesen Sie die Überschriften a bis j und die fünf Texte. Welche Überschrift passt zu welchem Text? Fünf Überschriften bleiben übrig.",
+ introEn:"Read headlines a to j and the five texts. Which headline fits which text? Five headlines are left over.",
+ text:"a) Mehr Fahrradwege für die Innenstadt\nb) Immer mehr Menschen arbeiten von zu Hause\nc) Bibliothek öffnet auch am Sonntag\nd) Neue Regeln für E-Scooter\ne) Hitze: Tipps für ältere Menschen\nf) Stadt sucht Ehrenamtliche für Deutschkurse\ng) Preise für Busfahrkarten steigen\nh) Schüler gründen eigene Firma\ni) Weniger Müll durch Mehrwegbecher\nj) Konzert im Park fällt aus",
+ textEn:"a) More cycle lanes for the city centre / b) More and more people work from home / c) Library also opens on Sunday / d) New rules for e-scooters / e) Heat: tips for older people / f) City seeks volunteers for German courses / g) Bus ticket prices rise / h) Pupils start their own company / i) Less waste thanks to reusable cups / j) Concert in the park cancelled",rows:[
+["Text 1 – Which headline fits?","Text 1: Welche Überschrift passt?",
+ "Ab dem nächsten Monat können Leserinnen und Leser die Stadtbibliothek auch sonntags von 11 bis 17 Uhr besuchen. Viele Berufstätige hatten sich längere Öffnungszeiten gewünscht, weil sie unter der Woche keine Zeit haben.",
+ "From next month readers can also visit the city library on Sundays from 11 to 5. Many working people had wanted longer opening hours because they have no time during the week.",
+ "c) Bibliothek öffnet auch am Sonntag","c) Library also opens on Sunday"],
+["Text 2 – Which headline fits?","Text 2: Welche Überschrift passt?",
+ "Die Stadt möchte, dass weniger Menschen ihren Kaffee im Papierbecher kaufen. Deshalb bieten jetzt 40 Cafés einen Becher an, den man zurückgeben kann. Wer ihn benutzt, bekommt 20 Cent Rabatt.",
+ "The city wants fewer people to buy their coffee in paper cups. So 40 cafés now offer a cup you can return. Anyone who uses it gets a 20-cent discount.",
+ "i) Weniger Müll durch Mehrwegbecher","i) Less waste thanks to reusable cups"],
+["Text 3 – Which headline fits?","Text 3: Welche Überschrift passt?",
+ "Eine Umfrage unter Angestellten zeigt: Viele arbeiten inzwischen mindestens zwei Tage pro Woche im Homeoffice. Sie sparen Zeit und Geld für den Weg zur Arbeit, manche fühlen sich aber auch einsam.",
+ "A survey of employees shows that many now work from home at least two days a week. They save time and money on the commute, but some also feel lonely.",
+ "b) Immer mehr Menschen arbeiten von zu Hause","b) More and more people work from home"],
+["Text 4 – Which headline fits?","Text 4: Welche Überschrift passt?",
+ "Für die Integrationskurse im Stadtteilzentrum werden noch Helferinnen und Helfer gesucht. Sie sollen Zugewanderten beim Deutschlernen helfen, zum Beispiel bei den Hausaufgaben. Bezahlt wird die Arbeit nicht, aber es gibt ein kleines Dankeschön-Fest.",
+ "Helpers are still needed for the integration courses at the community centre. They should help immigrants learn German, for example with homework. The work is unpaid, but there is a small thank-you party.",
+ "f) Stadt sucht Ehrenamtliche für Deutschkurse","f) City seeks volunteers for German courses"],
+["Text 5 – Which headline fits?","Text 5: Welche Überschrift passt?",
+ "Wegen des starken Gewitters am Samstagabend konnte die Band „Nordwind“ nicht wie geplant im Stadtpark spielen. Die Tickets bleiben gültig. Ein neuer Termin wird bald bekannt gegeben.",
+ "Because of the heavy thunderstorm on Saturday evening, the band “Nordwind” couldn't play in the city park as planned. Tickets remain valid. A new date will be announced soon.",
+ "j) Konzert im Park fällt aus","j) Concert in the park cancelled"]]},
+{t:"Teil 2 – Detailverstehen",te:"Part 2 – Detail",
+ intro:"Lesen Sie den Text und die Aufgaben. Welche Lösung ist richtig: a, b oder c?",
+ introEn:"Read the text and the tasks. Which answer is correct: a, b or c?",
+ text:"Reparieren statt wegwerfen\nJeden ersten Samstag im Monat ist im Gemeindehaus in Bockenheim viel los. Dann öffnet das Repair-Café. Hier treffen sich Menschen, die kaputte Dinge nicht einfach wegwerfen wollen: Toaster, Lampen, Fahrräder oder Kleidung. Ehrenamtliche Helfer, viele von ihnen Rentner, die früher als Elektriker oder Schneiderin gearbeitet haben, zeigen den Besuchern, wie man die Sachen selbst reparieren kann.\n„Wir reparieren nicht für die Leute, sondern mit ihnen“, sagt die Organisatorin Petra Lang. Das Angebot ist kostenlos, aber über eine kleine Spende freut sich das Team. Das Geld braucht man für Werkzeug und Ersatzteile.\nNicht alles kann gerettet werden. Etwa zwei Drittel der Gegenstände funktionieren nach dem Besuch wieder. Bei modernen Handys ist es oft schwierig, weil die Hersteller keine Ersatzteile verkaufen.\nFür viele Besucher ist aber nicht nur die Reparatur wichtig. „Man trinkt Kaffee, isst Kuchen und lernt Nachbarn kennen“, erzählt ein Besucher. Seit Kurzem kommen auch Schulklassen, die lernen möchten, wie man Ressourcen spart.",
+ textEn:"Repair instead of throwing away / Every first Saturday of the month, the parish hall in Bockenheim is busy. That's when the Repair Café opens. People meet here who don't want to simply throw away broken things: toasters, lamps, bikes or clothes. Volunteer helpers, many of them pensioners who used to work as electricians or tailors, show visitors how to repair things themselves. / “We don't repair for people, but with them,” says organiser Petra Lang. It's free, but the team is happy about a small donation. The money is needed for tools and spare parts. / Not everything can be saved. About two thirds of items work again after the visit. Modern phones are often difficult because manufacturers don't sell spare parts. / For many visitors, though, the repair isn't the only important thing. “You drink coffee, eat cake and get to know neighbours,” says one visitor. Recently school classes have also been coming to learn how to save resources.",rows:[
+["In the Repair Café…","Im Repair-Café …\na) reparieren Profis die Sachen gegen Geld.\nb) lernen Besucher, ihre Sachen selbst zu reparieren.\nc) kann man gebrauchte Geräte kaufen.","","","b) – „nicht für die Leute, sondern mit ihnen“","b) – “not for people, but with them”"],
+["The helpers…","Die Helfer …\na) arbeiten ehrenamtlich.\nb) bekommen ein Gehalt.\nc) sind alle Studenten.","","","a) – „Ehrenamtliche Helfer“","a) – “volunteer helpers”"],
+["The donations…","Die Spenden …\na) sind Pflicht.\nb) gehen an eine Schule.\nc) bezahlen Werkzeug und Ersatzteile.","","","c)","c) – they pay for tools and spare parts"],
+["Mobile phones…","Handys …\na) werden immer repariert.\nb) sind oft schwer zu reparieren.\nc) werden nicht angenommen.","","","b) – die Hersteller verkaufen keine Ersatzteile.","b) – manufacturers don't sell spare parts."],
+["For many visitors the café is also…","Für viele Besucher ist das Café auch …\na) ein Ort, um Nachbarn kennenzulernen.\nb) ein Ort zum Arbeiten.\nc) zu teuer.","","","a)","a) a place to get to know neighbours"]]},
+{t:"Teil 3 – Selektives Verstehen",te:"Part 3 – Scanning",
+ intro:"Lesen Sie die Situationen und die Anzeigen a bis h. Welche Anzeige passt? Jede Anzeige nur einmal. Wenn keine Anzeige passt, markieren Sie x.",
+ introEn:"Read the situations and adverts a to h. Which advert fits? Each advert only once. If none fits, mark x.",
+ text:"a) Yoga für Anfänger: dienstags 19 Uhr, erste Probestunde kostenlos, Studio Balance.\nb) Nachhilfe Mathematik für Schüler der Klassen 5 bis 10, erfahrene Lehrerin, 25 Euro pro Stunde.\nc) Umzugshilfe: zwei starke Studenten mit Transporter, auch am Wochenende, günstige Preise.\nd) Kochkurs „Indisch vegetarisch“: Samstag 14 bis 18 Uhr, alle Zutaten inklusive, 49 Euro.\ne) Tandempartner gesucht: Ich, Ana, 30, spreche Spanisch und möchte Deutsch üben. Treffen im Café, einmal pro Woche.\nf) Wohnung zu vermieten: 3 Zimmer, 75 m², Frankfurt-Nordend, keine Haustiere.\ng) Hundesitter gesucht: Wer geht mittags mit unserem Hund spazieren?\nh) Laufgruppe „Mainufer“: jeden Sonntag 9 Uhr, alle Niveaus, kostenlos.",
+ textEn:"a) Yoga for beginners: Tuesdays 7 pm, first trial class free, Studio Balance. / b) Maths tutoring for pupils in years 5 to 10, experienced teacher, 25 euros an hour. / c) Moving help: two strong students with a van, weekends too, low prices. / d) Cooking course “Indian vegetarian”: Saturday 2 to 6 pm, all ingredients included, 49 euros. / e) Tandem partner wanted: I'm Ana, 30, I speak Spanish and want to practise German. Meet in a café once a week. / f) Flat to rent: 3 rooms, 75 m², Frankfurt-Nordend, no pets. / g) Dog sitter wanted: who will walk our dog at lunchtime? / h) “Mainufer” running group: every Sunday 9 am, all levels, free.",rows:[
+["You want to learn Spanish and can help someone learn German in return.","Sie möchten Spanisch lernen und können dafür beim Deutschlernen helfen.","","","e) Tandempartnerin Ana","e) tandem partner Ana"],
+["Your son has problems in maths.","Ihr Sohn hat Probleme in Mathe.","","","b)","b)"],
+["You're moving next Saturday and have no car.","Sie ziehen nächsten Samstag um und haben kein Auto.","","","c) – mit Transporter, auch am Wochenende.","c) – with a van, weekends too."],
+["You want to do sport outdoors in a group at the weekend.","Sie möchten am Wochenende in einer Gruppe draußen Sport machen.","","","h) Laufgruppe am Sonntag","h) Sunday running group"],
+["You're looking for a flat and have a cat.","Sie suchen eine Wohnung und haben eine Katze.","","","x – in Anzeige f) sind keine Haustiere erlaubt.","x – advert f) allows no pets."],
+["You want to learn to cook dishes without meat.","Sie möchten lernen, Gerichte ohne Fleisch zu kochen.","","","d) vegetarischer Kochkurs","d) vegetarian cooking course"]]}]},
+{de:"Sprachbausteine",en:"Language elements",info:"2 Teile · Grammatik und Wortschatz · in den 90 Minuten enthalten",infoEn:"2 parts · grammar and vocabulary · within the 90 minutes",parts:[
+{t:"Teil 1 – Grammatik",te:"Part 1 – Grammar",
+ intro:"Lesen Sie den Brief. Welches Wort passt in die Lücke: a, b oder c?",
+ introEn:"Read the letter. Which word fits the gap: a, b or c?",
+ text:"Liebe Julia,\nvielen Dank für deine E-Mail! Ich habe mich sehr (1) gefreut. Endlich habe ich Zeit, dir zu antworten. Seit zwei Monaten wohne ich jetzt in Frankfurt, (2) ich hier eine neue Stelle gefunden habe. Die Arbeit gefällt mir gut, (3) manchmal ist sie ziemlich stressig. Meine Kollegen sind nett und helfen mir immer, (4) ich eine Frage habe. Am Wochenende gehe ich oft am Main spazieren oder treffe mich (5) Freunden. Letzten Samstag waren wir in einem Museum, (6) sehr interessant war. Im Dezember habe ich Urlaub. Hast du Lust, mich zu (7)? Du kannst gern bei mir (8). Meine Wohnung ist nicht groß, aber es gibt ein Sofa, (9) man gut schlafen kann. Schreib mir bald, (10) du Zeit hast!\nViele Grüße\nSuresh",
+ textEn:"Dear Julia, thank you for your email! I was very happy (about it). Finally I have time to reply. I've been living in Frankfurt for two months now, because I found a new job here. I like the work, but sometimes it's quite stressful. My colleagues are nice and always help me when I have a question. At weekends I often walk along the Main or meet friends. Last Saturday we went to a museum which was very interesting. I have holiday in December. Would you like to visit me? You're welcome to stay at my place. My flat isn't big, but there's a sofa you can sleep well on. Write soon and tell me when you have time! Best wishes, Suresh",rows:[
+["Gap 1","(1) a) darüber  b) darauf  c) damit","","","a) darüber – sich freuen über etwas (Vergangenes)","a) darüber – “sich freuen über” = be pleased about (something that happened)"],
+["Gap 2","(2) a) weil  b) denn  c) deshalb","","","a) weil – Verb am Ende: „… gefunden habe“","a) weil – verb goes to the end: “… gefunden habe”"],
+["Gap 3","(3) a) oder  b) aber  c) sondern","","","b) aber – Gegensatz","b) aber – contrast"],
+["Gap 4","(4) a) wann  b) ob  c) wenn","","","c) wenn – immer wenn = whenever","c) wenn – “immer wenn” = whenever"],
+["Gap 5","(5) a) bei  b) mit  c) von","","","b) mit – sich treffen mit + Dativ","b) mit – “sich treffen mit” + dative"],
+["Gap 6","(6) a) das  b) der  c) die","","","a) das – das Museum, Relativpronomen Nominativ","a) das – das Museum, nominative relative pronoun"],
+["Gap 7","(7) a) besuchen  b) besucht  c) besuche","","","a) besuchen – zu + Infinitiv","a) besuchen – zu + infinitive"],
+["Gap 8","(8) a) übernachten  b) übernachtest  c) zu übernachten","","","a) übernachten – Modalverb + Infinitiv ohne zu","a) übernachten – modal verb + infinitive without zu"],
+["Gap 9","(9) a) auf dem  b) in dem  c) mit dem","","","a) auf dem – man schläft auf dem Sofa","a) auf dem – you sleep on the sofa"],
+["Gap 10","(10) a) ob  b) wann  c) dass","","","b) wann – indirekte Frage nach der Zeit","b) wann – indirect question about time"]]},
+{t:"Teil 2 – Wortschatz",te:"Part 2 – Vocabulary",
+ intro:"Lesen Sie den Text. Welches Wort aus der Liste a bis o passt in die Lücke? Jedes Wort nur einmal. Fünf Wörter bleiben übrig.",
+ introEn:"Read the text. Which word from list a to o fits each gap? Each word only once. Five words are left over.",
+ text:"Wörter: a) aber  b) bitte  c) für  d) Grüßen  e) in  f) mehr  g) von  h) Zeit  i) geben  j) jetzt  k) über  l) seit  m) deshalb  n) Wochen  o) wegen\nSehr geehrte Frau Hoffmann,\nich wohne seit drei Jahren (11) Ihrer Wohnung in der Berger Straße und bin sehr zufrieden. Leider gibt es (12) ein Problem: Seit einer Woche funktioniert die Heizung im Wohnzimmer nicht (13). Ich habe versucht, sie selbst zu reparieren, (14) das hat nicht geklappt. Da es nachts schon sehr kalt ist, (15) ich Sie, so schnell wie möglich einen Handwerker zu schicken. Ich bin (16) Montag bis Freitag ab 17 Uhr zu Hause. Am Wochenende habe ich den ganzen Tag (17). Bitte (18) Sie mir kurz Bescheid, wann der Handwerker kommen kann. Vielen Dank (19) Ihre Hilfe.\nMit freundlichen (20)\nSuresh [Nachname]",
+ textEn:"Dear Ms Hoffmann, I've lived in your flat on Berger Straße for three years and am very satisfied. Unfortunately there's now a problem: for a week the heating in the living room hasn't worked any more. I tried to repair it myself, but that didn't work. As it's already very cold at night, I ask you to send a technician as soon as possible. I'm at home from Monday to Friday from 5 pm. At the weekend I have time all day. Please let me know briefly when the technician can come. Many thanks for your help. Kind regards, Suresh [surname]",rows:[
+["Gap 11","(11)","","","e) in – in Ihrer Wohnung","e) in – in your flat"],
+["Gap 12","(12)","","","j) jetzt","j) jetzt – now"],
+["Gap 13","(13)","","","f) mehr – nicht mehr = no longer","f) mehr – “nicht mehr” = no longer"],
+["Gap 14","(14)","","","a) aber","a) aber – but"],
+["Gap 15","(15)","","","b) bitte – ich bitte Sie, … zu …","b) bitte – “ich bitte Sie, … zu …” = I ask you to…"],
+["Gap 16","(16)","","","g) von – von Montag bis Freitag","g) von – from Monday to Friday"],
+["Gap 17","(17)","","","h) Zeit","h) Zeit – time"],
+["Gap 18","(18)","","","i) geben – Bescheid geben = let someone know","i) geben – “Bescheid geben” = let someone know"],
+["Gap 19","(19)","","","c) für – danken für","c) für – thanks for"],
+["Gap 20","(20)","","","d) Grüßen – Mit freundlichen Grüßen","d) Grüßen – “Mit freundlichen Grüßen” = kind regards"]]}]},
+{de:"Hörverstehen",en:"Listening",info:"3 Teile · ca. 30 Minuten",infoEn:"3 parts · about 30 minutes",parts:[
+{t:"Teil 1 – Globalverstehen",te:"Part 1 – Gist",hear:true,
+ intro:"Sie hören fünf kurze Texte. Sie hören die Texte nur einmal. Sind die Aussagen richtig oder falsch?",
+ introEn:"You hear five short texts, only once. Are the statements true or false?",rows:[
+["Martin is satisfied with his job despite everything.","Martin ist mit seinem Beruf trotz allem zufrieden.\nRichtig oder Falsch?",
+ "Ich heiße Martin und arbeite seit zehn Jahren als Krankenpfleger. Der Beruf ist anstrengend, besonders die Nachtschichten. Aber wenn ein Patient wieder gesund nach Hause geht, weiß ich, warum ich das mache.",
+ "My name is Martin and I've worked as a nurse for ten years. The job is tiring, especially the night shifts. But when a patient goes home healthy again, I know why I do it.",
+ "Richtig","True"],
+["The speaker prefers to drive in winter.","Die Sprecherin fährt im Winter lieber mit dem Auto.\nRichtig oder Falsch?",
+ "Früher bin ich jeden Tag mit dem Auto zur Arbeit gefahren. Seit einem Jahr nehme ich das Fahrrad. Am Anfang war das hart, besonders im Winter. Heute möchte ich nicht mehr zurück. Ich fühle mich viel fitter.",
+ "I used to drive to work every day. For a year I've been taking the bike. At first it was hard, especially in winter. Now I don't want to go back. I feel much fitter.",
+ "Falsch – sie fährt auch im Winter Rad.","False – she cycles in winter too."],
+["The son is getting a phone now.","Der Sohn bekommt jetzt ein Handy.\nRichtig oder Falsch?",
+ "Mein Sohn will unbedingt ein Handy. Er ist erst neun. Alle in seiner Klasse haben eins, sagt er. Ich finde das zu früh. Wir haben uns jetzt geeinigt: Mit elf bekommt er ein einfaches Handy.",
+ "My son really wants a phone. He's only nine. Everyone in his class has one, he says. I think that's too early. We've now agreed: at eleven he'll get a simple phone.",
+ "Falsch – erst mit elf.","False – only at eleven."],
+["The person now lives alone.","Die Person wohnt jetzt allein.\nRichtig oder Falsch?",
+ "Ich habe lange in einer WG gewohnt. Das war lustig, aber nie ruhig. Jetzt habe ich meine eigene Wohnung. Sie ist klein und teurer, aber ich genieße die Ruhe.",
+ "I lived in a shared flat for a long time. It was fun but never quiet. Now I have my own flat. It's small and more expensive, but I enjoy the peace.",
+ "Richtig","True"],
+["The person learns most from grammar books.","Die Person lernt am meisten mit Grammatikbüchern.\nRichtig oder Falsch?",
+ "Ich lerne seit zwei Jahren Deutsch. Am meisten hilft mir ein Tandempartner. Wir treffen uns jede Woche und sprechen eine Stunde Deutsch und eine Stunde Englisch. Grammatikbücher finde ich dagegen langweilig.",
+ "I've been learning German for two years. A tandem partner helps me most. We meet every week and speak German for an hour and English for an hour. Grammar books, on the other hand, I find boring.",
+ "Falsch – am meisten hilft der Tandempartner.","False – the tandem partner helps most."]]},
+{t:"Teil 2 – Detailverstehen",te:"Part 2 – Detail",hear:true,
+ intro:"Sie hören ein Interview im Radio. Sie hören es zweimal. Sind die Aussagen richtig oder falsch?",
+ introEn:"You hear a radio interview, twice. Are the statements true or false?",
+ text:"Moderator: Herzlich willkommen zu „Stadtleben“. Heute ist Frau Aydin bei uns. Sie hat vor drei Jahren einen Gemeinschaftsgarten in Frankfurt gegründet. Frau Aydin, wie kam es dazu?\nFrau Aydin: Ich wohne in einem Hochhaus und hatte keinen Balkon. Ich wollte aber unbedingt Gemüse anbauen. Neben der Schule gab es eine freie Fläche. Also habe ich die Stadt gefragt, ob wir dort einen Garten machen dürfen.\nModerator: Und die Stadt hat sofort ja gesagt?\nFrau Aydin: Nein, das hat fast ein Jahr gedauert. Wir mussten viele Formulare ausfüllen.\nModerator: Wie viele Leute machen heute mit?\nFrau Aydin: Etwa sechzig Personen aus zwölf Ländern. Die Jüngste ist sechs, der Älteste ist über achtzig.\nModerator: Muss man etwas bezahlen?\nFrau Aydin: Ja, zehn Euro im Jahr. Davon kaufen wir Samen und Werkzeug. Wer kein Geld hat, kann trotzdem mitmachen. Dann hilft man einfach etwas mehr.\nModerator: Was passiert mit dem Gemüse?\nFrau Aydin: Jeder nimmt, was er braucht. Was übrig bleibt, geben wir an die Tafel.\nModerator: Und im Winter?\nFrau Aydin: Da ist im Garten wenig zu tun. Aber wir treffen uns einmal im Monat im Café an der Ecke und planen das nächste Jahr.\nModerator: Haben Sie einen Tipp für Leute, die auch einen Garten gründen wollen?\nFrau Aydin: Geduld! Und sprechen Sie zuerst mit den Nachbarn. Ohne sie geht es nicht.",
+ textEn:"Host: Welcome to “City Life”. Today Ms Aydin is with us. Three years ago she founded a community garden in Frankfurt. Ms Aydin, how did that come about? / Ms Aydin: I live in a high-rise and had no balcony. But I really wanted to grow vegetables. Next to the school there was an empty plot. So I asked the city whether we could make a garden there. / Host: And the city said yes straight away? / Ms Aydin: No, it took almost a year. We had to fill in lots of forms. / Host: How many people take part today? / Ms Aydin: About sixty people from twelve countries. The youngest is six, the oldest is over eighty. / Host: Do you have to pay anything? / Ms Aydin: Yes, ten euros a year. We buy seeds and tools with it. Anyone without money can still take part – they just help a bit more. / Host: What happens to the vegetables? / Ms Aydin: Everyone takes what they need. What's left we give to the food bank. / Host: And in winter? / Ms Aydin: There's little to do in the garden then. But we meet once a month at the café on the corner and plan the next year. / Host: Any tip for people who also want to start a garden? / Ms Aydin: Patience! And talk to the neighbours first. It doesn't work without them.",rows:[
+["Ms Aydin founded the garden three years ago.","Frau Aydin hat den Garten vor drei Jahren gegründet.","","","Richtig","True"],
+["She had a big balcony at home.","Sie hatte zu Hause einen großen Balkon.","","","Falsch – sie hatte keinen Balkon.","False – she had no balcony."],
+["The city gave permission immediately.","Die Stadt hat die Erlaubnis sofort gegeben.","","","Falsch – es hat fast ein Jahr gedauert.","False – it took almost a year."],
+["People from twelve countries take part.","Im Garten machen Menschen aus zwölf Ländern mit.","","","Richtig","True"],
+["Children aren't allowed to take part.","Kinder dürfen nicht mitmachen.","","","Falsch – die Jüngste ist sechs.","False – the youngest is six."],
+["The fee is ten euros a month.","Der Beitrag kostet zehn Euro im Monat.","","","Falsch – zehn Euro im Jahr.","False – ten euros a year."],
+["People without money can still join.","Wer kein Geld hat, kann trotzdem mitmachen.","","","Richtig","True"],
+["Leftover vegetables are sold.","Übriges Gemüse wird verkauft.","","","Falsch – es geht an die Tafel.","False – it goes to the food bank."],
+["In winter the group meets in a café.","Im Winter trifft sich die Gruppe in einem Café.","","","Richtig – einmal im Monat.","True – once a month."],
+["Ms Aydin advises talking to the neighbours first.","Frau Aydin rät, zuerst mit den Nachbarn zu sprechen.","","","Richtig","True"]]},
+{t:"Teil 3 – Selektives Verstehen",te:"Part 3 – Specific information",hear:true,
+ intro:"Sie hören fünf kurze Texte. Sie hören jeden Text zweimal. Sind die Aussagen richtig oder falsch?",
+ introEn:"You hear five short texts, each twice. Are the statements true or false?",rows:[
+["The train to Stuttgart is cancelled.","Der Zug nach Stuttgart fällt aus.\nRichtig oder Falsch?",
+ "Information zum ICE nach Stuttgart, planmäßige Abfahrt 16 Uhr 05: Der Zug hat heute circa 20 Minuten Verspätung. Grund ist eine Reparatur am Zug.",
+ "Information on the ICE to Stuttgart, scheduled departure 16:05: the train is about 20 minutes late today due to a repair on the train.",
+ "Falsch – er hat nur Verspätung.","False – it's only delayed."],
+["It will rain tomorrow afternoon.","Morgen Nachmittag regnet es.\nRichtig oder Falsch?",
+ "Und nun das Wetter: Heute bleibt es trocken bei bis zu 18 Grad. Morgen kommen von Westen Wolken, am Nachmittag regnet es. Am Wochenende wird es wieder sonnig.",
+ "And now the weather: today stays dry at up to 18 degrees. Tomorrow clouds come from the west; it rains in the afternoon. At the weekend it will be sunny again.",
+ "Richtig","True"],
+["Running shoes are reduced all day.","Die Laufschuhe sind den ganzen Tag reduziert.\nRichtig oder Falsch?",
+ "Liebe Kundinnen und Kunden, in unserer Sportabteilung im dritten Stock sind heute alle Laufschuhe 30 Prozent günstiger. Das Angebot gilt nur bis 16 Uhr.",
+ "Dear customers, in our sports department on the third floor all running shoes are 30 percent cheaper today. The offer is only valid until 4 pm.",
+ "Falsch – nur bis 16 Uhr.","False – only until 4 pm."],
+["You need an appointment for the citizens' office.","Für das Bürgeramt braucht man einen Termin.\nRichtig oder Falsch?",
+ "Sie haben das Bürgeramt erreicht. Termine vereinbaren Sie bitte online. Ohne Termin können wir Sie leider nicht bedienen. In Notfällen drücken Sie bitte die Eins.",
+ "You've reached the citizens' office. Please book appointments online. Unfortunately we can't serve you without an appointment. For emergencies please press one.",
+ "Richtig","True"],
+["Boarding starts in a quarter of an hour.","Das Boarding beginnt in einer Viertelstunde.\nRichtig oder Falsch?",
+ "Passagiere des Fluges nach Lissabon, bitte beachten Sie: Ihr Flug startet heute nicht von Gate A 22, sondern von Gate B 14. Das Boarding beginnt in 15 Minuten.",
+ "Passengers on the flight to Lisbon, please note: your flight departs today not from gate A22 but from gate B14. Boarding begins in 15 minutes.",
+ "Richtig – 15 Minuten = eine Viertelstunde.","True – 15 minutes = a quarter of an hour."]]}]},
+{de:"Schriftlicher Ausdruck",en:"Writing",info:"1 Brief oder E-Mail · 30 Minuten · Sie wählen eine von zwei Aufgaben",infoEn:"1 letter or email · 30 minutes · you choose one of two tasks",parts:[
+{t:"Musterbriefe",te:"Model letters",
+ intro:"Schreiben Sie einen Brief. Schreiben Sie zu allen vier Punkten. Denken Sie an Anrede, Einleitung, Schluss und Gruß.",
+ introEn:"Write a letter covering all four points. Remember greeting, introduction, conclusion and sign-off.",rows:[
+["Informal: a friend wants to move to Frankfurt and asks for tips. Points: flat hunting, which district, free time, offer help.","Ein Freund möchte nach Frankfurt ziehen und bittet um Tipps. Schreiben Sie ihm:\n– Wohnungssuche\n– Stadtteil und Verkehr\n– Freizeitmöglichkeiten\n– Angebot: Hilfe oder Übernachtung","","",
+ "Lieber Daniel,\nvielen Dank für deine E-Mail! Ich finde es toll, dass du nach Frankfurt ziehen möchtest. Gern gebe ich dir ein paar Tipps.\nDie Wohnungssuche ist hier leider nicht einfach, weil die Mieten sehr hoch sind. Ich empfehle dir, zuerst in einer WG zu wohnen und auf mehreren Portalen zu suchen.\nWenn du in der Innenstadt arbeitest, sind Stadtteile wie Bornheim oder Bockenheim gut. Dort gibt es viele Cafés, und mit der U-Bahn kommt man schnell überall hin.\nIn der Freizeit kann man am Main joggen, ins Museum gehen oder am Wochenende in den Taunus fahren.\nWenn du möchtest, kannst du bei mir wohnen, während du eine Wohnung suchst. Mein Sofa ist frei!\nSchreib mir, wann du kommst.\nViele Grüße\nSuresh",
+ "Dear Daniel, thanks for your email! I think it's great that you want to move to Frankfurt. I'm happy to give you a few tips. / Flat hunting here unfortunately isn't easy because rents are very high. I recommend living in a shared flat first and searching on several portals. / If you work in the city centre, districts like Bornheim or Bockenheim are good. There are lots of cafés and you can get everywhere quickly by U-Bahn. / In your free time you can jog along the Main, go to museums or drive to the Taunus at weekends. / If you like, you can stay with me while you look for a flat. My sofa is free! / Let me know when you're coming. Best wishes, Suresh"],
+["Semi-formal complaint to your gym: reason, problems, what you expect, what you'll do if nothing changes.","Beschwerde an Ihr Fitnessstudio:\n– Grund des Schreibens\n– Probleme beschreiben\n– Was erwarten Sie?\n– Was tun Sie, wenn sich nichts ändert?","","",
+ "Sehr geehrte Damen und Herren,\nich bin seit einem Jahr Mitglied in Ihrem Fitnessstudio. Leider bin ich in den letzten Wochen sehr unzufrieden, deshalb schreibe ich Ihnen.\nDer Yogakurs am Dienstagabend ist in diesem Monat schon dreimal ausgefallen, ohne dass wir informiert wurden. Außerdem ist das Wasser in den Duschen seit zwei Wochen kalt.\nIch erwarte, dass Sie die Probleme schnell lösen. Für die ausgefallenen Kurse möchte ich außerdem einen Teil meines Monatsbeitrags zurückbekommen.\nWenn sich bis Ende des Monats nichts ändert, werde ich meinen Vertrag kündigen.\nIch freue mich auf Ihre baldige Antwort.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+ "Dear Sir or Madam, I've been a member of your gym for a year. Unfortunately I've been very dissatisfied in recent weeks, which is why I'm writing. / The Tuesday evening yoga class has already been cancelled three times this month without us being informed. Also, the water in the showers has been cold for two weeks. / I expect you to solve these problems quickly. I would also like part of my monthly fee back for the cancelled classes. / If nothing changes by the end of the month, I will cancel my contract. / I look forward to your prompt reply. Kind regards, Suresh [surname]"],
+["Semi-formal enquiry to a language school about a B1 exam-prep course: reason, times, costs, exam registration.","Anfrage an eine Sprachschule:\n– Grund: Vorbereitungskurs B1\n– Kurszeiten\n– Kosten\n– Anmeldung zur Prüfung","","",
+ "Sehr geehrte Damen und Herren,\nauf Ihrer Internetseite habe ich gelesen, dass Sie Vorbereitungskurse für die telc-Prüfung B1 anbieten. Ich lebe in Frankfurt und möchte die Prüfung im Frühjahr machen, weil ich ein offizielles Zertifikat haben möchte.\nDa ich tagsüber arbeite, interessiere ich mich besonders für einen Abend- oder Wochenendkurs. Könnten Sie mir bitte sagen, wann die nächsten Kurse beginnen?\nAußerdem möchte ich wissen, wie viel der Kurs kostet und ob die Prüfungsgebühr schon im Preis enthalten ist.\nZum Schluss noch eine Frage: Kann ich mich bei Ihnen auch direkt für die Prüfung anmelden?\nVielen Dank im Voraus für Ihre Antwort.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+ "Dear Sir or Madam, I read on your website that you offer preparation courses for the telc B1 exam. I live in Frankfurt and want to take the exam in spring because I'd like an official certificate. / As I work during the day, I'm particularly interested in an evening or weekend course. Could you please tell me when the next courses start? / I'd also like to know how much the course costs and whether the exam fee is included. / One last question: can I also register for the exam directly with you? / Thank you in advance for your reply. Kind regards, Suresh [surname]"]]},
+{t:"Nützliche Redemittel",te:"Useful phrases",
+ intro:"Diese Sätze helfen Ihnen, schnell einen guten Brief zu schreiben.",
+ introEn:"These phrases help you write a good letter quickly.",rows:[
+["Informal opening","Einleitung (informell)","","","Liebe Julia, vielen Dank für deine E-Mail. Ich habe mich sehr gefreut, von dir zu hören.","Dear Julia, thanks for your email. I was really happy to hear from you."],
+["Formal opening","Einleitung (formell)","","","Sehr geehrte Damen und Herren, ich schreibe Ihnen, weil …","Dear Sir or Madam, I'm writing to you because …"],
+["Giving advice","Ratschläge geben","","","Ich empfehle dir, … zu … An deiner Stelle würde ich …","I recommend you … In your position I would …"],
+["Complaining","Sich beschweren","","","Leider bin ich mit … nicht zufrieden. Ich erwarte, dass …","Unfortunately I'm not satisfied with … I expect that …"],
+["Asking politely","Höflich fragen","","","Könnten Sie mir bitte sagen, …? Ich möchte gern wissen, ob …","Could you please tell me …? I'd like to know whether …"],
+["Linking ideas","Sätze verbinden","","","außerdem, deshalb, trotzdem, zum Schluss, einerseits … andererseits","also, therefore, nevertheless, finally, on the one hand … on the other hand"],
+["Closing","Schluss","","","Informell: Ich freue mich auf deine Antwort. Viele Grüße\nFormell: Ich freue mich auf Ihre baldige Antwort. Mit freundlichen Grüßen","Informal: Looking forward to your reply. Best wishes / Formal: I look forward to your prompt reply. Kind regards"]]}]},
+{de:"Mündlicher Ausdruck",en:"Speaking",info:"3 Teile · ca. 15 Minuten · meist zu zweit · 20 Minuten Vorbereitung",infoEn:"3 parts · about 15 minutes · usually in pairs · 20 minutes preparation",parts:[
+{t:"Teil 1 – Kontaktaufnahme",te:"Part 1 – Getting to know each other",
+ intro:"Sie und Ihr Partner lernen sich kennen. Stellen Sie Fragen und erzählen Sie von sich.",
+ introEn:"You and your partner get to know each other. Ask questions and talk about yourself.",rows:[
+["Where are you from, and how long have you lived in Germany?","Woher kommst du, und wie lange lebst du schon in Deutschland?","","","Ich komme aus [Land] und lebe seit [Zeit] in Deutschland, in Frankfurt.","I come from [country] and have lived in Germany, in Frankfurt, for [time]."],
+["What do you do for work?","Was machst du beruflich?","","","Ich bin Softwareentwickler und arbeite vor allem an Backend-Systemen. Die Arbeit ist spannend, aber manchmal auch stressig.","I'm a software developer and work mainly on backend systems. The work is exciting but sometimes stressful."],
+["Why are you learning German?","Warum lernst du Deutsch?","","","Ich lebe hier und möchte mich im Alltag und bei der Arbeit besser verständigen. Außerdem möchte ich mehr Kontakt zu Deutschen haben.","I live here and want to communicate better in everyday life and at work. I'd also like more contact with Germans."],
+["What do you do in your free time?","Was machst du in deiner Freizeit?","","","Ich mache viel Sport, zum Beispiel Krafttraining und Laufen. Außerdem reise ich gern.","I do a lot of sport, for example strength training and running. I also like travelling."],
+["How do you live?","Wie wohnst du?","","","Ich wohne in einer Wohnung in Frankfurt. Sie ist nicht sehr groß, aber hell und liegt zentral.","I live in a flat in Frankfurt. It's not very big, but it's bright and central."],
+["What are your plans for the future?","Was sind deine Pläne für die Zukunft?","","","Ich möchte die B1-Prüfung bestehen und danach weiter bis B2 lernen.","I want to pass the B1 exam and then keep learning up to B2."],
+["How does life in your home country compare with Germany?","Wie ist das Leben in deinem Heimatland im Vergleich zu Deutschland?","","","In [Land] ist das Leben lauter und spontaner. In Deutschland ist vieles besser organisiert, aber man muss oft lange auf Termine warten.","In [country] life is louder and more spontaneous. In Germany a lot is better organised, but you often wait a long time for appointments."]]},
+{t:"Teil 2 – Gespräch über ein Thema",te:"Part 2 – Discussing a topic",
+ intro:"Jeder bekommt einen kurzen Text zu einem Thema. Berichten Sie über Ihren Text, sagen Sie Ihre Meinung und sprechen Sie über Vor- und Nachteile.",
+ introEn:"Each of you gets a short text on a topic. Report on your text, give your opinion and discuss pros and cons.",rows:[
+["Topic: working from home – summarise your text","Thema Homeoffice – den Text zusammenfassen","","","In meinem Text geht es um das Homeoffice. Viele Menschen arbeiten seit einigen Jahren regelmäßig von zu Hause.","My text is about working from home. For some years many people have regularly worked from home."],
+["Topic: working from home – give your opinion","Thema Homeoffice – die eigene Meinung sagen","","","Ich finde Homeoffice grundsätzlich gut, weil ich mich zu Hause besser konzentrieren kann.","I basically think working from home is good because I can concentrate better at home."],
+["Topic: working from home – pros and cons","Thema Homeoffice – Vor- und Nachteile","","","Ein Vorteil ist, dass man keine Zeit für den Arbeitsweg braucht. Ein Nachteil ist aber, dass man weniger Kontakt zu den Kollegen hat.","One advantage is that you don't need time for the commute. A disadvantage, though, is that you have less contact with colleagues."],
+["Topic: working from home – ask your partner","Thema Homeoffice – den Partner fragen","","","Wie ist das bei dir? Arbeitest du lieber im Büro oder zu Hause?","What about you? Do you prefer working in the office or at home?"],
+["Reacting to your partner","Auf den Partner reagieren","","","Da hast du recht. / Das sehe ich ein bisschen anders, denn …","You're right there. / I see that a bit differently, because …"],
+["Topic: cars in city centres – summarise","Thema Autos in der Innenstadt – zusammenfassen","","","Mein Text berichtet, dass einige Städte Autos aus der Innenstadt verbannen möchten.","My text reports that some cities want to ban cars from the city centre."],
+["Topic: cars in city centres – opinion","Thema Autos in der Innenstadt – Meinung","","","Meiner Meinung nach ist das eine gute Idee, wenn die Busse und Bahnen gut funktionieren.","In my opinion it's a good idea if buses and trains work well."],
+["Topic: cars in city centres – pros and cons","Thema Autos in der Innenstadt – Vor- und Nachteile","","","Einerseits wird die Luft besser und es ist ruhiger. Andererseits haben Geschäfte vielleicht weniger Kunden.","On the one hand the air gets better and it's quieter. On the other hand shops may have fewer customers."],
+["Topic: cars in city centres – ask your partner","Thema Autos in der Innenstadt – den Partner fragen","","","Wie kommst du normalerweise in die Stadt? Würdest du auf dein Auto verzichten?","How do you usually get into town? Would you give up your car?"],
+["Topic: situation in your country","Die Situation im Heimatland","","","In [Land] ist das anders: Dort fahren fast alle mit dem Auto oder dem Motorroller.","In [country] it's different: almost everyone goes by car or scooter there."]]},
+{t:"Teil 3 – Gemeinsam etwas planen",te:"Part 3 – Planning something together",
+ intro:"Eine Kollegin geht in Rente. Planen Sie zusammen eine Abschiedsfeier: Wann? Wo? Essen und Getränke? Geschenk? Wer macht was?",
+ introEn:"A colleague is retiring. Plan a farewell party together: when, where, food and drink, gift, who does what?",rows:[
+["Make a suggestion","Einen Vorschlag machen","","","Wie wäre es, wenn wir die Feier am Freitagnachmittag machen?","How about having the party on Friday afternoon?"],
+["Agree","Zustimmen","","","Gute Idee! Freitag passt gut, da haben alle mehr Zeit.","Good idea! Friday works well – everyone has more time then."],
+["Disagree and offer an alternative","Ablehnen und eine Alternative nennen","","","Das finde ich nicht so gut, weil Frau Weber freitags früher geht. Was hältst du von Donnerstag?","I'm not so sure, because Ms Weber leaves early on Fridays. What do you think about Thursday?"],
+["Place","Ort","","","Wir könnten die Feier im Konferenzraum machen. Dann müssen wir nichts reservieren.","We could have the party in the conference room. Then we don't need to book anything."],
+["Food","Essen","","","Ich schlage vor, dass jeder etwas zu essen mitbringt. Ich kann einen Salat machen.","I suggest everyone brings something to eat. I can make a salad."],
+["Gift","Geschenk","","","Sollen wir Geld sammeln und ihr einen Gutschein schenken?","Shall we collect money and give her a voucher?"],
+["Share tasks","Aufgaben verteilen","","","Also, ich kümmere mich um das Geschenk, und du schreibst die Einladung an alle. Einverstanden?","So, I'll take care of the gift and you write the invitation to everyone. Agreed?"],
+["Summarise","Zusammenfassen","","","Gut, dann machen wir es so: Donnerstag um 16 Uhr im Konferenzraum, mit Buffet und einem Gutschein als Geschenk.","Good, so that's the plan: Thursday at 4 pm in the conference room, with a buffet and a voucher as a gift."]]}]}
+];
+
+function FB(t,single){const e=encodeURIComponent(t);const a=(u,l)=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`;
+ return `<div class="fb">Nachschlagen: ${a("https://translate.google.com/?sl=de&tl=en&op=translate&text="+e,"Google Übersetzer")} · ${a("https://www.deepl.com/translator#de/en/"+e,"DeepL")}${single?" · "+a("https://www.dict.cc/?s="+e,"dict.cc"):""}</div>`}
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const W=s=>s.replace(/[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g,m=>`<span class="w">${m}</span>`);
+const PH=s=>s.replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>');
+const SAY='<button class="say" type="button" aria-label="Vorlesen"></button>';
+const TRB='<button class="trb" type="button">Englisch zeigen</button>';
+function de(s){return s.split("\n").map(l=>`<span class="ln">${PH(W(esc(l)))}</span>`).join("")}
+function en(s){return PH(esc(s))}
+function block(deTxt,enTxt){return `<span class="s" lang="de">${de(deTxt)}</span>${SAY}${enTxt?TRB+`<span class="tr"><span class="s" lang="en">${en(enTxt)}</span>${SAY}</span>`:""}`}
+let h="",n="";
+S.forEach((sk,si)=>{const id="s"+si;
+ n+=`<a href="#${id}">${esc(sk.de)} · ${esc(sk.en)}</a>`;
+ h+=`<section class="skill" id="${id}"><div class="th"><span class="n">${si+1}</span><h2>${esc(sk.de)}</h2><span class="en">${esc(sk.en)}</span></div><div class="skill-info">${esc(sk.info)} <i>(${esc(sk.infoEn)})</i></div>`;
+ sk.parts.forEach(p=>{
+  const hasTx=p.rows.some(r=>r[2]);
+  h+=`<div class="part"><h3>${esc(p.t)}<span class="en">${esc(p.te)}</span></h3>`;
+  h+=`<div class="intro"><div class="blk"><span class="s" lang="de">${de(p.intro)}</span>${SAY}</div><div class="en-line c-en">${esc(p.introEn)}</div></div>`;
+  if(p.text)h+=`<div class="ttext"><div class="lab">${p.hear?"Hörtext":"Text"}</div><div class="blk${p.hear?" rv hear":""}">${block(p.text,p.textEn)}</div></div>`;
+  h+=`<div class="wrap"><table><thead><tr><th>#</th><th class="c-en">English</th><th class="c-de">Aufgabe</th>${hasTx?`<th class="c-tx">${p.hear?"Hörtext":"Text"}</th>`:""}<th class="c-ans">Lösung</th></tr></thead><tbody>`;
+  p.rows.forEach((r,j)=>{
+   h+=`<tr data-s="${esc((r.join(" ")).toLowerCase())}"><td class="num">${j+1}</td><td class="c-en" data-l="English"><span class="s" lang="en">${en(r[0])}</span>${SAY}</td><td class="c-de" data-l="Aufgabe">${block(r[1],"")}</td>`;
+   if(hasTx)h+=`<td class="c-tx${p.hear?" rv hear":""}" data-l="${p.hear?"Hörtext":"Text"}">${r[2]?block(r[2],r[3]):"—"}</td>`;
+   h+=`<td class="c-ans rv" data-l="Lösung">${block(r[4],r[5])}</td></tr>`});
+  h+=`</tbody></table></div></div>`});
+ h+=`</section>`});
+const main=document.getElementById("main"),nav=document.getElementById("nav");
+main.innerHTML=h;nav.innerHTML=n;
+document.querySelectorAll(".tg[data-k]").forEach(b=>b.onclick=()=>{const on=b.getAttribute("aria-pressed")==="true";b.setAttribute("aria-pressed",String(!on));document.body.classList.toggle("hide-"+b.dataset.k,on)});
+const pr=document.getElementById("pr");
+pr.onclick=()=>{const on=pr.getAttribute("aria-pressed")!=="true";pr.setAttribute("aria-pressed",String(on));document.body.classList.toggle("practice",on);resetAll()};
+function resetAll(){document.querySelectorAll(".shown,.en-on").forEach(c=>c.classList.remove("shown","en-on"));document.querySelectorAll(".trb").forEach(b=>b.textContent="Englisch zeigen")}
+
+/* ---- speech ---- */
+const synth=window.speechSynthesis;let rate=1,playing=null;
+if(!synth||typeof SpeechSynthesisUtterance==="undefined")document.body.classList.add("no-tts");
+function voices(lang){if(!synth)return[];const vs=synth.getVoices().filter(v=>v.lang&&v.lang.toLowerCase().startsWith(lang));
+ const pref=["premium","enhanced","google","natural","anna","helena","katja","markus","yannick","daniel","samantha"];
+ return vs.sort((a,b)=>{const sa=pref.findIndex(p=>a.name.toLowerCase().includes(p)),sb=pref.findIndex(p=>b.name.toLowerCase().includes(p));return (sa<0?99:sa)-(sb<0?99:sb)})}
+if(synth){synth.getVoices();synth.onvoiceschanged=()=>synth.getVoices()}
+function stopSay(){if(synth)synth.cancel();if(playing)playing.classList.remove("on");playing=null}
+function say(btn){if(!synth)return;if(playing===btn){stopSay();return}stopSay();
+ const s=btn.previousElementSibling;const lang=s.getAttribute("lang")||"de";
+ const lines=[...s.querySelectorAll(".ln")];const parts=(lines.length?lines.map(l=>l.textContent):[s.textContent]).map(t=>t.replace(/[\[\]]/g,"").trim()).filter(Boolean);
+ const vs=voices(lang);const spk={};let k=0;
+ playing=btn;btn.classList.add("on");
+ parts.forEach((t,i)=>{let v=vs[0]||null;const m=t.match(/^([A-Za-zÄÖÜäöüß ]{2,20}):\s*(.+)$/);
+  if(m&&lang==="de"&&!/^(Text \d|Frage|Antwort|Bitte|Reaktion|Prüfer|Bild|Thema)/.test(m[1])){if(!(m[1] in spk))spk[m[1]]=k++;v=vs[spk[m[1]]%Math.max(vs.length,1)]||v;t=m[2]}
+  const u=new SpeechSynthesisUtterance(t);u.lang=lang==="de"?"de-DE":"en-GB";u.rate=rate;if(v)u.voice=v;
+  if(i===parts.length-1)u.onend=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
+  u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
+  synth.speak(u)})}
+const sp=document.getElementById("sp");
+sp.onclick=()=>{rate=rate===1?0.75:1;sp.setAttribute("aria-pressed",String(rate!==1));sp.textContent=rate===1?"Tempo: normal":"Tempo: langsam"};
+
+/* ---- word translation ---- */
+const pop=document.getElementById("pop"),pw=document.getElementById("pw"),pb=document.getElementById("pb");
+let sampleP=null,cur=null,selEl=null;const cache={};
+function getSample(){if(!sampleP)sampleP=(window.claude&&window.claude.use)?window.claude.use("sample").catch(()=>null):Promise.resolve(null);return sampleP}
+function closePop(){pop.hidden=true;if(selEl)selEl.classList.remove("sel");selEl=null;if(cur)cur.abort();cur=null}
+function ctx(el){const s=el.closest(".s");return (s?s.textContent:el.textContent).trim()}
+function cget(k){let v=cache[k];if(!v){try{v=JSON.parse(localStorage.getItem("b1:"+k)||"null")}catch(e){}}return v}
+function cset(k,v){cache[k]=v;try{localStorage.setItem("b1:"+k,JSON.stringify(v))}catch(e){}}
+function errMsg(err){return '<span class="muted">'+(err&&err.code==="not_granted"?"Übersetzung wurde nicht erlaubt.":err&&err.code==="rate_limited"?"Zu viele Anfragen – bitte kurz warten.":"Übersetzung fehlgeschlagen. Versuch es noch einmal.")+'</span>'}
+async function lookup(el){
+ if(selEl)selEl.classList.remove("sel");selEl=el;el.classList.add("sel");
+ const word=el.textContent,sent=ctx(el);
+ pw.textContent=word;pb.innerHTML='<span class="muted">Übersetze …</span>';pop.hidden=false;
+ const key=word+"|"+sent;const hit=cget(key);if(hit){showWord(hit);return}
+ const sample=await getSample();
+ if(!sample){pb.innerHTML=FB(word,true);return}
+ if(cur)cur.abort();cur=new AbortController();const my=cur;
+ try{const d=await sample.json(`You are a German-English dictionary for a B1 learner. Translate the German word "${word}" as it is used in this sentence: "${sent}".
+Reply with ONLY a JSON object, no other text:
+{"en":"English meaning in this context (1-4 words)","lemma":"dictionary base form; for nouns include article, e.g. 'die Wohnung'","pos":"part of speech in English","plural":"plural form for nouns, else empty string","note":"one short learner note in English about the form used here, max 12 words"}`,{modelTier:"quick",signal:my.signal});
+  cset(key,d);if(selEl===el)showWord(d)}catch(err){if(err&&err.code==="cancelled")return;pb.innerHTML=errMsg(err)+FB(word,true)}}
+function showWord(d){const s=x=>esc(x||"");
+ pb.innerHTML=`<div class="pen">${s(d.en)}</div><div class="pm">${s(d.lemma)}${d.pos?' · '+s(d.pos):''}${d.plural?' · Pl. '+s(d.plural):''}</div>${d.note?`<div class="pn">${s(d.note)}</div>`:''}`}
+let multi=false,picked=[],pickBox=null;
+const mw=document.getElementById("mw");
+function hintPick(){pw.textContent="Mehrere Wörter";pb.innerHTML='<span class="muted">Tippe Wörter in einem Satz an. Dann „Übersetzen“.</span>'}
+mw.onclick=()=>{multi=!multi;mw.setAttribute("aria-pressed",String(multi));clearPick();closePop();if(multi){hintPick();pop.hidden=false}};
+function clearPick(){picked.forEach(x=>x.classList.remove("pk"));picked=[];pickBox=null}
+function phrase(){const all=[...pickBox.querySelectorAll(".w")];const idx=picked.map(x=>all.indexOf(x)).sort((a,b)=>a-b);
+ let out="";idx.forEach((k,i)=>{out+=(i===0?"":(k===idx[i-1]+1?" ":" … "))+all[k].textContent});return out}
+function renderPick(){if(!picked.length){hintPick();return}
+ pw.textContent=phrase();
+ pb.innerHTML='<div class="pact"><button type="button" class="pbtn" id="go">Übersetzen</button><button type="button" class="pbtn ghost" id="clr">Auswahl leeren</button></div>';
+ document.getElementById("go").onclick=translatePick;document.getElementById("clr").onclick=()=>{clearPick();renderPick()}}
+function pick(el){const box=el.closest(".s");if(pickBox&&pickBox!==box)clearPick();pickBox=box;
+ const i=picked.indexOf(el);if(i>=0){picked.splice(i,1);el.classList.remove("pk")}else{picked.push(el);el.classList.add("pk")}
+ if(!picked.length)pickBox=null;if(cur){cur.abort();cur=null}pop.hidden=false;renderPick()}
+async function translatePick(){const phr=phrase(),sent=pickBox.textContent.trim(),key="m|"+phr+"|"+sent;
+ pb.innerHTML='<span class="muted">Übersetze …</span>';const hit=cget(key);if(hit){showPick(hit);return}
+ const sample=await getSample();if(!sample){pb.innerHTML=FB(phr,false);return}
+ if(cur)cur.abort();cur=new AbortController();const my=cur;
+ try{const d=await sample.json(`You are a German-English tutor for a B1 learner. Translate the German words "${phr}" as they are used together in this text: "${sent}". ("…" means words were skipped between them.)
+Reply with ONLY a JSON object, no other text:
+{"en":"natural English translation of these words in this context","literal":"word-by-word gloss, e.g. 'ich (I) + habe (have) + gekocht (cooked)'","note":"one short learner note in English about grammar or idiom, max 15 words"}`,{modelTier:"quick",signal:my.signal});
+  cset(key,d);if(multi&&pickBox&&phrase()===phr)showPick(d)}catch(err){if(err&&err.code==="cancelled")return;pb.innerHTML=errMsg(err)+FB(phr,false)}}
+function showPick(d){const s=x=>esc(x||"");
+ pb.innerHTML=`<div class="pen">${s(d.en)}</div>${d.literal?`<div class="pm">${s(d.literal)}</div>`:''}${d.note?`<div class="pn">${s(d.note)}</div>`:''}<div class="pact"><button type="button" class="pbtn ghost" id="clr">Neue Auswahl</button></div>`;
+ document.getElementById("clr").onclick=()=>{clearPick();renderPick()}}
+document.getElementById("px").onclick=()=>{closePop();clearPick();if(multi){multi=false;mw.setAttribute("aria-pressed","false")}};
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closePop()});
+
+/* ---- clicks ---- */
+main.addEventListener("click",e=>{
+ const sb=e.target.closest(".say");if(sb){say(sb);return}
+ const rv=e.target.closest(".rv");
+ if(rv&&document.body.classList.contains("practice")&&!rv.classList.contains("shown")){rv.classList.add("shown");return}
+ const tb=e.target.closest(".trb");if(tb){const c=tb.parentElement;c.classList.toggle("en-on");tb.textContent=c.classList.contains("en-on")?"Englisch ausblenden":"Englisch zeigen";return}
+ const w=e.target.closest(".w");if(w){multi?pick(w):lookup(w)}});
+
+/* ---- search ---- */
+const q=document.getElementById("q"),empty=document.getElementById("empty");
+q.oninput=()=>{const v=q.value.trim().toLowerCase();let any=false;
+ document.querySelectorAll(".part").forEach(p=>{let vis=0;p.querySelectorAll("tbody tr").forEach(tr=>{const m=!v||tr.dataset.s.includes(v);tr.style.display=m?"":"none";if(m)vis++});p.style.display=vis?"":"none";if(vis)any=true});
+ document.querySelectorAll(".skill").forEach(s=>{s.style.display=[...s.querySelectorAll(".part")].some(p=>p.style.display!=="none")?"":"none"});
+ empty.style.display=any?"none":"block"};
+</script>
+</body>
+</html>

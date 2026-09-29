@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>telc Deutsch A1 – Prüfungstraining</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--paper:#ffffff;--surface:#eef1f6;--ink:#1b2230;--muted:#5b6475;--line:#d9dee8;
+--en:#5b6475;--b1:#2f5bd3;--a2:#b87d00;--a1:#1b8a6b;--ans:#8a3fa8;--ansbg:#f6effa}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--en:#9aa3b5;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--ans:#d49bf0;--ansbg:#2a2036}}
+:root[data-theme="dark"]{--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--en:#9aa3b5;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--ans:#d49bf0;--ansbg:#2a2036}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 120px)}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
+header.hero{padding:28px 20px 20px;max-width:1280px;margin:0 auto}
+.ladder{display:flex;gap:6px;margin-bottom:14px}
+.ladder span{font-weight:700;font-size:13px;padding:3px 10px;border-radius:4px;color:#fff}
+.ladder .l1{background:var(--a1)}.ladder .l2{background:var(--a2)}.ladder .l3{background:var(--b1)}
+h1{font-size:clamp(30px,6vw,52px);font-weight:800;line-height:1.02;letter-spacing:-.02em;max-width:18ch}
+.sub{color:var(--muted);max-width:62ch;margin:12px 0 0}
+.bar{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 20px 8px}
+.bar-inner{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+input[type=search]{flex:1 1 200px;min-width:0;font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.toggles{display:flex;flex-wrap:wrap;gap:6px}
+.tg{font:inherit;font-size:14px;font-weight:700;padding:6px 11px;border-radius:999px;border:2px solid var(--c);background:var(--c);color:#fff;cursor:pointer}
+.tg[aria-pressed="false"]{background:transparent;color:var(--c)}
+.tg.en{--c:var(--en)}.tg.b1{--c:var(--b1)}.tg.a2{--c:var(--a2)}.tg.a1{--c:var(--a1)}.tg.ans{--c:var(--ans)}
+.tg.practice{--c:var(--ink)}.tg.multi{--c:var(--b1)}.tg.speed{--c:var(--a1)}
+.topics{max-width:1280px;margin:8px auto 0;display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.topics a{flex:none;font-size:13px;color:var(--ink);text-decoration:none;padding:4px 10px;border-radius:6px;background:var(--surface);white-space:nowrap}
+.topics a:hover{background:var(--line)}
+main{max-width:1280px;margin:0 auto;padding:8px 20px 60px}
+section{margin-top:36px}
+.th{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.th .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:15px;color:var(--muted)}
+h2{font-size:clamp(24px,4vw,34px);font-weight:800;letter-spacing:-.01em}
+.th .en{color:var(--muted);font-size:17px}
+.wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{text-align:left;font-size:13px;font-weight:700;padding:8px 10px;border-bottom:2px solid var(--line);vertical-align:bottom}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+th.c-en{color:var(--en)}th.c-b1{color:var(--b1)}th.c-a2{color:var(--a2)}th.c-a1{color:var(--a1)}th.c-ans{color:var(--ans)}
+td.num{color:var(--muted);font-weight:700;width:2.2em}
+td.c-en{color:var(--en);font-style:italic}
+td.c-b1{border-left:3px solid var(--b1)}
+td.c-a2{border-left:3px solid var(--a2)}
+td.c-a1{border-left:3px solid var(--a1)}
+td.c-ans{background:var(--ansbg);border-left:3px solid var(--ans)}
+.ph{color:var(--ans);font-weight:700}
+body.hide-en .c-en,body.hide-b1 .c-b1,body.hide-a2 .c-a2,body.hide-a1 .c-a1,body.hide-ans .c-ans{display:none}
+body.practice td.c-ans .t{filter:blur(6px);cursor:pointer;user-select:none;transition:filter .2s}
+body.practice td.c-ans.shown .t{filter:none}
+body.practice td.c-ans:not(.shown)::after{content:"Tippen zum Aufdecken";display:block;font-size:12px;color:var(--ans);margin-top:4px}
+
+td.c-ans .tr{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--ans);color:var(--muted);font-style:italic}
+td.c-ans.en-on .tr{display:block}
+.trb{display:block;margin-top:6px;font:inherit;font-size:12px;font-weight:700;color:var(--ans);background:none;border:1px solid var(--ans);border-radius:999px;padding:2px 10px;cursor:pointer}
+body.practice td.c-ans:not(.shown) .trb{display:none}
+.w{cursor:pointer;border-radius:3px;transition:background .15s}
+.w:hover{background:var(--surface)}
+.w.sel{background:var(--b1);color:#fff}
+#pop{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);max-width:440px;margin:0 auto;background:var(--paper);color:var(--ink);border:2px solid var(--b1);border-radius:12px;padding:12px 14px;z-index:20;box-shadow:0 8px 28px rgba(20,30,60,.25)}
+#pop[hidden]{display:none}
+#pop .ph1{display:flex;justify-content:space-between;align-items:center;gap:8px}
+#pw{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:22px;color:var(--b1)}
+#px{font:inherit;font-size:20px;line-height:1;background:none;border:none;color:var(--muted);cursor:pointer;padding:4px 8px}
+.pen{font-size:18px;font-weight:700;margin-top:2px}
+.pm{color:var(--muted);font-size:14px;margin-top:2px}
+.pn{font-size:14px;margin-top:6px;font-style:italic}
+.muted{color:var(--muted)}
+.say{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;width:26px;height:26px;margin-left:6px;border-radius:50%;border:1.5px solid currentColor;background:transparent;color:var(--muted);cursor:pointer;padding:0;flex:none}
+.say::before{content:"";width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:2px}
+.say.on{background:var(--b1);border-color:var(--b1);color:#fff}
+.say.on::before{border:none;width:8px;height:8px;background:currentColor;margin:0}
+td.c-b1 .say{color:var(--b1)}td.c-a2 .say{color:var(--a2)}td.c-a1 .say{color:var(--a1)}td.c-ans .say{color:var(--ans)}td.c-ans .say.on{color:#fff}
+body.no-tts .say,body.no-tts #sp{display:none}
+body.practice td.c-ans:not(.shown) > .say{display:none}
+.w.pk{background:var(--a2);color:#fff}
+.pact{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.pbtn{font:inherit;font-size:14px;font-weight:700;padding:6px 14px;border-radius:999px;border:2px solid var(--b1);background:var(--b1);color:#fff;cursor:pointer}
+.pbtn.ghost{background:transparent;color:var(--b1)}
+#pw{word-break:break-word}
+.empty{display:none;color:var(--muted);padding:40px 0}
+.note{font-size:14px;color:var(--muted);max-width:62ch;margin-top:10px}
+@media (max-width:760px){
+ table,tbody,tr,td{display:block;width:100%}
+ thead{display:none}
+ tr{border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden}
+ td{border-bottom:none;padding:8px 12px}
+ td.num{padding-bottom:0;width:auto}
+ td[data-l]::before{content:attr(data-l);display:block;font-size:11px;font-weight:700;font-style:normal;margin-bottom:2px}
+ td.c-en::before{color:var(--en)}td.c-b1::before{color:var(--b1)}td.c-a2::before{color:var(--a2)}td.c-a1::before{color:var(--a1)}td.c-ans::before{color:var(--ans)}
+ .bar{padding-left:14px;padding-right:14px}main,header.hero{padding-left:14px;padding-right:14px}
+}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.skill-info{color:var(--muted);font-size:14px}
+.intro{background:var(--surface);border-radius:10px;padding:10px 14px;margin:8px 0 12px}
+.intro .en-line{color:var(--muted);font-style:italic;font-size:14px;margin-top:4px}
+.ttext{border:2px solid var(--line);border-radius:10px;padding:12px 14px;margin:0 0 12px}
+.ttext .lab{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:4px}
+h3{font-family:"Bricolage Grotesque",sans-serif;font-size:20px;font-weight:800;margin:26px 0 2px}
+h3 .en{font-family:"Atkinson Hyperlegible",sans-serif;font-weight:400;font-size:15px;color:var(--muted);margin-left:8px}
+.ln{display:block}
+td.c-tx{border-left:3px solid var(--a2)}
+th.c-tx,td.c-tx::before{color:var(--a2)}
+td.c-de{border-left:3px solid var(--b1)}
+th.c-de,td.c-de::before{color:var(--b1)}
+body.practice .rv:not(.shown) > .s{filter:blur(6px);user-select:none;cursor:pointer}
+body.practice .rv:not(.shown)::after{content:"Tippen zum Aufdecken";display:block;font-size:12px;color:var(--ans);margin-top:4px}
+body.practice .rv.hear:not(.shown)::after{content:"▶ anhören, dann tippen zum Aufdecken"}
+body.practice .rv:not(.shown) > .trb,body.practice .rv:not(.shown) > .tr{display:none}
+body.practice .rv:not(.hear):not(.shown) > .say{display:none}
+.en-on > .tr{display:block}
+.tr{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--ans);color:var(--muted);font-style:italic}
+.tip{font-size:14px;color:var(--muted);max-width:70ch}
+.fb{margin-top:6px;font-size:15px}.fb a{color:var(--b1);font-weight:700}
+</style>
+</head>
+<body>
+<header class="hero">
+ <div class="ladder"><span class="l1">A1</span><span class="l2">telc</span><span class="l3">Start Deutsch 1</span></div>
+ <h1>telc Deutsch A1: alle vier Prüfungsteile</h1>
+ <p class="sub">Übungsaufgaben im Stil der Prüfung für Hören, Lesen, Schreiben und Sprechen – mit englischer Übersetzung, Lösungen, Wortübersetzung per Tippen und Vorlesen.</p>
+ <p class="note">So übst du Hören: Schalte den <b>Übungsmodus</b> ein. Dann ist der Hörtext verdeckt – tippe ▶, hör zu, wähle deine Antwort und decke dann Text und Lösung auf. Wörter in <span class="ph">[Klammern]</span> ersetzt du mit deinen eigenen Angaben. Bestanden ab 36 von 60 Punkten.</p>
+</header>
+<div class="bar"><div class="bar-inner">
+ <input type="search" id="q" placeholder="Suchen (Deutsch oder Englisch)…" aria-label="Aufgaben durchsuchen">
+ <div class="toggles">
+  <button class="tg en" data-k="en" aria-pressed="true">EN</button>
+  <button class="tg ans" data-k="ans" aria-pressed="true">Lösung</button>
+  <button class="tg practice" id="pr" aria-pressed="false">Übungsmodus</button>
+  <button class="tg multi" id="mw" aria-pressed="false">Mehrere Wörter</button>
+  <button class="tg speed" id="sp" aria-pressed="false">Tempo: normal</button>
+ </div>
+</div><nav class="topics" id="nav" aria-label="Prüfungsteile"></nav></div>
+<main id="main"></main>
+<p class="empty" id="empty">Keine Aufgabe passt zu deiner Suche.</p>
+<div id="pop" hidden role="dialog" aria-live="polite"><div class="ph1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
+<script>
+const S=[
+{de:"Hören",en:"Listening",info:"3 Teile · ca. 20 Minuten · 15 Punkte",infoEn:"3 parts · about 20 minutes · 15 points",parts:[
+{t:"Teil 1 – Kurze Gespräche",te:"Part 1 – Short conversations",hear:true,
+ intro:"Sie hören sechs kurze Gespräche. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
+ introEn:"You hear six short conversations. You hear each text twice. Choose a, b or c.",rows:[
+["How much does the bread cost?","Was kostet das Brot?\na) 2,40 €\nb) 3,20 €\nc) 4,20 €",
+ "Kundin: Guten Tag, ich möchte ein Brot, bitte.\nVerkäufer: Das Vollkornbrot?\nKundin: Ja, genau. Was kostet das?\nVerkäufer: Drei Euro zwanzig, bitte.",
+ "Customer: Good day, I'd like a loaf of bread, please. / Seller: The wholegrain bread? / Customer: Yes, exactly. How much is it? / Seller: Three euros twenty, please.",
+ "b) 3,20 € – „drei Euro zwanzig“","b) €3.20 – “three euros twenty”"],
+["When does the man have an appointment?","Wann hat der Mann einen Termin?\na) Montag um 9 Uhr\nb) Dienstag um 10 Uhr\nc) Dienstag um 9 Uhr",
+ "Frau: Praxis Doktor Weber, guten Tag.\nMann: Guten Tag, ich brauche einen Termin.\nFrau: Geht Montag um neun Uhr?\nMann: Montag kann ich leider nicht.\nFrau: Und Dienstag um zehn Uhr?\nMann: Ja, das passt.",
+ "Woman: Dr Weber's practice, good day. / Man: Good day, I need an appointment. / Woman: Is Monday at nine OK? / Man: Unfortunately I can't on Monday. / Woman: And Tuesday at ten? / Man: Yes, that works.",
+ "b) Dienstag um 10 Uhr – Montag kann er nicht.","b) Tuesday at 10 – he can't on Monday."],
+["Where is the toilet?","Wo ist die Toilette?\na) im Erdgeschoss\nb) im ersten Stock\nc) im Keller",
+ "Mann: Entschuldigung, wo ist hier die Toilette?\nFrau: Nicht hier unten. Gehen Sie die Treppe hoch, in den ersten Stock, und dann links.",
+ "Man: Excuse me, where's the toilet here? / Woman: Not down here. Go up the stairs to the first floor, then left.",
+ "b) im ersten Stock","b) on the first floor"],
+["What does the woman drink?","Was trinkt die Frau?\na) Kaffee\nb) Tee\nc) Wasser",
+ "Kellner: Was möchten Sie trinken?\nFrau: Einen Kaffee, bitte. Ach nein, heute keinen Kaffee. Einen Tee, bitte.\nKellner: Gern.",
+ "Waiter: What would you like to drink? / Woman: A coffee, please. Oh no, no coffee today. A tea, please. / Waiter: Of course.",
+ "b) Tee – sie ändert ihre Bestellung.","b) Tea – she changes her order."],
+["How does the man get to work?","Wie fährt der Mann zur Arbeit?\na) mit dem Auto\nb) mit dem Bus\nc) mit dem Fahrrad",
+ "Frau: Fährst du mit dem Auto zur Arbeit?\nMann: Nein, das Auto hat meine Frau. Und der Bus ist zu langsam. Ich fahre mit dem Fahrrad.",
+ "Woman: Do you drive to work? / Man: No, my wife has the car. And the bus is too slow. I cycle.",
+ "c) mit dem Fahrrad","c) by bike"],
+["What is the woman's phone number?","Welche Telefonnummer hat die Frau?\na) 0170 45 23 81\nb) 0170 45 32 81\nc) 0171 45 23 18",
+ "Mann: Wie ist Ihre Telefonnummer?\nFrau: Null, eins, sieben, null – fünfundvierzig – dreiundzwanzig – einundachtzig.\nMann: Also null eins sieben null, fünfundvierzig, dreiundzwanzig, einundachtzig?\nFrau: Richtig.",
+ "Man: What's your phone number? / Woman: Zero one seven zero – forty-five – twenty-three – eighty-one. / Man: So 0170 45 23 81? / Woman: Correct.",
+ "a) 0170 45 23 81 – Achtung: „dreiundzwanzig“ = 23 (drei + zwanzig).","a) 0170 45 23 81 – careful: “dreiundzwanzig” = 23 (three-and-twenty)."]]},
+{t:"Teil 2 – Durchsagen",te:"Part 2 – Announcements",hear:true,
+ intro:"Sie hören vier Ansagen. Sie hören jeden Text einmal. Kreuzen Sie an: Richtig oder Falsch.",
+ introEn:"You hear four announcements. You hear each text once. Choose true or false.",rows:[
+["The train to Munich leaves from platform 7.","Der Zug nach München fährt von Gleis 7 ab.\nRichtig oder Falsch?",
+ "Achtung am Gleis 5: Der ICE nach München, Abfahrt 14 Uhr 32, fährt heute von Gleis 7. Bitte beachten Sie die Gleisänderung.",
+ "Attention on platform 5: The ICE to Munich, departing 14:32, leaves from platform 7 today. Please note the platform change.",
+ "Richtig – heute Gleis 7.","True – platform 7 today."],
+["The supermarket closes at 8 pm today.","Der Supermarkt schließt heute um 20 Uhr.\nRichtig oder Falsch?",
+ "Liebe Kundinnen und Kunden, heute ist Samstag. Unser Markt schließt heute schon um 18 Uhr. Bitte gehen Sie jetzt zur Kasse.",
+ "Dear customers, today is Saturday. Our store closes already at 6 pm today. Please go to the checkout now.",
+ "Falsch – er schließt um 18 Uhr.","False – it closes at 6 pm."],
+["Passengers to Vienna should go to gate B12.","Die Fluggäste nach Wien sollen zum Ausgang B12 gehen.\nRichtig oder Falsch?",
+ "Letzter Aufruf für den Flug nach Wien. Alle Passagiere kommen bitte sofort zum Ausgang B12.",
+ "Last call for the flight to Vienna. All passengers please come to gate B12 immediately.",
+ "Richtig","True"],
+["Bananas are cheap today.","Bananen sind heute billig.\nRichtig oder Falsch?",
+ "Heute im Angebot: ein Kilo Äpfel nur 1 Euro 49. Und Bananen: nur 99 Cent das Kilo. Nur heute!",
+ "On offer today: a kilo of apples only €1.49. And bananas: only 99 cents a kilo. Today only!",
+ "Richtig – nur 99 Cent das Kilo.","True – only 99 cents a kilo."]]},
+{t:"Teil 3 – Telefonansagen",te:"Part 3 – Phone messages",hear:true,
+ intro:"Sie hören fünf Ansagen am Telefon. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
+ introEn:"You hear five phone messages. You hear each text twice. Choose a, b or c.",rows:[
+["When should Mr Keller come?","Wann soll Herr Keller kommen?\na) heute um 15 Uhr\nb) morgen ab 15 Uhr\nc) morgen um 16 Uhr",
+ "Guten Tag, Herr Keller, hier ist das Autohaus Braun. Ihr Auto ist heute leider noch nicht fertig. Sie können es morgen abholen, ab 15 Uhr. Auf Wiederhören.",
+ "Good day, Mr Keller, this is Braun car garage. Unfortunately your car isn't ready today. You can pick it up tomorrow, from 3 pm. Goodbye.",
+ "b) morgen ab 15 Uhr","b) tomorrow from 3 pm"],
+["What should Anna bring?","Was soll Anna mitbringen?\na) Getränke\nb) einen Salat\nc) Kuchen",
+ "Hallo Anna, hier ist Lisa. Am Samstag ist meine Party. Getränke und Kuchen habe ich schon. Kannst du bitte einen Salat mitbringen? Danke, bis Samstag!",
+ "Hi Anna, it's Lisa. My party is on Saturday. I already have drinks and cake. Can you please bring a salad? Thanks, see you Saturday!",
+ "b) einen Salat","b) a salad"],
+["Where do they meet?","Wo treffen sie sich?\na) am Bahnhof\nb) vor dem Kino\nc) im Café",
+ "Hi, hier ist Tom. Das Kino ist heute leider voll. Treffen wir uns um acht im Café Luna? Das ist neben dem Bahnhof. Ruf mich zurück!",
+ "Hi, it's Tom. Unfortunately the cinema is full today. Shall we meet at eight at Café Luna? It's next to the station. Call me back!",
+ "c) im Café – der Bahnhof ist nur die Richtung.","c) at the café – the station is just the direction."],
+["When is the doctor's practice open?","Wann ist die Praxis geöffnet?\na) Montag bis Freitag, 8 bis 12 Uhr\nb) nur nachmittags\nc) auch am Samstag",
+ "Sie sind verbunden mit der Praxis Doktor Schulz. Unsere Sprechzeiten sind Montag bis Freitag von 8 bis 12 Uhr. Am Wochenende ist die Praxis geschlossen.",
+ "You've reached Dr Schulz's practice. Our opening hours are Monday to Friday from 8 to 12. The practice is closed at weekends.",
+ "a) Montag bis Freitag, 8 bis 12 Uhr","a) Monday to Friday, 8 am to 12 pm"],
+["What is the change?","Was ist anders?\na) Der Kurs fällt aus.\nb) Der Kurs beginnt später.\nc) Der Kurs ist in einem anderen Raum.",
+ "Hallo, hier ist die Sprachschule Lingua. Ihr Deutschkurs am Mittwoch ist heute nicht in Raum 12, sondern in Raum 20 im zweiten Stock. Der Kurs beginnt wie immer um 18 Uhr.",
+ "Hello, this is the Lingua language school. Your Wednesday German course today is not in room 12 but in room 20 on the second floor. The course starts at 6 pm as always.",
+ "c) in einem anderen Raum – Raum 20 statt 12.","c) in a different room – room 20 instead of 12."]]}]},
+{de:"Lesen",en:"Reading",info:"3 Teile · ca. 25 Minuten · 15 Punkte",infoEn:"3 parts · about 25 minutes · 15 points",parts:[
+{t:"Teil 1 – Kurze Mitteilungen",te:"Part 1 – Short messages",
+ intro:"Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
+ introEn:"Read the two texts. Choose true or false.",
+ text:"Text 1: Liebe Maria, ich bin jetzt in Hamburg. Die Stadt ist sehr schön, aber das Wetter ist schlecht. Es regnet jeden Tag. Mein Hotel ist klein, aber gut und nicht teuer. Morgen fahre ich mit dem Schiff auf der Elbe. Am Freitag komme ich zurück. Viele Grüße, Jonas\nText 2: Hallo Herr Nowak, der Termin mit Frau Berger am Donnerstag ist leider nicht möglich. Frau Berger ist krank. Können Sie am Montag um 11 Uhr kommen? Bitte rufen Sie mich an: 069 23 45 67. Mit freundlichen Grüßen, Sabine Roth",
+ textEn:"Text 1: Dear Maria, I'm in Hamburg now. The city is very beautiful, but the weather is bad. It rains every day. My hotel is small but good and not expensive. Tomorrow I'm taking a boat on the Elbe. I'm coming back on Friday. Best wishes, Jonas / Text 2: Hello Mr Nowak, unfortunately the appointment with Ms Berger on Thursday isn't possible. Ms Berger is ill. Can you come on Monday at 11? Please call me: 069 23 45 67. Kind regards, Sabine Roth",rows:[
+["The weather in Hamburg is good.","Text 1: In Hamburg ist das Wetter gut.","","","Falsch – es regnet jeden Tag.","False – it rains every day."],
+["The hotel is expensive.","Text 1: Das Hotel ist teuer.","","","Falsch – es ist nicht teuer.","False – it's not expensive."],
+["Jonas is taking a boat tomorrow.","Text 1: Jonas fährt morgen mit dem Schiff.","","","Richtig","True"],
+["Mr Nowak has an appointment with Ms Berger on Thursday.","Text 2: Herr Nowak hat am Donnerstag einen Termin mit Frau Berger.","","","Falsch – der Termin ist nicht möglich.","False – the appointment isn't possible."],
+["Mr Nowak should call Ms Roth.","Text 2: Herr Nowak soll Frau Roth anrufen.","","","Richtig – „Bitte rufen Sie mich an.“","True – “Please call me.”"]]},
+{t:"Teil 2 – Anzeigen",te:"Part 2 – Adverts",
+ intro:"Lesen Sie die Aufgaben und die Anzeigen. Welche Anzeige passt: a oder b?",
+ introEn:"Read the tasks and the adverts. Which advert fits: a or b?",rows:[
+["You want to learn German in the evening.","Sie möchten abends Deutsch lernen.",
+ "a) Sprachschule Europa: Deutschkurse A1 bis B2, Montag bis Freitag, 9 bis 12 Uhr.\nb) Volkshochschule: Deutsch für Berufstätige, dienstags und donnerstags, 18:30 bis 21 Uhr.",
+ "a) Europa language school: German courses A1 to B2, Monday to Friday, 9 to 12. / b) Adult education centre: German for working people, Tuesdays and Thursdays, 6:30 to 9 pm.",
+ "b) – der Kurs ist am Abend.","b) – the course is in the evening."],
+["You need a cheap used bike.","Sie brauchen ein billiges, gebrauchtes Fahrrad.",
+ "a) Verkaufe Damenrad, drei Jahre alt, sehr gut, nur 80 Euro.\nb) Fahrradladen Speiche: neue E-Bikes ab 1899 Euro.",
+ "a) Selling women's bike, three years old, very good, only 80 euros. / b) Speiche bike shop: new e-bikes from 1899 euros.",
+ "a) – gebraucht und billig.","a) – used and cheap."],
+["You want to eat out on Sunday evening.","Sie möchten am Sonntagabend essen gehen.",
+ "a) Restaurant Da Mario: Montag bis Samstag 12 bis 23 Uhr, Sonntag Ruhetag.\nb) Gasthaus Zum Löwen: täglich 11 bis 22 Uhr, auch sonntags.",
+ "a) Da Mario restaurant: Monday to Saturday 12 to 11 pm, closed Sunday. / b) Zum Löwen inn: daily 11 to 10 pm, Sundays too.",
+ "b) – auch sonntags geöffnet.","b) – also open on Sundays."],
+["You're looking for a 2-room apartment in Frankfurt.","Sie suchen eine Zwei-Zimmer-Wohnung in Frankfurt.",
+ "a) Frankfurt-Bornheim: 2-Zimmer-Wohnung, 55 m², Balkon, ab 1. November frei.\nb) Offenbach: 3-Zimmer-Wohnung, 80 m², Garten.",
+ "a) Frankfurt-Bornheim: 2-room flat, 55 m², balcony, available from 1 November. / b) Offenbach: 3-room flat, 80 m², garden.",
+ "a) – zwei Zimmer, in Frankfurt.","a) – two rooms, in Frankfurt."],
+["You want to swim in the morning before work.","Sie möchten morgens vor der Arbeit schwimmen.",
+ "a) Hallenbad Mitte: Montag bis Freitag 6:30 bis 22 Uhr.\nb) Freibad am See: nur im Sommer, täglich 10 bis 19 Uhr.",
+ "a) Mitte indoor pool: Monday to Friday 6:30 am to 10 pm. / b) Lakeside outdoor pool: summer only, daily 10 am to 7 pm.",
+ "a) – öffnet schon um 6:30 Uhr.","a) – opens at 6:30 am."]]},
+{t:"Teil 3 – Schilder und Aushänge",te:"Part 3 – Signs and notices",
+ intro:"Lesen Sie die Schilder. Kreuzen Sie an: Richtig oder Falsch.",
+ introEn:"Read the signs. Choose true or false.",rows:[
+["In August (1st–14th) you can go to Dr Lang.","Vom 1. bis 14. August können Sie zu Dr. Lang gehen.",
+ "Praxis Dr. Klein: Wir sind vom 1. bis 14. August im Urlaub. Vertretung: Dr. Lang, Goethestraße 5.",
+ "Dr Klein's practice: We are on holiday from 1 to 14 August. Cover: Dr Lang, Goethestraße 5.",
+ "Richtig – Dr. Lang ist die Vertretung.","True – Dr Lang is covering."],
+["The bakery is open today.","Die Bäckerei ist heute geöffnet.",
+ "Bäckerei Schmidt: Heute wegen Krankheit geschlossen. Morgen sind wir wieder für Sie da.",
+ "Schmidt bakery: Closed today due to illness. We're back for you tomorrow.",
+ "Falsch – heute geschlossen.","False – closed today."],
+["A 10-year-old child doesn't have to pay.","Ein zehnjähriges Kind muss nicht bezahlen.",
+ "Stadtmuseum – Eintritt: Erwachsene 8 Euro, Kinder unter 12 Jahren frei.",
+ "City museum – Admission: adults 8 euros, children under 12 free.",
+ "Richtig – unter 12 Jahren ist es frei.","True – free under 12."],
+["You can buy a ticket at the counter today.","Sie können heute am Schalter eine Fahrkarte kaufen.",
+ "Fahrkarten gibt es am Automaten. Der Schalter ist heute geschlossen.",
+ "Tickets are available at the machine. The counter is closed today.",
+ "Falsch – nur am Automaten.","False – only at the machine."],
+["You have to walk to the second floor.","Sie müssen zu Fuß in den zweiten Stock gehen.",
+ "Deutschkurs: Raum 204, 2. Stock. Der Aufzug ist kaputt. Bitte benutzen Sie die Treppe.",
+ "German course: room 204, 2nd floor. The lift is broken. Please use the stairs.",
+ "Richtig – der Aufzug ist kaputt.","True – the lift is broken."]]}]},
+{de:"Schreiben",en:"Writing",info:"2 Teile · ca. 20 Minuten · 15 Punkte",infoEn:"2 parts · about 20 minutes · 15 points",parts:[
+{t:"Teil 1 – Formular ausfüllen",te:"Part 1 – Fill in a form",
+ intro:"Ihre Freundin möchte einen Deutschkurs machen. Sie helfen ihr beim Anmeldeformular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
+ introEn:"Your friend wants to take a German course. You help her with the registration form. Read the text and fill in five pieces of information.",
+ text:"Aylin Demir kommt aus der Türkei. Sie ist 28 Jahre alt und wohnt seit drei Monaten in Frankfurt, Berger Straße 12. Sie ist verheiratet und hat einen Sohn. Aylin arbeitet vormittags in einem Café. Deshalb möchte sie abends Deutsch lernen. Sie bezahlt den Kurs bar.",
+ textEn:"Aylin Demir comes from Turkey. She is 28 and has lived in Frankfurt, Berger Straße 12, for three months. She is married and has a son. Aylin works mornings in a café. So she wants to learn German in the evening. She pays for the course in cash.",rows:[
+["Nationality","Staatsangehörigkeit: ____","","","türkisch","Turkish"],
+["Marital status","Familienstand: ____","","","verheiratet","married"],
+["Number of children","Anzahl der Kinder: ____","","","1 (ein Sohn)","1 (a son)"],
+["Course time: mornings / evenings","Kurszeit: vormittags / abends","","","abends – sie arbeitet vormittags.","evenings – she works mornings."],
+["Payment: bank transfer / cash","Zahlungsart: Überweisung / bar","","","bar","cash"]]},
+{t:"Teil 2 – Kurze Mitteilung",te:"Part 2 – Short message",
+ intro:"Schreiben Sie etwa 30 Wörter. Schreiben Sie zu allen drei Punkten. Vergessen Sie Anrede und Gruß nicht.",
+ introEn:"Write about 30 words. Cover all three points. Don't forget the greeting and sign-off.",rows:[
+["You're ill and can't come to the German course. Write to your teacher, Ms Klein: why you're writing, when you'll be back, ask for the homework.","Sie sind krank und können nicht zum Deutschkurs kommen. Schreiben Sie an Ihre Lehrerin, Frau Klein:\n– Warum schreiben Sie?\n– Wann kommen Sie wieder?\n– Bitte: Hausaufgaben","","",
+ "Liebe Frau Klein, ich bin leider krank und kann heute nicht zum Kurs kommen. Ich komme am Montag wieder. Können Sie mir bitte die Hausaufgaben schicken? Vielen Dank! Viele Grüße, Suresh",
+ "Dear Ms Klein, unfortunately I'm ill and can't come to class today. I'll be back on Monday. Could you please send me the homework? Many thanks! Best wishes, Suresh"],
+["Invite your friend Markus to your birthday: when, where, what to bring.","Laden Sie Ihren Freund Markus zu Ihrem Geburtstag ein:\n– Wann?\n– Wo?\n– Was soll er mitbringen?","","",
+ "Lieber Markus, am Samstag habe ich Geburtstag und mache eine kleine Party. Sie beginnt um 19 Uhr bei mir zu Hause. Kannst du bitte Getränke mitbringen? Ich freue mich auf dich! Viele Grüße, Suresh",
+ "Dear Markus, it's my birthday on Saturday and I'm having a small party. It starts at 7 pm at my place. Can you please bring drinks? Looking forward to seeing you! Best wishes, Suresh"],
+["Your heating is broken. Write to your landlord Mr Braun: the problem, since when, ask for a technician.","Ihre Heizung ist kaputt. Schreiben Sie an Ihren Vermieter, Herrn Braun:\n– Problem\n– Seit wann?\n– Bitte: Handwerker","","",
+ "Sehr geehrter Herr Braun, in meiner Wohnung ist die Heizung kaputt. Sie funktioniert seit Montag nicht mehr, und es ist sehr kalt. Können Sie bitte schnell einen Handwerker schicken? Mit freundlichen Grüßen, Suresh [Nachname]",
+ "Dear Mr Braun, the heating in my flat is broken. It hasn't worked since Monday, and it's very cold. Could you please send a technician quickly? Kind regards, Suresh [surname]"],
+["Write to a language school: you want a course – ask about times, price, registration.","Schreiben Sie an eine Sprachschule. Sie möchten einen Deutschkurs machen:\n– Kurszeiten?\n– Preis?\n– Anmeldung?","","",
+ "Sehr geehrte Damen und Herren, ich möchte einen Deutschkurs A2 machen. Wann beginnen die Abendkurse? Was kostet der Kurs? Wie kann ich mich anmelden? Mit freundlichen Grüßen, Suresh [Nachname]",
+ "Dear Sir or Madam, I'd like to take an A2 German course. When do the evening courses start? How much does the course cost? How can I register? Kind regards, Suresh [surname]"],
+["Cancel your doctor's appointment on Tuesday: appointment, reason, new date.","Sie können am Dienstag nicht zum Arzt kommen. Schreiben Sie an die Praxis:\n– Termin\n– Warum nicht?\n– Neuer Termin?","","",
+ "Sehr geehrte Damen und Herren, ich habe am Dienstag um 10 Uhr einen Termin bei Dr. Weber. Leider muss ich an diesem Tag arbeiten. Kann ich am Donnerstag kommen? Mit freundlichen Grüßen, Suresh [Nachname]",
+ "Dear Sir or Madam, I have an appointment with Dr Weber on Tuesday at 10. Unfortunately I have to work that day. Can I come on Thursday? Kind regards, Suresh [surname]"]]}]},
+{de:"Sprechen",en:"Speaking",info:"3 Teile · ca. 15 Minuten · 15 Punkte · meist in der Gruppe",infoEn:"3 parts · about 15 minutes · 15 points · usually in a group",parts:[
+{t:"Teil 1 – Sich vorstellen",te:"Part 1 – Introduce yourself",
+ intro:"Stellen Sie sich vor. Benutzen Sie die Stichwörter. Danach buchstabieren Sie etwas oder nennen eine Zahl.",
+ introEn:"Introduce yourself using the keywords. Then you spell something or say a number.",rows:[
+["Name?","Name?","","","Ich heiße Suresh.","My name is Suresh."],
+["Age?","Alter?","","","Ich bin [Alter] Jahre alt.","I'm [age] years old."],
+["Country?","Land?","","","Ich komme aus [Land].","I come from [country]."],
+["Where do you live?","Wohnort?","","","Ich wohne in Frankfurt.","I live in Frankfurt."],
+["Languages?","Sprachen?","","","Ich spreche [Muttersprache], Englisch und ein bisschen Deutsch.","I speak [native language], English and a little German."],
+["Job?","Beruf?","","","Ich bin Softwareentwickler von Beruf.","I'm a software developer by profession."],
+["Hobby?","Hobby?","","","Ich mache gern Sport und ich reise gern.","I like doing sport and I like travelling."],
+["Examiner: Please spell your name.","Prüfer: Buchstabieren Sie bitte Ihren Vornamen.","","","S – U – R – E – S – H.","S – U – R – E – S – H."],
+["Examiner: What is your postcode?","Prüfer: Wie ist Ihre Postleitzahl?","","","Meine Postleitzahl ist [Postleitzahl]. Zum Beispiel: sechs – null – drei – eins – eins.","My postcode is [postcode]. For example: six – zero – three – one – one."]]},
+{t:"Teil 2 – Um Informationen bitten und geben",te:"Part 2 – Ask for and give information",
+ intro:"Sie ziehen eine Karte mit einem Thema und einem Wort. Stellen Sie eine Frage. Ihr Partner antwortet.",
+ introEn:"You draw a card with a topic and a word. Ask a question. Your partner answers.",rows:[
+["Topic: Food and drink – card: breakfast","Thema: Essen und Trinken – Karte: Frühstück","","","Frage: Was isst du zum Frühstück?\nAntwort: Ich esse Brot mit Käse und trinke Kaffee.","Q: What do you eat for breakfast? / A: I eat bread with cheese and drink coffee."],
+["Topic: Food and drink – card: favourite food","Thema: Essen und Trinken – Karte: Lieblingsessen","","","Frage: Was ist dein Lieblingsessen?\nAntwort: Mein Lieblingsessen ist Pizza.","Q: What's your favourite food? / A: My favourite food is pizza."],
+["Topic: Food and drink – card: drinks","Thema: Essen und Trinken – Karte: Getränke","","","Frage: Was trinkst du gern?\nAntwort: Ich trinke gern Tee und Wasser.","Q: What do you like to drink? / A: I like drinking tea and water."],
+["Topic: Food and drink – card: restaurant","Thema: Essen und Trinken – Karte: Restaurant","","","Frage: Gehst du oft ins Restaurant?\nAntwort: Nein, nur am Wochenende.","Q: Do you often go to restaurants? / A: No, only at the weekend."],
+["Topic: Free time – card: weekend","Thema: Freizeit – Karte: Wochenende","","","Frage: Was machst du am Wochenende?\nAntwort: Ich treffe Freunde und gehe spazieren.","Q: What do you do at the weekend? / A: I meet friends and go for a walk."],
+["Topic: Free time – card: sport","Thema: Freizeit – Karte: Sport","","","Frage: Welchen Sport machst du?\nAntwort: Ich gehe ins Fitnessstudio und laufe.","Q: What sport do you do? / A: I go to the gym and run."],
+["Topic: Free time – card: cinema","Thema: Freizeit – Karte: Kino","","","Frage: Gehst du gern ins Kino?\nAntwort: Ja, ich gehe einmal im Monat ins Kino.","Q: Do you like going to the cinema? / A: Yes, I go to the cinema once a month."],
+["Topic: Free time – card: holiday","Thema: Freizeit – Karte: Urlaub","","","Frage: Wohin fährst du im Urlaub?\nAntwort: Ich fahre nach Spanien.","Q: Where are you going on holiday? / A: I'm going to Spain."],
+["Topic: Shopping – card: supermarket","Thema: Einkaufen – Karte: Supermarkt","","","Frage: Wann gehst du in den Supermarkt?\nAntwort: Ich gehe am Samstag in den Supermarkt.","Q: When do you go to the supermarket? / A: I go to the supermarket on Saturday."],
+["Topic: Shopping – card: clothes","Thema: Einkaufen – Karte: Kleidung","","","Frage: Wo kaufst du Kleidung?\nAntwort: Ich kaufe Kleidung meistens online.","Q: Where do you buy clothes? / A: I usually buy clothes online."],
+["Topic: Shopping – card: fruit","Thema: Einkaufen – Karte: Obst","","","Frage: Welches Obst kaufst du?\nAntwort: Ich kaufe Äpfel und Bananen.","Q: Which fruit do you buy? / A: I buy apples and bananas."],
+["Topic: Shopping – card: present","Thema: Einkaufen – Karte: Geschenk","","","Frage: Was kaufst du deiner Mutter zum Geburtstag?\nAntwort: Ich kaufe ihr Blumen.","Q: What are you buying your mother for her birthday? / A: I'm buying her flowers."]]},
+{t:"Teil 3 – Bitten formulieren und reagieren",te:"Part 3 – Make requests and respond",
+ intro:"Sie ziehen eine Karte mit einem Bild. Formulieren Sie eine Bitte. Ihr Partner reagiert.",
+ introEn:"You draw a card with a picture. Make a request. Your partner responds.",rows:[
+["Picture: window","Bild: Fenster 🪟","","","Bitte: Können Sie bitte das Fenster öffnen?\nReaktion: Ja, natürlich.","Request: Could you please open the window? / Response: Yes, of course."],
+["Picture: pen","Bild: Kugelschreiber 🖊️","","","Bitte: Kannst du mir bitte deinen Kugelschreiber geben?\nReaktion: Ja, hier bitte.","Request: Can you please give me your pen? / Response: Yes, here you are."],
+["Picture: water","Bild: Wasser 💧","","","Bitte: Ein Glas Wasser, bitte.\nReaktion: Gern, einen Moment.","Request: A glass of water, please. / Response: Sure, one moment."],
+["Picture: salt","Bild: Salz 🧂","","","Bitte: Gibst du mir bitte das Salz?\nReaktion: Hier, bitte schön.","Request: Could you pass me the salt? / Response: Here you go."],
+["Picture: phone","Bild: Telefon 📞","","","Bitte: Darf ich bitte kurz Ihr Telefon benutzen?\nReaktion: Ja, kein Problem.","Request: May I use your phone briefly, please? / Response: Yes, no problem."],
+["Picture: door","Bild: Tür 🚪","","","Bitte: Mach bitte die Tür zu.\nReaktion: Okay, mache ich.","Request: Please close the door. / Response: OK, I'll do it."],
+["Picture: clock","Bild: Uhr 🕒","","","Bitte: Entschuldigung, wie spät ist es, bitte?\nReaktion: Es ist halb drei.","Request: Excuse me, what time is it, please? / Response: It's half past two."],
+["Picture: taxi","Bild: Taxi 🚕","","","Bitte: Können Sie mir bitte ein Taxi rufen?\nReaktion: Ja, gern. Das Taxi kommt in zehn Minuten.","Request: Could you please call me a taxi? / Response: Yes, sure. The taxi will come in ten minutes."]]}]}
+];
+
+function FB(t,single){const e=encodeURIComponent(t);const a=(u,l)=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`;
+ return `<div class="fb">Nachschlagen: ${a("https://translate.google.com/?sl=de&tl=en&op=translate&text="+e,"Google Übersetzer")} · ${a("https://www.deepl.com/translator#de/en/"+e,"DeepL")}${single?" · "+a("https://www.dict.cc/?s="+e,"dict.cc"):""}</div>`}
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const W=s=>s.replace(/[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g,m=>`<span class="w">${m}</span>`);
+const PH=s=>s.replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>');
+const SAY='<button class="say" type="button" aria-label="Vorlesen"></button>';
+const TRB='<button class="trb" type="button">Englisch zeigen</button>';
+function de(s){return s.split("\n").map(l=>`<span class="ln">${PH(W(esc(l)))}</span>`).join("")}
+function en(s){return PH(esc(s))}
+function block(deTxt,enTxt){return `<span class="s" lang="de">${de(deTxt)}</span>${SAY}${enTxt?TRB+`<span class="tr"><span class="s" lang="en">${en(enTxt)}</span>${SAY}</span>`:""}`}
+let h="",n="";
+S.forEach((sk,si)=>{const id="s"+si;
+ n+=`<a href="#${id}">${esc(sk.de)} · ${esc(sk.en)}</a>`;
+ h+=`<section class="skill" id="${id}"><div class="th"><span class="n">${si+1}</span><h2>${esc(sk.de)}</h2><span class="en">${esc(sk.en)}</span></div><div class="skill-info">${esc(sk.info)} <i>(${esc(sk.infoEn)})</i></div>`;
+ sk.parts.forEach(p=>{
+  const hasTx=p.rows.some(r=>r[2]);
+  h+=`<div class="part"><h3>${esc(p.t)}<span class="en">${esc(p.te)}</span></h3>`;
+  h+=`<div class="intro"><div class="blk"><span class="s" lang="de">${de(p.intro)}</span>${SAY}</div><div class="en-line c-en">${esc(p.introEn)}</div></div>`;
+  if(p.text)h+=`<div class="ttext"><div class="lab">Text</div><div class="blk">${block(p.text,p.textEn)}</div></div>`;
+  h+=`<div class="wrap"><table><thead><tr><th>#</th><th class="c-en">English</th><th class="c-de">Aufgabe</th>${hasTx?`<th class="c-tx">${p.hear?"Hörtext":"Text"}</th>`:""}<th class="c-ans">Lösung</th></tr></thead><tbody>`;
+  p.rows.forEach((r,j)=>{
+   h+=`<tr data-s="${esc((r.join(" ")).toLowerCase())}"><td class="num">${j+1}</td><td class="c-en" data-l="English"><span class="s" lang="en">${en(r[0])}</span>${SAY}</td><td class="c-de" data-l="Aufgabe">${block(r[1],"")}</td>`;
+   if(hasTx)h+=`<td class="c-tx${p.hear?" rv hear":""}" data-l="${p.hear?"Hörtext":"Text"}">${r[2]?block(r[2],r[3]):"—"}</td>`;
+   h+=`<td class="c-ans rv" data-l="Lösung">${block(r[4],r[5])}</td></tr>`});
+  h+=`</tbody></table></div></div>`});
+ h+=`</section>`});
+const main=document.getElementById("main"),nav=document.getElementById("nav");
+main.innerHTML=h;nav.innerHTML=n;
+document.querySelectorAll(".tg[data-k]").forEach(b=>b.onclick=()=>{const on=b.getAttribute("aria-pressed")==="true";b.setAttribute("aria-pressed",String(!on));document.body.classList.toggle("hide-"+b.dataset.k,on)});
+const pr=document.getElementById("pr");
+pr.onclick=()=>{const on=pr.getAttribute("aria-pressed")!=="true";pr.setAttribute("aria-pressed",String(on));document.body.classList.toggle("practice",on);resetAll()};
+function resetAll(){document.querySelectorAll(".shown,.en-on").forEach(c=>c.classList.remove("shown","en-on"));document.querySelectorAll(".trb").forEach(b=>b.textContent="Englisch zeigen")}
+
+/* ---- speech ---- */
+const synth=window.speechSynthesis;let rate=1,playing=null;
+if(!synth||typeof SpeechSynthesisUtterance==="undefined")document.body.classList.add("no-tts");
+function voices(lang){if(!synth)return[];const vs=synth.getVoices().filter(v=>v.lang&&v.lang.toLowerCase().startsWith(lang));
+ const pref=["premium","enhanced","google","natural","anna","helena","katja","markus","yannick","daniel","samantha"];
+ return vs.sort((a,b)=>{const sa=pref.findIndex(p=>a.name.toLowerCase().includes(p)),sb=pref.findIndex(p=>b.name.toLowerCase().includes(p));return (sa<0?99:sa)-(sb<0?99:sb)})}
+if(synth){synth.getVoices();synth.onvoiceschanged=()=>synth.getVoices()}
+function stopSay(){if(synth)synth.cancel();if(playing)playing.classList.remove("on");playing=null}
+function say(btn){if(!synth)return;if(playing===btn){stopSay();return}stopSay();
+ const s=btn.previousElementSibling;const lang=s.getAttribute("lang")||"de";
+ const lines=[...s.querySelectorAll(".ln")];const parts=(lines.length?lines.map(l=>l.textContent):[s.textContent]).map(t=>t.replace(/[\[\]]/g,"").trim()).filter(Boolean);
+ const vs=voices(lang);const spk={};let k=0;
+ playing=btn;btn.classList.add("on");
+ parts.forEach((t,i)=>{let v=vs[0]||null;const m=t.match(/^([A-Za-zÄÖÜäöüß ]{2,20}):\s*(.+)$/);
+  if(m&&lang==="de"&&!/^(Text \d|Frage|Antwort|Bitte|Reaktion|Prüfer|Bild|Thema)/.test(m[1])){if(!(m[1] in spk))spk[m[1]]=k++;v=vs[spk[m[1]]%Math.max(vs.length,1)]||v;t=m[2]}
+  const u=new SpeechSynthesisUtterance(t);u.lang=lang==="de"?"de-DE":"en-GB";u.rate=rate;if(v)u.voice=v;
+  if(i===parts.length-1)u.onend=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
+  u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
+  synth.speak(u)})}
+const sp=document.getElementById("sp");
+sp.onclick=()=>{rate=rate===1?0.75:1;sp.setAttribute("aria-pressed",String(rate!==1));sp.textContent=rate===1?"Tempo: normal":"Tempo: langsam"};
+
+/* ---- word translation ---- */
+const pop=document.getElementById("pop"),pw=document.getElementById("pw"),pb=document.getElementById("pb");
+let sampleP=null,cur=null,selEl=null;const cache={};
+function getSample(){if(!sampleP)sampleP=(window.claude&&window.claude.use)?window.claude.use("sample").catch(()=>null):Promise.resolve(null);return sampleP}
+function closePop(){pop.hidden=true;if(selEl)selEl.classList.remove("sel");selEl=null;if(cur)cur.abort();cur=null}
+function ctx(el){const s=el.closest(".s");return (s?s.textContent:el.textContent).trim()}
+function cget(k){let v=cache[k];if(!v){try{v=JSON.parse(localStorage.getItem("a1:"+k)||"null")}catch(e){}}return v}
+function cset(k,v){cache[k]=v;try{localStorage.setItem("a1:"+k,JSON.stringify(v))}catch(e){}}
+function errMsg(err){return '<span class="muted">'+(err&&err.code==="not_granted"?"Übersetzung wurde nicht erlaubt.":err&&err.code==="rate_limited"?"Zu viele Anfragen – bitte kurz warten.":"Übersetzung fehlgeschlagen. Versuch es noch einmal.")+'</span>'}
+async function lookup(el){
+ if(selEl)selEl.classList.remove("sel");selEl=el;el.classList.add("sel");
+ const word=el.textContent,sent=ctx(el);
+ pw.textContent=word;pb.innerHTML='<span class="muted">Übersetze …</span>';pop.hidden=false;
+ const key=word+"|"+sent;const hit=cget(key);if(hit){showWord(hit);return}
+ const sample=await getSample();
+ if(!sample){pb.innerHTML=FB(word,true);return}
+ if(cur)cur.abort();cur=new AbortController();const my=cur;
+ try{const d=await sample.json(`You are a German-English dictionary for an A1 learner. Translate the German word "${word}" as it is used in this sentence: "${sent}".
+Reply with ONLY a JSON object, no other text:
+{"en":"English meaning in this context (1-4 words)","lemma":"dictionary base form; for nouns include article, e.g. 'die Wohnung'","pos":"part of speech in English","plural":"plural form for nouns, else empty string","note":"one short learner note in English about the form used here, max 12 words"}`,{modelTier:"quick",signal:my.signal});
+  cset(key,d);if(selEl===el)showWord(d)}catch(err){if(err&&err.code==="cancelled")return;pb.innerHTML=errMsg(err)+FB(word,true)}}
+function showWord(d){const s=x=>esc(x||"");
+ pb.innerHTML=`<div class="pen">${s(d.en)}</div><div class="pm">${s(d.lemma)}${d.pos?' · '+s(d.pos):''}${d.plural?' · Pl. '+s(d.plural):''}</div>${d.note?`<div class="pn">${s(d.note)}</div>`:''}`}
+let multi=false,picked=[],pickBox=null;
+const mw=document.getElementById("mw");
+function hintPick(){pw.textContent="Mehrere Wörter";pb.innerHTML='<span class="muted">Tippe Wörter in einem Satz an. Dann „Übersetzen“.</span>'}
+mw.onclick=()=>{multi=!multi;mw.setAttribute("aria-pressed",String(multi));clearPick();closePop();if(multi){hintPick();pop.hidden=false}};
+function clearPick(){picked.forEach(x=>x.classList.remove("pk"));picked=[];pickBox=null}
+function phrase(){const all=[...pickBox.querySelectorAll(".w")];const idx=picked.map(x=>all.indexOf(x)).sort((a,b)=>a-b);
+ let out="";idx.forEach((k,i)=>{out+=(i===0?"":(k===idx[i-1]+1?" ":" … "))+all[k].textContent});return out}
+function renderPick(){if(!picked.length){hintPick();return}
+ pw.textContent=phrase();
+ pb.innerHTML='<div class="pact"><button type="button" class="pbtn" id="go">Übersetzen</button><button type="button" class="pbtn ghost" id="clr">Auswahl leeren</button></div>';
+ document.getElementById("go").onclick=translatePick;document.getElementById("clr").onclick=()=>{clearPick();renderPick()}}
+function pick(el){const box=el.closest(".s");if(pickBox&&pickBox!==box)clearPick();pickBox=box;
+ const i=picked.indexOf(el);if(i>=0){picked.splice(i,1);el.classList.remove("pk")}else{picked.push(el);el.classList.add("pk")}
+ if(!picked.length)pickBox=null;if(cur){cur.abort();cur=null}pop.hidden=false;renderPick()}
+async function translatePick(){const phr=phrase(),sent=pickBox.textContent.trim(),key="m|"+phr+"|"+sent;
+ pb.innerHTML='<span class="muted">Übersetze …</span>';const hit=cget(key);if(hit){showPick(hit);return}
+ const sample=await getSample();if(!sample){pb.innerHTML=FB(phr,false);return}
+ if(cur)cur.abort();cur=new AbortController();const my=cur;
+ try{const d=await sample.json(`You are a German-English tutor for an A1 learner. Translate the German words "${phr}" as they are used together in this text: "${sent}". ("…" means words were skipped between them.)
+Reply with ONLY a JSON object, no other text:
+{"en":"natural English translation of these words in this context","literal":"word-by-word gloss, e.g. 'ich (I) + habe (have) + gekocht (cooked)'","note":"one short learner note in English about grammar or idiom, max 15 words"}`,{modelTier:"quick",signal:my.signal});
+  cset(key,d);if(multi&&pickBox&&phrase()===phr)showPick(d)}catch(err){if(err&&err.code==="cancelled")return;pb.innerHTML=errMsg(err)+FB(phr,false)}}
+function showPick(d){const s=x=>esc(x||"");
+ pb.innerHTML=`<div class="pen">${s(d.en)}</div>${d.literal?`<div class="pm">${s(d.literal)}</div>`:''}${d.note?`<div class="pn">${s(d.note)}</div>`:''}<div class="pact"><button type="button" class="pbtn ghost" id="clr">Neue Auswahl</button></div>`;
+ document.getElementById("clr").onclick=()=>{clearPick();renderPick()}}
+document.getElementById("px").onclick=()=>{closePop();clearPick();if(multi){multi=false;mw.setAttribute("aria-pressed","false")}};
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closePop()});
+
+/* ---- clicks ---- */
+main.addEventListener("click",e=>{
+ const sb=e.target.closest(".say");if(sb){say(sb);return}
+ const rv=e.target.closest(".rv");
+ if(rv&&document.body.classList.contains("practice")&&!rv.classList.contains("shown")){rv.classList.add("shown");return}
+ const tb=e.target.closest(".trb");if(tb){const c=tb.parentElement;c.classList.toggle("en-on");tb.textContent=c.classList.contains("en-on")?"Englisch ausblenden":"Englisch zeigen";return}
+ const w=e.target.closest(".w");if(w){multi?pick(w):lookup(w)}});
+
+/* ---- search ---- */
+const q=document.getElementById("q"),empty=document.getElementById("empty");
+q.oninput=()=>{const v=q.value.trim().toLowerCase();let any=false;
+ document.querySelectorAll(".part").forEach(p=>{let vis=0;p.querySelectorAll("tbody tr").forEach(tr=>{const m=!v||tr.dataset.s.includes(v);tr.style.display=m?"":"none";if(m)vis++});p.style.display=vis?"":"none";if(vis)any=true});
+ document.querySelectorAll(".skill").forEach(s=>{s.style.display=[...s.querySelectorAll(".part")].some(p=>p.style.display!=="none")?"":"none"});
+ empty.style.display=any?"none":"block"};
+</script>
+</body>
+</html>
