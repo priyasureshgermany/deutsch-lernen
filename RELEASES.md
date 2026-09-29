@@ -1,5 +1,10 @@
 # Releases
 
+## 1.3.0 — 2026-09-29
+- New: tab „Gespräche“ — 12 everyday conversations (doctor, paediatrician, specialist, internet provider, supermarket, restaurant, bank, DB ticket, Ausländerbehörde, landlord, pharmacy, friends talking about saving) with two-voice playback and „Rolle üben“
+- New: tab „Briefe“ — 12 everyday letters in B1-exam style (school, Kindergeld, landlord, cancellation, leave, sick note, complaint, Ausländerbehörde, Kita, health insurer, change of address, friend) with task, model letter and „Selbst schreiben“
+- New: B1 Grammatik topic „Zeitformen“ — all six tenses and how German expresses the continuous
+
 ## 1.2.0 — 2026-09-29
 - New: fifth tab „B1 Grammatik“ — Präpositionen, Konjunktionen, Adjektive, Verben mit Präposition, Verben mit Dativ, Relativsätze, Konjunktiv II and Passiv
 - New: pick a word on the left, see four to five B1 example sentences on the right — each a different use: case, meaning, position in the sentence or tense — with read-aloud, English translation and tap-to-translate for every word

@@ -26,7 +26,9 @@
     /* Dialogue lines arrive joined with no space ("…Vollkornbrot?Kundin: Ja"),
        so a sentence ends at . ! ? whether or not a space follows; a colon only
        with one, so "14:32" stays whole while "Kundin: Ja" loses its speaker. */
-    const parts = text.split(/(?<=[.!?])\s*|(?<=:)\s+|\n+/).map(s => s.trim()).filter(Boolean);
+    /* Abbreviations end in a dot but not a sentence: park their dot first. */
+    text = text.replace(/\b(Dr|Nr|Str|bzw|ca|usw|z\. ?B|Hr|Fr)\./g, "$1․");
+    const parts = text.split(/(?<=[.!?])\s*|(?<=:)\s+|\n+/).map(s => s.trim().replace(/․/g, ".")).filter(Boolean);
     const want = words.map(w => w.toLowerCase());
     const hit = parts.find(p => { const l = p.toLowerCase(); return want.every(w => l.includes(w)); });
     return (hit || text).slice(0, 400);
