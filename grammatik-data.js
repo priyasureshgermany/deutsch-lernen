@@ -815,5 +815,374 @@ window.GD = [
    ["Frage (How do you …?)", "Wie [[schreibt man]] das?", "How do you spell that?"],
    ["Ratschlag mit sollte", "[[Man sollte]] jeden Tag genug Wasser trinken.", "You should drink enough water every day."]]}
  ]}
+]},
+
+{id:"modal", de:"Modalverben", en:"Modal verbs",
+ intro:"Modalverb auf Position 2, Infinitiv (ohne zu) am Ende. In der Vergangenheit benutzt man meist das Präteritum: konnte, musste, durfte, sollte, wollte.",
+ groups:[
+ {g:"Die Modalverben", items:[
+  {w:"können", tag:"Fähigkeit / Möglichkeit", ex:[
+   ["Fähigkeit (can, be able to)", "Meine Tochter [[kann]] schon sehr gut [[schwimmen]].", "My daughter can already swim very well."],
+   ["Möglichkeit (it's possible)", "Hier [[kann]] man mit Karte [[bezahlen]].", "You can pay by card here."],
+   ["höfliche Bitte in der Frage", "[[Kannst]] du mir bitte das Salz [[geben]]?", "Can you pass me the salt, please?"],
+   ["Präteritum: konnte", "Gestern [[konnte]] ich wegen des Streiks nicht zur Arbeit [[fahren]].", "Yesterday I couldn't get to work because of the strike."],
+   ["ohne Infinitiv: eine Sprache können", "Er [[kann]] sehr gut Deutsch.", "He knows German very well."]]},
+  {w:"müssen", tag:"Pflicht / Notwendigkeit", ex:[
+   ["Pflicht (must, have to)", "Ich [[muss]] den Antrag bis Freitag [[abgeben]].", "I have to hand in the application by Friday."],
+   ["Notwendigkeit, im Nebensatz am Ende", "Ich kann nicht kommen, weil ich länger [[arbeiten muss]].", "I can't come because I have to work late."],
+   ["Präteritum: musste", "Wir [[mussten]] eine Stunde auf den Arzt [[warten]].", "We had to wait an hour for the doctor."],
+   ["nicht müssen = nicht nötig (don't have to)", "Sie [[müssen]] nicht [[warten]], Sie können gleich reinkommen.", "You don't have to wait; you can come straight in."],
+   ["sichere Vermutung (must be)", "Das Licht ist an – er [[muss]] zu Hause [[sein]].", "The light is on – he must be at home."]]},
+  {w:"dürfen", tag:"Erlaubnis / Verbot", ex:[
+   ["Erlaubnis (may, be allowed to)", "Nach der Prüfung [[dürfen]] wir früher nach Hause [[gehen]].", "After the exam we're allowed to go home earlier."],
+   ["Verbot: nicht dürfen (mustn't)", "Im Krankenhaus [[darf]] man nicht [[rauchen]].", "You mustn't smoke in the hospital."],
+   ["höfliche Frage: Darf ich …?", "[[Darf]] ich das Fenster [[öffnen]]?", "May I open the window?"],
+   ["Präteritum: durfte", "Als Kind [[durfte]] ich abends nicht fernsehen.", "As a child I wasn't allowed to watch TV in the evenings."],
+   ["im Geschäft: Was darf es sein?", "Guten Tag, was [[darf]] es [[sein]]?", "Hello, what can I get you?"]]},
+  {w:"sollen", tag:"Auftrag / Rat", ex:[
+   ["Auftrag von einer anderen Person", "Der Arzt sagt, ich [[soll]] dreimal am Tag eine Tablette [[nehmen]].", "The doctor says I should take a tablet three times a day."],
+   ["Frage: Soll ich …? (Shall I …?)", "[[Soll]] ich dir beim Tragen [[helfen]]?", "Shall I help you carry that?"],
+   ["Präteritum: sollte (was supposed to)", "Der Handwerker [[sollte]] um neun Uhr [[kommen]], aber er ist noch nicht da.", "The technician was supposed to come at nine, but he isn't here yet."],
+   ["Nachricht weitergeben", "Frau Weber hat angerufen. Sie [[sollen]] sie bitte [[zurückrufen]].", "Ms Weber called. You're to call her back, please."],
+   ["angeblich (is said to be)", "Das neue Restaurant [[soll]] sehr gut [[sein]].", "The new restaurant is said to be very good."]]},
+  {w:"wollen", tag:"Wille / Plan", ex:[
+   ["Plan, fester Wunsch (want to)", "Nächstes Jahr [[will]] ich die B1-Prüfung [[machen]].", "Next year I want to take the B1 exam."],
+   ["Präteritum: wollte", "Ich [[wollte]] dich gestern [[anrufen]], aber ich hatte keine Zeit.", "I wanted to call you yesterday, but I didn't have time."],
+   ["Vorschlag: Wollen wir …? (Shall we …?)", "[[Wollen]] wir am Samstag zusammen [[kochen]]?", "Shall we cook together on Saturday?"],
+   ["höflicher: möchten statt wollen", "Ich [[möchte]] bitte einen Termin [[vereinbaren]].", "I'd like to make an appointment, please."]]},
+  {w:"möchten / mögen", tag:"Wunsch / gern haben", ex:[
+   ["möchten + Infinitiv: höflicher Wunsch", "Ich [[möchte]] gern ein Konto [[eröffnen]].", "I'd like to open an account."],
+   ["möchten + Nomen (bestellen)", "Ich [[möchte]] einen Kaffee, bitte.", "I'd like a coffee, please."],
+   ["mögen + Nomen = gern haben (like)", "Ich [[mag]] keinen scharfen Käse.", "I don't like strong cheese."],
+   ["möchten in der Vergangenheit: wollte", "Ich [[wollte]] eigentlich mitkommen, aber ich war krank.", "I actually wanted to come along, but I was ill."],
+   ["im formellen Brief", "Außerdem [[möchte]] ich [[wissen]], wann der Kurs beginnt.", "I would also like to know when the course starts."]]},
+  {w:"nicht brauchen zu", tag:"= nicht müssen", ex:[
+   ["nicht brauchen + zu = nicht müssen", "Du [[brauchst]] nicht [[zu]] kommen, ich schaffe das allein.", "You don't need to come; I can manage on my own."],
+   ["nur … zu brauchen (only need to)", "Sie [[brauchen]] das Formular nur [[zu]] unterschreiben.", "You only need to sign the form."],
+   ["kein + Nomen brauchen", "Für die Anmeldung [[brauchen]] Sie [[keinen]] Termin.", "You don't need an appointment for registration."],
+   ["Präteritum", "Ich [[brauchte]] nicht lange [[zu]] warten.", "I didn't have to wait long."]]},
+  {w:"Modalverb im Satz", tag:"Wortstellung", ex:[
+   ["Hauptsatz: Satzklammer", "Ich [[kann]] heute leider nicht zum Kurs [[kommen]].", "Unfortunately I can't come to the course today."],
+   ["Nebensatz: Modalverb ganz am Ende", "Ich weiß nicht, ob ich morgen [[kommen kann]].", "I don't know whether I can come tomorrow."],
+   ["trennbares Verb bleibt zusammen", "Ich [[muss]] morgen früh [[aufstehen]].", "I have to get up early tomorrow."],
+   ["Perfekt: doppelter Infinitiv (selten, meist Präteritum)", "Ich [[habe]] gestern lange [[arbeiten müssen]].", "I had to work late yesterday."]]}
+ ]}
+]},
+
+{id:"refl", de:"Reflexive Verben", en:"Reflexive verbs",
+ intro:"Das Reflexivpronomen bezieht sich auf das Subjekt: ich → mich/mir, du → dich/dir, er/sie/es → sich, wir → uns, ihr → euch, sie/Sie → sich. Mit einem Akkusativobjekt steht das Reflexivpronomen im Dativ.",
+ groups:[
+ {g:"Formen und Regeln", items:[
+  {w:"sich + Akkusativ", tag:"mich / dich / sich", ex:[
+   ["Präsens", "Ich [[freue mich]] auf das Wochenende.", "I'm looking forward to the weekend."],
+   ["Perfekt: mit haben", "Wir [[haben uns]] im Deutschkurs [[kennengelernt]].", "We met on the German course."],
+   ["Imperativ (du / Sie)", "[[Beeil dich]]! – [[Setzen Sie sich]] bitte.", "Hurry up! – Please sit down."],
+   ["im Nebensatz", "Ich hoffe, dass du [[dich]] bald besser [[fühlst]].", "I hope you'll feel better soon."]]},
+  {w:"sich + Dativ", tag:"mir / dir + Akkusativ", ex:[
+   ["Körperteil = Akkusativ, Pronomen = Dativ", "Ich [[wasche mir]] die Hände.", "I wash my hands."],
+   ["sich etwas kaufen", "Ich [[kaufe mir]] morgen ein neues Handy.", "I'm going to buy myself a new phone tomorrow."],
+   ["sich etwas vorstellen (imagine)", "[[Stell dir]] vor, ich habe die Prüfung bestanden!", "Imagine, I passed the exam!"],
+   ["sich Sorgen machen (worry)", "[[Mach dir]] keine Sorgen, alles wird gut.", "Don't worry, everything will be fine."],
+   ["sich etwas ansehen, Perfekt", "Wir [[haben uns]] die Wohnung gestern [[angesehen]].", "We looked at the flat yesterday."]]},
+  {w:"reflexiv oder nicht?", tag:"Bedeutung", ex:[
+   ["waschen: jemand anderen", "Ich [[wasche]] das Baby.", "I wash the baby."],
+   ["sich waschen: sich selbst", "Das Kind [[wäscht sich]] schon allein.", "The child already washes himself."],
+   ["jemanden ärgern (annoy someone)", "Mein Bruder [[ärgert]] mich immer.", "My brother always annoys me."],
+   ["sich ärgern (be annoyed)", "Ich [[ärgere mich]] über die Verspätung.", "I'm annoyed about the delay."],
+   ["anmelden: jemand anderen / sich selbst", "Ich [[melde]] meinen Sohn im Sportverein an und [[melde mich]] für den Kurs an.", "I register my son at the sports club and sign myself up for the course."]]},
+  {w:"einander: uns / euch / sich", tag:"reziprok", ex:[
+   ["sich treffen (meet each other)", "Wir [[treffen uns]] jeden Freitag im Café.", "We meet in the café every Friday."],
+   ["sich verstehen (get on)", "Meine Kollegen und ich [[verstehen uns]] sehr gut.", "My colleagues and I get on very well."],
+   ["sich streiten (argue)", "Die Kinder [[streiten sich]] oft um das Tablet.", "The children often argue about the tablet."],
+   ["Frage mit ihr / euch", "Woher [[kennt ihr euch]]?", "How do you know each other?"]]},
+  {w:"Position von sich", tag:"Wortstellung", ex:[
+   ["nach dem konjugierten Verb", "Er [[interessiert sich]] für Fußball.", "He's interested in football."],
+   ["Inversion mit Nomen: sich vor dem Subjekt", "Morgen [[trifft sich]] das Team im Konferenzraum.", "Tomorrow the team is meeting in the conference room."],
+   ["Inversion mit Pronomen: sich nach dem Subjekt", "Morgen [[treffen wir uns]] im Konferenzraum.", "Tomorrow we're meeting in the conference room."],
+   ["Nebensatz: sich früh im Satz", "Ich weiß, dass [[sie sich]] sehr über das Geschenk gefreut hat.", "I know that she was very pleased about the present."]]},
+  {w:"wichtige B1-Verben", tag:"immer mit sich", ex:[
+   ["sich beeilen (hurry)", "Wir müssen [[uns beeilen]], der Zug fährt gleich.", "We have to hurry; the train is leaving soon."],
+   ["sich erkälten (catch a cold)", "Ich [[habe mich]] beim Fußball [[erkältet]].", "I caught a cold playing football."],
+   ["sich ausruhen (rest)", "Am Wochenende möchte ich [[mich]] einfach [[ausruhen]].", "At the weekend I just want to rest."],
+   ["sich entscheiden (decide)", "Ich kann [[mich]] nicht [[entscheiden]], welche Wohnung ich nehme.", "I can't decide which flat to take."],
+   ["sich verabschieden (say goodbye)", "Er [[hat sich]] von allen Kollegen [[verabschiedet]].", "He said goodbye to all his colleagues."]]}
+ ]}
+]},
+
+{id:"trenn", de:"Trennbare & untrennbare Verben", en:"Separable & inseparable verbs",
+ intro:"Trennbare Vorsilben (an-, auf-, aus-, ein-, mit-, zurück-, fern- …) sind betont und stehen im Hauptsatz am Ende. Untrennbare Vorsilben (be-, ver-, er-, ent-, emp-, ge-, zer-, miss-) bleiben immer am Verb, und im Perfekt gibt es kein ge-.",
+ groups:[
+ {g:"Trennbar", items:[
+  {w:"im Präsens", tag:"Vorsilbe am Ende", ex:[
+   ["Hauptsatz: Vorsilbe ans Ende", "Ich [[rufe]] dich morgen [[an]].", "I'll call you tomorrow."],
+   ["Frage", "Wann [[kommst]] du nach Hause [[zurück]]?", "When are you coming back home?"],
+   ["Imperativ", "[[Mach]] bitte das Licht [[aus]]!", "Please switch off the light!"],
+   ["Nebensatz: zusammen am Ende", "Ich gehe früh ins Bett, weil ich um fünf [[aufstehe]].", "I go to bed early because I get up at five."],
+   ["mit Modalverb: zusammen am Ende", "Ich muss heute noch [[einkaufen]].", "I still have to do the shopping today."]]},
+  {w:"im Perfekt", tag:"ge in der Mitte", ex:[
+   ["an-ge-rufen", "Hast du den Arzt schon [[angerufen]]?", "Have you called the doctor yet?"],
+   ["ein-ge-kauft", "Ich habe für das Wochenende [[eingekauft]].", "I've done the shopping for the weekend."],
+   ["mit sein: auf-ge-standen", "Heute bin ich erst um neun [[aufgestanden]].", "Today I didn't get up until nine."],
+   ["unregelmäßig: mit-ge-bracht", "Sie hat einen Kuchen [[mitgebracht]].", "She brought a cake."],
+   ["mit sein: zurück-ge-kommen", "Wir sind gestern aus dem Urlaub [[zurückgekommen]].", "We came back from holiday yesterday."]]},
+  {w:"mit zu", tag:"zu in der Mitte", ex:[
+   ["an-zu-rufen", "Vergiss nicht, deine Mutter [[anzurufen]].", "Don't forget to call your mother."],
+   ["auf-zu-räumen", "Ich habe keine Lust, die Küche [[aufzuräumen]].", "I don't feel like tidying the kitchen."],
+   ["mit um … zu", "Ich gehe zur Bank, um Geld [[abzuheben]].", "I'm going to the bank to withdraw money."],
+   ["mit-zu-nehmen", "Es ist wichtig, den Pass [[mitzunehmen]].", "It's important to take your passport with you."]]}
+ ]},
+ {g:"Untrennbar und Bedeutung", items:[
+  {w:"untrennbare Vorsilben", tag:"be- ver- er- ent- emp-", ex:[
+   ["be-: Perfekt ohne ge", "Ich habe die Rechnung schon [[bezahlt]].", "I've already paid the bill."],
+   ["ver-: Vorsilbe bleibt am Verb", "Ich [[verstehe]] die Frage nicht.", "I don't understand the question."],
+   ["er-: Perfekt ohne ge", "Die Lehrerin hat die Grammatik gut [[erklärt]].", "The teacher explained the grammar well."],
+   ["ent-: auch im Nebensatz gleich", "Ich weiß nicht, ob ich mich richtig [[entschieden]] habe.", "I don't know whether I decided correctly."],
+   ["emp-: empfehlen", "Was [[empfehlen]] Sie mir?", "What do you recommend?"]]},
+  {w:"kommen + Vorsilbe", tag:"neue Bedeutung", ex:[
+   ["ankommen (arrive) – trennbar", "Der Zug [[kommt]] um 18 Uhr in Hamburg [[an]].", "The train arrives in Hamburg at 6 pm."],
+   ["bekommen (get, receive) – untrennbar", "Ich habe heute einen Brief [[bekommen]].", "I received a letter today."],
+   ["mitkommen (come along) – trennbar", "[[Kommst]] du am Samstag [[mit]]?", "Are you coming along on Saturday?"],
+   ["vorkommen (happen) – trennbar", "So etwas [[kommt]] leider oft [[vor]].", "Unfortunately that sort of thing happens often."]]},
+  {w:"stehen + Vorsilbe", tag:"neue Bedeutung", ex:[
+   ["aufstehen (get up) – trennbar", "Ich [[stehe]] jeden Tag um sechs [[auf]].", "I get up at six every day."],
+   ["verstehen (understand) – untrennbar", "[[Verstehen]] Sie mich?", "Do you understand me?"],
+   ["bestehen (pass) – untrennbar", "Ich habe die Prüfung [[bestanden]]!", "I passed the exam!"],
+   ["entstehen (arise) – untrennbar", "Dadurch [[entstehen]] keine zusätzlichen Kosten.", "No additional costs arise as a result."]]},
+  {w:"um- / über- / wieder-", tag:"mal trennbar, mal nicht", ex:[
+   ["umziehen (move house) – trennbar", "Wir [[ziehen]] nächsten Monat [[um]].", "We're moving next month."],
+   ["umsteigen (change trains) – trennbar", "In Hannover [[steigen]] Sie in den ICE [[um]].", "In Hanover you change to the ICE."],
+   ["übersetzen (translate) – untrennbar", "Kannst du mir diesen Brief [[übersetzen]]? – Ich habe ihn schon [[übersetzt]].", "Can you translate this letter for me? – I've already translated it."],
+   ["wiederholen (repeat) – untrennbar", "Könnten Sie das bitte [[wiederholen]]?", "Could you repeat that, please?"]]}
+ ]}
+]},
+
+{id:"zuinf", de:"Infinitiv mit zu", en:"Infinitive with zu",
+ intro:"Nach vielen Adjektiven, Nomen und Verben folgt zu + Infinitiv am Satzende, oft mit Komma. Nach Modalverben, werden, lassen und Bewegungsverben wie gehen steht der Infinitiv ohne zu.",
+ groups:[
+ {g:"Wann zu?", items:[
+  {w:"Es ist … zu …", tag:"nach Adjektiv", ex:[
+   ["Es ist wichtig, … zu", "Es ist wichtig, jeden Tag ein bisschen [[zu]] üben.", "It's important to practise a little every day."],
+   ["Es ist schwer / leicht, … zu", "Es ist nicht leicht, in Frankfurt eine Wohnung [[zu]] finden.", "It isn't easy to find a flat in Frankfurt."],
+   ["Es macht Spaß, … zu", "Es macht mir Spaß, neue Leute kennen[[zulernen]].", "I enjoy meeting new people."],
+   ["Es ist verboten, … zu (Regeln)", "Es ist verboten, hier [[zu]] parken.", "It is forbidden to park here."]]},
+  {w:"Nomen + zu", tag:"Lust, Zeit, Angst …", ex:[
+   ["keine Lust haben, … zu", "Ich habe heute keine Lust, [[zu]] kochen.", "I don't feel like cooking today."],
+   ["keine Zeit haben, … zu", "Leider habe ich keine Zeit, dich vom Bahnhof ab[[zuholen]].", "Unfortunately I don't have time to pick you up from the station."],
+   ["die Möglichkeit haben, … zu", "Im Kurs haben wir die Möglichkeit, viel [[zu]] sprechen.", "In the course we have the opportunity to speak a lot."],
+   ["Angst haben, … zu", "Viele haben Angst, Fehler [[zu]] machen.", "Many people are afraid of making mistakes."]]},
+  {w:"Verb + zu", tag:"versuchen, vergessen …", ex:[
+   ["versuchen, … zu (try)", "Ich versuche, jeden Tag zehn neue Wörter [[zu]] lernen.", "I try to learn ten new words every day."],
+   ["vergessen, … zu (forget)", "Ich habe vergessen, die Tür ab[[zuschließen]].", "I forgot to lock the door."],
+   ["anfangen / aufhören, … zu (start / stop)", "Es hat angefangen [[zu]] regnen.", "It has started to rain."],
+   ["vorhaben, … zu (plan)", "Wir haben vor, im Sommer nach Italien [[zu]] fahren.", "We're planning to go to Italy in the summer."],
+   ["hoffen, … zu (hope)", "Ich hoffe, Sie bald persönlich kennen[[zulernen]].", "I hope to meet you in person soon."]]},
+  {w:"ohne zu", tag:"Modalverb, werden, lassen, gehen", ex:[
+   ["nach Modalverben", "Ich muss morgen früh [[aufstehen]].", "I have to get up early tomorrow."],
+   ["nach werden (Futur)", "Ich werde dich morgen [[anrufen]].", "I'll call you tomorrow."],
+   ["nach lassen", "Ich lasse mein Fahrrad [[reparieren]].", "I'm having my bike repaired."],
+   ["nach gehen / fahren (Bewegung)", "Wir gehen heute Abend [[essen]].", "We're going out to eat tonight."],
+   ["nach sehen / hören", "Ich höre die Kinder im Garten [[spielen]].", "I can hear the children playing in the garden."]]},
+  {w:"zu oder dass?", tag:"gleiches Subjekt?", ex:[
+   ["gleiches Subjekt → zu", "Ich hoffe, die Prüfung [[zu]] bestehen.", "I hope to pass the exam."],
+   ["anderes Subjekt → dass", "Ich hoffe, [[dass]] du die Prüfung bestehst.", "I hope that you pass the exam."],
+   ["beides möglich bei gleichem Subjekt", "Ich freue mich, [[dass]] ich dich sehe. = Ich freue mich, dich [[zu]] sehen.", "I'm glad to see you."],
+   ["Bitte an eine Person → zu", "Ich bitte Sie, mir die Unterlagen [[zu]] schicken.", "I ask you to send me the documents."]]},
+  {w:"haben / sein + zu", tag:"= müssen / können", ex:[
+   ["haben + zu = müssen (active)", "Ich habe heute noch viel [[zu]] tun.", "I still have a lot to do today."],
+   ["nichts zu … haben", "Du hast hier nichts [[zu]] sagen.", "You have no say here."],
+   ["sein + zu = muss gemacht werden (formell)", "Die Rechnung ist bis zum 15. [[zu]] bezahlen.", "The invoice is to be paid by the 15th."],
+   ["sein + zu = kann gemacht werden", "Das Problem ist leicht [[zu]] lösen.", "The problem is easy to solve."]]}
+ ]}
+]},
+
+{id:"indirekt", de:"Indirekte Fragen", en:"Indirect questions",
+ intro:"Indirekte Fragen sind höflicher. Das Fragewort bleibt, aber das Verb geht ans Ende: Wann kommt der Bus? → Wissen Sie, wann der Bus kommt? Ja/Nein-Fragen werden mit ob gebildet.",
+ groups:[
+ {g:"Fragewörter", items:[
+  {w:"wann / wo / wie", tag:"Verb am Ende", ex:[
+   ["wann: Zeit", "Können Sie mir sagen, [[wann]] der nächste Zug nach Köln [[fährt]]?", "Can you tell me when the next train to Cologne leaves?"],
+   ["wo: Ort", "Wissen Sie, [[wo]] hier die nächste Apotheke [[ist]]?", "Do you know where the nearest pharmacy is?"],
+   ["wie: Art und Weise", "Ich möchte wissen, [[wie]] man sich für den Kurs [[anmeldet]].", "I'd like to know how to sign up for the course."],
+   ["wie + Adjektiv: wie lange, wie oft", "Wissen Sie, [[wie lange]] die Reparatur [[dauert]]?", "Do you know how long the repair will take?"]]},
+  {w:"warum / was / wer", tag:"Verb am Ende", ex:[
+   ["warum: Grund", "Ich verstehe nicht, [[warum]] der Bus schon wieder Verspätung [[hat]].", "I don't understand why the bus is late again."],
+   ["was: Sache", "Weißt du, [[was]] das auf Deutsch [[heißt]]?", "Do you know what that's called in German?"],
+   ["wer: Person (Subjekt)", "Können Sie mir sagen, [[wer]] für die Anmeldung zuständig [[ist]]?", "Can you tell me who is responsible for registration?"],
+   ["mit wem / für wen: Präposition + Fragewort", "Ich weiß nicht, [[mit wem]] ich darüber sprechen [[soll]].", "I don't know who I should talk to about it."]]},
+  {w:"wie viel / welche", tag:"Verb am Ende", ex:[
+   ["wie viel: Preis, Menge", "Könnten Sie mir sagen, [[wie viel]] der Kurs [[kostet]]?", "Could you tell me how much the course costs?"],
+   ["welche + Nomen", "Wissen Sie, [[welche]] Unterlagen ich mitbringen [[muss]]?", "Do you know which documents I need to bring?"],
+   ["wie viele + Plural", "Ich möchte wissen, [[wie viele]] Teilnehmer im Kurs [[sind]].", "I'd like to know how many participants there are in the course."],
+   ["woher / wohin", "Er hat mich gefragt, [[woher]] ich [[komme]].", "He asked me where I come from."]]},
+  {w:"ob", tag:"Ja/Nein-Frage", ex:[
+   ["Ist der Zug pünktlich? → ob", "Wissen Sie, [[ob]] der Zug pünktlich [[ist]]?", "Do you know whether the train is on time?"],
+   ["mit Modalverb am Ende", "Ich möchte fragen, [[ob]] ich den Termin verschieben [[kann]].", "I'd like to ask whether I can postpone the appointment."],
+   ["mit Perfekt", "Weißt du, [[ob]] das Paket schon [[angekommen ist]]?", "Do you know whether the parcel has arrived yet?"],
+   ["ob … oder", "Er hat nicht gesagt, [[ob]] er heute [[oder]] morgen kommt.", "He didn't say whether he's coming today or tomorrow."]]}
+ ]},
+ {g:"Höflich fragen", items:[
+  {w:"Einleitungen", tag:"höflich", ex:[
+   ["Können / Könnten Sie mir sagen, …?", "[[Könnten Sie mir sagen]], wann die Praxis geöffnet hat?", "Could you tell me when the practice is open?"],
+   ["Wissen Sie, …?", "[[Wissen Sie]], ob man hier parken darf?", "Do you know whether you're allowed to park here?"],
+   ["Ich möchte (gern) wissen, … (Brief)", "[[Ich möchte gern wissen]], ob der Preis die Prüfungsgebühr enthält.", "I would like to know whether the price includes the exam fee."],
+   ["Ich frage mich, … (I wonder)", "[[Ich frage mich]], warum niemand ans Telefon geht.", "I wonder why nobody answers the phone."],
+   ["Mich würde interessieren, … (formell)", "[[Mich würde interessieren]], wie viele Stunden der Kurs hat.", "I'd be interested to know how many hours the course has."]]},
+  {w:"direkt → indirekt", tag:"umformen", ex:[
+   ["Wo ist der Bahnhof? →", "Entschuldigung, wissen Sie, [[wo der Bahnhof ist]]?", "Excuse me, do you know where the station is?"],
+   ["Wann beginnt der Kurs? →", "Können Sie mir sagen, [[wann der Kurs beginnt]]?", "Can you tell me when the course starts?"],
+   ["Kommt er morgen? →", "Ich weiß nicht, [[ob er morgen kommt]].", "I don't know whether he's coming tomorrow."],
+   ["Was hat der Arzt gesagt? →", "Erzähl mal, [[was der Arzt gesagt hat]].", "Tell me what the doctor said."]]}
+ ]}
+]},
+
+{id:"ndekl", de:"n-Deklination", en:"Weak nouns (n-declension)",
+ intro:"Einige maskuline Nomen bekommen in allen Kasus außer im Nominativ Singular die Endung -(e)n: vor allem Personen und Tiere auf -e (der Kollege, der Junge) und Wörter auf -ent, -ant, -ist (der Student, der Praktikant, der Polizist) sowie der Herr, der Mensch, der Nachbar.",
+ groups:[
+ {g:"Wichtige Nomen", items:[
+  {w:"der Kollege", tag:"-n", ex:[
+   ["Nominativ: ohne -n", "Mein neuer [[Kollege]] kommt aus Spanien.", "My new colleague comes from Spain."],
+   ["Akkusativ: -n", "Kennst du den neuen [[Kollegen]] schon?", "Do you already know the new colleague?"],
+   ["Dativ: -n", "Ich habe mit einem [[Kollegen]] zu Mittag gegessen.", "I had lunch with a colleague."],
+   ["Genitiv: -n", "Das ist der Schreibtisch meines [[Kollegen]].", "That's my colleague's desk."]]},
+  {w:"der Kunde", tag:"-n", ex:[
+   ["Nominativ", "Der [[Kunde]] möchte die Jacke umtauschen.", "The customer wants to exchange the jacket."],
+   ["Akkusativ", "Bitte rufen Sie den [[Kunden]] zurück.", "Please call the customer back."],
+   ["Dativ", "Ich habe dem [[Kunden]] alles erklärt.", "I explained everything to the customer."],
+   ["Plural: -n", "Unsere [[Kunden]] sind sehr zufrieden.", "Our customers are very satisfied."]]},
+  {w:"der Nachbar", tag:"-n", ex:[
+   ["Nominativ", "Unser [[Nachbar]] hat ein Paket für uns angenommen.", "Our neighbour took in a parcel for us."],
+   ["Akkusativ", "Frag doch den [[Nachbarn]], ob er dir hilft.", "Why don't you ask the neighbour whether he'll help you?"],
+   ["Dativ", "Ich habe dem [[Nachbarn]] den Schlüssel gegeben.", "I gave the neighbour the key."],
+   ["Genitiv", "Das Auto des [[Nachbarn]] steht vor unserer Garage.", "The neighbour's car is parked in front of our garage."]]},
+  {w:"der Herr", tag:"-n (Plural -en)", ex:[
+   ["Anrede im Brief: Nominativ, ohne -n", "Sehr geehrter [[Herr]] Keller, …", "Dear Mr Keller, …"],
+   ["Akkusativ: Herrn", "Ich möchte bitte [[Herrn]] Weber sprechen.", "I'd like to speak to Mr Weber, please."],
+   ["Dativ: Herrn", "Ich habe [[Herrn]] Schmidt eine E-Mail geschrieben.", "I wrote Mr Schmidt an email."],
+   ["Plural: Herren", "Sehr geehrte Damen und [[Herren]], …", "Dear Sir or Madam, …"]]},
+  {w:"der Junge / der Mensch", tag:"-n / -en", ex:[
+   ["Junge, Nominativ", "Der [[Junge]] spielt im Garten.", "The boy is playing in the garden."],
+   ["Junge, Dativ", "Ich habe dem [[Jungen]] den Weg gezeigt.", "I showed the boy the way."],
+   ["Mensch, Akkusativ: -en", "Ich kenne keinen [[Menschen]] in dieser Stadt.", "I don't know anyone in this city."],
+   ["Mensch, Plural", "Viele [[Menschen]] fahren im Sommer in den Urlaub.", "Many people go on holiday in summer."]]},
+  {w:"-ent / -ant / -ist", tag:"-en", ex:[
+   ["der Student: Akkusativ", "Wir suchen einen [[Studenten]] für die Nachhilfe.", "We're looking for a student to give tutoring."],
+   ["der Praktikant: Dativ", "Ich habe dem [[Praktikanten]] das Büro gezeigt.", "I showed the intern the office."],
+   ["der Polizist: Akkusativ", "Frag doch den [[Polizisten]] nach dem Weg.", "Why don't you ask the police officer for directions?"],
+   ["der Patient: Genitiv", "Die Daten des [[Patienten]] sind geschützt.", "The patient's data is protected."]]},
+  {w:"der Name", tag:"-n, Genitiv -ns", ex:[
+   ["Nominativ", "Mein [[Name]] ist [Ihr Name].", "My name is [your name]."],
+   ["Akkusativ: Namen", "Können Sie bitte Ihren [[Namen]] buchstabieren?", "Could you spell your name, please?"],
+   ["Dativ: Namen", "Unter welchem [[Namen]] haben Sie reserviert?", "Under which name did you book?"],
+   ["Genitiv: Namens", "Die Schreibweise des [[Namens]] ist falsch.", "The spelling of the name is wrong."]]}
+ ]}
+]},
+
+{id:"neg", de:"Negation", en:"Negation",
+ intro:"kein verneint Nomen mit ein oder ohne Artikel. nicht verneint alles andere: Verben, Adjektive, Nomen mit der/die/das oder mein. nicht steht meist am Satzende, aber vor Adjektiven, Präpositionalergänzungen und dem zweiten Verbteil.",
+ groups:[
+ {g:"nicht und kein", items:[
+  {w:"kein", tag:"statt ein / ohne Artikel", ex:[
+   ["ein → kein", "Ich habe [[kein]] Auto.", "I don't have a car."],
+   ["Akkusativ maskulin: keinen", "Für die Anmeldung brauchen Sie [[keinen]] Termin.", "You don't need an appointment to register."],
+   ["ohne Artikel → kein (Plural, Nomen ohne Artikel)", "Wir haben [[keine]] Kinder und [[keine]] Zeit für Haustiere.", "We have no children and no time for pets."],
+   ["kein … mehr (no more)", "Es gibt [[keine]] Brötchen [[mehr]].", "There are no more rolls."]]},
+  {w:"nicht", tag:"Verb, Adjektiv, der/mein", ex:[
+   ["Verb: am Ende", "Ich verstehe dich [[nicht]].", "I don't understand you."],
+   ["vor dem Adjektiv", "Die Wohnung ist [[nicht]] teuer.", "The flat isn't expensive."],
+   ["Nomen mit bestimmtem Artikel / Possessiv", "Das ist [[nicht]] mein Handy.", "That's not my phone."],
+   ["Name", "Ich bin [[nicht]] Herr Weber, ich bin sein Kollege.", "I'm not Mr Weber, I'm his colleague."]]},
+  {w:"Stellung von nicht", tag:"Wo steht nicht?", ex:[
+   ["am Satzende (ganzer Satz)", "Der Bus kommt heute [[nicht]].", "The bus isn't coming today."],
+   ["vor der Präpositionalergänzung", "Ich fahre heute [[nicht]] mit dem Auto.", "I'm not driving today."],
+   ["vor dem zweiten Verbteil", "Ich habe die E-Mail noch [[nicht]] gelesen.", "I haven't read the email yet."],
+   ["vor einem Satzteil: Teilverneinung + sondern", "Ich komme [[nicht]] heute, sondern morgen.", "I'm coming not today but tomorrow."],
+   ["mit Modalverb: vor dem Infinitiv", "Sie dürfen hier [[nicht]] parken.", "You may not park here."]]}
+ ]},
+ {g:"Weitere Verneinung", items:[
+  {w:"nie / niemand / nichts / nirgends", tag:"Verneinungswörter", ex:[
+   ["nie = zu keiner Zeit (never)", "Ich war noch [[nie]] in Berlin.", "I've never been to Berlin."],
+   ["niemand = keine Person (nobody)", "[[Niemand]] hat angerufen.", "Nobody called."],
+   ["nichts = keine Sache (nothing)", "Ich habe heute noch [[nichts]] gegessen.", "I haven't eaten anything yet today."],
+   ["nirgends / nirgendwo (nowhere)", "Ich finde meinen Schlüssel [[nirgends]].", "I can't find my key anywhere."]]},
+  {w:"noch nicht / nicht mehr / schon", tag:"Zeit", ex:[
+   ["noch nicht (not yet)", "Der Handwerker ist [[noch nicht]] gekommen.", "The technician hasn't come yet."],
+   ["nicht mehr (no longer)", "Ich rauche [[nicht mehr]].", "I don't smoke any more."],
+   ["noch kein (no … yet)", "Ich habe [[noch keinen]] Kitaplatz für meinen Sohn.", "I don't have a nursery place for my son yet."],
+   ["Gegenteil: schon (already)", "Hast du schon gegessen? – Nein, [[noch nicht]].", "Have you eaten yet? – No, not yet."]]},
+  {w:"doch", tag:"Antwort / Betonung", ex:[
+   ["Antwort auf eine negative Frage (yes!)", "Kommst du nicht mit? – [[Doch]], ich komme mit!", "Aren't you coming? – Yes, I am!"],
+   ["Widerspruch", "Das stimmt nicht! – [[Doch]], das stimmt.", "That's not true! – Yes, it is."],
+   ["im Imperativ: freundlicher", "Komm [[doch]] morgen vorbei!", "Why don't you come by tomorrow!"],
+   ["Erinnerung (you know)", "Du weißt [[doch]], dass ich keinen Fisch esse.", "You know I don't eat fish."]]}
+ ]}
+]},
+
+{id:"werden", de:"werden & lassen", en:"werden & lassen",
+ intro:"werden hat vier Aufgaben: Vollverb (become), Futur, Passiv und Konjunktiv II (würde). lassen + Infinitiv heißt: jemand anders macht es für mich – oder: erlauben.",
+ groups:[
+ {g:"werden", items:[
+  {w:"werden als Vollverb", tag:"become", ex:[
+   ["werden + Nomen: Beruf", "Meine Tochter möchte Ärztin [[werden]].", "My daughter wants to become a doctor."],
+   ["werden + Adjektiv", "Im Herbst [[wird]] es früh dunkel.", "In autumn it gets dark early."],
+   ["Perfekt: ist geworden", "Er [[ist]] letzte Woche 40 [[geworden]].", "He turned 40 last week."],
+   ["Präteritum: wurde", "Nach dem Essen [[wurde]] mir schlecht.", "After the meal I felt sick."]]},
+  {w:"vier Funktionen", tag:"Überblick", ex:[
+   ["Vollverb: werden + Nomen / Adjektiv", "Es [[wird]] kalt.", "It's getting cold."],
+   ["Futur: werden + Infinitiv", "Ich [[werde]] dich morgen [[anrufen]].", "I'll call you tomorrow."],
+   ["Passiv: werden + Partizip II", "Das Paket [[wird]] morgen [[geliefert]].", "The parcel will be delivered tomorrow."],
+   ["Konjunktiv II: würde + Infinitiv", "Ich [[würde]] gern mehr [[reisen]].", "I would like to travel more."]]}
+ ]},
+ {g:"lassen", items:[
+  {w:"lassen + Infinitiv", tag:"machen lassen", ex:[
+   ["jemand anders macht es (have something done)", "Ich [[lasse]] mein Auto in der Werkstatt [[reparieren]].", "I'm having my car repaired at the garage."],
+   ["mit Dativ: sich die Haare schneiden lassen", "Ich [[lasse]] mir morgen die Haare [[schneiden]].", "I'm having my hair cut tomorrow."],
+   ["Perfekt: hat … lassen (doppelter Infinitiv)", "Wir [[haben]] die Wohnung [[streichen lassen]].", "We had the flat painted."],
+   ["erlauben (let, allow)", "Meine Eltern [[lassen]] mich allein in die Stadt [[fahren]].", "My parents let me go into town on my own."]]},
+  {w:"lassen ohne Infinitiv", tag:"liegen lassen / sich lassen", ex:[
+   ["etwas irgendwo lassen (leave)", "Ich habe mein Handy zu Hause [[gelassen]].", "I left my phone at home."],
+   ["etwas liegen lassen (leave behind)", "Ich habe meinen Regenschirm im Bus [[liegen lassen]].", "I left my umbrella on the bus."],
+   ["sich lassen = man kann (can be done)", "Das Fenster [[lässt sich]] nicht öffnen.", "The window won't open."],
+   ["Lass uns …! (Let's …)", "[[Lass]] uns morgen ins Kino gehen!", "Let's go to the cinema tomorrow!"]]}
+ ]}
+]},
+
+{id:"satz", de:"Wortstellung", en:"Word order",
+ intro:"Im Hauptsatz steht das konjugierte Verb auf Position 2, weitere Verbteile am Ende (Satzklammer). Im Nebensatz steht das konjugierte Verb am Ende. Im Mittelfeld: Nomen Dativ vor Akkusativ, Pronomen Akkusativ vor Dativ, Angaben meist TeKaMoLo.",
+ groups:[
+ {g:"Hauptsatz", items:[
+  {w:"Verb auf Position 2", tag:"Hauptsatz", ex:[
+   ["Subjekt auf Position 1", "Ich [[fahre]] morgen mit dem Zug nach Berlin.", "I'm going to Berlin by train tomorrow."],
+   ["Zeit auf Position 1: Subjekt nach dem Verb", "Morgen [[fahre]] ich mit dem Zug nach Berlin.", "Tomorrow I'm going to Berlin by train."],
+   ["Objekt auf Position 1 (Betonung)", "Den Film [[habe]] ich schon gesehen.", "I've already seen that film."],
+   ["Nebensatz auf Position 1: dann Verb", "Weil es regnet, [[bleiben]] wir zu Hause.", "Because it's raining, we're staying at home."]]},
+  {w:"Satzklammer", tag:"Verb … Ende", ex:[
+   ["Modalverb … Infinitiv", "Ich [[muss]] heute noch meine Mutter [[anrufen]].", "I still have to call my mother today."],
+   ["Perfekt: haben/sein … Partizip", "Wir [[sind]] im Sommer nach Portugal [[geflogen]].", "We flew to Portugal in the summer."],
+   ["trennbares Verb … Vorsilbe", "Der Kurs [[fängt]] nächsten Montag um 18 Uhr [[an]].", "The course starts next Monday at 6 pm."],
+   ["Futur: werden … Infinitiv", "Ich [[werde]] nach dem Kurs eine Arbeit [[suchen]].", "I'll look for a job after the course."]]},
+  {w:"Mittelfeld: Dativ und Akkusativ", tag:"Reihenfolge", ex:[
+   ["zwei Nomen: Dativ vor Akkusativ", "Ich gebe [[dem Kellner das Geld]].", "I give the waiter the money."],
+   ["zwei Pronomen: Akkusativ vor Dativ", "Ich gebe [[es ihm]].", "I give it to him."],
+   ["Pronomen vor Nomen", "Ich gebe [[ihm das Geld]].", "I give him the money."],
+   ["Akkusativ-Pronomen vor Dativ-Nomen", "Ich gebe [[es dem Kellner]].", "I give it to the waiter."]]},
+  {w:"Mittelfeld: TeKaMoLo", tag:"wann – warum – wie – wo", ex:[
+   ["Temporal vor Lokal", "Ich bin [[gestern]] [[im Kino]] gewesen.", "I was at the cinema yesterday."],
+   ["Temporal – Modal – Lokal", "Wir fahren [[morgen]] [[mit dem Zug]] [[nach Hamburg]].", "We're going to Hamburg by train tomorrow."],
+   ["Temporal – Kausal – Modal – Lokal", "Er ist [[heute]] [[wegen des Streiks]] [[zu Fuß]] [[zur Arbeit]] gegangen.", "He walked to work today because of the strike."],
+   ["eine Angabe auf Position 1, der Rest bleibt", "[[Heute]] ist er [[wegen des Streiks]] [[zu Fuß]] [[zur Arbeit]] gegangen.", "Today, because of the strike, he walked to work."]]}
+ ]},
+ {g:"Nebensatz und Fragen", items:[
+  {w:"Nebensatz", tag:"Verb am Ende", ex:[
+   ["ein Verb: am Ende", "Ich bleibe zu Hause, weil ich krank [[bin]].", "I'm staying at home because I'm ill."],
+   ["Modalverb: ganz am Ende", "Ich bleibe zu Hause, weil ich lernen [[muss]].", "I'm staying at home because I have to study."],
+   ["Perfekt: Hilfsverb ganz am Ende", "Ich bin müde, weil ich schlecht geschlafen [[habe]].", "I'm tired because I slept badly."],
+   ["trennbares Verb: zusammen am Ende", "Ich bin müde, weil ich so früh [[aufstehe]].", "I'm tired because I get up so early."],
+   ["Nebensatz zuerst: Verb, Verb", "Wenn ich Zeit [[habe]], [[komme]] ich vorbei.", "If I have time, I'll come by."]]},
+  {w:"Fragen und Imperativ", tag:"Verb zuerst?", ex:[
+   ["W-Frage: Verb auf Position 2", "Wann [[beginnt]] der Kurs?", "When does the course start?"],
+   ["Ja/Nein-Frage: Verb auf Position 1", "[[Kommst]] du morgen mit?", "Are you coming along tomorrow?"],
+   ["Imperativ (du): Verb auf Position 1, kein Subjekt", "[[Ruf]] mich bitte heute Abend an!", "Please call me this evening!"],
+   ["Imperativ (Sie): Verb + Sie", "[[Nehmen]] Sie bitte Platz.", "Please take a seat."]]}
+ ]}
 ]}
 ];

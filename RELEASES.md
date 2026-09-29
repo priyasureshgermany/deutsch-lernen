@@ -1,5 +1,8 @@
 # Releases
 
+## 1.4.0 — 2026-09-29
+- New: 9 more B1 Grammatik topics — Modalverben, Reflexive Verben, Trennbare & untrennbare Verben, Infinitiv mit zu, Indirekte Fragen, n-Deklination, Negation, werden & lassen, Wortstellung
+
 ## 1.3.1 — 2026-09-29
 - New: 12 more conversations — Bürgeramt, job interview, parent-teacher meeting, hairdresser, car garage, exchanging clothes, flat viewing, neighbour, post office, hotel, dentist, planning a leaving party
 - New: 12 more letters — job application, noise complaint, mould, language school, faulty online order, hotel complaint, sick child, tax deadline, deposit refund, invitation to colleagues, cancelling a doctor's appointment, tips for a visiting friend
