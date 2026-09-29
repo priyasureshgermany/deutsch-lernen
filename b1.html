@@ -406,7 +406,7 @@ const pop=document.getElementById("pop"),pw=document.getElementById("pw"),pb=doc
 let sampleP=null,cur=null,selEl=null;const cache={};
 function getSample(){if(!sampleP)sampleP=(window.claude&&window.claude.use)?window.claude.use("sample").catch(()=>null):Promise.resolve(window.freeSample||null);return sampleP}
 function closePop(){pop.hidden=true;if(selEl)selEl.classList.remove("sel");selEl=null;if(cur)cur.abort();cur=null}
-function ctx(el){const s=el.closest(".s");return (s?s.textContent:el.textContent).trim()}
+function ctx(el){const s=el.closest(".s")||el;const ls=[...s.querySelectorAll(".ln")];return (ls.length?ls.map(l=>l.textContent).join("\n"):s.textContent).trim()}
 function cget(k){let v=cache[k];if(!v){try{v=JSON.parse(localStorage.getItem("b1:"+k)||"null")}catch(e){}}return v}
 function cset(k,v){cache[k]=v;try{localStorage.setItem("b1:"+k,JSON.stringify(v))}catch(e){}}
 function errMsg(err){return '<span class="muted">'+(err&&err.code==="not_granted"?"Übersetzung wurde nicht erlaubt.":err&&err.code==="rate_limited"?"Zu viele Anfragen – bitte kurz warten.":"Übersetzung fehlgeschlagen. Versuch es noch einmal.")+'</span>'}
@@ -438,7 +438,7 @@ function renderPick(){if(!picked.length){hintPick();return}
 function pick(el){const box=el.closest(".s");if(pickBox&&pickBox!==box)clearPick();pickBox=box;
  const i=picked.indexOf(el);if(i>=0){picked.splice(i,1);el.classList.remove("pk")}else{picked.push(el);el.classList.add("pk")}
  if(!picked.length)pickBox=null;if(cur){cur.abort();cur=null}pop.hidden=false;renderPick()}
-async function translatePick(){const phr=phrase(),sent=pickBox.textContent.trim(),key="m|"+phr+"|"+sent;
+async function translatePick(){const phr=phrase(),sent=ctx(pickBox),key="m|"+phr+"|"+sent;
  pb.innerHTML='<span class="muted">Übersetze …</span>';const hit=cget(key);if(hit){showPick(hit);return}
  const sample=await getSample();if(!sample){pb.innerHTML=FB(phr,false);return}
  if(cur)cur.abort();cur=new AbortController();const my=cur;
