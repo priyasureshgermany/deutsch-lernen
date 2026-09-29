@@ -1,5 +1,9 @@
 # Releases
 
+## 1.2.0 — 2026-09-29
+- New: fifth tab „B1 Grammatik“ — Präpositionen, Konjunktionen, Adjektive, Verben mit Präposition, Verben mit Dativ, Relativsätze, Konjunktiv II and Passiv
+- New: pick a word on the left, see four to five B1 example sentences on the right — each a different use: case, meaning, position in the sentence or tense — with read-aloud, English translation and tap-to-translate for every word
+
 ## 1.1.0 — 2026-09-29
 - New: fourth tab „Wörter erkennen“ — five topics, each with an A1 and a B1 text where every word can be coloured by word type, subtype, case, sentence role or TeKaMoLo
 - New: tap a word to see its word type, case (with Wer?/Wen?/Wem?/Wessen?), gender, sentence role, base form, meaning and why it has that form
