@@ -1,5 +1,9 @@
 # Releases
 
+## 1.3.1 — 2026-09-29
+- New: 12 more conversations — Bürgeramt, job interview, parent-teacher meeting, hairdresser, car garage, exchanging clothes, flat viewing, neighbour, post office, hotel, dentist, planning a leaving party
+- New: 12 more letters — job application, noise complaint, mould, language school, faulty online order, hotel complaint, sick child, tax deadline, deposit refund, invitation to colleagues, cancelling a doctor's appointment, tips for a visiting friend
+
 ## 1.3.0 — 2026-09-29
 - New: tab „Gespräche“ — 12 everyday conversations (doctor, paediatrician, specialist, internet provider, supermarket, restaurant, bank, DB ticket, Ausländerbehörde, landlord, pharmacy, friends talking about saving) with two-voice playback and „Rolle üben“
 - New: tab „Briefe“ — 12 everyday letters in B1-exam style (school, Kindergeld, landlord, cancellation, leave, sick note, complaint, Ausländerbehörde, Kita, health insurer, change of address, friend) with task, model letter and „Selbst schreiben“
