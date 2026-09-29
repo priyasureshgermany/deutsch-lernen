@@ -54,7 +54,13 @@
     const g = f("Genus");
     if(!ART[g]) return null;
     const pl = f("Nominativ Plural");
-    return { sg: f("Nominativ Singular"), g, pl: pl && pl !== "—" ? pl : "" };
+    /* All eight forms, for the table in Wörter erkennen. */
+    const cases = {};
+    [["N","Nominativ"],["A","Akkusativ"],["D","Dativ"],["G","Genitiv"]].forEach(([c, n]) => {
+      const p = f(n + " Plural");
+      cases[c] = [f(n + " Singular"), p && p !== "—" ? p : ""];
+    });
+    return { sg: f("Nominativ Singular"), g, pl: pl && pl !== "—" ? pl : "", cases };
   }
 
   async function nounFrom(title, signal){
@@ -80,7 +86,9 @@
       if(!part) continue;
       const head = word.slice(0, word.length - tail.length);
       const join = s => s ? head + s[0].toLowerCase() + s.slice(1) : "";
-      return { sg: join(part.sg), g: part.g, pl: join(part.pl) };
+      const cases = {};
+      for(const c in part.cases) cases[c] = part.cases[c].map(join);
+      return { sg: join(part.sg), g: part.g, pl: join(part.pl), cases };
     }
     return null;
   }
@@ -137,6 +145,9 @@
       note: ctx && ctx.en ? "Im Satz: " + ctx.en : ""
     };
   }
+
+  /* { g, sg, pl, cases:{N:[sg,pl],A:…,D:…,G:…} } or null, from Wiktionary. */
+  window.dlNounTable = (w, lemma) => noun(w, lemma).catch(() => null);
 
   window.freeSample = {
     async json(prompt, opts){
