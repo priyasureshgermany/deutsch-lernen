@@ -143,6 +143,7 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 <main id="main"></main>
 <p class="empty" id="empty">Keine Aufgabe passt zu deiner Suche.</p>
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="ph1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
+<script src="translate.js"></script>
 <script>
 const S=[
 {de:"Leseverstehen",en:"Reading",info:"3 Teile · zusammen mit Sprachbausteinen 90 Minuten",infoEn:"3 parts · 90 minutes together with Language elements",parts:[
@@ -403,7 +404,7 @@ sp.onclick=()=>{rate=rate===1?0.75:1;sp.setAttribute("aria-pressed",String(rate!
 /* ---- word translation ---- */
 const pop=document.getElementById("pop"),pw=document.getElementById("pw"),pb=document.getElementById("pb");
 let sampleP=null,cur=null,selEl=null;const cache={};
-function getSample(){if(!sampleP)sampleP=(window.claude&&window.claude.use)?window.claude.use("sample").catch(()=>null):Promise.resolve(null);return sampleP}
+function getSample(){if(!sampleP)sampleP=(window.claude&&window.claude.use)?window.claude.use("sample").catch(()=>null):Promise.resolve(window.freeSample||null);return sampleP}
 function closePop(){pop.hidden=true;if(selEl)selEl.classList.remove("sel");selEl=null;if(cur)cur.abort();cur=null}
 function ctx(el){const s=el.closest(".s");return (s?s.textContent:el.textContent).trim()}
 function cget(k){let v=cache[k];if(!v){try{v=JSON.parse(localStorage.getItem("b1:"+k)||"null")}catch(e){}}return v}

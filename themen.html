@@ -125,6 +125,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
 <main id="main"></main>
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="ph1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
 <p class="empty" id="empty">Keine Frage passt zu deiner Suche. Versuch ein anderes Wort.</p>
+<script src="translate.js"></script>
 <script>
 const T=[];
 T.push({de:"Wohnraum",en:"Housing",q:[
@@ -688,7 +689,7 @@ main.addEventListener("click",e=>{const sb=e.target.closest(".say");if(sb){say(s
 const pop=document.getElementById("pop"),pw=document.getElementById("pw"),pb=document.getElementById("pb");
 let sampleP=null,cur=null,selEl=null;
 const cache={};
-function getSample(){if(!sampleP)sampleP=(window.claude&&window.claude.use)?window.claude.use("sample").catch(()=>null):Promise.resolve(null);return sampleP}
+function getSample(){if(!sampleP)sampleP=(window.claude&&window.claude.use)?window.claude.use("sample").catch(()=>null):Promise.resolve(window.freeSample||null);return sampleP}
 function closePop(){pop.hidden=true;if(selEl)selEl.classList.remove("sel");selEl=null;if(cur)cur.abort();cur=null}
 document.getElementById("px").onclick=()=>{closePop();clearPick();if(multi){multi=false;mw.setAttribute("aria-pressed","false")}};
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closePop()});
