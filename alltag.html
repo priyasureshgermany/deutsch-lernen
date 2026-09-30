@@ -48,12 +48,26 @@ main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
 .chip.play{border-color:var(--b1);color:var(--b1)}
 .chip.play.on{background:var(--b1);color:#fff}
 /* dialogue */
-.ln{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;padding:8px 0;border-top:1px solid var(--line)}
-.ln:first-child{border-top:none}
-.who{font-size:12px;font-weight:700;color:#fff;background:var(--c);border-radius:999px;padding:2px 9px;align-self:start;margin-top:3px;white-space:nowrap}
-.ln.A{--c:var(--a2)}.ln.B{--c:var(--b1)}
-.ln.B .body{background:var(--hlbg);border-radius:10px;padding:4px 8px}
-.ln.now .body{outline:2px solid var(--c);outline-offset:2px;border-radius:10px}
+/* A chat: one speaker on the left, the other on the right; the name chip
+   is blue for a man and pink for a woman. */
+.lines{display:flex;flex-direction:column;gap:12px;margin:8px 0}
+.ln{display:flex;flex-direction:column;align-items:flex-start;gap:3px;max-width:88%;--c:#2f5bd3}
+.ln[data-g="f"]{--c:#c2185b}
+.ln.A{align-self:flex-start}
+.ln.B{align-self:flex-end;align-items:flex-end}
+.who{font-size:12px;font-weight:700;color:#fff;background:var(--c);border-radius:999px;padding:2px 10px;white-space:nowrap}
+.ln .body{background:var(--surface);border:1.5px solid color-mix(in srgb,var(--c) 35%,transparent);border-radius:16px 16px 16px 4px;padding:8px 12px}
+.ln.B .body{background:var(--hlbg);border-radius:16px 16px 4px 16px}
+.ln.now .body{outline:2.5px solid var(--c);outline-offset:2px}
+.vbox{display:none;background:var(--surface);border-radius:10px;padding:10px 12px;margin:6px 0 10px;font-size:14px}
+.vbox.open{display:block}
+.vbox .vr{display:flex;align-items:center;gap:8px;padding:4px 0;border-top:1px dashed var(--line)}
+.vbox .vr:first-of-type{border-top:none}
+.vbox .vr span{flex:1}
+.vbox .vr small{color:var(--muted)}
+.vbox .pick{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;align-items:center;margin-top:8px}
+.vbox select{font:inherit;font-size:14px;padding:4px 6px;border-radius:6px;border:1px solid var(--line);background:var(--paper);color:var(--ink);min-width:0;width:100%}
+.vbox .hint{color:var(--muted);font-size:13px;margin-top:6px}
 .de{font-size:18px;line-height:1.55}
 .hideme .de .s{filter:blur(7px);user-select:none;cursor:pointer}
 .hideme .de::after{content:"Deine Rolle – sprich selbst, dann tippen";display:block;font-size:12px;color:var(--c);font-weight:700}
@@ -96,7 +110,7 @@ body.no-tts .say,body.no-tts .play,body.no-tts #sp{display:none}
 .muted{color:var(--muted)}
 .fb{margin-top:6px;font-size:15px}.fb a{color:var(--b1);font-weight:700}
 button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
-@media (max-width:760px){.bar,main,header.hero{padding-left:14px;padding-right:14px}.split{display:block}.detail{display:none}.de{font-size:17px}.sheet{padding:12px}.ln{grid-template-columns:1fr}.who{justify-self:start}}
+@media (max-width:760px){.bar,main,header.hero{padding-left:14px;padding-right:14px}.split{display:block}.detail{display:none}.de{font-size:17px}.sheet{padding:12px}.ln{max-width:92%}}
 @media (min-width:761px){.inl{display:none}}
 </style>
 </head>
@@ -159,8 +173,9 @@ function dialogCard(d){
    <button class="chip" type="button" data-role="" aria-pressed="true">aus</button>
    <button class="chip" type="button" data-role="A" aria-pressed="false">${who("A")}</button>
    <button class="chip" type="button" data-role="B" aria-pressed="false">${who("B")}</button></div>
-  ${mine?`<div class="tools"><span class="lab">Meine Stimme:</span><button class="chip" type="button" data-me="m" aria-pressed="${myGender()==="m"}">♂ Mann</button><button class="chip" type="button" data-me="f" aria-pressed="${myGender()==="f"}">♀ Frau</button></div>`:""}
-  <div class="lines">${d.lines.map(([r,g,e])=>`<div class="ln ${r}"><span class="who">${who(r)}</span><div class="body">${block(g,e,r)}</div></div>`).join("")}</div>
+  <div class="tools">${mine?`<span class="lab">Meine Stimme:</span><button class="chip" type="button" data-me="m" aria-pressed="${myGender()==="m"}">♂ Mann</button><button class="chip" type="button" data-me="f" aria-pressed="${myGender()==="f"}">♀ Frau</button>`:""}<button class="chip" type="button" data-vbox aria-pressed="false">🔊 Stimmen</button></div>
+  <div class="vbox"></div>
+  <div class="lines">${d.lines.map(([r,g,e])=>`<div class="ln ${r}" data-g="${gs[r]}"><span class="who">${who(r)}</span><div class="body">${block(g,e,r)}</div></div>`).join("")}</div>
   ${phrases(d.tips)}</div>`}
 
 function letterCard(d){
@@ -207,9 +222,16 @@ const MALV=/markus|yannick|stefan|conrad|hans|jonas|viktor|martin|klaus|florian|
 function genderOf(v){return FEMV.test(v.name)?"f":MALV.test(v.name)?"m":"u"}
 function myGender(){return store("al:me")==="f"?"f":"m"}
 function genders(d){const g={A:"f",B:"m"};if(d&&d.g)for(const r of ["A","B"])g[r]=d.g[r]==="me"?myGender():d.g[r];return g}
+/* The learner's own picks (🔊 Stimmen) come first; guessing only fills in. */
+const PICKS=[["m1","Mann 1"],["m2","Mann 2"],["f1","Frau 1"],["f2","Frau 2"]];
+function picked(k){const n=store("al:v"+k);return n?voices().find(v=>v.name===n)||null:null}
+function pools(){
+ const vs=voices(),mine={m:[picked("m1"),picked("m2")].filter(Boolean),f:[picked("f1"),picked("f2")].filter(Boolean)};
+ const taken=[...mine.m,...mine.f],rest=vs.filter(v=>!taken.includes(v));
+ return {vs,f:[...mine.f,...rest.filter(v=>genderOf(v)==="f")],m:[...mine.m,...rest.filter(v=>genderOf(v)==="m")],u:rest.filter(v=>genderOf(v)==="u")}}
 function cast(){
- const d=MODE==="dialog"&&open!==null?DATA[+open]:null,g=genders(d),vs=voices();
- const pool={f:vs.filter(v=>genderOf(v)==="f"),m:vs.filter(v=>genderOf(v)==="m"),u:vs.filter(v=>genderOf(v)==="u")};
+ const d=MODE==="dialog"&&open!==null?DATA[+open]:null,g=genders(d);
+ const pool=pools(),vs=pool.vs;
  const out={},used=[];
  for(const r of ["A","B"]){
   const G=g[r],own=pool[G].filter(v=>!used.includes(v));
@@ -218,17 +240,32 @@ function cast(){
      gender's voice again (split by pitch below), and only then the other
      gender's, shaped with pitch. */
   const unknown=pool.u.find(x=>!used.includes(x));
-  if(unknown){out[r]={voice:unknown,pitch:G==="m"?0.8:1.3};used.push(unknown);continue}
+  if(unknown){out[r]={voice:unknown,pitch:G==="m"?0.75:1.25};used.push(unknown);continue}
   if(pool[G].length){out[r]={voice:pool[G][0],pitch:1};continue}
+  /* A woman's voice for a man needs a clearly lower pitch to pass (and
+     the other way round) – a small shift still sounds like the original. */
   const v=pool[G==="f"?"m":"f"].find(x=>!used.includes(x))||vs[0]||null;
-  out[r]={voice:v,pitch:G==="m"?0.8:1.3};if(v)used.push(v)}
+  out[r]={voice:v,pitch:G==="m"?0.55:1.45};if(v)used.push(v)}
  /* Only one voice for two people of the same gender: split them by pitch. */
- if(out.A.voice===out.B.voice&&g.A===g.B){out.A.pitch=g.A==="m"?0.95:1.15;out.B.pitch=g.B==="m"?0.7:1.45}
+ if(out.A.voice===out.B.voice&&g.A===g.B){
+  const base=out.A.pitch;out.A.pitch=base*(g.A==="m"?1.1:0.9);out.B.pitch=base*(g.A==="m"?0.8:1.2)}
  return out}
 function utter(text,v){const u=new SpeechSynthesisUtterance(text);u.lang="de-DE";u.rate=rate;
  if(v==="A"||v==="B"){const c=cast()[v];if(c.voice)u.voice=c.voice;u.pitch=c.pitch}
  else{const vo=voices()[0];if(vo)u.voice=vo}
  return u}
+/* 🔊 Stimmen: every German voice this device has, to hear and to assign. */
+function voiceBox(box){
+ const vs=voices(),sym=v=>({f:"♀ erkannt",m:"♂ erkannt",u:"?"})[genderOf(v)];
+ if(!vs.length){box.innerHTML=`<b>Keine deutsche Stimme gefunden.</b><div class="hint">Installiere eine deutsche Stimme in den Einstellungen deines Handys (Sprachausgabe / Text-to-Speech) und öffne die Seite dann neu.</div>`;return}
+ const opt=k=>`<select data-pick="${k}"><option value="">automatisch</option>${vs.map(v=>`<option${store("al:v"+k)===v.name?" selected":""}>${esc(v.name)}</option>`).join("")}</select>`;
+ box.innerHTML=`<b>Deutsche Stimmen auf diesem Gerät (${vs.length})</b>`+
+  vs.map(v=>`<div class="vr"><span>${esc(v.name)} <small>${sym(v)}</small></span><button class="say" type="button" data-test="${esc(v.name)}" aria-label="Probe hören"></button></div>`).join("")+
+  `<div class="pick">${PICKS.map(([k,l])=>`<label>${l}</label>${opt(k)}`).join("")}</div>`+
+  `<div class="hint">${vs.length<2?"Dein Gerät hat nur eine deutsche Stimme – die Personen werden deshalb nur durch die Tonhöhe unterschieden. ":""}Mehr Stimmen: iPhone → Einstellungen › Bedienungshilfen › Gesprochene Inhalte › Stimmen › Deutsch (z. B. Markus, Yannick, Anna, Helena laden). Android → Einstellungen › Sprachausgabe › Google-Sprachausgabe › Sprachdaten installieren › Deutsch.</div>`}
+function testVoice(btn){if(!synth)return;if(playing===btn){stopAll();return}stopAll();
+ const v=voices().find(x=>x.name===btn.dataset.test);const u=new SpeechSynthesisUtterance("Hallo, so klingt diese Stimme.");u.lang="de-DE";u.rate=rate;if(v)u.voice=v;
+ u.onend=u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};playing=btn;btn.classList.add("on");synth.speak(u)}
 function stopAll(){if(synth)synth.cancel();if(playing)playing.classList.remove("on");playing=null;
  if(queue){queue.btn.classList.remove("on");document.querySelectorAll(".ln.now").forEach(x=>x.classList.remove("now"));queue=null}}
 function speak(btn){if(!synth)return;if(playing===btn){stopAll();return}stopAll();
@@ -270,10 +307,20 @@ Reply with ONLY a JSON object.`,{signal:my.signal});cset(key,d);if(selEl===el)sh
 function showWord(d){const s=x=>esc(x||"");
  pb.innerHTML=`<div class="pen">${s(d.en)}</div><div class="pm">${s(d.lemma)}${d.pos?" · "+s(d.pos):""}${d.plural?" · Pl. "+s(d.plural):""}</div>${d.note?`<div class="pn">${s(d.note)}</div>`:""}`}
 
+document.querySelector("main").addEventListener("change",e=>{
+ const s=e.target.closest("[data-pick]");if(!s)return;stopAll();
+ /* One voice has one job: picking it here clears it from the other slots. */
+ if(s.value)PICKS.forEach(([k])=>{if(k!==s.dataset.pick&&store("al:v"+k)===s.value)store("al:v"+k,"")});
+ store("al:v"+s.dataset.pick,s.value);voiceBox(s.closest(".vbox"))});
+/* Voices can arrive after the page: refresh an open panel when they do. */
+if(synth)synth.addEventListener("voiceschanged",()=>document.querySelectorAll(".vbox.open").forEach(voiceBox));
 document.querySelector("main").addEventListener("click",e=>{
  const all=e.target.closest("[data-all]");if(all){playAll(all);return}
  const sb=e.target.closest(".say");if(sb){speak(sb);return}
  const eb=e.target.closest(".enb");if(eb){eb.parentElement.classList.toggle("en-on");if(eb.parentElement.classList.contains("acts"))eb.parentElement.parentElement.classList.toggle("en-on");return}
+ const tv=e.target.closest("[data-test]");if(tv){testVoice(tv);return}
+ const vb=e.target.closest("[data-vbox]");if(vb){const box=vb.closest(".dcard").querySelector(".vbox"),on=!box.classList.contains("open");
+  box.classList.toggle("open",on);vb.setAttribute("aria-pressed",String(on));if(on)voiceBox(box);return}
  const mb=e.target.closest("[data-me]");if(mb){store("al:me",mb.dataset.me);stopAll();
   const card=mb.closest(".dcard"),wrap=card.parentElement;wrap.innerHTML=dialogCard(DATA[+open]);return}
  const rb=e.target.closest("[data-role]");if(rb){const card=rb.closest(".dcard");card.querySelectorAll("[data-role]").forEach(x=>x.setAttribute("aria-pressed",String(x===rb)));
