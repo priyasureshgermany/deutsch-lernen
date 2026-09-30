@@ -137,7 +137,6 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
   <button class="tg ans" data-k="ans" aria-pressed="true">Lösung</button>
   <button class="tg practice" id="pr" aria-pressed="false">Übungsmodus</button>
   <button class="tg multi" id="mw" aria-pressed="false">Mehrere Wörter</button>
-  <button class="tg speed" id="sp" aria-pressed="false">Tempo: normal</button>
  </div>
 </div><nav class="topics" id="nav" aria-label="Prüfungsteile"></nav></div>
 <main id="main"></main>
@@ -398,8 +397,8 @@ function say(btn){if(!synth)return;if(playing===btn){stopSay();return}stopSay();
   if(i===parts.length-1)u.onend=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
   u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
   synth.speak(u)})}
-const sp=document.getElementById("sp");
-sp.onclick=()=>{rate=rate===1?0.75:1;sp.setAttribute("aria-pressed",String(rate!==1));sp.textContent=rate===1?"Tempo: normal":"Tempo: langsam"};
+/* Tempo is set by the button at the top of the app (index.html). */
+addEventListener("message",e=>{if(e.origin===location.origin&&e.data&&e.data.dlRate)rate=e.data.dlRate});
 
 /* ---- word translation ---- */
 const pop=document.getElementById("pop"),pw=document.getElementById("pw"),pb=document.getElementById("pb");

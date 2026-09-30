@@ -33,7 +33,7 @@ main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
 .it small{color:var(--muted);font-size:12px}
 .it:hover{background:var(--surface)}
 .it[aria-expanded="true"]{border-color:var(--b1);background:var(--hlbg)}
-.detail{position:sticky;top:78px;max-height:calc(100vh - 90px);overflow:auto}
+.detail{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}
 .ph0{color:var(--muted);border:1.5px dashed var(--line);border-radius:12px;padding:30px 20px;text-align:center}
 .dcard{border:1.5px solid var(--line);border-radius:14px;padding:14px 16px}
 .dcard h2{font-size:24px;font-weight:800;color:var(--b1)}
@@ -96,7 +96,7 @@ main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
 .acts{display:flex;gap:8px;align-items:center;margin-top:4px}
 .enb{font:inherit;font-size:12px;font-weight:700;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:2px 10px;cursor:pointer}
 .en{display:none;color:var(--muted);font-style:italic;margin-top:4px;font-size:15px}
-.en-on > .en,.en-on .en,body.all-en .en{display:block}
+.en-on > .en,.en-on .en{display:block}
 .hideme .en{display:none!important}
 /* letter */
 .sheet{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px 20px;box-shadow:0 2px 10px rgba(20,30,60,.08)}
@@ -146,11 +146,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
  <h1 id="h1"></h1>
  <p class="sub" id="sub"></p>
 </header>
-<div class="bar"><div class="bar-inner">
- <input type="hidden" id="q" value="">
- <button class="tg" id="allen" aria-pressed="false">EN immer</button>
- <button class="tg speed" id="sp" aria-pressed="false">Tempo: normal</button>
-</div></div>
+<input type="hidden" id="q" value="">
 <main>
  <div class="split">
   <div class="list" id="list"></div>
@@ -218,7 +214,7 @@ function hoerCard(d){
   :`<div class="ln ${p[0]}" data-g="${d.who[p[0]][1]}" data-i="${i}"><span class="who">${who(p[0])}</span><div class="body"><div class="de"><span class="s" lang="de">${de(p[1])}</span></div><div class="acts"><button class="enb" type="button">EN</button></div><div class="en">${esc(p[2])}</div></div></div>`).join("");
  const qs=d.q.map((q,i)=>{
   const opts=q[0]==="rf"?[["true","richtig"],["false","falsch"]]:q[2].map((o,j)=>[String(j),"abc"[j]+") "+o]);
-  return `<div class="hq" data-q="${i}"><div class="hqt"><b>${i+1}.</b> <span class="s" lang="de">${de(q[1])}</span></div><div class="hqo">${opts.map(([v,l])=>`<button type="button" class="chip" data-a="${v}">${esc(l)}</button>`).join("")}</div><div class="hqw"></div></div>`}).join("");
+  return `<div class="hq" data-q="${i}"><div class="hqt"><b>${i+1}.</b> <span class="s" lang="de">${de(q[1])}</span> <button class="enb" type="button">EN</button><div class="en">${esc(d.qen[i])}</div></div><div class="hqo">${opts.map(([v,l])=>`<button type="button" class="chip" data-a="${v}">${esc(l)}</button>`).join("")}</div><div class="hqw"></div></div>`}).join("");
  return `<div class="dcard hoer"><h2>${esc(d.de)}</h2><div class="den">${esc(d.en)} · ${esc(KIND[d.kind]||d.kind)}</div>
   <div class="player"><button class="bigplay" type="button" data-scene>▶ Abspielen</button>
    <button class="chip" type="button" data-twice aria-pressed="false">2× hören</button>
@@ -251,9 +247,6 @@ listEl.addEventListener("click",e=>{const b=e.target.closest(".it");if(b)show(b.
 q.oninput=()=>{const v=q.value.trim().toLowerCase();let any=false;
  listEl.querySelectorAll(".it").forEach(b=>{const d=DATA[+b.dataset.k];const hit=!v||JSON.stringify(d).toLowerCase().includes(v);b.hidden=!hit;if(hit)any=true});
  empty.style.display=any?"none":"block"};
-const allen=document.getElementById("allen");
-allen.onclick=()=>{const on=allen.getAttribute("aria-pressed")!=="true";allen.setAttribute("aria-pressed",String(on));document.body.classList.toggle("all-en",on);store("al:allen",on?"1":"0")};
-if(store("al:allen")==="1")allen.click();
 
 /* ---- speech: one sentence, or a whole dialogue / letter in turn ---- */
 const synth=window.speechSynthesis;let rate=1,playing=null,queue=null;
@@ -363,8 +356,8 @@ function playAll(btn){if(!synth)return;if(queue&&queue.btn===btn){stopAll();retu
   const s=items[queue.i++],ln=s.closest(".ln");if(ln){ln.classList.add("now");ln.scrollIntoView({block:"nearest",behavior:"smooth"})}
   const u=utter(s.dataset.say,s.dataset.v);follow(u,textOf(s),s.dataset.say);u.onend=()=>setTimeout(next,350);u.onerror=e=>{if(e&&e.error==="interrupted")return;stopAll()};say(u)};
  next()}
-const sp=document.getElementById("sp");
-sp.onclick=()=>{rate=rate===1?0.75:1;sp.setAttribute("aria-pressed",String(rate!==1));sp.textContent=rate===1?"Tempo: normal":"Tempo: langsam"};
+/* Tempo is set by the button at the top of the app (index.html). */
+addEventListener("message",e=>{if(e.origin===location.origin&&e.data&&e.data.dlRate)rate=e.data.dlRate});
 
 /* ---- Hören: sounds made in the app ----
    Background, chime and phone tones are synthesised with Web Audio, so

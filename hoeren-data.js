@@ -7,7 +7,7 @@
    ["rf", statement, true/false, why] or ["mc", question, [a, b, c], index, why].
    tools/check-alltag.mjs checks the shape. */
 window.HS = [
-{id:"gleis", de:"Bahnhof: Gleisänderung und Verspätung", en:"Station: platform change and delay", amb:"station", kind:"Durchsage",
+{id:"gleis", qen:["The ICE to Hamburg leaves from platform 7 today.", "How late is the train to Kassel? a) about 15 minutes b) about 25 minutes c) about 45 minutes", "Why is the train late? a) because of an accident b) because of a repair to a signal c) because of the weather", "Anyone going to Gießen should take the S-Bahn at 14:45."], de:"Bahnhof: Gleisänderung und Verspätung", en:"Station: platform change and delay", amb:"station", kind:"Durchsage",
  who:{A:["Ansage","f"]},
  parts:["chime",
   ["A","Achtung am Gleis 7. Der ICE 578 nach Hamburg-Altona, planmäßige Abfahrt 14 Uhr 32, fährt heute von Gleis 9. Ich wiederhole: Der ICE nach Hamburg-Altona fährt heute von Gleis 9.","Attention on platform 7. ICE 578 to Hamburg-Altona, scheduled departure 14:32, leaves from platform 9 today. I repeat: the ICE to Hamburg-Altona leaves from platform 9 today."],
@@ -18,7 +18,7 @@ window.HS = [
     ["mc","Warum hat der Zug Verspätung?",["wegen eines Unfalls","wegen einer Reparatur an einem Signal","wegen des Wetters"],1,"„Grund dafür ist eine Reparatur an einem Signal.“"],
     ["rf","Wer nach Gießen muss, soll die S-Bahn um 14:45 Uhr nehmen.",true,"„Reisende mit Anschluss in Gießen nehmen bitte die S-Bahn um 14 Uhr 45.“"]]},
 
-{id:"zug", de:"Im Zug: nächster Halt und Anschlüsse", en:"On the train: next stop and connections", amb:"train", kind:"Durchsage",
+{id:"zug", qen:["Why is the train late? a) because the line is closed b) because of a sick passenger c) because of a technical problem with the train", "The ICE to Stuttgart waits for the train.", "The passengers will still catch the S-Bahn to the airport.", "What is open again from Frankfurt? a) the on-board bistro in coach 8 b) the toilets c) the quiet coach"], de:"Im Zug: nächster Halt und Anschlüsse", en:"On the train: next stop and connections", amb:"train", kind:"Durchsage",
  who:{A:["Zugbegleiter","m"]},
  parts:["chime",
   ["A","Meine Damen und Herren, in wenigen Minuten erreichen wir Frankfurt am Main Hauptbahnhof. Wegen einer Streckensperrung haben wir leider 15 Minuten Verspätung.","Ladies and gentlemen, in a few minutes we will reach Frankfurt am Main main station. Because of a line closure we are unfortunately 15 minutes late."],
@@ -29,7 +29,7 @@ window.HS = [
     ["rf","Die Fahrgäste erreichen die S-Bahn zum Flughafen noch.",false,"„… erreichen Sie leider nicht mehr. Die nächste fährt zehn Minuten später.“"],
     ["mc","Was ist ab Frankfurt wieder geöffnet?",["das Bordbistro in Wagen 8","die Toiletten","das Ruheabteil"],0,"„Das Bordbistro in Wagen 8 ist ab Frankfurt wieder geöffnet.“"]]},
 
-{id:"sbahn", de:"S-Bahn: Störung und Ersatzverkehr", en:"S-Bahn: disruption and replacement buses", amb:"sbahn", kind:"Durchsage",
+{id:"sbahn", qen:["Why are no S-Bahn trains running? a) because of a strike b) because of a signal box failure c) because of construction work", "The replacement buses run every five minutes.", "Where do the buses leave from? a) at exit A b) at exit B c) at the main station", "You don't need a new ticket for the bus."], de:"S-Bahn: Störung und Ersatzverkehr", en:"S-Bahn: disruption and replacement buses", amb:"sbahn", kind:"Durchsage",
  who:{A:["Ansage","m"]},
  parts:["chime",
   ["A","Eine Information für Fahrgäste der Linien S3 und S4: Wegen einer Störung am Stellwerk fahren zwischen Hauptwache und Südbahnhof zurzeit keine Züge.","Information for passengers on lines S3 and S4: because of a fault at the signal box, no trains are currently running between Hauptwache and Südbahnhof."],
@@ -39,7 +39,7 @@ window.HS = [
     ["mc","Wo fahren die Busse ab?",["am Ausgang A","am Ausgang B","am Hauptbahnhof"],1,"„… vom Ausgang B.“"],
     ["rf","Man braucht für den Bus keine neue Fahrkarte.",true,"„Ihre Fahrkarten gelten auch in den Bussen.“"]]},
 
-{id:"flughafen", de:"Flughafen: Gate-Änderung und letzter Aufruf", en:"Airport: gate change and final call", amb:"airport", kind:"Durchsage",
+{id:"flughafen", qen:["Which gate does the flight to Lisbon leave from? a) A 22 b) B 14 c) C 5", "Boarding for Lisbon starts immediately.", "Mr Haddad should come to the gate quickly.", "When does the gate close for the flight to Istanbul? a) in five minutes b) in 15 minutes c) in 20 minutes"], de:"Flughafen: Gate-Änderung und letzter Aufruf", en:"Airport: gate change and final call", amb:"airport", kind:"Durchsage",
  who:{A:["Ansage","f"]},
  parts:["chime",
   ["A","Passagiere des Fluges LH 1132 nach Lissabon, bitte beachten Sie: Ihr Flug startet heute nicht von Gate A 22, sondern von Gate B 14. Das Boarding beginnt in 20 Minuten.","Passengers on flight LH 1132 to Lisbon, please note: your flight departs today not from gate A22 but from gate B14. Boarding begins in 20 minutes."],
@@ -50,7 +50,7 @@ window.HS = [
     ["rf","Herr Haddad soll schnell zum Gate kommen.",true,"„Bitte kommen Sie sofort zum Gate C 5.“"],
     ["mc","Wann schließt das Gate für den Flug nach Istanbul?",["in fünf Minuten","in 15 Minuten","in 20 Minuten"],0,"„Das Gate schließt in fünf Minuten.“"]]},
 
-{id:"kaufhaus", de:"Kaufhaus: Angebot und Kind sucht Eltern", en:"Department store: offer and lost child", amb:"shop", kind:"Durchsage",
+{id:"kaufhaus", qen:["Where is the special offer? a) on the ground floor b) on the second floor c) on the third floor", "The offer is valid all day.", "Where is Jonas waiting? a) at the till b) at the information desk on the ground floor c) in the play corner", "The department store is closing soon."], de:"Kaufhaus: Angebot und Kind sucht Eltern", en:"Department store: offer and lost child", amb:"shop", kind:"Durchsage",
  who:{A:["Ansage","f"]},
  parts:["chime",
   ["A","Liebe Kundinnen und Kunden, nur heute: In unserer Sportabteilung im dritten Stock sind alle Laufschuhe 30 Prozent günstiger. Das Angebot gilt bis 16 Uhr.","Dear customers, today only: in our sports department on the third floor all running shoes are 30 per cent cheaper. The offer is valid until 4 pm."],
@@ -63,7 +63,7 @@ window.HS = [
     ["mc","Wo wartet Jonas?",["an der Kasse","an der Information im Erdgeschoss","in der Spielecke"],1,"„… an der Information im Erdgeschoss, direkt am Haupteingang.“"],
     ["rf","Das Kaufhaus schließt bald.",true,"„… dass unser Haus in 15 Minuten schließt.“"]]},
 
-{id:"radio", de:"Radio: Verkehr und Wetter", en:"Radio: traffic and weather", amb:"radio", kind:"Radio",
+{id:"radio", qen:["Why is there a traffic jam on the A5? a) because of roadworks b) because of an accident c) because of the weather", "The police recommend taking the B3.", "How long is the Mainzer Landstraße closed? a) only today b) until Friday c) until the weekend", "It will rain tomorrow afternoon."], de:"Radio: Verkehr und Wetter", en:"Radio: traffic and weather", amb:"radio", kind:"Radio",
  who:{A:["Moderatorin","f"],B:["Verkehrsredaktion","m"]},
  parts:[
   ["A","Und jetzt die Verkehrsmeldungen mit Tobias.","And now the traffic news with Tobias."],
@@ -74,7 +74,7 @@ window.HS = [
     ["mc","Wie lange ist die Mainzer Landstraße gesperrt?",["nur heute","bis Freitag","bis zum Wochenende"],1,"„… wegen Bauarbeiten bis Freitag gesperrt.“"],
     ["rf","Morgen Nachmittag regnet es.",true,"„Morgen kommen von Westen Wolken, und am Nachmittag regnet es.“"]]},
 
-{id:"praxis", de:"Anrufbeantworter: Arztpraxis", en:"Voicemail: doctor's practice", amb:"phone", kind:"Telefon",
+{id:"praxis", qen:["The surgery is closed for two weeks in August.", "Who is covering for the surgery? a) Dr Lang b) Dr Schulz c) the hospital", "You can't get prescriptions during this time.", "Which number do you dial in a life-threatening emergency? a) 116 117 b) 112 c) 069 23 45 67"], de:"Anrufbeantworter: Arztpraxis", en:"Voicemail: doctor's practice", amb:"phone", kind:"Telefon",
  who:{A:["Praxis","f"]},
  parts:["ring","beep",
   ["A","Guten Tag, Sie sind verbunden mit der Praxis Dr. Schulz. Unsere Praxis ist vom 4. bis 15. August wegen Urlaub geschlossen.","Hello, you've reached Dr Schulz's practice. Our practice is closed for holidays from 4 to 15 August."],
@@ -85,7 +85,7 @@ window.HS = [
     ["rf","Rezepte kann man in dieser Zeit nicht bekommen.",false,"„Rezepte können Sie weiterhin online bestellen.“"],
     ["mc","Welche Nummer wählt man in einem lebensbedrohlichen Notfall?",["116 117","112","069 23 45 67"],1,"„In lebensbedrohlichen Notfällen wählen Sie bitte die 112.“"]]},
 
-{id:"werkstatt", de:"Anrufbeantworter: Nachricht von der Werkstatt", en:"Voicemail: message from the garage", amb:"phone", kind:"Telefon",
+{id:"werkstatt", qen:["What needs to be repaired on the car? a) the front brakes b) the tyres c) the air conditioning", "Roughly how much does the repair cost? a) 140 euros b) 240 euros c) 420 euros", "Mr Keller should call back by 4 pm.", "The car will be ready this evening."], de:"Anrufbeantworter: Nachricht von der Werkstatt", en:"Voicemail: message from the garage", amb:"phone", kind:"Telefon",
  who:{A:["Werkstatt","m"]},
  parts:["beep",
   ["A","Guten Tag, Herr Keller, hier ist Martin Braun vom Autohaus Braun. Wir haben Ihr Auto untersucht: Die Bremsen vorne müssen gewechselt werden, das kostet ungefähr 240 Euro.","Hello Mr Keller, this is Martin Braun from Braun garage. We've examined your car: the front brakes need to be changed; that costs about 240 euros."],
@@ -96,7 +96,7 @@ window.HS = [
     ["rf","Herr Keller soll bis 16 Uhr zurückrufen.",true,"„… rufen Sie uns bitte bis heute 16 Uhr zurück.“"],
     ["rf","Das Auto ist heute Abend fertig.",false,"„… morgen ab 10 Uhr abholbereit.“"]]},
 
-{id:"restaurant", de:"Im Restaurant: bestellen, reklamieren, zahlen", en:"Restaurant: ordering, complaining, paying", amb:"cafe", kind:"Gespräch",
+{id:"restaurant", qen:["What does the woman order as a main course? a) tomato soup b) salmon with potatoes c) pasta with cream sauce", "The woman is not allowed to eat dairy products.", "What is the problem with the soup? a) It is too salty. b) It is only lukewarm. c) It is the wrong soup.", "How much tip does she give? a) 50 cents b) 2 euros 50 c) 5 euros"], de:"Im Restaurant: bestellen, reklamieren, zahlen", en:"Restaurant: ordering, complaining, paying", amb:"cafe", kind:"Gespräch",
  who:{A:["Kellner","m"],B:["Gast","f"]},
  parts:[
   ["A","Guten Abend! Haben Sie schon gewählt?","Good evening! Have you decided?"],
@@ -113,7 +113,7 @@ window.HS = [
     ["mc","Was ist das Problem mit der Suppe?",["Sie ist zu salzig.","Sie ist nur lauwarm.","Es ist die falsche Suppe."],1,"„… die Suppe ist leider nur lauwarm.“"],
     ["mc","Wie viel Trinkgeld gibt sie?",["50 Cent","2 Euro 50","5 Euro"],1,"27,50 € → „Machen Sie 30“ = 2,50 € Trinkgeld."]]},
 
-{id:"hotel", de:"Im Hotel: Check-in und ein Problem", en:"Hotel: check-in and a problem", amb:"hotel", kind:"Gespräch",
+{id:"hotel", qen:["How long is Mr Okafor staying? a) one night b) three nights c) one week", "Breakfast costs extra.", "How much is the garage? a) nothing b) 12 euros a night c) 20 euros a night", "Mr Okafor gets a different room."], de:"Im Hotel: Check-in und ein Problem", en:"Hotel: check-in and a problem", amb:"hotel", kind:"Gespräch",
  who:{A:["Rezeption","f"],B:["Gast","m"]},
  parts:[
   ["A","Guten Abend und herzlich willkommen. Haben Sie reserviert?","Good evening and welcome. Do you have a reservation?"],
@@ -130,7 +130,7 @@ window.HS = [
     ["mc","Was kostet die Garage?",["nichts","12 Euro pro Nacht","20 Euro pro Nacht"],1,"„… das kostet 12 Euro pro Nacht.“"],
     ["rf","Herr Okafor bekommt ein anderes Zimmer.",true,"„Ich gebe Ihnen gern ein anderes Zimmer, die 412 …“"]]},
 
-{id:"bank", de:"Bei der Bank: Karte verloren", en:"At the bank: lost card", amb:"bank", kind:"Gespräch",
+{id:"bank", qen:["The woman has not had the card blocked yet.", "When will the new card arrive? a) tomorrow b) in about five working days c) in two weeks", "How much does the new card cost? a) nothing b) 5 euros c) 15 euros", "Until the card arrives, she can withdraw money at the counter."], de:"Bei der Bank: Karte verloren", en:"At the bank: lost card", amb:"bank", kind:"Gespräch",
  who:{A:["Bankberater","m"],B:["Kundin","f"]},
  parts:[
   ["A","Guten Tag, was kann ich für Sie tun?","Hello, what can I do for you?"],
@@ -147,7 +147,7 @@ window.HS = [
     ["mc","Wie viel kostet die neue Karte?",["nichts","5 Euro","15 Euro"],2,"„Die neue Karte kostet leider 15 Euro.“"],
     ["rf","Bis die Karte kommt, kann sie am Schalter Geld abheben.",true,"„Ja, hier am Schalter mit Ihrem Ausweis.“"]]},
 
-{id:"arzt", de:"Beim Arzt: Rückenschmerzen", en:"At the doctor's: back pain", amb:"doctor", kind:"Gespräch",
+{id:"arzt", qen:["How long has the man been in pain? a) for two days b) for ten days c) for two weeks", "What is probably the cause? a) a sports accident b) the house move c) the office work", "He should take the tablets three times a day.", "He is signed off sick until Friday."], de:"Beim Arzt: Rückenschmerzen", en:"At the doctor's: back pain", amb:"doctor", kind:"Gespräch",
  who:{A:["Ärztin","f"],B:["Patient","m"]},
  parts:[
   ["A","Guten Morgen. Was kann ich für Sie tun?","Good morning. What can I do for you?"],
@@ -163,7 +163,7 @@ window.HS = [
     ["rf","Er soll die Tabletten dreimal am Tag nehmen.",false,"„… morgens und abends eine Tablette …“ = zweimal am Tag."],
     ["rf","Er ist bis Freitag krankgeschrieben.",true,"„Ja, ich schreibe Sie bis Freitag krank.“"]]},
 
-{id:"buergeramt", de:"Bürgeramt: Anmeldung", en:"Citizens' office: registration", amb:"office", kind:"Gespräch",
+{id:"buergeramt", qen:["Since when has the man lived in Berger Straße? a) since 1 August b) since 1 September c) for two months", "The deadline for registering is two weeks.", "What is missing? a) the passport b) the rental contract c) the landlord's confirmation of moving in", "Registration costs 15 euros."], de:"Bürgeramt: Anmeldung", en:"Citizens' office: registration", amb:"office", kind:"Gespräch",
  who:{A:["Sachbearbeiterin","f"],B:["Sie","m"]},
  parts:[
   ["A","Guten Tag, die Nummer 128? Bitte nehmen Sie Platz. Was kann ich für Sie tun?","Hello, number 128? Please take a seat. What can I do for you?"],
@@ -178,7 +178,7 @@ window.HS = [
     ["mc","Was fehlt?",["der Pass","der Mietvertrag","die Wohnungsgeberbestätigung"],2,"„Oh nein, die liegt noch zu Hause.“ – „Der Mietvertrag reicht leider nicht.“"],
     ["rf","Die Anmeldung kostet 15 Euro.",false,"„Nein, sie ist kostenlos.“"]]},
 
-{id:"arbeit", de:"Arbeit: Ansage der Teamleiterin", en:"Work: team leader's briefing", amb:"office", kind:"Ansage",
+{id:"arbeit", qen:["Mr Kaya is ill today.", "When is the delivery coming? a) at 8 am b) at 11 am c) at 2 pm", "When is the team meeting? a) on Wednesday b) on Thursday at 8 am c) on Friday", "Holiday requests must be entered by Friday."], de:"Arbeit: Ansage der Teamleiterin", en:"Work: team leader's briefing", amb:"office", kind:"Ansage",
  who:{A:["Teamleiterin","f"]},
  parts:[
   ["A","Guten Morgen zusammen, kurz ein paar Informationen für heute. Frau Petrović ist krank, deshalb übernimmt Herr Kaya ihre Schicht an der Kasse.","Good morning everyone, a few quick pieces of information for today. Ms Petrović is ill, so Mr Kaya is taking over her shift at the checkout."],
@@ -189,7 +189,7 @@ window.HS = [
     ["mc","Wann ist die Teambesprechung?",["am Mittwoch","am Donnerstag um 8 Uhr","am Freitag"],1,"„… nicht am Mittwoch, sondern am Donnerstag um 8 Uhr.“"],
     ["rf","Die Urlaubswünsche müssen bis Freitag eingetragen werden.",true,"„… eure Urlaubswünsche bis Freitag einzutragen.“"]]},
 
-{id:"bus", de:"Bus: Umleitung wegen einer Baustelle", en:"Bus: diversion because of roadworks", amb:"street", kind:"Durchsage",
+{id:"bus", qen:["Why is the bus taking a diversion? a) because of an accident b) because of a building site c) because of a demonstration", "The bus stops at Merianplatz today.", "What should passengers to Bornheim do? a) stay on the bus b) change to the U4 at Höhenstraße c) take a taxi", "The diversion is only today."], de:"Bus: Umleitung wegen einer Baustelle", en:"Bus: diversion because of roadworks", amb:"street", kind:"Durchsage",
  who:{A:["Busfahrer","m"]},
  parts:["chime",
   ["A","Liebe Fahrgäste, wegen einer Baustelle in der Friedberger Landstraße fährt die Linie 30 heute eine Umleitung. Die Haltestellen Merianplatz und Bornheim Mitte werden nicht angefahren.","Dear passengers, because of roadworks on Friedberger Landstraße, line 30 is taking a diversion today. The Merianplatz and Bornheim Mitte stops will not be served."],
@@ -199,7 +199,7 @@ window.HS = [
     ["mc","Was sollen Fahrgäste nach Bornheim tun?",["im Bus bleiben","an der Höhenstraße in die U4 umsteigen","ein Taxi nehmen"],1,"„… steigen bitte an der nächsten Haltestelle, Höhenstraße, aus und nehmen die U-Bahn-Linie U4.“"],
     ["rf","Die Umleitung gibt es nur heute.",false,"„Die Umleitung dauert voraussichtlich bis Ende des Monats.“"]]},
 
-{id:"ausfall", de:"Bahnhof: Zug fällt aus – Ersatzverkehr", en:"Station: train cancelled – replacement service", amb:"station", kind:"Durchsage",
+{id:"ausfall", qen:["The regional train to Gießen is only delayed.", "What is the reason? a) a police operation b) a storm c) a sick train driver", "Where do the replacement buses leave from? a) at platform 4 b) in front of the station building, north exit c) at the south exit", "You can also go to Bad Nauheim on the regional express at 17:25."], de:"Bahnhof: Zug fällt aus – Ersatzverkehr", en:"Station: train cancelled – replacement service", amb:"station", kind:"Durchsage",
  who:{A:["Ansage","m"]},
  parts:["chime",
   ["A","Information zur Regionalbahn nach Gießen, Abfahrt 17 Uhr 12 von Gleis 4: Dieser Zug fällt heute leider aus. Grund ist ein Polizeieinsatz auf der Strecke.","Information on the regional train to Gießen, departure 17:12 from platform 4: unfortunately this train is cancelled today. The reason is a police operation on the line."],
@@ -210,7 +210,7 @@ window.HS = [
     ["mc","Wo fahren die Ersatzbusse ab?",["an Gleis 4","vor dem Bahnhofsgebäude, Ausgang Nord","am Ausgang Süd"],1,"„Die Busse fahren vor dem Bahnhofsgebäude ab, Ausgang Nord.“"],
     ["rf","Nach Bad Nauheim kann man auch mit dem Regionalexpress um 17:25 Uhr fahren.",true,"„Reisende nach Bad Nauheim können auch den Regionalexpress um 17 Uhr 25 … benutzen.“"]]},
 
-{id:"museum", de:"Museum: Begrüßung bei einer Führung", en:"Museum: welcome at a guided tour", amb:"museum", kind:"Ansage",
+{id:"museum", qen:["How long does the guided tour take? a) 45 minutes b) 90 minutes c) two hours", "On the first floor you see photos from the post-war period.", "What is allowed? a) taking photos with flash b) taking photos without flash c) bringing large bags", "The cloakroom costs two euros."], de:"Museum: Begrüßung bei einer Führung", en:"Museum: welcome at a guided tour", amb:"museum", kind:"Ansage",
  who:{A:["Museumsführerin","f"]},
  parts:[
   ["A","Herzlich willkommen im Historischen Museum! Mein Name ist Carla Weiß, und ich begleite Sie heute durch die Ausstellung über die Geschichte unserer Stadt. Die Führung dauert ungefähr 90 Minuten.","Welcome to the Historical Museum! My name is Carla Weiß, and today I'll guide you through the exhibition about the history of our city. The tour lasts about 90 minutes."],
@@ -221,7 +221,7 @@ window.HS = [
     ["mc","Was ist erlaubt?",["mit Blitz fotografieren","ohne Blitz fotografieren","große Taschen mitnehmen"],1,"„Fotografieren ist erlaubt, aber ohne Blitz.“"],
     ["rf","Die Garderobe kostet zwei Euro.",false,"„Die Garderobe ist kostenlos.“"]]},
 
-{id:"hausverwaltung", de:"Anrufbeantworter: Hausverwaltung", en:"Voicemail: property management", amb:"phone", kind:"Telefon",
+{id:"hausverwaltung", qen:["The message is for one tenant only.", "When will there be no water? a) on Tuesday from 9 am to 1 pm b) all day on Thursday c) on Tuesday evening", "Why is the water being turned off? a) The pipes in the basement are being replaced. b) The heating is being repaired. c) The chimney sweep is coming.", "Anyone who isn't at home on Thursday can give a neighbour a key."], de:"Anrufbeantworter: Hausverwaltung", en:"Voicemail: property management", amb:"phone", kind:"Telefon",
  who:{A:["Hausverwaltung","f"]},
  parts:["beep",
   ["A","Guten Tag, hier ist Frau Winter von der Hausverwaltung Keller. Diese Nachricht ist für alle Mieter in der Goethestraße 12.","Hello, this is Ms Winter from Keller property management. This message is for all tenants at Goethestraße 12."],
@@ -232,7 +232,7 @@ window.HS = [
     ["mc","Warum wird das Wasser abgestellt?",["Die Rohre im Keller werden erneuert.","Die Heizung wird repariert.","Der Schornsteinfeger kommt."],0,"„… weil die Rohre im Keller erneuert werden.“"],
     ["rf","Wer am Donnerstag nicht da ist, kann dem Nachbarn einen Schlüssel geben.",true,"„… geben Sie bitte Ihrem Nachbarn einen Schlüssel …“"]]},
 
-{id:"kita", de:"Anrufbeantworter: Nachricht von der Kita", en:"Voicemail: message from the nursery", amb:"phone", kind:"Telefon",
+{id:"kita", qen:["What is wrong with Emma? a) stomach ache b) a slight temperature c) an injury", "Emma should be picked up by 3 pm.", "Only her mother is allowed to pick Emma up.", "When is the parents' evening? a) on Wednesday at 7 pm b) on Monday at 7 pm c) on Monday at 3 pm"], de:"Anrufbeantworter: Nachricht von der Kita", en:"Voicemail: message from the nursery", amb:"phone", kind:"Telefon",
  who:{A:["Erzieherin","f"]},
  parts:["beep",
   ["A","Hallo, Frau Rossi, hier ist Sandra von der Kita Sonnenschein. Emma hat seit dem Mittagessen leichtes Fieber, ungefähr 38 Grad, und möchte gern nach Hause.","Hello Ms Rossi, this is Sandra from Sonnenschein nursery. Emma has had a slight fever since lunch, about 38 degrees, and would like to go home."],
@@ -243,7 +243,7 @@ window.HS = [
     ["rf","Nur die Mutter darf Emma abholen.",false,"„… darf laut Ihrem Formular auch Emmas Oma kommen.“"],
     ["mc","Wann ist der Elternabend?",["am Mittwoch um 19 Uhr","am Montag um 19 Uhr","am Montag um 15 Uhr"],1,"„… nicht am Mittwoch, sondern schon am Montag um 19 Uhr.“"]]},
 
-{id:"nachrichten", de:"Radio: Kurznachrichten", en:"Radio: short news", amb:"radio", kind:"Radio",
+{id:"nachrichten", qen:["Tomorrow the S-Bahn trains in Frankfurt won't run either.", "How long will the strike last? a) all day b) from 4 am to 6 pm c) until the weekend", "How many new childcare places are planned? a) about 90 b) about 900 c) about 2030", "The weather service advises not going into the forest tonight."], de:"Radio: Kurznachrichten", en:"Radio: short news", amb:"radio", kind:"Radio",
  who:{A:["Nachrichtensprecher","m"]},
  parts:["chime",
   ["A","Hessischer Rundfunk, die Nachrichten. Die Gewerkschaft der Lokführer hat für morgen einen Streik angekündigt. Von 4 Uhr morgens bis 18 Uhr fahren im Regionalverkehr nur wenige Züge. Die S-Bahnen in Frankfurt sind nicht betroffen.","Hessischer Rundfunk, the news. The train drivers' union has announced a strike for tomorrow. From 4 am to 6 pm only a few regional trains will run. S-Bahn trains in Frankfurt are not affected."],
@@ -254,7 +254,7 @@ window.HS = [
     ["mc","Wie viele neue Kita-Plätze soll es geben?",["ungefähr 90","ungefähr 900","ungefähr 2030"],1,"„… rund 900 zusätzliche Plätze …“"],
     ["rf","Der Wetterdienst rät, heute Nacht nicht in den Wald zu gehen.",true,"„… warnt vor umstürzenden Bäumen und bittet, nicht in den Wald zu gehen.“"]]},
 
-{id:"kasse", de:"Supermarkt: an der Kasse", en:"Supermarket: at the checkout", amb:"shop", kind:"Gespräch",
+{id:"kasse", qen:["The customer has a loyalty card.", "How much deposit does the customer get back? a) 2.25 euros b) 3.25 euros c) 20.15 euros", "What is the special offer? a) milk: 3 for 2 b) bread: half price c) fruit: 20 percent cheaper", "The bag is free."], de:"Supermarkt: an der Kasse", en:"Supermarket: at the checkout", amb:"shop", kind:"Gespräch",
  who:{A:["Kassiererin","f"],B:["Kunde","m"]},
  parts:[
   ["A","Hallo! Sammeln Sie Punkte? Haben Sie eine Kundenkarte?","Hello! Do you collect points? Do you have a loyalty card?"],
@@ -271,7 +271,7 @@ window.HS = [
     ["mc","Was ist das Angebot?",["Milch: 3 für 2","Brot: halber Preis","Obst: 20 Prozent billiger"],0,"„Wenn Sie zwei nehmen, bekommen Sie die dritte gratis.“"],
     ["rf","Die Tüte ist kostenlos.",false,"„Die Tüte kostet 20 Cent.“"]]},
 
-{id:"apotheke", de:"In der Apotheke", en:"At the pharmacy", amb:"doctor", kind:"Gespräch",
+{id:"apotheke", qen:["How long has the woman had symptoms? a) since yesterday b) for three days c) for a week", "The woman has a temperature.", "How often should she take the cough syrup? a) once a day b) twice a day c) three times a day", "She may drive while taking the syrup."], de:"In der Apotheke", en:"At the pharmacy", amb:"doctor", kind:"Gespräch",
  who:{A:["Apotheker","m"],B:["Kundin","f"]},
  parts:[
   ["A","Guten Tag, was kann ich für Sie tun?","Hello, what can I do for you?"],
@@ -288,7 +288,7 @@ window.HS = [
     ["mc","Wie oft soll sie den Hustensaft nehmen?",["einmal am Tag","zweimal am Tag","dreimal am Tag"],2,"„Nehmen Sie dreimal täglich einen Löffel …“"],
     ["rf","Mit dem Saft darf sie Auto fahren.",true,"„Nein, der macht nicht müde.“"]]},
 
-{id:"termin", de:"Telefon: Termin beim Bürgeramt", en:"Phone: appointment at the citizens' office", amb:"phone", kind:"Gespräch",
+{id:"termin", qen:["What does the woman need? a) an ID card b) a new passport c) a registration certificate", "When is the appointment? a) on 18 October at 10:20 b) on 20 October c) in three weeks", "A normal passport is ready in three days.", "She has to bring a biometric photo."], de:"Telefon: Termin beim Bürgeramt", en:"Phone: appointment at the citizens' office", amb:"phone", kind:"Gespräch",
  who:{A:["Bürgertelefon","m"],B:["Anruferin","f"]},
  parts:["ring",
   ["A","Bürgertelefon der Stadt Frankfurt, mein Name ist Hoffmann. Was kann ich für Sie tun?","City of Frankfurt citizens' line, my name is Hoffmann. What can I do for you?"],
@@ -303,7 +303,7 @@ window.HS = [
     ["rf","Ein normaler Pass ist in drei Tagen fertig.",false,"„Ein normaler Pass dauert leider drei bis vier Wochen.“ Nur der Expresspass ist in drei Tagen fertig."],
     ["rf","Sie muss ein biometrisches Foto mitbringen.",true,"„Ihren alten Pass und ein biometrisches Foto.“"]]},
 
-{id:"besichtigung", de:"Wohnungsbesichtigung", en:"Flat viewing", amb:"street", kind:"Gespräch",
+{id:"besichtigung", qen:["How big is the flat? a) 48 square metres b) 58 square metres c) 85 square metres", "How much are the additional costs? a) 180 euros b) 790 euros c) 970 euros", "The kitchen comes with the flat.", "No pets are allowed in the flat."], de:"Wohnungsbesichtigung", en:"Flat viewing", amb:"street", kind:"Gespräch",
  who:{A:["Vermieterin","f"],B:["Interessent","m"]},
  parts:[
   ["A","So, das ist die Wohnung: zwei Zimmer, Küche, Bad und ein kleiner Balkon nach Süden, insgesamt 58 Quadratmeter.","So, this is the flat: two rooms, kitchen, bathroom and a small south-facing balcony, 58 square metres in total."],
@@ -320,7 +320,7 @@ window.HS = [
     ["rf","Die Küche gehört zur Wohnung.",true,"„Ja, die Einbauküche bleibt in der Wohnung …“"],
     ["rf","In der Wohnung sind keine Haustiere erlaubt.",false,"„Eine Katze ist in Ordnung, Hunde leider nicht.“"]]},
 
-{id:"kantine", de:"Mittagspause in der Kantine", en:"Lunch break in the canteen", amb:"cafe", kind:"Gespräch",
+{id:"kantine", qen:["Where did Jonas go on holiday? a) Spain b) Portugal c) Italy", "The canteen will soon be open in the evenings too.", "Until when will the canteen then be open? a) until 6 pm b) until 8 pm c) until 10 pm", "Aylin is taking part in the company run on Friday."], de:"Mittagspause in der Kantine", en:"Lunch break in the canteen", amb:"cafe", kind:"Gespräch",
  who:{A:["Jonas","m"],B:["Aylin","f"]},
  parts:[
   ["A","Hallo Aylin, ist hier noch frei?","Hi Aylin, is this seat free?"],
@@ -336,7 +336,7 @@ window.HS = [
     ["mc","Bis wann ist die Kantine dann geöffnet?",["bis 18 Uhr","bis 20 Uhr","bis 22 Uhr"],1,"„Bis 20 Uhr, für die Kollegen in der Spätschicht.“"],
     ["rf","Aylin läuft am Freitag beim Firmenlauf mit.",false,"Sie hat sich den Fuß verletzt – sie kommt nur „zum Zuschauen“."]]},
 
-{id:"rezeption", de:"Arztpraxis: Termin verschieben", en:"Doctor's practice: moving an appointment", amb:"doctor", kind:"Gespräch",
+{id:"rezeption", qen:["Why does the man want to move the appointment? a) He is ill. b) He has to work. c) He is on holiday.", "When is the new appointment? a) on Thursday at 9 am b) on Monday at 7:30 am c) on Monday at 10 am", "He is not allowed to drink anything before the blood test.", "The doctor only calls if something is wrong."], de:"Arztpraxis: Termin verschieben", en:"Doctor's practice: moving an appointment", amb:"doctor", kind:"Gespräch",
  who:{A:["Arzthelferin","f"],B:["Patient","m"]},
  parts:[
   ["B","Guten Morgen, ich habe am Donnerstag um 9 Uhr einen Termin zur Blutabnahme. Leider muss ich an dem Tag arbeiten. Kann ich den Termin verschieben?","Good morning, I have an appointment for a blood test on Thursday at 9. Unfortunately I have to work that day. Can I move the appointment?"],

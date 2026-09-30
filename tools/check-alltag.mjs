@@ -52,6 +52,7 @@ for (const d of window.HS) {
     if (!p[1] || !p[2]) fail(w, "part " + (i + 1) + " is missing German or English");
   });
   if (!d.q || d.q.length < 3) fail(w, "fewer than 3 questions");
+  if (!Array.isArray(d.qen) || d.qen.length !== (d.q || []).length || d.qen.some(x => !x)) fail(w, "every question needs its English in qen");
   (d.q || []).forEach((q, i) => {
     if (q[0] === "rf") { if (typeof q[2] !== "boolean" || !q[1] || !q[3]) fail(w, "question " + (i + 1) + " (rf) malformed"); }
     else if (q[0] === "mc") { if (!Array.isArray(q[2]) || q[2].length !== 3 || !(q[3] >= 0 && q[3] < 3) || !q[4]) fail(w, "question " + (i + 1) + " (mc) malformed"); }

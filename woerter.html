@@ -169,7 +169,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--b1);outline-offset:
  <button class="tg b1" data-lv="B1" aria-pressed="true">B1</button>
  <button class="tg en" id="en" aria-pressed="false">EN</button>
  <button class="tg quiz" id="qz" aria-pressed="false">Übungsmodus</button>
- <button class="tg speed" id="sp" aria-pressed="false">Tempo: normal</button>
  <span id="score"></span>
 </div>
 <div class="legend" id="legend"></div>
@@ -302,8 +301,8 @@ function speak(btn,text){if(!synth)return;if(playing===btn){stopSay();return}sto
  const u=new SpeechSynthesisUtterance(text);u.lang="de-DE";u.rate=rate;const v=voiceFor("de");if(v)u.voice=v;
  u.onend=u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
  playing=btn;btn.classList.add("on");synth.speak(u)}
-const sp=document.getElementById("sp");
-sp.onclick=()=>{rate=rate===1?0.75:1;sp.setAttribute("aria-pressed",String(rate!==1));sp.textContent=rate===1?"Tempo: normal":"Tempo: langsam"};
+/* Tempo is set by the button at the top of the app (index.html). */
+addEventListener("message",e=>{if(e.origin===location.origin&&e.data&&e.data.dlRate)rate=e.data.dlRate});
 
 /* ---- the popup ---- */
 const pop=document.getElementById("pop"),pw=document.getElementById("pw"),pb=document.getElementById("pb"),psay=document.getElementById("psay");
