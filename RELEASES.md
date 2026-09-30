@@ -1,5 +1,11 @@
 # Releases
 
+## 1.4.3 — 2026-09-30
+- Fix: the ♂ / ♀ signs are gone from Gespräche – they sat too low on phones; the blue and pink name colours already show who is who
+- Better: clearer speech – high-quality and on-device voices are preferred, the pitch is only changed gently, and a new sentence waits a moment after the last one stops, which stops the stuttering on phones
+- New: 🔊 Stimmen marks the best-quality voices and online voices that can stall
+- Fix: on iPhone the robotic joke voices (Grandpa, Rocko, Eddy …) are never used, and speech starts right on the tap as Safari requires
+
 ## 1.4.2 — 2026-09-30
 - New: „🔊 Stimmen“ in Gespräche — lists the German voices on your device, lets you hear each one and choose Mann 1, Mann 2, Frau 1 and Frau 2 yourself
 - Better: dialogues look like a chat — one person on the left, the other on the right, blue for men and pink for women

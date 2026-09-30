@@ -55,8 +55,8 @@ main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
 .ln[data-g="f"]{--c:#c2185b}
 .ln.A{align-self:flex-start}
 .ln.B{align-self:flex-end;align-items:flex-end}
-.who{font-size:12px;font-weight:700;color:#fff;background:var(--c);border-radius:999px;padding:2px 10px;white-space:nowrap}
-.ln .body{background:var(--surface);border:1.5px solid color-mix(in srgb,var(--c) 35%,transparent);border-radius:16px 16px 16px 4px;padding:8px 12px}
+.who{display:inline-block;font-size:12px;line-height:18px;font-weight:700;color:#fff;background:var(--c);border-radius:999px;padding:1px 10px;white-space:nowrap}
+.ln .body{background:var(--surface);border:1.5px solid var(--line);border-color:color-mix(in srgb,var(--c) 35%,transparent);border-radius:16px 16px 16px 4px;padding:8px 12px}
 .ln.B .body{background:var(--hlbg);border-radius:16px 16px 4px 16px}
 .ln.now .body{outline:2.5px solid var(--c);outline-offset:2px}
 .vbox{display:none;background:var(--surface);border-radius:10px;padding:10px 12px;margin:6px 0 10px;font-size:14px}
@@ -165,7 +165,7 @@ function block(g,en,voice){return `<div class="de"><span class="s" lang="de">${d
 function phrases(tips){return `<div class="box"><b>Wichtige Sätze</b>${tips.map(([g,e])=>`<div class="phr"><div class="t"><span class="s" lang="de">${de(g)}</span><i>${esc(e)}</i></div>${sayBtn(g)}</div>`).join("")}</div>`}
 
 function dialogCard(d){
- const gs=genders(d),sym=r=>gs[r]==="f"?" ♀":" ♂",who=r=>esc(d.who[r])+sym(r);
+ const gs=genders(d),who=r=>esc(d.who[r]);
  const mine=d.g&&(d.g.A==="me"||d.g.B==="me");
  return `<div class="dcard"><h2>${esc(d.de)}</h2><div class="den">${esc(d.en)}</div>
   <div class="box en-wrap"><b>Situation</b><span class="s" lang="de">${de(d.sit)}</span> <button class="enb" type="button">EN</button><div class="en">${esc(d.sitEn)}</div></div>
@@ -173,7 +173,7 @@ function dialogCard(d){
    <button class="chip" type="button" data-role="" aria-pressed="true">aus</button>
    <button class="chip" type="button" data-role="A" aria-pressed="false">${who("A")}</button>
    <button class="chip" type="button" data-role="B" aria-pressed="false">${who("B")}</button></div>
-  <div class="tools">${mine?`<span class="lab">Meine Stimme:</span><button class="chip" type="button" data-me="m" aria-pressed="${myGender()==="m"}">♂ Mann</button><button class="chip" type="button" data-me="f" aria-pressed="${myGender()==="f"}">♀ Frau</button>`:""}<button class="chip" type="button" data-vbox aria-pressed="false">🔊 Stimmen</button></div>
+  <div class="tools">${mine?`<span class="lab">Meine Stimme:</span><button class="chip" type="button" data-me="m" aria-pressed="${myGender()==="m"}">Mann</button><button class="chip" type="button" data-me="f" aria-pressed="${myGender()==="f"}">Frau</button>`:""}<button class="chip" type="button" data-vbox aria-pressed="false">🔊 Stimmen</button></div>
   <div class="vbox"></div>
   <div class="lines">${d.lines.map(([r,g,e])=>`<div class="ln ${r}" data-g="${gs[r]}"><span class="who">${who(r)}</span><div class="body">${block(g,e,r)}</div></div>`).join("")}</div>
   ${phrases(d.tips)}</div>`}
@@ -208,17 +208,22 @@ if(store("al:allen")==="1")allen.click();
 /* ---- speech: one sentence, or a whole dialogue / letter in turn ---- */
 const synth=window.speechSynthesis;let rate=1,playing=null,queue=null;
 if(!synth||typeof SpeechSynthesisUtterance==="undefined")document.body.classList.add("no-tts");
-function voices(){if(!synth)return[];const vs=synth.getVoices().filter(v=>v.lang&&v.lang.toLowerCase().startsWith("de"));
- const pref=["premium","enhanced","google","natural","anna","helena","katja","markus","yannick"];
- return vs.sort((a,b)=>{const sa=pref.findIndex(p=>a.name.toLowerCase().includes(p)),sb=pref.findIndex(p=>b.name.toLowerCase().includes(p));return (sa<0?99:sa)-(sb<0?99:sb)})}
+/* iOS lists joke and "Eloquence" voices (Grandpa, Rocko, Bubbles …) as
+   German voices too; they sound robotic, so they never get a part. */
+const NOVELTY=/\b(eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley|albert|bad news|bahh|bells|boing|bubbles|cellos|good news|jester|organ|superstar|trinoids|whisper|wobble|zarvox|fred|junior|kathy|ralph)\b/i;
+function voices(){if(!synth)return[];const vs=synth.getVoices().filter(v=>v.lang&&v.lang.toLowerCase().replace("_","-").startsWith("de")&&!NOVELTY.test(v.name));
+ /* Clearest first: high-quality voices, then voices stored on the device
+    (online voices stream and can stall mid-sentence), then the rest. */
+ const score=v=>(/premium|enhanced|natural|neural|verbessert/i.test(v.name)?0:10)+(v.localService===false?5:0);
+ return vs.sort((a,b)=>score(a)-score(b))}
 if(synth){synth.getVoices();synth.onvoiceschanged=()=>synth.getVoices()}
 /* Voices by gender. Browsers don't say which voice is a man or a woman, so
    the common German voice names decide, and an unknown name counts as
    neither. Each speaker gets a free voice of their own gender – two
    different ones when both share it – and where the device has too few,
    the pitch tells them apart: lower for a man, higher for a woman. */
-const FEMV=/anna|helena|katja|petra|marlene|vicki|hedda|amala|katharina|seraphina|louisa|sandy|shelley|\bflo\b|elke|gisela|lena|nina|sabine|tanja|ingrid|google deutsch|female|weiblich/i;
-const MALV=/markus|yannick|stefan|conrad|hans|jonas|viktor|martin|klaus|florian|killian|christoph|ralf|reed|eddy|grandpa|rocko|bernd|\bmale\b|männlich/i;
+const FEMV=/anna|helena|katja|petra|marlene|vicki|hedda|amala|katharina|seraphina|louisa|elke|gisela|lena|nina|sabine|tanja|ingrid|google deutsch|female|weiblich/i;
+const MALV=/markus|yannick|stefan|conrad|hans|jonas|viktor|martin|klaus|florian|killian|christoph|ralf|bernd|\bmale\b|männlich/i;
 function genderOf(v){return FEMV.test(v.name)?"f":MALV.test(v.name)?"m":"u"}
 function myGender(){return store("al:me")==="f"?"f":"m"}
 function genders(d){const g={A:"f",B:"m"};if(d&&d.g)for(const r of ["A","B"])g[r]=d.g[r]==="me"?myGender():d.g[r];return g}
@@ -240,15 +245,15 @@ function cast(){
      gender's voice again (split by pitch below), and only then the other
      gender's, shaped with pitch. */
   const unknown=pool.u.find(x=>!used.includes(x));
-  if(unknown){out[r]={voice:unknown,pitch:G==="m"?0.75:1.25};used.push(unknown);continue}
+  if(unknown){out[r]={voice:unknown,pitch:G==="m"?0.9:1.1};used.push(unknown);continue}
   if(pool[G].length){out[r]={voice:pool[G][0],pitch:1};continue}
-  /* A woman's voice for a man needs a clearly lower pitch to pass (and
-     the other way round) – a small shift still sounds like the original. */
+  /* Pitch stays gentle: a big shift makes phone voices robotic and choppy.
+     A real voice of the right gender, picked under 🔊 Stimmen, is the fix. */
   const v=pool[G==="f"?"m":"f"].find(x=>!used.includes(x))||vs[0]||null;
-  out[r]={voice:v,pitch:G==="m"?0.55:1.45};if(v)used.push(v)}
+  out[r]={voice:v,pitch:G==="m"?0.8:1.2};if(v)used.push(v)}
  /* Only one voice for two people of the same gender: split them by pitch. */
  if(out.A.voice===out.B.voice&&g.A===g.B){
-  const base=out.A.pitch;out.A.pitch=base*(g.A==="m"?1.1:0.9);out.B.pitch=base*(g.A==="m"?0.8:1.2)}
+  const base=out.A.pitch;out.A.pitch=base*(g.A==="m"?1.05:0.95);out.B.pitch=base*(g.A==="m"?0.88:1.12)}
  return out}
 function utter(text,v){const u=new SpeechSynthesisUtterance(text);u.lang="de-DE";u.rate=rate;
  if(v==="A"||v==="B"){const c=cast()[v];if(c.voice)u.voice=c.voice;u.pitch=c.pitch}
@@ -256,22 +261,29 @@ function utter(text,v){const u=new SpeechSynthesisUtterance(text);u.lang="de-DE"
  return u}
 /* 🔊 Stimmen: every German voice this device has, to hear and to assign. */
 function voiceBox(box){
- const vs=voices(),sym=v=>({f:"♀ erkannt",m:"♂ erkannt",u:"?"})[genderOf(v)];
+ const vs=voices(),sym=v=>({f:"weiblich",m:"männlich",u:"unbekannt"})[genderOf(v)]+(/premium|enhanced|natural|neural|verbessert/i.test(v.name)?" · beste Qualität":"")+(v.localService===false?" · online, kann stocken":"");
  if(!vs.length){box.innerHTML=`<b>Keine deutsche Stimme gefunden.</b><div class="hint">Installiere eine deutsche Stimme in den Einstellungen deines Handys (Sprachausgabe / Text-to-Speech) und öffne die Seite dann neu.</div>`;return}
  const opt=k=>`<select data-pick="${k}"><option value="">automatisch</option>${vs.map(v=>`<option${store("al:v"+k)===v.name?" selected":""}>${esc(v.name)}</option>`).join("")}</select>`;
  box.innerHTML=`<b>Deutsche Stimmen auf diesem Gerät (${vs.length})</b>`+
   vs.map(v=>`<div class="vr"><span>${esc(v.name)} <small>${sym(v)}</small></span><button class="say" type="button" data-test="${esc(v.name)}" aria-label="Probe hören"></button></div>`).join("")+
   `<div class="pick">${PICKS.map(([k,l])=>`<label>${l}</label>${opt(k)}`).join("")}</div>`+
-  `<div class="hint">${vs.length<2?"Dein Gerät hat nur eine deutsche Stimme – die Personen werden deshalb nur durch die Tonhöhe unterschieden. ":""}Mehr Stimmen: iPhone → Einstellungen › Bedienungshilfen › Gesprochene Inhalte › Stimmen › Deutsch (z. B. Markus, Yannick, Anna, Helena laden). Android → Einstellungen › Sprachausgabe › Google-Sprachausgabe › Sprachdaten installieren › Deutsch.</div>`}
+  `<div class="hint">${vs.length<2?"Dein Gerät hat nur eine deutsche Stimme – die Personen werden deshalb nur durch die Tonhöhe unterschieden. ":""}Klarer klingen Stimmen mit „Premium“, „Erweitert“ oder „Natural“ im Namen. Mehr Stimmen: iPhone → Einstellungen › Bedienungshilfen › Gesprochene Inhalte › Stimmen › Deutsch (z. B. Markus, Yannick, Anna, Helena laden). Android → Einstellungen › Sprachausgabe › Google-Sprachausgabe › Sprachdaten installieren › Deutsch.</div>`}
 function testVoice(btn){if(!synth)return;if(playing===btn){stopAll();return}stopAll();
  const v=voices().find(x=>x.name===btn.dataset.test);const u=new SpeechSynthesisUtterance("Hallo, so klingt diese Stimme.");u.lang="de-DE";u.rate=rate;if(v)u.voice=v;
- u.onend=u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};playing=btn;btn.classList.add("on");synth.speak(u)}
-function stopAll(){if(synth)synth.cancel();if(playing)playing.classList.remove("on");playing=null;
+ u.onend=u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};playing=btn;btn.classList.add("on");say(u)}
+/* Phone speech engines stutter when a new sentence starts the moment the
+   old one is cancelled, so speaking waits a moment after a stop. */
+const AFTER_STOP=120;let stoppedAt=0;
+function say(u){const wait=Math.max(0,AFTER_STOP-(Date.now()-stoppedAt));if(synth.paused)synth.resume();
+ /* Safari only starts speech inside the tap itself, so speak at once when
+    nothing had to be stopped first. */
+ if(wait===0)synth.speak(u);else setTimeout(()=>synth.speak(u),wait)}
+function stopAll(){if(synth&&(synth.speaking||synth.pending)){synth.cancel();stoppedAt=Date.now()}if(playing)playing.classList.remove("on");playing=null;
  if(queue){queue.btn.classList.remove("on");document.querySelectorAll(".ln.now").forEach(x=>x.classList.remove("now"));queue=null}}
 function speak(btn){if(!synth)return;if(playing===btn){stopAll();return}stopAll();
  const u=utter(btn.dataset.say,btn.dataset.v);
  u.onend=u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
- playing=btn;btn.classList.add("on");synth.speak(u)}
+ playing=btn;btn.classList.add("on");say(u)}
 function playAll(btn){if(!synth)return;if(queue&&queue.btn===btn){stopAll();return}stopAll();
  const card=btn.closest(".dcard"),items=[...card.querySelectorAll(".lines .say, .sheet .say")];
  queue={btn,i:0};btn.classList.add("on");
@@ -279,7 +291,7 @@ function playAll(btn){if(!synth)return;if(queue&&queue.btn===btn){stopAll();retu
   card.querySelectorAll(".ln.now").forEach(x=>x.classList.remove("now"));
   if(queue.i>=items.length){stopAll();return}
   const s=items[queue.i++],ln=s.closest(".ln");if(ln){ln.classList.add("now");ln.scrollIntoView({block:"nearest",behavior:"smooth"})}
-  const u=utter(s.dataset.say,s.dataset.v);u.onend=()=>setTimeout(next,350);u.onerror=()=>stopAll();synth.speak(u)};
+  const u=utter(s.dataset.say,s.dataset.v);u.onend=()=>setTimeout(next,350);u.onerror=e=>{if(e&&e.error==="interrupted")return;stopAll()};say(u)};
  next()}
 const sp=document.getElementById("sp");
 sp.onclick=()=>{rate=rate===1?0.75:1;sp.setAttribute("aria-pressed",String(rate!==1));sp.textContent=rate===1?"Tempo: normal":"Tempo: langsam"};
