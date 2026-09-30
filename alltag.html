@@ -119,6 +119,10 @@ body.no-tts .say,body.no-tts .play,body.no-tts #sp{display:none}
 .w{cursor:pointer;border-radius:3px}
 .w:hover{background:var(--surface)}
 .w.sel{background:var(--b1);color:#fff}
+/* read along: the part of the sentence already spoken turns light blue */
+.w.read{color:#1a73e8;transition:color .15s}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .w.read{color:#6cb8ff}}
+:root[data-theme="dark"] .w.read{color:#6cb8ff}
 .inl{margin:4px 0 10px}
 .empty{display:none;color:var(--muted);padding:20px 0}
 #pop{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);max-width:440px;margin:0 auto;background:var(--paper);color:var(--ink);border:2px solid var(--b1);border-radius:12px;padding:12px 14px;z-index:20;box-shadow:0 8px 28px rgba(20,30,60,.28)}
@@ -324,10 +328,30 @@ function say(u){const wait=Math.max(0,AFTER_STOP-(Date.now()-stoppedAt));if(synt
  /* Safari only starts speech inside the tap itself, so speak at once when
     nothing had to be stopped first. */
  if(wait===0)synth.speak(u);else setTimeout(()=>synth.speak(u),wait)}
+/* Reading along: the sentence turns light blue as far as it has been
+   spoken, like a progress bar through the text. Most voices report
+   where they are (a "boundary" at each word); where a voice stays silent
+   about it, the position is estimated from the speaking rate until it
+   reports – close, though not exact. */
+const WORDRE=/[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g;
+function textOf(btn){const h=btn.closest(".body,.part,.phr,.box");return h?h.querySelector(".s"):null}
+function follow(u,box,text){
+ if(!box)return;const spans=[...box.querySelectorAll(".w")];if(!spans.length)return;
+ const starts=[];let m;WORDRE.lastIndex=0;while((m=WORDRE.exec(text)))starts.push(m.index);
+ let cur=-1,heard=false,timer=null;
+ const show=k=>{k=Math.min(k,spans.length-1);if(k===cur||k<0)return;spans.forEach((s,j)=>s.classList.toggle("read",j<=k));cur=k};
+ const wordAt=ci=>{let k=0;for(let j=0;j<starts.length;j++){if(starts[j]<=ci)k=j;else break}return k};
+ /* when the sentence ends it goes back to normal, so only the sentence
+    being spoken shows its progress */
+ const done=()=>{clearInterval(timer);spans.forEach(s=>s.classList.remove("read"));cur=-1};
+ u.addEventListener("boundary",e=>{if(e.name&&e.name!=="word")return;heard=true;clearInterval(timer);show(wordAt(e.charIndex))});
+ u.addEventListener("start",()=>{const t0=performance.now(),cps=13*(u.rate||1);
+  timer=setInterval(()=>{if(heard){clearInterval(timer);return}show(wordAt((performance.now()-t0)/1000*cps))},110)});
+ u.addEventListener("end",done);u.addEventListener("error",done)}
 function stopAll(){if(synth&&(synth.speaking||synth.pending)){synth.cancel();stoppedAt=Date.now()}if(playing)playing.classList.remove("on");playing=null;
  if(queue){queue.btn.classList.remove("on");document.querySelectorAll(".ln.now").forEach(x=>x.classList.remove("now"));queue=null}}
 function speak(btn){if(!synth)return;if(playing===btn){stopAll();return}stopAll();
- const u=utter(btn.dataset.say,btn.dataset.v);
+ const u=utter(btn.dataset.say,btn.dataset.v);follow(u,textOf(btn),btn.dataset.say);
  u.onend=u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
  playing=btn;btn.classList.add("on");say(u)}
 function playAll(btn){if(!synth)return;if(queue&&queue.btn===btn){stopAll();return}stopAll();
@@ -337,7 +361,7 @@ function playAll(btn){if(!synth)return;if(queue&&queue.btn===btn){stopAll();retu
   card.querySelectorAll(".ln.now").forEach(x=>x.classList.remove("now"));
   if(queue.i>=items.length){stopAll();return}
   const s=items[queue.i++],ln=s.closest(".ln");if(ln){ln.classList.add("now");ln.scrollIntoView({block:"nearest",behavior:"smooth"})}
-  const u=utter(s.dataset.say,s.dataset.v);u.onend=()=>setTimeout(next,350);u.onerror=e=>{if(e&&e.error==="interrupted")return;stopAll()};say(u)};
+  const u=utter(s.dataset.say,s.dataset.v);follow(u,textOf(s),s.dataset.say);u.onend=()=>setTimeout(next,350);u.onerror=e=>{if(e&&e.error==="interrupted")return;stopAll()};say(u)};
  next()}
 const sp=document.getElementById("sp");
 sp.onclick=()=>{rate=rate===1?0.75:1;sp.setAttribute("aria-pressed",String(rate!==1));sp.textContent=rate===1?"Tempo: normal":"Tempo: langsam"};
@@ -402,13 +426,15 @@ function playScene(btn){if(scene&&scene.btn===btn){stopScene();return}stopScene(
  const g={A:(d.who.A||["","f"])[1],B:(d.who.B||["","m"])[1]},voice=cast(g);
  const bg=card.querySelector("[data-bg]").getAttribute("aria-pressed")==="true",twice=card.querySelector("[data-twice]").getAttribute("aria-pressed")==="true";
  const S=scene={btn,card,stop:false,t:null,end:bg?startPlace(d.amb):null};btn.classList.add("on");btn.textContent="⏹ Stopp";
- let i=0,round=1;const mark=k=>{card.querySelectorAll(".now").forEach(x=>x.classList.remove("now"));const el=card.querySelector(`[data-i="${k}"]`);if(el)el.classList.add("now")};
+ let i=0,round=1;const mark=k=>{card.querySelectorAll(".now").forEach(x=>x.classList.remove("now"));const el=card.querySelector(`[data-i="${k}"]`);if(el){el.classList.add("now");
+  /* with the text shown, keep the line being spoken in view */
+  if(card.classList.contains("show-text"))el.scrollIntoView({block:"center",behavior:"smooth"})}};
  const next=()=>{if(S.stop)return;
   if(i>=d.parts.length){if(twice&&round===1){round=2;i=0;S.t=setTimeout(next,3000);return}S.t=setTimeout(stopScene,1200);return}
   const p=d.parts[i],k=i++;mark(k);
   if(typeof p==="string"){const ms=p==="chime"?chime():p==="ring"?ring():beep();S.t=setTimeout(next,ms+300);return}
   const u=new SpeechSynthesisUtterance(p[1].replace(/[\[\]]/g,""));u.lang="de-DE";const v=voice[p[0]]||voice.A;if(v.voice)u.voice=v.voice;u.pitch=v.pitch;
-  u.rate=rate*(d.kind==="Durchsage"||d.kind==="Ansage"?0.95:1);u.onend=()=>{if(!S.stop)S.t=setTimeout(next,550)};u.onerror=e=>{if(e&&e.error==="interrupted")return;if(!S.stop)S.t=setTimeout(next,300)};
+  u.rate=rate*(d.kind==="Durchsage"||d.kind==="Ansage"?0.95:1);follow(u,card.querySelector(`[data-i="${k}"] .s`),u.text);u.onend=()=>{if(!S.stop)S.t=setTimeout(next,550)};u.onerror=e=>{if(e&&e.error==="interrupted")return;if(!S.stop)S.t=setTimeout(next,300)};
   synth.speak(u)};
  S.t=setTimeout(next,bg?1300:200)}
 function answer(b){const hq=b.closest(".hq"),card=b.closest(".dcard"),d=DATA[+open],q=d.q[+hq.dataset.q];if(hq.dataset.done)return;
