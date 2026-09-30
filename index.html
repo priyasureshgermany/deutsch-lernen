@@ -121,12 +121,13 @@ nav .i{display:none}
   <div class="tract"><button id="trsayin" class="fsb" type="button" aria-label="Eingabe vorlesen" title="Vorlesen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button id="trclr" class="chipb" type="button">Leeren</button></div></div>
  <div class="trbox out"><div id="trout" class="trout" aria-live="polite"><span class="muted">Die Übersetzung erscheint hier.</span></div>
   <div class="tract"><button id="trsayout" class="fsb" type="button" aria-label="Übersetzung vorlesen" title="Vorlesen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button id="trcopy" class="chipb" type="button">Kopieren</button></div></div>
- <p class="trnote">Nur Deutsch und Englisch · braucht Internet (Google Übersetzer)</p>
+ <p class="trnote">Nur Deutsch und Englisch · braucht Internet</p>
 </dialog>
 <button id="fsxTab" type="button" title="Knopf zurückholen" aria-label="Vollbild-Knopf zurückholen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
 <button id="fsx" class="fsb" type="button" title="Vollbild beenden – nach rechts wischen zum Verstecken" aria-label="Vollbild beenden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg></button>
+<script src="translate.js"></script>
 <script>
-const APP_VERSION = "1.9.0";
+const APP_VERSION = "1.9.1";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -204,16 +205,10 @@ drawTempo();
    English → German otherwise, so no third language ever comes back. ⇄ turns
    the direction round for the text in the box. */
 const trd = document.getElementById("trd"), trin = document.getElementById("trin"), trout = document.getElementById("trout"), trdir = document.getElementById("trdir");
-const GT = (sl, tl, q) => "https://translate.googleapis.com/translate_a/single?client=gtx&dt=t&dj=1&sl=" + sl + "&tl=" + tl + "&q=" + encodeURIComponent(q);
 let trFrom = "auto", trLast = { src: "de", out: "" }, trTimer = 0, trCtl = null;
 const LANG = { de: "Deutsch", en: "Englisch" };
+const trNote = document.querySelector(".trnote");
 function trShowDir(src){ trdir.textContent = LANG[src] + " → " + LANG[src === "de" ? "en" : "de"] + (trFrom === "auto" ? " (erkannt)" : ""); }
-async function gtCall(sl, tl, q, signal){
-  const r = await fetch(GT(sl, tl, q), { signal });
-  if(!r.ok) throw new Error(r.status === 429 ? "busy" : "failed");
-  const j = await r.json();
-  return { src: j.src, text: (j.sentences || []).map(x => x.trans || "").join("").trim() };
-}
 async function translateNow(){
   clearTimeout(trTimer);
   const q = trin.value.trim();
@@ -222,20 +217,18 @@ async function translateNow(){
   const ctl = trCtl = new AbortController();
   trout.innerHTML = '<span class="muted">Übersetze …</span>';
   try{
-    let src = trFrom, res;
-    if(src === "auto"){
-      res = await gtCall("auto", "en", q, ctl.signal);
-      src = res.src === "de" ? "de" : "en";
-      if(src === "en") res = await gtCall("en", "de", q, ctl.signal);
-    } else res = await gtCall(src, src === "de" ? "en" : "de", q, ctl.signal);
+    if(!window.dlTranslate) throw { code: "stale" };               // an old translate.js is still loaded
+    const res = await window.dlTranslate(q, trFrom, ctl.signal);   // translate.js: Google, then MyMemory
+    const src = res.src === "de" ? "de" : "en";
     if(ctl !== trCtl) return;
+    trNote.textContent = "Nur Deutsch und Englisch · übersetzt mit " + res.via;
     trLast = { src, out: res.text };
     trin.lang = src; trout.lang = src === "de" ? "en" : "de";
     trShowDir(src);
     trout.textContent = res.text || "–";
   }catch(e){
     if(e && e.name === "AbortError") return;
-    trout.innerHTML = '<span class="muted">' + (navigator.onLine === false ? "Keine Internetverbindung – Übersetzen braucht Internet." : e.message === "busy" ? "Zu viele Anfragen – bitte kurz warten." : "Übersetzung fehlgeschlagen. Bitte noch einmal versuchen.") + "</span>";
+    trout.innerHTML = '<span class="muted">' + (navigator.onLine === false ? "Keine Internetverbindung – Übersetzen braucht Internet." : e && e.code === "rate_limited" ? "Zu viele Anfragen – bitte kurz warten." : e && e.code === "stale" ? "Bitte oben auf die Versionsnummer tippen und die App neu laden." : "Kein Übersetzungsdienst erreichbar (Google und MyMemory). Bitte später noch einmal versuchen.") + "</span>";
   }
 }
 trin.addEventListener("input", () => { if(!trin.value.trim()) trFrom = "auto"; clearTimeout(trTimer); trTimer = setTimeout(translateNow, 600); });

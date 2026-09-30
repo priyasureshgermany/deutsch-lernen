@@ -8,17 +8,85 @@
    Word  → { en, lemma, pos, plural:"", note }  note = the sentence in English
    Words → { en, literal, note }                literal = each word on its own */
 (function(){
-  const API = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=de&tl=en&hl=en&dt=t&dt=bd&dj=1&q=";
+  /* Google's public endpoint answers most browsers, but on iPhones behind
+     iCloud Private Relay (and on some networks) it sends a "Sorry, unusual
+     traffic" page instead. So every translation tries Google, then Google's
+     second address, then MyMemory, which is not Google – each with a time
+     limit, so one that hangs does not hold up the next. */
+  const GTX = (sl, tl) => "https://translate.googleapis.com/translate_a/single?client=gtx&hl=en&dt=t&dt=bd&dj=1&sl=" + sl + "&tl=" + tl + "&q=";
+  const CL5 = (sl, tl) => "https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=" + sl + "&tl=" + tl + "&q=";
+  const MYM = (sl, tl) => "https://api.mymemory.translated.net/get?langpair=" + sl + "|" + tl + "&q=";
 
+  async function getJSON(url, signal){
+    const c = new AbortController(), t = setTimeout(() => c.abort(), 7000);
+    const stop = () => c.abort();
+    if(signal){ if(signal.aborted) c.abort(); else signal.addEventListener("abort", stop, { once: true }); }
+    try{
+      const r = await fetch(url, { signal: c.signal });
+      if(!r.ok) throw { code: r.status === 429 ? "rate_limited" : "failed" };
+      return await r.json();                       // the "Sorry" page is HTML: this throws
+    } finally { clearTimeout(t); if(signal) signal.removeEventListener("abort", stop); }
+  }
+  /* The caller gave up: stop at once rather than trying the next service. */
+  const userStop = (signal, err) => { if(signal && signal.aborted) throw err && err.name === "AbortError" ? err : new DOMException("Aborted", "AbortError"); };
+
+  async function google(sl, tl, q, signal){
+    try{
+      const j = await getJSON(GTX(sl, tl) + encodeURIComponent(q), signal);
+      const text = (j.sentences || []).map(x => x.trans || "").join("").trim();
+      if(!text) throw { code: "failed" };
+      return { src: j.src || sl, text, dict: (j.dict || [])[0] || null, kinds: (j.dict || []).map(x => x.pos), via: "Google" };
+    }catch(e){ userStop(signal, e); }
+    const j = await getJSON(CL5(sl, tl) + encodeURIComponent(q), signal);
+    const first = Array.isArray(j) ? j[0] : null;
+    const text = Array.isArray(first) ? first[0] : typeof first === "string" ? first : "";
+    if(!text) throw { code: "failed" };
+    return { src: Array.isArray(first) && first[1] ? first[1] : sl, text, dict: null, kinds: [], via: "Google" };
+  }
+  async function mymemory(sl, tl, q, signal){
+    const j = await getJSON(MYM(sl, tl) + encodeURIComponent(q.slice(0, 480)), signal);
+    const text = j && j.responseData && j.responseData.translatedText;
+    if(!text || j.quotaFinished || /MYMEMORY WARNING/i.test(text)) throw { code: "failed" };
+    return { src: sl, text, dict: null, kinds: [], via: "MyMemory" };
+  }
+  const norm = t => String(t).toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+  /* For MyMemory, which cannot detect the language: umlauts and common words. */
+  const DEW = new Set("ich du er sie es wir ihr der die das den dem des und ist nicht ein eine einen mit auf für zu von bei ja nein bitte danke wie was wo warum habe hast hat bin bist sind kann möchte guten tag heute sehr gut auch noch aber oder wenn dass weil mein dein kein wo wann".split(" "));
+  const ENW = new Set("i you he she it we they the and is are not a an with on for to of at yes no please thanks thank how what where why have has am can would like good day today very also but or if that because my your this when".split(" "));
+  function looksGerman(q){
+    if(/[äöüß]/i.test(q)) return true;
+    let de = 0, en = 0;
+    norm(q).split(" ").forEach(w => { if(DEW.has(w)) de++; if(ENW.has(w)) en++; });
+    return de >= en;                               // a tie (one unknown word) goes to German
+  }
+  async function viaMyMemory(from, q, signal){
+    let src = from === "auto" ? (looksGerman(q) ? "de" : "en") : from;
+    let r = await mymemory(src, src === "de" ? "en" : "de", q, signal);
+    /* Asked the wrong way round, MyMemory hands the text back unchanged. */
+    if(from === "auto" && norm(r.text) === norm(q)){ src = src === "de" ? "en" : "de"; r = await mymemory(src, src === "de" ? "en" : "de", q, signal); }
+    return r;
+  }
+
+  /* German ⇄ English only: from = "auto" | "de" | "en". Anything that is not
+     German is taken as English, so no third language ever comes back. */
+  window.dlTranslate = async function(q, from, signal){
+    try{
+      if(from === "auto"){
+        const r = await google("auto", "en", q, signal);
+        if(r.src === "de") return r;
+        return Object.assign(await google("en", "de", q, signal), { src: "en" });
+      }
+      return await google(from, from === "de" ? "en" : "de", q, signal);
+    }catch(e){ userStop(signal, e); }
+    return await viaMyMemory(from, q, signal);
+  };
+
+  /* German → English for the word popups, with the same fallbacks. */
   async function gt(text, signal){
-    const r = await fetch(API + encodeURIComponent(text), { signal });
-    if(!r.ok) throw { code: r.status === 429 ? "rate_limited" : "failed" };
-    const j = await r.json();
-    return {
-      en: (j.sentences || []).map(s => s.trans || "").join("").trim(),
-      dict: (j.dict || [])[0] || null,
-      kinds: (j.dict || []).map(x => x.pos)
-    };
+    let r;
+    try{ r = await google("de", "en", text, signal); }
+    catch(e){ userStop(signal, e); r = await mymemory("de", "en", text, signal); }
+    return { en: r.text, dict: r.dict, kinds: r.kinds };
   }
 
   /* The sentence the words sit in, not the whole letter or dialogue around it. */

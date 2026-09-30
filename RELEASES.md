@@ -1,5 +1,9 @@
 # Releases
 
+## 1.9.1 — 2026-09-30
+- Fix: translation on iPhone. Google's free endpoint often refuses iPhones behind iCloud Private Relay, so the translator and all word popups now fall back to a second Google address and then to MyMemory; the popup says which service answered
+- Updates: files fetched right after an update now always come from the server, never from an old browser copy
+
 ## 1.9.0 — 2026-09-30
 - New: translator icon next to the version — type a word or sentence in German or English and it is translated into the other language (only these two); ⇄ turns the direction round, 🔊 reads either side aloud, Kopieren copies the result
 - Full screen: the round exit button and its edge tab sit higher, clear of the iPhone's home-swipe strip, so swiping and bringing it back work there; the tab is bigger
