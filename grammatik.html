@@ -37,7 +37,11 @@ main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
 .list h3:first-child{margin-top:0}
 .it{font:inherit;text-align:left;display:flex;align-items:baseline;gap:8px;justify-content:space-between;width:100%;border:1.5px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);padding:7px 12px;cursor:pointer}
 .it b{font-size:17px}
-.it small{color:var(--muted);font-size:12px;text-align:right}
+.itl{display:flex;flex-direction:column;min-width:0}
+.it small{color:var(--muted);font-size:12px}
+.ien{color:var(--b1);font-size:14px;text-align:right;max-width:55%;line-height:1.25}
+.list h3 .gen{text-transform:none;letter-spacing:0;font-weight:400;font-style:italic}
+.den{color:var(--b1);font-style:italic;margin:-4px 0 10px}
 .it:hover{background:var(--surface)}
 .it[aria-expanded="true"]{border-color:var(--b1);background:var(--hlbg)}
 .detail{position:sticky;top:72px}
@@ -122,13 +126,13 @@ topicsEl.onclick=e=>{const b=e.target.closest("[data-t]");if(!b)return;topic=GD.
 function drawTopic(){
  open=null;closePop();stopSay();
  introEl.innerHTML=`<b>${esc(topic.de)}</b> · <span class="muted">${esc(topic.en)}</span><br>${esc(topic.intro)}`;
- listEl.innerHTML=topic.groups.map((g,gi)=>`<h3>${esc(g.g)}</h3>`+g.items.map((it,ii)=>`<button type="button" class="it" data-k="${gi}-${ii}" aria-expanded="false"><b>${esc(it.w)}</b><small>${esc(it.tag)}</small></button><div class="inl" data-for="${gi}-${ii}" hidden></div>`).join("")).join("");
+ listEl.innerHTML=topic.groups.map((g,gi)=>`<h3>${esc(g.g)}${g.gen?` <span class="gen">· ${esc(g.gen)}</span>`:""}</h3>`+g.items.map((it,ii)=>`<button type="button" class="it" data-k="${gi}-${ii}" aria-expanded="false"><span class="itl"><b>${esc(it.w)}</b><small>${esc(it.tag)}</small></span>${it.en?`<i class="ien" lang="en">${esc(it.en)}</i>`:""}</button><div class="inl" data-for="${gi}-${ii}" hidden></div>`).join("")).join("");
  detailEl.innerHTML=`<div class="ph">Wähle links ein Wort – dann erscheinen hier die Beispielsätze.</div>`;
  filter()}
 
 function item(k){const [g,i]=k.split("-").map(Number);return topic.groups[g].items[i]}
 function card(it){
- return `<div class="dcard"><div class="dh"><h2>${esc(it.w)}</h2><span>${esc(it.tag)}</span></div>`+it.ex.map(([why,de,en],n)=>
+ return `<div class="dcard"><div class="dh"><h2>${esc(it.w)}</h2><span>${esc(it.tag)}</span></div>${it.en?`<div class="den" lang="en">${esc(it.en)}</div>`:""}`+it.ex.map(([why,de,en],n)=>
   `<div class="ex"><div class="why"><span class="n">${n+1}</span><span>${esc(why)}</span></div><div class="de s" lang="de">${sentence(de)}</div><div class="acts"><button class="say" type="button" aria-label="Vorlesen" data-say="${esc(plain(de))}"></button><button class="enb" type="button">EN</button></div><div class="en">${esc(en)}</div></div>`).join("")+`</div>`}
 
 /* On a wide screen the sentences go to the right; on a phone, under the word. */
