@@ -1,5 +1,8 @@
 # Releases
 
+## 1.5.0 — 2026-09-30
+- New: tab „Hören“ — 14 B1 listening scenes that play inside the app with one ▶: station, train, S-Bahn, airport and shop announcements with a gong, radio traffic and weather, voicemails, and conversations in a restaurant, hotel, bank, at the doctor's, the Bürgeramt and at work, each with its own background sound; exam-style questions (richtig/falsch, a/b/c) with explanations, a hidden transcript and „2× hören“ as in the exam
+
 ## 1.4.3 — 2026-09-30
 - Fix: the ♂ / ♀ signs are gone from Gespräche – they sat too low on phones; the blue and pink name colours already show who is who
 - Better: clearer speech – high-quality and on-device voices are preferred, the pitch is only changed gently, and a new sentence waits a moment after the last one stops, which stops the stuttering on phones

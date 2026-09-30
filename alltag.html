@@ -59,6 +59,28 @@ main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
 .ln .body{background:var(--surface);border:1.5px solid var(--line);border-color:color-mix(in srgb,var(--c) 35%,transparent);border-radius:16px 16px 16px 4px;padding:8px 12px}
 .ln.B .body{background:var(--hlbg);border-radius:16px 16px 4px 16px}
 .ln.now .body{outline:2.5px solid var(--c);outline-offset:2px}
+.res{display:flex;flex-direction:column;gap:1px;text-decoration:none;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;margin:6px 0}
+.res:hover{border-color:var(--b1)}
+.res .rt{font-weight:700;color:var(--b1)}
+.res .rp{font-size:14px}
+.res .rm{font-size:12px;color:var(--muted)}
+.box ol{margin:4px 0 0;padding-left:22px}
+.player{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+.bigplay{font:inherit;font-size:17px;font-weight:700;padding:10px 20px;border-radius:999px;border:none;background:var(--b1);color:#fff;cursor:pointer}
+.bigplay.on{background:var(--ink);color:var(--paper)}
+.hint0{font-size:13px;color:var(--muted);margin-bottom:6px}
+.score{font-weight:700;color:var(--ink)}
+.hq{padding:8px 0;border-top:1px dashed var(--line)}
+.hq:first-of-type{border-top:none}
+.hqo{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.hqo .chip.right{background:#1b8a6b;border-color:#1b8a6b;color:#fff}
+.hqo .chip.wrong{background:#c62828;border-color:#c62828;color:#fff}
+.hqw{font-size:14px;color:var(--muted);margin-top:4px}
+.hqw b{color:var(--ink)}
+.transcript{display:none}
+.hoer.show-text .transcript{display:flex}
+.fx{align-self:center;font-size:13px;color:var(--muted);background:var(--surface);border-radius:999px;padding:3px 12px}
+.fx.now{outline:2px solid var(--b1)}
 .vbox{display:none;background:var(--surface);border-radius:10px;padding:10px 12px;margin:6px 0 10px;font-size:14px}
 .vbox.open{display:block}
 .vbox .vr{display:flex;align-items:center;gap:8px;padding:4px 0;border-top:1px dashed var(--line)}
@@ -135,11 +157,12 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="p1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
 <script src="gespraeche-data.js"></script>
 <script src="briefe-data.js"></script>
+<script src="hoeren-data.js"></script>
 <script src="translate.js"></script>
 <script>
 /* One page, two tabs: ?t=dialog (Gespräche) or ?t=brief (Briefe). */
-const MODE=new URLSearchParams(location.search).get("t")==="brief"?"brief":"dialog";
-const DATA=MODE==="brief"?BR:GS;
+const MODE=({brief:"brief",hoeren:"hoeren"})[new URLSearchParams(location.search).get("t")]||"dialog";
+const DATA=({brief:BR,hoeren:HS,dialog:GS})[MODE];
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const W=s=>s.replace(/[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g,m=>`<span class="w">${m}</span>`);
 const PH=s=>s.replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>');
@@ -147,12 +170,14 @@ const de=s=>s.split("\n").map(l=>PH(W(esc(l)))).join("\n");
 const spoken=s=>s.replace(/[\[\]]/g,"");
 function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
 
-document.getElementById("kind").textContent=MODE==="brief"?"Schreiben":"Sprechen";
-document.getElementById("h1").textContent=MODE==="brief"?"Briefe für den Alltag":"Gespräche im Alltag";
-document.getElementById("sub").textContent=MODE==="brief"
+document.getElementById("kind").textContent=({brief:"Schreiben",hoeren:"Hören",dialog:"Sprechen"})[MODE];
+document.getElementById("h1").textContent=({brief:"Briefe für den Alltag",hoeren:"Hören wie im Alltag",dialog:"Gespräche im Alltag"})[MODE];
+document.getElementById("sub").textContent=MODE==="hoeren"
+ ?"Hören wie in der B1-Prüfung: Lies zuerst die Aufgaben, dann tippe auf ▶ – mit Gong, Bahnhofshalle, Café oder Telefon im Hintergrund. Der Text ist versteckt; mit „2× hören“ läuft alles zweimal wie in der Prüfung. Danach „Text zeigen“ zum Kontrollieren."
+ :MODE==="brief"
  ?"Wähle links eine Situation. Du siehst die Aufgabe wie in der B1-Prüfung und einen Musterbrief. Mit „Selbst schreiben“ versteckst du den Brief und versuchst es zuerst allein. ▶ liest vor, „EN“ übersetzt, jedes Wort kannst du antippen."
  :"Wähle links eine Situation. ▶ liest einen Satz vor, „Ganzes Gespräch“ spielt den Dialog mit zwei Stimmen. Mit „Rolle üben“ wird eine Rolle versteckt – sprich sie selbst und tippe dann zum Kontrollieren.";
-document.title=MODE==="brief"?"Briefe":"Gespräche";
+document.title=({brief:"Briefe",hoeren:"Hören",dialog:"Gespräche"})[MODE];
 
 const listEl=document.getElementById("list"),detailEl=document.getElementById("detail"),q=document.getElementById("q"),empty=document.getElementById("empty");
 const narrow=matchMedia("(max-width:760px)");
@@ -178,6 +203,27 @@ function dialogCard(d){
   <div class="lines">${d.lines.map(([r,g,e])=>`<div class="ln ${r}" data-g="${gs[r]}"><span class="who">${who(r)}</span><div class="body">${block(g,e,r)}</div></div>`).join("")}</div>
   ${phrases(d.tips)}</div>`}
 
+/* Hören: an exam-style scene that plays inside the app – background sound,
+   station chime or phone tones made with Web Audio, the voices of the
+   device – with the transcript hidden until asked for, and questions. */
+const KIND={Durchsage:"Durchsage",Telefon:"Telefon",Radio:"Radio",Gespräch:"Gespräch",Ansage:"Ansage"};
+function hoerCard(d){
+ const who=r=>esc(d.who[r][0]);
+ const lines=d.parts.map((p,i)=>typeof p==="string"
+  ?`<div class="fx" data-i="${i}">${p==="chime"?"🔔 Gong":p==="ring"?"📞 Telefon klingelt":"📟 Piepton"}</div>`
+  :`<div class="ln ${p[0]}" data-g="${d.who[p[0]][1]}" data-i="${i}"><span class="who">${who(p[0])}</span><div class="body"><div class="de"><span class="s" lang="de">${de(p[1])}</span></div><div class="acts"><button class="enb" type="button">EN</button></div><div class="en">${esc(p[2])}</div></div></div>`).join("");
+ const qs=d.q.map((q,i)=>{
+  const opts=q[0]==="rf"?[["true","richtig"],["false","falsch"]]:q[2].map((o,j)=>[String(j),"abc"[j]+") "+o]);
+  return `<div class="hq" data-q="${i}"><div class="hqt"><b>${i+1}.</b> <span class="s" lang="de">${de(q[1])}</span></div><div class="hqo">${opts.map(([v,l])=>`<button type="button" class="chip" data-a="${v}">${esc(l)}</button>`).join("")}</div><div class="hqw"></div></div>`}).join("");
+ return `<div class="dcard hoer"><h2>${esc(d.de)}</h2><div class="den">${esc(d.en)} · ${esc(KIND[d.kind]||d.kind)}</div>
+  <div class="player"><button class="bigplay" type="button" data-scene>▶ Abspielen</button>
+   <button class="chip" type="button" data-twice aria-pressed="false">2× hören</button>
+   <button class="chip" type="button" data-bg aria-pressed="true">Hintergrund</button></div>
+  <div class="box"><b>Aufgaben</b><div class="hint0">Lies zuerst die Aufgaben, dann tippe auf ▶. <span class="score"></span></div>${qs}
+   <button class="chip" type="button" data-solve>Alle Lösungen zeigen</button></div>
+  <div class="tools"><button class="chip" type="button" data-text aria-pressed="false">Text zeigen</button></div>
+  <div class="lines transcript">${lines}</div></div>`}
+
 function letterCard(d){
  return `<div class="dcard"><h2>${esc(d.de)}</h2><div class="den">${esc(d.en)} · ${d.formal?"formell":"informell"}</div>
   <div class="box en-wrap"><b>Aufgabe</b><span class="s" lang="de">${de(d.task)}</span> <button class="enb" type="button">EN</button><div class="en">${esc(d.taskEn)}</div>
@@ -190,10 +236,10 @@ function show(k){
  const btn=listEl.querySelector(`[data-k="${k}"]`),again=open===k;
  listEl.querySelectorAll(".it").forEach(b=>b.setAttribute("aria-expanded","false"));
  listEl.querySelectorAll(".inl").forEach(d=>{d.hidden=true;d.innerHTML=""});
- closePop();stopAll();
+ closePop();stopAll();stopScene();
  if(again&&narrow.matches){open=null;return}
  open=k;btn.setAttribute("aria-expanded","true");
- const d=DATA[+k],html=MODE==="brief"?letterCard(d):dialogCard(d);
+ const d=DATA[+k],html=MODE==="brief"?letterCard(d):MODE==="hoeren"?hoerCard(d):dialogCard(d);
  if(narrow.matches){const box=listEl.querySelector(`[data-for="${k}"]`);box.innerHTML=html;box.hidden=false;btn.scrollIntoView({block:"start",behavior:"smooth"})}
  else{detailEl.innerHTML=html;detailEl.scrollTop=0}}
 listEl.addEventListener("click",e=>{const b=e.target.closest(".it");if(b)show(b.dataset.k)});
@@ -234,8 +280,8 @@ function pools(){
  const vs=voices(),mine={m:[picked("m1"),picked("m2")].filter(Boolean),f:[picked("f1"),picked("f2")].filter(Boolean)};
  const taken=[...mine.m,...mine.f],rest=vs.filter(v=>!taken.includes(v));
  return {vs,f:[...mine.f,...rest.filter(v=>genderOf(v)==="f")],m:[...mine.m,...rest.filter(v=>genderOf(v)==="m")],u:rest.filter(v=>genderOf(v)==="u")}}
-function cast(){
- const d=MODE==="dialog"&&open!==null?DATA[+open]:null,g=genders(d);
+function cast(gIn){
+ const d=MODE==="dialog"&&open!==null?DATA[+open]:null,g=gIn||genders(d);
  const pool=pools(),vs=pool.vs;
  const out={},used=[];
  for(const r of ["A","B"]){
@@ -296,6 +342,81 @@ function playAll(btn){if(!synth)return;if(queue&&queue.btn===btn){stopAll();retu
 const sp=document.getElementById("sp");
 sp.onclick=()=>{rate=rate===1?0.75:1;sp.setAttribute("aria-pressed",String(rate!==1));sp.textContent=rate===1?"Tempo: normal":"Tempo: langsam"};
 
+/* ---- Hören: sounds made in the app ----
+   Background, chime and phone tones are synthesised with Web Audio, so
+   nothing is downloaded or licensed and it works offline and on iPhones.
+   The voices can't be routed through it, so they play over the top. */
+let AC=null;
+function ac(){if(!AC){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C()}if(AC.state==="suspended")AC.resume();return AC}
+const BUF={};
+function noise(ctx,brown){const k=brown?"b":"w";if(BUF[k])return BUF[k];const n=ctx.sampleRate*4,b=ctx.createBuffer(1,n,ctx.sampleRate),d=b.getChannelData(0);let l=0;
+ for(let i=0;i<n;i++){const w=Math.random()*2-1;if(brown){l=(l+0.02*w)/1.02;d[i]=l*3.5}else d[i]=w}return BUF[k]=b}
+function bed(ctx,out,brown,type,freq,q,vol,lfo){const s=ctx.createBufferSource();s.buffer=noise(ctx,brown);s.loop=true;s.loopStart=Math.random();
+ const f=ctx.createBiquadFilter();f.type=type;f.frequency.value=freq;f.Q.value=q;const g=ctx.createGain();g.gain.value=vol;s.connect(f).connect(g).connect(out);
+ if(lfo){const o=ctx.createOscillator(),og=ctx.createGain();o.frequency.value=lfo;og.gain.value=vol*0.6;o.connect(og).connect(g.gain);o.start()}s.start();return s}
+function tone(ctx,out,freq,t,dur,vol,type){const o=ctx.createOscillator(),g=ctx.createGain();o.type=type||"sine";o.frequency.value=freq;
+ g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+0.015);g.gain.exponentialRampToValueAtTime(0.0001,t+dur);o.connect(g).connect(out);o.start(t);o.stop(t+dur+0.05)}
+function burst(ctx,out,t,dur,freq,vol){const s=ctx.createBufferSource();s.buffer=noise(ctx,false);const f=ctx.createBiquadFilter();f.type="bandpass";f.frequency.value=freq;f.Q.value=1.2;
+ const g=ctx.createGain();g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(0.0001,t+dur);s.connect(f).connect(g).connect(out);s.start(t,Math.random()*3);s.stop(t+dur+0.05)}
+/* Each place: steady layers plus little events at random moments. */
+const PLACES={
+ station:{beds:[[1,"lowpass",420,0.7,0.55],[0,"bandpass",900,0.6,0.018,0.35]],ev:[3,7,(c,o,t)=>burst(c,o,t,0.25,600,0.05)]},
+ train:{beds:[[1,"lowpass",170,0.7,0.9,0.15],[0,"bandpass",500,0.5,0.01]],ev:[1.05,1.15,(c,o,t)=>{burst(c,o,t,0.08,900,0.08);burst(c,o,t+0.13,0.08,900,0.07)}]},
+ sbahn:{beds:[[1,"lowpass",300,0.7,0.6],[0,"bandpass",800,0.6,0.014,0.3]],ev:[4,9,(c,o,t)=>burst(c,o,t,0.3,500,0.05)]},
+ airport:{beds:[[1,"lowpass",350,0.7,0.35],[0,"bandpass",1000,0.5,0.02,0.25]],ev:[6,12,(c,o,t)=>{tone(c,o,880,t,0.6,0.02);tone(c,o,1100,t+0.25,0.8,0.02)}]},
+ shop:{beds:[[1,"lowpass",380,0.7,0.35],[0,"bandpass",950,0.6,0.016,0.4]],ev:[2.5,6,(c,o,t)=>tone(c,o,1850,t,0.09,0.018,"square")]},
+ radio:{beds:[[0,"highpass",5000,0.5,0.004]],ev:null},
+ phone:{beds:[[0,"bandpass",1200,1,0.005]],ev:null},
+ cafe:{beds:[[1,"lowpass",350,0.7,0.3],[0,"bandpass",720,0.8,0.02,0.45]],ev:[1.2,3.5,(c,o,t)=>tone(c,o,2600+Math.random()*1600,t,0.25,0.025)]},
+ hotel:{beds:[[1,"lowpass",300,0.7,0.25],[0,"bandpass",800,0.7,0.008,0.3]],ev:[10,20,(c,o,t)=>tone(c,o,2100,t,1.2,0.02)]},
+ bank:{beds:[[1,"lowpass",300,0.7,0.22],[0,"bandpass",850,0.7,0.007,0.25]],ev:[5,11,(c,o,t)=>burst(c,o,t,0.05,3000,0.02)]},
+ doctor:{beds:[[1,"lowpass",250,0.7,0.15]],ev:[1,1,(c,o,t)=>tone(c,o,3200,t,0.03,0.006,"square")]},
+ office:{beds:[[1,"lowpass",260,0.7,0.2],[0,"bandpass",900,0.7,0.005]],ev:[0.15,0.6,(c,o,t)=>burst(c,o,t,0.03,2800,0.015)]},
+ street:{beds:[[1,"lowpass",300,0.7,0.6]],ev:[4,9,(c,o,t)=>burst(c,o,t,1.8,400,0.06)]}
+};
+function startPlace(kind){const c=ac();if(!c)return ()=>{};const P=PLACES[kind]||PLACES.station,out=c.createGain();out.gain.setValueAtTime(0.0001,c.currentTime);
+ out.gain.exponentialRampToValueAtTime(1,c.currentTime+1.2);out.connect(c.destination);
+ const srcs=P.beds.map(b=>bed(c,out,b[0],b[1],b[2],b[3],b[4],b[5]));let timer=null;
+ if(P.ev){const [a,b,fn]=P.ev;const tick=()=>{fn(c,out,c.currentTime+0.05);timer=setTimeout(tick,(a+Math.random()*(b-a))*1000)};timer=setTimeout(tick,800)}
+ return ()=>{clearTimeout(timer);out.gain.cancelScheduledValues(c.currentTime);out.gain.setValueAtTime(out.gain.value||0.5,c.currentTime);out.gain.exponentialRampToValueAtTime(0.0001,c.currentTime+0.8);
+  setTimeout(()=>{srcs.forEach(x=>{try{x.stop()}catch(e){}});out.disconnect()},900)}}
+/* The station gong: three soft bell tones, each with an octave above it. */
+function chime(){const c=ac();if(!c)return 0;const t=c.currentTime+0.05,o=c.destination;
+ [[659.25,0],[523.25,0.42],[783.99,0.84]].forEach(([f,d])=>{tone(c,o,f,t+d,1.6,0.16);tone(c,o,f*2,t+d,0.9,0.04)});return 2400}
+function ring(){const c=ac();if(!c)return 0;const t=c.currentTime+0.05,o=c.destination;for(let k=0;k<2;k++){const s=t+k*2.2;const os=c.createOscillator(),g=c.createGain();os.frequency.value=425;
+ g.gain.setValueAtTime(0.0001,s);g.gain.exponentialRampToValueAtTime(0.08,s+0.03);g.gain.setValueAtTime(0.08,s+1);g.gain.exponentialRampToValueAtTime(0.0001,s+1.05);os.connect(g).connect(o);os.start(s);os.stop(s+1.1)}return 4600}
+function beep(){const c=ac();if(!c)return 0;tone(c,c.destination,1000,c.currentTime+0.05,0.45,0.1);return 900}
+
+/* Plays a scene: background in, then each part in turn – gong, phone
+   tone or a spoken line – and, with "2× hören", everything again after
+   a short pause, as in the exam. */
+let scene=null;
+function stopScene(){if(!scene)return;scene.stop=true;clearTimeout(scene.t);if(scene.end)scene.end();if(synth)synth.cancel();
+ scene.btn.classList.remove("on");scene.btn.textContent="▶ Abspielen";scene.card.querySelectorAll(".now").forEach(x=>x.classList.remove("now"));scene=null}
+function playScene(btn){if(scene&&scene.btn===btn){stopScene();return}stopScene();stopAll();
+ const card=btn.closest(".dcard"),d=DATA[+open];if(!d)return;
+ ac();
+ /* Safari only lets speech start inside the tap: say nothing now, so the
+    later lines are allowed. */
+ if(synth){const u=new SpeechSynthesisUtterance(" ");u.volume=0;synth.speak(u)}
+ const g={A:(d.who.A||["","f"])[1],B:(d.who.B||["","m"])[1]},voice=cast(g);
+ const bg=card.querySelector("[data-bg]").getAttribute("aria-pressed")==="true",twice=card.querySelector("[data-twice]").getAttribute("aria-pressed")==="true";
+ const S=scene={btn,card,stop:false,t:null,end:bg?startPlace(d.amb):null};btn.classList.add("on");btn.textContent="⏹ Stopp";
+ let i=0,round=1;const mark=k=>{card.querySelectorAll(".now").forEach(x=>x.classList.remove("now"));const el=card.querySelector(`[data-i="${k}"]`);if(el)el.classList.add("now")};
+ const next=()=>{if(S.stop)return;
+  if(i>=d.parts.length){if(twice&&round===1){round=2;i=0;S.t=setTimeout(next,3000);return}S.t=setTimeout(stopScene,1200);return}
+  const p=d.parts[i],k=i++;mark(k);
+  if(typeof p==="string"){const ms=p==="chime"?chime():p==="ring"?ring():beep();S.t=setTimeout(next,ms+300);return}
+  const u=new SpeechSynthesisUtterance(p[1].replace(/[\[\]]/g,""));u.lang="de-DE";const v=voice[p[0]]||voice.A;if(v.voice)u.voice=v.voice;u.pitch=v.pitch;
+  u.rate=rate*(d.kind==="Durchsage"||d.kind==="Ansage"?0.95:1);u.onend=()=>{if(!S.stop)S.t=setTimeout(next,550)};u.onerror=e=>{if(e&&e.error==="interrupted")return;if(!S.stop)S.t=setTimeout(next,300)};
+  synth.speak(u)};
+ S.t=setTimeout(next,bg?1300:200)}
+function answer(b){const hq=b.closest(".hq"),card=b.closest(".dcard"),d=DATA[+open],q=d.q[+hq.dataset.q];if(hq.dataset.done)return;
+ const right=q[0]==="rf"?String(q[2]):String(q[3]);hq.dataset.done=b.dataset.a===right?"ok":"no";
+ hq.querySelectorAll("[data-a]").forEach(x=>{if(x.dataset.a===right)x.classList.add("right");else if(x===b)x.classList.add("wrong")});
+ hq.querySelector(".hqw").innerHTML=`<b>${b.dataset.a===right?"Richtig!":"Nicht ganz."}</b> ${esc(q[0]==="rf"?q[3]:q[4])}`;
+ const done=card.querySelectorAll(".hq[data-done]"),ok=card.querySelectorAll('.hq[data-done="ok"]');card.querySelector(".score").textContent=`${ok.length} / ${done.length} richtig`}
+
 /* ---- tap a word: the same in-popup translation as the other tabs ---- */
 const pop=document.getElementById("pop"),pw=document.getElementById("pw"),pb=document.getElementById("pb");
 let selEl=null,cur=null;
@@ -330,6 +451,11 @@ document.querySelector("main").addEventListener("click",e=>{
  const all=e.target.closest("[data-all]");if(all){playAll(all);return}
  const sb=e.target.closest(".say");if(sb){speak(sb);return}
  const eb=e.target.closest(".enb");if(eb){eb.parentElement.classList.toggle("en-on");if(eb.parentElement.classList.contains("acts"))eb.parentElement.parentElement.classList.toggle("en-on");return}
+ const sc=e.target.closest("[data-scene]");if(sc){playScene(sc);return}
+ const tw=e.target.closest("[data-twice],[data-bg]");if(tw){tw.setAttribute("aria-pressed",String(tw.getAttribute("aria-pressed")!=="true"));return}
+ const tx=e.target.closest("[data-text]");if(tx){const c=tx.closest(".dcard"),on=!c.classList.contains("show-text");c.classList.toggle("show-text",on);tx.setAttribute("aria-pressed",String(on));tx.textContent=on?"Text verstecken":"Text zeigen";return}
+ const an=e.target.closest("[data-a]");if(an){answer(an);return}
+ const so=e.target.closest("[data-solve]");if(so){so.closest(".dcard").querySelectorAll(".hq:not([data-done])").forEach(hq=>{const d=DATA[+open],q=d.q[+hq.dataset.q],r=q[0]==="rf"?String(q[2]):String(q[3]);hq.querySelector(`[data-a="${r}"]`).classList.add("right");hq.dataset.done="shown";hq.querySelector(".hqw").innerHTML=esc(q[0]==="rf"?q[3]:q[4])});return}
  const tv=e.target.closest("[data-test]");if(tv){testVoice(tv);return}
  const vb=e.target.closest("[data-vbox]");if(vb){const box=vb.closest(".dcard").querySelector(".vbox"),on=!box.classList.contains("open");
   box.classList.toggle("open",on);vb.setAttribute("aria-pressed",String(on));if(on)voiceBox(box);return}

@@ -29,7 +29,7 @@ header{flex:none;padding:calc(env(safe-area-inset-top,0px) + 8px) 16px 8px;borde
 nav{display:flex;gap:4px;background:var(--surface);border-radius:999px;padding:3px;max-width:100%;overflow-x:auto;scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
 nav button{--c:var(--b1);font:inherit;font-size:14px;font-weight:700;border:none;border-radius:999px;padding:6px 12px;background:transparent;color:var(--ink);cursor:pointer;white-space:nowrap}
-nav button[data-m="a1"]{--c:var(--a1)}nav button[data-m="themen"]{--c:var(--a2)}nav button[data-m="woerter"]{--c:#8a3fa8}nav button[data-m="grammatik"]{--c:#c25e00}nav button[data-m="gespraeche"]{--c:#00838f}nav button[data-m="briefe"]{--c:#ad1457}
+nav button[data-m="a1"]{--c:var(--a1)}nav button[data-m="themen"]{--c:var(--a2)}nav button[data-m="woerter"]{--c:#8a3fa8}nav button[data-m="grammatik"]{--c:#c25e00}nav button[data-m="gespraeche"]{--c:#00838f}nav button[data-m="briefe"]{--c:#ad1457}nav button[data-m="hoeren"]{--c:#6d4c41}
 nav .s{display:none}
 nav button[aria-selected="true"]{background:var(--c);color:#fff}
 #upd{font:inherit;font-size:12px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap}
@@ -39,7 +39,7 @@ iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(
 iframe[hidden]{display:none}
 button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
 @media (max-width:1100px){nav .l{display:none}nav .s{display:inline}}
-@media (max-width:520px){.brand{font-size:18px}nav{order:3;width:100%;gap:2px}nav button{flex:1 1 auto;min-width:0;padding:6px 3px;font-size:12px;letter-spacing:-.01em}}
+@media (max-width:520px){.brand{font-size:18px}nav{order:3;width:100%;gap:2px}nav button{flex:1 1 auto;min-width:0;padding:6px 2px;font-size:11.5px;letter-spacing:-.02em}}
 </style>
 </head>
 <body>
@@ -54,12 +54,13 @@ button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
   <button role="tab" data-m="grammatik" aria-selected="false"><span class="l">B1 Grammatik</span><span class="s">Gramm.</span></button>
   <button role="tab" data-m="gespraeche" aria-selected="false"><span class="l">Gespräche</span><span class="s">Dialoge</span></button>
   <button role="tab" data-m="briefe" aria-selected="false"><span class="l">Briefe</span><span class="s">Briefe</span></button>
+  <button role="tab" data-m="hoeren" aria-selected="false"><span class="l">Hören</span><span class="s">Hören</span></button>
  </nav>
 </div></header>
 <main id="stage"></main>
 <script>
-const APP_VERSION = "1.4.3";
-const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief" };
+const APP_VERSION = "1.5.0";
+const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
 const frames = {};
