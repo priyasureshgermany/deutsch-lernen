@@ -37,7 +37,7 @@ for (const d of window.BR) {
   });
   if (!d.tips || d.tips.length < 3) fail(w, "fewer than 3 key phrases");
 }
-const PLACES = ["station", "train", "sbahn", "airport", "shop", "radio", "phone", "cafe", "hotel", "bank", "doctor", "office", "street"];
+const PLACES = ["station", "train", "sbahn", "airport", "shop", "radio", "phone", "cafe", "hotel", "bank", "doctor", "office", "street", "museum"];
 for (const d of window.HS) {
   const w = "Hören " + d.id;
   if (ids.has(d.id + "-h")) fail(w, "duplicate id"); ids.add(d.id + "-h");

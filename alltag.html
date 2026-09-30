@@ -396,7 +396,8 @@ const PLACES={
  bank:{beds:[[1,"lowpass",300,0.7,0.22],[0,"bandpass",850,0.7,0.007,0.25]],ev:[5,11,(c,o,t)=>burst(c,o,t,0.05,3000,0.02)]},
  doctor:{beds:[[1,"lowpass",250,0.7,0.15]],ev:[1,1,(c,o,t)=>tone(c,o,3200,t,0.03,0.006,"square")]},
  office:{beds:[[1,"lowpass",260,0.7,0.2],[0,"bandpass",900,0.7,0.005]],ev:[0.15,0.6,(c,o,t)=>burst(c,o,t,0.03,2800,0.015)]},
- street:{beds:[[1,"lowpass",300,0.7,0.6]],ev:[4,9,(c,o,t)=>burst(c,o,t,1.8,400,0.06)]}
+ street:{beds:[[1,"lowpass",300,0.7,0.6]],ev:[4,9,(c,o,t)=>burst(c,o,t,1.8,400,0.06)]},
+ museum:{beds:[[1,"lowpass",260,0.7,0.18],[0,"bandpass",700,0.7,0.004,0.2]],ev:[2,5,(c,o,t)=>{burst(c,o,t,0.06,350,0.03);burst(c,o,t+0.5,0.06,350,0.025)}]}
 };
 function startPlace(kind){const c=ac();if(!c)return ()=>{};const P=PLACES[kind]||PLACES.station,out=c.createGain();out.gain.setValueAtTime(0.0001,c.currentTime);
  out.gain.exponentialRampToValueAtTime(1,c.currentTime+1.2);out.connect(c.destination);
