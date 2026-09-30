@@ -1,5 +1,10 @@
 # Releases
 
+## 1.8.0 — 2026-09-30
+- Tempo is one icon next to the version for the whole app: speedometer = normal, snail = slow (remembered)
+- Removed „EN immer“; every sentence keeps its own EN button, and the Hören exam questions now have English too
+- Gespräche / Briefe / Hören have no tool bar any more, so there is more room for the text
+
 ## 1.7.0 — 2026-09-30
 - New: 8 more B1 Grammatik topics (now 26) — Die vier Fälle, Pronomen, Unregelmäßige Verben, da(r)- und wo(r)-, Das Wort „es“, Modalpartikeln, Adverbien, Wortbildung
 - Removed the search boxes from every section

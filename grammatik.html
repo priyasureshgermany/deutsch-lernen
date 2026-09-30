@@ -21,7 +21,7 @@ h1{font-size:clamp(28px,5.5vw,46px);font-weight:800;line-height:1.05;letter-spac
 .sub{color:var(--muted);max-width:68ch;margin:10px 0 0}
 .bar{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 20px 8px}
 .bar-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.topics{max-width:1100px;margin:0 auto 8px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.topics{max-width:1100px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
 .topics::-webkit-scrollbar{display:none}
 .topics button{flex:none;font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--line);border-radius:999px;padding:5px 12px;background:var(--paper);color:var(--ink);cursor:pointer;white-space:nowrap}
 .topics button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
@@ -40,7 +40,7 @@ main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
 .it small{color:var(--muted);font-size:12px;text-align:right}
 .it:hover{background:var(--surface)}
 .it[aria-expanded="true"]{border-color:var(--b1);background:var(--hlbg)}
-.detail{position:sticky;top:130px}
+.detail{position:sticky;top:72px}
 .ph{color:var(--muted);border:1.5px dashed var(--line);border-radius:12px;padding:30px 20px;text-align:center}
 .dcard{border:1.5px solid var(--line);border-radius:14px;padding:14px 16px}
 .dh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}
@@ -58,7 +58,7 @@ main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
 .acts{display:flex;gap:8px;align-items:center;margin-top:6px}
 .enb{font:inherit;font-size:12px;font-weight:700;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:2px 10px;cursor:pointer}
 .en{display:none;color:var(--muted);font-style:italic;margin-top:6px;font-size:15px}
-.ex.en-on .en,body.all-en .en{display:block}
+.ex.en-on .en{display:block}
 .say{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--b1);background:transparent;color:var(--b1);cursor:pointer;padding:0;flex:none}
 .say::before{content:"";width:0;height:0;border-left:9px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
 .say.on{background:var(--b1);color:#fff}
@@ -89,11 +89,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 </header>
 <div class="bar">
  <nav class="topics" id="topics" aria-label="Themen"></nav>
- <div class="bar-inner">
-  <input type="hidden" id="q" value="">
-  <button class="tg" id="allen" aria-pressed="false">EN immer</button>
-  <button class="tg speed" id="sp" aria-pressed="false">Tempo: normal</button>
- </div>
+ <input type="hidden" id="q" value="">
 </div>
 <main>
  <div class="intro" id="intro"></div>
@@ -158,9 +154,6 @@ function filter(){
  empty.style.display=any?"none":"block"}
 q.oninput=filter;
 
-const allen=document.getElementById("allen");
-allen.onclick=()=>{const on=allen.getAttribute("aria-pressed")!=="true";allen.setAttribute("aria-pressed",String(on));document.body.classList.toggle("all-en",on);store("gr:allen",on?"1":"0")};
-if(store("gr:allen")==="1")allen.click();
 
 /* ---- speech ---- */
 const synth=window.speechSynthesis;let rate=1,playing=null;
@@ -174,8 +167,8 @@ function speak(btn,text){if(!synth)return;if(playing===btn){stopSay();return}sto
  const u=new SpeechSynthesisUtterance(text);u.lang="de-DE";u.rate=rate;const v=voiceFor();if(v)u.voice=v;
  u.onend=u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
  playing=btn;btn.classList.add("on");synth.speak(u)}
-const sp=document.getElementById("sp");
-sp.onclick=()=>{rate=rate===1?0.75:1;sp.setAttribute("aria-pressed",String(rate!==1));sp.textContent=rate===1?"Tempo: normal":"Tempo: langsam"};
+/* Tempo is set by the button at the top of the app (index.html). */
+addEventListener("message",e=>{if(e.origin===location.origin&&e.data&&e.data.dlRate)rate=e.data.dlRate});
 
 /* ---- tap a word: the same in-popup translation as the other tabs ---- */
 const pop=document.getElementById("pop"),pw=document.getElementById("pw"),pb=document.getElementById("pb");

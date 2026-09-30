@@ -119,7 +119,6 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   <button class="tg ans" data-k="ans" aria-pressed="true">Antwort</button>
   <button class="tg practice" id="pr" aria-pressed="false">Übungsmodus</button>
   <button class="tg multi" id="mw" aria-pressed="false">Mehrere Wörter</button>
-  <button class="tg speed" id="sp" aria-pressed="false">Tempo: normal</button>
  </div>
 </div><nav class="topics" id="nav" aria-label="Themen"></nav></div>
 <main id="main"></main>
@@ -731,8 +730,8 @@ function say(btn){if(!synth)return;
  const v=voiceFor(lang);if(v)u.voice=v;
  u.onend=u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
  playing=btn;btn.classList.add("on");synth.speak(u)}
-const sp=document.getElementById("sp");
-sp.onclick=()=>{rate=rate===1?0.75:1;sp.setAttribute("aria-pressed",String(rate!==1));sp.textContent=rate===1?"Tempo: normal":"Tempo: langsam"};
+/* Tempo is set by the button at the top of the app (index.html). */
+addEventListener("message",e=>{if(e.origin===location.origin&&e.data&&e.data.dlRate)rate=e.data.dlRate});
 let multi=false,picked=[],pickCell=null;
 const mw=document.getElementById("mw");
 mw.onclick=()=>{multi=!multi;mw.setAttribute("aria-pressed",String(multi));clearPick();closePop();

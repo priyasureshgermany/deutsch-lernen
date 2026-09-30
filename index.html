@@ -43,6 +43,7 @@ button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
    hiding the bars is what gives the room. One round button brings them back. */
 .fsb{display:flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--muted);cursor:pointer}
 .fsb svg{width:17px;height:17px}
+#tempo[aria-pressed="true"]{background:var(--a1);border-color:var(--a1);color:#fff}
 #fsx{display:none;position:fixed;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:20;width:42px;height:42px;
  border:none;background:var(--b1);color:#fff;opacity:.9;box-shadow:0 2px 10px rgba(0,0,0,.3)}
 body.full header,body.full nav{display:none}
@@ -72,6 +73,7 @@ nav .i{display:none}
 <header><div class="top">
  <div class="brand">Deutsch <span>lernen</span></div>
  <button id="upd" type="button" title="Nach neuer Version suchen">v–</button>
+ <button id="tempo" class="fsb" type="button" aria-pressed="false"></button>
  <nav role="tablist" aria-label="Bereiche">
   <button role="tab" data-m="a1" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3.5" width="14" height="18" rx="2"/><path d="M9 3.5h6v2.5H9z"/><path d="m9 13 2 2 4-4.5"/></svg></span><span class="l">A1 Prüfung</span><span class="s">A1</span></button>
   <button role="tab" data-m="b1" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3.5" width="14" height="18" rx="2"/><path d="M9 3.5h6v2.5H9z"/><path d="m9 13 2 2 4-4.5"/></svg></span><span class="l">B1 Prüfung</span><span class="s">B1</span></button>
@@ -87,7 +89,7 @@ nav .i{display:none}
 <main id="stage"></main>
 <button id="fsx" class="fsb" type="button" title="Vollbild beenden" aria-label="Vollbild beenden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg></button>
 <script>
-const APP_VERSION = "1.7.0";
+const APP_VERSION = "1.8.0";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -105,6 +107,7 @@ function show(m){
     f.title = tabs.find(t => t.dataset.m === m).querySelector(".l").textContent;
     stage.appendChild(f);
     frames[m] = f;
+    f.addEventListener("load", () => sendRate(f));
   }
   for(const k in frames) frames[k].hidden = k !== m;
   tabs.forEach(t => t.setAttribute("aria-selected", String(t.dataset.m === m)));
@@ -139,6 +142,26 @@ upd.onclick = async () => {
   location.reload();
 };
 if(navigator.onLine !== false) checkLive();
+
+/* Tempo for every section's read-aloud: one button at the top instead of one
+   in each section. A speedometer for normal, a snail for slow; the sections
+   hear about it by message and keep it for the next thing they read. */
+const tempo = document.getElementById("tempo");
+const ICONS = {
+  normal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 17a8.5 8.5 0 1 1 17 0"/><path d="M12 17l4.5-5"/><circle cx="12" cy="17" r="1.2" fill="currentColor"/></svg>',
+  slow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="12" r="5.5"/><path d="M10 12a2 2 0 1 1 2-2"/><path d="M2.5 18.5h15a3 3 0 0 0 3-3V11"/><path d="M20.5 11l-1.5-3M20.5 11l1.3-3"/></svg>'
+};
+let rate = store("dl:rate") === "0.75" ? 0.75 : 1;
+function sendRate(f){ try{ f.contentWindow.postMessage({ dlRate: rate }, location.origin === "null" ? "*" : location.origin); }catch(e){} }
+function drawTempo(){
+  const slow = rate !== 1;
+  tempo.innerHTML = slow ? ICONS.slow : ICONS.normal;
+  tempo.setAttribute("aria-pressed", String(slow));
+  tempo.title = slow ? "Tempo: langsam – tippen für normal" : "Tempo: normal – tippen für langsam";
+  tempo.setAttribute("aria-label", tempo.title);
+}
+tempo.onclick = () => { rate = rate === 1 ? 0.75 : 1; store("dl:rate", String(rate)); drawTempo(); for(const k in frames) sendRate(frames[k]); };
+drawTempo();
 
 const root = document.documentElement;
 function full(on){
