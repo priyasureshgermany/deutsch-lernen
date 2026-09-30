@@ -1,5 +1,8 @@
 # Releases
 
+## 1.5.1 — 2026-09-30
+- New: read along – the sentence turns light blue as far as it has been spoken, in Hören (with the text shown), Gespräche and Briefe; the line being spoken stays in view
+
 ## 1.5.0 — 2026-09-30
 - New: tab „Hören“ — 14 B1 listening scenes that play inside the app with one ▶: station, train, S-Bahn, airport and shop announcements with a gong, radio traffic and weather, voicemails, and conversations in a restaurant, hotel, bank, at the doctor's, the Bürgeramt and at work, each with its own background sound; exam-style questions (richtig/falsch, a/b/c) with explanations, a hidden transcript and „2× hören“ as in the exam
 
