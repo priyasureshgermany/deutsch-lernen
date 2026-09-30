@@ -21,8 +21,8 @@ for (const topic of WD) for (const para of topic.p) {
     const out = [];
     let cur = null;
     toks.forEach((t, i) => {
-      if (t.tm && cur && cur.tm === t.tm && toks[i - 1].tm === t.tm && !toks[i - 1].punct && !["PR","PA","ADV","T"].includes(t.pos)) cur.words.push(t.w);
-      else if (t.tm) { cur = { tm: t.tm, words: [t.w] }; out.push(cur); }
+      if (t.tm && cur && cur.ph === t.ph) cur.words.push(t.w);
+      else if (t.tm) { cur = { tm: t.tm, ph: t.ph, words: [t.w] }; out.push(cur); }
       else cur = null;
     });
     console.log("  " + out.map(p => p.tm.toUpperCase() + ": " + p.words.join(" ")).join("  |  "));

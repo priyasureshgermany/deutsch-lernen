@@ -38,8 +38,34 @@ main{flex:1;min-height:0;position:relative}
 iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--paper)}
 iframe[hidden]{display:none}
 button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
+/* Full screen: only the section is left. The browser's own full screen where
+   it is allowed (laptop, Android); on iPhone, which allows it only for video,
+   hiding the bars is what gives the room. One round button brings them back. */
+.fsb{display:flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--muted);cursor:pointer}
+.fsb svg{width:17px;height:17px}
+#fsx{display:none;position:fixed;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:20;width:42px;height:42px;
+ border:none;background:var(--b1);color:#fff;opacity:.9;box-shadow:0 2px 10px rgba(0,0,0,.3)}
+body.full header,body.full nav{display:none}
+body.full main{margin:env(safe-area-inset-top,0px) 0 0}
+body.full #fsx{display:flex}
+nav .i{display:none}
 @media (max-width:1100px){nav .l{display:none}nav .s{display:inline}}
-@media (max-width:520px){.brand{font-size:18px}nav{order:3;width:100%;gap:2px}nav button{flex:1 1 auto;min-width:0;padding:6px 2px;font-size:11.5px;letter-spacing:-.02em}}
+/* Phones: the section bar moves to the bottom, as in an app – icon over a
+   short label – and the top keeps only the title and version, so each
+   section's own search and tools sit at the top of the screen. */
+@media (max-width:760px){
+ header{padding-top:calc(env(safe-area-inset-top,0px) + 6px);padding-bottom:6px}
+ .brand{font-size:18px}
+ main{margin-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
+ nav{position:fixed;left:0;right:0;bottom:0;z-index:10;display:grid;grid-template-columns:repeat(8,1fr);gap:0;border-radius:0;
+  padding:4px 2px calc(4px + env(safe-area-inset-bottom,0px));background:var(--paper);border-top:1px solid var(--line);overflow:visible}
+ nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:0;padding:4px 0;border-radius:10px;
+  font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:-.01em}
+ nav button .i{display:flex;align-items:center;justify-content:center;width:40px;height:26px;border-radius:13px}
+ nav button .i svg{width:20px;height:20px}
+ nav button[aria-selected="true"]{background:transparent;color:var(--ink)}
+ nav button[aria-selected="true"] .i{background:var(--c);color:#fff}
+}
 </style>
 </head>
 <body>
@@ -47,19 +73,21 @@ button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
  <div class="brand">Deutsch <span>lernen</span></div>
  <button id="upd" type="button" title="Nach neuer Version suchen">v–</button>
  <nav role="tablist" aria-label="Bereiche">
-  <button role="tab" data-m="a1" aria-selected="false"><span class="l">A1 Prüfung</span><span class="s">A1</span></button>
-  <button role="tab" data-m="b1" aria-selected="false"><span class="l">B1 Prüfung</span><span class="s">B1</span></button>
-  <button role="tab" data-m="themen" aria-selected="false"><span class="l">Gesprächsthemen</span><span class="s">Themen</span></button>
-  <button role="tab" data-m="woerter" aria-selected="false"><span class="l">Wörter erkennen</span><span class="s">Wörter</span></button>
-  <button role="tab" data-m="grammatik" aria-selected="false"><span class="l">B1 Grammatik</span><span class="s">Gramm.</span></button>
-  <button role="tab" data-m="gespraeche" aria-selected="false"><span class="l">Gespräche</span><span class="s">Dialoge</span></button>
-  <button role="tab" data-m="briefe" aria-selected="false"><span class="l">Briefe</span><span class="s">Briefe</span></button>
-  <button role="tab" data-m="hoeren" aria-selected="false"><span class="l">Hören</span><span class="s">Hören</span></button>
+  <button role="tab" data-m="a1" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3.5" width="14" height="18" rx="2"/><path d="M9 3.5h6v2.5H9z"/><path d="m9 13 2 2 4-4.5"/></svg></span><span class="l">A1 Prüfung</span><span class="s">A1</span></button>
+  <button role="tab" data-m="b1" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3.5" width="14" height="18" rx="2"/><path d="M9 3.5h6v2.5H9z"/><path d="m9 13 2 2 4-4.5"/></svg></span><span class="l">B1 Prüfung</span><span class="s">B1</span></button>
+  <button role="tab" data-m="themen" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.4A8 8 0 1 1 21 12z"/></svg></span><span class="l">Gesprächsthemen</span><span class="s">Themen</span></button>
+  <button role="tab" data-m="woerter" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18 8.5 6 13 18"/><path d="M5.7 14h5.6"/><path d="M20 18v-5a2.5 2.5 0 0 0-5 0"/><path d="M20 15.5c-2.5 0-5 .4-5 1.8 0 .9.8 1.2 1.7 1.2 1.9 0 3.3-1.3 3.3-3"/></svg></span><span class="l">Wörter erkennen</span><span class="s">Wörter</span></button>
+  <button role="tab" data-m="grammatik" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 21H20"/><path d="M9 8h7M9 12h5"/></svg></span><span class="l">B1 Grammatik</span><span class="s">Gramm.</span></button>
+  <button role="tab" data-m="gespraeche" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9a5 5 0 0 1-7.3 4.4L3 14.5l1-3.3A5 5 0 1 1 14 9z"/><path d="M10 17.5a5 5 0 0 0 7.3 1.9l3.7 1.1-1-3.3a5 5 0 0 0-3-7.1"/></svg></span><span class="l">Gespräche</span><span class="s">Dialoge</span></button>
+  <button role="tab" data-m="briefe" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg></span><span class="l">Briefe</span><span class="s">Briefe</span></button>
+  <button role="tab" data-m="hoeren" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4.5" height="6.5" rx="1.5"/><rect x="16.5" y="14" width="4.5" height="6.5" rx="1.5"/></svg></span><span class="l">Hören</span><span class="s">Hören</span></button>
  </nav>
+ <button id="fs" class="fsb" type="button" title="Vollbild" aria-label="Vollbild"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
 </div></header>
 <main id="stage"></main>
+<button id="fsx" class="fsb" type="button" title="Vollbild beenden" aria-label="Vollbild beenden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg></button>
 <script>
-const APP_VERSION = "1.5.2";
+const APP_VERSION = "1.6.0";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -111,6 +139,19 @@ upd.onclick = async () => {
   location.reload();
 };
 if(navigator.onLine !== false) checkLive();
+
+const root = document.documentElement;
+function full(on){
+  document.body.classList.toggle("full", on);
+  try{
+    if(on && root.requestFullscreen && !document.fullscreenElement) root.requestFullscreen().catch(() => {});
+    if(!on && document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  }catch(e){}
+}
+document.getElementById("fs").onclick = () => full(true);
+document.getElementById("fsx").onclick = () => full(false);
+/* Esc (or the system's own exit) leaves the browser's full screen: follow it. */
+document.addEventListener("fullscreenchange", () => { if(!document.fullscreenElement) document.body.classList.remove("full"); });
 
 if("serviceWorker" in navigator && location.protocol !== "file:"){
   navigator.serviceWorker.register("sw.js").catch(() => {});

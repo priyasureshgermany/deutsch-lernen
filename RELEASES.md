@@ -1,5 +1,10 @@
 # Releases
 
+## 1.6.0 — 2026-09-30
+- Phones: the section tabs sit at the bottom as an app-style bar with icons; each section's search and tools stay at the top
+- New: full-screen button (next to the version) – hides the bars so the section fills the screen; the round blue button brings them back
+- New: 10 more Wörter-erkennen texts (now 20) — Gesundheit, Kinder und Schule, Ämter und Behörden, Verkehr und Unterwegs, Wetter und Jahreszeiten, each at A1 and B1 with every word tagged
+
 ## 1.5.2 — 2026-09-30
 - New: 12 more Hören scenes (now 26) — bus diversion, train cancelled with replacement buses, museum tour, voicemails from the property management and the Kita, radio news, supermarket checkout, pharmacy, booking a Bürgeramt appointment by phone, flat viewing, lunch in the canteen, moving a doctor's appointment
 
