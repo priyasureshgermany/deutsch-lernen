@@ -1,5 +1,8 @@
 # Releases
 
+## 1.10.0 — 2026-09-30
+- Grammatik: every entry in the lists shows its English on the right (Präsens → present tense, aus → from, out of …), the hint moves under the German word, the group headings have English too, and the English also appears under the heading of an opened entry
+
 ## 1.9.1 — 2026-09-30
 - Fix: translation on iPhone. Google's free endpoint often refuses iPhones behind iCloud Private Relay, so the translator and all word popups now fall back to a second Google address and then to MyMemory; the popup says which service answered
 - Updates: files fetched right after an update now always come from the server, never from an old browser copy

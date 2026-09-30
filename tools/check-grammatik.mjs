@@ -10,10 +10,12 @@ let bad = 0, items = 0, sentences = 0;
 const fail = (w, m) => { bad++; console.log("✗ " + w + ": " + m); };
 for (const t of window.GD) {
   let n = 0;
+  for (const g of t.groups) if (!g.gen) fail(t.de + " / " + g.g, "heading has no English (gen)");
   for (const g of t.groups) for (const it of g.items) {
     n++; items++;
     const where = t.de + " / " + it.w;
     if (!it.tag) fail(where, "no tag");
+    if (!it.en) fail(where, "no English (en) for the list");
     if (!Array.isArray(it.ex) || it.ex.length < 4) { fail(where, "needs at least four examples, has " + (it.ex || []).length); continue; }
     sentences += it.ex.length;
     it.ex.forEach(([why, de, en], i) => {
