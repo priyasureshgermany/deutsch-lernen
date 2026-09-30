@@ -1,5 +1,9 @@
 # Releases
 
+## 1.7.0 — 2026-09-30
+- New: 8 more B1 Grammatik topics (now 26) — Die vier Fälle, Pronomen, Unregelmäßige Verben, da(r)- und wo(r)-, Das Wort „es“, Modalpartikeln, Adverbien, Wortbildung
+- Removed the search boxes from every section
+
 ## 1.6.0 — 2026-09-30
 - Phones: the section tabs sit at the bottom as an app-style bar with icons; each section's search and tools stay at the top
 - New: full-screen button (next to the version) – hides the bars so the section fills the screen; the round blue button brings them back

@@ -1184,5 +1184,420 @@ window.GD = [
    ["Imperativ (du): Verb auf Position 1, kein Subjekt", "[[Ruf]] mich bitte heute Abend an!", "Please call me this evening!"],
    ["Imperativ (Sie): Verb + Sie", "[[Nehmen]] Sie bitte Platz.", "Please take a seat."]]}
  ]}
+]},
+
+{id:"kasus", de:"Die vier Fälle", en:"The four cases",
+ intro:"Der Kasus zeigt, welche Rolle ein Nomen im Satz hat. Man sieht ihn vor allem am Artikel: der → den → dem → des. Frag nach dem Nomen: Wer/Was? (Nominativ), Wen/Was? (Akkusativ), Wem? (Dativ), Wessen? (Genitiv). Im Gespräch ersetzt man den Genitiv oft durch von + Dativ.",
+ groups:[
+ {g:"Die Fälle", items:[
+  {w:"Nominativ", tag:"Wer? Was?", ex:[
+   ["Subjekt: wer oder was handelt", "[[Der Zug]] fährt um 8:15 Uhr ab.", "The train leaves at 8:15."],
+   ["nach sein", "Mein Nachbar ist [[ein sehr netter Mann]].", "My neighbour is a very nice man."],
+   ["nach werden (Beruf ohne Artikel)", "Meine Schwester wird nächstes Jahr [[Ärztin]].", "My sister will become a doctor next year."],
+   ["nach bleiben", "Er bleibt trotz allem [[mein bester Freund]].", "Despite everything he remains my best friend."],
+   ["Anrede im Brief", "[[Lieber Herr Müller]], vielen Dank für Ihre Nachricht.", "Dear Mr Müller, thank you very much for your message."]]},
+  {w:"Akkusativ", tag:"Wen? Was?", ex:[
+   ["direktes Objekt", "Ich suche [[einen neuen Job]] in der Nähe.", "I'm looking for a new job nearby."],
+   ["nach Akkusativ-Präposition (für, ohne, durch …)", "Das Geschenk ist für [[meinen Vater]].", "The present is for my father."],
+   ["Zeitangabe ohne Präposition", "[[Jeden Morgen]] fahre ich mit dem Rad zur Arbeit.", "Every morning I cycle to work."],
+   ["Wohin? nach Wechselpräposition", "Ich lege die Schlüssel auf [[den Tisch]].", "I put the keys on the table."],
+   ["es gibt + Akkusativ", "In unserer Straße gibt es [[einen neuen Supermarkt]].", "There's a new supermarket in our street."]]},
+  {w:"Dativ", tag:"Wem?", ex:[
+   ["indirektes Objekt: wer etwas bekommt", "Ich schenke [[meiner Mutter]] Blumen.", "I'm giving my mother flowers."],
+   ["Verb mit Dativ", "Kannst du [[mir]] bitte beim Umzug helfen?", "Can you please help me with the move?"],
+   ["nach Dativ-Präposition (aus, bei, mit, nach …)", "Nach [[der Arbeit]] gehe ich ins Fitnessstudio.", "After work I go to the gym."],
+   ["Wo? nach Wechselpräposition", "Die Schlüssel liegen auf [[dem Tisch]].", "The keys are on the table."],
+   ["Adjektiv + Dativ (zu kalt, egal …)", "Das ist [[mir]] egal, entscheide du.", "I don't mind, you decide."]]},
+  {w:"Genitiv", tag:"Wessen?", ex:[
+   ["Besitz / Zugehörigkeit", "Das ist das Auto [[meines Bruders]].", "That is my brother's car."],
+   ["Name + s (ohne Apostroph)", "[[Annas]] Wohnung liegt direkt am Park.", "Anna's flat is right by the park."],
+   ["nach Genitiv-Präposition", "Wegen [[des Streiks]] fallen heute viele Züge aus.", "Because of the strike many trains are cancelled today."],
+   ["feste Zeitangabe", "[[Eines Tages]] möchte ich ein eigenes Haus haben.", "One day I'd like to have my own house."],
+   ["gesprochen: von + Dativ statt Genitiv", "Das ist das Auto [[von meinem Bruder]].", "That's my brother's car (spoken)."]]}
+ ]},
+ {g:"Artikel in allen Fällen", items:[
+  {w:"der / die / das", tag:"bestimmter Artikel", ex:[
+   ["maskulin: der – den – dem – des", "[[Der]] Chef ruft [[den]] Kunden sofort zurück.", "The boss calls the customer back immediately."],
+   ["feminin: die – die – der – der", "Ich gebe [[der]] Kollegin [[die]] Unterlagen.", "I give the documents to my (female) colleague."],
+   ["neutral: das – das – dem – des", "Das Ende [[des]] Films war überraschend.", "The end of the film was surprising."],
+   ["Plural: die – die – den (+ n) – der", "Die Lehrerin hilft [[den Kindern]] bei den Aufgaben.", "The teacher helps the children with the exercises."]]},
+  {w:"ein / eine", tag:"unbestimmter Artikel", ex:[
+   ["Nominativ: ein – eine – ein", "Da drüben steht [[ein]] Taxi.", "There's a taxi over there."],
+   ["Akkusativ: nur maskulin ändert sich (einen)", "Ich brauche [[einen]] Termin beim Arzt.", "I need an appointment at the doctor's."],
+   ["Dativ: einem – einer – einem", "Wir wohnen in [[einer]] kleinen Wohnung.", "We live in a small flat."],
+   ["Genitiv: eines – einer – eines", "Sie ist die Tochter [[eines]] bekannten Arztes.", "She is the daughter of a well-known doctor."],
+   ["kein Plural: das Nomen steht ohne Artikel", "Wir haben [[Kinder]], aber keinen Hund.", "We have children but no dog."]]},
+  {w:"kein / mein", tag:"Negativ- und Possessivartikel", ex:[
+   ["kein = nicht + ein", "Ich habe heute leider [[keine]] Zeit.", "Unfortunately I have no time today."],
+   ["kein hat einen Plural", "In der Innenstadt gibt es [[keine]] freien Parkplätze.", "There are no free parking spaces in the city centre."],
+   ["mein, dein, sein … Endungen wie ein", "Ich rufe gleich [[meinen]] Chef an.", "I'll call my boss right away."],
+   ["Dativ Plural: -en", "Er wohnt noch bei [[seinen]] Eltern.", "He still lives with his parents."],
+   ["sein (er / es) oder ihr (sie)?", "Maria besucht [[ihren]] Bruder, Tom besucht [[seine]] Schwester.", "Maria visits her brother, Tom visits his sister."]]}
+ ]}
+]},
+
+{id:"pron", de:"Pronomen", en:"Pronouns",
+ intro:"Pronomen ersetzen Nomen, damit man sie nicht wiederholt. Personalpronomen ändern ihre Form nach dem Kasus: er – ihn – ihm. Achtung: er, sie, es stehen auch für Sachen – der Tisch → er. Dazu kommen man, jemand, etwas, nichts und der / die / das als betontes Pronomen.",
+ groups:[
+ {g:"Personalpronomen", items:[
+  {w:"ich – mich – mir", tag:"1. Person", ex:[
+   ["Nominativ: Subjekt", "[[Ich]] arbeite seit zwei Jahren als Pflegerin.", "I've been working as a carer for two years."],
+   ["Akkusativ: direktes Objekt", "Kannst du [[mich]] morgen vom Bahnhof abholen?", "Can you pick me up from the station tomorrow?"],
+   ["Dativ: bei Dativverben", "Das Essen schmeckt [[mir]] sehr gut.", "I like the food very much."],
+   ["nach Präposition", "Hast du eine Nachricht für [[mich]]?", "Do you have a message for me?"],
+   ["wir – uns – uns", "Unsere Nachbarn haben [[uns]] zum Grillen eingeladen.", "Our neighbours invited us to a barbecue."]]},
+  {w:"er – ihn – ihm", tag:"3. Person", ex:[
+   ["er = der-Wort, auch für Sachen", "Der Kühlschrank ist kaputt, [[er]] kühlt nicht mehr.", "The fridge is broken, it doesn't cool any more."],
+   ["ihn = Akkusativ maskulin", "Wo ist mein Schlüssel? Ich finde [[ihn]] nicht.", "Where's my key? I can't find it."],
+   ["ihm = Dativ maskulin und neutral", "Mein Sohn hat Geburtstag, ich kaufe [[ihm]] ein Fahrrad.", "It's my son's birthday, I'm buying him a bike."],
+   ["es = das-Wort", "Das Buch ist spannend, du musst [[es]] unbedingt lesen.", "The book is exciting, you really must read it."],
+   ["ihnen = Dativ Plural", "Die Kinder sind müde, ich lese [[ihnen]] noch eine Geschichte vor.", "The children are tired, I'll read them one more story."]]},
+  {w:"sie / Sie", tag:"sie, sie oder Sie?", ex:[
+   ["sie (feminin): Verb mit -t", "Meine Kollegin ist krank, [[sie]] kommt heute nicht.", "My colleague is ill, she isn't coming today."],
+   ["sie (Plural): Verb mit -en", "Meine Eltern kommen am Samstag, [[sie]] bleiben eine Woche.", "My parents are coming on Saturday, they're staying a week."],
+   ["Sie = höfliche Anrede, immer groß", "Können [[Sie]] mir bitte helfen?", "Could you help me, please?"],
+   ["Ihnen = höflich im Dativ", "Ich danke [[Ihnen]] für Ihre Geduld.", "Thank you for your patience."],
+   ["ihr = Dativ feminin", "Ich habe [[ihr]] gestern eine Nachricht geschrieben.", "I wrote her a message yesterday."]]},
+  {w:"Reihenfolge", tag:"Pronomen im Mittelfeld", ex:[
+   ["Pronomen vor Nomen", "Ich gebe [[ihm]] morgen das Buch zurück.", "I'll give him the book back tomorrow."],
+   ["zwei Pronomen: Akkusativ vor Dativ", "Das Buch? Ich gebe [[es ihm]] morgen zurück.", "The book? I'll give it back to him tomorrow."],
+   ["Pronomen direkt nach dem Verb", "Morgen rufe ich [[dich]] noch einmal an.", "I'll call you again tomorrow."],
+   ["Nebensatz: Pronomen direkt nach der Konjunktion", "Ich weiß nicht, ob [[sie]] heute noch kommt.", "I don't know whether she's still coming today."]]}
+ ]},
+ {g:"Andere Pronomen", items:[
+  {w:"man", tag:"alle / die Leute", ex:[
+   ["allgemeine Regel", "In Deutschland trennt [[man]] den Müll.", "In Germany people separate their rubbish."],
+   ["Verbot / Erlaubnis", "Hier darf [[man]] nicht rauchen.", "You're not allowed to smoke here."],
+   ["Frage nach dem Weg", "Wie kommt [[man]] am schnellsten zum Hauptbahnhof?", "What's the quickest way to the main station?"],
+   ["Akkusativ: einen", "Dieser Lärm macht [[einen]] ganz verrückt.", "This noise drives you crazy."],
+   ["Dativ: einem", "So ein Fehler kann [[einem]] leicht passieren.", "A mistake like that can easily happen to you."]]},
+  {w:"jemand / niemand", tag:"eine Person / keine Person", ex:[
+   ["jemand = eine unbekannte Person", "Hat [[jemand]] meine Brille gesehen?", "Has anyone seen my glasses?"],
+   ["niemand = keine Person", "Am Wochenende ist [[niemand]] im Büro.", "Nobody is in the office at the weekend."],
+   ["Akkusativ: niemanden / jemanden", "Ich bin neu hier und kenne noch [[niemanden]].", "I'm new here and don't know anybody yet."],
+   ["Dativ: jemandem", "Hast du das schon [[jemandem]] erzählt?", "Have you told anyone about it yet?"]]},
+  {w:"etwas / nichts / alles", tag:"Sachen", ex:[
+   ["etwas = irgendeine Sache", "Möchtest du [[etwas]] trinken?", "Would you like something to drink?"],
+   ["nichts = keine Sache", "Ich habe heute noch [[nichts]] gegessen.", "I haven't eaten anything yet today."],
+   ["alles = alle Sachen", "Danke, ich habe [[alles]] verstanden.", "Thanks, I understood everything."],
+   ["etwas / nichts + Adjektiv: groß, Endung -es", "Gibt es [[etwas Neues]] im Büro?", "Is there anything new at the office?"],
+   ["alles + Adjektiv: Endung -e", "[[Alles Gute]] zum Geburtstag!", "Happy birthday!"]]},
+  {w:"der / die / das", tag:"betont: der da", ex:[
+   ["statt er / sie / es, betont (gesprochen)", "Kennst du den neuen Kollegen? – Ja, [[der]] ist sehr nett.", "Do you know the new colleague? – Yes, he's very nice."],
+   ["Akkusativ, oft auf Position 1", "Wie findest du die Jacke? – [[Die]] finde ich zu teuer.", "What do you think of the jacket? – I find it too expensive."],
+   ["Dativ: dem / der / denen", "Frag doch Paul, [[dem]] kannst du vertrauen.", "Just ask Paul, you can trust him."],
+   ["das = die ganze Aussage", "Du hast die Stelle bekommen? [[Das]] ist ja toll!", "You got the job? That's great!"]]},
+  {w:"einer / keiner / welche", tag:"statt ein + Nomen", ex:[
+   ["einer / eine / eins = ein + Nomen", "Hast du einen Stift? – Ja, hier ist [[einer]].", "Do you have a pen? – Yes, here's one."],
+   ["keiner / keine / keins", "Brauchen Sie eine Tüte? – Nein danke, ich brauche [[keine]].", "Do you need a bag? – No thanks, I don't need one."],
+   ["Akkusativ maskulin: einen / keinen", "Ich suche einen Parkplatz, aber ich finde [[keinen]].", "I'm looking for a parking space but I can't find one."],
+   ["Plural: welche", "Haben wir noch Eier? – Ja, im Kühlschrank sind noch [[welche]].", "Do we have any eggs left? – Yes, there are some in the fridge."]]}
+ ]}
+]},
+
+{id:"unreg", de:"Unregelmäßige Verben", en:"Irregular verbs",
+ intro:"Unregelmäßige (starke) Verben ändern ihren Vokal im Präteritum und oft im Partizip II, das auf -en endet: fahren – fuhr – gefahren. Viele ändern den Vokal auch im Präsens bei du und er / sie / es: ich fahre, du fährst. Am leichtesten lernt man sie in Gruppen mit demselben Vokalwechsel.",
+ groups:[
+ {g:"Vokalwechsel im Präsens", items:[
+  {w:"a → ä", tag:"fahren, schlafen, tragen", ex:[
+   ["nur bei du und er / sie / es", "[[Fährst]] du morgen mit dem Auto?", "Are you driving tomorrow?"],
+   ["ich und wir: kein Wechsel", "Wir [[fahren]] im Sommer an die Ostsee.", "We're going to the Baltic Sea in the summer."],
+   ["schlafen: er schläft", "Das Baby [[schläft]] endlich.", "The baby is finally asleep."],
+   ["laufen: au → äu", "Mein Sohn [[läuft]] jeden Morgen zur Schule.", "My son walks to school every morning."],
+   ["tragen, waschen, lassen", "Sie [[trägt]] heute ein rotes Kleid.", "She's wearing a red dress today."]]},
+  {w:"e → i", tag:"geben, nehmen, sprechen, essen", ex:[
+   ["geben: du gibst, er gibt", "[[Gibst]] du mir bitte das Salz?", "Can you pass me the salt, please?"],
+   ["nehmen: er nimmt (mit mm)", "Er [[nimmt]] jeden Tag den Bus um sieben.", "He takes the seven o'clock bus every day."],
+   ["sprechen: sie spricht", "Meine Kollegin [[spricht]] drei Sprachen.", "My colleague speaks three languages."],
+   ["essen: du isst, er isst", "Was [[isst]] du am liebsten?", "What do you like eating most?"],
+   ["Imperativ mit du: auch i", "[[Hilf]] mir bitte mal mit den Taschen!", "Please help me with the bags!"]]},
+  {w:"e → ie", tag:"lesen, sehen, empfehlen", ex:[
+   ["lesen: er liest", "Mein Vater [[liest]] jeden Morgen die Zeitung.", "My father reads the newspaper every morning."],
+   ["sehen: du siehst", "[[Siehst]] du das Schild da vorne?", "Can you see the sign up ahead?"],
+   ["empfehlen: sie empfiehlt", "Die Ärztin [[empfiehlt]] mir mehr Bewegung.", "The doctor recommends more exercise for me."],
+   ["Imperativ mit du: lies! sieh!", "[[Lies]] die Aufgabe bitte noch einmal genau.", "Please read the task carefully once more."]]}
+ ]},
+ {g:"Präteritum und Perfekt", items:[
+  {w:"ei – ie – ie", tag:"bleiben, schreiben, steigen", ex:[
+   ["bleiben – blieb – ist geblieben", "Wir [[sind]] zwei Wochen in Italien [[geblieben]].", "We stayed in Italy for two weeks."],
+   ["schreiben – schrieb – hat geschrieben", "Früher [[schrieb]] ich meinen Freunden lange Briefe.", "I used to write long letters to my friends."],
+   ["einsteigen – stieg ein – ist eingestiegen", "Ich [[bin]] in den falschen Zug [[eingestiegen]].", "I got on the wrong train."],
+   ["leihen – lieh – hat geliehen", "Ich [[habe]] mir das Buch in der Bibliothek [[geliehen]].", "I borrowed the book from the library."],
+   ["scheinen – schien – hat geschienen", "Gestern [[schien]] den ganzen Tag die Sonne.", "Yesterday the sun shone all day."]]},
+  {w:"ei – i – i", tag:"schneiden, streiten, greifen", ex:[
+   ["schneiden – schnitt – hat geschnitten", "Ich [[habe]] mich beim Kochen in den Finger [[geschnitten]].", "I cut my finger while cooking."],
+   ["streiten – stritt – hat gestritten", "Die Kinder [[stritten]] sich um das Spielzeug.", "The children argued over the toy."],
+   ["greifen – griff – hat gegriffen", "Der Dieb [[griff]] plötzlich nach meiner Tasche.", "The thief suddenly grabbed my bag."],
+   ["leiden – litt – hat gelitten", "Sie [[hat]] lange unter Rückenschmerzen [[gelitten]].", "She suffered from back pain for a long time."]]},
+  {w:"i – a – u / o", tag:"finden, trinken, beginnen", ex:[
+   ["finden – fand – hat gefunden", "Endlich [[habe]] ich eine Wohnung [[gefunden]].", "I've finally found a flat."],
+   ["trinken – trank – hat getrunken", "Er [[trank]] seinen Kaffee immer ohne Zucker.", "He always drank his coffee without sugar."],
+   ["beginnen – begann – hat begonnen (mit o!)", "Der Kurs [[hat]] schon um neun Uhr [[begonnen]].", "The course already started at nine o'clock."],
+   ["singen – sang – hat gesungen", "Auf der Feier [[sangen]] alle zusammen.", "At the party everyone sang together."],
+   ["gewinnen – gewann – hat gewonnen", "Unsere Mannschaft [[hat]] das Spiel [[gewonnen]].", "Our team won the game."]]},
+  {w:"e – a – o", tag:"sprechen, helfen, treffen", ex:[
+   ["sprechen – sprach – hat gesprochen", "Ich [[habe]] gestern mit meinem Vermieter [[gesprochen]].", "I spoke to my landlord yesterday."],
+   ["helfen – half – hat geholfen", "Mein Nachbar [[half]] mir beim Umzug.", "My neighbour helped me with the move."],
+   ["treffen – traf – hat getroffen", "Wir [[haben]] uns zufällig im Supermarkt [[getroffen]].", "We met by chance in the supermarket."],
+   ["nehmen – nahm – hat genommen", "Sie [[nahm]] ihren Schirm und ging los.", "She took her umbrella and set off."],
+   ["sterben – starb – ist gestorben", "Mein Großvater [[ist]] letztes Jahr [[gestorben]].", "My grandfather died last year."]]},
+  {w:"a – u / ie – a", tag:"fahren, tragen, schlafen, fallen", ex:[
+   ["fahren – fuhr – ist gefahren", "Letzten Sommer [[fuhren]] wir mit dem Zug nach Wien.", "Last summer we went to Vienna by train."],
+   ["tragen – trug – hat getragen", "Er [[hat]] die schweren Kisten allein [[getragen]].", "He carried the heavy boxes by himself."],
+   ["schlafen – schlief – hat geschlafen", "Ich [[habe]] heute Nacht schlecht [[geschlafen]].", "I slept badly last night."],
+   ["fallen – fiel – ist gefallen", "Das Glas [[fiel]] vom Tisch und zerbrach.", "The glass fell off the table and broke."],
+   ["gefallen – gefiel – hat gefallen", "Der Film [[hat]] mir sehr gut [[gefallen]].", "I liked the film very much."]]},
+  {w:"Gemischte Verben", tag:"bringen, denken, wissen, kennen", ex:[
+   ["bringen – brachte – hat gebracht", "Der Postbote [[hat]] ein Paket für dich [[gebracht]].", "The postman brought a parcel for you."],
+   ["denken – dachte – hat gedacht", "Ich [[dachte]], der Laden hat heute geöffnet.", "I thought the shop was open today."],
+   ["wissen – wusste – hat gewusst", "Das [[habe]] ich wirklich nicht [[gewusst]].", "I really didn't know that."],
+   ["kennen – kannte – hat gekannt", "Früher [[kannte]] ich hier jede Straße.", "I used to know every street here."],
+   ["rennen – rannte – ist gerannt", "Ich [[bin]] zum Bus [[gerannt]], aber er war schon weg.", "I ran to the bus, but it had already gone."]]}
+ ]}
+]},
+
+{id:"dawo", de:"da(r)- und wo(r)-", en:"darauf, worüber …",
+ intro:"Bei Sachen ersetzt man Präposition + Pronomen durch da(r) + Präposition: Ich warte auf den Bus → Ich warte darauf. Für Fragen nach Sachen: wo(r) + Präposition: Worauf wartest du? Bei Personen bleibt die Präposition: auf ihn, auf wen? Das r kommt vor einem Vokal: dar-auf, wor-über.",
+ groups:[
+ {g:"da(r)- für Sachen", items:[
+  {w:"darauf", tag:"warten auf, sich freuen auf", ex:[
+   ["ersetzt auf + Sache", "Wartest du auf den Bus? – Ja, ich warte schon lange [[darauf]].", "Are you waiting for the bus? – Yes, I've been waiting for it for a long time."],
+   ["sich freuen auf: etwas kommt noch", "Bald ist Urlaub, ich freue mich schon sehr [[darauf]].", "The holidays are soon, I'm really looking forward to them."],
+   ["darauf + dass-Satz", "Ich warte [[darauf]], dass du dich endlich entschuldigst.", "I'm waiting for you to finally apologise."],
+   ["darauf + zu-Infinitiv", "Ich freue mich [[darauf]], dich bald wiederzusehen.", "I'm looking forward to seeing you again soon."],
+   ["örtlich: auf dieser Sache", "Da steht ein Tisch, und [[darauf]] liegt dein Handy.", "There's a table, and your phone is on it."]]},
+  {w:"darüber", tag:"sprechen über, sich ärgern über", ex:[
+   ["sprechen über + Sache", "Das Problem ist ernst, wir müssen [[darüber]] sprechen.", "The problem is serious, we need to talk about it."],
+   ["sich ärgern über", "Der Zug war wieder zu spät, und ich habe mich sehr [[darüber]] geärgert.", "The train was late again and I was very annoyed about it."],
+   ["darüber + dass-Satz", "Ich freue mich [[darüber]], dass du gekommen bist.", "I'm happy that you came."],
+   ["Person: über ihn / sie – nicht darüber", "Kennst du den neuen Chef? Alle sprechen über [[ihn]].", "Do you know the new boss? Everyone is talking about him."]]},
+  {w:"damit", tag:"zufrieden mit, anfangen mit", ex:[
+   ["mit + Sache", "Das ist mein neues Handy, ich bin sehr zufrieden [[damit]].", "This is my new phone, I'm very happy with it."],
+   ["anfangen mit + zu-Infinitiv", "Ich habe [[damit]] angefangen, jeden Morgen zu joggen.", "I've started jogging every morning."],
+   ["Werkzeug: womit? – damit", "Hier ist ein Messer, [[damit]] kannst du das Brot schneiden.", "Here's a knife, you can cut the bread with it."],
+   ["Achtung: damit als Konjunktion (Ziel)", "Ich spreche langsam, [[damit]] mich alle verstehen.", "I speak slowly so that everyone understands me."]]},
+  {w:"dafür / dagegen", tag:"sich interessieren für, sein für / gegen", ex:[
+   ["sich interessieren für", "Fußball? Nein, ich interessiere mich nicht [[dafür]].", "Football? No, I'm not interested in it."],
+   ["dafür sein = zustimmen", "Wer möchte einen neuen Spielplatz? – Ich bin [[dafür]]!", "Who wants a new playground? – I'm in favour!"],
+   ["dagegen sein = ablehnen", "Die Miete soll steigen, aber alle Mieter sind [[dagegen]].", "The rent is supposed to go up, but all the tenants are against it."],
+   ["sich bedanken für", "Du hast mir so geholfen, ich danke dir [[dafür]].", "You helped me so much, thank you for it."],
+   ["dafür = als Ausgleich", "Die Wohnung ist klein, [[dafür]] ist sie sehr günstig.", "The flat is small, but on the other hand it's very cheap."]]},
+  {w:"daran / davon", tag:"denken an, träumen von", ex:[
+   ["denken an + Sache", "Der Termin ist morgen, denk bitte [[daran]]!", "The appointment is tomorrow, please remember it!"],
+   ["sich erinnern an", "Unsere erste Reise? Ich erinnere mich gern [[daran]].", "Our first trip? I like remembering it."],
+   ["träumen von", "Ein eigenes Haus – [[davon]] träume ich schon lange.", "A house of my own – I've been dreaming of that for a long time."],
+   ["abhängen von + Nebensatz", "Ob wir grillen, hängt [[davon]] ab, wie das Wetter wird.", "Whether we have a barbecue depends on what the weather is like."],
+   ["davon = von dieser Menge", "Der Kuchen ist lecker, möchtest du ein Stück [[davon]]?", "The cake is delicious, would you like a piece of it?"]]}
+ ]},
+ {g:"wo(r)- für Fragen", items:[
+  {w:"worauf / woran", tag:"Frage nach einer Sache", ex:[
+   ["worauf = auf + was", "[[Worauf]] wartest du noch? Lass uns gehen!", "What are you still waiting for? Let's go!"],
+   ["woran = an + was", "[[Woran]] denkst du gerade?", "What are you thinking about right now?"],
+   ["indirekte Frage: Verb am Ende", "Ich weiß nicht, [[worauf]] er sich so freut.", "I don't know what he's so happy about."],
+   ["Person: an wen? auf wen?", "[[An wen]] denkst du gerade?", "Who are you thinking of right now?"]]},
+  {w:"worüber / womit / wofür", tag:"Frage nach einer Sache", ex:[
+   ["worüber = über + was", "[[Worüber]] habt ihr so lange gesprochen?", "What did you talk about for so long?"],
+   ["womit = mit + was", "[[Womit]] fährst du zur Arbeit? – Mit dem Fahrrad.", "How do you get to work? – By bike."],
+   ["wofür = für + was", "[[Wofür]] brauchst du so viel Geld?", "What do you need so much money for?"],
+   ["Person: mit wem? für wen?", "[[Mit wem]] hast du so lange telefoniert?", "Who were you on the phone with for so long?"],
+   ["als Relativwort nach alles / etwas", "Das ist alles, [[wofür]] ich mich interessiere.", "That's everything I'm interested in."]]}
+ ]}
+]},
+
+{id:"es", de:"Das Wort „es“", en:"The word „es“",
+ intro:"„es“ ist nicht nur das Pronomen für das-Wörter. Es steht auch als formales Subjekt ohne Bedeutung (es regnet, es ist spät), in festen Ausdrücken (es gibt, es geht um, es tut mir leid) und als Platzhalter auf Position 1 vor einem Nebensatz.",
+ groups:[
+ {g:"Funktionen", items:[
+  {w:"es als Pronomen", tag:"das-Wort", ex:[
+   ["Nominativ: statt das + Nomen", "Wo ist das Kind? – [[Es]] spielt im Garten.", "Where's the child? – He / she is playing in the garden."],
+   ["Akkusativ", "Das Buch ist toll, ich habe [[es]] in zwei Tagen gelesen.", "The book is great, I read it in two days."],
+   ["für einen ganzen Satz", "Er kommt morgen nicht, er hat [[es]] mir gestern gesagt.", "He isn't coming tomorrow, he told me yesterday."],
+   ["Wer ist da? – Es ist …", "Es klingelt. – [[Es]] ist bestimmt der Postbote.", "The doorbell's ringing. – It's probably the postman."]]},
+  {w:"Wetter, Zeit, Geräusche", tag:"es regnet, es ist spät", ex:[
+   ["Wetterverben", "Heute regnet [[es]] den ganzen Tag.", "It's raining all day today."],
+   ["Uhrzeit", "Beeil dich, [[es]] ist schon halb acht!", "Hurry up, it's already half past seven!"],
+   ["hell / dunkel, Jahreszeit", "Im Dezember wird [[es]] schon um vier Uhr dunkel.", "In December it gets dark as early as four o'clock."],
+   ["Geräusche", "[[Es]] klopft an der Tür.", "There's a knock at the door."],
+   ["Temperatur im Raum", "Mach bitte das Fenster zu, hier zieht [[es]].", "Please close the window, there's a draught in here."]]},
+  {w:"es gibt", tag:"es gibt + Akkusativ", ex:[
+   ["vorhanden sein", "In der Nähe [[gibt es]] einen guten Bäcker.", "There's a good bakery nearby."],
+   ["Frage: Gibt es …?", "[[Gibt es]] hier in der Nähe eine Apotheke?", "Is there a pharmacy near here?"],
+   ["Essen: Was gibt es heute?", "Was [[gibt es]] heute zum Mittagessen?", "What's for lunch today?"],
+   ["verneint: es gibt kein …", "Leider [[gibt es]] keine Tickets mehr.", "Unfortunately there are no tickets left."],
+   ["Präteritum: es gab", "Früher [[gab es]] hier ein Kino.", "There used to be a cinema here."]]},
+  {w:"feste Ausdrücke", tag:"es geht, es tut mir leid …", ex:[
+   ["Wie geht es + Dativ?", "Wie [[geht es]] Ihnen heute?", "How are you today?"],
+   ["es geht um = das Thema ist", "In dem Artikel [[geht es]] um bezahlbare Wohnungen.", "The article is about affordable housing."],
+   ["es tut mir leid", "[[Es tut mir leid]], dass ich zu spät bin.", "I'm sorry I'm late."],
+   ["es kommt darauf an", "Kommst du mit? – [[Es kommt darauf an]], wie lange ich arbeiten muss.", "Are you coming along? – It depends on how long I have to work."],
+   ["es eilig haben", "Ich kann nicht warten, ich habe [[es]] eilig.", "I can't wait, I'm in a hurry."]]},
+  {w:"es als Platzhalter", tag:"Position 1", ex:[
+   ["es + Adjektiv + zu-Infinitiv", "[[Es]] ist wichtig, pünktlich zu sein.", "It's important to be on time."],
+   ["es + Verb + dass-Satz", "[[Es]] freut mich, dass Sie sich für die Stelle interessieren.", "I'm pleased that you're interested in the position."],
+   ["es + Adjektiv + dass-Satz", "[[Es]] ist schade, dass du nicht kommen kannst.", "It's a pity you can't come."],
+   ["Passiv ohne Subjekt: es auf Position 1", "[[Es]] wird in unserer Straße viel gebaut.", "There's a lot of building going on in our street."],
+   ["es fällt weg, wenn etwas anderes auf Position 1 steht", "In unserer Straße [[wird]] viel gebaut.", "A lot of building is going on in our street."]]}
+ ]}
+]},
+
+{id:"partikel", de:"Modalpartikeln", en:"Modal particles",
+ intro:"Modalpartikeln wie doch, mal, ja, denn, eben / halt, eigentlich, schon und wohl machen gesprochenes Deutsch freundlicher und natürlicher. Sie haben keine feste Übersetzung, sondern zeigen eine Haltung: Überraschung, Ungeduld, Freundlichkeit. Sie stehen im Mittelfeld, nie auf Position 1, und sind unbetont.",
+ groups:[
+ {g:"Im Gespräch", items:[
+  {w:"mal", tag:"freundlich, locker", ex:[
+   ["Bitte: klingt weniger streng", "Kannst du [[mal]] das Fenster aufmachen?", "Could you open the window?"],
+   ["doch mal: freundlicher Vorschlag", "Probier doch [[mal]] den Kuchen, der ist super!", "Why don't you try the cake, it's great!"],
+   ["= einmal (irgendwann)", "Warst du schon [[mal]] in Hamburg?", "Have you ever been to Hamburg?"],
+   ["Warte mal / Moment mal", "Warte [[mal]], ich komme mit!", "Wait a moment, I'm coming with you!"]]},
+  {w:"doch", tag:"Widerspruch, Vorschlag, Erinnerung", ex:[
+   ["Antwort auf eine negative Frage: ja", "Kommst du nicht mit? – [[Doch]], natürlich!", "Aren't you coming? – Yes, of course!"],
+   ["Imperativ: Aufforderung, Einladung", "Setz dich [[doch]]!", "Do sit down!"],
+   ["Erinnerung: das weißt du eigentlich", "Das habe ich dir [[doch]] schon gesagt!", "I've already told you that!"],
+   ["Wunsch mit Konjunktiv II", "Wenn [[doch]] schon Wochenende wäre!", "If only it were the weekend already!"],
+   ["als Konjunktion: aber", "Er wollte kommen, [[doch]] dann wurde er krank.", "He wanted to come, but then he fell ill."]]},
+  {w:"ja", tag:"bekannt, Überraschung", ex:[
+   ["das wissen wir beide", "Du kennst ihn [[ja]], er kommt immer zu spät.", "You know him, he's always late."],
+   ["Überraschung", "Du bist [[ja]] schon da!", "Oh, you're already here!"],
+   ["betont im Imperativ: Warnung", "Mach das [[ja]] nicht noch einmal!", "Don't you dare do that again!"],
+   ["Begründung: das sieht man doch", "Nimm einen Schirm mit, es regnet [[ja]].", "Take an umbrella, it's raining after all."]]},
+  {w:"denn", tag:"in Fragen", ex:[
+   ["Frage klingt interessierter, freundlicher", "Wie heißt du [[denn]]?", "So what's your name?"],
+   ["Frage mit Überraschung", "Was ist [[denn]] hier passiert?", "What on earth happened here?"],
+   ["Ungeduld / Vorwurf", "Wo bleibst du [[denn]]? Wir warten schon!", "Where have you got to? We're waiting!"],
+   ["als Konjunktion: weil (Position 0)", "Ich bleibe heute zu Hause, [[denn]] ich bin krank.", "I'm staying at home today because I'm ill."]]},
+  {w:"eben / halt", tag:"nicht zu ändern", ex:[
+   ["so ist es, man kann nichts ändern", "Der Zug fällt aus? Dann nehmen wir [[eben]] den Bus.", "The train is cancelled? Then we'll just take the bus."],
+   ["halt = eben (vor allem im Süden)", "Das ist [[halt]] so, da kann man nichts machen.", "That's just the way it is, nothing can be done."],
+   ["eben = gerade eben (Zeit)", "Ich bin [[eben]] erst nach Hause gekommen.", "I've only just got home."],
+   ["Eben! = genau (Zustimmung)", "Das ist viel zu teuer. – [[Eben]]! Das sage ich ja.", "That's far too expensive. – Exactly! That's what I'm saying."]]},
+  {w:"eigentlich", tag:"nebenbei, im Grunde", ex:[
+   ["Frage: Themenwechsel, nebenbei", "Wie alt bist du [[eigentlich]]?", "By the way, how old are you?"],
+   ["im Grunde, aber …", "[[Eigentlich]] wollte ich heute joggen, aber es regnet.", "I actually wanted to go jogging today, but it's raining."],
+   ["genau genommen", "Das ist [[eigentlich]] gar nicht so schwer.", "It's actually not that difficult."],
+   ["höfliche Kritik", "Du solltest [[eigentlich]] schon seit einer Stunde hier sein.", "You were actually supposed to be here an hour ago."]]},
+  {w:"schon / wohl", tag:"Beruhigung, Vermutung", ex:[
+   ["schon: Beruhigung", "Keine Sorge, das klappt [[schon]].", "Don't worry, it'll work out."],
+   ["schon: früher als gedacht", "Bist du [[schon]] fertig?", "Are you finished already?"],
+   ["schon … aber: Einschränkung", "Das Hotel ist [[schon]] schön, aber leider zu laut.", "The hotel is nice enough, but unfortunately too noisy."],
+   ["wohl: Vermutung", "Er ist nicht im Büro, er ist [[wohl]] krank.", "He's not in the office, he's probably ill."],
+   ["wohl mit Futur: starke Vermutung", "Sie wird [[wohl]] noch im Stau stehen.", "She's probably still stuck in traffic."]]}
+ ]}
+]},
+
+{id:"adv", de:"Adverbien", en:"Adverbs",
+ intro:"Adverbien sagen, wann, wie oft, wo und wie etwas passiert, oder was der Sprecher denkt (leider, hoffentlich). Sie haben nie eine Endung. Viele können auf Position 1 stehen – dann kommt sofort das Verb: Morgen habe ich frei.",
+ groups:[
+ {g:"Zeit und Häufigkeit", items:[
+  {w:"gestern / heute / morgen", tag:"Wann?", ex:[
+   ["Position 1: das Verb folgt sofort", "[[Morgen]] habe ich einen Arzttermin.", "Tomorrow I have a doctor's appointment."],
+   ["im Mittelfeld", "Ich habe [[gestern]] sehr lange gearbeitet.", "I worked very late yesterday."],
+   ["mit Tageszeit: gestern Abend, morgen früh", "[[Gestern Abend]] waren wir im Kino.", "Last night we went to the cinema."],
+   ["übermorgen / vorgestern", "[[Übermorgen]] fliegen wir in den Urlaub.", "The day after tomorrow we're flying off on holiday."],
+   ["heutzutage = in unserer Zeit", "[[Heutzutage]] bezahlt man fast alles mit dem Handy.", "Nowadays you pay for almost everything with your phone."]]},
+  {w:"früher / damals / bald", tag:"Vergangenheit und Zukunft", ex:[
+   ["früher: in der Vergangenheit, Gewohnheit", "[[Früher]] habe ich in einer kleinen Stadt gewohnt.", "I used to live in a small town."],
+   ["damals: zu dieser einen Zeit", "Ich kam 2019 nach Deutschland. [[Damals]] sprach ich kein Wort Deutsch.", "I came to Germany in 2019. Back then I didn't speak a word of German."],
+   ["neulich: vor kurzer Zeit", "[[Neulich]] habe ich deinen Bruder in der Stadt getroffen.", "I met your brother in town recently."],
+   ["inzwischen: seitdem hat sich etwas geändert", "[[Inzwischen]] verstehe ich fast alles.", "By now I understand almost everything."],
+   ["bald: in kurzer Zeit", "Die Prüfung ist [[bald]], ich muss mehr lernen.", "The exam is soon, I need to study more."]]},
+  {w:"immer / oft / nie", tag:"Wie oft?", ex:[
+   ["immer = 100 %", "Er kommt [[immer]] pünktlich zur Arbeit.", "He always comes to work on time."],
+   ["meistens / oft", "Am Wochenende schlafe ich [[meistens]] lange.", "At the weekend I usually sleep in."],
+   ["manchmal / ab und zu", "[[Manchmal]] koche ich für die ganze Familie.", "Sometimes I cook for the whole family."],
+   ["selten", "Wir gehen nur [[selten]] ins Restaurant.", "We rarely go to restaurants."],
+   ["nie = 0 %", "Unter der Woche habe ich [[nie]] Zeit zum Lesen.", "During the week I never have time to read."]]},
+  {w:"zuerst / dann / zum Schluss", tag:"Reihenfolge", ex:[
+   ["zuerst: der erste Schritt", "[[Zuerst]] müssen Sie das Formular ausfüllen.", "First you have to fill in the form."],
+   ["danach / dann: der nächste Schritt", "[[Danach]] gehen Sie bitte zu Schalter drei.", "After that please go to counter three."],
+   ["anschließend: direkt danach", "Wir essen zusammen, [[anschließend]] gehen wir spazieren.", "We'll eat together and then go for a walk."],
+   ["zum Schluss / am Ende", "[[Zum Schluss]] bekommen Sie Ihre Bescheinigung.", "Finally you get your certificate."]]},
+  {w:"schon / noch / erst", tag:"früher oder später als gedacht", ex:[
+   ["schon: früher als erwartet", "Es ist sechs Uhr, und du bist [[schon]] wach?", "It's six o'clock and you're already awake?"],
+   ["noch: es dauert weiter", "Leise, meine Tochter schläft [[noch]].", "Quiet, my daughter is still asleep."],
+   ["erst: später als erwartet", "Der Zug kommt heute [[erst]] um zehn.", "The train isn't coming until ten today."],
+   ["erst: weniger als erwartet", "Ich lerne [[erst]] seit sechs Monaten Deutsch.", "I've only been learning German for six months."],
+   ["noch nicht / nicht mehr", "Ich habe die Rechnung [[noch nicht]] bezahlt.", "I haven't paid the bill yet."]]}
+ ]},
+ {g:"Ort, Art und Meinung", items:[
+  {w:"hier / dort / draußen", tag:"Wo?", ex:[
+   ["hier = wo ich bin", "Wohnen Sie schon lange [[hier]]?", "Have you lived here long?"],
+   ["dort / da = an einem anderen Ort", "Siehst du das Café? [[Dort]] treffen wir uns.", "Can you see the café? We'll meet there."],
+   ["oben / unten", "Die Toiletten sind [[unten]] im Keller.", "The toilets are downstairs in the basement."],
+   ["drinnen / draußen", "Bei dem Wetter bleiben wir lieber [[drinnen]].", "In this weather we'd rather stay inside."],
+   ["überall / nirgends", "Ich habe meine Brille [[überall]] gesucht.", "I've looked for my glasses everywhere."]]},
+  {w:"hin / her", tag:"Wohin? Woher?", ex:[
+   ["hin = weg vom Sprecher", "Das Konzert ist toll, gehst du auch [[hin]]?", "The concert is great, are you going too?"],
+   ["her = zum Sprecher", "Komm bitte mal [[her]]!", "Come here, please!"],
+   ["woher / wohin: Fragen", "[[Woher]] kommen Sie?", "Where do you come from?"],
+   ["her + Präposition: herunter, herein", "Komm bitte [[herunter]], das Essen ist fertig!", "Please come down, dinner is ready!"],
+   ["hin und her", "Er läuft nervös im Flur [[hin und her]].", "He's pacing nervously up and down the hallway."]]},
+  {w:"gern / lieber / am liebsten", tag:"was man mag", ex:[
+   ["gern + Verb: etwas mögen", "Ich tanze sehr [[gern]].", "I love dancing."],
+   ["lieber: Vergleich", "Ich trinke [[lieber]] Tee als Kaffee.", "I prefer tea to coffee."],
+   ["am liebsten: Superlativ", "[[Am liebsten]] fahre ich mit dem Fahrrad.", "Most of all I like cycling."],
+   ["nicht gern", "Ich telefoniere nicht [[gern]] auf Deutsch.", "I don't like phoning in German."],
+   ["gern als Antwort", "Danke für die Hilfe! – [[Gern]] geschehen.", "Thanks for your help! – You're welcome."]]},
+  {w:"leider / hoffentlich / zum Glück", tag:"Meinung des Sprechers", ex:[
+   ["leider: schade", "[[Leider]] kann ich morgen nicht kommen.", "Unfortunately I can't come tomorrow."],
+   ["hoffentlich: ich hoffe", "[[Hoffentlich]] wird das Wetter am Wochenende schön.", "Hopefully the weather will be nice at the weekend."],
+   ["zum Glück: glücklicherweise", "[[Zum Glück]] habe ich den Zug noch erreicht.", "Luckily I still caught the train."],
+   ["wahrscheinlich / vielleicht", "[[Wahrscheinlich]] komme ich etwas später.", "I'll probably be a bit late."],
+   ["natürlich: selbstverständlich", "Kannst du mir helfen? – [[Natürlich]]!", "Can you help me? – Of course!"]]}
+ ]}
+]},
+
+{id:"wort", de:"Wortbildung", en:"Word formation",
+ intro:"Viele deutsche Wörter sind aus anderen gebaut. Die Endung zeigt oft das Genus: -ung, -heit, -keit sind immer feminin, -chen und -lein immer neutral, das + Infinitiv auch. Bei zusammengesetzten Nomen bestimmt das letzte Wort den Artikel: das Haus + die Tür = die Haustür.",
+ groups:[
+ {g:"Nomen bilden", items:[
+  {w:"-ung", tag:"Verb → die …ung", ex:[
+   ["wohnen → die Wohnung", "Wir suchen eine größere [[Wohnung]].", "We're looking for a bigger flat."],
+   ["erfahren → die Erfahrung", "Haben Sie [[Erfahrung]] in der Pflege?", "Do you have experience in care?"],
+   ["bestellen → die Bestellung", "Ihre [[Bestellung]] kommt morgen an.", "Your order will arrive tomorrow."],
+   ["immer feminin, Plural -en", "Ich habe zwei [[Rechnungen]] noch nicht bezahlt.", "I haven't paid two bills yet."],
+   ["sich entscheiden → die Entscheidung", "Das war eine schwierige [[Entscheidung]].", "That was a difficult decision."]]},
+  {w:"-heit / -keit", tag:"Adjektiv → die …heit / …keit", ex:[
+   ["gesund → die Gesundheit", "[[Gesundheit]] ist das Wichtigste im Leben.", "Health is the most important thing in life."],
+   ["frei → die Freiheit", "Für mich bedeutet ein Auto [[Freiheit]].", "For me a car means freedom."],
+   ["-keit nach -ig, -lich, -bar", "Vielen Dank für Ihre [[Freundlichkeit]].", "Thank you very much for your kindness."],
+   ["möglich → die Möglichkeit", "Gibt es eine [[Möglichkeit]], den Termin zu verschieben?", "Is there a way to move the appointment?"],
+   ["pünktlich → die Pünktlichkeit", "In Deutschland ist [[Pünktlichkeit]] sehr wichtig.", "In Germany punctuality is very important."]]},
+  {w:"das + Infinitiv", tag:"Verb als Nomen", ex:[
+   ["immer neutral und groß geschrieben", "Das [[Lernen]] macht mit Freunden mehr Spaß.", "Learning is more fun with friends."],
+   ["beim + Infinitiv: während", "Beim [[Kochen]] höre ich gern Musik.", "I like listening to music while cooking."],
+   ["zum + Infinitiv: Zweck", "Ich brauche eine Brille zum [[Lesen]].", "I need glasses for reading."],
+   ["mit Objekt: zusammengeschrieben", "Das [[Autofahren]] in der Stadt ist stressig.", "Driving in the city is stressful."]]},
+  {w:"-er / -erin", tag:"Personen und Geräte", ex:[
+   ["Verb → der …er (Person)", "Mein Bruder arbeitet als [[Fahrer]] bei der Post.", "My brother works as a driver for the post office."],
+   ["-in: weibliche Form", "Die neue [[Lehrerin]] ist sehr geduldig.", "The new teacher is very patient."],
+   ["Plural der weiblichen Form: -innen", "Alle [[Mitarbeiterinnen]] und Mitarbeiter bekommen einen Bonus.", "All employees get a bonus."],
+   ["Geräte auf -er", "Der [[Drucker]] funktioniert schon wieder nicht.", "The printer isn't working again."],
+   ["Stadt + er: Einwohner", "Viele [[Frankfurter]] fahren mit dem Rad zur Arbeit.", "Many people from Frankfurt cycle to work."]]},
+  {w:"-chen / -lein", tag:"klein und immer neutral", ex:[
+   ["immer das: das Mädchen", "Das [[Mädchen]] geht in die zweite Klasse.", "The girl is in the second class."],
+   ["oft mit Umlaut", "Wir haben ein kleines [[Häuschen]] am See.", "We have a little house by the lake."],
+   ["feste Wörter", "Möchtest du noch ein [[Brötchen]]?", "Would you like another bread roll?"],
+   ["-lein: seltener, eher geschrieben", "Ein kleines [[Vöglein]] singt vor dem Fenster.", "A little bird is singing outside the window."],
+   ["ein bisschen = ein wenig", "Ich spreche ein [[bisschen]] Spanisch.", "I speak a little Spanish."]]},
+  {w:"zusammengesetzte Nomen", tag:"Nomen + Nomen", ex:[
+   ["das letzte Wort bestimmt den Artikel: das Haus + die Tür", "Kannst du bitte die [[Haustür]] zumachen?", "Can you close the front door, please?"],
+   ["mit Fugen-s", "Ich habe morgen ein [[Vorstellungsgespräch]].", "I have a job interview tomorrow."],
+   ["mit Fugen-n / -en", "Die [[Straßenbahn]] fährt alle zehn Minuten.", "The tram runs every ten minutes."],
+   ["Verb + Nomen: warten + das Zimmer", "Im [[Wartezimmer]] sitzen schon fünf Patienten.", "Five patients are already sitting in the waiting room."],
+   ["Adjektiv + Nomen: alt + die Stadt", "Die [[Altstadt]] von Frankfurt ist sehr schön.", "Frankfurt's old town is very beautiful."]]}
+ ]},
+ {g:"Adjektive bilden", items:[
+  {w:"un-", tag:"das Gegenteil", ex:[
+   ["freundlich → unfreundlich", "Der Kellner war sehr [[unfreundlich]].", "The waiter was very unfriendly."],
+   ["möglich → unmöglich", "Um diese Zeit ist es [[unmöglich]], einen Parkplatz zu finden.", "At this time it's impossible to find a parking space."],
+   ["pünktlich → unpünktlich", "Die Bahn war diese Woche oft [[unpünktlich]].", "The trains were often late this week."],
+   ["auch bei Nomen: die Unordnung", "In seinem Zimmer herrscht totale [[Unordnung]].", "His room is a complete mess."]]},
+  {w:"-bar / -los / -ig / -lich", tag:"Adjektive aus Verb oder Nomen", ex:[
+   ["-bar = man kann es …", "Das Wasser ist hier nicht [[trinkbar]].", "The water isn't drinkable here."],
+   ["-los = ohne", "Seit drei Monaten ist er [[arbeitslos]].", "He has been unemployed for three months."],
+   ["-ig: die Sonne → sonnig", "Morgen wird es [[sonnig]] und warm.", "Tomorrow will be sunny and warm."],
+   ["-lich: die Person → persönlich", "Darf ich Ihnen eine [[persönliche]] Frage stellen?", "May I ask you a personal question?"],
+   ["-voll = mit viel", "Das war ein [[wertvoller]] Tipp, danke!", "That was a valuable tip, thanks!"]]}
+ ]}
 ]}
 ];
