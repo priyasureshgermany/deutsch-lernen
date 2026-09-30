@@ -5,7 +5,7 @@
 import { readFileSync } from "node:fs";
 
 const window = {};
-for (const f of ["../gespraeche-data.js", "../briefe-data.js"])
+for (const f of ["../gespraeche-data.js", "../briefe-data.js", "../hoeren-data.js"])
   new Function("window", readFileSync(new URL(f, import.meta.url), "utf8"))(window);
 let bad = 0;
 const fail = (w, m) => { bad++; console.log("✗ " + w + ": " + m); };
@@ -37,7 +37,28 @@ for (const d of window.BR) {
   });
   if (!d.tips || d.tips.length < 3) fail(w, "fewer than 3 key phrases");
 }
+const PLACES = ["station", "train", "sbahn", "airport", "shop", "radio", "phone", "cafe", "hotel", "bank", "doctor", "office", "street"];
+for (const d of window.HS) {
+  const w = "Hören " + d.id;
+  if (ids.has(d.id + "-h")) fail(w, "duplicate id"); ids.add(d.id + "-h");
+  for (const k of ["de", "en", "kind"]) if (!d[k]) fail(w, "missing " + k);
+  if (!PLACES.includes(d.amb)) fail(w, "unknown background " + d.amb);
+  for (const r in d.who || {}) if (!["m", "f"].includes(d.who[r][1])) fail(w, "speaker " + r + " needs m / f");
+  const spoken = (d.parts || []).filter(p => typeof p !== "string");
+  if (spoken.length < 2) fail(w, "fewer than 2 spoken parts");
+  (d.parts || []).forEach((p, i) => {
+    if (typeof p === "string") { if (!["chime", "ring", "beep"].includes(p)) fail(w, "part " + (i + 1) + " unknown sound " + p); return; }
+    if (!d.who[p[0]]) fail(w, "part " + (i + 1) + " has unknown speaker " + p[0]);
+    if (!p[1] || !p[2]) fail(w, "part " + (i + 1) + " is missing German or English");
+  });
+  if (!d.q || d.q.length < 3) fail(w, "fewer than 3 questions");
+  (d.q || []).forEach((q, i) => {
+    if (q[0] === "rf") { if (typeof q[2] !== "boolean" || !q[1] || !q[3]) fail(w, "question " + (i + 1) + " (rf) malformed"); }
+    else if (q[0] === "mc") { if (!Array.isArray(q[2]) || q[2].length !== 3 || !(q[3] >= 0 && q[3] < 3) || !q[4]) fail(w, "question " + (i + 1) + " (mc) malformed"); }
+    else fail(w, "question " + (i + 1) + " has type " + q[0]);
+  });
+}
 if (window.GS.length < 10) fail("Gespräche", "fewer than 10");
 if (window.BR.length < 10) fail("Briefe", "fewer than 10");
 if (bad) { console.log(bad + " problem(s)"); process.exit(1); }
-console.log("✓ " + window.GS.length + " Gespräche (" + window.GS.reduce((n, d) => n + d.lines.length, 0) + " lines), " + window.BR.length + " Briefe");
+console.log("✓ " + window.GS.length + " Gespräche (" + window.GS.reduce((n, d) => n + d.lines.length, 0) + " lines), " + window.BR.length + " Briefe, " + window.HS.length + " Hören-Szenen (" + window.HS.reduce((n, d) => n + d.q.length, 0) + " questions)");
