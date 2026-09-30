@@ -1,5 +1,8 @@
 # Releases
 
+## 1.11.0 — 2026-09-30
+- New: 10 more Wörter-erkennen texts (now 30) — Feste und Feiertage, Bank und Geld, Medien und Handy, Umwelt und Natur, Deutsch lernen, each at A1 and B1 with every word tagged
+
 ## 1.10.1 — 2026-09-30
 - Grammatik: tapping EN on an example now also shows the English of its orange label (all 1,113 examples), under the label; hidden until EN is tapped
 

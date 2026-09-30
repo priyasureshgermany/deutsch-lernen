@@ -346,5 +346,162 @@ window.WD = [
 [`Wir|P|N|S|wir|we ~ bleiben|V||P||stay ~ lieber|ADV||AB||rather|Comparative of "gern": lieber = would rather. ~ zu|PR||AB||at|"zu Hause" = at home (fixed phrase, dative). ~ Hause|N|Dn|AB|Haus|home|Old dative ending -e in the fixed phrase "zu Hause". ~ und|K||K||and ~ machen|V||P||make ~ es|P|A|AO|es|it|"es sich gemütlich machen" = to make yourself cosy. ~ uns|P.refl|D|DO|wir|ourselves|Reflexive pronoun in the dative. ~ mit|PR||AB||with ~ einer|A|Df|AB|ein|a ~ heißen|J|Df|AB|heiß|hot|Adjective after "einer" (dative feminine): ending -en. ~ Schokolade|N|Df|AB||chocolate ~ gemütlich|J||PN||cosy|No ending: it describes the result. ~ .`,
  "We would rather stay at home and make ourselves cosy with a hot chocolate."]
 ]}
+]},
+
+{de:"Feste und Feiertage", en:"Festivals and holidays", p:[
+{lvl:"A1", s:[
+[`Im|PA|Dm|AB|in + dem|in|Months take "im" → dative. ~ Dezember|N|Dm|AB||December ~ feiern|V||P||celebrate ~ wir|P|N|S|wir|we|The subject comes after the verb because "Im Dezember" takes position 1. ~ Weihnachten|N|An|AO||Christmas|Was feiern wir? → accusative object; usually without an article. ~ mit|PR||AB||with|"mit" always takes the dative. ~ der|A|Df|AB|der|the ~ Familie|N|Df|AB||family ~ .`,
+ "In December we celebrate Christmas with the family."],
+[`Meine|A|Nf|S|mein|my ~ Mutter|N|Nf|S||mother ~ backt|V||P|backen|bakes ~ viele|A|Ap|AO|viel|many|"viele" before a plural noun, accusative plural. ~ Plätzchen|N|Ap|AO||biscuits|Was backt sie? → accusative object. das Plätzchen → die Plätzchen (no plural ending). ~ .`,
+ "My mother bakes lots of biscuits."],
+[`Am|PA|Dm|AB|an + dem|on|am = an + dem → dative. ~ Heiligabend|N|Dm|AB||Christmas Eve ~ gibt|V||P|geben|there are|"es gibt" + accusative = there is / there are. ~ es|P|N|S|es|it|"es" is only a formal subject in "es gibt". ~ Geschenke|N|Ap|AO|Geschenk|presents|"es gibt" always takes the accusative. ~ unter|PR||AB||under|Two-way preposition: Wo? → dative. ~ dem|A|Dm|AB|der|the ~ Weihnachtsbaum|N|Dm|AB||Christmas tree ~ .`,
+ "On Christmas Eve there are presents under the Christmas tree."],
+[`Ich|P|N|S|ich|I ~ schenke|V||P|schenken|give|"schenken" = to give as a present. ~ meinem|A|Dm|DO|mein|my|Wem schenke ich etwas? → dative object: mein → meinem. ~ Bruder|N|Dm|DO||brother ~ ein|A|An|AO||a ~ Buch|N|An|AO||book|Was schenke ich? → accusative object. ~ .`,
+ "I give my brother a book."],
+[`Das|A|Nn|S|der|the ~ Essen|N|Nn|S||food|Here "das Essen" is a noun. ~ meiner|A|Gf|GA|mein|of my|Wessen Essen? → genitive feminine: meine → meiner. ~ Oma|N|Gf|GA||grandma ~ ist|V||P|sein|is ~ immer|ADV||AB||always ~ sehr|ADV||AB||very ~ lecker|J||PN||delicious|Predicative adjective after "sein": no ending. ~ .`,
+ "My grandma's food is always very delicious."],
+[`An|PR||AB||on|"an Silvester" = on New Year's Eve (dative). ~ Silvester|N|Dn|AB||New Year's Eve ~ trinken|V||P||drink ~ wir|P|N|S|wir|we ~ um|PR||AB||at|"um" + clock time; always accusative. ~ zwölf|Z||AB||twelve ~ Uhr|N|Af|AB||o'clock ~ Sekt|N|Am|AO||sparkling wine|Was trinken wir? → accusative object. ~ und|K||K||and ~ sehen|V||P||watch ~ das|A|An|AO|der|the ~ Feuerwerk|N|An|AO||fireworks ~ .`,
+ "On New Year's Eve we drink sparkling wine at twelve o'clock and watch the fireworks."],
+[`Mein|A|Nm|S|mein|my ~ Sohn|N|Nm|S||son ~ möchte|V||P|möchten|wants ~ nicht|T||AB||not ~ schlafen|VT||P||sleep|Infinitive at the end after the modal verb. ~ , ~ denn|K||K||because|"denn" joins two main clauses: normal word order. ~ er|P|N|S|er|he ~ ist|V||P|sein|is ~ so|ADV||AB||so ~ glücklich|J||PN||happy ~ .`,
+ "My son doesn't want to sleep because he is so happy."]
+]},
+{lvl:"B1", s:[
+[`Obwohl|K||K||although|Subordinating conjunction: the verb goes to the end. ~ ich|P|N|S|ich|I ~ nicht|T||AB||not ~ religiös|J||PN||religious|Predicative after "sein": no ending. ~ bin|V||P|sein|am|The verb goes to the end of the "obwohl" clause. ~ , ~ gefällt|V||P|gefallen|like|"gefallen" + dative: the thing is the subject, the person is in the dative. ~ mir|P|D|DO|ich|me|Wem gefällt sie? → dative. ~ die|A|Nf|S|der|the ~ Stimmung|N|Nf|S||atmosphere|Was gefällt mir? → subject. ~ in|PR||AB||in|Wann? → dative. ~ der|A|Df|AB|der|the ~ Adventszeit|N|Df|AB||Advent season ~ sehr|ADV||AB||very much ~ .`,
+ "Although I'm not religious, I really like the atmosphere during Advent."],
+[`Jedes|A|An|AB|jeder|every|"jedes Jahr": time phrase in the accusative (neuter). ~ Jahr|N|An|AB||year ~ besuchen|V||P||visit ~ wir|P|N|S|wir|we ~ den|A|Am|AO|der|the ~ Weihnachtsmarkt|N|Am|AO||Christmas market ~ in|PR||AT||in|Which market? The one in the old town – Wo? → dative. ~ der|A|Df|AT|der|the ~ Altstadt|N|Df|AT||old town ~ , ~ denn|K||K||because|"denn" + main clause: here "dort" takes position 1. ~ dort|ADV||AB||there ~ gibt|V||P|geben|there is ~ es|P|N|S|es|it ~ Glühwein|N|Am|AO||mulled wine ~ und|K||K||and ~ gebrannte|J|Ap|AO|gebrannt|roasted|Adjective without an article, accusative plural: ending -e. ~ Mandeln|N|Ap|AO|Mandel|almonds ~ .`,
+ "Every year we visit the Christmas market in the old town, because there is mulled wine and roasted almonds there."],
+[`Am|PA|Dm|AB|an + dem|on ~ Heiligabend|N|Dm|AB||Christmas Eve ~ kommt|V||P|kommen|comes ~ die|A|Nf|S|der|the ~ ganze|J|Nf|S|ganz|whole|Adjective after "die": ending -e. ~ Familie|N|Nf|S||family ~ meines|A|Gm|GA|mein|of my|Wessen Familie? → genitive masculine. ~ Mannes|N|Gm|GA|Mann|husband's ~ zu|PR||AB||to|"zu" + dative: to a person. ~ uns|P|D|AB|wir|us|After "zu": dative (wir → uns). ~ , ~ deshalb|ADV||AB||that's why|Linking adverb: the verb comes straight after it. ~ koche|V||P|kochen|cook|Present + "seit": it started in the past and is still going on. ~ ich|P|N|S|ich|I ~ schon|ADV||AB||already ~ seit|PR||AB||for|"seit" always takes the dative. ~ zwei|Z||AB||two ~ Tagen|N|Dp|AB|Tag|days|Dative plural: der Tag → den Tagen. ~ .`,
+ "On Christmas Eve my husband's whole family comes to us, that's why I've already been cooking for two days."],
+[`Wir|P|N|S|wir|we ~ schenken|V||P||give ~ den|A|Dp|DO|der|the|Wem schenken wir etwas? → dative plural. ~ Kindern|N|Dp|DO|Kind|children|Dative plural: the noun adds -n. ~ keine|A|Ap|AO|kein|no ~ teuren|J|Ap|AO|teuer|expensive|After "keine" in the plural: ending -en; "teuer" loses its e: teuren. ~ Spielsachen|N|Ap|AO||toys ~ , ~ sondern|K||K||but rather|After a negation: "kein …, sondern …" gives the right thing. ~ lieber|ADV||AB||rather ~ gemeinsame|J|Af|AO|gemeinsam|shared|Adjective without an article, accusative feminine: ending -e. ~ Zeit|N|Af|AO||time ~ .`,
+ "We don't give the children expensive toys, but rather time together."],
+[`Nach|PR||AB||after|"nach" + dative; with a meal it tells the time. ~ dem|A|Dn|AB|der|the ~ Essen|N|Dn|AB||meal ~ spielen|V||P||play ~ wir|P|N|S|wir|we ~ Brettspiele|N|Ap|AO|Brettspiel|board games ~ oder|K||K||or|"oder" joins two main clauses; the subject is not repeated. ~ gehen|V||P||go ~ durch|PR||AB||through|"durch" always takes the accusative. ~ den|A|Am|AB|der|the ~ Schnee|N|Am|AB||snow ~ spazieren|VT||P||for a walk|"spazieren gehen": the second verb goes to the end as an infinitive. ~ .`,
+ "After the meal we play board games or go for a walk through the snow."],
+[`In|PR||AB||in|Wo? → dative. ~ vielen|A|Dp|AB|viel|many|Dative plural: viele → vielen. ~ Städten|N|Dp|AB|Stadt|cities|Dative plural: die Städte → den Städten. ~ darf|V||P|dürfen|may|"man darf" = one is allowed to. ~ man|P|N|S|man|one|"man" = people in general. ~ in|PR||AB||in ~ der|A|Df|AB|der|the ~ Altstadt|N|Df|AB||old town ~ kein|A|An|AO|kein|no|"kein" negates a noun: accusative neuter. ~ Feuerwerk|N|An|AO||fireworks ~ zünden|VT||P||set off|Infinitive at the end after the modal verb. ~ .`,
+ "In many cities you are not allowed to set off fireworks in the old town."]
+]}
+]},
+
+{de:"Bank und Geld", en:"Banking and money", p:[
+{lvl:"A1", s:[
+[`Ich|P|N|S|ich|I ~ brauche|V||P|brauchen|need ~ ein|A|An|AO||an ~ Konto|N|An|AO||account|Was brauche ich? → accusative object. ~ bei|PR||AB||at|"bei" always takes the dative. ~ einer|A|Df|AB|ein|a|Dative feminine: eine → einer. ~ Bank|N|Df|AB||bank ~ .`,
+ "I need an account at a bank."],
+[`Die|A|Nf|S|der|the ~ Bank|N|Nf|S||bank ~ ist|V||P|sein|is ~ in|PR||AB||in|Wo? → dative. ~ der|A|Df|AB|der|the ~ Nähe|N|Df|AB||vicinity ~ des|A|Gm|GA|der|of the|Wessen Nähe? → genitive masculine: der → des. ~ Bahnhofs|N|Gm|GA|Bahnhof|station|Masculine genitive: the noun adds -s. ~ .`,
+ "The bank is near the station."],
+[`Am|PA|Dm|AB|an + dem|at the|Wo? → dative. ~ Schalter|N|Dm|AB||counter ~ zeige|V||P|zeigen|show ~ ich|P|N|S|ich|I ~ meinen|A|Am|AO|mein|my|Accusative masculine: mein → meinen. ~ Pass|N|Am|AO||passport ~ .`,
+ "At the counter I show my passport."],
+[`Die|A|Nf|S|der|the ~ Frau|N|Nf|S||woman ~ gibt|V||P|geben|gives ~ mir|P|D|DO|ich|me|Wem gibt sie die Karte? → dative object. ~ eine|A|Af|AO|ein|a ~ neue|J|Af|AO|neu|new|Adjective after "eine": ending -e. ~ Karte|N|Af|AO||card|Was gibt sie mir? → accusative object. ~ .`,
+ "The woman gives me a new card."],
+[`Mit|PR||AB||with ~ der|A|Df|AB|der|the ~ Karte|N|Df|AB||card ~ kann|V||P|können|can ~ ich|P|N|S|ich|I ~ Geld|N|An|AO||money ~ abheben|VT||P||withdraw|Separable verb as an infinitive: written together at the end. ~ und|K||K||and ~ bezahlen|VT||P||pay|Second infinitive after "kann". ~ .`,
+ "With the card I can withdraw money and pay."],
+[`Jeden|A|Am|AB|jeder|every|"jeden Monat": time phrase in the accusative. ~ Monat|N|Am|AB||month ~ spare|V||P|sparen|save ~ ich|P|N|S|ich|I ~ fünfzig|Z||AO||fifty ~ Euro|N|Ap|AO||euros|After a number "Euro" has no plural ending. ~ , ~ aber|K||K||but ~ das|P.dem|N|S|der|that|Demonstrative pronoun: "das" stands for the whole idea. ~ ist|V||P|sein|is ~ nicht|T||AB||not ~ viel|ADV||PN||much ~ .`,
+ "Every month I save fifty euros, but that is not much."]
+]},
+{lvl:"B1", s:[
+[`Letzte|J|Af|AB|letzt|last|Time phrase in the accusative (adjective without an article, feminine -e). ~ Woche|N|Af|AB||week ~ habe|V.hilf||P|haben|have ~ ich|P|N|S|ich|I ~ ein|A|An|AO||a ~ Girokonto|N|An|AO||current account ~ bei|PR||AB||with ~ einer|A|Df|AB|ein|an ~ Online-Bank|N|Df|AB||online bank ~ eröffnet|VT||P|eröffnen|opened|Participle; no ge- with the prefix er-. ~ , ~ weil|K||K||because|Subordinating conjunction: the verb goes to the end. ~ es|P|N|S|es|there|"es gibt" = there is / there are. ~ dort|ADV||AB||there ~ keine|A|Ap|AO|kein|no ~ Kontoführungsgebühren|N|Ap|AO|Kontoführungsgebühr|account fees ~ gibt|V||P|geben|are|The verb goes to the end of the "weil" clause. ~ .`,
+ "Last week I opened a current account with an online bank, because there are no account fees there."],
+[`Mein|A|Nn|S|mein|my ~ Gehalt|N|Nn|S||salary|Was wird überwiesen? → subject of the passive sentence. ~ wird|V.hilf||P|werden|is|"werden" + participle = passive. ~ am|PA|Dn|AB|an + dem|at the ~ Ende|N|Dn|AB||end ~ jedes|A|Gm|GA|jeder|of every|Wessen Ende? → genitive masculine: jeder → jedes. ~ Monats|N|Gm|GA|Monat|month|Masculine genitive: the noun adds -s. ~ überwiesen|VT||P|überweisen|transferred|Participle of "überweisen": no ge-, because über- is inseparable here. ~ .`,
+ "My salary is transferred at the end of every month."],
+[`Die|A|Af|AO|der|the|The object can take position 1; the subject then follows the verb. ~ Miete|N|Af|AO||rent ~ zahle|V||P|zahlen|pay ~ ich|P|N|S|ich|I ~ per|PR||AB||by|"per" + accusative, usually without an article. ~ Dauerauftrag|N|Am|AB||standing order ~ , ~ damit|K||K||so that|Subordinating conjunction (purpose): the verb goes to the end. ~ ich|P|N|S|ich|I ~ sie|P|Af|AO|sie|it|"sie" = die Miete (feminine), accusative. ~ nicht|T||AB||not ~ vergesse|V||P|vergessen|forget|Verb at the end of the "damit" clause. ~ .`,
+ "I pay the rent by standing order so that I don't forget it."],
+[`Gestern|ADV||AB||yesterday ~ hat|V.hilf||P|haben|has ~ mich|P|A|AO|ich|me|Wen hat sie angerufen? → accusative. A pronoun object often comes before a noun subject. ~ meine|A|Nf|S|mein|my ~ Bank|N|Nf|S||bank ~ angerufen|VT||P|anrufen|called|Participle of "anrufen": ge- after the prefix. ~ , ~ weil|K||K||because ~ jemand|P|N|S|jemand|someone|Indefinite pronoun: an unknown person. ~ versucht|VT||P|versuchen|tried|Participle; no ge- with the prefix ver-. ~ hatte|V.hilf||P|haben|had|Past perfect: hatte + participle, at the end of the "weil" clause. ~ , ~ mit|PR||AB||with ~ meinen|A|Dp|AB|mein|my|Dative plural: meine → meinen. ~ Kartendaten|N|Dp|AB||card details|Dative plural: "Daten" already ends in -n. ~ im|PA|Dn|AB|in + dem|on the ~ Internet|N|Dn|AB||internet ~ etwas|P|A|AO|etwas|something|Indefinite pronoun: its form never changes. ~ zu|T||P||to|"zu" + infinitive after "versuchen". ~ bestellen|VT||P||order ~ .`,
+ "Yesterday my bank called me because someone had tried to order something on the internet with my card details."],
+[`Zum|PA|Dn|AB|zu + dem|luckily|"zum Glück" = luckily, a fixed phrase. ~ Glück|N|Dn|AB||luck ~ wurde|V.hilf||P|werden|was|Past passive: wurde + participle. ~ die|A|Nf|S|der|the ~ Karte|N|Nf|S||card ~ sofort|ADV||AB||immediately ~ gesperrt|VT||P|sperren|blocked ~ , ~ und|K||K||and ~ ich|P|N|S|ich|I ~ bekomme|V||P|bekommen|get ~ in|PR||AB||in|"in" + a time: after this time (Wann?) → dative. ~ fünf|Z||AB||five ~ Tagen|N|Dp|AB|Tag|days ~ eine|A|Af|AO|ein|a ~ neue|J|Af|AO|neu|new one|The noun (Karte) is left out: "eine neue" = a new one. ~ .`,
+ "Luckily the card was blocked immediately, and I'll get a new one in five days."],
+[`Außerdem|ADV||AB||besides|Linking adverb in position 1: the verb follows. ~ möchte|V||P|möchten|would like ~ ich|P|N|S|ich|I ~ mehr|ADV||AB||more ~ Geld|N|An|AO||money ~ sparen|VT||P||save ~ und|K||K||and ~ überlege|V||P|überlegen|am thinking about|"überlegen": inseparable; the subject is not repeated after "und". ~ , ~ ob|K||K||whether|Indirect yes/no question: the verb goes to the end. ~ ich|P|N|S|ich|I ~ einen|A|Am|AO|ein|a ~ Teil|N|Am|AO||part ~ davon|ADV||AB||of it|Pronominal adverb: davon = von dem Geld. ~ in|PR||AB||in|"anlegen in" + accusative (Wohin?). ~ Aktien|N|Ap|AB|Aktie|shares ~ anlegen|VT||P||invest ~ soll|V||P|sollen|should|The modal verb goes to the very end of the "ob" clause. ~ .`,
+ "Besides, I'd like to save more money and am thinking about whether I should invest part of it in shares."]
+]}
+]},
+
+{de:"Medien und Handy", en:"Media and phones", p:[
+{lvl:"A1", s:[
+[`Ich|P|N|S|ich|I ~ habe|V||P|haben|have ~ ein|A|An|AO||a ~ neues|J|An|AO|neu|new|Adjective after "ein" (neuter accusative): ending -es. ~ Handy|N|An|AO||mobile phone|Was habe ich? → accusative object. ~ .`,
+ "I have a new mobile phone."],
+[`Jeden|A|Am|AB|jeder|every ~ Abend|N|Am|AB||evening ~ schreibe|V||P|schreiben|write ~ ich|P|N|S|ich|I ~ meiner|A|Df|DO|mein|my|Wem schreibe ich? → dative object: meine → meiner. ~ Schwester|N|Df|DO||sister ~ eine|A|Af|AO|ein|a ~ Nachricht|N|Af|AO||message|Was schreibe ich? → accusative object. ~ .`,
+ "Every evening I write my sister a message."],
+[`Sie|P|N|S|sie|she ~ wohnt|V||P|wohnen|lives ~ in|PR||AB||in ~ Hamburg|N|Dn|AB||Hamburg ~ , ~ deshalb|ADV||AB||so|Linking adverb: the verb comes straight after it. ~ telefonieren|V||P||phone ~ wir|P|N|S|wir|we ~ oft|ADV||AB||often ~ .`,
+ "She lives in Hamburg, so we often phone each other."],
+[`Am|PA|Dn|AB|an + dem|at the ~ Wochenende|N|Dn|AB||weekend ~ sehe|V||P|sehen|watch ~ ich|P|N|S|ich|I ~ mit|PR||AB||with ~ meinem|A|Dm|AB|mein|my|Dative masculine: mein → meinem. ~ Mann|N|Dm|AB||husband ~ einen|A|Am|AO|ein|a ~ Film|N|Am|AO||film ~ .`,
+ "At the weekend I watch a film with my husband."],
+[`Das|A|Nn|S|der|the ~ Handy|N|Nn|S||mobile phone ~ meines|A|Gm|GA|mein|of my|Wessen Handy? → genitive masculine. ~ Sohnes|N|Gm|GA|Sohn|son's|Masculine genitive: der Sohn → des Sohnes. ~ ist|V||P|sein|is ~ leider|ADV||AB||unfortunately ~ kaputt|J||PN||broken|Predicative adjective after "sein": no ending. ~ .`,
+ "My son's phone is unfortunately broken."],
+[`Jetzt|ADV||AB||now ~ spielt|V||P|spielen|plays ~ er|P|N|S|er|he ~ nicht|T||AB||not ~ am|PA|Dn|AB|an + dem|on the ~ Handy|N|Dn|AB||phone ~ , ~ sondern|K||K||but instead|After "nicht": "sondern" gives the correction. ~ liest|V||P|lesen|reads ~ zwei|Z||AO||two ~ Bücher|N|Ap|AO|Buch|books ~ .`,
+ "Now he isn't playing on his phone but is reading two books instead."]
+]},
+{lvl:"B1", s:[
+[`Heutzutage|ADV||AB||nowadays ~ informieren|V||P||inform ~ sich|P.refl|A|AO|sie|themselves|Reflexive verb "sich informieren" = to get information. ~ viele|A|Np|S|viel|many ~ Menschen|N|Np|S|Mensch|people|n-declension noun: der Mensch → die Menschen. ~ nicht|T||AB||not ~ mehr|ADV||AB||any more|"nicht mehr" = no longer. ~ aus|PR||AB||from|"aus" always takes the dative. ~ der|A|Df|AB|der|the ~ Zeitung|N|Df|AB||newspaper ~ , ~ sondern|K||K||but rather ~ über|PR||AB||via|"über" + accusative: by way of. ~ soziale|J|Ap|AB|sozial|social|Adjective without an article, accusative plural: -e. ~ Medien|N|Ap|AB|Medium|media ~ .`,
+ "Nowadays many people no longer get their information from the newspaper, but via social media."],
+[`Ich|P|N|S|ich|I ~ finde|V||P|finden|find ~ das|P.dem|A|AO|der|that|Demonstrative pronoun for the idea just mentioned: accusative. ~ problematisch|J||PN||problematic|"finden" + adjective: no ending. ~ , ~ weil|K||K||because ~ man|P|N|S|man|one ~ im|PA|Dn|AB|in + dem|on the ~ Internet|N|Dn|AB||internet ~ oft|ADV||AB||often ~ nicht|T||AB||not ~ weiß|V||P|wissen|knows|The verb goes to the end of the "weil" clause. ~ , ~ ob|K||K||whether|Indirect yes/no question: the verb goes to the end. ~ eine|A|Nf|S|ein|a ~ Nachricht|N|Nf|S||piece of news ~ wirklich|ADV||AB||really ~ stimmt|V||P|stimmen|is true ~ .`,
+ "I find that problematic, because on the internet you often don't know whether a piece of news is really true."],
+[`Meine|A|Nf|S|mein|my ~ Tochter|N|Nf|S||daughter ~ verbringt|V||P|verbringen|spends ~ jeden|A|Am|AB|jeder|every ~ Tag|N|Am|AB||day ~ mindestens|ADV||AB||at least ~ drei|Z||AO||three ~ Stunden|N|Ap|AO|Stunde|hours|Was verbringt sie? → accusative object. ~ mit|PR||AB||with ~ ihrem|A|Dn|AB|ihr|her|Possessive "ihr" (her), dative neuter: ihrem. ~ Smartphone|N|Dn|AB||smartphone ~ .`,
+ "My daughter spends at least three hours a day on her smartphone."],
+[`Deshalb|ADV||AB||that's why ~ haben|V.hilf||P||have ~ wir|P|N|S|wir|we ~ mit|PR||AB||with ~ ihr|P|D|AB|sie|her|After "mit": dative (sie → ihr). ~ vereinbart|VT||P|vereinbaren|agreed|Participle; no ge- with the prefix ver-. ~ , ~ dass|K||K||that ~ das|A|Nn|S|der|the ~ Handy|N|Nn|S||phone ~ während|PR||AB||during|"während" takes the genitive. ~ des|A|Gn|AB|der|the ~ Abendessens|N|Gn|AB|Abendessen|dinner|Neuter genitive: the noun adds -s. ~ in|PR||AB||in|Wo? → dative. ~ der|A|Df|AB|der|the ~ Küche|N|Df|AB||kitchen ~ bleibt|V||P|bleiben|stays|The verb goes to the end of the "dass" clause. ~ .`,
+ "That's why we agreed with her that the phone stays in the kitchen during dinner."],
+[`Trotzdem|ADV||AB||nevertheless ~ finde|V||P|finden|find ~ ich|P|N|S|ich|I ~ Medien|N|Ap|AO|Medium|media ~ nicht|T||AB||not ~ nur|T||AB||only ~ schlecht|J||PN||bad ~ : ~ Mit|PR||AB||with ~ einer|A|Df|AB|ein|an ~ App|N|Df|AB||app ~ lerne|V||P|lernen|learn ~ ich|P|N|S|ich|I ~ zum|PA|Dn|AB|zu + dem|for|"zum Beispiel" = for example, a fixed phrase. ~ Beispiel|N|Dn|AB||example ~ neue|J|Ap|AO|neu|new|Two adjectives without an article, accusative plural: both -e. ~ deutsche|J|Ap|AO|deutsch|German ~ Wörter|N|Ap|AO|Wort|words ~ .`,
+ "Nevertheless I don't find media only bad: with an app, for example, I learn new German words."],
+[`Wenn|K||K||when|Subordinating conjunction: the verb goes to the end. ~ ich|P|N|S|ich|I ~ eine|A|Af|AO|ein|a ~ Sendung|N|Af|AO||programme ~ auf|PR||AT||in|"auf Deutsch" = in German. ~ Deutsch|N|An|AT||German ~ sehe|V||P|sehen|watch ~ , ~ schalte|V||P|einschalten|switch on|After the "wenn" clause: verb, then subject. Separable verb "einschalten". ~ ich|P|N|S|ich|I ~ die|A|Ap|AO|der|the ~ Untertitel|N|Ap|AO||subtitles ~ ein|VT||P|einschalten|(prefix)|The prefix "ein" goes to the end of the main clause. ~ .`,
+ "When I watch a programme in German, I switch on the subtitles."]
+]}
+]},
+
+{de:"Umwelt und Natur", en:"Environment and nature", p:[
+{lvl:"A1", s:[
+[`Wir|P|N|S|wir|we ~ wohnen|V||P||live ~ in|PR||AB||in|Wo? → dative. ~ einem|A|Dn|AB|ein|a|Dative neuter: ein → einem. ~ Dorf|N|Dn|AB||village ~ am|PA|Dm|AT|an + dem|by the|Which village? The one by the forest – Wo? → dative. ~ Wald|N|Dm|AT||forest ~ .`,
+ "We live in a village by the forest."],
+[`Jeden|A|Am|AB|jeder|every ~ Morgen|N|Am|AB||morning ~ gehe|V||P|gehen|go ~ ich|P|N|S|ich|I ~ mit|PR||AB||with ~ dem|A|Dm|AB|der|the ~ Hund|N|Dm|AB||dog ~ spazieren|VT||P||for a walk|"spazieren gehen": the infinitive goes to the end. ~ .`,
+ "Every morning I go for a walk with the dog."],
+[`Die|A|Nf|S|der|the ~ Luft|N|Nf|S||air ~ ist|V||P|sein|is ~ hier|ADV||AB||here ~ sehr|ADV||AB||very ~ sauber|J||PN||clean|Predicative adjective after "sein": no ending. ~ .`,
+ "The air here is very clean."],
+[`Wir|P|N|S|wir|we ~ trennen|V||P||separate ~ den|A|Am|AO|der|the ~ Müll|N|Am|AO||rubbish|Was trennen wir? → accusative object. ~ und|K||K||and ~ kaufen|V||P||buy ~ keine|A|Ap|AO|kein|no ~ Plastiktüten|N|Ap|AO|Plastiktüte|plastic bags ~ .`,
+ "We separate the rubbish and don't buy plastic bags."],
+[`Die|A|Np|S|der|the ~ Blätter|N|Np|S|Blatt|leaves|das Blatt → die Blätter. ~ der|A|Gp|GA|der|of the|Wessen Blätter? → genitive plural: die → der. ~ Bäume|N|Gp|GA|Baum|trees ~ sind|V||P|sein|are ~ im|PA|Dm|AB|in + dem|in|Seasons take "im" → dative. ~ Herbst|N|Dm|AB||autumn ~ bunt|J||PN||colourful ~ .`,
+ "The leaves of the trees are colourful in autumn."],
+[`Zur|PA|Df|AB|zu + der|to|zur = zu + der. ~ Arbeit|N|Df|AB||work ~ fahre|V||P|fahren|go ~ ich|P|N|S|ich|I ~ nicht|T||AB||not ~ mit|PR||AB||by|"mit" + dative: the means of transport. ~ dem|A|Dn|AB|der|the ~ Auto|N|Dn|AB||car ~ , ~ sondern|K||K||but|After "nicht": "sondern" gives the correction. ~ fünf|Z||AB||five ~ Kilometer|N|Ap|AB||kilometres|Wie weit? A distance in the accusative. ~ mit|PR||AB||by ~ dem|A|Dn|AB|der|the ~ Fahrrad|N|Dn|AB||bicycle ~ .`,
+ "I don't go to work by car but five kilometres by bike."]
+]},
+{lvl:"B1", s:[
+[`Seit|PR||AB||for|"seit" + dative: still going on now. ~ zwei|Z||AB||two ~ Jahren|N|Dp|AB|Jahr|years|Dative plural: die Jahre → den Jahren. ~ achten|V||P||pay attention|"achten auf" + accusative. ~ wir|P|N|S|wir|we ~ in|PR||AB||in ~ unserer|A|Df|AB|unser|our|Dative feminine: unsere → unserer. ~ Familie|N|Df|AB||family ~ viel|ADV||AB||much|"viel" + comparative = much more. ~ mehr|ADV||AB||more ~ auf|PR||PO||to|Prepositional object: achten auf + accusative. ~ die|A|Af|PO|der|the ~ Umwelt|N|Af|PO||environment ~ .`,
+ "For two years our family has been paying much more attention to the environment."],
+[`Statt|PR||AB||instead of|"statt" takes the genitive. ~ des|A|Gn|AB|der|the ~ Autos|N|Gn|AB|Auto|car|Neuter genitive: the noun adds -s. ~ benutzen|V||P||use ~ wir|P|N|S|wir|we ~ meistens|ADV||AB||usually ~ öffentliche|J|Ap|AO|öffentlich|public|Adjective without an article, accusative plural: -e. ~ Verkehrsmittel|N|Ap|AO||transport ~ , ~ obwohl|K||K||although|Subordinating conjunction: the verb goes to the end. ~ das|P.dem|N|S|der|that|Demonstrative pronoun for the whole idea. ~ manchmal|ADV||AB||sometimes ~ länger|J||AB|lang|longer|Comparative used as an adverb: no ending. ~ dauert|V||P|dauern|takes ~ .`,
+ "Instead of the car we usually use public transport, although that sometimes takes longer."],
+[`Außerdem|ADV||AB||besides ~ kaufen|V||P||buy ~ wir|P|N|S|wir|we ~ Obst|N|An|AO||fruit ~ und|K||K||and ~ Gemüse|N|An|AO||vegetables ~ , ~ das|P.rel|Nn|S|der|that|Relative pronoun: neuter (das Gemüse), nominative because it is the subject of its clause. ~ aus|PR||AB||from ~ der|A|Df|AB|der|the ~ Region|N|Df|AB||region ~ kommt|V||P|kommen|comes|The verb goes to the end of the relative clause. ~ , ~ auf|PR||AB||at|Two-way preposition: Wo? → dative. ~ dem|A|Dm|AB|der|the ~ Wochenmarkt|N|Dm|AB||weekly market ~ .`,
+ "Besides, we buy fruit and vegetables that come from the region at the weekly market."],
+[`Mein|A|Nm|S|mein|my ~ Mann|N|Nm|S||husband ~ hat|V.hilf||P|haben|has ~ letzten|J|Am|AB|letzt|last|Time phrase in the accusative (adjective without an article, masculine -en). ~ Monat|N|Am|AB||month ~ Solarzellen|N|Ap|AO|Solarzelle|solar panels ~ auf|PR||AB||on|Wo? → dative. ~ dem|A|Dn|AB|der|the ~ Dach|N|Dn|AB||roof ~ unseres|A|Gn|GA|unser|of our|Wessen Dach? → genitive neuter: unser → unseres. ~ Hauses|N|Gn|GA|Haus|house|Neuter genitive: -es. ~ installieren|VT||P||install|"lassen" + infinitive = to have something done. ~ lassen|VT||P||have|In the perfect "lassen" stays an infinitive after another infinitive. ~ .`,
+ "Last month my husband had solar panels installed on the roof of our house."],
+[`Dadurch|ADV||AB||that way|Pronominal adverb: da + durch = because of this. ~ sparen|V||P||save ~ wir|P|N|S|wir|we ~ nicht|T||AB||not|"nicht nur …, sondern auch …" = not only … but also. ~ nur|T||AB||only ~ Strom|N|Am|AO||electricity ~ , ~ sondern|K||K||but ~ auch|T||AB||also ~ Geld|N|An|AO||money ~ .`,
+ "That way we save not only electricity but also money."],
+[`Ich|P|N|S|ich|I ~ glaube|V||P|glauben|believe ~ , ~ dass|K||K||that ~ man|P|N|S|man|one ~ mit|PR||AB||with ~ kleinen|J|Dp|AB|klein|small|Adjective without an article, dative plural: -en. ~ Schritten|N|Dp|AB|Schritt|steps|Dative plural: the noun adds -n. ~ viel|ADV||AO||a lot ~ für|PR||AB||for|"für" always takes the accusative. ~ den|A|Am|AB|der|the ~ Klimaschutz|N|Am|AB||climate protection ~ tun|VT||P||do ~ kann|V||P|können|can|The modal verb goes to the very end of the "dass" clause. ~ .`,
+ "I believe that you can do a lot for climate protection with small steps."]
+]}
+]},
+
+{de:"Deutsch lernen", en:"Learning German", p:[
+{lvl:"A1", s:[
+[`Ich|P|N|S|ich|I ~ lerne|V||P|lernen|learn ~ seit|PR||AB||for|"seit" + dative: still going on now. ~ sechs|Z||AB||six ~ Monaten|N|Dp|AB|Monat|months|Dative plural: der Monat → den Monaten. ~ Deutsch|N|An|AO||German|Was lerne ich? → accusative object. ~ .`,
+ "I have been learning German for six months."],
+[`Der|A|Nm|S|der|the ~ Kurs|N|Nm|S||course ~ ist|V||P|sein|is ~ an|PR||AB||at|Two-way preposition: Wo? → dative. ~ der|A|Df|AB|der|the ~ Volkshochschule|N|Df|AB||adult education centre ~ .`,
+ "The course is at the adult education centre."],
+[`Unsere|A|Nf|S|unser|our ~ Lehrerin|N|Nf|S||teacher ~ erklärt|V||P|erklären|explains ~ uns|P|D|DO|wir|us|Wem erklärt sie die Grammatik? → dative. ~ die|A|Af|AO|der|the ~ Grammatik|N|Af|AO||grammar ~ sehr|ADV||AB||very ~ gut|J||AB||well|Adjective used as an adverb: no ending. ~ .`,
+ "Our teacher explains the grammar to us very well."],
+[`Die|A|Ap|AO|der|the|The object is in position 1, so the subject comes after the verb. ~ Wörter|N|Ap|AO|Wort|words ~ der|A|Gf|GA|der|of the|Wessen Wörter? → genitive feminine: die → der. ~ Lektion|N|Gf|GA||lesson ~ lerne|V||P|lernen|learn ~ ich|P|N|S|ich|I ~ mit|PR||AB||with ~ Karteikarten|N|Dp|AB|Karteikarte|flashcards|Dative plural, no article. ~ .`,
+ "I learn the words of the lesson with flashcards."],
+[`Manchmal|ADV||AB||sometimes ~ verstehe|V||P|verstehen|understand ~ ich|P|N|S|ich|I ~ ein|A|An|AO||a ~ Wort|N|An|AO||word ~ nicht|T||AB||not|"nicht" at the end negates the whole clause. ~ , ~ aber|K||K||but ~ mein|A|Nm|S|mein|my ~ Kollege|N|Nm|S||colleague ~ hilft|V||P|helfen|helps ~ mir|P|D|DO|ich|me|"helfen" always takes the dative. ~ .`,
+ "Sometimes I don't understand a word, but my colleague helps me."],
+[`Im|PA|Dm|AB|in + dem|in|Months take "im" → dative. ~ Mai|N|Dm|AB||May ~ mache|V||P|machen|take|"eine Prüfung machen" = to take an exam. ~ ich|P|N|S|ich|I ~ die|A|Af|AO|der|the ~ Prüfung|N|Af|AO||exam ~ .`,
+ "In May I'm taking the exam."]
+]},
+{lvl:"B1", s:[
+[`Als|K.sub||K||when|"als" for a single event in the past: the verb goes to the end. ~ ich|P|N|S|ich|I ~ vor|PR||AB||ago|"vor" + a time (Wann?) → dative. ~ drei|Z||AB||three ~ Jahren|N|Dp|AB|Jahr|years ~ nach|PR||AB||to|"nach" + countries without an article. ~ Deutschland|N|Dn|AB||Germany ~ kam|V||P|kommen|came|Simple past of "kommen", at the end of the "als" clause. ~ , ~ konnte|V||P|können|knew|"können" without an infinitive: to know (a language). ~ ich|P|N|S|ich|I ~ kaum|ADV||AB||hardly ~ ein|A|An|AO||a ~ Wort|N|An|AO||word ~ Deutsch|N|An|AO||German ~ .`,
+ "When I came to Germany three years ago, I hardly knew a word of German."],
+[`Inzwischen|ADV||AB||by now ~ besuche|V||P|besuchen|attend ~ ich|P|N|S|ich|I ~ einen|A|Am|AO|ein|an ~ Integrationskurs|N|Am|AO||integration course ~ , ~ der|P.rel|Nm|S|der|which|Relative pronoun: masculine (der Kurs), nominative as the subject of the clause. ~ fünfmal|ADV||AB||five times ~ pro|PR||AB||a|"pro" + accusative, usually without an article. ~ Woche|N|Af|AB||week ~ stattfindet|V||P|stattfinden|takes place|In the relative clause the separable verb stays together at the end. ~ .`,
+ "By now I attend an integration course that takes place five times a week."],
+[`Besonders|ADV||AB||particularly ~ schwierig|J||PN||difficult|"finden" + adjective: no ending. ~ finde|V||P|finden|find ~ ich|P|N|S|ich|I ~ die|A|Ap|AO|der|the ~ Adjektivendungen|N|Ap|AO|Adjektivendung|adjective endings ~ und|K||K||and ~ den|A|Am|AO|der|the ~ Unterschied|N|Am|AO||difference ~ zwischen|PR||AT||between|"zwischen" (Wo?) + dative. ~ Dativ|N|Dm|AT||dative ~ und|K||K||and ~ Akkusativ|N|Dm|AT||accusative ~ .`,
+ "I find the adjective endings and the difference between dative and accusative particularly difficult."],
+[`Um|K||K||in order|"um … zu" + infinitive = in order to. ~ meine|A|Af|AO|mein|my ~ Aussprache|N|Af|AO||pronunciation ~ zu|T||P||to ~ verbessern|VT||P||improve ~ , ~ spreche|V||P|sprechen|speak|The "um … zu" part is position 1, so the verb comes next. ~ ich|P|N|S|ich|I ~ so|ADV||AB||as ~ oft|ADV||AB||often ~ wie|K||K||as|"so … wie" = as … as. ~ möglich|J||AB||possible ~ mit|PR||AB||with ~ meinen|A|Dp|AB|mein|my|Dative plural: meine → meinen. ~ Nachbarn|N|Dp|AB|Nachbar|neighbours ~ .`,
+ "To improve my pronunciation, I speak with my neighbours as often as possible."],
+[`Außerdem|ADV||AB||besides ~ höre|V||P|hören|listen to ~ ich|P|N|S|ich|I ~ jeden|A|Am|AB|jeder|every ~ Morgen|N|Am|AB||morning ~ auf|PR||AB||on|Wo? → dative. ~ dem|A|Dm|AB|der|the ~ Weg|N|Dm|AB||way ~ zur|PA|Df|AT|zu + der|to|Which way? The way to work. ~ Arbeit|N|Df|AT||work ~ einen|A|Am|AO|ein|a ~ deutschen|J|Am|AO|deutsch|German|Adjective after "einen": ending -en. ~ Podcast|N|Am|AO||podcast ~ .`,
+ "Besides, every morning on the way to work I listen to a German podcast."],
+[`Wenn|K||K||if ~ ich|P|N|S|ich|I ~ die|A|Af|AO|der|the ~ Prüfung|N|Af|AO||exam ~ bestehe|V||P|bestehen|pass|The verb goes to the end of the "wenn" clause. ~ , ~ möchte|V||P|möchten|would like ~ ich|P|N|S|ich|I ~ mich|P.refl|A|AO|ich|myself|"sich bewerben" is reflexive: ich bewerbe mich. ~ bei|PR||PO||at|"sich bewerben bei" + dative. ~ einem|A|Dn|PO|ein|a ~ Krankenhaus|N|Dn|PO||hospital ~ in|PR||AT||in ~ der|A|Df|AT|der|the ~ Nähe|N|Df|AT||vicinity ~ meiner|A|Gf|GA|mein|of my|Wessen Nähe? → genitive feminine. ~ Wohnung|N|Gf|GA||flat ~ bewerben|VT||P||apply|Infinitive at the end after the modal verb. ~ .`,
+ "If I pass the exam, I'd like to apply to a hospital near my flat."]
+]}
 ]}
 ];

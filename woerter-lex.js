@@ -53,21 +53,21 @@ const SUBS = {
 };
 const GROUP = { VT:"V", PA:"PR" };
 
-const ADV = { heute:"zeit", morgen:"zeit", gestern:"zeit", sofort:"zeit", dann:"zeit", lange:"zeit", danach:"zeit", schon:"zeit", lang:"zeit",
-  oft:"haeuf", immer:"haeuf", meistens:"haeuf", manchmal:"haeuf", zweimal:"haeuf", wieder:"haeuf", einmal:"haeuf",
+const ADV = { heute:"zeit", morgen:"zeit", gestern:"zeit", sofort:"zeit", dann:"zeit", lange:"zeit", danach:"zeit", jetzt:"zeit", heutzutage:"zeit", inzwischen:"zeit", schon:"zeit", lang:"zeit",
+  oft:"haeuf", immer:"haeuf", meistens:"haeuf", manchmal:"haeuf", zweimal:"haeuf", wieder:"haeuf", einmal:"haeuf", "fünfmal":"haeuf",
   dort:"ort", hier:"ort", unten:"ort", unterwegs:"ort",
-  gern:"art", zusammen:"art", sehr:"art", viel:"art", am:"art", liebsten:"art", genug:"art", ziemlich:"art", fast:"art", lieber:"art",
-  leider:"komm", unbedingt:"komm", eigentlich:"komm", deshalb:"konj", "außerdem":"konj", trotzdem:"konj", "darüber":"pron" };
-const CONJ = { und:"koord", aber:"koord", oder:"koord", denn:"koord",
-  obwohl:"sub", wenn:"sub", weil:"sub", seitdem:"sub", da:"sub", falls:"sub", dass:"sub", damit:"sub",
-  als:"vgl", um:"inf" };
+  gern:"art", zusammen:"art", sehr:"art", viel:"art", am:"art", liebsten:"art", genug:"art", ziemlich:"art", fast:"art", lieber:"art", so:"art", mehr:"art", wirklich:"art", mindestens:"art", kaum:"art", besonders:"art",
+  leider:"komm", unbedingt:"komm", eigentlich:"komm", deshalb:"konj", "außerdem":"konj", trotzdem:"konj", "darüber":"pron", davon:"pron", dadurch:"pron" };
+const CONJ = { und:"koord", aber:"koord", oder:"koord", denn:"koord", sondern:"koord",
+  obwohl:"sub", wenn:"sub", weil:"sub", seitdem:"sub", da:"sub", falls:"sub", dass:"sub", damit:"sub", ob:"sub",
+  als:"vgl", wie:"vgl", um:"inf" };
 const PREP = { aus:"dat", bei:"dat", mit:"dat", nach:"dat", seit:"dat", von:"dat", zu:"dat", laut:"dat",
   "für":"akk", durch:"akk", pro:"akk", ohne:"akk", gegen:"akk", um:"akk", bis:"akk", per:"akk",
   in:"wech", an:"wech", auf:"wech", neben:"wech", vor:"wech", "über":"wech", unter:"wech", hinter:"wech", zwischen:"wech",
-  trotz:"gen", wegen:"gen" };
+  trotz:"gen", wegen:"gen", "während":"gen", statt:"gen" };
 const FUSED = { am:["an","dem"], ans:["an","das"], im:["in","dem"], ins:["in","das"], aufs:["auf","das"], beim:["bei","dem"], vom:["von","dem"], zum:["zu","dem"], zur:["zu","der"] };
-const PART = { nicht:"neg", zu:"zu", nur:"fokus", noch:"fokus" };
-const PROPER = new Set(["lena","spanien","berlin","portugal","lissabon","porto","tom","frankfurt","münchen","deutschland"]);
+const PART = { nicht:"neg", zu:"zu", nur:"fokus", noch:"fokus", auch:"fokus" };
+const PROPER = new Set(["lena","spanien","berlin","portugal","lissabon","porto","tom","frankfurt","münchen","deutschland","hamburg"]);
 const NOMV = new Set(["kochen","lernen"]);
 const MODAL = new Set(["dürfen","können","müssen","möchten","mögen","sollen","wollen"]);
 const ARTSUB = { der:"best", ein:"unbest", mein:"poss", dein:"poss", sein:"poss", ihr:"poss", unser:"poss", euer:"poss", kein:"neg", jeder:"indef", viel:"indef" };
@@ -170,9 +170,43 @@ tragen: trage,trägst,trägt,tragen,tragt,tragen; trug; hat getragen
 absagen: sage ab,sagst ab,sagt ab,sagen ab,sagt ab,sagen ab; sagte ab; hat abgesagt
 mögen: mag,magst,mag,mögen,mögt,mögen; mochte; hat gemocht
 schneien: R; schneite; hat geschneit
+feiern: feiere,feierst,feiert,feiern,feiert,feiern; feierte; hat gefeiert
+backen: backe,bäckst,bäckt,backen,backt,backen; backte; hat gebacken
+brauchen: R; brauchte; hat gebraucht
+abheben: hebe ab,hebst ab,hebt ab,heben ab,hebt ab,heben ab; hob ab; hat abgehoben
+bezahlen: R; bezahlte; hat bezahlt
+eröffnen: eröffne,eröffnest,eröffnet,eröffnen,eröffnet,eröffnen; eröffnete; hat eröffnet
+überweisen: überweise,überweist,überweist,überweisen,überweist,überweisen; überwies; hat überwiesen
+zahlen: R; zahlte; hat gezahlt
+vergessen: vergesse,vergisst,vergisst,vergessen,vergesst,vergessen; vergaß; hat vergessen
+versuchen: R; versuchte; hat versucht
+bestellen: R; bestellte; hat bestellt
+sperren: R; sperrte; hat gesperrt
+überlegen: R; überlegte; hat überlegt
+anlegen: lege an,legst an,legt an,legen an,legt an,legen an; legte an; hat angelegt
+schreiben: R; schrieb; hat geschrieben
+informieren: R; informierte; hat informiert
+wissen: weiß,weißt,weiß,wissen,wisst,wissen; wusste; hat gewusst
+stimmen: R; stimmte; hat gestimmt
+einschalten: schalte ein,schaltest ein,schaltet ein,schalten ein,schaltet ein,schalten ein; schaltete ein; hat eingeschaltet
+trennen: R; trennte; hat getrennt
+spazieren: R; spazierte; ist spaziert
+achten: achte,achtest,achtet,achten,achtet,achten; achtete; hat geachtet
+benutzen: R; benutzte; hat benutzt
+installieren: R; installierte; hat installiert
+lassen: lasse,lässt,lässt,lassen,lasst,lassen; ließ; hat gelassen
+glauben: R; glaubte; hat geglaubt
+tun: tue,tust,tut,tun,tut,tun; tat; hat getan
+stattfinden: finde statt,findest statt,findet statt,finden statt,findet statt,finden statt; fand statt; hat stattgefunden
+verbessern: verbessere,verbesserst,verbessert,verbessern,verbessert,verbessern; verbesserte; hat verbessert
+sprechen: spreche,sprichst,spricht,sprechen,sprecht,sprechen; sprach; hat gesprochen
+hören: R; hörte; hat gehört
+bestehen: R; bestand; hat bestanden
+bewerben: bewerbe,bewirbst,bewirbt,bewerben,bewerbt,bewerben; bewarb; hat beworben
+zünden: zünde,zündest,zündet,zünden,zündet,zünden; zündete; hat gezündet
 umziehen: ziehe um,ziehst um,zieht um,ziehen um,zieht um,ziehen um; zog um; ist umgezogen
 `;
-const REFLEXIVE = new Set(["wohlfühlen","ernähren","freuen","fühlen","ausruhen","anmelden"]);
+const REFLEXIVE = new Set(["wohlfühlen","ernähren","freuen","fühlen","ausruhen","anmelden","informieren","bewerben"]);
 const VERBS = {};
 VERBS_SRC.trim().split("\n").forEach(line => {
   const [lemma, rest] = line.split(": ");
@@ -194,7 +228,7 @@ function sub(k){
     case "N": return PROPER.has(w) ? "eigen" : NOMV.has(w) ? "nomv" : "gatt";
     case "V": return MODAL.has(b) ? "modal" : (b === "sein" || b === "heißen") ? "kop" : "voll";
     case "VT": return (!k.lemma || w === low(k.lemma)) ? "inf" : low(k.lemma).startsWith(w) ? "pref" : "part";
-    case "P": return (b === "man" || b === "beide") ? "indef" : "pers";
+    case "P": return (b === "man" || b === "beide" || b === "jemand" || b === "etwas") ? "indef" : "pers";
     case "A": return ARTSUB[b] || null;
     case "J": return k.c ? "attr" : k.role === "PN" ? "praed" : "adv";
     case "ADV": return ADV[w] || null;
@@ -260,8 +294,8 @@ const ADJNAME = { weak:"after der / jeder (weak endings)", mixed:"after ein / ke
 const COMP = { gut:["besser","am besten"], viel:["mehr","am meisten"], "groß":["größer","am größten"], alt:["älter","am ältesten"],
   hoch:["höher","am höchsten"], gesund:["gesünder","am gesündesten"], kalt:["kälter","am kältesten"], lang:["länger","am längsten"],
   jung:["jünger","am jüngsten"], nah:["näher","am nächsten"], warm:["wärmer","am wärmsten"], "heiß":["heißer","am heißesten"],
-  krank:["kränker","am kränksten"], kurz:["kürzer","am kürzesten"], schwach:["schwächer","am schwächsten"], stark:["stärker","am stärksten"] };
-const NOCOMP = new Set(["letzt","nächst","international","berufstätig","begeistert","ander","zweit","viert","halb","ganz","motiviert","gültig","anstrengend"]);
+  krank:["kränker","am kränksten"], kurz:["kürzer","am kürzesten"], schwach:["schwächer","am schwächsten"], stark:["stärker","am stärksten"], teuer:["teurer","am teuersten"] };
+const NOCOMP = new Set(["letzt","nächst","international","berufstätig","begeistert","ander","zweit","viert","halb","ganz","motiviert","gültig","anstrengend","gebrannt","gemeinsam","kaputt","problematisch","deutsch","öffentlich"]);
 function adjDecl(k){
   const at = k.sen.indexOf(k);
   for (let j = at - 1; j >= 0; j--) {
@@ -315,6 +349,8 @@ function forms(k){
       if (s === "rel" || s === "dem") return `<p class="fl">${s === "rel" ? "Relative" : "Demonstrative"} pronoun in all cases:</p>` + grid(RELT, k.c, k.gen);
       if (s === "refl") return personTable(REFL, b === "sie" ? "sie" : b, k.c);
       if (b === "man") return `<table class="ft"><tr><th>Nom.</th><th>Akk.</th><th>Dat.</th></tr><tr><td class="hi">man</td><td>einen</td><td>einem</td></tr></table>`;
+      if (b === "jemand") return `<table class="ft"><tr><th>Nom.</th><th>Akk.</th><th>Dat.</th></tr><tr><td${k.c === "N" ? ' class="hi"' : ""}>jemand</td><td${k.c === "A" ? ' class="hi"' : ""}>jemanden</td><td${k.c === "D" ? ' class="hi"' : ""}>jemandem</td></tr></table><p class="fl">Opposite: niemand – niemanden – niemandem.</p>`;
+      if (b === "etwas") return `<p class="fl"><b>etwas</b> never changes its form. Opposite: <b>nichts</b>. With an adjective: etwas Neues, nichts Besonderes.</p>`;
       if (b === "beide") return grid([[ "–","–","–","beide"],["–","–","–","beide"],["–","–","–","beiden"],["–","–","–","beider"]], k.c, "p");
       return personTable(PERS, b === "sie" ? (k.gen === "p" ? "sie_pl" : "sie_f") : b, k.c);
     case "J": {
@@ -343,7 +379,7 @@ function forms(k){
    and "für" causal (despite / for whom), other prepositions local; "nach" +
    an article is temporal (nach dem Essen) but + a name local (nach Porto). */
 const TM = { te:["Temporal","Wann? Wie lange? Wie oft?"], ka:["Kausal","Warum? Wozu? Trotz was?"], mo:["Modal","Wie? Mit wem? Womit?"], lo:["Lokal","Wo? Wohin? Woher?"] };
-const TIMEN = new Set(["sonntag","montag","samstag","morgen","tag","woche","monat","jahr","jahren","jahre","sommer","abend","wochenende","hochzeit","stunden","tage","freizeit","kochen","uhr","ende","tagen","ferien","sommerferien","stunde","mai","elternabend","wochen","minuten","herbst","winter","juli","nachmittag"]);
+const TIMEN = new Set(["sonntag","montag","samstag","morgen","tag","woche","monat","jahr","jahren","jahre","sommer","abend","wochenende","hochzeit","stunden","tage","freizeit","kochen","uhr","ende","tagen","ferien","sommerferien","stunde","mai","elternabend","wochen","minuten","herbst","winter","juli","nachmittag","dezember","heiligabend","silvester","adventszeit","monaten"]);
 const ADVTM = { zeit:"te", haeuf:"te", ort:"lo", art:"mo", komm:"mo", konj:"ka", pron:"mo" };
 let phraseId = 0;
 function tekamolo(toks){
@@ -358,12 +394,14 @@ function tekamolo(toks){
     else if (h.pos === "J" || h.pos === "K") tm = "mo";
     else if (h.pos === "PR" || h.pos === "PA") {
       const p = h.pos === "PA" ? FUSED[hw][0] : hw;
-      if (p === "mit" || p === "ohne" || p === "per" || p === "laut" || run.some(t => low(t.w) === "glück")) tm = "mo";
+      if (p === "mit" || p === "ohne" || p === "per" || p === "laut" || p === "statt" || run.some(t => low(t.w) === "glück" || low(t.w) === "beispiel")) tm = "mo";
+      else if (p === "während") tm = "te";
       else if (p === "trotz" || p === "wegen" || p === "für") tm = "ka";
       else if (p === "nach") tm = run.some(t => t.pos === "A") ? "te" : "lo";
       else if (p === "von" && run.some(t => low(t.w) === "beruf")) tm = "mo";
       else tm = "lo";
-    } else tm = "te";          // a bare noun phrase as adverbial: jeden Tag, letzte Woche
+    } else tm = run.some(t => /^(kilometer|meter)$/.test(low(t.w))) ? "lo"   // a distance: fünf Kilometer
+      : "te";                  // a bare noun phrase as adverbial: jeden Tag, letzte Woche
     const id = ++phraseId;
     run.forEach(t => { t.tm = tm; t.ph = id; });
     run = []; head = null;
