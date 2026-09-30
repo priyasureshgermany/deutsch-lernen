@@ -1,5 +1,8 @@
 # Releases
 
+## 1.8.1 — 2026-09-30
+- Full screen: swipe the round button to the right to tuck it away, as in the expense tracker; the small tab on the edge brings it back (remembered)
+
 ## 1.8.0 — 2026-09-30
 - Tempo is one icon next to the version for the whole app: speedometer = normal, snail = slow (remembered)
 - Removed „EN immer“; every sentence keeps its own EN button, and the Hören exam questions now have English too

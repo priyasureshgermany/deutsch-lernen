@@ -49,6 +49,15 @@ button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
 body.full header,body.full nav{display:none}
 body.full main{margin:env(safe-area-inset-top,0px) 0 0}
 body.full #fsx{display:flex}
+/* Swiped off the right edge, as in the expense tracker: it slides away rather
+   than vanishing, and a small tab on the edge brings it back. */
+#fsx{touch-action:none;transition:transform .3s cubic-bezier(.2,.7,.3,1),opacity .22s ease}
+html.fsx-tucked #fsx{transform:translateX(110px) scale(.9);opacity:0;pointer-events:none}
+#fsxTab{display:none;position:fixed;right:0;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:20;width:17px;height:42px;padding:0;place-items:center;
+ border:1px solid var(--line);border-right:0;border-radius:11px 0 0 11px;background:var(--surface);color:var(--muted);opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.2);cursor:pointer}
+#fsxTab svg{width:13px;height:13px}
+html.fsx-tucked body.full #fsxTab{display:grid}
+@media (prefers-reduced-motion:reduce){#fsx{transition:none}}
 nav .i{display:none}
 @media (max-width:1100px){nav .l{display:none}nav .s{display:inline}}
 /* Phones: the section bar moves to the bottom, as in an app – icon over a
@@ -87,9 +96,10 @@ nav .i{display:none}
  <button id="fs" class="fsb" type="button" title="Vollbild" aria-label="Vollbild"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
 </div></header>
 <main id="stage"></main>
-<button id="fsx" class="fsb" type="button" title="Vollbild beenden" aria-label="Vollbild beenden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg></button>
+<button id="fsxTab" type="button" title="Knopf zurückholen" aria-label="Vollbild-Knopf zurückholen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+<button id="fsx" class="fsb" type="button" title="Vollbild beenden – nach rechts wischen zum Verstecken" aria-label="Vollbild beenden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg></button>
 <script>
-const APP_VERSION = "1.8.0";
+const APP_VERSION = "1.8.1";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -172,7 +182,30 @@ function full(on){
   }catch(e){}
 }
 document.getElementById("fs").onclick = () => full(true);
-document.getElementById("fsx").onclick = () => full(false);
+const fsx = document.getElementById("fsx");
+/* A tap leaves full screen; a drag to the right past 40px tucks the button
+   away instead. The button follows the finger, so what will happen is plain. */
+let fsxFrom = null, fsxDx = 0, fsxDragged = false;
+function tuck(on){ root.classList.toggle("fsx-tucked", on); store("dl:fsxTucked", on ? "1" : "0"); }
+fsx.addEventListener("pointerdown", e => { fsxFrom = e.clientX; fsxDx = 0; fsxDragged = false; try{ fsx.setPointerCapture(e.pointerId); }catch(err){} });
+fsx.addEventListener("pointermove", e => {
+  if(fsxFrom === null) return;
+  fsxDx = e.clientX - fsxFrom;
+  if(Math.abs(fsxDx) > 6) fsxDragged = true;
+  fsx.style.transition = "none";
+  fsx.style.transform = "translateX(" + Math.max(0, fsxDx) + "px)";   // outwards only
+});
+function fsxSettle(){
+  if(fsxFrom === null) return;
+  fsx.style.transition = ""; fsx.style.transform = "";
+  if(fsxDragged && fsxDx > 40) tuck(true);
+  fsxFrom = null;
+}
+fsx.addEventListener("pointerup", fsxSettle);
+fsx.addEventListener("pointercancel", fsxSettle);
+fsx.onclick = () => { if(fsxDragged){ fsxDragged = false; return; } full(false); };
+document.getElementById("fsxTab").onclick = () => tuck(false);
+tuck(store("dl:fsxTucked") === "1");
 /* Esc (or the system's own exit) leaves the browser's full screen: follow it. */
 document.addEventListener("fullscreenchange", () => { if(!document.fullscreenElement) document.body.classList.remove("full"); });
 
