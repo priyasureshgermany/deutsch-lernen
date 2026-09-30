@@ -151,13 +151,16 @@ function block(g,en,voice){return `<div class="de"><span class="s" lang="de">${d
 function phrases(tips){return `<div class="box"><b>Wichtige Sätze</b>${tips.map(([g,e])=>`<div class="phr"><div class="t"><span class="s" lang="de">${de(g)}</span><i>${esc(e)}</i></div>${sayBtn(g)}</div>`).join("")}</div>`}
 
 function dialogCard(d){
+ const gs=genders(d),sym=r=>gs[r]==="f"?" ♀":" ♂",who=r=>esc(d.who[r])+sym(r);
+ const mine=d.g&&(d.g.A==="me"||d.g.B==="me");
  return `<div class="dcard"><h2>${esc(d.de)}</h2><div class="den">${esc(d.en)}</div>
   <div class="box en-wrap"><b>Situation</b><span class="s" lang="de">${de(d.sit)}</span> <button class="enb" type="button">EN</button><div class="en">${esc(d.sitEn)}</div></div>
   <div class="tools"><button class="chip play" type="button" data-all>▶ Ganzes Gespräch</button><span class="lab">Rolle üben:</span>
    <button class="chip" type="button" data-role="" aria-pressed="true">aus</button>
-   <button class="chip" type="button" data-role="A" aria-pressed="false">${esc(d.who.A)}</button>
-   <button class="chip" type="button" data-role="B" aria-pressed="false">${esc(d.who.B)}</button></div>
-  <div class="lines">${d.lines.map(([r,g,e])=>`<div class="ln ${r}"><span class="who">${esc(d.who[r])}</span><div class="body">${block(g,e,r)}</div></div>`).join("")}</div>
+   <button class="chip" type="button" data-role="A" aria-pressed="false">${who("A")}</button>
+   <button class="chip" type="button" data-role="B" aria-pressed="false">${who("B")}</button></div>
+  ${mine?`<div class="tools"><span class="lab">Meine Stimme:</span><button class="chip" type="button" data-me="m" aria-pressed="${myGender()==="m"}">♂ Mann</button><button class="chip" type="button" data-me="f" aria-pressed="${myGender()==="f"}">♀ Frau</button></div>`:""}
+  <div class="lines">${d.lines.map(([r,g,e])=>`<div class="ln ${r}"><span class="who">${who(r)}</span><div class="body">${block(g,e,r)}</div></div>`).join("")}</div>
   ${phrases(d.tips)}</div>`}
 
 function letterCard(d){
@@ -194,10 +197,38 @@ function voices(){if(!synth)return[];const vs=synth.getVoices().filter(v=>v.lang
  const pref=["premium","enhanced","google","natural","anna","helena","katja","markus","yannick"];
  return vs.sort((a,b)=>{const sa=pref.findIndex(p=>a.name.toLowerCase().includes(p)),sb=pref.findIndex(p=>b.name.toLowerCase().includes(p));return (sa<0?99:sa)-(sb<0?99:sb)})}
 if(synth){synth.getVoices();synth.onvoiceschanged=()=>synth.getVoices()}
-/* The two people in a dialogue get different voices when the device has two. */
-function voiceFor(v){const vs=voices();return v==="B"&&vs.length>1?vs[1]:vs[0]||null}
-function utter(text,v){const u=new SpeechSynthesisUtterance(text);u.lang="de-DE";u.rate=rate;const vo=voiceFor(v);if(vo)u.voice=vo;if(v==="B"&&vs2()<2)u.pitch=1.25;return u}
-function vs2(){return voices().length}
+/* Voices by gender. Browsers don't say which voice is a man or a woman, so
+   the common German voice names decide, and an unknown name counts as
+   neither. Each speaker gets a free voice of their own gender – two
+   different ones when both share it – and where the device has too few,
+   the pitch tells them apart: lower for a man, higher for a woman. */
+const FEMV=/anna|helena|katja|petra|marlene|vicki|hedda|amala|katharina|seraphina|louisa|sandy|shelley|\bflo\b|elke|gisela|lena|nina|sabine|tanja|ingrid|google deutsch|female|weiblich/i;
+const MALV=/markus|yannick|stefan|conrad|hans|jonas|viktor|martin|klaus|florian|killian|christoph|ralf|reed|eddy|grandpa|rocko|bernd|\bmale\b|männlich/i;
+function genderOf(v){return FEMV.test(v.name)?"f":MALV.test(v.name)?"m":"u"}
+function myGender(){return store("al:me")==="f"?"f":"m"}
+function genders(d){const g={A:"f",B:"m"};if(d&&d.g)for(const r of ["A","B"])g[r]=d.g[r]==="me"?myGender():d.g[r];return g}
+function cast(){
+ const d=MODE==="dialog"&&open!==null?DATA[+open]:null,g=genders(d),vs=voices();
+ const pool={f:vs.filter(v=>genderOf(v)==="f"),m:vs.filter(v=>genderOf(v)==="m"),u:vs.filter(v=>genderOf(v)==="u")};
+ const out={},used=[];
+ for(const r of ["A","B"]){
+  const G=g[r],own=pool[G].filter(v=>!used.includes(v));
+  if(own.length){out[r]={voice:own[0],pitch:1};used.push(own[0]);continue}
+  /* No free voice of this gender: a free unknown voice, else the same
+     gender's voice again (split by pitch below), and only then the other
+     gender's, shaped with pitch. */
+  const unknown=pool.u.find(x=>!used.includes(x));
+  if(unknown){out[r]={voice:unknown,pitch:G==="m"?0.8:1.3};used.push(unknown);continue}
+  if(pool[G].length){out[r]={voice:pool[G][0],pitch:1};continue}
+  const v=pool[G==="f"?"m":"f"].find(x=>!used.includes(x))||vs[0]||null;
+  out[r]={voice:v,pitch:G==="m"?0.8:1.3};if(v)used.push(v)}
+ /* Only one voice for two people of the same gender: split them by pitch. */
+ if(out.A.voice===out.B.voice&&g.A===g.B){out.A.pitch=g.A==="m"?0.95:1.15;out.B.pitch=g.B==="m"?0.7:1.45}
+ return out}
+function utter(text,v){const u=new SpeechSynthesisUtterance(text);u.lang="de-DE";u.rate=rate;
+ if(v==="A"||v==="B"){const c=cast()[v];if(c.voice)u.voice=c.voice;u.pitch=c.pitch}
+ else{const vo=voices()[0];if(vo)u.voice=vo}
+ return u}
 function stopAll(){if(synth)synth.cancel();if(playing)playing.classList.remove("on");playing=null;
  if(queue){queue.btn.classList.remove("on");document.querySelectorAll(".ln.now").forEach(x=>x.classList.remove("now"));queue=null}}
 function speak(btn){if(!synth)return;if(playing===btn){stopAll();return}stopAll();
@@ -243,6 +274,8 @@ document.querySelector("main").addEventListener("click",e=>{
  const all=e.target.closest("[data-all]");if(all){playAll(all);return}
  const sb=e.target.closest(".say");if(sb){speak(sb);return}
  const eb=e.target.closest(".enb");if(eb){eb.parentElement.classList.toggle("en-on");if(eb.parentElement.classList.contains("acts"))eb.parentElement.parentElement.classList.toggle("en-on");return}
+ const mb=e.target.closest("[data-me]");if(mb){store("al:me",mb.dataset.me);stopAll();
+  const card=mb.closest(".dcard"),wrap=card.parentElement;wrap.innerHTML=dialogCard(DATA[+open]);return}
  const rb=e.target.closest("[data-role]");if(rb){const card=rb.closest(".dcard");card.querySelectorAll("[data-role]").forEach(x=>x.setAttribute("aria-pressed",String(x===rb)));
   card.querySelectorAll(".ln").forEach(l=>l.classList.toggle("hideme",!!rb.dataset.role&&l.classList.contains(rb.dataset.role)));return}
  const hd=e.target.closest("[data-hide]");if(hd){const on=hd.getAttribute("aria-pressed")!=="true";hd.setAttribute("aria-pressed",String(on));hd.closest(".dcard").querySelector(".sheet").classList.toggle("hidden-letter",on);hd.textContent=on?"Musterbrief zeigen":"Selbst schreiben (Brief verstecken)";return}

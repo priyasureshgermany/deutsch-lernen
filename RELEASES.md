@@ -1,5 +1,9 @@
 # Releases
 
+## 1.4.1 — 2026-09-30
+- Better: Gespräche speak with a male voice for men and a female voice for women, and two different voices when both speakers are men or both women; with only one voice on the phone, the pitch tells them apart
+- New: „Meine Stimme: Mann / Frau“ in Gespräche, and ♂ / ♀ beside each speaker
+
 ## 1.4.0 — 2026-09-29
 - New: 9 more B1 Grammatik topics — Modalverben, Reflexive Verben, Trennbare & untrennbare Verben, Infinitiv mit zu, Indirekte Fragen, n-Deklination, Negation, werden & lassen, Wortstellung
 

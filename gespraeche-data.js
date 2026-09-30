@@ -1,12 +1,13 @@
 /* Everyday conversations for the Gespräche tab.
-   Each: title, situation, the two roles, lines [role, German, English] and
-   key phrases [German, English]. [Klammern] are placeholders to fill in.
+   Each: title, situation, the two roles and their genders (g: m / f, or
+   "me" = the learner's own voice setting), lines [role, German, English]
+   and key phrases [German, English]. [Klammern] are placeholders to fill in.
    tools/check-alltag.mjs checks the shape. */
 window.GS = [
 {id:"kinderarzt", de:"Kinderarzt: Termin für die Tochter", en:"Paediatrician: appointment for your daughter",
  sit:"Ihre Tochter hat seit gestern Fieber und Husten. Sie rufen in der Kinderarztpraxis an.",
  sitEn:"Your daughter has had a fever and a cough since yesterday. You call the paediatric practice.",
- who:{A:"Praxis", B:"Sie"},
+ who:{A:"Praxis", B:"Sie"}, g:{A:"f", B:"me"},
  lines:[
   ["A","Kinderarztpraxis Dr. Becker, Sie sprechen mit Frau Lang. Was kann ich für Sie tun?","Dr Becker's paediatric practice, you're speaking to Ms Lang. What can I do for you?"],
   ["B","Guten Morgen, mein Name ist [Ihr Name]. Ich möchte gern einen Termin für meine Tochter machen.","Good morning, my name is [your name]. I'd like to make an appointment for my daughter."],
@@ -28,7 +29,7 @@ window.GS = [
 {id:"kardiologe", de:"Facharzt: Brustschmerzen", en:"Specialist: chest pain",
  sit:"Sie haben seit einigen Tagen immer wieder leichte Schmerzen in der Brust. Ihr Hausarzt hat Ihnen eine Überweisung zum Kardiologen gegeben.",
  sitEn:"For a few days you've had recurring mild chest pain. Your GP has given you a referral to a cardiologist.",
- who:{A:"Praxis", B:"Sie"},
+ who:{A:"Praxis", B:"Sie"}, g:{A:"m", B:"me"},
  lines:[
   ["A","Kardiologische Praxis am Markt, guten Tag.","Cardiology practice am Markt, good afternoon."],
   ["B","Guten Tag, ich habe eine Überweisung von meinem Hausarzt und brauche einen Termin.","Hello, I have a referral from my GP and need an appointment."],
@@ -50,7 +51,7 @@ window.GS = [
 {id:"internet", de:"Internetanbieter: Beschwerde", en:"Internet provider: complaint",
  sit:"Ihr Internet funktioniert seit drei Tagen nicht. Sie arbeiten im Homeoffice und rufen beim Kundenservice an.",
  sitEn:"Your internet hasn't worked for three days. You work from home and call customer service.",
- who:{A:"Kundenservice", B:"Sie"},
+ who:{A:"Kundenservice", B:"Sie"}, g:{A:"m", B:"me"},
  lines:[
   ["A","Willkommen beim Kundenservice von NetFix. Mein Name ist Herr Wolf. Wie kann ich Ihnen helfen?","Welcome to NetFix customer service. My name is Mr Wolf. How can I help you?"],
   ["B","Guten Tag. Mein Internet funktioniert seit drei Tagen überhaupt nicht mehr.","Hello. My internet hasn't worked at all for three days."],
@@ -71,7 +72,7 @@ window.GS = [
 {id:"supermarkt", de:"Im Supermarkt", en:"At the supermarket",
  sit:"Sie suchen im Supermarkt ein Produkt und möchten außerdem etwas umtauschen.",
  sitEn:"You're looking for a product in the supermarket and also want to exchange something.",
- who:{A:"Verkäufer", B:"Sie"},
+ who:{A:"Verkäufer", B:"Sie"}, g:{A:"m", B:"me"},
  lines:[
   ["B","Entschuldigung, können Sie mir helfen? Ich finde die glutenfreien Nudeln nicht.","Excuse me, can you help me? I can't find the gluten-free pasta."],
   ["A","Die finden Sie in Gang vier, ganz unten im Regal neben dem Reis.","You'll find them in aisle four, on the bottom shelf next to the rice."],
@@ -92,7 +93,7 @@ window.GS = [
 {id:"arzt", de:"Beim Arzt: Rückenschmerzen und Verletzung", en:"At the doctor's: back pain and an injury",
  sit:"Sie sind beim Hausarzt. Sie haben starke Rückenschmerzen und haben sich beim Sport den Fuß verletzt.",
  sitEn:"You're at your GP's. You have bad back pain and hurt your foot doing sport.",
- who:{A:"Ärztin", B:"Sie"},
+ who:{A:"Ärztin", B:"Sie"}, g:{A:"f", B:"me"},
  lines:[
   ["A","Guten Tag, nehmen Sie bitte Platz. Was führt Sie zu mir?","Hello, please take a seat. What brings you to me?"],
   ["B","Ich habe seit einer Woche starke Rückenschmerzen, vor allem morgens nach dem Aufstehen.","I've had bad back pain for a week, especially in the morning after getting up."],
@@ -115,7 +116,7 @@ window.GS = [
 {id:"restaurant", de:"Im Restaurant bestellen", en:"Ordering in a restaurant",
  sit:"Sie sind mit einer Freundin im Restaurant. Sie bestellen, haben eine Frage zum Essen und bezahlen.",
  sitEn:"You're in a restaurant with a friend. You order, ask about the food and pay.",
- who:{A:"Kellner", B:"Sie"},
+ who:{A:"Kellner", B:"Sie"}, g:{A:"m", B:"me"},
  lines:[
   ["A","Guten Abend! Haben Sie reserviert?","Good evening! Do you have a reservation?"],
   ["B","Ja, auf den Namen [Ihr Name], ein Tisch für zwei Personen um 19 Uhr.","Yes, under the name [your name], a table for two at 7 pm."],
@@ -138,7 +139,7 @@ window.GS = [
 {id:"bank", de:"Bei der Bank: Konto eröffnen", en:"At the bank: opening an account",
  sit:"Sie sind neu in Deutschland und möchten ein Girokonto eröffnen.",
  sitEn:"You're new in Germany and want to open a current account.",
- who:{A:"Bankberaterin", B:"Sie"},
+ who:{A:"Bankberaterin", B:"Sie"}, g:{A:"f", B:"me"},
  lines:[
   ["A","Guten Tag, was kann ich für Sie tun?","Hello, what can I do for you?"],
   ["B","Guten Tag, ich möchte ein Girokonto eröffnen. Ich habe vor zwei Monaten eine Stelle hier angefangen.","Hello, I'd like to open a current account. I started a job here two months ago."],
@@ -159,7 +160,7 @@ window.GS = [
 {id:"bahn", de:"Am DB-Schalter: Fahrkarte kaufen", en:"At the DB counter: buying a ticket",
  sit:"Sie möchten am Freitag mit dem Zug von Frankfurt nach Hamburg fahren und am Sonntag zurück.",
  sitEn:"You want to travel by train from Frankfurt to Hamburg on Friday and back on Sunday.",
- who:{A:"Bahnmitarbeiter", B:"Sie"},
+ who:{A:"Bahnmitarbeiter", B:"Sie"}, g:{A:"m", B:"me"},
  lines:[
   ["A","Guten Tag, wohin möchten Sie fahren?","Hello, where would you like to go?"],
   ["B","Ich möchte eine Fahrkarte nach Hamburg, hin und zurück, bitte.","I'd like a return ticket to Hamburg, please."],
@@ -181,7 +182,7 @@ window.GS = [
 {id:"auslaenderbehoerde", de:"Ausländerbehörde: Termin absagen", en:"Immigration office: cancelling an appointment",
  sit:"Sie haben einen Termin bei der Ausländerbehörde, können aber nicht kommen, weil Ihr Kind krank ist. Sie rufen an.",
  sitEn:"You have an appointment at the immigration office but can't come because your child is ill. You call.",
- who:{A:"Behörde", B:"Sie"},
+ who:{A:"Behörde", B:"Sie"}, g:{A:"f", B:"me"},
  lines:[
   ["A","Ausländerbehörde Frankfurt, Frau Schulz. Guten Morgen.","Frankfurt immigration office, Ms Schulz. Good morning."],
   ["B","Guten Morgen. Ich habe morgen um 9 Uhr einen Termin, aber leider kann ich nicht kommen.","Good morning. I have an appointment tomorrow at 9, but unfortunately I can't come."],
@@ -203,7 +204,7 @@ window.GS = [
 {id:"aktien", de:"Zwei Freunde: Aktien und Sparen", en:"Two friends: shares and saving",
  sit:"Zwei Freunde sprechen in der Mittagspause über Geld, Sparen und die Börse.",
  sitEn:"Two friends talk about money, saving and the stock market during their lunch break.",
- who:{A:"Daniel", B:"Sie"},
+ who:{A:"Daniel", B:"Sie"}, g:{A:"m", B:"me"},
  lines:[
   ["A","Sag mal, legst du eigentlich Geld an, oder liegt alles auf dem Sparkonto?","Tell me, do you actually invest money, or is it all in a savings account?"],
   ["B","Ich habe vor einem Jahr angefangen, jeden Monat etwas in einen ETF zu investieren.","A year ago I started investing something in an ETF every month."],
@@ -224,7 +225,7 @@ window.GS = [
 {id:"vermieter", de:"Vermieter anrufen: Heizung kaputt", en:"Calling the landlord: heating broken",
  sit:"Es ist Januar und Ihre Heizung funktioniert nicht. Sie rufen Ihren Vermieter an.",
  sitEn:"It's January and your heating isn't working. You call your landlord.",
- who:{A:"Vermieter", B:"Sie"},
+ who:{A:"Vermieter", B:"Sie"}, g:{A:"m", B:"me"},
  lines:[
   ["A","Hausverwaltung Keller, guten Tag.","Keller property management, good afternoon."],
   ["B","Guten Tag, hier ist [Ihr Name] aus der Goethestraße 12, zweiter Stock. Meine Heizung ist kaputt.","Hello, this is [your name] from Goethestraße 12, second floor. My heating is broken."],
@@ -245,7 +246,7 @@ window.GS = [
 {id:"apotheke", de:"In der Apotheke", en:"At the pharmacy",
  sit:"Sie sind erkältet und gehen in die Apotheke. Sie haben auch ein Rezept für Ihren Mann.",
  sitEn:"You have a cold and go to the pharmacy. You also have a prescription for your husband.",
- who:{A:"Apothekerin", B:"Sie"},
+ who:{A:"Apothekerin", B:"Sie"}, g:{A:"f", B:"f"},
  lines:[
   ["A","Guten Tag, was darf es sein?","Hello, what can I get you?"],
   ["B","Guten Tag, ich habe eine starke Erkältung. Haben Sie etwas gegen Halsschmerzen und Schnupfen?","Hello, I have a bad cold. Do you have something for a sore throat and a runny nose?"],
@@ -266,7 +267,7 @@ window.GS = [
 {id:"buergeramt", de:"Bürgeramt: Wohnung anmelden", en:"Citizens' office: registering your address",
  sit:"Sie sind in eine neue Wohnung gezogen und müssen sich innerhalb von zwei Wochen beim Bürgeramt anmelden.",
  sitEn:"You've moved into a new flat and must register at the citizens' office within two weeks.",
- who:{A:"Sachbearbeiter", B:"Sie"},
+ who:{A:"Sachbearbeiter", B:"Sie"}, g:{A:"m", B:"m"},
  lines:[
   ["A","Guten Tag, Ihre Wartenummer war die 47? Bitte setzen Sie sich. Was ist Ihr Anliegen?","Hello, your number was 47? Please sit down. What can I do for you?"],
   ["B","Guten Tag. Ich bin umgezogen und möchte meine neue Adresse anmelden.","Hello. I've moved and would like to register my new address."],
@@ -288,7 +289,7 @@ window.GS = [
 {id:"bewerbung", de:"Vorstellungsgespräch", en:"Job interview",
  sit:"Sie haben sich als Verkäufer / Verkäuferin in einem Elektronikgeschäft beworben und sind zum Vorstellungsgespräch eingeladen.",
  sitEn:"You've applied for a job as a sales assistant in an electronics shop and have been invited to an interview.",
- who:{A:"Filialleiterin", B:"Sie"},
+ who:{A:"Filialleiterin", B:"Sie"}, g:{A:"f", B:"me"},
  lines:[
   ["A","Schön, dass Sie da sind. Erzählen Sie doch bitte kurz etwas über sich.","Nice to have you here. Please tell me a little about yourself."],
   ["B","Gern. Ich komme aus [Land] und lebe seit vier Jahren in Deutschland. Ich habe drei Jahre in einem Handygeschäft gearbeitet.","Sure. I come from [country] and have lived in Germany for four years. I worked in a mobile phone shop for three years."],
@@ -311,7 +312,7 @@ window.GS = [
 {id:"elterngespraech", de:"Elterngespräch mit der Lehrerin", en:"Parent-teacher meeting",
  sit:"Die Lehrerin Ihres Sohnes hat Sie zu einem Gespräch eingeladen, weil er in Mathe Probleme hat.",
  sitEn:"Your son's teacher has invited you to a meeting because he's having problems in maths.",
- who:{A:"Lehrerin", B:"Sie"},
+ who:{A:"Lehrerin", B:"Sie"}, g:{A:"f", B:"me"},
  lines:[
   ["A","Vielen Dank, dass Sie gekommen sind. Ich wollte mit Ihnen über Leon sprechen.","Thank you for coming. I wanted to talk to you about Leon."],
   ["B","Gern. Gibt es ein Problem?","Of course. Is there a problem?"],
@@ -332,7 +333,7 @@ window.GS = [
 {id:"friseur", de:"Beim Friseur", en:"At the hairdresser's",
  sit:"Sie haben einen Termin beim Friseur und erklären, wie Sie Ihre Haare haben möchten.",
  sitEn:"You have an appointment at the hairdresser's and explain how you'd like your hair.",
- who:{A:"Friseurin", B:"Sie"},
+ who:{A:"Friseurin", B:"Sie"}, g:{A:"f", B:"me"},
  lines:[
   ["A","Hallo, Sie haben um 16 Uhr einen Termin, richtig? Was darf es heute sein?","Hello, you have an appointment at 4 pm, right? What would you like today?"],
   ["B","Genau. Ich möchte die Haare schneiden lassen, aber nicht zu kurz.","That's right. I'd like a haircut, but not too short."],
@@ -355,7 +356,7 @@ window.GS = [
 {id:"werkstatt", de:"In der Autowerkstatt", en:"At the car garage",
  sit:"Ihr Auto macht beim Bremsen komische Geräusche. Sie bringen es in die Werkstatt.",
  sitEn:"Your car makes strange noises when braking. You take it to the garage.",
- who:{A:"Mechaniker", B:"Sie"},
+ who:{A:"Mechaniker", B:"Sie"}, g:{A:"m", B:"me"},
  lines:[
   ["A","Guten Morgen, was kann ich für Sie tun?","Good morning, what can I do for you?"],
   ["B","Guten Morgen. Mein Auto quietscht seit ein paar Tagen, wenn ich bremse.","Good morning. My car has been squeaking for a few days when I brake."],
@@ -376,7 +377,7 @@ window.GS = [
 {id:"umtausch", de:"Kleidung umtauschen", en:"Exchanging clothes",
  sit:"Sie haben letzte Woche eine Jacke gekauft. Sie ist zu klein, und ein Knopf ist lose. Sie gehen zurück in das Geschäft.",
  sitEn:"Last week you bought a jacket. It's too small and a button is loose. You go back to the shop.",
- who:{A:"Verkäuferin", B:"Sie"},
+ who:{A:"Verkäuferin", B:"Sie"}, g:{A:"f", B:"me"},
  lines:[
   ["B","Guten Tag, ich möchte diese Jacke umtauschen.","Hello, I'd like to exchange this jacket."],
   ["A","Gern. Was ist denn das Problem?","Certainly. What's the problem?"],
@@ -396,7 +397,7 @@ window.GS = [
 {id:"besichtigung", de:"Wohnungsbesichtigung", en:"Flat viewing",
  sit:"Sie besichtigen eine Drei-Zimmer-Wohnung und stellen dem Makler Fragen.",
  sitEn:"You're viewing a three-room flat and ask the estate agent questions.",
- who:{A:"Makler", B:"Sie"},
+ who:{A:"Makler", B:"Sie"}, g:{A:"m", B:"me"},
  lines:[
   ["A","Herzlich willkommen! Kommen Sie rein. Das hier ist das Wohnzimmer, es hat 25 Quadratmeter.","Welcome! Come in. This is the living room; it's 25 square metres."],
   ["B","Oh, das ist schön hell. In welche Richtung zeigen die Fenster?","Oh, it's nice and bright. Which direction do the windows face?"],
@@ -418,7 +419,7 @@ window.GS = [
 {id:"nachbar", de:"Nachbar: Lärm und ein Paket", en:"Neighbour: noise and a parcel",
  sit:"Ihr neuer Nachbar klingelt, weil er ein Paket für Sie angenommen hat. Sie sprechen auch über den Lärm am Abend.",
  sitEn:"Your new neighbour rings the bell because he has taken in a parcel for you. You also talk about the noise in the evening.",
- who:{A:"Nachbar", B:"Sie"},
+ who:{A:"Nachbar", B:"Sie"}, g:{A:"m", B:"me"},
  lines:[
   ["A","Hallo! Ich bin Herr Weber, ich wohne seit Montag über Ihnen. Ich habe heute ein Paket für Sie angenommen.","Hello! I'm Mr Weber; I've been living above you since Monday. I took in a parcel for you today."],
   ["B","Oh, wie nett, vielen Dank! Herzlich willkommen im Haus.","Oh, how kind, thank you very much! Welcome to the building."],
@@ -438,7 +439,7 @@ window.GS = [
 {id:"post", de:"Auf der Post", en:"At the post office",
  sit:"Sie holen ein Paket ab und möchten ein Päckchen ins Ausland schicken.",
  sitEn:"You're collecting a parcel and want to send a small parcel abroad.",
- who:{A:"Postmitarbeiterin", B:"Sie"},
+ who:{A:"Postmitarbeiterin", B:"Sie"}, g:{A:"f", B:"f"},
  lines:[
   ["B","Guten Tag, ich möchte ein Paket abholen. Hier ist die Benachrichtigungskarte.","Hello, I'd like to collect a parcel. Here's the notification card."],
   ["A","Darf ich bitte Ihren Ausweis sehen?","May I see your ID, please?"],
@@ -459,7 +460,7 @@ window.GS = [
 {id:"hotel", de:"Im Hotel: Einchecken und ein Problem", en:"At the hotel: checking in and a problem",
  sit:"Sie kommen im Hotel an. Später gibt es ein Problem in Ihrem Zimmer.",
  sitEn:"You arrive at the hotel. Later there's a problem in your room.",
- who:{A:"Rezeption", B:"Sie"},
+ who:{A:"Rezeption", B:"Sie"}, g:{A:"f", B:"me"},
  lines:[
   ["A","Guten Abend und herzlich willkommen im Hotel Lindenhof.","Good evening and welcome to Hotel Lindenhof."],
   ["B","Guten Abend. Ich habe ein Doppelzimmer für drei Nächte reserviert, auf den Namen [Ihr Name].","Good evening. I've booked a double room for three nights, under the name [your name]."],
@@ -480,7 +481,7 @@ window.GS = [
 {id:"zahnarzt", de:"Zahnarzt: Notfalltermin", en:"Dentist: emergency appointment",
  sit:"Sie haben seit gestern starke Zahnschmerzen und rufen beim Zahnarzt an.",
  sitEn:"You've had severe toothache since yesterday and call the dentist.",
- who:{A:"Praxis", B:"Sie"},
+ who:{A:"Praxis", B:"Sie"}, g:{A:"m", B:"me"},
  lines:[
   ["A","Zahnarztpraxis Dr. Yilmaz, guten Morgen.","Dr Yilmaz's dental practice, good morning."],
   ["B","Guten Morgen, ich habe seit gestern sehr starke Zahnschmerzen und brauche dringend einen Termin.","Good morning, I've had very bad toothache since yesterday and urgently need an appointment."],
@@ -501,7 +502,7 @@ window.GS = [
 {id:"abschied", de:"Kollegen planen eine Abschiedsfeier", en:"Colleagues plan a leaving party",
  sit:"Ihre Kollegin Frau Weber geht in Rente. Sie planen mit einem Kollegen eine kleine Feier (wie B1 Sprechen, Teil 3).",
  sitEn:"Your colleague Ms Weber is retiring. You plan a small party with a colleague (like B1 speaking part 3).",
- who:{A:"Tom", B:"Sie"},
+ who:{A:"Tom", B:"Sie"}, g:{A:"m", B:"me"},
  lines:[
   ["A","Frau Weber geht Ende des Monats in Rente. Wollen wir zusammen eine kleine Feier organisieren?","Ms Weber is retiring at the end of the month. Shall we organise a small party together?"],
   ["B","Gute Idee! Wann sollen wir feiern?","Good idea! When shall we celebrate?"],
