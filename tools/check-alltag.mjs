@@ -1,6 +1,7 @@
 // Checks gespraeche-data.js and briefe-data.js:  node tools/check-alltag.mjs
 // At least ten of each; every line and letter part has German and English;
-// dialogues use only their two roles; letters have a greeting, body and close.
+// dialogues use only their two roles, each with a gender (m / f / me);
+// letters have a greeting, body and close.
 import { readFileSync } from "node:fs";
 
 const window = {};
@@ -21,6 +22,7 @@ for (const d of window.GS) {
     if (/"/.test(g)) fail(w, "line " + (i + 1) + " has a straight quote");
   });
   if (!d.tips || d.tips.length < 3) fail(w, "fewer than 3 key phrases");
+  if (!d.g || !["m", "f", "me"].includes(d.g.A) || !["m", "f", "me"].includes(d.g.B)) fail(w, "roles need a gender g:{A,B} of m / f / me");
 }
 for (const d of window.BR) {
   const w = "Brief " + d.id;
