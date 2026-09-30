@@ -5,7 +5,8 @@
 import { readFileSync } from "node:fs";
 
 const window = {};
-new Function("window", readFileSync(new URL("../grammatik-data.js", import.meta.url), "utf8"))(window);
+for (const f of ["../grammatik-data.js", "../grammatik-en.js"])
+  new Function("window", readFileSync(new URL(f, import.meta.url), "utf8"))(window);
 let bad = 0, items = 0, sentences = 0;
 const fail = (w, m) => { bad++; console.log("✗ " + w + ": " + m); };
 for (const t of window.GD) {
@@ -20,6 +21,7 @@ for (const t of window.GD) {
     sentences += it.ex.length;
     it.ex.forEach(([why, de, en], i) => {
       if (!why || !de || !en) fail(where, "example " + (i + 1) + " is missing a field");
+      if (why && !window.GDEN[why]) fail(where, "example " + (i + 1) + " label has no English in grammatik-en.js");
       if (!/\[\[[^\]]+\]\]/.test(de)) fail(where, "example " + (i + 1) + " marks no word");
       if ((de.match(/\[\[/g) || []).length !== (de.match(/\]\]/g) || []).length) fail(where, "unbalanced [[ ]]");
       if (/"/.test(de)) fail(where, "straight quote in the sentence breaks the word popup");

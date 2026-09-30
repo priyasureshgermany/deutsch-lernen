@@ -1,5 +1,8 @@
 # Releases
 
+## 1.10.1 — 2026-09-30
+- Grammatik: tapping EN on an example now also shows the English of its orange label (all 1,113 examples), under the label; hidden until EN is tapped
+
 ## 1.10.0 — 2026-09-30
 - Grammatik: every entry in the lists shows its English on the right (Präsens → present tense, aus → from, out of …), the hint moves under the German word, the group headings have English too, and the English also appears under the heading of an opened entry
 

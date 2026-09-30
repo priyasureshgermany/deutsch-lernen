@@ -63,6 +63,7 @@ main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
 .enb{font:inherit;font-size:12px;font-weight:700;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:2px 10px;cursor:pointer}
 .en{display:none;color:var(--muted);font-style:italic;margin-top:6px;font-size:15px}
 .ex.en-on .en{display:block}
+.en.whyen{margin:-2px 0 6px 28px;font-size:13px}
 .say{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--b1);background:transparent;color:var(--b1);cursor:pointer;padding:0;flex:none}
 .say::before{content:"";width:0;height:0;border-left:9px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
 .say.on{background:var(--b1);color:#fff}
@@ -105,6 +106,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 </main>
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="p1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
 <script src="grammatik-data.js"></script>
+<script src="grammatik-en.js"></script>
 <script src="translate.js"></script>
 <script>
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
@@ -133,7 +135,7 @@ function drawTopic(){
 function item(k){const [g,i]=k.split("-").map(Number);return topic.groups[g].items[i]}
 function card(it){
  return `<div class="dcard"><div class="dh"><h2>${esc(it.w)}</h2><span>${esc(it.tag)}</span></div>${it.en?`<div class="den" lang="en">${esc(it.en)}</div>`:""}`+it.ex.map(([why,de,en],n)=>
-  `<div class="ex"><div class="why"><span class="n">${n+1}</span><span>${esc(why)}</span></div><div class="de s" lang="de">${sentence(de)}</div><div class="acts"><button class="say" type="button" aria-label="Vorlesen" data-say="${esc(plain(de))}"></button><button class="enb" type="button">EN</button></div><div class="en">${esc(en)}</div></div>`).join("")+`</div>`}
+  `<div class="ex"><div class="why"><span class="n">${n+1}</span><span>${esc(why)}</span></div>${GDEN[why]?`<div class="en whyen" lang="en">${esc(GDEN[why])}</div>`:""}<div class="de s" lang="de">${sentence(de)}</div><div class="acts"><button class="say" type="button" aria-label="Vorlesen" data-say="${esc(plain(de))}"></button><button class="enb" type="button">EN</button></div><div class="en">${esc(en)}</div></div>`).join("")+`</div>`}
 
 /* On a wide screen the sentences go to the right; on a phone, under the word. */
 function show(k){
