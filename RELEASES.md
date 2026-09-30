@@ -1,5 +1,11 @@
 # Releases
 
+## 1.4.2 — 2026-09-30
+- New: „🔊 Stimmen“ in Gespräche — lists the German voices on your device, lets you hear each one and choose Mann 1, Mann 2, Frau 1 and Frau 2 yourself
+- Better: dialogues look like a chat — one person on the left, the other on the right, blue for men and pink for women
+- Fix: a man no longer speaks with a woman's voice at almost the same pitch; the pitch fallback is much stronger
+- Fix: all seven tabs fit on a phone
+
 ## 1.4.1 — 2026-09-30
 - Better: Gespräche speak with a male voice for men and a female voice for women, and two different voices when both speakers are men or both women; with only one voice on the phone, the pitch tells them apart
 - New: „Meine Stimme: Mann / Frau“ in Gespräche, and ♂ / ♀ beside each speaker
