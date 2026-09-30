@@ -2,7 +2,7 @@
    Every page is served from one cache, which nothing replaces on its own:
    installing a newer worker only adds files that are missing. The Update
    button in the top bar clears the cache and reloads. */
-const VERSION = "1.9.0";
+const VERSION = "1.9.1";
 const CACHE = "deutsch-lernen-shell";
 
 const FILES = [
@@ -59,7 +59,9 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.open(CACHE).then((cache) =>
       cache.match(req, { ignoreSearch: true }).then((hit) => hit ||
-        fetch(req).then((res) => {
+        /* Not cached (just after an update): ask the server, never the
+           browser's own HTTP cache, or an old file could slip back in. */
+        fetch(req.mode === "navigate" ? req : new Request(req.url, { cache: "no-cache", credentials: "same-origin" })).then((res) => {
           if (res && res.ok) cache.put(req, res.clone());
           return res;
         }).catch(() => req.mode === "navigate" ? cache.match("./index.html") : undefined)))
