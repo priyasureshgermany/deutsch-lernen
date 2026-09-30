@@ -1,5 +1,9 @@
 # Releases
 
+## 1.9.0 — 2026-09-30
+- New: translator icon next to the version — type a word or sentence in German or English and it is translated into the other language (only these two); ⇄ turns the direction round, 🔊 reads either side aloud, Kopieren copies the result
+- Full screen: the round exit button and its edge tab sit higher, clear of the iPhone's home-swipe strip, so swiping and bringing it back work there; the tab is bigger
+
 ## 1.8.1 — 2026-09-30
 - Full screen: swipe the round button to the right to tuck it away, as in the expense tracker; the small tab on the edge brings it back (remembered)
 
