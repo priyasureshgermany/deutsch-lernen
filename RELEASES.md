@@ -1,5 +1,8 @@
 # Releases
 
+## 1.5.2 — 2026-09-30
+- New: 12 more Hören scenes (now 26) — bus diversion, train cancelled with replacement buses, museum tour, voicemails from the property management and the Kita, radio news, supermarket checkout, pharmacy, booking a Bürgeramt appointment by phone, flat viewing, lunch in the canteen, moving a doctor's appointment
+
 ## 1.5.1 — 2026-09-30
 - New: read along – the sentence turns light blue as far as it has been spoken, in Hören (with the text shown), Gespräche and Briefe; the line being spoken stays in view
 
