@@ -149,9 +149,10 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="ph1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
 <script src="translate.js"></script>
 <script src="karten.js"></script>
+<script src="exam.js"></script>
 <script>
 const S=[
-{de:"Leseverstehen",en:"Reading",info:"3 Teile · zusammen mit Sprachbausteinen 90 Minuten",infoEn:"3 parts · 90 minutes together with Language elements",parts:[
+{de:"Leseverstehen",en:"Reading",info:"3 Teile · zusammen mit Sprachbausteinen 90 Minuten · 75 Punkte",infoEn:"3 parts · 90 minutes together with Language elements · 75 points",parts:[
 {t:"Teil 1 – Globalverstehen",te:"Part 1 – Gist",
  intro:"Lesen Sie die Überschriften a bis j und die fünf Texte. Welche Überschrift passt zu welchem Text? Fünf Überschriften bleiben übrig.",
  introEn:"Read headlines a to j and the five texts. Which headline fits which text? Five headlines are left over.",
@@ -198,7 +199,7 @@ const S=[
 ["You want to do sport outdoors in a group at the weekend.","Sie möchten am Wochenende in einer Gruppe draußen Sport machen.","","","h) Laufgruppe am Sonntag","h) Sunday running group"],
 ["You're looking for a flat and have a cat.","Sie suchen eine Wohnung und haben eine Katze.","","","x – in Anzeige f) sind keine Haustiere erlaubt.","x – advert f) allows no pets."],
 ["You want to learn to cook dishes without meat.","Sie möchten lernen, Gerichte ohne Fleisch zu kochen.","","","d) vegetarischer Kochkurs","d) vegetarian cooking course"]]}]},
-{de:"Sprachbausteine",en:"Language elements",info:"2 Teile · Grammatik und Wortschatz · in den 90 Minuten enthalten",infoEn:"2 parts · grammar and vocabulary · within the 90 minutes",parts:[
+{de:"Sprachbausteine",en:"Language elements",info:"2 Teile · Grammatik und Wortschatz · in den 90 Minuten enthalten · 30 Punkte",infoEn:"2 parts · grammar and vocabulary · within the 90 minutes · 30 points",parts:[
 {t:"Teil 1 – Grammatik",te:"Part 1 – Grammar",
  intro:"Lesen Sie den Brief. Welches Wort passt in die Lücke: a, b oder c?",
  introEn:"Read the letter. Which word fits the gap: a, b or c?",
@@ -229,7 +230,7 @@ const S=[
 ["Gap 18","(18)","","","i) geben – Bescheid geben = let someone know","i) geben – “Bescheid geben” = let someone know"],
 ["Gap 19","(19)","","","c) für – danken für","c) für – thanks for"],
 ["Gap 20","(20)","","","d) Grüßen – Mit freundlichen Grüßen","d) Grüßen – “Mit freundlichen Grüßen” = kind regards"]]}]},
-{de:"Hörverstehen",en:"Listening",info:"3 Teile · ca. 30 Minuten",infoEn:"3 parts · about 30 minutes",parts:[
+{de:"Hörverstehen",en:"Listening",info:"3 Teile · ca. 30 Minuten · 75 Punkte",infoEn:"3 parts · about 30 minutes · 75 points",parts:[
 {t:"Teil 1 – Globalverstehen",te:"Part 1 – Gist",hear:true,
  intro:"Sie hören fünf kurze Texte. Sie hören die Texte nur einmal. Sind die Aussagen richtig oder falsch?",
  introEn:"You hear five short texts, only once. Are the statements true or false?",rows:[
@@ -291,7 +292,7 @@ const S=[
  "Passagiere des Fluges nach Lissabon, bitte beachten Sie: Ihr Flug startet heute nicht von Gate A 22, sondern von Gate B 14. Das Boarding beginnt in 15 Minuten.",
  "Passengers on the flight to Lisbon, please note: your flight departs today not from gate A22 but from gate B14. Boarding begins in 15 minutes.",
  "Richtig – 15 Minuten = eine Viertelstunde.","True – 15 minutes = a quarter of an hour."]]}]},
-{de:"Schriftlicher Ausdruck",en:"Writing",info:"1 Brief oder E-Mail · 30 Minuten · Sie wählen eine von zwei Aufgaben",infoEn:"1 letter or email · 30 minutes · you choose one of two tasks",parts:[
+{de:"Schriftlicher Ausdruck",en:"Writing",info:"1 Brief oder E-Mail · 30 Minuten · Sie wählen eine von zwei Aufgaben · 45 Punkte",infoEn:"1 letter or email · 30 minutes · you choose one of two tasks · 45 points",parts:[
 {t:"Musterbriefe",te:"Model letters",
  intro:"Schreiben Sie einen Brief. Schreiben Sie zu allen vier Punkten. Denken Sie an Anrede, Einleitung, Schluss und Gruß.",
  introEn:"Write a letter covering all four points. Remember greeting, introduction, conclusion and sign-off.",rows:[
@@ -314,7 +315,7 @@ const S=[
 ["Asking politely","Höflich fragen","","","Könnten Sie mir bitte sagen, …? Ich möchte gern wissen, ob …","Could you please tell me …? I'd like to know whether …"],
 ["Linking ideas","Sätze verbinden","","","außerdem, deshalb, trotzdem, zum Schluss, einerseits … andererseits","also, therefore, nevertheless, finally, on the one hand … on the other hand"],
 ["Closing","Schluss","","","Informell: Ich freue mich auf deine Antwort. Viele Grüße\nFormell: Ich freue mich auf Ihre baldige Antwort. Mit freundlichen Grüßen","Informal: Looking forward to your reply. Best wishes / Formal: I look forward to your prompt reply. Kind regards"]]}]},
-{de:"Mündlicher Ausdruck",en:"Speaking",info:"3 Teile · ca. 15 Minuten · meist zu zweit · 20 Minuten Vorbereitung",infoEn:"3 parts · about 15 minutes · usually in pairs · 20 minutes preparation",parts:[
+{de:"Mündlicher Ausdruck",en:"Speaking",info:"3 Teile · ca. 15 Minuten · meist zu zweit · 20 Minuten Vorbereitung · 75 Punkte",infoEn:"3 parts · about 15 minutes · usually in pairs · 20 minutes preparation · 75 points",parts:[
 {t:"Teil 1 – Kontaktaufnahme",te:"Part 1 – Getting to know each other",
  intro:"Sie und Ihr Partner lernen sich kennen. Stellen Sie Fragen und erzählen Sie von sich.",
  introEn:"You and your partner get to know each other. Ask questions and talk about yourself.",rows:[
@@ -350,6 +351,19 @@ const S=[
 ["Share tasks","Aufgaben verteilen","","","Also, ich kümmere mich um das Geschenk, und du schreibst die Einladung an alle. Einverstanden?","So, I'll take care of the gift and you write the invitation to everyone. Agreed?"],
 ["Summarise","Zusammenfassen","","","Gut, dann machen wir es so: Donnerstag um 16 Uhr im Konferenzraum, mit Buffet und einem Gutschein als Geschenk.","Good, so that's the plan: Thursday at 4 pm in the conference room, with a buffet and a voucher as a gift."]]}]}
 ];
+/* Exam facts – telc Deutsch B1 (Zertifikat Deutsch): 225 written + 75 oral
+   points; each of the two must reach 60 % on its own. */
+const EXAM={rows:[
+ ["Schriftlich","225 Punkte · Lesen + Sprachbausteine 90 Min., Hören ca. 30 Min., Schreiben 30 Min."],
+ ["Mündlich","75 Punkte · ca. 15 Minuten zu zweit, 20 Minuten Vorbereitung"],
+ ["Gesamt","300 Punkte"],
+ ["Bestanden","schriftlich ab 135 und mündlich ab 45 Punkten – jeder Teil für sich (60 %)"]],
+ skills:[
+ {time:"90 Minuten mit Sprachbausteinen",pts:"75 Punkte",parts:[{n:5,per:5},{n:5,per:5},{n:10,per:2.5}]},
+ {time:"in den 90 Minuten",pts:"30 Punkte",parts:[{n:10,per:1.5},{n:10,per:1.5}]},
+ {time:"ca. 30 Minuten",pts:"75 Punkte",parts:[{n:5,per:5,play:"1× hören"},{n:10,per:2.5,play:"2× hören"},{n:5,per:5,play:"2× hören"}]},
+ {time:"30 Minuten",pts:"45 Punkte",parts:[{whole:45,each:"45 Punkte für den Brief",note:"ein Brief – bewertet: alle Leitpunkte behandelt, passendes Register, sinnvoll gegliedert"},{none:true,note:"Redemittel zum Schreiben"}]},
+ {time:"ca. 15 Minuten + 20 Min. Vorbereitung",pts:"75 Punkte",parts:[{whole:15},{whole:30},{whole:30}]}]};
 
 function FB(t,single){const e=encodeURIComponent(t);const a=(u,l)=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`;
  return `<div class="fb">Nachschlagen: ${a("https://translate.google.com/?sl=de&tl=en&op=translate&text="+e,"Google Übersetzer")} · ${a("https://www.deepl.com/translator#de/en/"+e,"DeepL")}${single?" · "+a("https://www.dict.cc/?s="+e,"dict.cc"):""}</div>`}
@@ -369,6 +383,7 @@ S.forEach((sk,si)=>{const id="s"+si;
   const hasTx=p.rows.some(r=>r[2]);
   h+=`<div class="part"><h3>${esc(p.t)}<span class="en">${esc(p.te)}</span></h3>`;
   h+=`<div class="intro"><div class="blk"><span class="s" lang="de">${de(p.intro)}</span>${SAY}</div><div class="en-line c-en">${esc(p.introEn)}</div></div>`;
+  h+=Exam.line(EXAM.skills[si].parts[pi]);
   if(p.text)h+=`<div class="ttext"><div class="lab">${p.hear?"Hörtext":"Text"}</div><div class="blk${p.hear?" rv hear":""}">${block(p.text,p.textEn)}</div></div>`;
   h+=`<div class="wrap"><table><thead><tr><th>#</th><th class="c-en">English</th><th class="c-de">Aufgabe</th>${hasTx?`<th class="c-tx">${p.hear?"Hörtext":"Text"}</th>`:""}<th class="c-ans">Lösung</th></tr></thead><tbody>`;
   p.rows.forEach((r,j)=>{
@@ -379,6 +394,7 @@ S.forEach((sk,si)=>{const id="s"+si;
  h+=`</section>`});
 const main=document.getElementById("main"),nav=document.getElementById("nav");
 main.innerHTML=h;nav.innerHTML=n;
+document.querySelector("header.hero").insertAdjacentHTML("beforeend",Exam.overview(EXAM,S));
 document.querySelectorAll(".tg[data-k]").forEach(b=>b.onclick=()=>{const on=b.getAttribute("aria-pressed")==="true";b.setAttribute("aria-pressed",String(!on));document.body.classList.toggle("hide-"+b.dataset.k,on)});
 const pr=document.getElementById("pr");
 pr.onclick=()=>{const on=pr.getAttribute("aria-pressed")!=="true";pr.setAttribute("aria-pressed",String(on));document.body.classList.toggle("practice",on);resetAll()};
@@ -479,7 +495,8 @@ const K=Karten({mount:main,
  start:()=>{const top=document.querySelector(".bar").getBoundingClientRect().bottom;
   const tr=[...main.querySelectorAll("tr[data-i]")].find(t=>t.getBoundingClientRect().bottom>top+8);return tr?+tr.dataset.i:0},
  render:examCard,
- info:d=>{const p=S[d.si].parts[d.pi];return `<b>${esc(p.t)}</b><div><span class="s" lang="de">${de(p.intro)}</span>${SAY}</div><div class="en-line c-en">${esc(p.introEn)}</div>`},
+ meta:d=>Exam.strip(EXAM,S,d),
+ info:d=>{const p=S[d.si].parts[d.pi];return Exam.info(EXAM,S,d,`<div><span class="s" lang="de">${de(p.intro)}</span>${SAY}</div><div class="en-line c-en">${esc(p.introEn)}</div>`)},
  leave:()=>{stopSay();closePop();clearPick();if(multi)renderPick()},
  close:(d,n)=>{const tr=main.querySelector(`tr[data-i="${n}"]`);if(tr)tr.scrollIntoView({block:"center"})},
  tools:[
