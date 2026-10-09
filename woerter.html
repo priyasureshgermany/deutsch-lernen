@@ -147,7 +147,22 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--b1);outline-offset:
  .legend{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.legend::-webkit-scrollbar{display:none}.chip{flex:none}.legend .hint,.legend .br{display:none}
  .bar-inner{gap:6px}.seg button,.tg{font-size:13px;padding:4px 9px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* Cards (karten.js): one sentence per screen. */
+.fc-card .card{border:none;padding:0;margin:0}
+.fc-card .para{font-size:1.25em;line-height:2}
+.fc-card .card[data-lvl="B1"] .para{line-height:2.2}
+.fc-card .fc-en{display:none}
+body.show-en .fc-card .fc-en{display:block}
+.fc-card .srow{font-size:max(13px,.7em)}
+.fc-card .fc-kick{text-transform:none;letter-spacing:0}
+.fc-card .fc-kick .lvl{margin-right:.4em}
+.fc-card .say[hidden]{display:none}
+.fc-pal{margin-bottom:.6em}
+.fc-pal .seg{display:inline-flex;flex-wrap:wrap;margin-bottom:6px}
+.fc-pal .legend{margin:0;flex-wrap:wrap;overflow:visible}
+.fc-pal .legend .hint{display:none}
 </style>
+<link rel="stylesheet" href="karten.css">
 </head>
 <body class="m-pos">
 <header class="hero">
@@ -178,6 +193,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--b1);outline-offset:
 <script src="woerter-data.js"></script>
 <script src="woerter-lex.js"></script>
 <script src="translate.js"></script>
+<script src="karten.js"></script>
 <script>
 /* ---- what the tags mean ---- */
 const POSL={N:["Nomen","noun"],V:["Verb","verb (conjugated)"],VT:["Verbteil","verb part: infinitive, participle or prefix"],P:["Pronomen","pronoun"],A:["Artikel","article / determiner"],J:["Adjektiv","adjective"],ADV:["Adverb","adverb"],PR:["Präposition","preposition"],PA:["Präposition + Artikel","preposition fused with article"],K:["Konjunktion","conjunction"],Z:["Zahlwort","numeral"],T:["Partikel","particle"]};
@@ -421,6 +437,42 @@ main.addEventListener("click",e=>{
  openFor(tk)});
 document.getElementById("fill").onclick=()=>{if(quiz)return;TKEL.forEach(el=>el.classList.add("on"))};
 document.getElementById("clear").onclick=()=>{closePop();TKEL.forEach(el=>el.classList.remove("on","done"))};
+
+/* ---- Karten (karten.js): one sentence per screen ----
+   A card is a copy of the sentence in the list, so the colours, filters and
+   "Alle färben" of the list show on it; a word coloured on the card is
+   coloured in the list too. The palette icon brings the colour views and
+   their legend onto the card. */
+let wPal=false;
+const segEl=document.querySelector(".seg"),segHome=[segEl.parentNode,segEl.nextSibling],legHome=[legend.parentNode,legend.nextSibling];
+const sents=()=>[...main.querySelectorAll(".card .sent")].filter(x=>x.offsetParent&&!x.closest(".fc"));
+const tokOf=sent=>TOK[+sent.querySelector(".tk").dataset.i];
+const K=Karten({mount:main,
+ deck:()=>sents().map(el=>{const k=tokOf(el),[ti,pi]=k.sid.split("-").map(Number),lvl=WD[ti].p[pi].lvl;
+  return {part:`${ti+1}. ${WD[ti].de} · ${lvl}`,key:ti+"-"+pi,group:ti+"-"+pi,el,ti,pi,lvl,k}}),
+ start:D=>{const top=document.querySelector(".bar").getBoundingClientRect().bottom;
+  const n=D.findIndex(d=>d.el.getBoundingClientRect().bottom>top+8);return n<0?0:n},
+ render:d=>{const sb=satzbau([[d.k.sen,d.k.senEn]]).replace(/^<div class="rule">[\s\S]*?<\/div>/,"");
+  return `${wPal?'<div class="fc-pal"></div>':""}<div class="fc-kick"><span class="lvl ${d.lvl}">${d.lvl}</span>${esc(WD[d.ti].de)}</div>
+  <div class="card" data-lvl="${d.lvl}"><p class="para" lang="de">${d.el.outerHTML}</p>
+  <div class="fc-en" lang="en">${esc(d.k.senEn)}</div>
+  <button class="say" type="button" data-para aria-label="Satz vorlesen" hidden></button>
+  <details data-keep="sb"><summary>Satzbau</summary><div class="fc-box">${sb}</div></details></div>`},
+ shown:(d,i,body)=>{const pal=body.querySelector(".fc-pal");if(pal){pal.append(segEl,legend)}},
+ leave:()=>{closePop();stopSay();segHome[0].insertBefore(segEl,segHome[1]);legHome[0].insertBefore(legend,legHome[1])},
+ close:d=>d.el.scrollIntoView({block:"center"}),
+ tools:[
+  {id:"play",icon:"play",label:"Satz vorlesen",color:"var(--b1)",click:k=>{const b=k.body.querySelector("[data-para]");if(b)b.click()}},
+  {id:"en",icon:"en",label:"Englisch",color:"var(--muted)",pressed:()=>document.body.classList.contains("show-en"),click:()=>enB.click()},
+  {id:"pal",icon:"palette",label:"Farben nach …",color:"var(--a2)",pressed:()=>wPal,click:k=>{wPal=!wPal;k.redraw()}},
+  {id:"fill",icon:"brush",label:"Alle färben",click:k=>{if(quiz)return;k.item.el.querySelectorAll(".tk").forEach(x=>x.classList.add("on"));k.redraw()}},
+  {id:"clear",icon:"eraser",label:"Leeren",click:k=>{closePop();k.item.el.querySelectorAll(".tk").forEach(x=>x.classList.remove("on","done"));k.redraw()}}]});
+document.querySelector(".bar-inner").prepend(K.button);
+/* A word coloured or opened on the card: the same in the list. A new view or
+   a legend filter: draw the card again from the list. */
+K.body.addEventListener("click",e=>{const tk=e.target.closest(".tk");
+ if(tk)setTimeout(()=>{const el=TKEL[+tk.dataset.i];["on","done"].forEach(c=>el.classList.toggle(c,tk.classList.contains(c)))});
+ if(e.target.closest(".seg button,.legend .chip"))setTimeout(()=>{K.redraw()})});
 </script>
 </body>
 </html>

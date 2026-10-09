@@ -84,7 +84,22 @@ body.no-tts .say,body.no-tts #sp{display:none}
 button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
 @media (max-width:760px){.bar,main,header.hero{padding-left:14px;padding-right:14px}.split{display:block}.detail{display:none}.de{font-size:18px}}
 @media (min-width:761px){.inl{display:none}}
+/* Cards button (karten.js) in front of the topics. */
+.bar{display:flex;align-items:center;gap:8px}
+.bar .topics{flex:1;min-width:0;margin:0}
+/* A card: one example sentence of the open topic, sized by karten.js. */
+.fc-card .why{font-size:max(12px,.65em)}
+.fc-card .why .n{width:1.6em;height:1.6em;font-size:max(11px,.55em)}
+.fc-card .en.whyen{font-size:max(12px,.6em);margin-left:0}
+.fc-card .ex{border:none;padding:0}
+.fc-card .de{font-size:1.2em;line-height:1.35;font-weight:700}
+.fc-card .en{font-size:.85em}
+.fc-card .fc-kick{text-transform:none;letter-spacing:0}
+.fc-card .fc-kick b{color:var(--b1);font-size:1.25em}
+/* Übungsmodus: the English stays, the German is to be said first. */
+.fc.fc-pr .fc-card .en{display:block}
 </style>
+<link rel="stylesheet" href="karten.css">
 </head>
 <body>
 <header class="hero">
@@ -105,6 +120,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
  <p class="empty" id="empty">Nichts gefunden.</p>
 </main>
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="p1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
+<script src="karten.js"></script>
 <script src="grammatik-data.js"></script>
 <script src="grammatik-en.js"></script>
 <script src="translate.js"></script>
@@ -204,6 +220,24 @@ document.querySelector("main").addEventListener("click",e=>{
  const sb=e.target.closest(".say");if(sb){speak(sb,sb.dataset.say);return}
  const eb=e.target.closest(".enb");if(eb){eb.closest(".ex").classList.toggle("en-on");return}
  const w=e.target.closest(".w");if(w)lookup(w)});
+
+/* ---- Karten (karten.js): one example per screen, through the open topic ---- */
+let gEn=false;
+const K=Karten({mount:document.querySelector("main"),
+ deck:()=>topic.groups.flatMap((g,gi)=>g.items.flatMap((it,ii)=>it.ex.map((x,n)=>({part:it.w+(it.en?" · "+it.en:""),key:gi+"-"+ii,group:topic.id,it,n})))),
+ start:D=>open===null?0:Math.max(0,D.findIndex(d=>d.key===open)),
+ render:d=>{const [why,de,en]=d.it.ex[d.n];
+  return `<div class="fc-kick"><b>${esc(d.it.w)}</b> · ${esc(d.it.tag)}${d.it.en?` · <span lang="en">${esc(d.it.en)}</span>`:""}</div>
+  <div class="ex${gEn?" en-on":""}"><div class="why"><span class="n">${d.n+1}</span><span>${esc(why)}</span></div>${GDEN[why]?`<div class="en whyen" lang="en">${esc(GDEN[why])}</div>`:""}
+  <div class="fc-hide"><div class="de s" lang="de">${sentence(de)}</div></div><div class="acts"><button class="say" type="button" aria-label="Vorlesen" data-say="${esc(plain(de))}"></button><button class="enb" type="button">EN</button></div><div class="en">${esc(en)}</div></div>`},
+ info:()=>`<b>${esc(topic.de)}</b> · <i>${esc(topic.en)}</i><div>${esc(topic.intro)}</div>`,
+ leave:()=>{closePop();stopSay()},
+ close:d=>{const b=listEl.querySelector(`[data-k="${d.key}"]`);if(b)b.scrollIntoView({block:"center"})},
+ tools:[
+  {id:"play",icon:"play",label:"Abspielen",color:"var(--b1)",click:k=>{const b=k.body.querySelector(".say");if(b)speak(b,b.dataset.say)}},
+  {id:"en",icon:"en",label:"Englisch",color:"var(--muted)",pressed:()=>gEn,click:k=>{gEn=!gEn;k.redraw()}},
+  {builtin:"practice"}]});
+document.querySelector(".bar").prepend(K.button);
 
 drawTopic();
 </script>

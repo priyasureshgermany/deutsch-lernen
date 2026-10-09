@@ -1,5 +1,10 @@
 # Releases
 
+## 1.13.0 — 2026-10-09
+- New: Karten in every section, not only A1 – the cards icon (first in each tool bar; top right in Gespräche, Briefe and Hören) shows one item per screen, fitted to the screen: B1 and Themen one question, Wörter one sentence (colour views, fill, clear and Satzbau on the card), Grammatik one example, Gespräche one line in the speaker's voice, Briefe one part, Hören one question with the scene's player
+- Karten: Übungsmodus in Grammatik, Gespräche and Briefe hides the German and keeps the English – say it, then tap
+- Karten: in Hören the scene keeps playing while you move between its questions, and your answers stay
+
 ## 1.12.1 — 2026-10-09
 - A1 Karten: each card now fits the screen — the text size adjusts so nothing needs scrolling; the app's header and tab bar step aside while cards are open
 - A1 Karten: the bottom bar is a small glass pill with only ‹ › — double-tap ‹ for the first question, › for the last; tap the counter for Erste / Letzte and the part chooser
