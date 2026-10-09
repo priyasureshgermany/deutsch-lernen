@@ -1,5 +1,8 @@
 # Releases
 
+## 1.16.0 — 2026-10-09
+- New: Modelltests for A1 and B1 – three whole exams per level (Test button next to the cards). Strict timer per part like the real exam (handed in when the time is up), recordings play only as often as in the exam, then your marks with the real scoring (A1 out of 75 written points, B1 out of 225), pass or fail, and for every mistake the right answer and why. Writing: model answer and the marking criteria to score yourself. A running test survives a reload.
+
 ## 1.15.2 — 2026-10-09
 - Fix: taps on iPhone. Safari no longer treats two quick taps as a zoom gesture anywhere in the app, so the second tap always counts (a word tapped twice in Wörter, ▶ again, quick tool switches in Karten); an open ⓘ panel closes and the tap still works; text in a card no longer grows and jumps after a tap; hover highlights don't stick after a tap
 

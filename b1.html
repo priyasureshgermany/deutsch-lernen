@@ -127,6 +127,7 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 @media (max-width:520px){.tg .lg{display:none}.tg .sm{display:inline}.tg{font-size:13px;padding:5px 10px}.toggles{gap:5px}}
 </style>
 <link rel="stylesheet" href="karten.css">
+<link rel="stylesheet" href="test.css">
 </head>
 <body>
 <header class="hero">
@@ -151,6 +152,8 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 <script src="karten.js"></script>
 <script src="me.js"></script>
 <script src="exam.js"></script>
+<script src="test.js"></script>
+<script src="test-b1.js"></script>
 <script>
 const S=[
 {de:"Leseverstehen",en:"Reading",info:"3 Teile · zusammen mit Sprachbausteinen 90 Minuten · 75 Punkte",infoEn:"3 parts · 90 minutes together with Language elements · 75 points",parts:[
@@ -511,6 +514,9 @@ const K=Karten({mount:main,
   {id:"pr",icon:"practice",label:"Übungsmodus",color:"var(--ink)",pressed:()=>document.body.classList.contains("practice"),click:()=>pr.click()},
   {id:"mw",icon:"multi",label:"Mehrere Wörter",color:"var(--a2)",pressed:()=>multi,click:()=>mw.click()}]});
 document.querySelector(".toggles").prepend(K.button);
+/* ---- Modelltests (test.js): whole exams with a strict timer and marks ---- */
+const TZ=Pruefung({mount:main,level:"B1",tests:window.TESTS_B1,rate:()=>rate,scale:{factor:1,max:225,pass:135,rawLabel:"Punkten",note:"Die mündliche Prüfung (75 Punkte) ist nicht Teil dieses Tests. In der echten Prüfung müssen schriftlich (ab 135 von 225) und mündlich (ab 45 von 75) jeweils 60 % erreicht werden."}});
+K.button.after(TZ.button);
 document.getElementById("px").addEventListener("click",K.sync);
 
 /* ---- search ---- */
