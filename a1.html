@@ -121,6 +121,64 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 .tr{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--ans);color:var(--muted);font-style:italic}
 .tip{font-size:14px;color:var(--muted);max-width:70ch}
 .fb{margin-top:6px;font-size:15px}.fb a{color:var(--b1);font-weight:700}
+
+/* ---- Karten: one question per screen (off by default; the icon in the bar switches) ---- */
+.ib{font:inherit;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-width:44px;height:44px;padding:0 6px;border:none;border-radius:12px;background:transparent;color:var(--ink);cursor:pointer;flex:none}
+.ib svg{width:24px;height:24px;flex:none}
+.ib small{font-size:11px;font-weight:700;line-height:1;color:var(--muted)}
+.ib[aria-pressed="true"]{background:var(--c,var(--b1));color:#fff}
+.ib[aria-pressed="true"] small{color:#fff}
+.ib:disabled{opacity:.3;cursor:default}
+#cardsBtn{border:2px solid var(--ink);height:36px;width:44px;border-radius:999px}
+#cardsBtn svg{width:22px;height:22px}
+body.cards{overflow:hidden}
+#fc{position:fixed;inset:0;z-index:15;background:var(--paper);display:flex;flex-direction:column;
+ padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+#fc[hidden]{display:none}
+.fc-top{display:flex;align-items:center;gap:4px;padding:6px 8px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.fc-top::-webkit-scrollbar{display:none}
+.fc-top .sp{flex:1 1 0;min-width:4px}
+#fcPlay{--c:var(--b1)}#fcEn{--c:var(--en)}#fcAns{--c:var(--ans)}#fcPr{--c:var(--ink)}#fcMw{--c:var(--a2)}
+#fcPart{font:inherit;font-size:15px;font-weight:700;color:var(--ink);background:var(--surface);border:none;border-radius:10px;padding:0 10px;height:40px;max-width:100%;min-width:0}
+.fc-sel{padding:8px 12px 0;display:flex}
+.fc-sel #fcPart{flex:1}
+#fcBody{flex:1;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;padding:14px 16px 24px}
+.fc-card{max-width:760px;margin:0 auto;font-size:clamp(19px,4.8vw,23px);line-height:1.5}
+.fc-card.in-l{animation:fcL .22s ease-out}.fc-card.in-r{animation:fcR .22s ease-out}
+@keyframes fcL{from{opacity:0;transform:translateX(48px)}}
+@keyframes fcR{from{opacity:0;transform:translateX(-48px)}}
+.fc-k{font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.fc-de{font-size:clamp(22px,6vw,30px);font-weight:700;line-height:1.35}
+.fc-en{color:var(--en);font-style:italic;margin-top:8px}
+.fc-card .say{width:34px;height:34px}
+.fc-card .say::before{border-left-width:11px;border-top-width:7px;border-bottom-width:7px}
+.fc-card .trb{font-size:14px;padding:4px 12px;margin-top:8px}
+.fc-box{border:2px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:16px}
+.fc-box .lab{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:4px}
+.fc-box.tx{border-color:var(--a2)}.fc-box.tx .lab{color:var(--a2)}
+.fc-box.c-ans{border-color:var(--ans);background:var(--ansbg)}.fc-box.c-ans .lab{color:var(--ans)}
+.fc-box .ln + .ln{margin-top:4px}
+.fc-card details{margin-top:12px;font-size:17px}
+.fc-card summary{cursor:pointer;font-weight:700;color:var(--b1);font-size:15px;padding:4px 0}
+.fc-card details .en-line{color:var(--muted);font-style:italic;font-size:15px;margin-top:4px}
+.fc-card details .blk{border:2px solid var(--line);border-radius:12px;padding:10px 12px;margin-top:6px}
+.fc-nav{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:6px 10px;border-top:1px solid var(--line);background:var(--surface)}
+.fc-nav .ib{width:52px;height:48px}
+.fc-nav .ib svg{width:28px;height:28px}
+#fcCnt{flex:1;text-align:center;font-weight:700;font-size:17px;line-height:1.2}
+#fcCnt small{display:block;font-size:12px;color:var(--muted);font-weight:400}
+.fc-hint{text-align:center;font-size:13px;color:var(--muted);margin-top:22px}
+/* Phone on its side: question left, text and solution right, slimmer bars. */
+@media (orientation:landscape) and (max-height:540px){
+ .ib small{display:none}
+ .ib{height:38px}.fc-top{padding:3px 8px}.fc-nav{padding:2px 10px}.fc-nav .ib{height:40px}
+ #fcBody{padding:10px 16px 14px}
+ .fc-card{max-width:1100px;display:grid;grid-template-columns:1fr 1fr;gap:0 22px;align-items:start}
+ .fc-a > .fc-box:first-child{margin-top:0}
+ .fc-hint{display:none}
+ .fc-sel{display:none}#fcPart{height:34px;flex:0 1 auto}
+ .fc-card{font-size:clamp(16px,5vh,20px)}.fc-de{font-size:clamp(18px,6.5vh,26px)}
+}
 </style>
 </head>
 <body>
@@ -137,11 +195,32 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
   <button class="tg ans" data-k="ans" aria-pressed="true">Lösung</button>
   <button class="tg practice" id="pr" aria-pressed="false">Übungsmodus</button>
   <button class="tg multi" id="mw" aria-pressed="false">Mehrere Wörter</button>
+  <button class="ib" id="cardsBtn" type="button" aria-label="Karten: eine Frage pro Seite" title="Karten: eine Frage pro Seite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="7" width="13" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/></svg></button>
  </div>
 </div><nav class="topics" id="nav" aria-label="Prüfungsteile"></nav></div>
 <main id="main"></main>
 <p class="empty" id="empty">Keine Aufgabe passt zu deiner Suche.</p>
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="ph1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
+<div id="fc" hidden role="region" aria-label="Karten">
+ <div class="fc-top">
+  <button class="ib" id="fcPlay" type="button" aria-label="Abspielen"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg><small>Hören</small></button>
+  <button class="ib" id="fcEn" type="button" aria-pressed="true" aria-label="Englisch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h9M7.5 3v2M10 5c-1 4-3.5 7-6.5 8.5M5.5 8.5c1.2 2 3 3.6 5 4.5"/><path d="M12 21l4.5-10L21 21M13.6 17.5h5.8"/></svg><small>EN</small></button>
+  <button class="ib" id="fcAns" type="button" aria-pressed="true" aria-label="Lösung"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><small>Lösung</small></button>
+  <button class="ib" id="fcPr" type="button" aria-pressed="false" aria-label="Übungsmodus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/><path d="M4 20L20 4"/></svg><small>Üben</small></button>
+  <button class="ib" id="fcMw" type="button" aria-pressed="false" aria-label="Mehrere Wörter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2.5" y="8" width="8" height="8" rx="2"/><rect x="13.5" y="8" width="8" height="8" rx="2"/><path d="M10.5 12h3" stroke-dasharray="1.5 1.5"/></svg><small>Wörter</small></button>
+  <span class="sp"></span>
+  <button class="ib" id="fcClose" type="button" aria-label="Zurück zur Liste"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg><small>Liste</small></button>
+ </div>
+ <div class="fc-sel"><select id="fcPart" aria-label="Teil wählen"></select></div>
+ <div id="fcBody"></div>
+ <div class="fc-nav">
+  <button class="ib" id="fcFirst" type="button" aria-label="Erste Frage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5v14M18 6l-7 6 7 6"/></svg></button>
+  <button class="ib" id="fcPrev" type="button" aria-label="Vorige Frage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <div id="fcCnt" aria-live="polite"></div>
+  <button class="ib" id="fcNext" type="button" aria-label="Nächste Frage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  <button class="ib" id="fcLast" type="button" aria-label="Letzte Frage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 5v14M6 6l7 6-7 6"/></svg></button>
+ </div>
+</div>
 <script src="translate.js"></script>
 <script>
 const S=[
@@ -352,20 +431,20 @@ const TRB='<button class="trb" type="button">Englisch zeigen</button>';
 function de(s){return s.split("\n").map(l=>`<span class="ln">${PH(W(esc(l)))}</span>`).join("")}
 function en(s){return PH(esc(s))}
 function block(deTxt,enTxt){return `<span class="s" lang="de">${de(deTxt)}</span>${SAY}${enTxt?TRB+`<span class="tr"><span class="s" lang="en">${en(enTxt)}</span>${SAY}</span>`:""}`}
-let h="",n="";
+let h="",n="";const D=[];/* D: every question in order, for the cards */
 S.forEach((sk,si)=>{const id="s"+si;
  n+=`<a href="#${id}">${esc(sk.de)} · ${esc(sk.en)}</a>`;
  h+=`<section class="skill" id="${id}"><div class="th"><span class="n">${si+1}</span><h2>${esc(sk.de)}</h2><span class="en">${esc(sk.en)}</span></div><div class="skill-info">${esc(sk.info)} <i>(${esc(sk.infoEn)})</i></div>`;
- sk.parts.forEach(p=>{
+ sk.parts.forEach((p,pi)=>{
   const hasTx=p.rows.some(r=>r[2]);
   h+=`<div class="part"><h3>${esc(p.t)}<span class="en">${esc(p.te)}</span></h3>`;
   h+=`<div class="intro"><div class="blk"><span class="s" lang="de">${de(p.intro)}</span>${SAY}</div><div class="en-line c-en">${esc(p.introEn)}</div></div>`;
   if(p.text)h+=`<div class="ttext"><div class="lab">Text</div><div class="blk">${block(p.text,p.textEn)}</div></div>`;
   h+=`<div class="wrap"><table><thead><tr><th>#</th><th class="c-en">English</th><th class="c-de">Aufgabe</th>${hasTx?`<th class="c-tx">${p.hear?"Hörtext":"Text"}</th>`:""}<th class="c-ans">Lösung</th></tr></thead><tbody>`;
   p.rows.forEach((r,j)=>{
-   h+=`<tr data-s="${esc((r.join(" ")).toLowerCase())}"><td class="num">${j+1}</td><td class="c-en" data-l="English"><span class="s" lang="en">${en(r[0])}</span>${SAY}</td><td class="c-de" data-l="Aufgabe">${block(r[1],"")}</td>`;
+   h+=`<tr data-i="${D.length}" data-s="${esc((r.join(" ")).toLowerCase())}"><td class="num">${j+1}</td><td class="c-en" data-l="English"><span class="s" lang="en">${en(r[0])}</span>${SAY}</td><td class="c-de" data-l="Aufgabe">${block(r[1],"")}</td>`;
    if(hasTx)h+=`<td class="c-tx${p.hear?" rv hear":""}" data-l="${p.hear?"Hörtext":"Text"}">${r[2]?block(r[2],r[3]):"—"}</td>`;
-   h+=`<td class="c-ans rv" data-l="Lösung">${block(r[4],r[5])}</td></tr>`});
+   h+=`<td class="c-ans rv" data-l="Lösung">${block(r[4],r[5])}</td></tr>`;D.push({si,pi,j})});
   h+=`</tbody></table></div></div>`});
  h+=`</section>`});
 const main=document.getElementById("main"),nav=document.getElementById("nav");
@@ -449,12 +528,84 @@ document.getElementById("px").onclick=()=>{closePop();clearPick();if(multi){mult
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closePop()});
 
 /* ---- clicks ---- */
-main.addEventListener("click",e=>{
+function tap(e){
  const sb=e.target.closest(".say");if(sb){say(sb);return}
  const rv=e.target.closest(".rv");
  if(rv&&document.body.classList.contains("practice")&&!rv.classList.contains("shown")){rv.classList.add("shown");return}
  const tb=e.target.closest(".trb");if(tb){const c=tb.parentElement;c.classList.toggle("en-on");tb.textContent=c.classList.contains("en-on")?"Englisch ausblenden":"Englisch zeigen";return}
- const w=e.target.closest(".w");if(w){multi?pick(w):lookup(w)}});
+ const w=e.target.closest(".w");if(w){multi?pick(w):lookup(w)}}
+main.addEventListener("click",tap);
+
+/* ---- Karten: one question per screen ----
+   Not the default: the cards icon in the bar opens them at the question in view,
+   "Liste" goes back to that question in the list. The icons share their state with
+   the bar's EN / Lösung / Übungsmodus / Mehrere Wörter buttons. Swipe or arrows move;
+   first / last stay inside the current Prüfungsteil (Hören, Lesen …). */
+const fc=document.getElementById("fc"),fcBody=document.getElementById("fcBody"),fcPart=document.getElementById("fcPart"),fcCnt=document.getElementById("fcCnt");
+const $=id=>document.getElementById(id);
+let fcI=0,fcTextOpen=false;
+fcPart.innerHTML=S.map((sk,si)=>sk.parts.map((p,pi)=>`<option value="${D.findIndex(d=>d.si===si&&d.pi===pi)}">${esc(sk.de)} · ${esc(p.t)}</option>`).join("")).join("");
+function skillRange(si){let a=D.findIndex(d=>d.si===si),b=a;while(b+1<D.length&&D[b+1].si===si)b++;return[a,b]}
+function fcSync(){
+ $("fcEn").setAttribute("aria-pressed",String(!document.body.classList.contains("hide-en")));
+ $("fcAns").setAttribute("aria-pressed",String(!document.body.classList.contains("hide-ans")));
+ $("fcPr").setAttribute("aria-pressed",String(document.body.classList.contains("practice")));
+ $("fcMw").setAttribute("aria-pressed",String(multi))}
+function fcShow(i,dir){
+ if(i<0||i>=D.length)return;
+ const prevPart=D[fcI]&&D[fcI].si+"."+D[fcI].pi;
+ const t0=fcBody.querySelector(".fc-text");if(t0)fcTextOpen=t0.open;
+ fcI=i;stopSay();closePop();clearPick();if(multi)renderPick();
+ const d=D[i],sk=S[d.si],p=sk.parts[d.pi],r=p.rows[d.j],[a,b]=skillRange(d.si);
+ if(prevPart!==d.si+"."+d.pi)fcTextOpen=false;
+ fcPart.value=String(D.findIndex(x=>x.si===d.si&&x.pi===d.pi));
+ fcCnt.innerHTML=`${i-a+1} / ${b-a+1}<small>${esc(sk.de)} · Frage ${d.j+1} von ${p.rows.length}</small>`;
+ $("fcFirst").disabled=i===a;$("fcLast").disabled=i===b;$("fcPrev").disabled=i===0;$("fcNext").disabled=i===D.length-1;
+ fcBody.innerHTML=`<div class="fc-card${dir?" in-"+dir:""}"><div class="fc-q">
+  <div class="fc-k">${esc(p.t)}</div>
+  <div class="fc-de">${block(r[1],"")}</div>
+  <div class="fc-en c-en"><span class="s" lang="en">${en(r[0])}</span>${SAY}</div>
+  <details class="fc-ins"><summary>Anweisung</summary><div class="blk"><span class="s" lang="de">${de(p.intro)}</span>${SAY}<div class="en-line c-en">${esc(p.introEn)}</div></div></details>
+  ${p.text?`<details class="fc-text"${fcTextOpen?" open":""}><summary>Text lesen</summary><div class="blk">${block(p.text,p.textEn)}</div></details>`:""}
+ </div><div class="fc-a">
+  ${r[2]?`<div class="fc-box tx${p.hear?" rv hear":""}"><div class="lab">${p.hear?"Hörtext":"Text"}</div>${block(r[2],r[3])}</div>`:""}
+  <div class="fc-box c-ans rv"><div class="lab">Lösung</div>${block(r[4],r[5])}</div>
+ </div>${i===0?'<div class="fc-hint">Wische nach links oder rechts für die nächste oder vorige Frage.</div>':""}</div>`;
+ $("fcPlay").disabled=document.body.classList.contains("no-tts");
+ fcBody.scrollTop=0;fcSync()}
+function fcOpen(){
+ const top=document.querySelector(".bar").getBoundingClientRect().bottom;
+ const tr=[...main.querySelectorAll("tr[data-i]")].find(t=>t.getBoundingClientRect().bottom>top+8);
+ document.body.classList.add("cards");fc.hidden=false;fcShow(tr?+tr.dataset.i:0)}
+function fcClose(){stopSay();closePop();fc.hidden=true;document.body.classList.remove("cards");
+ const tr=main.querySelector(`tr[data-i="${fcI}"]`);if(tr)tr.scrollIntoView({block:"center"})}
+/* Sideways phone: the part chooser joins the top row so the card keeps the height. */
+const fcLand=matchMedia("(orientation:landscape) and (max-height:540px)");
+function fcPlace(){(fcLand.matches?document.querySelector(".fc-top"):document.querySelector(".fc-sel")).insertBefore(fcPart,fcLand.matches?$("fcClose"):null)}
+fcPlace();fcLand.addEventListener?fcLand.addEventListener("change",fcPlace):fcLand.addListener(fcPlace);
+$("cardsBtn").onclick=fcOpen;$("fcClose").onclick=fcClose;
+const go=k=>{const d=D[fcI],[a,b]=skillRange(d.si);
+ ({first:()=>fcShow(a,"r"),prev:()=>fcShow(fcI-1,"r"),next:()=>fcShow(fcI+1,"l"),last:()=>fcShow(b,"l")})[k]()};
+$("fcFirst").onclick=()=>go("first");$("fcPrev").onclick=()=>go("prev");$("fcNext").onclick=()=>go("next");$("fcLast").onclick=()=>go("last");
+fcPart.onchange=()=>fcShow(+fcPart.value,+fcPart.value<fcI?"r":"l");
+$("fcEn").onclick=()=>{document.querySelector('.tg[data-k="en"]').click();fcSync()};
+$("fcAns").onclick=()=>{document.querySelector('.tg[data-k="ans"]').click();fcSync()};
+$("fcPr").onclick=()=>{pr.click();fcSync()};
+$("fcMw").onclick=()=>{mw.click();fcSync()};
+document.getElementById("px").addEventListener("click",fcSync);
+/* Big play: the Hörtext when there is one, otherwise the question. */
+$("fcPlay").onclick=()=>{const b=fcBody.querySelector(".fc-box.hear > .say")||fcBody.querySelector(".fc-de .say");if(b)say(b)};
+fcBody.addEventListener("click",tap);
+/* Swipe: a mostly sideways move of 50px or more. Not while words are being picked
+   or text is selected, so marking words never turns the card. */
+let sx=null,sy=0;
+fcBody.addEventListener("touchstart",e=>{if(e.touches.length!==1){sx=null;return}sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+fcBody.addEventListener("touchend",e=>{if(sx===null)return;const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;sx=null;
+ if(Math.abs(dx)<50||Math.abs(dx)<Math.abs(dy)*1.5)return;
+ const sel=getSelection();if(sel&&String(sel).trim())return;
+ go(dx<0?"next":"prev")},{passive:true});
+document.addEventListener("keydown",e=>{if(fc.hidden||e.target.tagName==="SELECT")return;
+ const k={ArrowRight:"next",ArrowLeft:"prev",Home:"first",End:"last"}[e.key];if(k){e.preventDefault();go(k)}});
 
 /* ---- search ---- */
 const q=document.getElementById("q"),empty=document.getElementById("empty");
