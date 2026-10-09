@@ -1,5 +1,9 @@
 # Releases
 
+## 1.16.2 — 2026-10-09
+- Modelltests: every test opens on its Prüfungsteile (Hören, Lesen, Schreiben …) – start any of them in any order, come back for the rest later; a strip on every test screen shows all Prüfungsteile (✓ done, ● running, ○ to do); „Jetzt auswerten“ gives a partial result for the parts done so far
+- The tests open from a small „Test“ pill next to the exam's name (A1 · Start Deutsch 1, B1 · Zertifikat Deutsch) instead of a big card
+
 ## 1.16.1 — 2026-10-09
 - Modelltests: pause and resume (❚❚ in the top bar; leaving the test pauses it too, no time lost); every Teil has its own clock that runs only while it is open, and only that Teil is handed in when its time is up; the tests have their own card at the top of A1 and B1 instead of a button among the practice tools
 
