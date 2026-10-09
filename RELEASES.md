@@ -1,5 +1,11 @@
 # Releases
 
+## 1.12.1 — 2026-10-09
+- A1 Karten: each card now fits the screen — the text size adjusts so nothing needs scrolling; the app's header and tab bar step aside while cards are open
+- A1 Karten: the bottom bar is a small glass pill with only ‹ › — double-tap ‹ for the first question, › for the last; tap the counter for Erste / Letzte and the part chooser
+- A1 Karten: fewer words — icons only on top, ⓘ shows the instruction when wanted, small EN chips instead of „Englisch zeigen“
+- A1: on phones the Karten icon sits on the same line as EN, Lösung, Üben and Wörter
+
 ## 1.12.0 — 2026-10-09
 - New (A1): Karten – the cards icon next to „Mehrere Wörter“ shows one question per screen in large type: swipe left/right or use the bar at the bottom (first, previous, next, last, and a part chooser); icons on top for Hören ▶, EN, Lösung, Übungsmodus and Mehrere Wörter; on a phone turned sideways the question sits left and Hörtext/Lösung right. „Liste“ goes back to the normal view, which stays the default
 
