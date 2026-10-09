@@ -1,5 +1,8 @@
 # Releases
 
+## 1.12.0 — 2026-10-09
+- New (A1): Karten – the cards icon next to „Mehrere Wörter“ shows one question per screen in large type: swipe left/right or use the bar at the bottom (first, previous, next, last, and a part chooser); icons on top for Hören ▶, EN, Lösung, Übungsmodus and Mehrere Wörter; on a phone turned sideways the question sits left and Hörtext/Lösung right. „Liste“ goes back to the normal view, which stays the default
+
 ## 1.11.0 — 2026-09-30
 - New: 10 more Wörter-erkennen texts (now 30) — Feste und Feiertage, Bank und Geld, Medien und Handy, Umwelt und Natur, Deutsch lernen, each at A1 and B1 with every word tagged
 
