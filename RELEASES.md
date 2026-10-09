@@ -1,5 +1,10 @@
 # Releases
 
+## 1.16.3 — 2026-10-09
+- The Test pill is colourful: a violet–pink–orange gradient that slowly shifts, with a white exam sheet and a gold star; a paused test shows a pulsing dot
+- New: Darstellung – automatisch (like the phone) ◐, hell ☀ or dunkel ☾ for the whole app, remembered on the device
+- Tidier top bar: only the version and ⋯; ⋯ slides down a row of icons – Tempo, Darstellung, Meine Angaben, Übersetzen, Vollbild
+
 ## 1.16.2 — 2026-10-09
 - Modelltests: every test opens on its Prüfungsteile (Hören, Lesen, Schreiben …) – start any of them in any order, come back for the rest later; a strip on every test screen shows all Prüfungsteile (✓ done, ● running, ○ to do); „Jetzt auswerten“ gives a partial result for the parts done so far
 - The tests open from a small „Test“ pill next to the exam's name (A1 · Start Deutsch 1, B1 · Zertifikat Deutsch) instead of a big card
