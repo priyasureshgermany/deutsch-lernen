@@ -1,13 +1,10 @@
 /* Modelltests (test.js). Uses the section's colour tokens. */
-/* The entry: a card of its own on the page, apart from the practice tools. */
-.tz-entry{touch-action:manipulation;font:inherit;display:flex;align-items:center;gap:12px;width:100%;max-width:62ch;margin-top:12px;padding:12px 14px;border:2px solid var(--b1);border-radius:14px;
- background:color-mix(in srgb,var(--b1) 10%,var(--paper));color:var(--ink);text-align:left;cursor:pointer}
-.tz-entry>svg{width:30px;height:30px;flex:none;color:var(--b1)}
-.tz-entry span{flex:1;display:flex;flex-direction:column;min-width:0}
-.tz-entry b{font-size:17px}.tz-entry small{font-size:13px;color:var(--muted)}
-.tz-entry i{font-style:normal;font-size:26px;color:var(--b1);line-height:1}
-.tz-entry.paused{border-color:var(--a2);background:color-mix(in srgb,var(--a2) 12%,var(--paper))}
-.tz-entry.paused small{color:var(--ink);font-weight:700}
+/* The entry: a small pill next to the exam's name (the hero's label row). */
+.tz-entry{touch-action:manipulation;font:inherit;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;padding:3px 9px 3px 6px;border:1.5px solid var(--b1);border-radius:999px;background:transparent;color:var(--b1);cursor:pointer;line-height:1}
+.tz-entry>svg{width:15px;height:15px;flex:none}
+.ladder .tz-entry span{padding:0;border-radius:0;background:none;color:inherit;font-size:inherit}
+.tz-entry.paused{border-color:var(--a2);color:var(--a2)}
+.tz-entry.paused::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--a2)}
 .tz-open{touch-action:manipulation;font:inherit;font-size:13px;font-weight:800;display:inline-flex;align-items:center;gap:4px;flex:none;height:34px;padding:0 11px 0 8px;border:2px solid var(--b1);border-radius:999px;background:var(--b1);color:#fff;cursor:pointer}
 .tz-open svg{width:18px;height:18px}
 .tz{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;background:var(--paper);color:var(--ink)}
@@ -49,6 +46,14 @@ body.testing{overflow:hidden}
 .tz-tabs button small{font-weight:600;font-variant-numeric:tabular-nums;opacity:.75;margin-left:2px}
 .tz-tabs button:disabled{opacity:.45;cursor:default}
 .tz-tabs button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+/* all Prüfungsteile at a glance */
+.tz-strip{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;font-size:13px;font-weight:700;margin:0 0 10px;color:var(--muted)}
+.tz-strip span{padding:3px 9px;border-radius:999px;background:var(--surface)}
+.tz-strip span.done{background:color-mix(in srgb,var(--a1) 18%,var(--paper));color:var(--a1)}
+.tz-strip span.now{background:var(--b1);color:#fff}
+.tz-strip i{font-style:normal;opacity:.6}
+.tz-card.done{opacity:.7}
+.tz-tab tr.skip td{color:var(--muted);font-weight:400}
 .tz-pt{font-size:18px;margin:4px 0 6px}
 .tz-intro{font-size:15px;color:var(--muted);margin:0 0 10px}
 .tz-text{font-size:16px;line-height:1.5;padding:10px 12px;border-radius:10px;background:var(--surface);margin:0 0 12px}

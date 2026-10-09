@@ -516,7 +516,7 @@ const K=Karten({mount:main,
 document.querySelector(".toggles").prepend(K.button);
 /* ---- Modelltests (test.js): whole exams with a strict timer and marks ---- */
 const TZ=Pruefung({mount:main,level:"B1",tests:window.TESTS_B1,rate:()=>rate,scale:{factor:1,max:225,pass:135,rawLabel:"Punkten",note:"Die mündliche Prüfung (75 Punkte) ist nicht Teil dieses Tests. In der echten Prüfung müssen schriftlich (ab 135 von 225) und mündlich (ab 45 von 75) jeweils 60 % erreicht werden."}});
-document.querySelector("header.hero").appendChild(TZ.entry);
+document.querySelector("header.hero .ladder").appendChild(TZ.entry);
 document.getElementById("px").addEventListener("click",K.sync);
 
 /* ---- search ---- */

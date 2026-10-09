@@ -514,7 +514,7 @@ const K=Karten({mount:main,
 document.querySelector(".toggles").prepend(K.button);
 /* ---- Modelltests (test.js): whole exams with a strict timer and marks ---- */
 const TZ=Pruefung({mount:main,level:"A1",tests:window.TESTS_A1,rate:()=>rate,scale:{factor:5/3,max:75,pass:45,rawLabel:"Rohpunkten",note:"Sprechen (25 Punkte) ist nicht Teil dieses Tests. In der echten Prüfung zählt die Summe: bestanden ab 60 von 100 Punkten – hier also ab 45 von 75 Punkten (60 %) im schriftlichen Teil."}});
-document.querySelector("header.hero").appendChild(TZ.entry);
+document.querySelector("header.hero .ladder").appendChild(TZ.entry);
 document.getElementById("px").addEventListener("click",K.sync);
 
 /* ---- search ---- */
