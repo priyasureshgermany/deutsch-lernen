@@ -81,6 +81,10 @@ function Karten(o){
   while(hi-lo>.5){const m=(lo+hi)/2;c.style.setProperty("--fs",m+"px");if(ok())lo=m;else hi=m}
   c.style.setProperty("--fs",lo+"px")}
  const refit=()=>requestAnimationFrame(fit);
+ /* After a tap in the card the text may only shrink (something appeared),
+    never grow: growing moved the words under the finger, so the next tap
+    landed on another word. The next card starts fresh. */
+ const shrink=()=>requestAnimationFrame(()=>{if(body.scrollHeight>body.clientHeight+1)fit()});
  function menuOpen(on){menu.hidden=!on;cnt.setAttribute("aria-expanded",String(on))}
  function show(n,dir){
   if(n<0||n>=D.length)return;
@@ -95,7 +99,7 @@ function Karten(o){
   body.innerHTML=`<div class="fc-card${dir?" in-"+dir:""}">${o.meta?`<div class="fc-meta">${o.meta(it)}</div>`:""}${o.render(it,n)}</div>`;
   infoEl.hidden=!(infoOn&&o.info);infoEl.innerHTML=infoEl.hidden?"":o.info(it);infoEl.scrollTop=0;
   const card=body.firstElementChild;if(card.querySelector(":scope > .fc-a"))card.classList.add("two");
-  body.querySelectorAll("details[data-keep]").forEach(d=>{if(keep[d.dataset.keep])d.open=true;d.addEventListener("toggle",refit)});
+  body.querySelectorAll("details[data-keep]").forEach(d=>{if(keep[d.dataset.keep])d.open=true;d.addEventListener("toggle",shrink)});
   if(o.shown)o.shown(it,n,body);
   body.scrollTop=0;sync();fit()}
  function redraw(){show(i)}
@@ -120,12 +124,14 @@ function Karten(o){
   if(e.target.closest(".fc-cnt"))menuOpen(menu.hidden)});
  menu.addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b)go(b.dataset.go)});
  sel.onchange=()=>show(+sel.value,+sel.value<i?"r":"l");
- /* Practice: a blurred part opens on the first tap, before anything else sees it. */
+ /* Practice: a blurred part opens on the first tap, before anything else sees it.
+    An open ⓘ panel closes on a tap on the card, and the tap still does its
+    job (it used to do nothing but close the panel, which felt broken). */
  body.addEventListener("click",e=>{menuOpen(false);
-  if(infoOn){infoOn=false;infoEl.hidden=true;sync();e.stopPropagation();e.preventDefault();return}
+  if(infoOn){infoOn=false;infoEl.hidden=true;sync()}
   const h=fc.classList.contains("fc-pr")&&e.target.closest(".fc-hide:not(.shown)");
   if(h){h.classList.add("shown");e.stopPropagation();e.preventDefault()}
-  refit()},true);
+  shrink()},true);
  addEventListener("resize",refit);
  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(refit);
  /* Swipe: a mostly sideways move of 50px or more, not while text is selected. */

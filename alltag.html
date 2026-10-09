@@ -11,7 +11,7 @@
 :root{--paper:#ffffff;--surface:#eef1f6;--ink:#1b2230;--muted:#5b6475;--line:#d9dee8;--b1:#2f5bd3;--a2:#b87d00;--a1:#1b8a6b;--ans:#8a3fa8;--hlbg:#e7edfc;--sheet:#fffdf7}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--ans:#d49bf0;--hlbg:#232c47;--sheet:#1a1f2b}}
 :root[data-theme="dark"]{--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--ans:#d49bf0;--hlbg:#232c47;--sheet:#1a1f2b}
-*,*::before,*::after{box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box;touch-action:manipulation}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
 h1,h2,h3{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
 header.hero{padding:24px 20px 12px;max-width:1100px;margin:0 auto}
@@ -31,7 +31,7 @@ main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
 .it{font:inherit;text-align:left;display:flex;flex-direction:column;gap:1px;width:100%;border:1.5px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);padding:8px 12px;cursor:pointer}
 .it b{font-size:15px}
 .it small{color:var(--muted);font-size:12px}
-.it:hover{background:var(--surface)}
+@media (hover:hover){.it:hover{background:var(--surface)}}
 .it[aria-expanded="true"]{border-color:var(--b1);background:var(--hlbg)}
 .detail{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}
 .ph0{color:var(--muted);border:1.5px dashed var(--line);border-radius:12px;padding:30px 20px;text-align:center}
@@ -60,7 +60,7 @@ main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
 .ln.B .body{background:var(--hlbg);border-radius:16px 16px 4px 16px}
 .ln.now .body{outline:2.5px solid var(--c);outline-offset:2px}
 .res{display:flex;flex-direction:column;gap:1px;text-decoration:none;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;margin:6px 0}
-.res:hover{border-color:var(--b1)}
+@media (hover:hover){.res:hover{border-color:var(--b1)}}
 .res .rt{font-weight:700;color:var(--b1)}
 .res .rp{font-size:14px}
 .res .rm{font-size:12px;color:var(--muted)}
@@ -124,7 +124,7 @@ body.no-tts .say,body.no-tts .play,body.no-tts #sp{display:none}
 .phr .t i{display:block;color:var(--muted);font-size:13px}
 .ph{color:var(--ans);font-weight:700}
 .w{cursor:pointer;border-radius:3px}
-.w:hover{background:var(--surface)}
+@media (hover:hover){.w:hover{background:var(--surface)}}
 .w.sel{background:var(--b1);color:#fff}
 /* read along: the part of the sentence already spoken turns light blue */
 .w.read{color:#1a73e8;transition:color .15s}

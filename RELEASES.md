@@ -1,5 +1,8 @@
 # Releases
 
+## 1.15.2 — 2026-10-09
+- Fix: taps on iPhone. Safari no longer treats two quick taps as a zoom gesture anywhere in the app, so the second tap always counts (a word tapped twice in Wörter, ▶ again, quick tool switches in Karten); an open ⓘ panel closes and the tap still works; text in a card no longer grows and jumps after a tap; hover highlights don't stick after a tap
+
 ## 1.15.1 — 2026-10-09
 - Fix: dates in „Meine Angaben“ can be entered again – every date opens the phone's calendar (the number pad had no „.“)
 - Meine Angaben, more complete: wife, two children (Tochter/Sohn, birthdays), nationality, flat/floor, in Germany since, employer, tax / child-benefit / health-insurance numbers, IBAN and bank, and a dish, festival, sport and tradition from home; each letter keeps to the right child, and your age is worked out from your birthday

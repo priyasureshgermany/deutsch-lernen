@@ -11,7 +11,7 @@
 :root{--paper:#ffffff;--surface:#eef1f6;--ink:#1b2230;--muted:#5b6475;--line:#d9dee8;--b1:#2f5bd3;--a2:#b87d00;--a1:#1b8a6b;--hl:#2f5bd3;--hlbg:#e7edfc}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--hl:#9db3ff;--hlbg:#232c47}}
 :root[data-theme="dark"]{--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--hl:#9db3ff;--hlbg:#232c47}
-*,*::before,*::after{box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box;touch-action:manipulation}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
 h1,h2,h3{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
 header.hero{padding:24px 20px 12px;max-width:1100px;margin:0 auto}
@@ -42,7 +42,7 @@ main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
 .ien{color:var(--b1);font-size:14px;text-align:right;max-width:55%;line-height:1.25}
 .list h3 .gen{text-transform:none;letter-spacing:0;font-weight:400;font-style:italic}
 .den{color:var(--b1);font-style:italic;margin:-4px 0 10px}
-.it:hover{background:var(--surface)}
+@media (hover:hover){.it:hover{background:var(--surface)}}
 .it[aria-expanded="true"]{border-color:var(--b1);background:var(--hlbg)}
 .detail{position:sticky;top:72px}
 .ph{color:var(--muted);border:1.5px dashed var(--line);border-radius:12px;padding:30px 20px;text-align:center}
@@ -57,7 +57,7 @@ main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
 .de{font-size:19px;line-height:1.6}
 .hl{background:var(--hlbg);color:var(--hl);font-weight:700;border-radius:4px;padding:0 2px}
 .w{cursor:pointer;border-radius:3px}
-.w:hover{background:var(--surface)}
+@media (hover:hover){.w:hover{background:var(--surface)}}
 .w.sel{background:var(--b1);color:#fff}
 .acts{display:flex;gap:8px;align-items:center;margin-top:6px}
 .enb{font:inherit;font-size:12px;font-weight:700;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:2px 10px;cursor:pointer}
