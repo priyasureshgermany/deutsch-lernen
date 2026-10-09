@@ -63,10 +63,13 @@ button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
 #med{width:min(520px,calc(100vw - 24px));max-height:calc(100dvh - 24px);margin:max(12px,6vh) auto auto;padding:14px 16px 12px;border:1px solid var(--line);border-radius:16px;
  background:var(--paper);color:var(--ink);box-shadow:0 12px 40px rgba(0,0,0,.35)}
 #med::backdrop{background:rgba(10,14,24,.45)}
-#med .mef{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px}
-#med label{display:flex;flex-direction:column;gap:3px;font-size:12px;font-weight:700;color:var(--muted)}
+#med{overflow-y:auto}
+#med .mef{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 10px}
+#med label{min-width:0;overflow-wrap:anywhere;display:flex;flex-direction:column;gap:3px;font-size:12px;font-weight:700;color:var(--muted)}
 #med label.w{grid-column:1 / -1}
-#med input{font:inherit;font-size:16px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-width:0}
+#med h4{grid-column:1 / -1;margin:6px 0 -2px;font-size:13px;color:var(--b1);text-transform:uppercase;letter-spacing:.04em}
+#med input[type="date"]{-webkit-appearance:none;appearance:none;min-height:40px}
+#med select,#med input{width:100%;box-sizing:border-box;font:inherit;font-size:16px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-width:0}
 #med .meact{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
 #med .meact button{font:inherit;font-weight:700;font-size:15px;border-radius:999px;padding:8px 16px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink)}
 #med .meact .go{background:var(--b1);border-color:var(--b1);color:#fff}
@@ -151,7 +154,7 @@ nav .i{display:none}
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.15.0";
+const APP_VERSION = "1.15.1";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -295,10 +298,18 @@ trd.addEventListener("close", () => { if(window.speechSynthesis) speechSynthesis
 /* Meine Angaben (me.js): saved on this device only; the open sections are
    reloaded so their letters and answers show the new details. */
 const med = document.getElementById("med"), mef = document.getElementById("mef");
-const WIDE = ["strasse", "email", "kindgeb", "geb"];
+/* The form comes from Me.FIELDS: groups of [key, label, English, type, wide].
+   Dates use the phone's own date picker (the number pad has no "."). */
+const isoDate = x => { const m = String(x || "").match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/); return m ? `${m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}` : String(x || ""); };
+const attr = x => String(x || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 function drawMe(){
   const v = Me.get();
-  mef.innerHTML = Me.FIELDS.map(([k, de]) => `<label${WIDE.includes(k) ? ' class="w"' : ""}>${de}<input name="${k}" autocomplete="off" value="${String(v[k] || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;")}"${k === "telefon" ? ' inputmode="tel"' : k === "email" ? ' inputmode="email"' : /geb/.test(k) ? ' inputmode="numeric" placeholder="TT.MM.JJJJ"' : ""}></label>`).join("");
+  mef.innerHTML = Me.FIELDS.map(gr => `<h4>${gr.g}</h4>` + gr.f.map(([k, de, en, type, wide]) => {
+    const input = type === "sex"
+      ? `<select name="${k}"><option value="">–</option><option value="f"${v[k] === "f" ? " selected" : ""}>Tochter</option><option value="m"${v[k] === "m" ? " selected" : ""}>Sohn</option></select>`
+      : `<input name="${k}" autocomplete="off" type="${type === "date" ? "date" : type === "email" ? "email" : type === "tel" ? "tel" : type === "number" ? "number" : "text"}"${type === "number" ? ' inputmode="numeric"' : ""} value="${attr(type === "date" ? isoDate(v[k]) : v[k])}">`;
+    return `<label${wide ? ' class="w"' : ""}>${de}${input}</label>`;
+  }).join("")).join("");
 }
 function saveMe(o){
   Me.set(o);
