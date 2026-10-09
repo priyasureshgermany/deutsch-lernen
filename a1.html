@@ -128,6 +128,7 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 @media (max-width:520px){.tg .lg{display:none}.tg .sm{display:inline}.tg{font-size:13px;padding:5px 10px}.toggles{gap:5px}}
 </style>
 <link rel="stylesheet" href="karten.css">
+<link rel="stylesheet" href="test.css">
 </head>
 <body>
 <header class="hero">
@@ -152,6 +153,8 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 <script src="karten.js"></script>
 <script src="me.js"></script>
 <script src="exam.js"></script>
+<script src="test.js"></script>
+<script src="test-a1.js"></script>
 <script>
 const S=[
 {de:"Hören",en:"Listening",info:"3 Teile · ca. 20 Minuten · 15 Rohpunkte ≈ 25 Punkte",infoEn:"3 parts · about 20 minutes · 15 raw points ≈ 25 points",parts:[
@@ -509,6 +512,9 @@ const K=Karten({mount:main,
   {id:"pr",icon:"practice",label:"Übungsmodus",color:"var(--ink)",pressed:()=>document.body.classList.contains("practice"),click:()=>pr.click()},
   {id:"mw",icon:"multi",label:"Mehrere Wörter",color:"var(--a2)",pressed:()=>multi,click:()=>mw.click()}]});
 document.querySelector(".toggles").prepend(K.button);
+/* ---- Modelltests (test.js): whole exams with a strict timer and marks ---- */
+const TZ=Pruefung({mount:main,level:"A1",tests:window.TESTS_A1,rate:()=>rate,scale:{factor:5/3,max:75,pass:45,rawLabel:"Rohpunkten",note:"Sprechen (25 Punkte) ist nicht Teil dieses Tests. In der echten Prüfung zählt die Summe: bestanden ab 60 von 100 Punkten – hier also ab 45 von 75 Punkten (60 %) im schriftlichen Teil."}});
+K.button.after(TZ.button);
 document.getElementById("px").addEventListener("click",K.sync);
 
 /* ---- search ---- */
