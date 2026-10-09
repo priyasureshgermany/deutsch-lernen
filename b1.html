@@ -121,7 +121,12 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 .tr{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--ans);color:var(--muted);font-style:italic}
 .tip{font-size:14px;color:var(--muted);max-width:70ch}
 .fb{margin-top:6px;font-size:15px}.fb a{color:var(--b1);font-weight:700}
+/* One line on phones: shorter labels next to the cards button (karten.js). */
+.toggles{flex-wrap:nowrap;align-items:center}
+.tg .sm{display:none}
+@media (max-width:520px){.tg .lg{display:none}.tg .sm{display:inline}.tg{font-size:13px;padding:5px 10px}.toggles{gap:5px}}
 </style>
+<link rel="stylesheet" href="karten.css">
 </head>
 <body>
 <header class="hero">
@@ -135,14 +140,15 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
  <div class="toggles">
   <button class="tg en" data-k="en" aria-pressed="true">EN</button>
   <button class="tg ans" data-k="ans" aria-pressed="true">Lösung</button>
-  <button class="tg practice" id="pr" aria-pressed="false">Übungsmodus</button>
-  <button class="tg multi" id="mw" aria-pressed="false">Mehrere Wörter</button>
+  <button class="tg practice" id="pr" aria-pressed="false"><span class="lg">Übungsmodus</span><span class="sm">Üben</span></button>
+  <button class="tg multi" id="mw" aria-pressed="false"><span class="lg">Mehrere Wörter</span><span class="sm">Wörter</span></button>
  </div>
 </div><nav class="topics" id="nav" aria-label="Prüfungsteile"></nav></div>
 <main id="main"></main>
 <p class="empty" id="empty">Keine Aufgabe passt zu deiner Suche.</p>
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="ph1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
 <script src="translate.js"></script>
+<script src="karten.js"></script>
 <script>
 const S=[
 {de:"Leseverstehen",en:"Reading",info:"3 Teile · zusammen mit Sprachbausteinen 90 Minuten",infoEn:"3 parts · 90 minutes together with Language elements",parts:[
@@ -355,20 +361,20 @@ const TRB='<button class="trb" type="button">Englisch zeigen</button>';
 function de(s){return s.split("\n").map(l=>`<span class="ln">${PH(W(esc(l)))}</span>`).join("")}
 function en(s){return PH(esc(s))}
 function block(deTxt,enTxt){return `<span class="s" lang="de">${de(deTxt)}</span>${SAY}${enTxt?TRB+`<span class="tr"><span class="s" lang="en">${en(enTxt)}</span>${SAY}</span>`:""}`}
-let h="",n="";
+let h="",n="";const D=[];/* D: every question in order, for the cards */
 S.forEach((sk,si)=>{const id="s"+si;
  n+=`<a href="#${id}">${esc(sk.de)} · ${esc(sk.en)}</a>`;
  h+=`<section class="skill" id="${id}"><div class="th"><span class="n">${si+1}</span><h2>${esc(sk.de)}</h2><span class="en">${esc(sk.en)}</span></div><div class="skill-info">${esc(sk.info)} <i>(${esc(sk.infoEn)})</i></div>`;
- sk.parts.forEach(p=>{
+ sk.parts.forEach((p,pi)=>{
   const hasTx=p.rows.some(r=>r[2]);
   h+=`<div class="part"><h3>${esc(p.t)}<span class="en">${esc(p.te)}</span></h3>`;
   h+=`<div class="intro"><div class="blk"><span class="s" lang="de">${de(p.intro)}</span>${SAY}</div><div class="en-line c-en">${esc(p.introEn)}</div></div>`;
   if(p.text)h+=`<div class="ttext"><div class="lab">${p.hear?"Hörtext":"Text"}</div><div class="blk${p.hear?" rv hear":""}">${block(p.text,p.textEn)}</div></div>`;
   h+=`<div class="wrap"><table><thead><tr><th>#</th><th class="c-en">English</th><th class="c-de">Aufgabe</th>${hasTx?`<th class="c-tx">${p.hear?"Hörtext":"Text"}</th>`:""}<th class="c-ans">Lösung</th></tr></thead><tbody>`;
   p.rows.forEach((r,j)=>{
-   h+=`<tr data-s="${esc((r.join(" ")).toLowerCase())}"><td class="num">${j+1}</td><td class="c-en" data-l="English"><span class="s" lang="en">${en(r[0])}</span>${SAY}</td><td class="c-de" data-l="Aufgabe">${block(r[1],"")}</td>`;
+   h+=`<tr data-i="${D.length}" data-s="${esc((r.join(" ")).toLowerCase())}"><td class="num">${j+1}</td><td class="c-en" data-l="English"><span class="s" lang="en">${en(r[0])}</span>${SAY}</td><td class="c-de" data-l="Aufgabe">${block(r[1],"")}</td>`;
    if(hasTx)h+=`<td class="c-tx${p.hear?" rv hear":""}" data-l="${p.hear?"Hörtext":"Text"}">${r[2]?block(r[2],r[3]):"—"}</td>`;
-   h+=`<td class="c-ans rv" data-l="Lösung">${block(r[4],r[5])}</td></tr>`});
+   h+=`<td class="c-ans rv" data-l="Lösung">${block(r[4],r[5])}</td></tr>`;D.push({si,pi,j})});
   h+=`</tbody></table></div></div>`});
  h+=`</section>`});
 const main=document.getElementById("main"),nav=document.getElementById("nav");
@@ -458,6 +464,33 @@ main.addEventListener("click",e=>{
  if(rv&&document.body.classList.contains("practice")&&!rv.classList.contains("shown")){rv.classList.add("shown");return}
  const tb=e.target.closest(".trb");if(tb){const c=tb.parentElement;c.classList.toggle("en-on");tb.textContent=c.classList.contains("en-on")?"Englisch ausblenden":"Englisch zeigen";return}
  const w=e.target.closest(".w");if(w){multi?pick(w):lookup(w)}});
+
+/* ---- Karten (karten.js): one question per screen ---- */
+function examCard(d){const p=S[d.si].parts[d.pi],r=p.rows[d.j];
+ return `<div class="fc-q"><div class="fc-de">${block(r[1],"")}</div>
+  <div class="fc-en c-en"><span class="s" lang="en">${en(r[0])}</span>${SAY}</div>
+  ${p.text?`<details data-keep="text"><summary>${p.hear?"Hörtext":"Text"}</summary><div class="fc-box${p.hear?" tx rv hear":""}">${block(p.text,p.textEn)}</div></details>`:""}
+ </div><div class="fc-a">
+  ${r[2]?`<div class="fc-box tx${p.hear?" rv hear":""}"><div class="lab">${p.hear?"Hörtext":"Text"}</div>${block(r[2],r[3])}</div>`:""}
+  <div class="fc-box ans c-ans rv"><div class="lab">Lösung</div>${block(r[4],r[5])}</div>
+ </div>`}
+const K=Karten({mount:main,
+ deck:()=>D.map(d=>{const sk=S[d.si],p=sk.parts[d.pi];return Object.assign({part:sk.de+" · "+p.t,key:d.si+"."+d.pi,group:sk.de},d)}),
+ start:()=>{const top=document.querySelector(".bar").getBoundingClientRect().bottom;
+  const tr=[...main.querySelectorAll("tr[data-i]")].find(t=>t.getBoundingClientRect().bottom>top+8);return tr?+tr.dataset.i:0},
+ render:examCard,
+ info:d=>{const p=S[d.si].parts[d.pi];return `<b>${esc(p.t)}</b><div><span class="s" lang="de">${de(p.intro)}</span>${SAY}</div><div class="en-line c-en">${esc(p.introEn)}</div>`},
+ leave:()=>{stopSay();closePop();clearPick();if(multi)renderPick()},
+ close:(d,n)=>{const tr=main.querySelector(`tr[data-i="${n}"]`);if(tr)tr.scrollIntoView({block:"center"})},
+ tools:[
+  /* ▶ plays the Hörtext when there is one, otherwise the question. */
+  {id:"play",icon:"play",label:"Abspielen",color:"var(--b1)",click:k=>{const b=k.body.querySelector(".fc-box.hear > .say")||k.body.querySelector(".fc-de .say");if(b)say(b)}},
+  {id:"en",icon:"en",label:"Englisch",color:"var(--en)",pressed:()=>!document.body.classList.contains("hide-en"),click:()=>document.querySelector('.tg[data-k="en"]').click()},
+  {id:"ans",icon:"ans",label:"Lösung",color:"var(--ans)",pressed:()=>!document.body.classList.contains("hide-ans"),click:()=>document.querySelector('.tg[data-k="ans"]').click()},
+  {id:"pr",icon:"practice",label:"Übungsmodus",color:"var(--ink)",pressed:()=>document.body.classList.contains("practice"),click:()=>pr.click()},
+  {id:"mw",icon:"multi",label:"Mehrere Wörter",color:"var(--a2)",pressed:()=>multi,click:()=>mw.click()}]});
+document.querySelector(".toggles").prepend(K.button);
+document.getElementById("px").addEventListener("click",K.sync);
 
 /* ---- search ---- */
 const q=document.getElementById("q"),empty=document.getElementById("empty");

@@ -138,7 +138,30 @@ body.no-tts .say,body.no-tts .play,body.no-tts #sp{display:none}
 button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
 @media (max-width:760px){.bar,main,header.hero{padding-left:14px;padding-right:14px}.split{display:block}.detail{display:none}.de{font-size:17px}.sheet{padding:12px}.ln{max-width:92%}}
 @media (min-width:761px){.inl{display:none}}
+/* Cards (karten.js): the button sits in the label row at the top. */
+.ladder{align-items:center}
+.ladder .fc-open{margin-left:auto}
+.fc-card .dcard{border:none;padding:0}
+.fc-card .dcard h2{font-size:1.1em}
+.fc-card .de{font-size:1.15em;line-height:1.35}
+.fc-card .en,.fc-card .box{font-size:.85em}
+.fc-card .lines{display:flex;flex-direction:column}
+.fc-card .hoer:not(.show-text) .transcript{display:none}
+.fc-card .hoer .hint0,.fc-card .hoer [data-solve]{display:none}
+.fc-card .bigplay{font-size:max(15px,.8em)}
+.fc-card .hoer .box{font-size:1em}
+.fc-card .hqo{gap:.4em}
+.fc-card .hqo .chip{font-size:.8em;padding:.4em .9em}
+.fc-card .hqw{font-size:.85em}
+.fc-card .ln{max-width:100%;gap:.25em}
+.fc-card .ln .body{padding:.45em .7em}
+.fc-card .who{font-size:max(12px,.6em);line-height:1.6}
+.fc-card .sheet{padding:.7em .9em}
+.fc-card .fc-kick{text-transform:none;letter-spacing:0}
+/* Übungsmodus on a card: the English stays, the German is to be said first. */
+.fc.fc-pr .fc-card .en{display:block}
 </style>
+<link rel="stylesheet" href="karten.css">
 </head>
 <body>
 <header class="hero">
@@ -155,6 +178,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
  <p class="empty" id="empty">Nichts gefunden.</p>
 </main>
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="p1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
+<script src="karten.js"></script>
 <script src="gespraeche-data.js"></script>
 <script src="briefe-data.js"></script>
 <script src="hoeren-data.js"></script>
@@ -486,6 +510,45 @@ document.querySelector("main").addEventListener("click",e=>{
  const hd=e.target.closest("[data-hide]");if(hd){const on=hd.getAttribute("aria-pressed")!=="true";hd.setAttribute("aria-pressed",String(on));hd.closest(".dcard").querySelector(".sheet").classList.toggle("hidden-letter",on);hd.textContent=on?"Musterbrief zeigen":"Selbst schreiben (Brief verstecken)";return}
  const hid=e.target.closest(".hideme");if(hid){hid.classList.remove("hideme");return}
  const w=e.target.closest(".w");if(w)lookup(w)});
+
+/* ---- Karten (karten.js): one line (Gespräche), one part (Briefe) or one
+   question with its scene's player (Hören) per screen. "open" is set to the card's situation while the cards are
+   up (voices and scenes read it) and given back to the list afterwards. */
+let alEn=false,listOpen=null,alText=false;const alAns={};
+const line=(g,e,voice)=>`<div class="fc-hide"><div class="de"><span class="s" lang="de">${de(g)}</span></div></div><div class="acts">${sayBtn(g,voice)}<button class="enb" type="button">EN</button></div><div class="en">${esc(e)}</div>`;
+const K=Karten({mount:document.querySelector("main"),
+ deck:()=>DATA.flatMap((d,k)=>(MODE==="hoeren"?d.q:MODE==="brief"?d.parts:d.lines).map((x,n)=>({part:d.de,key:k,group:k,k,n}))),
+ start:D=>{listOpen=open;return open===null?0:Math.max(0,D.findIndex(d=>d.k===+open))},
+ render:x=>{const d=DATA[x.k];
+  if(MODE==="hoeren")return hoerCard(d);
+  if(MODE==="brief"){const [k,g,e]=d.parts[x.n];
+   return `<div class="fc-kick">${esc(d.de)}</div><div class="dcard"><div class="sheet"><div class="part ${k}${alEn?" en-on":""}">${line(g,e)}</div></div></div>`}
+  const [r,g,e]=d.lines[x.n],gs=genders(d);
+  return `<div class="fc-kick">${esc(d.de)}</div><div class="dcard"><div class="lines"><div class="ln ${r}" data-g="${gs[r]}"><span class="who">${esc(d.who[r])}</span><div class="body${alEn?" en-on":""}">${line(g,e,r)}</div></div></div></div>`},
+ shown:(x,i,body)=>{const was=open;open=String(x.k);if(MODE==="hoeren")hoerShown(x,body,was)},
+ info:MODE==="hoeren"?null:x=>{const d=DATA[x.k];return MODE==="brief"
+  ?`<b>${esc(d.de)}</b> · <i>${esc(d.en)}</i><div>${de(d.task)}</div><ul>${d.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>`
+  :`<b>${esc(d.de)}</b> · <i>${esc(d.en)}</i><div>${de(d.sit)}</div>`},
+ leave:()=>{closePop();stopAll();if(MODE!=="hoeren")stopScene()},
+ close:x=>{stopScene();open=listOpen;const b=listEl.querySelector(`[data-k="${x.k}"]`);if(b)b.scrollIntoView({block:"center"})},
+ tools:MODE==="hoeren"
+  ?[{id:"play",icon:"play",label:"Abspielen",color:"var(--b1)",click:k=>{const b=k.body.querySelector("[data-scene]");if(b)playScene(b)}}]
+  :[{id:"play",icon:"play",label:"Vorlesen",color:"var(--b1)",click:k=>{const b=k.body.querySelector(".say");if(b)speak(b)}},
+    {id:"en",icon:"en",label:"Englisch",color:"var(--muted)",pressed:()=>alEn,click:k=>{alEn=!alEn;k.redraw()}},
+    {builtin:"practice"}]});
+document.querySelector(".ladder").appendChild(K.button);
+/* Hören card: only this question shows; the scene goes on playing while you
+   move between its questions, and answers and "Text zeigen" stay. */
+function hoerShown(x,body,was){const card=body.querySelector(".dcard");
+ if(was!==String(x.k))alText=false;
+ card.querySelectorAll(".hq").forEach(h=>h.hidden=+h.dataset.q!==x.n);
+ const tx=card.querySelector("[data-text]");if(alText){card.classList.add("show-text");tx.setAttribute("aria-pressed","true");tx.textContent="Text verstecken"}
+ const a=(alAns[x.k]||{})[x.n];if(a!==undefined)answer(card.querySelector(`.hq[data-q="${x.n}"] [data-a="${a}"]`));
+ if(was!==String(x.k))stopScene();
+ else if(scene){const b=card.querySelector("[data-scene]");scene.btn=b;scene.card=card;b.classList.add("on");b.textContent="⏹ Stopp"}
+ card.addEventListener("click",e=>{
+  const an=e.target.closest("[data-a]");if(an&&!an.closest(".hq").dataset.done)(alAns[x.k]=alAns[x.k]||{})[x.n]=an.dataset.a;
+  if(e.target.closest("[data-text]"))alText=!alText},true)}
 </script>
 </body>
 </html>

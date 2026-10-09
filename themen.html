@@ -100,7 +100,33 @@ body.practice td.c-ans:not(.shown) > .say{display:none}
 button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 .fb{margin-top:6px;font-size:15px}.fb a{color:var(--b1);font-weight:700}
+/* One row on phones: short labels, the row scrolls sideways if it must, the
+   cards button (karten.js) first so it is always in reach. */
+.toggles{flex-wrap:nowrap;align-items:center;overflow-x:auto;scrollbar-width:none;max-width:100%}
+.toggles::-webkit-scrollbar{display:none}
+.tg{flex:none}
+.tg .sm{display:none}
+@media (max-width:520px){.tg .lg{display:none}.tg .sm{display:inline}.tg{font-size:13px;padding:5px 10px}.toggles{gap:5px}}
+/* A card is the question's own table row, laid out as one column: B1 first and
+   biggest, then A2, A1, English and the answer. */
+.fc-tq,.fc-tq tbody,.fc-tq tr,.fc-tq td{display:block;width:100%}
+.fc-tq{border-collapse:collapse;font-size:1em}
+.fc-tq tr{display:flex;flex-direction:column;gap:.35em}
+.fc-tq td{border:none;padding:.25em .6em;border-left:3px solid var(--line)}
+.fc-tq td.num{display:none}
+.fc-tq td[data-l]::before{content:attr(data-l);display:block;font-size:max(11px,.55em);font-weight:700;font-style:normal;margin-bottom:1px}
+.fc-tq td.c-en::before{color:var(--en)}.fc-tq td.c-b1::before{color:var(--b1)}.fc-tq td.c-a2::before{color:var(--a2)}.fc-tq td.c-a1::before{color:var(--a1)}.fc-tq td.c-ans::before{color:var(--ans)}
+.fc-tq td.c-b1{order:-2;font-size:1.2em;font-weight:700;line-height:1.3;border-left-color:var(--b1)}
+.fc-tq td.c-a2,.fc-tq td.c-a1{font-size:.9em}
+.fc-tq td.c-en{order:-1;font-size:.9em}
+.fc-tq td.c-ans{border-radius:0 10px 10px 0;padding:.4em .7em;margin-top:.3em}
+.fc-tq td.c-ans::after{font-size:max(12px,.55em)!important}
+@media (orientation:landscape) and (max-height:540px){
+ .fc-tq tr{display:grid;grid-template-columns:1fr 1fr;gap:.3em 20px;align-items:start}
+ .fc-tq td{grid-column:1}.fc-tq td.c-ans{grid-column:2;grid-row:1 / span 5;margin-top:0}
+}
 </style>
+<link rel="stylesheet" href="karten.css">
 </head>
 <body>
 <header class="hero">
@@ -117,14 +143,15 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   <button class="tg a2" data-k="a2" aria-pressed="true">A2</button>
   <button class="tg a1" data-k="a1" aria-pressed="true">A1</button>
   <button class="tg ans" data-k="ans" aria-pressed="true">Antwort</button>
-  <button class="tg practice" id="pr" aria-pressed="false">Übungsmodus</button>
-  <button class="tg multi" id="mw" aria-pressed="false">Mehrere Wörter</button>
+  <button class="tg practice" id="pr" aria-pressed="false"><span class="lg">Übungsmodus</span><span class="sm">Üben</span></button>
+  <button class="tg multi" id="mw" aria-pressed="false"><span class="lg">Mehrere Wörter</span><span class="sm">Wörter</span></button>
  </div>
 </div><nav class="topics" id="nav" aria-label="Themen"></nav></div>
 <main id="main"></main>
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="ph1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
 <p class="empty" id="empty">Keine Frage passt zu deiner Suche. Versuch ein anderes Wort.</p>
 <script src="translate.js"></script>
+<script src="karten.js"></script>
 <script>
 const T=[];
 T.push({de:"Wohnraum",en:"Housing",q:[
@@ -674,7 +701,7 @@ let h="",n="";
 T.forEach((t,i)=>{const id="t"+(i+1);
  n+=`<a href="#${id}">${i+1}. ${esc(t.de)}</a>`;
  h+=`<section id="${id}"><div class="th"><span class="n">${i+1}</span><h2>${esc(t.de)}</h2><span class="en">${esc(t.en)}</span></div><div class="wrap"><table><thead><tr><th>#</th><th class="c-en">English</th><th class="c-b1">B1 Deutsch</th><th class="c-a2">A2 Deutsch</th><th class="c-a1">A1 Deutsch</th><th class="c-ans">Beispielantwort</th></tr></thead><tbody>`;
- t.q.forEach((r,j)=>{h+=`<tr data-s="${esc((r.join(" ")+" "+t.de+" "+t.en).toLowerCase())}"><td class="num">${j+1}</td><td class="c-en" data-l="English"><span class="s" lang="en">${esc(r[0])}</span><button class="say" type="button" aria-label="Vorlesen"></button></td><td class="c-b1" data-l="B1"><span class="s" lang="de">${W(esc(r[1]))}</span><button class="say" type="button" aria-label="Vorlesen"></button></td><td class="c-a2" data-l="A2"><span class="s" lang="de">${W(esc(r[2]))}</span><button class="say" type="button" aria-label="Vorlesen"></button></td><td class="c-a1" data-l="A1"><span class="s" lang="de">${W(esc(r[3]))}</span><button class="say" type="button" aria-label="Vorlesen"></button></td><td class="c-ans" data-l="Beispielantwort"><span class="t s" lang="de">${ph(W(esc(r[4])))}</span><button class="say" type="button" aria-label="Vorlesen"></button><button class="trb" type="button">Englisch zeigen</button><span class="tr"><span class="s" lang="en">${ph(esc(E[i][j]))}</span><button class="say" type="button" aria-label="Vorlesen"></button></span></td></tr>`});
+ t.q.forEach((r,j)=>{h+=`<tr data-t="${i}" data-j="${j}" data-s="${esc((r.join(" ")+" "+t.de+" "+t.en).toLowerCase())}"><td class="num">${j+1}</td><td class="c-en" data-l="English"><span class="s" lang="en">${esc(r[0])}</span><button class="say" type="button" aria-label="Vorlesen"></button></td><td class="c-b1" data-l="B1"><span class="s" lang="de">${W(esc(r[1]))}</span><button class="say" type="button" aria-label="Vorlesen"></button></td><td class="c-a2" data-l="A2"><span class="s" lang="de">${W(esc(r[2]))}</span><button class="say" type="button" aria-label="Vorlesen"></button></td><td class="c-a1" data-l="A1"><span class="s" lang="de">${W(esc(r[3]))}</span><button class="say" type="button" aria-label="Vorlesen"></button></td><td class="c-ans" data-l="Beispielantwort"><span class="t s" lang="de">${ph(W(esc(r[4])))}</span><button class="say" type="button" aria-label="Vorlesen"></button><button class="trb" type="button">Englisch zeigen</button><span class="tr"><span class="s" lang="en">${ph(esc(E[i][j]))}</span><button class="say" type="button" aria-label="Vorlesen"></button></span></td></tr>`});
  h+=`</tbody></table></div></section>`});
 main.innerHTML=h;nav.innerHTML=n;
 document.querySelectorAll(".tg[data-k]").forEach(b=>b.onclick=()=>{const on=b.getAttribute("aria-pressed")==="true";b.setAttribute("aria-pressed",String(!on));document.body.classList.toggle("hide-"+b.dataset.k,on)});
@@ -775,6 +802,26 @@ function showPick(d){const s=x=>esc(String(x||""));
  document.getElementById("clr").onclick=()=>{clearPick();renderPick()}}
 function show(d){const s=x=>esc(String(x||""));
  pb.innerHTML=`<div class="pen">${s(d.en)}</div><div class="pm">${s(d.lemma)}${d.pos?' · '+s(d.pos):''}${d.plural?' · Pl. '+s(d.plural):''}</div>${d.note?`<div class="pn">${s(d.note)}</div>`:''}`}
+/* ---- Karten (karten.js): one question per screen ---- */
+const rowOf=(t,j)=>main.querySelector(`tr[data-t="${t}"][data-j="${j}"]`);
+const K=Karten({mount:main,
+ deck:()=>T.flatMap((t,ti)=>t.q.map((r,j)=>({part:`${ti+1}. ${t.de}`,key:ti,group:ti,t:ti,j}))),
+ start:D=>{const top=document.querySelector(".bar").getBoundingClientRect().bottom;
+  const tr=[...main.querySelectorAll("tr[data-t]")].find(x=>x.getBoundingClientRect().bottom>top+8);
+  return tr?D.findIndex(d=>d.t===+tr.dataset.t&&d.j===+tr.dataset.j):0},
+ render:d=>`<div class="fc-kick">${esc(T[d.t].de)} · ${esc(T[d.t].en)}</div><table class="fc-tq"><tbody><tr>${rowOf(d.t,d.j).innerHTML}</tr></tbody></table>`,
+ leave:()=>{stopSay();closePop();clearPick();if(multi)renderPick()},
+ close:d=>{const tr=rowOf(d.t,d.j);if(tr)tr.scrollIntoView({block:"center"})},
+ tools:[
+  /* ▶ reads the first German version that is switched on. */
+  {id:"play",icon:"play",label:"Abspielen",color:"var(--b1)",click:k=>{const b=[...k.body.querySelectorAll("td.c-b1 .say,td.c-a2 .say,td.c-a1 .say")].find(x=>x.offsetParent);if(b)say(b)}},
+  {id:"en",icon:"en",label:"Englisch",color:"var(--en)",pressed:()=>!document.body.classList.contains("hide-en"),click:()=>document.querySelector('.tg[data-k="en"]').click()},
+  ...["b1","a2","a1"].map(k=>({id:k,text:k.toUpperCase(),label:k.toUpperCase()+" Deutsch",color:`var(--${k})`,pressed:()=>!document.body.classList.contains("hide-"+k),click:()=>document.querySelector(`.tg[data-k="${k}"]`).click()})),
+  {id:"ans",icon:"ans",label:"Antwort",color:"var(--ans)",pressed:()=>!document.body.classList.contains("hide-ans"),click:()=>document.querySelector('.tg[data-k="ans"]').click()},
+  {id:"pr",icon:"practice",label:"Übungsmodus",color:"var(--ink)",pressed:()=>document.body.classList.contains("practice"),click:()=>pr.click()},
+  {id:"mw",icon:"multi",label:"Mehrere Wörter",color:"var(--a2)",pressed:()=>multi,click:()=>mw.click()}]});
+document.querySelector(".toggles").prepend(K.button);
+document.getElementById("px").addEventListener("click",K.sync);
 const q=document.getElementById("q"),empty=document.getElementById("empty");
 q.oninput=()=>{const v=q.value.trim().toLowerCase();let any=false;
  document.querySelectorAll("section").forEach(s=>{let vis=0;s.querySelectorAll("tbody tr").forEach(tr=>{const m=!v||tr.dataset.s.includes(v);tr.style.display=m?"":"none";if(m)vis++});s.style.display=vis?"":"none";if(vis)any=true});
