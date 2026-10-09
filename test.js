@@ -62,7 +62,8 @@ function Pruefung(o){
  button.title="Modelltest mit Punkten";button.setAttribute("aria-label","Modelltest mit Punkten");button.innerHTML=ICON+"<span>Test</span>";
  /* The entry: a small pill next to the exam's name, apart from the practice tools. */
  const entry=document.createElement("button");entry.type="button";entry.className="tz-entry";
- entry.innerHTML=`${ICON}<span>Test</span>`;
+ /* a white exam sheet with a gold star, on a colourful pill */
+ entry.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="2.5" width="13" height="17.5" rx="2.4" fill="#fff"/><path d="M7 7.5h6M7 11h6M7 14.5h3.5" stroke="#9333ea" stroke-width="1.7" stroke-linecap="round" fill="none"/><path d="M17.5 11.6l1.45 2.95 3.25.47-2.35 2.29.56 3.24-2.91-1.53-2.91 1.53.56-3.24-2.35-2.29 3.25-.47z" fill="#fde047" stroke="#c2410c" stroke-width=".7" stroke-linejoin="round"/></svg><span>Test</span>`;
  /* small, next to the exam's name; amber with a dot while a test is paused */
  const label=()=>{const r=store.get(RUN),t=r&&test(r.tid)?`Modelltest pausiert: ${test(r.tid).title} – weitermachen`:"Modelltests: 3 Prüfungen mit Zeit und Punkten";
   entry.classList.toggle("paused",!!r);entry.title=t;entry.setAttribute("aria-label",t)};

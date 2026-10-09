@@ -1,10 +1,15 @@
 /* Modelltests (test.js). Uses the section's colour tokens. */
-/* The entry: a small pill next to the exam's name (the hero's label row). */
-.tz-entry{touch-action:manipulation;font:inherit;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;padding:3px 9px 3px 6px;border:1.5px solid var(--b1);border-radius:999px;background:transparent;color:var(--b1);cursor:pointer;line-height:1}
-.tz-entry>svg{width:15px;height:15px;flex:none}
+/* The entry: a small, colourful pill next to the exam's name (the hero's label row). */
+.tz-entry{touch-action:manipulation;font:inherit;font-size:13px;font-weight:800;letter-spacing:.01em;display:inline-flex;align-items:center;gap:4px;padding:3px 10px 3px 5px;border:none;border-radius:999px;cursor:pointer;line-height:1;color:#fff;
+ background:linear-gradient(120deg,#7c3aed,#db2777,#f97316,#db2777,#7c3aed);background-size:300% 100%;box-shadow:0 2px 8px rgba(219,39,119,.38),inset 0 1px 0 rgba(255,255,255,.35);
+ text-shadow:0 1px 1px rgba(0,0,0,.18);animation:tzGlow 8s ease-in-out infinite alternate}
+@keyframes tzGlow{from{background-position:0% 50%}to{background-position:100% 50%}}
+@media (prefers-reduced-motion:reduce){.tz-entry{animation:none}}
+.tz-entry>svg{width:18px;height:18px;flex:none;filter:drop-shadow(0 1px 1px rgba(0,0,0,.2))}
 .ladder .tz-entry span{padding:0;border-radius:0;background:none;color:inherit;font-size:inherit}
-.tz-entry.paused{border-color:var(--a2);color:var(--a2)}
-.tz-entry.paused::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--a2)}
+/* a paused test: a soft white dot that pulses */
+.tz-entry.paused::after{content:"";width:7px;height:7px;border-radius:50%;background:#fff;animation:tzDot 1.4s ease-in-out infinite}
+@keyframes tzDot{50%{opacity:.35}}
 .tz-open{touch-action:manipulation;font:inherit;font-size:13px;font-weight:800;display:inline-flex;align-items:center;gap:4px;flex:none;height:34px;padding:0 11px 0 8px;border:2px solid var(--b1);border-radius:999px;background:var(--b1);color:#fff;cursor:pointer}
 .tz-open svg{width:18px;height:18px}
 .tz{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;background:var(--paper);color:var(--ink)}

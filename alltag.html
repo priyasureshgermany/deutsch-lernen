@@ -2,6 +2,10 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
+<script>/* Darstellung: the theme chosen at the top of the app (index.html) – light, dark or like the phone */
+(function(){const set=t=>{const r=document.documentElement;if(t==="light"||t==="dark")r.dataset.theme=t;else delete r.dataset.theme};
+try{set(localStorage.getItem("dl:theme"))}catch(e){}
+addEventListener("message",e=>{if(e.origin===location.origin&&e.data&&"dlTheme" in e.data)set(e.data.dlTheme)})})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Alltag</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
