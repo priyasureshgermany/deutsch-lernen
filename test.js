@@ -1,7 +1,14 @@
-/* Modelltests for A1 and B1: a whole exam under a strict timer, marked like
-   the real one, with the right answer and the reason for every mistake.
+/* Modelltests for A1 and B1: a whole exam, every Teil with its own clock,
+   marked like the real one, with the right answer and the reason for every
+   mistake.
 
-   A page calls  Pruefung({...})  once and gets a button for its tool bar.
+   Time: each Teil has part.time minutes (the real section time split up). Its
+   clock runs only while that Teil is open; when it reaches 0 the Teil is handed
+   in and the next one opens. ⏸ stops the clock and covers the questions;
+   leaving the test (✕, another app, the phone closing the page) pauses it too,
+   so no time is lost while away.
+
+   A page calls  Pruefung({...})  once and gets an entry card (and a button).
 
    Options
      mount   element the overlay goes in (the section's main)
@@ -48,12 +55,17 @@ function writeScore(p,sa){const c=CRIT[p.crit||"a1"];if(!sa)return null;let s=0,
 function Pruefung(o){
  const K="dl:test:"+o.level.toLowerCase(),RUN=K+":run",RES=K+":res";
  const ov=document.createElement("div");ov.className="tz";ov.hidden=true;ov.setAttribute("role","region");ov.setAttribute("aria-label","Modelltest");
- ov.innerHTML=`<div class="tz-top"><b class="tz-title"></b><span class="tz-time" hidden></span><span class="sp"></span><button type="button" class="tz-x" aria-label="Schließen">✕</button></div><div class="tz-body"></div>`;
+ ov.innerHTML=`<div class="tz-top"><b class="tz-title"></b><span class="tz-time" hidden></span><span class="sp"></span><button type="button" class="tz-pause" aria-label="Pause" title="Pause" hidden>❚❚</button><button type="button" class="tz-x" aria-label="Schließen">✕</button></div><div class="tz-body"></div>`;
  o.mount.appendChild(ov);
- const body=ov.querySelector(".tz-body"),title=ov.querySelector(".tz-title"),clock=ov.querySelector(".tz-time");
+ const body=ov.querySelector(".tz-body"),title=ov.querySelector(".tz-title"),clock=ov.querySelector(".tz-time"),pauseB=ov.querySelector(".tz-pause");
  const button=document.createElement("button");button.type="button";button.className="tz-open";
  button.title="Modelltest mit Punkten";button.setAttribute("aria-label","Modelltest mit Punkten");button.innerHTML=ICON+"<span>Test</span>";
- let run=null,timer=0,pi=0,view="home";
+ /* The entry: its own card on the page, apart from the practice tools. */
+ const entry=document.createElement("button");entry.type="button";entry.className="tz-entry";
+ entry.innerHTML=`${ICON}<span><b>Modelltests</b><small>3 Prüfungen mit Zeit und Punkten</small></span><i aria-hidden="true">›</i>`;
+ const label=()=>{const r=store.get(RUN),sm=entry.querySelector("small");entry.classList.toggle("paused",!!r);
+  sm.textContent=r&&test(r.tid)?`Pausiert: ${test(r.tid).title} – weitermachen`:"3 Prüfungen mit Zeit und Punkten"};
+ let run=null,timer=0,view="home";
  const test=id=>o.tests.find(t=>t.id===id);
  const save=()=>store.set(RUN,run);
  const toShell=on=>{try{if(parent!==window)parent.postMessage({dlCards:on},location.origin)}catch(e){}};
@@ -79,44 +91,67 @@ function Pruefung(o){
   return `<button type="button" class="tz-play" data-play="${key}"${left?"":" disabled"}>▶ Abspielen <small>${left?`noch ${left}×`:"schon gehört"}</small></button>`}
 
  /* ---- screens ---- */
+ const pk=(si,j)=>si+"."+j;
+ function partMs(si,j){const sec=test(run.tid).sections[si],p=sec.parts[j];return (p.time||sec.time/sec.parts.length)*60000}
+ const fmt=ms=>{ms=Math.max(0,ms);const m=Math.floor(ms/60000),x=Math.floor(ms/1000)%60;return m+":"+String(x).padStart(2,"0")};
+ const tabName=p=>p.tab||p.t.split(" – ")[0];
  function open(){toShell(true);document.body.classList.add("testing");ov.hidden=false;run=store.get(RUN);
-  if(run&&!test(run.tid))run=null;
-  if(run&&run.si!=null&&run.deadline){showSection();return}home()}
- function close(){stopAudio();clearInterval(timer);ov.hidden=true;document.body.classList.remove("testing");toShell(false)}
- function setTop(t,showClock){title.textContent=t;clock.hidden=!showClock}
+  if(run&&(!test(run.tid)||run.deadline!==undefined))run=null;   /* gone, or a run from the one-clock version */
+  if(run&&run.si!=null){run.t0=null;run.paused=true;save();showPause();return}home()}
+ function close(){if(view==="section")pause(true);stopAudio();clearInterval(timer);ov.hidden=true;document.body.classList.remove("testing");toShell(false);label()}
+ function setTop(t,showClock){title.textContent=t;clock.hidden=!showClock;pauseB.hidden=!showClock}
  function home(){view="home";clearInterval(timer);setTop("Modelltests "+o.level,false);const res=store.get(RES)||{};
-  body.innerHTML=`<div class="tz-pad"><p class="tz-lead">Eine ganze Prüfung mit <b>strenger Zeit</b> wie im echten Test: Ist die Zeit eines Teils um, wird er automatisch abgegeben. Danach siehst du deine Punkte und bei jedem Fehler die richtige Antwort.</p>
-   ${run?`<div class="tz-card warn"><b>Laufender Test: ${esc(test(run.tid).title)}</b><div>${esc(test(run.tid).sections[run.next||0]?test(run.tid).sections[run.next||0].de+" ist als Nächstes dran.":"")}</div><div class="tz-row"><button type="button" class="tz-btn" data-go="resume">Fortsetzen</button><button type="button" class="tz-btn ghost" data-go="drop">Test verwerfen</button></div></div>`:""}
-   ${o.tests.map(t=>{const r=res[t.id];const mins=t.sections.reduce((a,s)=>a+s.time,0);
-    return `<div class="tz-card"><div class="tz-h"><b>${esc(t.title)}</b><span>${mins} Minuten</span></div><div class="tz-sub">${esc(t.sub||"")}</div>
-     <div class="tz-secs">${t.sections.map(s=>`<span>${esc(s.de)} · ${s.time} Min.</span>`).join("")}</div>
+  const rt=run&&test(run.tid),cur=rt&&run.si!=null?rt.sections[run.si]:null;
+  body.innerHTML=`<div class="tz-pad"><p class="tz-lead">Eine ganze Prüfung wie im echten Test. <b>Jeder Teil hat seine eigene Zeit</b> – die Uhr läuft nur für den Teil, den du gerade bearbeitest; ist sie um, wird der Teil abgegeben. Mit <b>❚❚</b> pausierst du jederzeit. Danach siehst du deine Punkte und bei jedem Fehler die richtige Antwort.</p>
+   ${rt?`<div class="tz-card warn"><b>Pausiert: ${esc(rt.title)}</b><div>${cur?esc(cur.de+" – "+cur.parts[run.cur].t):rt.sections[run.next]?esc(rt.sections[run.next].de)+" ist als Nächstes dran.":""}</div><div class="tz-row"><button type="button" class="tz-btn" data-go="resume">Weitermachen</button><button type="button" class="tz-btn ghost" data-go="drop">Test verwerfen</button></div></div>`:""}
+   ${o.tests.map(t=>{const r=res[t.id];
+    return `<div class="tz-card"><div class="tz-h"><b>${esc(t.title)}</b></div><div class="tz-sub">${esc(t.sub||"")}</div>
+     <div class="tz-secs">${t.sections.map(x=>`<span>${esc(x.de)}</span>`).join("")}</div>
      ${r?`<div class="tz-last ${r.pass?"ok":r.pending?"":"no"}">Zuletzt: <b>${num(r.pts)} / ${num(o.scale.max)} Punkte</b> · ${r.pass?"bestanden":r.pending?"noch offen":"nicht bestanden"} · ${esc(r.date)}${r.pending?" · Schreiben noch nicht bewertet":""}</div>`:""}
      <div class="tz-row"><button type="button" class="tz-btn" data-start="${t.id}"${run?" disabled":""}>Test starten</button>${r?`<button type="button" class="tz-btn ghost" data-review="${t.id}">Auswertung ansehen</button>`:""}</div></div>`}).join("")}
    <p class="tz-note">${esc(o.scale.note)}</p></div>`;body.scrollTop=0}
- function start(id){const t=test(id);run={tid:id,next:0,si:null,ans:{},plays:{},sa:{},begun:new Date().toISOString()};save();sectionIntro()}
- function sectionIntro(){view="intro";clearInterval(timer);const t=test(run.tid),s=t.sections[run.next];
-  if(!s){finish();return}
+ function start(id){run={tid:id,next:0,si:null,cur:0,left:{},done:{},t0:null,paused:false,ans:{},plays:{},sa:{},begun:new Date().toISOString()};save();label();sectionIntro()}
+ function sectionIntro(){view="intro";clearInterval(timer);const t=test(run.tid),sec=t.sections[run.next];
+  if(!sec){finish();return}
   setTop(t.title,false);
-  const pts=s.parts.reduce((a,p)=>a+(p.type==="write"?(CRIT[p.crit||"a1"].max):p.items.length*p.per),0);
-  body.innerHTML=`<div class="tz-pad"><div class="tz-card big"><div class="tz-step">Teil ${run.next+1} von ${t.sections.length}</div><h2>${esc(s.de)}</h2><div class="tz-sub">${esc(s.en||"")}</div>
-   <ul class="tz-list"><li><b>${s.time} Minuten</b> – danach wird automatisch abgegeben</li><li>${s.parts.length} ${s.parts.length===1?"Aufgabe":"Teile"} · ${num(pts*o.scale.factor)} Punkte</li>${s.parts.some(p=>p.plays)?`<li>Die Hörtexte kannst du nur so oft abspielen wie in der Prüfung.</li>`:""}</ul>
-   <button type="button" class="tz-btn wide" data-go="begin">Jetzt starten – die Zeit läuft</button></div></div>`;body.scrollTop=0}
- function begin(){const s=test(run.tid).sections[run.next];run.si=run.next;run.deadline=Date.now()+s.time*60000;save();pi=0;showSection()}
- function showSection(){view="section";const t=test(run.tid),s=t.sections[run.si];setTop(s.de,true);
-  /* back after the time ran out: tick() hands the section in and moves on */
-  tick();if(!run||run.si==null)return;
-  if(pi>=s.parts.length)pi=0;clearInterval(timer);timer=setInterval(tick,1000);drawPart()}
- function tick(){if(!run||run.deadline==null)return;const ms=run.deadline-Date.now();
-  if(ms<=0){clearInterval(timer);clock.textContent="0:00";timeUp();return}
-  const m=Math.floor(ms/60000),sec=Math.floor(ms/1000)%60;clock.textContent=m+":"+String(sec).padStart(2,"0");clock.classList.toggle("low",ms<120000)}
- function timeUp(){stopAudio();const s=test(run.tid).sections[run.si];submitSection();
-  body.insertAdjacentHTML("afterbegin",`<div class="tz-pad"><div class="tz-card warn"><b>Die Zeit für ${esc(s.de)} ist um.</b> Deine Antworten wurden abgegeben.</div></div>`)}
- function submitSection(){stopAudio();clearInterval(timer);run.si=null;run.deadline=null;run.next++;save();sectionIntro()}
- function unanswered(si){const s=test(run.tid).sections[si];let n=0;s.parts.forEach((p,j)=>{if(p.type==="write"){if(!(ans(si,j,"w")||"").trim())n++;return}p.items.forEach((_,i)=>{const v=ans(si,j,i);if(v==null||v==="")n++})});return n}
+  const pts=sec.parts.reduce((a,p)=>a+(p.type==="write"?(CRIT[p.crit||"a1"].max):p.items.length*p.per),0);
+  body.innerHTML=`<div class="tz-pad"><div class="tz-card big"><div class="tz-step">Prüfungsteil ${run.next+1} von ${t.sections.length}</div><h2>${esc(sec.de)}</h2><div class="tz-sub">${esc(sec.en||"")} · ${num(pts*o.scale.factor)} Punkte</div>
+   <ul class="tz-list">${sec.parts.map((p,j)=>`<li><b>${esc(tabName(p))}</b> · ${Math.round(partMs(run.next,j)/60000)} Minuten</li>`).join("")}</ul>
+   <p class="tz-sub">Jeder Teil hat seine eigene Uhr. Sie läuft nur, solange der Teil offen ist; ist sie um, wird der Teil abgegeben.${sec.parts.some(p=>p.plays)?" Die Hörtexte kannst du nur so oft abspielen wie in der Prüfung.":""}</p>
+   <button type="button" class="tz-btn wide" data-go="begin">Starten</button></div></div>`;body.scrollTop=0}
+ function begin(){const si=run.next,sec=test(run.tid).sections[si];run.si=si;
+  sec.parts.forEach((_,j)=>{run.left[pk(si,j)]=partMs(si,j);delete run.done[pk(si,j)]});
+  run.cur=0;run.paused=false;run.t0=Date.now();save();runClock();drawPart()}
+ function runClock(){view="section";setTop(test(run.tid).sections[run.si].de,true);clearInterval(timer);timer=setInterval(tick,1000);tick()}
+ /* The open Teil uses up its own time; the time is saved every second. */
+ function tick(){if(!run||run.si==null||run.t0==null)return;const now=Date.now(),k=pk(run.si,run.cur);
+  run.left[k]-=now-run.t0;run.t0=now;save();
+  clock.textContent=fmt(run.left[k]);clock.classList.toggle("low",run.left[k]<60000);
+  const tb=body.querySelector(`.tz-tabs [data-part="${run.cur}"] small`);if(tb)tb.textContent=fmt(run.left[k]);
+  if(run.left[k]<=0)partUp()}
+ function partUp(){const p=test(run.tid).sections[run.si].parts[run.cur];stopAudio();
+  run.left[pk(run.si,run.cur)]=0;run.done[pk(run.si,run.cur)]=true;nextPart(`Die Zeit für ${tabName(p)} ist um. Deine Antworten wurden abgegeben.`)}
+ function nextPart(msg){const si=run.si,n=test(run.tid).sections[si].parts.length;let j=-1;
+  for(let d=1;d<=n;d++){const c=(run.cur+d)%n;if(!run.done[pk(si,c)]){j=c;break}}
+  if(j<0){finishSection(msg);return}
+  run.cur=j;run.t0=Date.now();save();drawPart();if(msg)note(msg)}
+ function note(msg){body.insertAdjacentHTML("afterbegin",`<div class="tz-pad tz-msg"><div class="tz-card warn"><b>${esc(msg)}</b></div></div>`)}
+ function finishSection(msg){stopAudio();clearInterval(timer);run.si=null;run.t0=null;run.next++;save();sectionIntro();if(msg&&view==="intro")note(msg)}
+ function switchPart(j){if(j===run.cur||run.done[pk(run.si,j)])return;tick();if(run.si==null)return;stopAudio();run.cur=j;run.t0=Date.now();save();drawPart()}
+ function pause(silent){if(!run||run.si==null||run.t0==null)return;tick();if(run.si==null)return;
+  run.t0=null;run.paused=true;save();stopAudio();clearInterval(timer);if(!silent)showPause()}
+ function showPause(){view="pause";clearInterval(timer);const t=test(run.tid),sec=t.sections[run.si];setTop(t.title+" – Pause",false);
+  body.innerHTML=`<div class="tz-pad"><div class="tz-card big"><div class="tz-step">❚❚ Pause</div><h2>${esc(sec.de)}</h2>
+   <ul class="tz-list">${sec.parts.map((x,j)=>`<li><b>${esc(tabName(x))}</b>: ${run.done[pk(run.si,j)]?"abgegeben":"noch "+fmt(run.left[pk(run.si,j)])+(j===run.cur?" – hier geht es weiter":"")}</li>`).join("")}</ul>
+   <p class="tz-sub">Die Uhr steht. Während der Pause sind die Aufgaben verdeckt.</p>
+   <button type="button" class="tz-btn wide" data-go="unpause">Weiter</button></div></div>`;body.scrollTop=0}
+ function unpause(){run.paused=false;run.t0=Date.now();save();runClock();drawPart()}
+ function unansweredPart(si,j){const p=test(run.tid).sections[si].parts[j];if(p.type==="write")return (ans(si,j,"w")||"").trim()?0:1;
+  return p.items.filter((_,i)=>{const v=ans(si,j,i);return v==null||v===""}).length}
 
  /* ---- one part of the running section ---- */
- function drawPart(){const s=test(run.tid).sections[run.si],p=s.parts[pi],si=run.si;
-  const tabs=s.parts.length>1?`<div class="tz-tabs">${s.parts.map((x,j)=>`<button type="button" data-part="${j}" aria-pressed="${j===pi}">${esc(x.tab||x.t.split(" – ")[0])}</button>`).join("")}</div>`:"";
+ function drawPart(){const s=test(run.tid).sections[run.si],pi=run.cur,p=s.parts[pi],si=run.si;
+  const tabs=s.parts.length>1?`<div class="tz-tabs">${s.parts.map((x,j)=>{const dn=run.done[pk(si,j)];return `<button type="button" data-part="${j}" aria-pressed="${j===pi}"${dn?" disabled":""}>${esc(tabName(x))} <small>${dn?"✓":fmt(run.left[pk(si,j)])}</small></button>`}).join("")}</div>`:"";
   let h=`<div class="tz-pad">${tabs}<h3 class="tz-pt">${esc(p.t)}</h3><p class="tz-intro">${T(p.intro)}</p>`;
   if(p.audio)h+=`<div class="tz-audio">${playBtn(si+"."+pi,p.plays||1)}</div>`;
   if(p.list&&p.type==="match")h+=`<div class="tz-text list">${p.list.map((x,i)=>`<div><b>${L[i]})</b> ${T(x)}</div>`).join("")}</div>`;
@@ -131,8 +166,7 @@ function Pruefung(o){
    if(it.text)h+=`<div class="tz-text small">${T(it.text).replace(/\n/g,"<br>")}</div>`;
    if(it.q)h+=`<div class="tz-qt">${T(it.q).replace(/\n/g,"<br>")}</div>`;
    h+=control(p,it,k,v)+`</div></div>`});
-  const last=pi===s.parts.length-1;
-  h+=`<div class="tz-row end">${pi>0?`<button type="button" class="tz-btn ghost" data-part="${pi-1}">‹ Zurück</button>`:""}${last?`<button type="button" class="tz-btn" data-go="submit">${esc(s.de)} abgeben</button>`:`<button type="button" class="tz-btn" data-part="${pi+1}">Weiter ›</button>`}</div></div>`;
+  h+=`<div class="tz-row end"><button type="button" class="tz-btn" data-go="handin">${esc(tabName(p))} abgeben ›</button></div></div>`;
   body.innerHTML=h;body.scrollTop=0}
  function control(p,it,k,v){
   const chips=(labels)=>`<div class="tz-opts">${labels.map((l,i)=>`<button type="button" class="tz-opt" data-a="${k}" data-v="${i}" aria-pressed="${v===i}">${l}</button>`).join("")}</div>`;
@@ -166,7 +200,7 @@ function Pruefung(o){
    p.items.forEach((it,i)=>{m+=p.per;if(correct(p,it,r.ans[si+"."+j+"."+i]))a+=p.per})});
    per.push({de:s.de,a,m});raw+=a;max+=m});
   const pts=raw*o.scale.factor;return {raw,max,pts,per,pending,pass:pts>=o.scale.pass}}
- function finish(){clearInterval(timer);const r={tid:run.tid,ans:run.ans,sa:{},date:new Date().toLocaleDateString("de-DE")};
+ function finish(){clearInterval(timer);setTimeout(label);const r={tid:run.tid,ans:run.ans,sa:{},date:new Date().toLocaleDateString("de-DE")};
   store.set(K+":last:"+run.tid,r);run=null;store.set(RUN,null);review(r.tid,true)}
  function keep(r){const s=score(r);const all=store.get(RES)||{};all[r.tid]={pts:s.pts,pass:s.pass,date:r.date,pending:s.pending};store.set(RES,all);store.set(K+":last:"+r.tid,r)}
 
@@ -210,10 +244,11 @@ function Pruefung(o){
 
  /* ---- input ---- */
  ov.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
-  if(b.classList.contains("tz-x")){if(view==="section"){if(!confirm("Test unterbrechen? Die Zeit läuft weiter – du kannst später über „Test“ fortsetzen."))return}close();return}
+  if(b.classList.contains("tz-x")){close();return}   /* a running Teil pauses */
+  if(b.classList.contains("tz-pause")){pause();return}
   if(b.dataset.start){start(b.dataset.start);return}
   if(b.dataset.review){review(b.dataset.review,true);return}
-  if(b.dataset.part!=null){pi=+b.dataset.part;stopAudio();drawPart();return}
+  if(b.dataset.part!=null){switchPart(+b.dataset.part);return}
   if(b.dataset.play){const k=b.dataset.play,p=b.closest(".tz-q,.tz-audio");const s=test(run.tid).sections[run.si],[,pj]=k.split(".").map(Number),part=s.parts[pj];
    const plays=part.plays||1;if((run.plays[k]||0)>=plays)return;run.plays[k]=(run.plays[k]||0)+1;save();
    const txt=k.split(".").length===3?part.items[+k.split(".")[2]].audio:part.audio;
@@ -221,10 +256,13 @@ function Pruefung(o){
   if(b.dataset.sa){review.onSa(b.dataset.sa,b.dataset.id,+b.dataset.v);return}
   if(b.dataset.a){run.ans[b.dataset.a]=+b.dataset.v;save();b.parentElement.querySelectorAll(".tz-opt").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));return}
   const g=b.dataset.go;
-  if(g==="resume"){run.si!=null&&run.deadline?showSection():sectionIntro();return}
-  if(g==="drop"){if(confirm("Laufenden Test verwerfen?")){run=null;store.set(RUN,null);home()}return}
+  if(g==="resume"){run.si!=null?showPause():sectionIntro();return}
+  if(g==="unpause"){unpause();return}
+  if(g==="drop"){if(confirm("Pausierten Test verwerfen?")){run=null;store.set(RUN,null);label();home()}return}
   if(g==="begin"){begin();return}
-  if(g==="submit"){const n=unanswered(run.si);if(!confirm(n?`Noch ${n} ${n===1?"Aufgabe":"Aufgaben"} ohne Antwort. Trotzdem abgeben?`:"Diesen Teil abgeben?"))return;submitSection();return}
+  if(g==="handin"){tick();if(run.si==null)return;const n=unansweredPart(run.si,run.cur),p=test(run.tid).sections[run.si].parts[run.cur];
+   if(!confirm(n?`Noch ${n} ${n===1?"Aufgabe":"Aufgaben"} ohne Antwort. ${tabName(p)} trotzdem abgeben?`:`${tabName(p)} abgeben? Danach kannst du ihn nicht mehr ändern.`))return;
+   stopAudio();run.done[pk(run.si,run.cur)]=true;nextPart();return}
   if(g==="home"){home();return}
   if(g==="wrong"){const on=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",String(on));body.classList.toggle("only-wrong",on);return}});
  ov.addEventListener("change",e=>{const el=e.target;
@@ -233,9 +271,10 @@ function Pruefung(o){
  ov.addEventListener("input",e=>{const el=e.target;
   if(el.matches(".tz-in")){run.ans[el.dataset.a]=el.value;save();return}
   if(el.matches(".tz-write")){run.ans[el.dataset.w+".w"]=el.value;save();const wc=el.nextElementSibling;if(wc)wc.firstElementChild.textContent=words(el.value)}});
- /* back from another app: the clock may already have run out */
- document.addEventListener("visibilitychange",()=>{if(!document.hidden&&view==="section")tick()});
- button.onclick=open;
- return {button,open,close}}
+  /* Leaving for another app (or the phone closing the page) pauses the test. */
+ document.addEventListener("visibilitychange",()=>{if(document.hidden&&view==="section")pause()});
+ addEventListener("pagehide",()=>{if(view==="section")pause(true)});
+ button.onclick=open;entry.onclick=open;label();
+ return {button,entry,open,close}}
 window.Pruefung=Pruefung;
 })();

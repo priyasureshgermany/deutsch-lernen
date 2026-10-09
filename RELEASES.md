@@ -1,5 +1,8 @@
 # Releases
 
+## 1.16.1 — 2026-10-09
+- Modelltests: pause and resume (❚❚ in the top bar; leaving the test pauses it too, no time lost); every Teil has its own clock that runs only while it is open, and only that Teil is handed in when its time is up; the tests have their own card at the top of A1 and B1 instead of a button among the practice tools
+
 ## 1.16.0 — 2026-10-09
 - New: Modelltests for A1 and B1 – three whole exams per level (Test button next to the cards). Strict timer per part like the real exam (handed in when the time is up), recordings play only as often as in the exam, then your marks with the real scoring (A1 out of 75 written points, B1 out of 225), pass or fail, and for every mistake the right answer and why. Writing: model answer and the marking criteria to score yourself. A running test survives a reload.
 

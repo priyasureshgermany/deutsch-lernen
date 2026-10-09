@@ -44,6 +44,8 @@ for (const [lv, tests] of [["A1", window.TESTS_A1], ["B1", window.TESTS_B1]]) {
         const keys = p.items.map(it => it.a);
         if (["mc", "gapmc"].includes(p.type) && new Set(keys).size === 1) fail(w, "every answer is the same letter");
       });
+      const mins = s.parts.reduce((a, p) => a + (p.time || 0), 0);
+      if (mins !== s.time) fail(`${t.id} ${s.de}`, `Teil times add up to ${mins} min, section has ${s.time}`);
       if (Math.abs(pts - PTS[lv][si]) > 1e-9) fail(`${t.id} ${s.de}`, `${pts} points, exam has ${PTS[lv][si]}`);
     });
   }

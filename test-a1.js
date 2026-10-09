@@ -88,7 +88,8 @@ window.TESTS_A1 = [
         "audio": "Mann: Wie ist Ihre Telefonnummer?\nFrau: Null, eins, sieben, null – fünfundvierzig – dreiundzwanzig – einundachtzig.\nMann: Also null eins sieben null, fünfundvierzig, dreiundzwanzig, einundachtzig?\nFrau: Richtig.",
         "why": "Achtung: „dreiundzwanzig“ = 23 (drei + zwanzig)."
        }
-      ]
+      ],
+      "time": 8
      },
      {
       "t": "Teil 2 – Durchsagen",
@@ -122,7 +123,8 @@ window.TESTS_A1 = [
         "audio": "Heute im Angebot: ein Kilo Äpfel nur 1 Euro 49. Und Bananen: nur 99 Cent das Kilo. Nur heute!",
         "why": "nur 99 Cent das Kilo."
        }
-      ]
+      ],
+      "time": 4
      },
      {
       "t": "Teil 3 – Telefonansagen",
@@ -187,7 +189,8 @@ window.TESTS_A1 = [
         "audio": "Hallo, hier ist die Sprachschule Lingua. Ihr Deutschkurs am Mittwoch ist heute nicht in Raum 12, sondern in Raum 20 im zweiten Stock. Der Kurs beginnt wie immer um 18 Uhr.",
         "why": "Raum 20 statt 12."
        }
-      ]
+      ],
+      "time": 8
      }
     ]
    },
@@ -230,7 +233,8 @@ window.TESTS_A1 = [
         "a": true,
         "why": "„Bitte rufen Sie mich an.“"
        }
-      ]
+      ],
+      "time": 8
      },
      {
       "t": "Teil 2 – Anzeigen",
@@ -284,7 +288,8 @@ window.TESTS_A1 = [
         "a": 0,
         "why": "öffnet schon um 6:30 Uhr."
        }
-      ]
+      ],
+      "time": 8
      },
      {
       "t": "Teil 3 – Schilder und Aushänge",
@@ -323,7 +328,8 @@ window.TESTS_A1 = [
         "a": true,
         "why": "der Aufzug ist kaputt."
        }
-      ]
+      ],
+      "time": 9
      }
     ]
    },
@@ -390,7 +396,8 @@ window.TESTS_A1 = [
         "a": 1,
         "why": "„Sie bezahlt den Kurs bar.“"
        }
-      ]
+      ],
+      "time": 5
      },
      {
       "t": "Teil 2 – Kurze Mitteilung",
@@ -405,7 +412,8 @@ window.TESTS_A1 = [
        "Wann kommen Sie wieder?",
        "Bitte: Hausaufgaben"
       ],
-      "model": "Liebe Frau Klein, ich bin leider krank und kann heute nicht zum Kurs kommen. Ich komme am Montag wieder. Können Sie mir bitte die Hausaufgaben schicken? Vielen Dank! Viele Grüße, Suresh"
+      "model": "Liebe Frau Klein, ich bin leider krank und kann heute nicht zum Kurs kommen. Ich komme am Montag wieder. Können Sie mir bitte die Hausaufgaben schicken? Vielen Dank! Viele Grüße, Suresh",
+      "time": 15
      }
     ]
    }
@@ -496,7 +504,8 @@ window.TESTS_A1 = [
         "why": "„zweihunderteinundvierzig“ = 241 (zweihundert + eins + vierzig).",
         "audio": "Rezeption: Guten Abend. Ihr Name, bitte?\nFrau: Schneider. Ich habe ein Einzelzimmer reserviert.\nRezeption: Ja, Frau Schneider. Sie haben Zimmer zweihunderteinundvierzig im zweiten Stock."
        }
-      ]
+      ],
+      "time": 8
      },
      {
       "t": "Teil 2 – Durchsagen",
@@ -529,7 +538,8 @@ window.TESTS_A1 = [
         "why": "Heute schließt es schon um 19 Uhr.",
         "audio": "Liebe Badegäste, unser Schwimmbad schließt heute wegen einer Veranstaltung schon um 19 Uhr. Bitte verlassen Sie das Becken um 18 Uhr 30."
        }
-      ]
+      ],
+      "time": 4
      },
      {
       "t": "Teil 3 – Telefonansagen",
@@ -593,7 +603,8 @@ window.TESTS_A1 = [
         "why": "Geöffnet ist Dienstag bis Samstag.",
         "audio": "Hier ist das Modegeschäft Lisa. Wir haben Dienstag bis Samstag von 10 bis 19 Uhr geöffnet. Am Sonntag und am Montag ist das Geschäft geschlossen."
        }
-      ]
+      ],
+      "time": 8
      }
     ]
    },
@@ -634,7 +645,8 @@ window.TESTS_A1 = [
         "a": false,
         "why": "Sie bringen selbst etwas zu essen und zu trinken mit."
        }
-      ]
+      ],
+      "time": 8
      },
      {
       "t": "Teil 2 – Anzeigen",
@@ -686,7 +698,8 @@ window.TESTS_A1 = [
         "a": 1,
         "why": "„verschenken“ = kostenlos geben."
        }
-      ]
+      ],
+      "time": 8
      },
      {
       "t": "Teil 3 – Schilder und Aushänge",
@@ -725,7 +738,8 @@ window.TESTS_A1 = [
         "why": "Suppe, Hauptgericht und Getränk – 9,50 Euro.",
         "text": "Restaurant Adria – Mittagsmenü von 12 bis 14 Uhr: Suppe, Hauptgericht und Getränk – 9,50 Euro."
        }
-      ]
+      ],
+      "time": 9
      }
     ]
    },
@@ -787,7 +801,8 @@ window.TESTS_A1 = [
         "a": 1,
         "why": "„Lukas bezahlt mit Kreditkarte.“"
        }
-      ]
+      ],
+      "time": 5
      },
      {
       "t": "Teil 2 – Kurze Mitteilung",
@@ -802,7 +817,8 @@ window.TESTS_A1 = [
        "Was soll er mitbringen?"
       ],
       "model": "Lieber Markus, am Samstag habe ich Geburtstag und mache eine kleine Party. Sie beginnt um 19 Uhr bei mir zu Hause. Kannst du bitte Getränke mitbringen? Ich freue mich auf dich! Viele Grüße, Suresh",
-      "tab": "Teil 2"
+      "tab": "Teil 2",
+      "time": 15
      }
     ]
    }
@@ -891,7 +907,8 @@ window.TESTS_A1 = [
         "a": 1,
         "audio": "Frau: Entschuldigung, gibt es hier eine Post?\nMann: Ja, gehen Sie geradeaus bis zum Bahnhof. Die Post ist gegenüber vom Bahnhof, neben einem Café.\nFrau: Vielen Dank."
        }
-      ]
+      ],
+      "time": 8
      },
      {
       "t": "Teil 2 – Durchsagen",
@@ -924,7 +941,8 @@ window.TESTS_A1 = [
         "a": true,
         "audio": "An Gleis 9: Der ICE nach Hamburg, Abfahrt 11 Uhr 50. Bitte einsteigen und Vorsicht an der Bahnsteigkante."
        }
-      ]
+      ],
+      "time": 4
      },
      {
       "t": "Teil 3 – Telefonansagen",
@@ -988,7 +1006,8 @@ window.TESTS_A1 = [
         "why": "Pass und Mietvertrag hat die Behörde schon.",
         "audio": "Guten Morgen, Herr Ito, hier ist die Ausländerbehörde. Für Ihren Termin am Freitag brauchen wir noch ein aktuelles Foto. Ihren Pass und den Mietvertrag haben wir schon. Danke."
        }
-      ]
+      ],
+      "time": 8
      }
     ]
    },
@@ -1028,7 +1047,8 @@ window.TESTS_A1 = [
         "q": "Text 2: Frau Schulz braucht für das Paket ihren Ausweis.",
         "a": true
        }
-      ]
+      ],
+      "time": 8
      },
      {
       "t": "Teil 2 – Anzeigen",
@@ -1079,7 +1099,8 @@ window.TESTS_A1 = [
         ],
         "a": 0
        }
-      ]
+      ],
+      "time": 8
      },
      {
       "t": "Teil 3 – Schilder und Aushänge",
@@ -1118,7 +1139,8 @@ window.TESTS_A1 = [
         "why": "Nur Kunden, höchstens 2 Stunden.",
         "text": "Parken nur für Kunden. Maximal 2 Stunden."
        }
-      ]
+      ],
+      "time": 9
      }
     ]
    },
@@ -1176,7 +1198,8 @@ window.TESTS_A1 = [
         "a": 1,
         "why": "Sie arbeitet unter der Woche, deshalb Samstag."
        }
-      ]
+      ],
+      "time": 5
      },
      {
       "t": "Teil 2 – Kurze Mitteilung",
@@ -1191,7 +1214,8 @@ window.TESTS_A1 = [
        "Bitte: Handwerker"
       ],
       "model": "Sehr geehrter Herr Braun, in meiner Wohnung ist die Heizung kaputt. Sie funktioniert seit Montag nicht mehr, und es ist sehr kalt. Können Sie bitte schnell einen Handwerker schicken? Mit freundlichen Grüßen, Suresh [Nachname]",
-      "tab": "Teil 2"
+      "tab": "Teil 2",
+      "time": 15
      }
     ]
    }
