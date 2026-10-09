@@ -26,7 +26,7 @@
 --r-S:#8fa8ff;--r-P:#ff7d7d;--r-AO:#ffa65c;--r-DO:#72d677;--r-GA:#e8c547;--r-AB:#4dd0e1;--r-PO:#d49bf0;--r-PN:#f48fb1;--r-AT:#d2a896;--r-K:#aab3c5;
 --s1:#8fa8ff;--s2:#ff7d7d;--s3:#72d677;--s4:#ffa65c;--s5:#d49bf0;--s6:#4dd0e1;--s7:#f48fb1;
 --t-te:#8fa8ff;--t-ka:#ff7d7d;--t-mo:#72d677;--t-lo:#ffa65c}
-*,*::before,*::after{box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box;touch-action:manipulation}
 html{scroll-padding-top:170px}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
 h1,h2{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
@@ -78,7 +78,7 @@ h2{font-size:clamp(24px,4vw,34px);font-weight:800;letter-spacing:-.01em}
    text with an underline, B1 as a tinted rounded box. */
 /* Words start plain; a word switched on (.on) shows its colour --col. */
 .tk{--col:var(--ink);--ds:solid;cursor:pointer;border-radius:4px;padding:1px 1px;color:var(--ink);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:transparent;text-decoration-style:var(--ds);border:1.5px solid transparent;transition:opacity .15s,background .15s}
-.tk:hover{background:var(--surface)}
+@media (hover:hover){.tk:hover{background:var(--surface)}}
 .card[data-lvl="B1"] .tk{border-radius:8px;padding:1px 6px}
 .card[data-lvl="A1"] .tk.on{color:var(--col);text-decoration-color:var(--col)}
 .card[data-lvl="B1"] .tk.on{background:color-mix(in srgb,var(--col) 20%,transparent);border:1.5px var(--ds) color-mix(in srgb,var(--col) 75%,transparent)}
