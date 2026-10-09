@@ -30,8 +30,24 @@ body.cards{overflow:hidden}
 .fc-box .lab{font-size:max(11px,.55em);font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
 .fc-box.tx{border-color:var(--a2)}.fc-box.tx .lab{color:var(--a2)}
 .fc-box.ans{border-color:var(--ans,var(--b1));background:var(--ansbg,var(--surface))}.fc-box.ans .lab{color:var(--ans,var(--b1))}
-.fc-ins{background:var(--surface);border-radius:12px;padding:.4em .7em;margin-bottom:.6em;font-size:.8em}
+/* Information, never content: the strip of facts and the ⓘ panel sit on top
+   in their own colours, apart from the question below. */
+.fc-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.3em .5em;margin:0 0 .7em;padding-bottom:.45em;border-bottom:1px dashed var(--line);font-size:max(12px,.6em);font-weight:700;color:var(--muted)}
+.fc-meta > span:not(:last-child):not(.xpts)::after{content:"·";margin-left:.5em;color:var(--line)}
+.fc-meta .xpts{color:#fff;background:var(--b1);border-radius:999px;padding:.1em .7em}
+.fc-ins{position:relative;background:color-mix(in srgb,var(--b1) 9%,var(--paper));border:1px solid color-mix(in srgb,var(--b1) 30%,transparent);border-left:4px solid var(--b1);border-radius:10px;padding:.5em .8em .55em 2.1em;margin:0 0 .9em;font-size:max(13px,.72em);line-height:1.45}
+.fc-ins::before{content:"i";position:absolute;left:.6em;top:.55em;width:1.15em;height:1.15em;border-radius:50%;background:var(--b1);color:#fff;font-weight:800;font-style:italic;font-size:.9em;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif}
 .fc-ins .en-line,.fc-ins i{color:var(--muted);font-style:italic}
+/* The ⓘ panel drops down over the top of the card, so the card keeps its size. */
+.fc-info{position:absolute;top:calc(env(safe-area-inset-top,0px) + 52px);left:10px;right:10px;z-index:4;max-width:800px;margin:0 auto!important;max-height:62%;overflow-y:auto;overscroll-behavior:contain;font-size:14px;
+ box-shadow:0 10px 30px rgba(0,0,0,.28);animation:fcDrop .18s ease-out}
+@keyframes fcDrop{from{opacity:0;transform:translateY(-8px)}}
+.fc-info[hidden]{display:none}
+.fc-info .say{width:26px;height:26px;margin-left:6px;vertical-align:middle}
+.fc-ins .xh{font-weight:800;color:var(--b1);margin-bottom:.2em}
+.fc-ins .xf{display:grid;grid-template-columns:auto 1fr;gap:.15em .8em;margin:.5em 0 0;padding-top:.45em;border-top:1px dashed color-mix(in srgb,var(--b1) 30%,transparent)}
+.fc-ins .xf dt{font-weight:700;color:var(--muted)}
+.fc-ins .xf dd{margin:0}
 .fc-card details{margin-top:.5em}
 .fc-card details > summary{cursor:pointer;font-weight:700;color:var(--b1);font-size:max(13px,.7em);display:inline-block;padding:2px 10px;border:1.5px solid var(--b1);border-radius:999px;list-style:none}
 .fc-card details > summary::-webkit-details-marker{display:none}
@@ -60,7 +76,8 @@ body.cards{overflow:hidden}
  .fc-body{padding:6px 16px 52px}
  .fc-card{max-width:1100px}
  .fc-card.two{display:grid;grid-template-columns:1fr 1fr;gap:0 20px;align-items:start}
- .fc-card.two > .fc-ins{grid-column:1 / -1}
+ .fc-card.two > .fc-meta{grid-column:1 / -1}
+ .fc-info{top:calc(env(safe-area-inset-top,0px) + 42px);max-height:78%;font-size:13px}
  .fc-card.two > .fc-a > :first-child{margin-top:0}
  .fc-nav{bottom:6px}.fc-nav .ib,.fc-cnt{height:32px}
 }

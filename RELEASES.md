@@ -1,5 +1,11 @@
 # Releases
 
+## 1.14.0 — 2026-10-09
+- New (A1, B1): every card shows on top what the question is worth – e.g. „2,5 Punkte · 2× hören“ – with the part and its number, set apart from the question
+- New (A1, B1): „Prüfung im Überblick“ under the intro – every Prüfungsteil with time and points, the points of each Teil, the totals and the pass marks; and a points line under every Teil in the list
+- Karten: ⓘ now drops down over the top of the card in its own colour, so the card keeps its size; in A1/B1 it also lists the scoring of the Teil, the Prüfungsteil and the whole exam
+- Fix (A1): the pass mark now reads 60 of 100 points (36 of 60 raw points), as in the official scoring
+
 ## 1.13.0 — 2026-10-09
 - New: Karten in every section, not only A1 – the cards icon (first in each tool bar; top right in Gespräche, Briefe and Hören) shows one item per screen, fitted to the screen: B1 and Themen one question, Wörter one sentence (colour views, fill, clear and Satzbau on the card), Grammatik one example, Gespräche one line in the speaker's voice, Briefe one part, Hören one question with the scene's player
 - Karten: Übungsmodus in Grammatik, Gespräche and Briefe hides the German and keeps the English – say it, then tap

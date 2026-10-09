@@ -21,7 +21,12 @@
      shown(item,i,body)  after a card is drawn
      leave()  before a card is replaced or the cards close (stop sound …)
      close(item,i)  after closing (scroll the list there)
-     info(item)     → HTML shown at the top when ⓘ is on (optional)
+     meta(item)     → a strip of facts always on top of the card (optional)
+     info(item)     → HTML for the ⓘ panel (optional): it drops down over the
+              top of the card and scrolls on its own, so the card keeps its
+              size; a tap on the card closes it.
+              Strip and panel are styled apart from the content, so facts
+              never read as part of the question.
      tools    [{id,icon|text,label,color,pressed:()=>bool,click(api)}]
               icon names: see ICON; {builtin:"practice"} blurs every .fc-hide
               in the card until tapped. Tools refit the card after a click.
@@ -53,11 +58,12 @@ function Karten(o){
  const tb=t=>`<button class="ib" type="button" data-tool="${t.id}" aria-label="${escA(t.label)}" title="${escA(t.label)}"${t.pressed?' aria-pressed="false"':""}${t.color?` style="--c:${t.color}"`:""}>${t.text?`<b class="ibt">${escA(t.text)}</b>`:svg(t.icon)}</button>`;
  const fc=document.createElement("div");fc.className="fc";fc.hidden=true;fc.setAttribute("role","region");fc.setAttribute("aria-label","Karten");
  fc.innerHTML=`<div class="fc-top">${tools.map(tb).join("")}<span class="sp"></span>${tb({id:"_close",icon:"list",label:"Zurück zur Liste"})}</div>
+<div class="fc-ins fc-info" hidden></div>
 <div class="fc-body"></div>
 <div class="fc-menu" hidden><div class="row"><button type="button" data-go="first">⏮ Erste</button><button type="button" data-go="last">Letzte ⏭</button></div><select aria-label="Teil wählen"></select></div>
 <div class="fc-nav"><button class="ib" type="button" data-go="prev" aria-label="Zurück (doppelt tippen: erste)" title="Doppelt tippen: erste">${svg("prev",2.6)}</button><button type="button" class="fc-cnt" aria-label="Erste, letzte oder Teil wählen" aria-expanded="false"></button><button class="ib" type="button" data-go="next" aria-label="Weiter (doppelt tippen: letzte)" title="Doppelt tippen: letzte">${svg("next",2.6)}</button></div>`;
  o.mount.appendChild(fc);
- const body=fc.querySelector(".fc-body"),menu=fc.querySelector(".fc-menu"),sel=menu.querySelector("select"),cnt=fc.querySelector(".fc-cnt");
+ const body=fc.querySelector(".fc-body"),infoEl=fc.querySelector(".fc-info"),menu=fc.querySelector(".fc-menu"),sel=menu.querySelector("select"),cnt=fc.querySelector(".fc-cnt");
  const q=s=>fc.querySelector(s);
  const button=document.createElement("button");button.type="button";button.className="fc-open";
  button.setAttribute("aria-label","Karten: eine Karte pro Seite");button.title="Karten: eine Karte pro Seite";button.innerHTML=svg("cards",2);
@@ -83,7 +89,8 @@ function Karten(o){
   cnt.textContent=`${n-a+1} / ${b-a+1}`;cnt.title=it.part;
   q('[data-go="prev"]').disabled=n===0;q('[data-go="next"]').disabled=n===D.length-1;
   menu.querySelector('[data-go="first"]').disabled=n===a;menu.querySelector('[data-go="last"]').disabled=n===b;
-  body.innerHTML=`<div class="fc-card${dir?" in-"+dir:""}">${infoOn&&o.info?`<div class="fc-ins">${o.info(it)}</div>`:""}${o.render(it,n)}</div>`;
+  body.innerHTML=`<div class="fc-card${dir?" in-"+dir:""}">${o.meta?`<div class="fc-meta">${o.meta(it)}</div>`:""}${o.render(it,n)}</div>`;
+  infoEl.hidden=!(infoOn&&o.info);infoEl.innerHTML=infoEl.hidden?"":o.info(it);infoEl.scrollTop=0;
   const card=body.firstElementChild;if(card.querySelector(":scope > .fc-a"))card.classList.add("two");
   body.querySelectorAll("details[data-keep]").forEach(d=>{if(keep[d.dataset.keep])d.open=true;d.addEventListener("toggle",refit)});
   if(o.shown)o.shown(it,n,body);
@@ -112,6 +119,7 @@ function Karten(o){
  sel.onchange=()=>show(+sel.value,+sel.value<i?"r":"l");
  /* Practice: a blurred part opens on the first tap, before anything else sees it. */
  body.addEventListener("click",e=>{menuOpen(false);
+  if(infoOn){infoOn=false;infoEl.hidden=true;sync();e.stopPropagation();e.preventDefault();return}
   const h=fc.classList.contains("fc-pr")&&e.target.closest(".fc-hide:not(.shown)");
   if(h){h.classList.add("shown");e.stopPropagation();e.preventDefault()}
   refit()},true);
