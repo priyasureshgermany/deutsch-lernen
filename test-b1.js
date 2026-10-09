@@ -58,7 +58,8 @@ window.TESTS_B1 = [
         "text": "Wegen des starken Gewitters am Samstagabend konnte die Band „Nordwind“ nicht wie geplant im Stadtpark spielen. Die Tickets bleiben gültig. Ein neuer Termin wird bald bekannt gegeben.",
         "a": 9
        }
-      ]
+      ],
+      "time": 20
      },
      {
       "t": "Leseverstehen Teil 2 – Detailverstehen",
@@ -118,7 +119,8 @@ window.TESTS_B1 = [
         "a": 0,
         "why": ""
        }
-      ]
+      ],
+      "time": 20
      },
      {
       "t": "Leseverstehen Teil 3 – Selektives Verstehen",
@@ -192,7 +194,8 @@ window.TESTS_B1 = [
         "a": -1,
         "why": "x – keine Anzeige bietet Französisch an."
        }
-      ]
+      ],
+      "time": 20
      },
      {
       "t": "Sprachbausteine Teil 1 – Grammatik",
@@ -302,7 +305,8 @@ window.TESTS_B1 = [
         "a": 1,
         "why": "indirekte Frage nach der Zeit"
        }
-      ]
+      ],
+      "time": 15
      },
      {
       "t": "Sprachbausteine Teil 2 – Wortschatz",
@@ -379,7 +383,8 @@ window.TESTS_B1 = [
         "a": 3,
         "why": "Mit freundlichen Grüßen"
        }
-      ]
+      ],
+      "time": 15
      }
     ]
    },
@@ -427,7 +432,8 @@ window.TESTS_B1 = [
         "audio": "Ich lerne seit zwei Jahren Deutsch. Am meisten hilft mir ein Tandempartner. Wir treffen uns jede Woche und sprechen eine Stunde Deutsch und eine Stunde Englisch. Grammatikbücher finde ich dagegen langweilig.",
         "why": "am meisten hilft der Tandempartner."
        }
-      ]
+      ],
+      "time": 7
      },
      {
       "t": "Teil 2 – Detailverstehen",
@@ -488,7 +494,8 @@ window.TESTS_B1 = [
         "a": true,
         "why": ""
        }
-      ]
+      ],
+      "time": 15
      },
      {
       "t": "Teil 3 – Selektives Verstehen",
@@ -528,7 +535,8 @@ window.TESTS_B1 = [
         "audio": "Passagiere des Fluges nach Lissabon, bitte beachten Sie: Ihr Flug startet heute nicht von Gate A 22, sondern von Gate B 14. Das Boarding beginnt in 15 Minuten.",
         "why": "15 Minuten = eine Viertelstunde."
        }
-      ]
+      ],
+      "time": 8
      }
     ]
    },
@@ -551,7 +559,8 @@ window.TESTS_B1 = [
        "Freizeitmöglichkeiten",
        "Angebot: Hilfe oder Übernachtung"
       ],
-      "model": "Lieber Daniel,\nvielen Dank für deine E-Mail! Ich finde es toll, dass du nach Frankfurt ziehen möchtest. Gern gebe ich dir ein paar Tipps.\nDie Wohnungssuche ist hier leider nicht einfach, weil die Mieten sehr hoch sind. Ich empfehle dir, zuerst in einer WG zu wohnen und auf mehreren Portalen zu suchen.\nWenn du in der Innenstadt arbeitest, sind Stadtteile wie Bornheim oder Bockenheim gut. Dort gibt es viele Cafés, und mit der U-Bahn kommt man schnell überall hin.\nIn der Freizeit kann man am Main joggen, ins Museum gehen oder am Wochenende in den Taunus fahren.\nWenn du möchtest, kannst du bei mir wohnen, während du eine Wohnung suchst. Mein Sofa ist frei!\nSchreib mir, wann du kommst.\nViele Grüße\nSuresh"
+      "model": "Lieber Daniel,\nvielen Dank für deine E-Mail! Ich finde es toll, dass du nach Frankfurt ziehen möchtest. Gern gebe ich dir ein paar Tipps.\nDie Wohnungssuche ist hier leider nicht einfach, weil die Mieten sehr hoch sind. Ich empfehle dir, zuerst in einer WG zu wohnen und auf mehreren Portalen zu suchen.\nWenn du in der Innenstadt arbeitest, sind Stadtteile wie Bornheim oder Bockenheim gut. Dort gibt es viele Cafés, und mit der U-Bahn kommt man schnell überall hin.\nIn der Freizeit kann man am Main joggen, ins Museum gehen oder am Wochenende in den Taunus fahren.\nWenn du möchtest, kannst du bei mir wohnen, während du eine Wohnung suchst. Mein Sofa ist frei!\nSchreib mir, wann du kommst.\nViele Grüße\nSuresh",
+      "time": 30
      }
     ]
    }
@@ -616,7 +625,8 @@ window.TESTS_B1 = [
         "why": "„so viele Gäste aus dem Ausland … wie noch nie“",
         "text": "Im letzten Jahr haben so viele Gäste aus dem Ausland in der Stadt übernachtet wie noch nie. Besonders beliebt waren die Altstadt und die Museen. Die Hotels sind deshalb sehr zufrieden."
        }
-      ]
+      ],
+      "time": 20
      },
      {
       "t": "Leseverstehen Teil 2 – Detailverstehen",
@@ -675,7 +685,8 @@ window.TESTS_B1 = [
         ],
         "a": 0
        }
-      ]
+      ],
+      "time": 20
      },
      {
       "t": "Leseverstehen Teil 3 – Selektives Verstehen",
@@ -743,7 +754,8 @@ window.TESTS_B1 = [
         "a": -1,
         "why": "x – f) ist ein WG-Zimmer nur für Studentinnen."
        }
-      ]
+      ],
+      "time": 20
      },
      {
       "t": "Sprachbausteine Teil 1 – Grammatik",
@@ -853,7 +865,8 @@ window.TESTS_B1 = [
         "a": 2,
         "why": "Ziel mit anderem Satzteil → damit"
        }
-      ]
+      ],
+      "time": 15
      },
      {
       "t": "Sprachbausteine Teil 2 – Wortschatz",
@@ -930,7 +943,8 @@ window.TESTS_B1 = [
         "a": 6,
         "why": "Mit freundlichen Grüßen"
        }
-      ]
+      ],
+      "time": 15
      }
     ]
    },
@@ -978,7 +992,8 @@ window.TESTS_B1 = [
         "why": "Nur ein- oder zweimal im Jahr – sie telefonieren jeden Sonntag.",
         "audio": "Meine Großeltern wohnen in Polen, fast tausend Kilometer von hier. Leider kann ich sie nur ein- oder zweimal im Jahr besuchen. Aber wir telefonieren jeden Sonntag per Video. So sehen wir uns wenigstens auf dem Bildschirm."
        }
-      ]
+      ],
+      "time": 7
      },
      {
       "t": "Teil 2 – Detailverstehen",
@@ -1034,7 +1049,8 @@ window.TESTS_B1 = [
         "q": "Herr Petrović möchte ein zweites Café eröffnen.",
         "a": true
        }
-      ]
+      ],
+      "time": 15
      },
      {
       "t": "Teil 3 – Selektives Verstehen",
@@ -1072,7 +1088,8 @@ window.TESTS_B1 = [
         "a": true,
         "audio": "Sie haben die Servicenummer der Stadtwerke angerufen. Diese Nummer ist ab sofort nicht mehr gültig. Bitte rufen Sie in Zukunft die 0800 123 45 67 an."
        }
-      ]
+      ],
+      "time": 8
      }
     ]
    },
@@ -1095,7 +1112,8 @@ window.TESTS_B1 = [
        "Was erwarten Sie?",
        "Was tun Sie, wenn sich nichts ändert?"
       ],
-      "model": "Sehr geehrte Damen und Herren,\nich bin seit einem Jahr Mitglied in Ihrem Fitnessstudio. Leider bin ich in den letzten Wochen sehr unzufrieden, deshalb schreibe ich Ihnen.\nDer Yogakurs am Dienstagabend ist in diesem Monat schon dreimal ausgefallen, ohne dass wir informiert wurden. Außerdem ist das Wasser in den Duschen seit zwei Wochen kalt.\nIch erwarte, dass Sie die Probleme schnell lösen. Für die ausgefallenen Kurse möchte ich außerdem einen Teil meines Monatsbeitrags zurückbekommen.\nWenn sich bis Ende des Monats nichts ändert, werde ich meinen Vertrag kündigen.\nIch freue mich auf Ihre baldige Antwort.\nMit freundlichen Grüßen\nSuresh [Nachname]"
+      "model": "Sehr geehrte Damen und Herren,\nich bin seit einem Jahr Mitglied in Ihrem Fitnessstudio. Leider bin ich in den letzten Wochen sehr unzufrieden, deshalb schreibe ich Ihnen.\nDer Yogakurs am Dienstagabend ist in diesem Monat schon dreimal ausgefallen, ohne dass wir informiert wurden. Außerdem ist das Wasser in den Duschen seit zwei Wochen kalt.\nIch erwarte, dass Sie die Probleme schnell lösen. Für die ausgefallenen Kurse möchte ich außerdem einen Teil meines Monatsbeitrags zurückbekommen.\nWenn sich bis Ende des Monats nichts ändert, werde ich meinen Vertrag kündigen.\nIch freue mich auf Ihre baldige Antwort.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "time": 30
      }
     ]
    }
@@ -1161,7 +1179,8 @@ window.TESTS_B1 = [
         "why": "Betriebe finden keine neuen Mitarbeiter",
         "text": "Handwerksbetriebe, Krankenhäuser und Pflegeheime haben große Probleme, neue Mitarbeiter zu finden. Viele Stellen bleiben monatelang leer. Die Betriebe hoffen jetzt auf Fachkräfte aus dem Ausland."
        }
-      ]
+      ],
+      "time": 20
      },
      {
       "t": "Leseverstehen Teil 2 – Detailverstehen",
@@ -1219,7 +1238,8 @@ window.TESTS_B1 = [
         "a": 2,
         "why": "„bleibt geistig fit und hat mehr Kontakt“"
        }
-      ]
+      ],
+      "time": 20
      },
      {
       "t": "Leseverstehen Teil 3 – Selektives Verstehen",
@@ -1286,7 +1306,8 @@ window.TESTS_B1 = [
         "a": -1,
         "why": "x – g) verkauft ein Fahrrad, kein Auto."
        }
-      ]
+      ],
+      "time": 20
      },
      {
       "t": "Sprachbausteine Teil 1 – Grammatik",
@@ -1396,7 +1417,8 @@ window.TESTS_B1 = [
         "a": 1,
         "why": "könnten + Infinitiv"
        }
-      ]
+      ],
+      "time": 15
      },
      {
       "t": "Sprachbausteine Teil 2 – Wortschatz",
@@ -1473,7 +1495,8 @@ window.TESTS_B1 = [
         "a": 14,
         "why": "aus dem Erdgeschoss"
        }
-      ]
+      ],
+      "time": 15
      }
     ]
    },
@@ -1521,7 +1544,8 @@ window.TESTS_B1 = [
         "why": "„Wir fühlen uns dort sehr wohl.“",
         "audio": "Endlich haben wir eine größere Wohnung gefunden! Jetzt hat jedes Kind sein eigenes Zimmer. Die Miete ist zwar höher, und der Weg zur Arbeit ist etwas länger, aber das ist es uns wert. Wir fühlen uns dort sehr wohl."
        }
-      ]
+      ],
+      "time": 7
      },
      {
       "t": "Teil 2 – Detailverstehen",
@@ -1578,7 +1602,8 @@ window.TESTS_B1 = [
         "a": false,
         "why": "„Man braucht keine Erfahrung.“"
        }
-      ]
+      ],
+      "time": 15
      },
      {
       "t": "Teil 3 – Selektives Verstehen",
@@ -1617,7 +1642,8 @@ window.TESTS_B1 = [
         "why": "wegen einer Baustelle",
         "audio": "Information zum ICE nach Berlin: Wegen einer Baustelle hält der Zug heute zusätzlich in Leipzig. Die Ankunft in Berlin verzögert sich um etwa 15 Minuten."
        }
-      ]
+      ],
+      "time": 8
      }
     ]
    },
@@ -1640,7 +1666,8 @@ window.TESTS_B1 = [
        "Kosten",
        "Anmeldung zur Prüfung"
       ],
-      "model": "Sehr geehrte Damen und Herren,\nauf Ihrer Internetseite habe ich gelesen, dass Sie Vorbereitungskurse für die telc-Prüfung B1 anbieten. Ich lebe in Frankfurt und möchte die Prüfung im Frühjahr machen, weil ich ein offizielles Zertifikat haben möchte.\nDa ich tagsüber arbeite, interessiere ich mich besonders für einen Abend- oder Wochenendkurs. Könnten Sie mir bitte sagen, wann die nächsten Kurse beginnen?\nAußerdem möchte ich wissen, wie viel der Kurs kostet und ob die Prüfungsgebühr schon im Preis enthalten ist.\nZum Schluss noch eine Frage: Kann ich mich bei Ihnen auch direkt für die Prüfung anmelden?\nVielen Dank im Voraus für Ihre Antwort.\nMit freundlichen Grüßen\nSuresh [Nachname]"
+      "model": "Sehr geehrte Damen und Herren,\nauf Ihrer Internetseite habe ich gelesen, dass Sie Vorbereitungskurse für die telc-Prüfung B1 anbieten. Ich lebe in Frankfurt und möchte die Prüfung im Frühjahr machen, weil ich ein offizielles Zertifikat haben möchte.\nDa ich tagsüber arbeite, interessiere ich mich besonders für einen Abend- oder Wochenendkurs. Könnten Sie mir bitte sagen, wann die nächsten Kurse beginnen?\nAußerdem möchte ich wissen, wie viel der Kurs kostet und ob die Prüfungsgebühr schon im Preis enthalten ist.\nZum Schluss noch eine Frage: Kann ich mich bei Ihnen auch direkt für die Prüfung anmelden?\nVielen Dank im Voraus für Ihre Antwort.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "time": 30
      }
     ]
    }
