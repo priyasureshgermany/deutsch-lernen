@@ -274,7 +274,7 @@ window.GS = [
   ["A","Haben Sie das Anmeldeformular schon ausgefüllt?","Have you already filled in the registration form?"],
   ["B","Ja, hier ist es. Und hier sind mein Pass und die Wohnungsgeberbestätigung von meinem Vermieter.","Yes, here it is. And here are my passport and the landlord's confirmation from my landlord."],
   ["A","Sehr gut. Ziehen Sie allein ein oder mit Familie?","Very good. Are you moving in alone or with family?"],
-  ["B","Mit meiner Frau und unserem Sohn. Meine Frau kommt nächste Woche selbst vorbei.","With my wife and our son. My wife will come in herself next week."],
+  ["B","Mit meiner Frau [Name der Ehefrau] und unserem Sohn. Meine Frau kommt nächste Woche selbst vorbei.","With my wife [wife's name] and our son. My wife will come in herself next week."],
   ["A","Das ist nicht nötig. Wenn Sie ihre Ausweise dabeihaben, kann ich alle drei gleichzeitig anmelden.","That's not necessary. If you have their ID documents with you, I can register all three at once."],
   ["B","Oh, das wusste ich nicht. Ich habe leider nur Kopien dabei.","Oh, I didn't know that. Unfortunately I only have copies with me."],
   ["A","Dann melde ich heute nur Sie an. Ihre Frau braucht die Originale, am besten mit einem Termin.","Then today I'll only register you. Your wife needs the originals, ideally with an appointment."],

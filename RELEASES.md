@@ -1,5 +1,10 @@
 # Releases
 
+## 1.15.1 — 2026-10-09
+- Fix: dates in „Meine Angaben“ can be entered again – every date opens the phone's calendar (the number pad had no „.“)
+- Meine Angaben, more complete: wife, two children (Tochter/Sohn, birthdays), nationality, flat/floor, in Germany since, employer, tax / child-benefit / health-insurance numbers, IBAN and bank, and a dish, festival, sport and tradition from home; each letter keeps to the right child, and your age is worked out from your birthday
+- Letters: order, booking and customer numbers, amounts and the new address of the moving letter get realistic examples
+
 ## 1.15.0 — 2026-10-09
 - Karten in Briefe and Gespräche: three cards that each make sense on their own – the task (or situation), the whole letter (or conversation), the important phrases – instead of one small piece per card
 - Karten: a card too long to fit at a readable size (a whole letter) keeps a comfortable size and scrolls instead of shrinking
