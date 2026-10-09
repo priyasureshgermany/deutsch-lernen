@@ -106,6 +106,13 @@ main{max-width:1100px;margin:0 auto;padding:14px 20px 140px}
 .part.b .de{font-weight:700}
 .part.g .de{white-space:pre-line}
 .part .acts{margin-top:2px}
+/* ▶ and EN sit at the right of their paragraph or bubble, one above the
+   other, so the text reads straight through; the English opens below. */
+.ln .body,.sheet .part{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:start}
+.ln .body > .acts,.sheet .part > .acts{grid-column:2;grid-row:1;flex-direction:column;gap:5px;margin-top:2px}
+.ln .body > .de,.sheet .part > .de,.ln .body > .fc-hide,.sheet .part > .fc-hide{grid-column:1;grid-row:1}
+.ln .body > .en,.sheet .part > .en{grid-column:1 / -1}
+.acts .enb{padding:2px 8px}
 .say{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--b1);background:transparent;color:var(--b1);cursor:pointer;padding:0;flex:none}
 .say::before{content:"";width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:2px}
 .say.on{background:var(--b1);color:#fff}
@@ -158,6 +165,11 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 .fc-card .who{font-size:max(12px,.6em);line-height:1.6}
 .fc-card .sheet{padding:.7em .9em}
 .fc-card .fc-kick{text-transform:none;letter-spacing:0}
+.fc-card .who-row{display:flex;gap:.5em;margin-top:.6em}
+.fc-card .who-row .ln{max-width:none}
+.fc-card .phr{font-size:.95em}
+.fc-card .phr .t i{font-size:.8em}
+.fc-card .tools{font-size:max(13px,.7em)}
 /* Übungsmodus on a card: the English stays, the German is to be said first. */
 .fc.fc-pr .fc-card .en{display:block}
 </style>
@@ -179,6 +191,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 </main>
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="p1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
 <script src="karten.js"></script>
+<script src="me.js"></script>
 <script src="gespraeche-data.js"></script>
 <script src="briefe-data.js"></script>
 <script src="hoeren-data.js"></script>
@@ -187,11 +200,16 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 /* One page, two tabs: ?t=dialog (Gespräche) or ?t=brief (Briefe). */
 const MODE=({brief:"brief",hoeren:"hoeren"})[new URLSearchParams(location.search).get("t")]||"dialog";
 const DATA=({brief:BR,hoeren:HS,dialog:GS})[MODE];
+/* Meine Angaben (me.js): the learner's own details, and dates made up from
+   today, in place of the [Platzhalter] – German and English alike. */
+if(MODE!=="hoeren")DATA.forEach(d=>{const P=(o,a,b)=>{[o[a],o[b]]=Me.pair(o[a],o[b])};
+ ["parts","lines"].forEach(f=>(d[f]||[]).forEach(x=>P(x,1,2)));(d.tips||[]).forEach(x=>P(x,0,1));
+ if(d.task)P(d,"task","taskEn");if(d.sit)P(d,"sit","sitEn");if(d.points)d.points=d.points.map(x=>Me.plain(Me.fill(x)))});
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const W=s=>s.replace(/[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g,m=>`<span class="w">${m}</span>`);
-const PH=s=>s.replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>');
+const PH=s=>Me.mark(s.replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>'));
 const de=s=>s.split("\n").map(l=>PH(W(esc(l)))).join("\n");
-const spoken=s=>s.replace(/[\[\]]/g,"");
+const spoken=s=>s.replace(/[\[\]⟦⟧]/g,"");
 function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
 
 document.getElementById("kind").textContent=({brief:"Schreiben",hoeren:"Hören",dialog:"Sprechen"})[MODE];
@@ -511,20 +529,36 @@ document.querySelector("main").addEventListener("click",e=>{
  const hid=e.target.closest(".hideme");if(hid){hid.classList.remove("hideme");return}
  const w=e.target.closest(".w");if(w)lookup(w)});
 
-/* ---- Karten (karten.js): one line (Gespräche), one part (Briefe) or one
-   question with its scene's player (Hören) per screen. "open" is set to the card's situation while the cards are
-   up (voices and scenes read it) and given back to the list afterwards. */
+/* ---- Karten (karten.js) ----
+   Each card must make sense on its own, so a situation is never cut into
+   single lines: Gespräche and Briefe get three cards each – the situation or
+   task, the whole dialogue or letter, the important phrases. Hören: one
+   question with its scene's player. "open" is set to the card's situation
+   while the cards are up (voices and scenes read it) and given back to the
+   list afterwards. */
 let alEn=false,listOpen=null,alText=false;const alAns={};
+const STEPS=MODE==="brief"?["Aufgabe","Brief","Wichtige Sätze"]:["Situation","Gespräch","Wichtige Sätze"];
 const line=(g,e,voice)=>`<div class="fc-hide"><div class="de"><span class="s" lang="de">${de(g)}</span></div></div><div class="acts">${sayBtn(g,voice)}<button class="enb" type="button">EN</button></div><div class="en">${esc(e)}</div>`;
+const enOn=()=>alEn?" en-on":"";
+function stepCard(d,n){
+ if(n===0)return MODE==="brief"
+  ?`<div class="dcard"><h2>${esc(d.de)}</h2><div class="den">${esc(d.en)} · ${d.formal?"formell":"informell"}</div>
+   <div class="box en-wrap${enOn()}"><b>Aufgabe</b><span class="s" lang="de">${de(d.task)}</span> ${sayBtn(d.task)}<button class="enb" type="button">EN</button><div class="en">${esc(d.taskEn)}</div>
+   <ul>${d.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div></div>`
+  :`<div class="dcard"><h2>${esc(d.de)}</h2><div class="den">${esc(d.en)}</div>
+   <div class="box en-wrap${enOn()}"><b>Situation</b><span class="s" lang="de">${de(d.sit)}</span> ${sayBtn(d.sit)}<button class="enb" type="button">EN</button><div class="en">${esc(d.sitEn)}</div></div>
+   <div class="who-row">${["A","B"].map(r=>`<span class="ln ${r}" data-g="${genders(d)[r]}"><span class="who">${esc(d.who[r])}</span></span>`).join("")}</div></div>`;
+ if(n===2)return `<div class="dcard"><button type="button" data-all hidden></button><div class="box"><b>Wichtige Sätze</b><div class="lines">${d.tips.map(([g,e])=>`<div class="phr"><div class="t"><span class="fc-hide"><span class="s" lang="de">${de(g)}</span></span><i>${esc(e)}</i></div>${sayBtn(g)}</div>`).join("")}</div></div></div>`;
+ if(MODE==="brief")return `<div class="dcard"><button type="button" data-all hidden></button><div class="sheet">${d.parts.map(([k,g,e])=>`<div class="part ${k}${enOn()}">${line(g,e)}</div>`).join("")}</div></div>`;
+ const gs=genders(d),who=r=>esc(d.who[r]);
+ return `<div class="dcard"><div class="tools"><button class="chip play" type="button" data-all>▶ Ganzes Gespräch</button><span class="lab">Rolle üben:</span>
+   <button class="chip" type="button" data-role="" aria-pressed="true">aus</button><button class="chip" type="button" data-role="A" aria-pressed="false">${who("A")}</button><button class="chip" type="button" data-role="B" aria-pressed="false">${who("B")}</button></div>
+  <div class="lines">${d.lines.map(([r,g,e])=>`<div class="ln ${r}" data-g="${gs[r]}"><span class="who">${who(r)}</span><div class="body${enOn()}">${line(g,e,r)}</div></div>`).join("")}</div></div>`}
 const K=Karten({mount:document.querySelector("main"),
- deck:()=>DATA.flatMap((d,k)=>(MODE==="hoeren"?d.q:MODE==="brief"?d.parts:d.lines).map((x,n)=>({part:d.de,key:k,group:k,k,n}))),
+ deck:()=>DATA.flatMap((d,k)=>(MODE==="hoeren"?d.q:STEPS).map((x,n)=>({part:d.de,key:k,group:k,k,n}))),
  start:D=>{listOpen=open;return open===null?0:Math.max(0,D.findIndex(d=>d.k===+open))},
- render:x=>{const d=DATA[x.k];
-  if(MODE==="hoeren")return hoerCard(d);
-  if(MODE==="brief"){const [k,g,e]=d.parts[x.n];
-   return `<div class="fc-kick">${esc(d.de)}</div><div class="dcard"><div class="sheet"><div class="part ${k}${alEn?" en-on":""}">${line(g,e)}</div></div></div>`}
-  const [r,g,e]=d.lines[x.n],gs=genders(d);
-  return `<div class="fc-kick">${esc(d.de)}</div><div class="dcard"><div class="lines"><div class="ln ${r}" data-g="${gs[r]}"><span class="who">${esc(d.who[r])}</span><div class="body${alEn?" en-on":""}">${line(g,e,r)}</div></div></div></div>`},
+ render:x=>MODE==="hoeren"?hoerCard(DATA[x.k]):stepCard(DATA[x.k],x.n),
+ meta:MODE==="hoeren"?null:x=>`${x.n?`<span>${esc(DATA[x.k].de)}</span>`:""}<span class="xpts">${STEPS[x.n]}</span>`,
  shown:(x,i,body)=>{const was=open;open=String(x.k);if(MODE==="hoeren")hoerShown(x,body,was)},
  info:MODE==="hoeren"?null:x=>{const d=DATA[x.k];return MODE==="brief"
   ?`<b>${esc(d.de)}</b> · <i>${esc(d.en)}</i><div>${de(d.task)}</div><ul>${d.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>`
@@ -533,7 +567,8 @@ const K=Karten({mount:document.querySelector("main"),
  close:x=>{stopScene();open=listOpen;const b=listEl.querySelector(`[data-k="${x.k}"]`);if(b)b.scrollIntoView({block:"center"})},
  tools:MODE==="hoeren"
   ?[{id:"play",icon:"play",label:"Abspielen",color:"var(--b1)",click:k=>{const b=k.body.querySelector("[data-scene]");if(b)playScene(b)}}]
-  :[{id:"play",icon:"play",label:"Vorlesen",color:"var(--b1)",click:k=>{const b=k.body.querySelector(".say");if(b)speak(b)}},
+  /* ▶ reads the whole card: the dialogue, the letter or all the phrases in turn. */
+  :[{id:"play",icon:"play",label:"Vorlesen",color:"var(--b1)",click:k=>{const a=k.body.querySelector("[data-all]");if(a)playAll(a);else{const b=k.body.querySelector(".say");if(b)speak(b)}}},
     {id:"en",icon:"en",label:"Englisch",color:"var(--muted)",pressed:()=>alEn,click:k=>{alEn=!alEn;k.redraw()}},
     {builtin:"practice"}]});
 document.querySelector(".ladder").appendChild(K.button);

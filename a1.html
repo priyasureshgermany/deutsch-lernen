@@ -150,6 +150,7 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="ph1"><span id="pw"></span><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
 <script src="translate.js"></script>
 <script src="karten.js"></script>
+<script src="me.js"></script>
 <script src="exam.js"></script>
 <script>
 const S=[
@@ -361,12 +362,15 @@ const EXAM={rows:[
  {time:"25 Minuten",pts:"15 Rohpunkte ≈ 25 Punkte",parts:[{n:5,per:1},{n:5,per:1},{n:5,per:1}]},
  {time:"20 Minuten",pts:"15 Rohpunkte ≈ 25 Punkte",parts:[{n:5,per:1},{whole:10,each:"10 Punkte für die Mitteilung",note:"in der Prüfung eine Mitteilung, ca. 30 Wörter, zu allen 3 Punkten"}]},
  {time:"ca. 15 Minuten",pts:"15 Rohpunkte ≈ 25 Punkte",parts:[{whole:3},{whole:6,note:"Fragen stellen und antworten zu zwei Themen"},{whole:6,note:"Bitten formulieren und darauf reagieren"}]}]};
+/* Meine Angaben (me.js): the learner's own details in place of the [Platzhalter]. */
+S.forEach(sk=>sk.parts.forEach(p=>{const P=(o,a,b)=>{[o[a],o[b]]=Me.pair(o[a],o[b])};
+ P(p,"intro","introEn");if(p.text)P(p,"text","textEn");p.rows.forEach(r=>{P(r,1,0);P(r,2,3);P(r,4,5)})}));
 
 function FB(t,single){const e=encodeURIComponent(t);const a=(u,l)=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`;
  return `<div class="fb">Nachschlagen: ${a("https://translate.google.com/?sl=de&tl=en&op=translate&text="+e,"Google Übersetzer")} · ${a("https://www.deepl.com/translator#de/en/"+e,"DeepL")}${single?" · "+a("https://www.dict.cc/?s="+e,"dict.cc"):""}</div>`}
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const W=s=>s.replace(/[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g,m=>`<span class="w">${m}</span>`);
-const PH=s=>s.replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>');
+const PH=s=>Me.mark(s.replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>'));
 const SAY='<button class="say" type="button" aria-label="Vorlesen"></button>';
 const TRB='<button class="trb" type="button">Englisch zeigen</button>';
 function de(s){return s.split("\n").map(l=>`<span class="ln">${PH(W(esc(l)))}</span>`).join("")}

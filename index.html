@@ -59,6 +59,18 @@ button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
 .tract{display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
 .tract .fsb{width:30px;height:30px}
 .trnote{font-size:12px;margin:2px 0 0;text-align:center}
+/* Meine Angaben: the learner's details for the [Platzhalter] – kept on this device only. */
+#med{width:min(520px,calc(100vw - 24px));max-height:calc(100dvh - 24px);margin:max(12px,6vh) auto auto;padding:14px 16px 12px;border:1px solid var(--line);border-radius:16px;
+ background:var(--paper);color:var(--ink);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+#med::backdrop{background:rgba(10,14,24,.45)}
+#med .mef{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px}
+#med label{display:flex;flex-direction:column;gap:3px;font-size:12px;font-weight:700;color:var(--muted)}
+#med label.w{grid-column:1 / -1}
+#med input{font:inherit;font-size:16px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-width:0}
+#med .meact{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
+#med .meact button{font:inherit;font-weight:700;font-size:15px;border-radius:999px;padding:8px 16px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink)}
+#med .meact .go{background:var(--b1);border-color:var(--b1);color:#fff}
+#med .menote{font-size:13px;color:var(--muted);margin:0 0 10px}
 #fsx{display:none;position:fixed;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:20;width:42px;height:42px;
  border:none;background:var(--b1);color:#fff;opacity:.9;box-shadow:0 2px 10px rgba(0,0,0,.3)}
 body.full header,body.full nav{display:none}
@@ -104,6 +116,7 @@ nav .i{display:none}
  <div class="brand">Deutsch <span>lernen</span></div>
  <button id="upd" type="button" title="Nach neuer Version suchen">v–</button>
  <button id="tempo" class="fsb" type="button" aria-pressed="false"></button>
+ <button id="me" class="fsb" type="button" title="Meine Angaben" aria-label="Meine Angaben" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 4-6.5 8-6.5s7.2 2.5 8 6.5"/></svg></button>
  <button id="tr" class="fsb" type="button" title="Übersetzen (Deutsch ⇄ Englisch)" aria-label="Übersetzen" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h8M8 3v2M10.5 5c-.8 3.2-3 5.8-6 7.2M6 8.5c1.2 1.6 2.7 2.8 4.5 3.5"/><path d="M13 21l4-10 4 10M14.5 17.5h5"/></svg></button>
  <nav role="tablist" aria-label="Bereiche">
   <button role="tab" data-m="a1" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3.5" width="14" height="18" rx="2"/><path d="M9 3.5h6v2.5H9z"/><path d="m9 13 2 2 4-4.5"/></svg></span><span class="l">A1 Prüfung</span><span class="s">A1</span></button>
@@ -118,6 +131,12 @@ nav .i{display:none}
  <button id="fs" class="fsb" type="button" title="Vollbild" aria-label="Vollbild"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
 </div></header>
 <main id="stage"></main>
+<dialog id="med" aria-labelledby="meh">
+ <div class="trhead"><b id="meh">Meine Angaben</b><button id="mex" class="fsb" type="button" aria-label="Schließen">✕</button></div>
+ <p class="menote">Damit stehen in Briefen, Gesprächen und Antworten deine echten Angaben statt [Platzhalter]. Sie bleiben <b>nur auf diesem Gerät</b> – nicht im Internet, nicht auf GitHub. Leere Felder bleiben Platzhalter; Daten (Datum) setzt die App selbst.</p>
+ <form id="mef" class="mef" method="dialog"></form>
+ <div class="meact"><button type="button" id="meclr">Alles löschen</button><button type="button" id="mego" class="go">Speichern</button></div>
+</dialog>
 <dialog id="trd" aria-labelledby="trh">
  <div class="trhead"><b id="trh">Übersetzen</b><button id="trx" class="fsb" type="button" aria-label="Schließen">✕</button></div>
  <div class="trdir"><span id="trdir">Deutsch ⇄ Englisch</span><button id="trswap" class="chipb" type="button" title="Richtung umdrehen">⇄ umdrehen</button></div>
@@ -130,8 +149,9 @@ nav .i{display:none}
 <button id="fsxTab" type="button" title="Knopf zurückholen" aria-label="Vollbild-Knopf zurückholen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
 <button id="fsx" class="fsb" type="button" title="Vollbild beenden – nach rechts wischen zum Verstecken" aria-label="Vollbild beenden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg></button>
 <script src="translate.js"></script>
+<script src="me.js"></script>
 <script>
-const APP_VERSION = "1.14.0";
+const APP_VERSION = "1.15.0";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -271,6 +291,24 @@ trd.addEventListener("click", e => {   // a tap on the dimmed page outside the c
   if(e.target === trd && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom)) trd.close();
 });
 trd.addEventListener("close", () => { if(window.speechSynthesis) speechSynthesis.cancel(); });
+
+/* Meine Angaben (me.js): saved on this device only; the open sections are
+   reloaded so their letters and answers show the new details. */
+const med = document.getElementById("med"), mef = document.getElementById("mef");
+const WIDE = ["strasse", "email", "kindgeb", "geb"];
+function drawMe(){
+  const v = Me.get();
+  mef.innerHTML = Me.FIELDS.map(([k, de]) => `<label${WIDE.includes(k) ? ' class="w"' : ""}>${de}<input name="${k}" autocomplete="off" value="${String(v[k] || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;")}"${k === "telefon" ? ' inputmode="tel"' : k === "email" ? ' inputmode="email"' : /geb/.test(k) ? ' inputmode="numeric" placeholder="TT.MM.JJJJ"' : ""}></label>`).join("");
+}
+function saveMe(o){
+  Me.set(o);
+  for(const k in frames){ try{ frames[k].contentWindow.location.reload(); }catch(e){} }
+  med.close();
+}
+document.getElementById("me").onclick = () => { drawMe(); try{ med.showModal(); }catch(e){ med.setAttribute("open", ""); } };
+document.getElementById("mex").onclick = () => med.close();
+document.getElementById("mego").onclick = () => { const o = {}; new FormData(mef).forEach((v, k) => { if(String(v).trim()) o[k] = String(v).trim(); }); saveMe(o); };
+document.getElementById("meclr").onclick = () => { if(confirm("Alle Angaben auf diesem Gerät löschen?")) saveMe({}); };
 
 const root = document.documentElement;
 function full(on){

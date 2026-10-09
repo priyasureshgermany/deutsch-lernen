@@ -13,8 +13,9 @@ body.cards{overflow:hidden}
 .fc-top{flex:none;display:flex;align-items:center;gap:2px;padding:4px 6px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
 .fc-top::-webkit-scrollbar{display:none}
 .fc-top .sp{flex:1;min-width:2px}
-/* The card is sized to the screen: karten.js picks the largest --fs (13–24px)
-   at which it fits without scrolling; everything inside is in em. */
+/* The card is sized to the screen: karten.js picks the largest --fs (14–24px)
+   at which it fits without scrolling, or 17px and scrolling for a card too
+   long for that; everything inside is in em. */
 .fc-body{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-gutter:stable;overscroll-behavior:contain;touch-action:pan-y;display:flex;flex-direction:column;padding:10px 14px 64px}
 .fc-card{--fs:20px;width:100%;max-width:820px;margin:auto;font-size:var(--fs);line-height:1.4}
 .fc-card.in-l{animation:fcL .2s ease-out}.fc-card.in-r{animation:fcR .2s ease-out}
