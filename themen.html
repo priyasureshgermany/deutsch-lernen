@@ -152,6 +152,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
 <p class="empty" id="empty">Keine Frage passt zu deiner Suche. Versuch ein anderes Wort.</p>
 <script src="translate.js"></script>
 <script src="karten.js"></script>
+<script src="me.js"></script>
 <script>
 const T=[];
 T.push({de:"Wohnraum",en:"Housing",q:[
@@ -695,7 +696,9 @@ function FB(t,single){const e=encodeURIComponent(t);const a=(u,l)=>`<a href="${u
  return `<div class="fb">Nachschlagen: ${a("https://translate.google.com/?sl=de&tl=en&op=translate&text="+e,"Google Übersetzer")} · ${a("https://www.deepl.com/translator#de/en/"+e,"DeepL")}${single?" · "+a("https://www.dict.cc/?s="+e,"dict.cc"):""}</div>`}
 const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const W=s=>s.replace(/[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g,m=>`<span class="w">${m}</span>`);
-const ph=s=>s.replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>');
+const ph=s=>Me.mark(s.replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>'));
+/* Meine Angaben (me.js): the learner's own details in place of the [Platzhalter]. */
+T.forEach((t,i)=>t.q.forEach((r,j)=>{for(const c of [1,2,3])r[c]=Me.plain(Me.fill(r[c]));[r[4],E[i][j]]=Me.pair(r[4],E[i][j])}));
 const main=document.getElementById("main"),nav=document.getElementById("nav");
 let h="",n="";
 T.forEach((t,i)=>{const id="t"+(i+1);

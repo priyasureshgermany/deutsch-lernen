@@ -4,7 +4,7 @@
    tool bar. The list stays the default; the button opens the cards at what is
    on screen, the list icon goes back there. While open, the app's header and
    tab bar step aside (message {dlCards} to index.html), the text is fitted to
-   the screen so a card does not scroll, swipes and the glass pill move (double
+   the screen so a card does not scroll (unless it is too long to stay readable), swipes and the glass pill move (double
    tap = first / last of the group), and the counter opens first / last and a
    part chooser.
 
@@ -71,10 +71,13 @@ function Karten(o){
 
  function range(n){const g=D[n].group;let a=n,b=n;while(a>0&&D[a-1].group===g)a--;while(b+1<D.length&&D[b+1].group===g)b++;return[a,b]}
  function sync(){tools.forEach(t=>{if(t.pressed)q(`[data-tool="${t.id}"]`).setAttribute("aria-pressed",String(!!t.pressed()))})}
- /* Largest size (13–24px) at which the card fits without scrolling. */
+ /* Largest size (14–24px) at which the card fits without scrolling. A card
+    too long for that (a whole letter) is not shrunk into unreadable type:
+    it keeps a comfortable 17px and scrolls instead. */
  function fit(){const c=body.querySelector(".fc-card");if(!c||fc.hidden)return;
-  const ok=()=>body.scrollHeight<=body.clientHeight+1;let lo=13,hi=24;
+  const ok=()=>body.scrollHeight<=body.clientHeight+1;let lo=14,hi=24;
   c.style.setProperty("--fs",hi+"px");if(ok())return;
+  c.style.setProperty("--fs",lo+"px");if(!ok()){c.style.setProperty("--fs","17px");return}
   while(hi-lo>.5){const m=(lo+hi)/2;c.style.setProperty("--fs",m+"px");if(ok())lo=m;else hi=m}
   c.style.setProperty("--fs",lo+"px")}
  const refit=()=>requestAnimationFrame(fit);

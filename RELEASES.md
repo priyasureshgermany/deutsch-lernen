@@ -1,5 +1,11 @@
 # Releases
 
+## 1.15.0 — 2026-10-09
+- Karten in Briefe and Gespräche: three cards that each make sense on their own – the task (or situation), the whole letter (or conversation), the important phrases – instead of one small piece per card
+- Karten: a card too long to fit at a readable size (a whole letter) keeps a comfortable size and scrolls instead of shrinking
+- Briefe and Gespräche: ▶ and EN sit at the right of each paragraph and speech bubble, so the text reads straight through
+- New: „Meine Angaben“ (person icon at the top) – your name, address, phone, child's name and so on fill in the [Platzhalter] in letters, conversations and sample answers; kept only on this device, never online. Dates in the letters are filled in from today (letter date, deadlines, appointments, past events)
+
 ## 1.14.0 — 2026-10-09
 - New (A1, B1): every card shows on top what the question is worth – e.g. „2,5 Punkte · 2× hören“ – with the part and its number, set apart from the question
 - New (A1, B1): „Prüfung im Überblick“ under the intro – every Prüfungsteil with time and points, the points of each Teil, the totals and the pass marks; and a points line under every Teil in the list
