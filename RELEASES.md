@@ -1,5 +1,9 @@
 # Releases
 
+## 1.17.1 — 2026-10-10
+- A1 points as at telc Start Deutsch 1: 15 points for each Prüfungsteil, 60 in all, passed from 36 (60 %) – on the page and in the Modelltests (it was the 100-point scale); earlier results are shown on the new scale
+- Sprechen: the examiner and partners speak more slowly (Tempo slows them further)
+
 ## 1.17.0 — 2026-10-10
 - Modelltests now include Sprechen (A1) and Mündlicher Ausdruck (B1): an examiner and virtual partners (Tom, Lea, Anna) speak with their own voices, ask you questions and answer yours; you record each answer with the microphone, hear it back and see what was understood; the result rates every answer automatically (gut / teilweise / fehlt, from the key points found) with a model answer – you can change each rating
 - Scoring as in the exam: A1 out of 100 (pass from 60), B1 out of 300 (written from 135 and oral from 45)
