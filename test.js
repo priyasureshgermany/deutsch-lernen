@@ -28,6 +28,11 @@
      gapbank  part.text with (n), part.list:[…]; item {n, a: index}
      form     part.text; item {q, a:[accepted …]} or {q, o:[…], a: index}
      write    {task, points:[…], words, model, crit:"a1"|"b1"} – self-marked
+     speak    {max, turns:[{who, say} | {you, key:[[regex,label]…], min, model}]}
+              virtual partners speak their turns; on "you" turns the learner
+              records (microphone + speech recognition where the phone has it);
+              each answer is rated automatically from the transcript (words +
+              keywords) and the rating can be changed on the result page
    item.audio / part.audio: a recording ("Name: line" lines get voices);
    part.plays: how often it may be played. item.why: the reason. */
 (function(){
@@ -100,6 +105,7 @@ function Pruefung(o){
  function open(){toShell(true);document.body.classList.add("testing");ov.hidden=false;run=store.get(RUN);
   if(run&&(!test(run.tid)||run.deadline!==undefined))run=null;   /* gone, or a run from the one-clock version */
   if(run&&!run.secDone){run.secDone={};for(let i=0;i<(run.next||0);i++)run.secDone[i]=true}
+  if(run&&!run.sp)run.sp={};
   if(run&&run.si!=null){run.t0=null;run.paused=true;save();showPause();return}home()}
  function close(){if(view==="section")pause(true);stopAudio();clearInterval(timer);ov.hidden=true;document.body.classList.remove("testing");toShell(false);label()}
  function setTop(t,showClock){title.textContent=t;clock.hidden=!showClock;pauseB.hidden=!showClock}
@@ -113,12 +119,12 @@ function Pruefung(o){
      ${r?(r.partial?`<div class="tz-last">Zuletzt: <b>Teilergebnis ${Math.round(r.pct)} %</b> · ${esc(r.date)}</div>`:`<div class="tz-last ${r.pass?"ok":r.pending?"":"no"}">Zuletzt: <b>${num(r.pts)} / ${num(o.scale.max)} Punkte</b> · ${r.pass?"bestanden":r.pending?"noch offen":"nicht bestanden"} · ${esc(r.date)}${r.pending?" · Schreiben noch nicht bewertet":""}</div>`):""}
      <div class="tz-row"><button type="button" class="tz-btn" data-start="${t.id}"${run?" disabled":""}>Test starten</button>${r?`<button type="button" class="tz-btn ghost" data-review="${t.id}">Auswertung ansehen</button>`:""}</div></div>`}).join("")}
    <p class="tz-note">${esc(o.scale.note)}</p></div>`;body.scrollTop=0}
- function start(id){run={tid:id,secDone:{},si:null,cur:0,left:{},done:{},t0:null,paused:false,ans:{},plays:{},sa:{},begun:new Date().toISOString()};save();label();choose()}
+ function start(id){run={tid:id,secDone:{},sp:{},si:null,cur:0,left:{},done:{},t0:null,paused:false,ans:{},plays:{},sa:{},begun:new Date().toISOString()};save();label();choose()}
  /* All Prüfungsteile at a glance: ✓ done, ● running, ○ to do. */
  function strip(){const t=test(run.tid);return `<div class="tz-strip">${t.sections.map((x,i)=>{const st=run.secDone[i]?"done":run.si===i?"now":"";
   return `<span class="${st}">${st==="done"?"✓":st==="now"?"●":"○"} ${esc(short(x))}</span>`}).join('<i aria-hidden="true">›</i>')}</div>`}
- const short=x=>x.de.replace(/^Leseverstehen und Sprachbausteine$/,"Lesen + Sprachbausteine").replace(/^Hörverstehen$/,"Hören").replace(/^Schriftlicher Ausdruck$/,"Schreiben");
- const partPts=p=>p.type==="write"?CRIT[p.crit||"a1"].max:p.items.length*p.per;
+ const short=x=>x.de.replace(/^Leseverstehen und Sprachbausteine$/,"Lesen + Sprachbausteine").replace(/^Hörverstehen$/,"Hören").replace(/^Mündlicher Ausdruck$/,"Sprechen").replace(/^Schriftlicher Ausdruck$/,"Schreiben");
+ const partPts=p=>p.type==="write"?CRIT[p.crit||"a1"].max:p.type==="speak"?p.max:p.items.length*p.per;
  const secPts=sec=>sec.parts.reduce((a,p)=>a+partPts(p),0);
  /* The test's own start page: begin with any Prüfungsteil, in any order. */
  function choose(msg){view="choose";clearInterval(timer);const t=test(run.tid);
@@ -158,7 +164,7 @@ function Pruefung(o){
  function finishSection(msg){stopAudio();clearInterval(timer);run.secDone[run.si]=true;run.si=null;run.t0=null;save();
   const t=test(run.tid);if(t.sections.every((_,i)=>run.secDone[i])){finish();return}choose(msg)}
  function switchPart(j){if(j===run.cur||run.done[pk(run.si,j)])return;tick();if(run.si==null)return;stopAudio();run.cur=j;run.t0=Date.now();save();drawPart()}
- function pause(silent){if(!run||run.si==null||run.t0==null)return;tick();if(run.si==null)return;
+ function pause(silent){if(rec)stopRec();if(!run||run.si==null||run.t0==null)return;tick();if(run.si==null)return;
   run.t0=null;run.paused=true;save();stopAudio();clearInterval(timer);if(!silent)showPause()}
  function showPause(){view="pause";clearInterval(timer);const t=test(run.tid),sec=t.sections[run.si];setTop(t.title+" – Pause",false);
   body.innerHTML=`<div class="tz-pad">${strip()}<div class="tz-card big"><div class="tz-step">❚❚ Pause</div><h2>${esc(sec.de)}</h2>
@@ -167,6 +173,7 @@ function Pruefung(o){
    <button type="button" class="tz-btn wide" data-go="unpause">Weiter</button></div></div>`;body.scrollTop=0}
  function unpause(){run.paused=false;run.t0=Date.now();save();runClock();drawPart()}
  function unansweredPart(si,j){const p=test(run.tid).sections[si].parts[j];if(p.type==="write")return (ans(si,j,"w")||"").trim()?0:1;
+  if(p.type==="speak")return p.turns.filter((t,i)=>t.you&&!(ans(si,j,i)||"").trim()).length;
   return p.items.filter((_,i)=>{const v=ans(si,j,i);return v==null||v===""}).length}
 
  /* ---- one part of the running section ---- */
@@ -177,6 +184,7 @@ function Pruefung(o){
   if(p.list&&p.type==="match")h+=`<div class="tz-text list">${p.list.map((x,i)=>`<div><b>${L[i]})</b> ${T(x)}</div>`).join("")}</div>`;
   if(p.text&&p.type!=="write")h+=`<div class="tz-text">${T(p.text).replace(/\n/g,"<br>").replace(/\((\d{1,2})\)/g,'<b class="gap">($1)</b>')}</div>`;
   if(p.type==="gapbank")h+=`<div class="tz-bank">${p.list.map((x,i)=>`<span><b>${L[i]})</b> ${T(x)}</span>`).join("")}</div>`;
+  if(p.type==="speak"){h+=speakView(si,pi,p)+`<div class="tz-row end"><button type="button" class="tz-btn" data-go="handin">${esc(tabName(p))} abgeben ›</button></div></div>`;body.innerHTML=h;body.scrollTop=body.scrollHeight;speakNext(si,pi,p);return}
   if(p.type==="write"){const v=ans(si,pi,"w")||"";
    h+=`<div class="tz-wq"><div class="tz-qt">${T(p.task).replace(/\n/g,"<br>")}</div><ul class="tz-list">${p.points.map(x=>`<li>${T(x)}</li>`).join("")}</ul>
     <textarea class="tz-write" data-w="${si}.${pi}" rows="16" placeholder="Schreiben Sie hier …" lang="de" spellcheck="false" autocapitalize="sentences">${esc(v)}</textarea><div class="tz-wc"><span>${words(v)}</span> Wörter${p.words?` · verlangt: etwa ${p.words}`:""}</div></div>`}
@@ -198,6 +206,55 @@ function Pruefung(o){
   return ""}
  const words=s=>(String(s).trim().match(/\S+/g)||[]).length;
 
+
+ /* ---- Sprechen: virtual partners and your recorded answers ---- */
+ const AUD={};let rec=null;
+ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+ const MIC=!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia);
+ function speakView(si,pi,p){const k=si+"."+pi,at=run.sp[k]||0;let h=`<div class="tz-chat">`;
+  p.turns.forEach((tn,i)=>{if(i>at)return;
+   if(tn.say)h+=`<div class="tz-say"><b>${esc(tn.who)}</b><span>${T(tn.say)}</span>${i===at?`<i class="tz-live">spricht …</i>`:""}</div>`;
+   else{const tx=ans(si,pi,i)||"",key=k+"."+i;
+    h+=`<div class="tz-you"><div class="tz-task">🎙 ${T(tn.you)}</div>`;
+    if(i<at)h+=`<div class="tz-tx">${tx?esc(tx):"<i>keine Aufnahme</i>"}</div>${AUD[key]?`<audio controls src="${AUD[key]}"></audio>`:""}`;
+    else if(rec&&rec.key===key)h+=`<div class="tz-tx live" id="tzLive">${esc((rec.tx||"")+(rec.im||""))||"Sprich jetzt …"}</div><div class="tz-row"><button type="button" class="tz-btn rec on" data-rec="stop">■ Stopp</button></div>`;
+    else h+=`${tx?`<div class="tz-tx">${esc(tx)}</div>`:""}${AUD[key]?`<audio controls src="${AUD[key]}"></audio>`:""}
+     <div class="tz-row"><button type="button" class="tz-btn rec" data-rec="${key}">${tx||AUD[key]?"↺ Neu aufnehmen":"🎙 Aufnehmen"}</button>${tx||AUD[key]?`<button type="button" class="tz-btn" data-turn="${k}">Weiter ›</button>`:`<button type="button" class="tz-btn ghost" data-turn="${k}">Überspringen</button>`}</div>
+     ${!SR?`<div class="tz-sub">Dieses Gerät erkennt keine Sprache – deine Aufnahme bewertest du am Ende selbst.</div>`:""}`;
+    h+=`</div>`}});
+  if(at>=p.turns.length)h+=`<div class="tz-sub done">Teil fertig – du kannst ihn abgeben.</div>`;
+  else if(p.turns[at].say)h+=`<div class="tz-row"><button type="button" class="tz-btn ghost" data-turn="${k}">Weiter ›</button></div>`;
+  return h+`</div>`}
+ /* The partners' lines in a row play in one go (inside the tap, so iPhones
+    allow it), then the next "you" turn opens. */
+ function speakNext(si,pi,p){const k=si+"."+pi,at=run.sp[k]||0;if(at>=p.turns.length||!p.turns[at].say)return;
+  let end=at;while(end<p.turns.length&&p.turns[end].say)end++;
+  const go=()=>{if(run&&run.si===si&&run.cur===pi&&(run.sp[k]||0)===at){run.sp[k]=end;save();drawPart()}};
+  if(!synth){go();return}
+  stopAudio();const vs=voices(),who={};let n=0,words=0;
+  for(let i=at;i<end;i++){const tn=p.turns[i];if(!(tn.who in who))who[tn.who]=n++;
+   const u=new SpeechSynthesisUtterance(fill(tn.say));u.lang="de-DE";u.rate=o.rate?o.rate():1;
+   const v=vs.length?vs[(who[tn.who]*2+(tn.who.match(/Prüfer/)?0:1))%vs.length]:null;if(v)u.voice=v;
+   words+=tn.say.split(/\s+/).length;if(i===end-1){u.onend=go;u.onerror=go}synth.speak(u)}
+  /* some phones never report the end of speech: go on after a generous time */
+  setTimeout(go,(words*600/(o.rate?o.rate():1))+5000)}
+ async function startRec(key){if(rec)return;stopAudio();const st={key,chunks:[],tx:"",im:""};rec=st;drawPart();
+  if(MIC&&window.MediaRecorder){try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});st.stream=stream;
+   const mr=new MediaRecorder(stream);st.mr=mr;mr.ondataavailable=e=>{if(e.data&&e.data.size)st.chunks.push(e.data)};mr.start()}catch(e){st.noMic=true}}
+  if(SR){try{const r=new SR();r.lang="de-DE";r.continuous=true;r.interimResults=true;
+   r.onresult=e=>{let f="",im="";for(const x of e.results){if(x.isFinal)f+=x[0].transcript+" ";else im+=x[0].transcript}st.tx=f;st.im=im;const el=body.querySelector("#tzLive");if(el)el.textContent=(f+im)||"Sprich jetzt …"};
+   r.onerror=()=>{};r.onend=()=>{st.srDone=true};r.start();st.sr=r}catch(e){st.srDone=true}}else st.srDone=true}
+ function stopRec(){const st=rec;if(!st)return;try{st.sr&&st.sr.stop()}catch(e){}
+  const done=()=>{if(st.fin)return;st.fin=true;rec=null;
+   if(st.chunks.length){if(AUD[st.key])URL.revokeObjectURL(AUD[st.key]);AUD[st.key]=URL.createObjectURL(new Blob(st.chunks,{type:st.mr&&st.mr.mimeType||"audio/webm"}))}
+   if(st.stream)st.stream.getTracks().forEach(t=>t.stop());
+   const tx=((st.tx||"")+(st.im||"")).trim();if(tx||!run.ans[st.key])run.ans[st.key]=tx;save();drawPart()};
+  if(st.mr&&st.mr.state!=="inactive"){st.mr.onstop=()=>setTimeout(done,st.srDone?0:700);st.mr.stop()}else setTimeout(done,st.sr?700:0)}
+ /* Rating of one answer from its transcript: 1 gut, 0,5 teilweise, 0 fehlt. */
+ function rate(tn,tx){if(!tx||!tx.trim())return SR?0:null;   /* nothing said = 0; without speech recognition you rate yourself */
+ const w=(tx.match(/\S+/g)||[]).length,keys=tn.key||[];
+  const hit=keys.filter(([rx])=>new RegExp(rx,"i").test(tx)).length,f=keys.length?hit/keys.length:1,min=tn.min||3;
+  return f>=.6&&w>=min?1:(f>=.25||w>=min)?.5:0}
  /* ---- marking ---- */
  const norm=s=>String(s||"").toLowerCase().replace(/[.,!?;:()"„“]/g," ").replace(/\s+/g," ").trim();
  function correct(p,it,v){
@@ -218,11 +275,16 @@ function Pruefung(o){
   const took=si=>!r.taken||r.taken.includes(si);   /* results from before have no list: all taken */
   t.sections.forEach((s,si)=>{if(!took(si)){per.push({de:s.de,skip:true});return}let a=0,m=0;s.parts.forEach((p,j)=>{
    if(p.type==="write"){const c=CRIT[p.crit||"a1"];m+=c.max;const w=writeScore(p,(r.sa||{})[si+"."+j]);if(w==null)pending=true;else a+=w;return}
+   if(p.type==="speak"){m+=p.max;const k=si+"."+j,yt=p.turns.map((t,i)=>t.you?i:-1).filter(i=>i>=0);let got=0;
+    yt.forEach(i=>{const v=((r.sa||{})[k]||{})[i]!=null?+((r.sa||{})[k][i]):((r.auto||{})[k]||{})[i];if(v==null)pending=true;else got+=v});a+=got*p.max/yt.length;return}
    p.items.forEach((it,i)=>{m+=p.per;if(correct(p,it,r.ans[si+"."+j+"."+i]))a+=p.per})});
-   per.push({de:s.de,a,m});raw+=a;max+=m});
+   per.push({de:s.de,a,m,oral:!!s.oral});raw+=a;max+=m});
   const pts=raw*o.scale.factor,partial=per.some(x=>x.skip),pct=max?raw/max*100:0;
-  return {raw,max,pts,per,pending,partial,pct,pass:!partial&&pts>=o.scale.pass}}
- function finish(){clearInterval(timer);setTimeout(label);const r={tid:run.tid,ans:run.ans,sa:{},taken:Object.keys(run.secDone).filter(k=>run.secDone[k]).map(Number),date:new Date().toLocaleDateString("de-DE")};
+  return {raw,max,pts,per,pending,partial,pct,pass:!partial&&(o.scale.passRule?o.scale.passRule(per):pts>=o.scale.pass)}}
+ function finish(){clearInterval(timer);setTimeout(label);const auto={};
+  test(run.tid).sections.forEach((sec,si)=>sec.parts.forEach((p,j)=>{if(p.type!=="speak")return;const k=si+"."+j;auto[k]={};
+   p.turns.forEach((t,i)=>{if(t.you){const v=rate(t,run.ans[k+"."+i]);if(v!=null)auto[k][i]=v}})}));
+  const r={tid:run.tid,ans:run.ans,sa:{},auto,taken:Object.keys(run.secDone).filter(k=>run.secDone[k]).map(Number),date:new Date().toLocaleDateString("de-DE")};
   store.set(K+":last:"+run.tid,r);run=null;store.set(RUN,null);review(r.tid,true)}
  function keep(r){const s=score(r);const all=store.get(RES)||{};all[r.tid]={pts:s.pts,pass:s.pass,date:r.date,pending:s.pending,partial:s.partial,pct:s.pct};store.set(RES,all);store.set(K+":last:"+r.tid,r)}
 
@@ -235,7 +297,7 @@ function Pruefung(o){
       <div class="tz-verdict">${s.pct>=60?"Auf gutem Weg":"Noch üben"} <small>(bestanden wäre ab 60 %)</small></div>`
     :`<div class="tz-score"><b>${num(s.pts)}</b> / ${num(o.scale.max)} Punkte</div>
     ${o.scale.factor!==1?`<div class="tz-sub">${num(s.raw)} von ${num(s.max)} ${esc(o.scale.rawLabel)}, umgerechnet auf ${num(o.scale.max)} Punkte</div>`:""}
-    <div class="tz-verdict">${s.pass?"✓ Bestanden":s.pending?"Noch offen":"✗ Nicht bestanden"} <small>(ab ${num(o.scale.pass)} Punkten)</small></div>`;
+    <div class="tz-verdict">${s.pass?"✓ Bestanden":s.pending?"Noch offen":"✗ Nicht bestanden"} <small>(${esc(o.scale.passText||"ab "+num(o.scale.pass)+" Punkten")})</small></div>`;
    let h=`<div class="tz-pad"><div class="tz-card big result ${s.partial?(s.pct>=60?"ok":""):s.pass?"ok":s.pending?"":"no"}"><div class="tz-step">${esc(t.title)} · ${esc(r.date)}</div>
     ${head}
     ${s.pending?`<div class="tz-warn">Bewerte unten noch dein Schreiben – erst dann ist die Punktzahl vollständig.</div>`:""}
@@ -244,6 +306,14 @@ function Pruefung(o){
     <div class="tz-row"><button type="button" class="tz-btn ghost" data-go="home">Alle Tests</button><button type="button" class="tz-btn ghost" data-go="wrong" aria-pressed="false">Nur Fehler zeigen</button></div></div>`;
    t.sections.forEach((sec,si)=>{if(r.taken&&!r.taken.includes(si))return;h+=`<h2 class="tz-sec">${esc(sec.de)}</h2>`;
     sec.parts.forEach((p,j)=>{h+=`<div class="tz-card"><h3 class="tz-pt">${esc(p.t)}</h3>`;
+     if(p.type==="speak"){const k=si+"."+j,sa=(r.sa||{})[k]||{},au=(r.auto||{})[k]||{};
+      p.turns.forEach((tn,i)=>{if(tn.say){h+=`<div class="tz-say small"><b>${esc(tn.who)}</b><span>${T(tn.say)}</span></div>`;return}
+       const tx=r.ans[k+"."+i]||"",v=sa[i]!=null?+sa[i]:au[i],found=(tn.key||[]).filter(([rx])=>new RegExp(rx,"i").test(tx)).map(x=>x[1]),miss=(tn.key||[]).filter(([rx])=>!new RegExp(rx,"i").test(tx)).map(x=>x[1]);
+       h+=`<div class="tz-you"><div class="tz-task">🎙 ${T(tn.you)}</div><div class="tz-lab">Du hast gesagt</div><div class="tz-tx">${tx?esc(tx):"<i>kein Text erkannt</i>"}</div>${AUD[k+"."+i]?`<audio controls src="${AUD[k+"."+i]}"></audio>`:""}
+        ${tn.key&&tn.key.length?`<div class="tz-why">${found.length?`✓ ${esc(found.join(", "))}`:""}${found.length&&miss.length?" · ":""}${miss.length?`fehlt: ${esc(miss.join(", "))}`:""}</div>`:""}
+        <div class="tz-lab">So könntest du es sagen</div><div class="tz-text model small">${T(tn.model||"")}</div>
+        <div class="tz-opts">${[[1,"gut"],[.5,"teilweise"],[0,"fehlt"]].map(([x,l])=>`<button type="button" class="tz-opt" data-sa="${k}" data-id="${i}" data-v="${x}" aria-pressed="${v!=null&&v===x}">${l}</button>`).join("")}${sa[i]==null&&au[i]!=null?`<span class="tz-sub">automatisch bewertet</span>`:""}</div></div>`});
+      h+=`</div>`;return}
      if(p.type==="write"){const k=si+"."+j,sa=(r.sa||{})[k]||{},c=CRIT[p.crit||"a1"],w=writeScore(p,(r.sa||{})[k]),txt=r.ans[k+".w"]||"";
       h+=`<div class="tz-qt">${T(p.task).replace(/\n/g,"<br>")}</div><div class="tz-lab">Dein Text (${words(txt)} Wörter)</div><div class="tz-text">${txt?esc(txt).replace(/\n/g,"<br>"):"<i>nichts geschrieben</i>"}</div>
        <div class="tz-lab">Musterlösung</div><div class="tz-text model">${T(p.model).replace(/\n/g,"<br>")}</div>
@@ -281,6 +351,9 @@ function Pruefung(o){
    const txt=k.split(".").length===3?part.items[+k.split(".")[2]].audio:part.audio;
    const left=plays-run.plays[k];b.querySelector("small").textContent=left?`noch ${left}×`:"letztes Mal";play(b,txt);if(!left)b.disabled=true;return}
   if(b.dataset.sa){review.onSa(b.dataset.sa,b.dataset.id,+b.dataset.v);return}
+  if(b.dataset.rec){b.dataset.rec==="stop"?stopRec():startRec(b.dataset.rec);return}
+  if(b.dataset.turn){if(rec)return;const k=b.dataset.turn;run.sp[k]=(run.sp[k]||0)+1;
+   const p=test(run.tid).sections[run.si].parts[run.cur];while(run.sp[k]<p.turns.length&&false);save();stopAudio();drawPart();return}
   if(b.dataset.a){run.ans[b.dataset.a]=+b.dataset.v;save();b.parentElement.querySelectorAll(".tz-opt").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));return}
   const g=b.dataset.go;
   if(g==="resume"){run.si!=null?showPause():choose();return}
