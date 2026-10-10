@@ -113,7 +113,8 @@ function Pruefung(o){
   const rt=run&&test(run.tid),cur=rt&&run.si!=null?rt.sections[run.si]:null;
   body.innerHTML=`<div class="tz-pad"><p class="tz-lead">Eine ganze Prüfung wie im echten Test. <b>Jeder Teil hat seine eigene Zeit</b> – die Uhr läuft nur für den Teil, den du gerade bearbeitest; ist sie um, wird der Teil abgegeben. Mit <b>❚❚</b> pausierst du jederzeit. Danach siehst du deine Punkte und bei jedem Fehler die richtige Antwort.</p>
    ${rt?`<div class="tz-card warn"><b>Pausiert: ${esc(rt.title)}</b><div>${cur?esc(cur.de+" – "+cur.parts[run.cur].t):"Erledigt: "+(rt.sections.filter((_,i)=>run.secDone[i]).map(x=>esc(x.de)).join(", ")||"noch nichts")}</div><div class="tz-row"><button type="button" class="tz-btn" data-go="resume">Weitermachen</button><button type="button" class="tz-btn ghost" data-go="drop">Test verwerfen</button></div></div>`:""}
-   ${o.tests.map(t=>{const r=res[t.id];
+   ${o.tests.map(t=>{/* scored again from the saved answers, so a changed scale shows right */
+    const L=store.get(K+":last:"+t.id);let r=res[t.id];if(L)try{const s=score(L);r={pts:s.pts,pass:s.pass,date:L.date,pending:s.pending,partial:s.partial,pct:s.pct}}catch(e){}
     return `<div class="tz-card"><div class="tz-h"><b>${esc(t.title)}</b></div><div class="tz-sub">${esc(t.sub||"")}</div>
      <div class="tz-secs">${t.sections.map(x=>`<span>${esc(x.de)}</span>`).join("")}</div>
      ${r?(r.partial?`<div class="tz-last">Zuletzt: <b>Teilergebnis ${Math.round(r.pct)} %</b> · ${esc(r.date)}</div>`:`<div class="tz-last ${r.pass?"ok":r.pending?"":"no"}">Zuletzt: <b>${num(r.pts)} / ${num(o.scale.max)} Punkte</b> · ${r.pass?"bestanden":r.pending?"noch offen":"nicht bestanden"} · ${esc(r.date)}${r.pending?" · Schreiben noch nicht bewertet":""}</div>`):""}
@@ -227,17 +228,19 @@ function Pruefung(o){
   return h+`</div>`}
  /* The partners' lines in a row play in one go (inside the tap, so iPhones
     allow it), then the next "you" turn opens. */
+ /* the partners speak slower than the recordings: a calm exam conversation (Tempo slows it further) */
+ const TALK=.8;
  function speakNext(si,pi,p){const k=si+"."+pi,at=run.sp[k]||0;if(at>=p.turns.length||!p.turns[at].say)return;
   let end=at;while(end<p.turns.length&&p.turns[end].say)end++;
   const go=()=>{if(run&&run.si===si&&run.cur===pi&&(run.sp[k]||0)===at){run.sp[k]=end;save();drawPart()}};
   if(!synth){go();return}
   stopAudio();const vs=voices(),who={};let n=0,words=0;
   for(let i=at;i<end;i++){const tn=p.turns[i];if(!(tn.who in who))who[tn.who]=n++;
-   const u=new SpeechSynthesisUtterance(fill(tn.say));u.lang="de-DE";u.rate=o.rate?o.rate():1;
+   const u=new SpeechSynthesisUtterance(fill(tn.say));u.lang="de-DE";u.rate=TALK*(o.rate?o.rate():1);
    const v=vs.length?vs[(who[tn.who]*2+(tn.who.match(/Prüfer/)?0:1))%vs.length]:null;if(v)u.voice=v;
    words+=tn.say.split(/\s+/).length;if(i===end-1){u.onend=go;u.onerror=go}synth.speak(u)}
   /* some phones never report the end of speech: go on after a generous time */
-  setTimeout(go,(words*600/(o.rate?o.rate():1))+5000)}
+  setTimeout(go,(words*600/(TALK*(o.rate?o.rate():1)))+5000)}
  async function startRec(key){if(rec)return;stopAudio();const st={key,chunks:[],tx:"",im:""};rec=st;drawPart();
   if(MIC&&window.MediaRecorder){try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});st.stream=stream;
    const mr=new MediaRecorder(stream);st.mr=mr;mr.ondataavailable=e=>{if(e.data&&e.data.size)st.chunks.push(e.data)};mr.start()}catch(e){st.noMic=true}}
