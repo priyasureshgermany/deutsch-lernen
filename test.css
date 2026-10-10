@@ -81,6 +81,10 @@ body.testing{overflow:hidden}
 .tz-opt{touch-action:manipulation;font:inherit;font-size:15px;text-align:left;padding:8px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;max-width:100%}
 .tz-opt[aria-pressed="true"]{border-color:var(--b1);background:var(--b1);color:#fff}
 .tz-sel,.tz-in{font:inherit;font-size:16px;width:100%;max-width:520px;padding:9px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink)}
+.tz-bands{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;font-size:13px}
+.tz-bands span{padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.tz-bands span b{color:var(--ink);font-weight:700}
+.tz-bands span.on{background:var(--b1);border-color:var(--b1);color:#fff}.tz-bands span.on b{color:#fff}
 .tz-pts{font-size:13px;font-weight:700;color:var(--b1);white-space:nowrap}
 /* the writing box: big, right below the task */
 .tz-wq{display:block;padding-top:12px;border-top:1px solid var(--line)}
