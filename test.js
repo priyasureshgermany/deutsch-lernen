@@ -289,6 +289,8 @@ function Pruefung(o){
    p.turns.forEach((t,i)=>{if(t.you){const v=rate(t,run.ans[k+"."+i]);if(v!=null)auto[k][i]=v}})}));
   const r={tid:run.tid,ans:run.ans,sa:{},auto,taken:Object.keys(run.secDone).filter(k=>run.secDone[k]).map(Number),date:new Date().toLocaleDateString("de-DE")};
   store.set(K+":last:"+run.tid,r);run=null;store.set(RUN,null);review(r.tid,true)}
+ /* the exam's grade for a total (only when passed) */
+ const grade=p=>{const g=(o.scale.grades||[]).find(([lo])=>p>=lo);return g?g[2]:""};
  function keep(r){const s=score(r);const all=store.get(RES)||{};all[r.tid]={pts:s.pts,pass:s.pass,date:r.date,pending:s.pending,partial:s.partial,pct:s.pct};store.set(RES,all);store.set(K+":last:"+r.tid,r)}
 
  /* ---- the result: points, then every question with the right answer ---- */
@@ -300,9 +302,11 @@ function Pruefung(o){
       <div class="tz-verdict">${s.pct>=60?"Auf gutem Weg":"Noch üben"} <small>(bestanden wäre ab 60 %)</small></div>`
     :`<div class="tz-score"><b>${num(s.pts)}</b> / ${num(o.scale.max)} Punkte</div>
     ${o.scale.factor!==1?`<div class="tz-sub">${num(s.raw)} von ${num(s.max)} ${esc(o.scale.rawLabel)}, umgerechnet auf ${num(o.scale.max)} Punkte</div>`:""}
-    <div class="tz-verdict">${s.pass?"✓ Bestanden":s.pending?"Noch offen":"✗ Nicht bestanden"} <small>(${esc(o.scale.passText||"ab "+num(o.scale.pass)+" Punkten")})</small></div>`;
+    <div class="tz-verdict">${s.pass?"✓ Bestanden"+(grade(s.pts)?" – Note: <b>"+grade(s.pts)+"</b>":""):s.pending?"Noch offen":"✗ Nicht bestanden"} <small>(${esc(o.scale.passText||"ab "+num(o.scale.pass)+" Punkten")})</small></div>`;
+   /* what range is good: the exam's grade bands */
+   const bands=o.scale.grades?`<div class="tz-bands">${o.scale.grades.map(([lo,hi,n])=>`<span${!s.partial&&!s.pending&&s.pts>=lo&&s.pts<=hi?' class="on"':""}><b>${esc(n)}</b> ${num(lo)}–${num(hi)}</span>`).join("")}<span><b>nicht bestanden</b> unter ${num(o.scale.pass)}</span></div>`:"";
    let h=`<div class="tz-pad"><div class="tz-card big result ${s.partial?(s.pct>=60?"ok":""):s.pass?"ok":s.pending?"":"no"}"><div class="tz-step">${esc(t.title)} · ${esc(r.date)}</div>
-    ${head}
+    ${head}${bands}
     ${s.pending?`<div class="tz-warn">Bewerte unten noch dein Schreiben – erst dann ist die Punktzahl vollständig.</div>`:""}
     <table class="tz-tab">${s.per.map(x=>x.skip?`<tr class="skip"><td>${esc(x.de)}</td><td>nicht gemacht</td><td></td></tr>`:`<tr><td>${esc(x.de)}</td><td>${num(x.a*o.scale.factor)} / ${num(x.m*o.scale.factor)}</td><td><span class="bar"><i style="width:${x.m?Math.round(x.a/x.m*100):0}%"></i></span></td></tr>`).join("")}</table>
     <p class="tz-note">${esc(o.scale.note)}</p>

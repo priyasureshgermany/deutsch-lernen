@@ -372,7 +372,9 @@ const EXAM={rows:[
  ["Schriftlich","225 Punkte · Lesen + Sprachbausteine 90 Min., Hören ca. 30 Min., Schreiben 30 Min."],
  ["Mündlich","75 Punkte · ca. 15 Minuten zu zweit, 20 Minuten Vorbereitung"],
  ["Gesamt","300 Punkte"],
- ["Bestanden","schriftlich ab 135 und mündlich ab 45 Punkten – jeder Teil für sich (60 %)"]],
+ ["Bestanden","schriftlich ab 135 und mündlich ab 45 Punkten – jeder Teil für sich (60 %)"],
+ ["Noten","270–300 sehr gut · 240–269,5 gut · 210–239,5 befriedigend · 180–209,5 ausreichend (Gesamtpunkte)"],
+ ["Gut ist","ab 240 Punkten (80 %) – schriftlich etwa ab 180 von 225, mündlich etwa ab 60 von 75; ab 270 sehr gut"]],
  skills:[
  {time:"90 Minuten mit Sprachbausteinen",pts:"75 Punkte",parts:[{n:5,per:5},{n:5,per:5},{n:10,per:2.5}]},
  {time:"in den 90 Minuten",pts:"30 Punkte",parts:[{n:10,per:1.5},{n:10,per:1.5}]},
@@ -531,7 +533,7 @@ const K=Karten({mount:main,
   {id:"mw",icon:"multi",label:"Mehrere Wörter",color:"var(--a2)",pressed:()=>multi,click:()=>mw.click()}]});
 document.querySelector(".toggles").prepend(K.button);
 /* ---- Modelltests (test.js): whole exams with a strict timer and marks ---- */
-const TZ=Pruefung({mount:main,level:"B1",tests:window.TESTS_B1,rate:()=>rate,scale:{factor:1,max:300,pass:180,rawLabel:"Punkten",passRule:per=>{let w=0,m=0;per.forEach(x=>x.oral?m+=x.a:w+=x.a);return w>=135&&m>=45},passText:"schriftlich ab 135 und mündlich ab 45 Punkten",note:"Wie in der echten Prüfung müssen schriftlich (ab 135 von 225) und mündlich (ab 45 von 75) jeweils 60 % erreicht werden. Der mündliche Teil wird automatisch aus deiner Aufnahme bewertet – du kannst jede Bewertung ändern."}});
+const TZ=Pruefung({mount:main,level:"B1",tests:window.TESTS_B1,rate:()=>rate,scale:{factor:1,max:300,pass:180,grades:[[270,300,"sehr gut"],[240,269.5,"gut"],[210,239.5,"befriedigend"],[180,209.5,"ausreichend"]],rawLabel:"Punkten",passRule:per=>{let w=0,m=0;per.forEach(x=>x.oral?m+=x.a:w+=x.a);return w>=135&&m>=45},passText:"schriftlich ab 135 und mündlich ab 45 Punkten",note:"Wie in der echten Prüfung müssen schriftlich (ab 135 von 225) und mündlich (ab 45 von 75) jeweils 60 % erreicht werden. Der mündliche Teil wird automatisch aus deiner Aufnahme bewertet – du kannst jede Bewertung ändern."}});
 document.querySelector("header.hero .ladder").appendChild(TZ.entry);
 document.getElementById("px").addEventListener("click",K.sync);
 

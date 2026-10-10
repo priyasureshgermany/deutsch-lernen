@@ -370,7 +370,9 @@ const EXAM={rows:[
  ["Schriftlich","Hören, Lesen, Schreiben · ca. 65 Minuten · 45 Punkte"],
  ["Mündlich","Sprechen · ca. 15 Minuten in der Gruppe · 15 Punkte"],
  ["Gesamt","4 × 15 = 60 Punkte"],
- ["Bestanden","ab 36 von 60 Punkten (60 %) · ab 54 sehr gut · 48 gut · 42 befriedigend · 36 ausreichend"]],
+ ["Bestanden","ab 36 von 60 Punkten (60 %)"],
+ ["Noten","54–60 sehr gut · 48–53,5 gut · 42–47,5 befriedigend · 36–41,5 ausreichend · unter 36 nicht bestanden"],
+ ["Gut ist","ab 48 Punkten (80 %) – ab 54 sehr gut; pro Prüfungsteil heißt das etwa 12 von 15"]],
  skills:[
  {time:"ca. 20 Minuten",pts:"15 Punkte",parts:[{n:6,per:1,play:"2× hören"},{n:4,per:1,play:"1× hören"},{n:5,per:1,play:"2× hören"}]},
  {time:"25 Minuten",pts:"15 Punkte",parts:[{n:5,per:1},{n:5,per:1},{n:5,per:1}]},
@@ -529,7 +531,7 @@ const K=Karten({mount:main,
   {id:"mw",icon:"multi",label:"Mehrere Wörter",color:"var(--a2)",pressed:()=>multi,click:()=>mw.click()}]});
 document.querySelector(".toggles").prepend(K.button);
 /* ---- Modelltests (test.js): whole exams with a strict timer and marks ---- */
-const TZ=Pruefung({mount:main,level:"A1",tests:window.TESTS_A1,rate:()=>rate,scale:{factor:1,max:60,pass:36,rawLabel:"Punkten",note:"Wie bei telc Start Deutsch 1: jeder Prüfungsteil 15 Punkte, zusammen 60 – bestanden ab 36 Punkten (60 %). Sprechen wird automatisch aus deiner Aufnahme bewertet – du kannst jede Bewertung ändern."}});
+const TZ=Pruefung({mount:main,level:"A1",tests:window.TESTS_A1,rate:()=>rate,scale:{factor:1,max:60,pass:36,grades:[[54,60,"sehr gut"],[48,53.5,"gut"],[42,47.5,"befriedigend"],[36,41.5,"ausreichend"]],rawLabel:"Punkten",note:"Wie bei telc Start Deutsch 1: jeder Prüfungsteil 15 Punkte, zusammen 60 – bestanden ab 36 Punkten (60 %). Sprechen wird automatisch aus deiner Aufnahme bewertet – du kannst jede Bewertung ändern."}});
 document.querySelector("header.hero .ladder").appendChild(TZ.entry);
 document.getElementById("px").addEventListener("click",K.sync);
 
