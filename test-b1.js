@@ -1,6 +1,6 @@
-/* Modelltests B1 for test.js: three whole exams, each question with its
+/* Modelltests B1 for test.js: seven whole exams, each question with its
    answer key (a = index into o / list, -1 = x; rf: true = richtig) and why.
-   Test 1 is built from the practice tasks of the B1 page; Tests 2 and 3 are
+   Test 1 is built from the practice tasks of the B1 page; Tests 2–7 are
    their own texts. tools/check-tests.mjs checks sizes and keys. */
 window.TESTS_B1 = [
  {
@@ -4196,6 +4196,1673 @@ window.TESTS_B1 = [
          ]
         ],
         "model": "Also, am Samstag zeigen wir Ben die Altstadt und fahren auf den Main-Tower. Abends essen wir in einem hessischen Restaurant, das du reservierst. Ben übernachtet bei mir."
+       },
+       {
+        "who": "Anna",
+        "say": "Super, dann machen wir das so!"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "b1-6",
+  "title": "Modelltest 6",
+  "sub": "Regionalnachrichten, Repair-Café, Radiointerview Imkerin · Anfrage an eine Sprachschule",
+  "sections": [
+   {
+    "id": "lesen",
+    "de": "Leseverstehen und Sprachbausteine",
+    "en": "Reading and language elements",
+    "time": 90,
+    "parts": [
+     {
+      "t": "Leseverstehen Teil 1 – Globalverstehen",
+      "tab": "Lesen 1",
+      "intro": "Lesen Sie die Überschriften a bis j und die fünf Texte. Welche Überschrift passt zu welchem Text? Fünf Überschriften bleiben übrig.",
+      "type": "match",
+      "per": 5,
+      "items": [
+       {
+        "q": "Text 1",
+        "a": 4,
+        "why": "Busse fahren nachts",
+        "text": "Ab Dezember fahren in der Stadt auch nachts Busse. Am Freitag und Samstag gibt es zwischen ein und fünf Uhr jede Stunde eine Verbindung zum Hauptbahnhof."
+       },
+       {
+        "q": "Text 2",
+        "a": 0,
+        "why": "Bäume pflanzen, Schüler",
+        "text": "Mehr als 300 Schülerinnen und Schüler haben am Wochenende im Stadtwald junge Bäume gepflanzt. Die Aktion soll jedes Jahr stattfinden."
+       },
+       {
+        "q": "Text 3",
+        "a": 7,
+        "why": "Gemüse aus der Region im Abo",
+        "text": "Eine Gruppe von Bauern liefert jetzt jede Woche eine Kiste mit frischem Gemüse direkt nach Hause. Kunden zahlen einen festen Preis pro Monat."
+       },
+       {
+        "q": "Text 4",
+        "a": 2,
+        "why": "Ausweis online beantragen",
+        "text": "Wer einen neuen Personalausweis braucht, muss nicht mehr lange im Bürgerbüro warten. Den Antrag kann man jetzt im Internet stellen und nur zum Abholen vorbeikommen."
+       },
+       {
+        "q": "Text 5",
+        "a": 9,
+        "why": "Konzert im Park kostenlos",
+        "text": "Jeden Sonntag im August spielen verschiedene Bands im Stadtpark. Der Eintritt ist frei, Getränke gibt es an kleinen Ständen."
+       }
+      ],
+      "list": [
+       "Schüler pflanzen Bäume",
+       "Neues Fitnessstudio eröffnet",
+       "Behördengänge im Internet erledigen",
+       "Mieten steigen weiter",
+       "Nachtbusse am Wochenende",
+       "Flughafen baut neues Terminal",
+       "Weniger Kinder in den Schulen",
+       "Frisches Gemüse direkt vor die Tür",
+       "Kino zeigt alte Filme",
+       "Kostenlose Musik unter freiem Himmel"
+      ],
+      "time": 20
+     },
+     {
+      "t": "Leseverstehen Teil 2 – Detailverstehen",
+      "tab": "Lesen 2",
+      "intro": "Lesen Sie den Text und die Aufgaben. Welche Lösung ist richtig: a, b oder c?",
+      "type": "mc",
+      "per": 5,
+      "items": [
+       {
+        "q": "Im Repair-Café …",
+        "o": [
+         "lernt man einen Beruf.",
+         "kauft man gebrauchte Geräte.",
+         "repariert man Sachen gemeinsam."
+        ],
+        "a": 2
+       },
+       {
+        "q": "Die Helfer …",
+        "o": [
+         "sind alle Elektriker von Beruf.",
+         "kommen aus einer Firma.",
+         "arbeiten ohne Bezahlung."
+        ],
+        "a": 2,
+        "why": "ehrenamtlich"
+       },
+       {
+        "q": "Am häufigsten bringen Besucher …",
+        "o": [
+         "Fahrräder.",
+         "Kleidung.",
+         "Kaffeemaschinen und Toaster."
+        ],
+        "a": 2
+       },
+       {
+        "q": "Wenn ein Gerät nicht repariert werden kann, …",
+        "o": [
+         "erklärt man den Grund.",
+         "bekommt man Geld zurück.",
+         "wird es sofort weggeworfen."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Für die Reparatur …",
+        "o": [
+         "braucht man einen Termin.",
+         "muss man 20 Euro bezahlen.",
+         "zahlt man so viel man möchte."
+        ],
+        "a": 2,
+        "why": "Spende"
+       }
+      ],
+      "text": "Reparieren statt wegwerfen\nJeden ersten Samstag im Monat ist der Gemeindesaal in Kassel-Nord voll. Dann öffnet das Repair-Café. Hier bringen Menschen kaputte Sachen mit und reparieren sie zusammen mit Helfern. „Wir wollen zeigen, dass man nicht immer gleich etwas Neues kaufen muss“, sagt Organisatorin Helga Roth.\nDie zwölf Helferinnen und Helfer arbeiten ehrenamtlich. Manche sind Rentner, die früher Elektriker oder Schneiderin waren, andere einfach gute Bastler. Am häufigsten kommen Besucher mit Kaffeemaschinen und Toastern, aber auch Lampen, Hosen und Spielzeug landen auf den Tischen.\nNicht alles kann man retten. „Manchmal fehlt ein Ersatzteil, oder die Reparatur wäre zu gefährlich“, erklärt Roth. Dann erklären die Helfer, was kaputt ist und warum es nicht geht. Etwa zwei Drittel der Geräte funktionieren am Ende aber wieder.\nEinen festen Preis gibt es nicht. Wer möchte, gibt eine Spende in die Kaffeekasse. Ein Termin ist nicht nötig, man muss aber manchmal etwas warten – bei Kaffee und Kuchen.",
+      "time": 20
+     },
+     {
+      "t": "Leseverstehen Teil 3 – Selektives Verstehen",
+      "tab": "Lesen 3",
+      "intro": "Lesen Sie die Situationen und die Anzeigen a bis l. Welche Anzeige passt? Jede Anzeige nur einmal. Wenn keine Anzeige passt, wählen Sie x.",
+      "type": "match",
+      "per": 2.5,
+      "items": [
+       {
+        "q": "Sie möchten am Wochenende mit Ihren Kindern etwas über Tiere lernen.",
+        "a": 6
+       },
+       {
+        "q": "Sie brauchen Hilfe beim Schreiben einer Bewerbung.",
+        "a": 2
+       },
+       {
+        "q": "Sie möchten Ihr altes Sofa loswerden.",
+        "a": 9
+       },
+       {
+        "q": "Sie suchen einen Platz zum Lernen mit Internet.",
+        "a": 0
+       },
+       {
+        "q": "Sie möchten eine neue Sprache lernen und andere Menschen treffen.",
+        "a": 11
+       },
+       {
+        "q": "Sie haben Rückenschmerzen und möchten etwas dagegen tun.",
+        "a": 4
+       },
+       {
+        "q": "Sie möchten Ihre Wohnung renovieren und brauchen Werkzeug.",
+        "a": 7
+       },
+       {
+        "q": "Sie suchen für Ihren Sohn (15) einen Ferienjob.",
+        "a": 3
+       },
+       {
+        "q": "Sie möchten Ihren Führerschein machen.",
+        "a": 10
+       },
+       {
+        "q": "Sie suchen einen Tanzkurs für Paare.",
+        "a": -1,
+        "why": "x – kein Tanzkurs"
+       }
+      ],
+      "x": true,
+      "list": [
+       "Stadtbibliothek: Lernplätze mit kostenlosem WLAN, bis 22 Uhr.",
+       "Fotostudio Licht: Porträts und Familienfotos.",
+       "Jobcenter-Workshop: Bewerbungen richtig schreiben.",
+       "Freibad sucht Schüler ab 15 für Kiosk-Aushilfe in den Sommerferien.",
+       "Rückenschule: Kurs mit Physiotherapeutin, Kasse zahlt.",
+       "Gebrauchte Kinderwagen günstig.",
+       "Naturkundemuseum: Familiensonntag mit Tierführung.",
+       "Baumarkt: Werkzeug ausleihen, ab 5 Euro pro Tag.",
+       "Pizzeria sucht Fahrer mit Führerschein.",
+       "Sperrmüll: Abholung großer Möbel kostenlos, Termin online.",
+       "Fahrschule Grün: Intensivkurse in den Ferien.",
+       "Sprachcafé: Spanisch, Französisch und Türkisch lernen bei Kaffee und Gesprächen."
+      ],
+      "time": 20
+     },
+     {
+      "t": "Sprachbausteine Teil 1 – Grammatik",
+      "tab": "Sprachb. 1",
+      "intro": "Lesen Sie den Brief. Welches Wort passt in die Lücke: a, b oder c?",
+      "type": "gapmc",
+      "per": 1.5,
+      "items": [
+       {
+        "n": 1,
+        "o": [
+         "für",
+         "auf",
+         "über"
+        ],
+        "a": 0,
+        "why": "sich interessieren für"
+       },
+       {
+        "n": 2,
+        "o": [
+         "Ab",
+         "Seit",
+         "Vor"
+        ],
+        "a": 1,
+        "why": "Seit + Dauer bis jetzt"
+       },
+       {
+        "n": 3,
+        "o": [
+         "weil",
+         "ob",
+         "dass"
+        ],
+        "a": 0,
+        "why": "Grund"
+       },
+       {
+        "n": 4,
+        "o": [
+         "wann",
+         "ob",
+         "dass"
+        ],
+        "a": 1,
+        "why": "Ja/Nein-Frage → ob"
+       },
+       {
+        "n": 5,
+        "o": [
+         "um",
+         "im",
+         "am"
+        ],
+        "a": 2,
+        "why": "am Abend"
+       },
+       {
+        "n": 6,
+        "o": [
+         "kostet",
+         "kosten",
+         "kostest"
+        ],
+        "a": 0,
+        "why": "der Kurs kostet"
+       },
+       {
+        "n": 7,
+        "o": [
+         "welche",
+         "welcher",
+         "welches"
+        ],
+        "a": 0,
+        "why": "welche Unterlagen (Plural)"
+       },
+       {
+        "n": 8,
+        "o": [
+         "wäre",
+         "hätte",
+         "würde"
+        ],
+        "a": 0,
+        "why": "Es wäre schön"
+       },
+       {
+        "n": 9,
+        "o": [
+         "von",
+         "auf",
+         "für"
+        ],
+        "a": 1,
+        "why": "sich freuen auf"
+       },
+       {
+        "n": 10,
+        "o": [
+         "Gruß",
+         "Grüße",
+         "Grüßen"
+        ],
+        "a": 2,
+        "why": "Mit freundlichen Grüßen"
+       }
+      ],
+      "text": "Sehr geehrte Damen und Herren,\nich interessiere mich (1) Ihren Intensivkurs B2 und möchte gern mehr Informationen bekommen. (2) zwei Jahren lebe ich in Deutschland und habe im letzten Monat die B1-Prüfung bestanden. Jetzt möchte ich weiterlernen, (3) ich im Beruf besser Deutsch sprechen muss. Ich möchte gern wissen, (4) es noch freie Plätze im Kurs im Oktober gibt. Leider arbeite ich tagsüber, deshalb kann ich nur (5) Abend oder am Wochenende lernen. Außerdem möchte ich fragen, wie viel der Kurs (6) und ob man in Raten bezahlen kann. Bitte teilen Sie mir auch mit, (7) Unterlagen ich für die Anmeldung brauche. Es (8) schön, wenn Sie mir bald antworten könnten. Ich freue mich (9) Ihre Antwort.\nMit freundlichen (10)\nSuresh [Nachname]",
+      "time": 15
+     },
+     {
+      "t": "Sprachbausteine Teil 2 – Wortschatz",
+      "tab": "Sprachb. 2",
+      "intro": "Lesen Sie den Text. Welches Wort aus der Liste a bis o passt in die Lücke? Jedes Wort nur einmal. Fünf Wörter bleiben übrig.",
+      "type": "gapbank",
+      "per": 1.5,
+      "items": [
+       {
+        "n": 11,
+        "a": 4,
+        "why": "seit"
+       },
+       {
+        "n": 12,
+        "a": 0,
+        "why": "eine Stelle bekommen"
+       },
+       {
+        "n": 13,
+        "a": 9,
+        "why": "leider"
+       },
+       {
+        "n": 14,
+        "a": 2,
+        "why": "einen Kindergartenplatz finden"
+       },
+       {
+        "n": 15,
+        "a": 7,
+        "why": "obwohl + Verb am Ende"
+       },
+       {
+        "n": 16,
+        "a": 1,
+        "why": "Zeit haben"
+       },
+       {
+        "n": 17,
+        "a": 12,
+        "why": "an mich denken"
+       },
+       {
+        "n": 18,
+        "a": 5,
+        "why": "zum Beispiel"
+       },
+       {
+        "n": 19,
+        "a": 11,
+        "why": "wenn"
+       },
+       {
+        "n": 20,
+        "a": 14,
+        "why": "Liebe Grüße"
+       }
+      ],
+      "list": [
+       "Stelle",
+       "Zeit",
+       "finden",
+       "aber",
+       "seit",
+       "zum",
+       "deshalb",
+       "obwohl",
+       "weil",
+       "leider",
+       "dass",
+       "wenn",
+       "an",
+       "über",
+       "Grüße"
+      ],
+      "text": "Liebe Sabine,\nwie geht es dir? Wir haben uns (11) dem Sommer nicht mehr gesehen, und ich habe viel zu erzählen. Ich habe eine neue (12) als Krankenpfleger in einem großen Krankenhaus bekommen. Die Arbeit macht mir Spaß, aber ich muss (13) oft am Wochenende arbeiten. Für unsere Tochter konnten wir endlich einen Kindergartenplatz (14). Sie geht sehr gern hin, (15) sie am Anfang viel geweint hat. Leider haben wir jetzt wenig (16) für Freunde. Denkst du noch (17) mich? Wir könnten uns doch bald treffen, (18) Beispiel im Dezember auf dem Weihnachtsmarkt. Ruf mich an, (19) du Zeit hast!\nLiebe (20)\nSuresh",
+      "time": 15
+     }
+    ]
+   },
+   {
+    "id": "hoeren",
+    "de": "Hörverstehen",
+    "en": "Listening",
+    "time": 30,
+    "parts": [
+     {
+      "t": "Teil 1 – Globalverstehen",
+      "tab": "Teil 1",
+      "intro": "Sie hören fünf kurze Texte. Sie hören die Texte nur einmal. Sind die Aussagen richtig oder falsch?",
+      "type": "rf",
+      "per": 5,
+      "plays": 1,
+      "items": [
+       {
+        "q": "Die Sprecherin arbeitet jetzt weniger Stunden.",
+        "a": true,
+        "why": "nur noch 30 Stunden",
+        "audio": "Seit unser Sohn auf der Welt ist, arbeite ich nur noch 30 Stunden pro Woche. Das Geld ist knapper, aber ich habe mehr Zeit für die Familie."
+       },
+       {
+        "q": "Der Sprecher wohnt allein.",
+        "a": false,
+        "why": "in einer WG mit drei anderen",
+        "audio": "Ich wohne in einer WG mit drei anderen Studenten. Manchmal ist es laut, aber wir kochen oft zusammen, und ich bin nie allein."
+       },
+       {
+        "q": "Die Sprecherin findet das Wetter in Deutschland schlecht.",
+        "a": true,
+        "audio": "Ich komme aus Ägypten. Das Leben hier gefällt mir gut, aber an das Wetter kann ich mich nicht gewöhnen. Im Winter ist es so dunkel und grau."
+       },
+       {
+        "q": "Der Sprecher hat seinen Job verloren.",
+        "a": false,
+        "why": "Er hat selbst gekündigt.",
+        "audio": "Letzten Monat habe ich meine Stelle gekündigt. Ich wollte etwas Neues machen. Jetzt mache ich eine Weiterbildung im IT-Bereich."
+       },
+       {
+        "q": "Die Sprecherin geht gern auf Flohmärkte.",
+        "a": true,
+        "audio": "Am Wochenende gehe ich am liebsten auf Flohmärkte. Dort finde ich oft schöne alte Sachen für meine Wohnung, und sie sind viel billiger als im Geschäft."
+       }
+      ],
+      "time": 7
+     },
+     {
+      "t": "Teil 2 – Detailverstehen",
+      "tab": "Teil 2",
+      "intro": "Sie hören ein Interview im Radio. Sie hören es zweimal. Sind die Aussagen richtig oder falsch?",
+      "type": "rf",
+      "per": 2.5,
+      "plays": 2,
+      "items": [
+       {
+        "q": "Frau Schäfer hält seit zehn Jahren Bienen.",
+        "a": true
+       },
+       {
+        "q": "Sie hat das Imkern von ihrem Vater gelernt.",
+        "a": false,
+        "why": "von einem Nachbarn"
+       },
+       {
+        "q": "Ihre Bienen stehen auf einem Dach in der Stadt.",
+        "a": true
+       },
+       {
+        "q": "In der Stadt finden Bienen weniger Blumen als auf dem Land.",
+        "a": false,
+        "why": "oft mehr verschiedene Blumen"
+       },
+       {
+        "q": "Ein Bienenvolk hat im Sommer bis zu 50.000 Bienen.",
+        "a": true
+       },
+       {
+        "q": "Frau Schäfer verkauft ihren Honig im Supermarkt.",
+        "a": false,
+        "why": "auf dem Wochenmarkt"
+       },
+       {
+        "q": "Sie wird manchmal gestochen.",
+        "a": true
+       },
+       {
+        "q": "Für Anfänger ist ein Kurs wichtig.",
+        "a": true
+       },
+       {
+        "q": "Bienen brauchen im Winter viel Arbeit.",
+        "a": false,
+        "why": "im Winter wenig Arbeit"
+       },
+       {
+        "q": "Frau Schäfer bietet Führungen für Schulklassen an.",
+        "a": true
+       }
+      ],
+      "audio": "Moderator: Heute ist Frau Schäfer bei uns, Hobby-Imkerin in Frankfurt. Frau Schäfer, seit wann halten Sie Bienen?\nFrau Schäfer: Seit zehn Jahren. Ein Nachbar hatte Bienen, und er hat mir alles gezeigt.\nModerator: Wo stehen Ihre Bienen?\nFrau Schäfer: Auf dem Dach unseres Hauses, mitten in der Stadt.\nModerator: Finden Bienen in der Stadt genug Blumen?\nFrau Schäfer: Ja, oft sogar mehr verschiedene Blumen als auf dem Land. Dort gibt es viele große Felder mit nur einer Pflanze. In der Stadt haben wir Parks, Gärten und Balkone.\nModerator: Wie viele Bienen haben Sie?\nFrau Schäfer: Ich habe vier Völker. Im Sommer hat ein Volk bis zu 50.000 Bienen.\nModerator: Was machen Sie mit dem Honig?\nFrau Schäfer: Ich verkaufe ihn samstags auf dem Wochenmarkt. Die Leute lieben Honig aus ihrer Stadt.\nModerator: Werden Sie oft gestochen?\nFrau Schäfer: Manchmal schon, das gehört dazu. Aber mit der richtigen Kleidung passiert nicht viel.\nModerator: Was raten Sie Anfängern?\nFrau Schäfer: Unbedingt einen Kurs beim Imkerverein machen. Man muss viel wissen.\nModerator: Und im Winter?\nFrau Schäfer: Da haben die Bienen Pause und ich habe wenig Arbeit. Im Frühling geht es wieder los.\nModerator: Haben Sie noch andere Projekte?\nFrau Schäfer: Ja, ich mache Führungen für Schulklassen. Die Kinder sind immer total begeistert.",
+      "time": 15
+     },
+     {
+      "t": "Teil 3 – Selektives Verstehen",
+      "tab": "Teil 3",
+      "intro": "Sie hören fünf kurze Texte. Sie hören jeden Text zweimal. Sind die Aussagen richtig oder falsch?",
+      "type": "rf",
+      "per": 5,
+      "plays": 2,
+      "items": [
+       {
+        "q": "Die S-Bahn fährt heute nur bis zum Hauptbahnhof.",
+        "a": true,
+        "audio": "Information der S-Bahn: Wegen einer Störung fahren die Züge der S5 heute nur bis zum Hauptbahnhof."
+       },
+       {
+        "q": "Am Wochenende gibt es Gewitter.",
+        "a": false,
+        "why": "sonnig und warm",
+        "audio": "Das Wetter am Wochenende: sonnig und warm bis 28 Grad. Gewitter erst ab Montag."
+       },
+       {
+        "q": "Man kann die Tickets nur online kaufen.",
+        "a": false,
+        "why": "auch an der Abendkasse",
+        "audio": "Für das Konzert am Freitag gibt es noch Karten online und an der Abendkasse."
+       },
+       {
+        "q": "Die Bibliothek hat jetzt am Samstag geöffnet.",
+        "a": true,
+        "audio": "Gute Nachricht: Ab sofort ist die Stadtbibliothek auch samstags von 10 bis 14 Uhr geöffnet."
+       },
+       {
+        "q": "Der Patient soll nüchtern kommen.",
+        "a": true,
+        "why": "nichts essen",
+        "audio": "Hier ist die Praxis Doktor Yilmaz. Für Ihre Blutuntersuchung morgen essen Sie bitte vorher nichts. Sie dürfen nur Wasser trinken."
+       }
+      ],
+      "time": 8
+     }
+    ]
+   },
+   {
+    "id": "schreiben",
+    "de": "Schriftlicher Ausdruck",
+    "en": "Writing",
+    "time": 30,
+    "parts": [
+     {
+      "t": "Brief",
+      "intro": "Schreiben Sie einen Brief. Schreiben Sie zu allen vier Punkten. Denken Sie an Anrede, Einleitung, Schluss und Gruß.",
+      "type": "write",
+      "crit": "b1",
+      "words": 150,
+      "task": "Sie möchten einen Abendkurs an einer Sprachschule machen. Schreiben Sie an die Schule:",
+      "points": [
+       "Grund des Schreibens",
+       "welcher Kurs und warum",
+       "Fragen zu Preis und Zeiten",
+       "Bitte um Informationsmaterial"
+      ],
+      "model": "Sehr geehrte Damen und Herren,\nich habe auf Ihrer Internetseite gelesen, dass Sie Abendkurse für Deutsch anbieten, und möchte mich gern informieren.\nIch interessiere mich für einen Kurs auf dem Niveau B2. Ich habe vor Kurzem die B1-Prüfung bestanden und möchte jetzt weiterlernen, weil ich im Beruf viele E-Mails auf Deutsch schreiben muss.\nKönnten Sie mir bitte sagen, wie viel der Kurs kostet und an welchen Tagen er stattfindet? Da ich bis 17 Uhr arbeite, kann ich erst ab 18 Uhr am Unterricht teilnehmen. Gibt es auch eine Ermäßigung für Berufstätige?\nIch würde mich freuen, wenn Sie mir Informationsmaterial per E-Mail schicken könnten.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "time": 30
+     }
+    ]
+   },
+   {
+    "id": "sprechen",
+    "de": "Mündlicher Ausdruck",
+    "en": "Speaking",
+    "time": 15,
+    "oral": true,
+    "parts": [
+     {
+      "t": "Teil 1 – Kontaktaufnahme",
+      "tab": "Teil 1",
+      "intro": "Lernen Sie Ihre Partnerin kennen: Antworten Sie auf ihre Fragen und stellen Sie selbst Fragen.",
+      "type": "speak",
+      "max": 15,
+      "time": 4,
+      "turns": [
+       {
+        "who": "Prüfer",
+        "say": "Guten Tag. Im ersten Teil lernen Sie sich kennen. Anna, bitte beginnen Sie."
+       },
+       {
+        "who": "Anna",
+        "say": "Hallo! Was hast du gemacht, bevor du nach Deutschland gekommen bist?"
+       },
+       {
+        "you": "Antworte Anna ausführlich (2–3 Sätze).",
+        "min": 12,
+        "key": [
+         [
+          "\\bich\\b",
+          "von dir erzählen"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da)\\b|und|aber",
+          "Sätze verbunden"
+         ]
+        ],
+        "model": "Ich habe in Indien studiert und danach vier Jahre als Ingenieur gearbeitet. Dann habe ich hier eine Stelle bekommen."
+       },
+       {
+        "who": "Anna",
+        "say": "Was war am Anfang in Deutschland schwierig für dich?"
+       },
+       {
+        "you": "Antworte Anna ausführlich (2–3 Sätze).",
+        "min": 12,
+        "key": [
+         [
+          "\\bich\\b",
+          "von dir erzählen"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da)\\b|und|aber",
+          "Sätze verbunden"
+         ]
+        ],
+        "model": "Am Anfang war die Wohnungssuche sehr schwierig, weil ich wenig Deutsch gesprochen habe. Auch die vielen Formulare waren kompliziert."
+       },
+       {
+        "who": "Prüfer",
+        "say": "Danke. Jetzt fragen Sie Anna."
+       },
+       {
+        "you": "Stell Anna zwei Fragen: woher sie kommt und was sie in der Freizeit macht.",
+        "min": 6,
+        "key": [
+         [
+          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
+          "Frageform"
+         ],
+         [
+          "woher|komm",
+          "Herkunft"
+         ],
+         [
+          "freizeit|hobby|wochenende|gern",
+          "Freizeit"
+         ]
+        ],
+        "model": "Woher kommst du eigentlich? Und was machst du gern in deiner Freizeit?"
+       },
+       {
+        "who": "Anna",
+        "say": "Ich komme aus Italien, aus Neapel. In meiner Freizeit fotografiere ich und fahre Fahrrad."
+       },
+       {
+        "you": "Reagiere auf Annas Antwort und erzähl etwas Passendes von dir.",
+        "min": 8,
+        "key": [
+         [
+          "\\bich\\b|auch|interessant|toll|schön",
+          "Reaktion"
+         ]
+        ],
+        "model": "Fotografieren finde ich auch spannend! Ich mache aber nur Fotos mit dem Handy."
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Gespräch über ein Thema",
+      "tab": "Teil 2",
+      "intro": "Thema: Ehrenamt. Berichten Sie kurz über Ihren Text, sagen Sie Ihre Meinung und sprechen Sie über Ihre Erfahrungen.",
+      "type": "speak",
+      "max": 30,
+      "time": 6,
+      "turns": [
+       {
+        "who": "Prüfer",
+        "say": "Im zweiten Teil sprechen Sie über das Thema „Ehrenamt“. Sie haben dazu einen kurzen Text gelesen: Fast jeder dritte Deutsche arbeitet ehrenamtlich, zum Beispiel im Sportverein oder in der Flüchtlingshilfe. Viele haben aber immer weniger Zeit dafür. Bitte berichten Sie kurz, was in Ihrem Text steht."
+       },
+       {
+        "you": "Berichte kurz, was in deinem Text steht (3–4 Sätze).",
+        "min": 25,
+        "key": [
+         [
+          "text|artikel|geht es um",
+          "Einleitung"
+         ],
+         [
+          "ehrenamt|freiwillig|helfen|verein",
+          "Thema"
+         ],
+         [
+          "viele|immer mehr|prozent|menschen|leute",
+          "Inhalt"
+         ]
+        ],
+        "model": "In meinem Text geht es um das Ehrenamt. Fast jeder dritte Deutsche hilft freiwillig, zum Beispiel im Sportverein. Aber viele Menschen haben heute weniger Zeit dafür."
+       },
+       {
+        "who": "Anna",
+        "say": "In meinem Text steht, dass junge Leute lieber kurze Projekte machen als lange in einem Verein zu bleiben. Was denkst du darüber?"
+       },
+       {
+        "you": "Sag deine Meinung und begründe sie.",
+        "min": 15,
+        "key": [
+         [
+          "meiner meinung|ich finde|ich denke|ich glaube|meine meinung",
+          "Meinung"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da)\\b",
+          "Begründung"
+         ],
+         [
+          "ehrenamt|freiwillig|helfen|verein",
+          "Thema"
+         ]
+        ],
+        "model": "Ich finde ehrenamtliche Arbeit sehr wichtig, weil sie die Gesellschaft stärker macht. Meiner Meinung nach sind kurze Projekte auch gut, denn nicht jeder hat jede Woche Zeit."
+       },
+       {
+        "who": "Anna",
+        "say": "Hast du selbst schon einmal ehrenamtlich gearbeitet?"
+       },
+       {
+        "you": "Erzähl von deinen Erfahrungen oder von deinem Heimatland.",
+        "min": 15,
+        "key": [
+         [
+          "in meinem (heimat)?land|bei uns|in indien|in deutschland|zu hause|früher",
+          "Vergleich / Erfahrung"
+         ],
+         [
+          "\\bich\\b",
+          "persönlich"
+         ]
+        ],
+        "model": "Ja, in Indien habe ich früher Kindern bei den Hausaufgaben geholfen. Hier in Deutschland helfe ich manchmal bei einem Fest in unserem Viertel."
+       },
+       {
+        "who": "Anna",
+        "say": "Sollten Firmen ihren Mitarbeitern Zeit für ein Ehrenamt geben?"
+       },
+       {
+        "you": "Antworte Anna und stell ihr eine Frage zum Thema.",
+        "min": 12,
+        "key": [
+         [
+          "meiner meinung|ich finde|ich denke|ich glaube|meine meinung|ja|nein",
+          "Antwort"
+         ],
+         [
+          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
+          "Gegenfrage"
+         ]
+        ],
+        "model": "Ja, ich glaube, das ist eine gute Idee, denn dann können mehr Menschen helfen. Was meinst du?"
+       },
+       {
+        "who": "Anna",
+        "say": "Das finde ich auch. Danke für das Gespräch!"
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Gemeinsam etwas planen",
+      "tab": "Teil 3",
+      "intro": "Planen Sie zusammen mit Ihrer Partnerin: einen Kochabend mit dem Deutschkurs. Machen Sie Vorschläge, reagieren Sie auf die Vorschläge und einigen Sie sich.",
+      "type": "speak",
+      "max": 30,
+      "time": 5,
+      "turns": [
+       {
+        "who": "Prüfer",
+        "say": "Im dritten Teil planen Sie zusammen: einen Kochabend mit dem Deutschkurs. Sprechen Sie über den Tag, den Ort, das Essen und die Getränke. Anna, bitte beginnen Sie."
+       },
+       {
+        "who": "Anna",
+        "say": "Wollen wir mit dem Kurs einen internationalen Kochabend machen? Jeder kocht etwas aus seinem Land."
+       },
+       {
+        "you": "Reagiere auf Annas Vorschlag: stimm zu oder schlag etwas anderes vor – mit Grund.",
+        "min": 10,
+        "key": [
+         [
+          "gute idee|einverstanden|okay|einverstanden|lieber|das finde ich|ja,|nein,|das passt|super|toll|klingt gut",
+          "Reaktion"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da)\\b",
+          "Begründung"
+         ]
+        ],
+        "model": "Ja, die Idee finde ich super, weil wir so die Küche der anderen kennenlernen. Ich koche gern ein indisches Curry."
+       },
+       {
+        "who": "Anna",
+        "say": "Toll. Wo könnten wir das machen?"
+       },
+       {
+        "you": "Mach einen eigenen Vorschlag.",
+        "min": 8,
+        "key": [
+         [
+          "wie wäre|wir könnten|ich schlage vor|lass uns|lasst uns|was hältst|vielleicht|sollen wir|hast du lust",
+          "Vorschlag"
+         ],
+         [
+          "kochabend|kochen|essen|küche|freitag|samstag|getränke|rezept",
+          "zum Plan"
+         ]
+        ],
+        "model": "Wie wäre es mit der Küche in der Sprachschule? Sie ist groß und wir könnten die Lehrerin fragen."
+       },
+       {
+        "who": "Anna",
+        "say": "Gute Idee. Und wer kümmert sich um die Getränke?"
+       },
+       {
+        "you": "Antworte und kläre, wer was macht.",
+        "min": 8,
+        "key": [
+         [
+          "ich kann|ich mache|ich kümmere|ich bringe|ich übernehme|du kannst|du machst",
+          "Aufgaben verteilen"
+         ]
+        ],
+        "model": "Ich kann die Getränke kaufen. Kannst du die Lehrerin wegen der Küche fragen?"
+       },
+       {
+        "who": "Anna",
+        "say": "Gut. Kannst du noch einmal zusammenfassen, was wir geplant haben?"
+       },
+       {
+        "you": "Fass euren Plan kurz zusammen.",
+        "min": 15,
+        "key": [
+         [
+          "also|zusammengefasst|dann|wir",
+          "Zusammenfassung"
+         ],
+         [
+          "kochabend|kochen|essen|küche|freitag|samstag|getränke|rezept",
+          "Plan"
+         ]
+        ],
+        "model": "Also, wir machen einen internationalen Kochabend in der Küche der Sprachschule. Jeder kocht etwas aus seinem Land. Ich kaufe die Getränke, und du fragst die Lehrerin."
+       },
+       {
+        "who": "Anna",
+        "say": "Super, dann machen wir das so!"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "b1-7",
+  "title": "Modelltest 7",
+  "sub": "Stadtleben, Mehrgenerationenhaus, Radiointerview Hebamme · Beschwerde über eine Reise",
+  "sections": [
+   {
+    "id": "lesen",
+    "de": "Leseverstehen und Sprachbausteine",
+    "en": "Reading and language elements",
+    "time": 90,
+    "parts": [
+     {
+      "t": "Leseverstehen Teil 1 – Globalverstehen",
+      "tab": "Lesen 1",
+      "intro": "Lesen Sie die Überschriften a bis j und die fünf Texte. Welche Überschrift passt zu welchem Text? Fünf Überschriften bleiben übrig.",
+      "type": "match",
+      "per": 5,
+      "items": [
+       {
+        "q": "Text 1",
+        "a": 3,
+        "why": "Fahrradstraße, Autos nur langsam",
+        "text": "Die Goethestraße ist seit Montag eine Fahrradstraße. Autos dürfen hier nur noch fahren, wenn sie dort wohnen, und höchstens 30 km/h."
+       },
+       {
+        "q": "Text 2",
+        "a": 8,
+        "why": "Spielzeug tauschen, Kita",
+        "text": "Im Familienzentrum können Eltern jetzt jeden Mittwoch Spielzeug tauschen. So bekommen die Kinder neue Sachen, ohne dass die Familie etwas kaufen muss."
+       },
+       {
+        "q": "Text 3",
+        "a": 5,
+        "why": "Hitze, Wasser trinken, Ältere",
+        "text": "Wegen der großen Hitze bittet die Stadt alle Bürger, sich um ältere Nachbarn zu kümmern. Sie sollen genug Wasser trinken und mittags nicht nach draußen gehen."
+       },
+       {
+        "q": "Text 4",
+        "a": 0,
+        "why": "Museum Eintritt frei Donnerstag",
+        "text": "Jeden Donnerstag ab 17 Uhr kostet der Eintritt im Kunstmuseum nichts. Das Angebot ist besonders bei jungen Leuten beliebt."
+       },
+       {
+        "q": "Text 5",
+        "a": 6,
+        "why": "neue Ärzte, Landarztpraxis",
+        "text": "Im Dorf Neuhausen gibt es endlich wieder einen Hausarzt. Zwei junge Ärztinnen haben die alte Praxis übernommen und modern eingerichtet."
+       }
+      ],
+      "list": [
+       "Kunst am Donnerstagabend kostenlos",
+       "Neuer Spielplatz im Westend",
+       "Benzinpreise steigen",
+       "Vorrang für Radfahrer",
+       "Großes Stadtfest geplant",
+       "Bei Hitze auf ältere Menschen achten",
+       "Dorf hat wieder eine Arztpraxis",
+       "Universität bekommt neue Bibliothek",
+       "Tauschen statt kaufen für Familien",
+       "Streik bei der Bahn"
+      ],
+      "time": 20
+     },
+     {
+      "t": "Leseverstehen Teil 2 – Detailverstehen",
+      "tab": "Lesen 2",
+      "intro": "Lesen Sie den Text und die Aufgaben. Welche Lösung ist richtig: a, b oder c?",
+      "type": "mc",
+      "per": 5,
+      "items": [
+       {
+        "q": "Im Mehrgenerationenhaus …",
+        "o": [
+         "treffen sich Jung und Alt.",
+         "gibt es nur Angebote für Kinder.",
+         "wohnen nur Senioren."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Herr Krüger …",
+        "o": [
+         "hilft Kindern bei den Hausaufgaben.",
+         "leitet das Haus.",
+         "kocht jeden Tag."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Die junge Mutter Leyla …",
+        "o": [
+         "möchte bald umziehen.",
+         "hat dort Freunde gefunden.",
+         "arbeitet im Haus als Köchin."
+        ],
+        "a": 1
+       },
+       {
+        "q": "Das Mittagessen …",
+        "o": [
+         "gibt es nur am Wochenende.",
+         "kostet wenig.",
+         "ist sehr teuer."
+        ],
+        "a": 1,
+        "why": "3,50 Euro"
+       },
+       {
+        "q": "Das Haus braucht …",
+        "o": [
+         "mehr freiwillige Helfer.",
+         "mehr Platz.",
+         "mehr Geld von der Stadt."
+        ],
+        "a": 0
+       }
+      ],
+      "text": "Ein Haus für alle Generationen\nIm Mehrgenerationenhaus in Bremen-Ost ist immer etwas los. Am Vormittag treffen sich Senioren zum Gedächtnistraining, mittags essen Familien gemeinsam, und am Nachmittag kommen Schulkinder. „Bei uns treffen sich Jung und Alt“, sagt die Leiterin Monika Haas.\nDer 74-jährige Werner Krüger kommt dreimal pro Woche. Er war früher Mathelehrer und hilft heute Kindern bei den Hausaufgaben. „Ich fühle mich wieder gebraucht“, sagt er. „Und die Kinder bringen mir bei, wie mein Smartphone funktioniert.“\nAuch Leyla, Mutter von zwei kleinen Kindern, ist oft hier. Sie ist vor drei Jahren nach Bremen gezogen und kannte niemanden. „Im Elterncafé habe ich Freundinnen gefunden. Jetzt fühle ich mich hier zu Hause.“\nJeden Mittag kochen Freiwillige ein warmes Essen, das nur 3,50 Euro kostet. Das Geld für Miete und Strom bekommt das Haus von der Stadt. Was fehlt, sind Menschen: „Wir suchen dringend mehr Ehrenamtliche, die ein paar Stunden pro Woche helfen“, sagt Monika Haas.",
+      "time": 20
+     },
+     {
+      "t": "Leseverstehen Teil 3 – Selektives Verstehen",
+      "tab": "Lesen 3",
+      "intro": "Lesen Sie die Situationen und die Anzeigen a bis l. Welche Anzeige passt? Jede Anzeige nur einmal. Wenn keine Anzeige passt, wählen Sie x.",
+      "type": "match",
+      "per": 2.5,
+      "items": [
+       {
+        "q": "Sie haben Ihren Schlüssel verloren und kommen nicht in die Wohnung.",
+        "a": 4
+       },
+       {
+        "q": "Sie suchen einen Deutschkurs für Ihre Mutter (65).",
+        "a": 10
+       },
+       {
+        "q": "Sie möchten Ihr Fahrrad verkaufen.",
+        "a": 1
+       },
+       {
+        "q": "Sie suchen Nachhilfe in Mathe für Ihre Tochter.",
+        "a": 6
+       },
+       {
+        "q": "Sie möchten nach der Arbeit Yoga machen.",
+        "a": 9
+       },
+       {
+        "q": "Sie brauchen jemanden, der Ihre Katze im Urlaub füttert.",
+        "a": 3
+       },
+       {
+        "q": "Sie möchten Ihre Hochzeit feiern und suchen einen Raum.",
+        "a": 0
+       },
+       {
+        "q": "Sie möchten lernen, Ihre Steuererklärung selbst zu machen.",
+        "a": 7
+       },
+       {
+        "q": "Sie suchen gebrauchte Bücher.",
+        "a": 11
+       },
+       {
+        "q": "Sie möchten Ihr Auto waschen lassen.",
+        "a": -1,
+        "why": "x – keine Autowäsche"
+       }
+      ],
+      "x": true,
+      "list": [
+       "Festsaal zu vermieten, bis 120 Personen, mit Küche.",
+       "Fahrradbörse: Gebrauchte Räder kaufen und verkaufen, Samstag.",
+       "Malkurs für Kinder, freitags.",
+       "Tiersitter: Wir kümmern uns um Ihr Haustier, auch im Urlaub.",
+       "Schlüsseldienst: 24 Stunden, schnell vor Ort.",
+       "Computer-Reparatur in 24 Stunden.",
+       "Nachhilfe: Mathe und Englisch für alle Klassen.",
+       "VHS-Kurs: Steuererklärung leicht gemacht.",
+       "Elektriker: Installationen und Reparaturen.",
+       "Yoga am Abend: Kurse ab 19 Uhr.",
+       "Deutsch für Senioren: langsames Lerntempo, vormittags.",
+       "Antiquariat: alte und gebrauchte Bücher günstig."
+      ],
+      "time": 20
+     },
+     {
+      "t": "Sprachbausteine Teil 1 – Grammatik",
+      "tab": "Sprachb. 1",
+      "intro": "Lesen Sie den Brief. Welches Wort passt in die Lücke: a, b oder c?",
+      "type": "gapmc",
+      "per": 1.5,
+      "items": [
+       {
+        "n": 1,
+        "o": [
+         "von",
+         "bei",
+         "mit"
+        ],
+        "a": 2,
+        "why": "mit + Dativ"
+       },
+       {
+        "n": 2,
+        "o": [
+         "obwohl",
+         "damit",
+         "weil"
+        ],
+        "a": 0,
+        "why": "Gegensatz"
+       },
+       {
+        "n": 3,
+        "o": [
+         "hatte",
+         "war",
+         "wurde"
+        ],
+        "a": 1,
+        "why": "Das Zimmer war …"
+       },
+       {
+        "n": 4,
+        "o": [
+         "der",
+         "dem",
+         "den"
+        ],
+        "a": 1,
+        "why": "an + Dativ: an dem/am"
+       },
+       {
+        "n": 5,
+        "o": [
+         "aber",
+         "sondern",
+         "oder"
+        ],
+        "a": 1,
+        "why": "nicht …, sondern"
+       },
+       {
+        "n": 6,
+        "o": [
+         "zum",
+         "zur",
+         "zu"
+        ],
+        "a": 2,
+        "why": "zu Fuß"
+       },
+       {
+        "n": 7,
+        "o": [
+         "dass",
+         "ob",
+         "wenn"
+        ],
+        "a": 0,
+        "why": "erwarten, dass"
+       },
+       {
+        "n": 8,
+        "o": [
+         "zurück",
+         "an",
+         "ab"
+        ],
+        "a": 0,
+        "why": "zurückzahlen"
+       },
+       {
+        "n": 9,
+        "o": [
+         "Weil",
+         "Ob",
+         "Falls"
+        ],
+        "a": 2,
+        "why": "Bedingung"
+       },
+       {
+        "n": 10,
+        "o": [
+         "mit",
+         "bei",
+         "an"
+        ],
+        "a": 2,
+        "why": "sich wenden an"
+       }
+      ],
+      "text": "Sehr geehrte Damen und Herren,\nvom 3. bis 10. Juli habe ich (1) meiner Familie eine Reise nach Mallorca bei Ihnen gebucht. Leider war der Urlaub eine große Enttäuschung, (2) wir uns lange darauf gefreut hatten. Das Zimmer (3) viel kleiner als auf den Fotos, und die Klimaanlage funktionierte nicht. An (4) zweiten Tag haben wir uns an der Rezeption beschwert, aber niemand hat uns geholfen. Außerdem lag das Hotel nicht direkt am Strand, (5) zwei Kilometer entfernt. (6) Fuß brauchten wir 30 Minuten, einen Bus gab es nicht. Ich erwarte deshalb, (7) Sie uns einen Teil des Reisepreises (8) zahlen. (9) ich bis zum Monatsende keine Antwort bekomme, werde ich mich (10) einen Anwalt wenden.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "time": 15
+     },
+     {
+      "t": "Sprachbausteine Teil 2 – Wortschatz",
+      "tab": "Sprachb. 2",
+      "intro": "Lesen Sie den Text. Welches Wort aus der Liste a bis o passt in die Lücke? Jedes Wort nur einmal. Fünf Wörter bleiben übrig.",
+      "type": "gapbank",
+      "per": 1.5,
+      "items": [
+       {
+        "n": 11,
+        "a": 3,
+        "why": "ein Jahr lang"
+       },
+       {
+        "n": 12,
+        "a": 10,
+        "why": "in einer Firma"
+       },
+       {
+        "n": 13,
+        "a": 0,
+        "why": "Erfahrung sammeln"
+       },
+       {
+        "n": 14,
+        "a": 6,
+        "why": "deshalb + Verb auf Position 2"
+       },
+       {
+        "n": 15,
+        "a": 13,
+        "why": "sich bewerben um"
+       },
+       {
+        "n": 16,
+        "a": 8,
+        "why": "Kenntnisse"
+       },
+       {
+        "n": 17,
+        "a": 2,
+        "why": "teamfähig sein"
+       },
+       {
+        "n": 18,
+        "a": 14,
+        "why": "zur Verfügung stehen"
+       },
+       {
+        "n": 19,
+        "a": 5,
+        "why": "über eine Einladung"
+       },
+       {
+        "n": 20,
+        "a": 11,
+        "why": "Mit freundlichen Grüßen"
+       }
+      ],
+      "list": [
+       "Erfahrung",
+       "weil",
+       "teamfähig",
+       "lang",
+       "wenn",
+       "über",
+       "deshalb",
+       "aber",
+       "Kenntnisse",
+       "seit",
+       "einer",
+       "Grüßen",
+       "dass",
+       "um",
+       "Verfügung"
+      ],
+      "text": "Sehr geehrte Frau Dr. Albrecht,\nnach meinem Studium habe ich ein Jahr (11) als Praktikant in (12) großen Firma für Logistik gearbeitet. Dort konnte ich viel (13) im Bereich Einkauf sammeln. Die Arbeit hat mir sehr gefallen, (14) möchte ich in diesem Bereich bleiben. Ich bewerbe mich (15) die Stelle als Sachbearbeiter, die Sie in der Zeitung ausgeschrieben haben. Ich habe gute (16) in Englisch und kann sicher mit dem Computer arbeiten. Meine Kollegen sagen, dass ich zuverlässig und (17) bin. Für ein persönliches Gespräch stehe ich Ihnen gern zur (18). Über eine Einladung freue ich mich – auch (19) eine kurze Antwort per E-Mail.\nMit freundlichen (20)\nSuresh [Nachname]",
+      "time": 15
+     }
+    ]
+   },
+   {
+    "id": "hoeren",
+    "de": "Hörverstehen",
+    "en": "Listening",
+    "time": 30,
+    "parts": [
+     {
+      "t": "Teil 1 – Globalverstehen",
+      "tab": "Teil 1",
+      "intro": "Sie hören fünf kurze Texte. Sie hören die Texte nur einmal. Sind die Aussagen richtig oder falsch?",
+      "type": "rf",
+      "per": 5,
+      "plays": 1,
+      "items": [
+       {
+        "q": "Der Sprecher hat mit dem Rauchen aufgehört.",
+        "a": true,
+        "why": "seit einem Jahr",
+        "audio": "Seit einem Jahr rauche ich nicht mehr. Es war schwer, aber jetzt fühle ich mich viel fitter, und ich spare jeden Monat viel Geld."
+       },
+       {
+        "q": "Die Sprecherin fährt mit dem Auto in den Urlaub.",
+        "a": false,
+        "why": "mit dem Nachtzug",
+        "audio": "Dieses Jahr fahren wir mit dem Nachtzug nach Wien. Das ist bequemer als das Auto, und wir kommen ausgeschlafen an."
+       },
+       {
+        "q": "Der Sprecher arbeitet gern im Großraumbüro.",
+        "a": false,
+        "why": "zu laut, er kann sich nicht konzentrieren",
+        "audio": "In meiner Firma arbeiten wir alle in einem Großraumbüro. Mir ist es dort oft zu laut, ich kann mich schlecht konzentrieren."
+       },
+       {
+        "q": "Die Sprecherin hat einen Garten.",
+        "a": true,
+        "why": "Schrebergarten",
+        "audio": "Wir haben seit letztem Jahr einen kleinen Schrebergarten. Am Wochenende pflanzen wir Gemüse und grillen mit Freunden."
+       },
+       {
+        "q": "Der Sprecher lernt ein Instrument.",
+        "a": true,
+        "why": "Klavier",
+        "audio": "Mit 45 Jahren habe ich angefangen, Klavier zu lernen. Mein Lehrer sagt, es ist nie zu spät. Ich übe jeden Abend eine halbe Stunde."
+       }
+      ],
+      "time": 7
+     },
+     {
+      "t": "Teil 2 – Detailverstehen",
+      "tab": "Teil 2",
+      "intro": "Sie hören ein Interview im Radio. Sie hören es zweimal. Sind die Aussagen richtig oder falsch?",
+      "type": "rf",
+      "per": 2.5,
+      "plays": 2,
+      "items": [
+       {
+        "q": "Frau Lorenz arbeitet seit 20 Jahren als Hebamme.",
+        "a": true
+       },
+       {
+        "q": "Sie arbeitet in einem Krankenhaus.",
+        "a": false,
+        "why": "selbstständig, Hausbesuche"
+       },
+       {
+        "q": "Sie besucht die Familien nach der Geburt zu Hause.",
+        "a": true
+       },
+       {
+        "q": "Viele Eltern haben am Anfang Angst.",
+        "a": true
+       },
+       {
+        "q": "Die Arbeit ist gut bezahlt.",
+        "a": false,
+        "why": "Die Bezahlung ist nicht gut."
+       },
+       {
+        "q": "Sie arbeitet oft auch nachts.",
+        "a": true
+       },
+       {
+        "q": "Es gibt genug Hebammen in der Stadt.",
+        "a": false,
+        "why": "zu wenige"
+       },
+       {
+        "q": "Frau Lorenz hat selbst drei Kinder.",
+        "a": false,
+        "why": "zwei"
+       },
+       {
+        "q": "Sie gibt auch Kurse für Schwangere.",
+        "a": true
+       },
+       {
+        "q": "Am schönsten findet sie den ersten Schrei des Babys.",
+        "a": true
+       }
+      ],
+      "audio": "Moderatorin: Heute zu Gast: Frau Lorenz, Hebamme aus Hannover. Frau Lorenz, wie lange machen Sie diesen Beruf schon?\nFrau Lorenz: Seit 20 Jahren. Am Anfang war ich im Krankenhaus, heute bin ich selbstständig.\nModeratorin: Was heißt das genau?\nFrau Lorenz: Ich besuche die Familien nach der Geburt zu Hause. Ich schaue, ob es Mutter und Baby gut geht, und beantworte Fragen.\nModeratorin: Welche Fragen haben die Eltern?\nFrau Lorenz: Viele haben am Anfang Angst, etwas falsch zu machen. Wie oft muss das Baby trinken? Warum weint es? Da kann ich helfen.\nModeratorin: Wie sind die Arbeitszeiten?\nFrau Lorenz: Unregelmäßig. Babys kommen, wann sie wollen, deshalb arbeite ich oft auch nachts. Und ehrlich gesagt ist die Bezahlung nicht gut.\nModeratorin: Gibt es genug Hebammen?\nFrau Lorenz: Nein, leider viel zu wenige. Viele Frauen finden keine Hebamme mehr.\nModeratorin: Wie schaffen Sie das mit Ihrer eigenen Familie?\nFrau Lorenz: Ich habe zwei Kinder, die sind schon groß. Mein Mann hilft sehr viel.\nModeratorin: Machen Sie noch etwas anderes?\nFrau Lorenz: Ja, ich gebe Kurse für Schwangere. Dort lernen sie, was bei der Geburt passiert.\nModeratorin: Was ist für Sie der schönste Moment?\nFrau Lorenz: Der erste Schrei des Babys. Das ist auch nach 20 Jahren noch etwas ganz Besonderes.",
+      "time": 15
+     },
+     {
+      "t": "Teil 3 – Selektives Verstehen",
+      "tab": "Teil 3",
+      "intro": "Sie hören fünf kurze Texte. Sie hören jeden Text zweimal. Sind die Aussagen richtig oder falsch?",
+      "type": "rf",
+      "per": 5,
+      "plays": 2,
+      "items": [
+       {
+        "q": "Der Bus fährt heute eine andere Strecke.",
+        "a": true,
+        "why": "Umleitung",
+        "audio": "Achtung: Wegen des Stadtmarathons fährt die Buslinie 34 heute eine Umleitung über die Bahnhofstraße."
+       },
+       {
+        "q": "Morgen schneit es im ganzen Land.",
+        "a": false,
+        "why": "nur in den Bergen",
+        "audio": "Das Wetter für morgen: im Norden Regen, nur in den Bergen kann es schneien."
+       },
+       {
+        "q": "Kinder bekommen heute im Zoo Eintritt frei.",
+        "a": true,
+        "audio": "Liebe Besucher, zum Kindertag haben heute alle Kinder unter zwölf Jahren freien Eintritt in den Zoo."
+       },
+       {
+        "q": "Die Reinigung ist am Samstag geschlossen.",
+        "a": false,
+        "why": "samstags bis 14 Uhr geöffnet",
+        "audio": "Hier ist die Reinigung Blitzblank. Unsere Öffnungszeiten: montags bis freitags 8 bis 18 Uhr, samstags 9 bis 14 Uhr."
+       },
+       {
+        "q": "Die Kunden sollen ihre Kundennummer bereithalten.",
+        "a": true,
+        "audio": "Willkommen beim Kundenservice der Stadtwerke. Bitte halten Sie Ihre Kundennummer bereit. Sie werden gleich verbunden."
+       }
+      ],
+      "time": 8
+     }
+    ]
+   },
+   {
+    "id": "schreiben",
+    "de": "Schriftlicher Ausdruck",
+    "en": "Writing",
+    "time": 30,
+    "parts": [
+     {
+      "t": "Brief",
+      "intro": "Schreiben Sie einen Brief. Schreiben Sie zu allen vier Punkten. Denken Sie an Anrede, Einleitung, Schluss und Gruß.",
+      "type": "write",
+      "crit": "b1",
+      "words": 150,
+      "task": "Sie haben im Internet eine Busreise nach Prag gebucht. Die Reise war schlecht organisiert. Schreiben Sie an das Reisebüro:",
+      "points": [
+       "Grund des Schreibens",
+       "Was war das Problem?",
+       "Was erwarten Sie jetzt?",
+       "Was machen Sie, wenn das Reisebüro nicht reagiert?"
+      ],
+      "model": "Sehr geehrte Damen und Herren,\nam letzten Wochenende habe ich an Ihrer Busreise nach Prag teilgenommen. Leider war ich mit der Reise sehr unzufrieden und möchte mich deshalb beschweren.\nSchon am Anfang gab es Probleme: Der Bus kam zwei Stunden zu spät, und niemand hat uns informiert. In Prag war unser Hotel nicht im Zentrum, wie im Katalog beschrieben, sondern weit draußen. Die Stadtführung, die im Preis enthalten war, hat gar nicht stattgefunden.\nIch erwarte, dass Sie mir mindestens die Hälfte des Reisepreises zurückzahlen. Außerdem möchte ich eine Erklärung, warum die Stadtführung ausgefallen ist.\nWenn ich bis Ende des Monats keine Antwort bekomme, werde ich mich an die Verbraucherzentrale wenden.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "time": 30
+     }
+    ]
+   },
+   {
+    "id": "sprechen",
+    "de": "Mündlicher Ausdruck",
+    "en": "Speaking",
+    "time": 15,
+    "oral": true,
+    "parts": [
+     {
+      "t": "Teil 1 – Kontaktaufnahme",
+      "tab": "Teil 1",
+      "intro": "Lernen Sie Ihre Partnerin kennen: Antworten Sie auf ihre Fragen und stellen Sie selbst Fragen.",
+      "type": "speak",
+      "max": 15,
+      "time": 4,
+      "turns": [
+       {
+        "who": "Prüfer",
+        "say": "Guten Tag. Im ersten Teil lernen Sie sich kennen. Anna, bitte beginnen Sie."
+       },
+       {
+        "who": "Anna",
+        "say": "Hallo! Wie bist du heute zur Prüfung gekommen?"
+       },
+       {
+        "you": "Antworte Anna ausführlich (2–3 Sätze).",
+        "min": 12,
+        "key": [
+         [
+          "\\bich\\b",
+          "von dir erzählen"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da)\\b|und|aber",
+          "Sätze verbunden"
+         ]
+        ],
+        "model": "Ich bin mit der S-Bahn gekommen. Das ging schnell, weil ich direkt am Bahnhof wohne."
+       },
+       {
+        "who": "Anna",
+        "say": "Was machst du gern im Urlaub?"
+       },
+       {
+        "you": "Antworte Anna ausführlich (2–3 Sätze).",
+        "min": 12,
+        "key": [
+         [
+          "\\bich\\b",
+          "von dir erzählen"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da)\\b|und|aber",
+          "Sätze verbunden"
+         ]
+        ],
+        "model": "Im Urlaub reise ich gern in andere Länder und lerne neue Kulturen kennen. Letztes Jahr war ich in Portugal, das war wunderschön."
+       },
+       {
+        "who": "Prüfer",
+        "say": "Danke. Jetzt fragen Sie Anna."
+       },
+       {
+        "you": "Stell Anna zwei Fragen: woher sie kommt und was sie in der Freizeit macht.",
+        "min": 6,
+        "key": [
+         [
+          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
+          "Frageform"
+         ],
+         [
+          "woher|komm",
+          "Herkunft"
+         ],
+         [
+          "freizeit|hobby|wochenende|gern",
+          "Freizeit"
+         ]
+        ],
+        "model": "Woher kommst du eigentlich? Und was machst du gern in deiner Freizeit?"
+       },
+       {
+        "who": "Anna",
+        "say": "Ich komme aus Griechenland, aus Thessaloniki. In meiner Freizeit gehe ich gern wandern und singe in einem Chor."
+       },
+       {
+        "you": "Reagiere auf Annas Antwort und erzähl etwas Passendes von dir.",
+        "min": 8,
+        "key": [
+         [
+          "\\bich\\b|auch|interessant|toll|schön",
+          "Reaktion"
+         ]
+        ],
+        "model": "Ein Chor klingt toll! Ich wandere auch gern, vielleicht können wir mal zusammen gehen."
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Gespräch über ein Thema",
+      "tab": "Teil 2",
+      "intro": "Thema: Fleisch essen. Berichten Sie kurz über Ihren Text, sagen Sie Ihre Meinung und sprechen Sie über Ihre Erfahrungen.",
+      "type": "speak",
+      "max": 30,
+      "time": 6,
+      "turns": [
+       {
+        "who": "Prüfer",
+        "say": "Im zweiten Teil sprechen Sie über das Thema „Fleisch essen“. Sie haben dazu einen kurzen Text gelesen: Immer mehr Menschen in Deutschland essen weniger Fleisch. Etwa jeder zehnte lebt vegetarisch, viele aus Gründen der Gesundheit oder der Umwelt. Bitte berichten Sie kurz, was in Ihrem Text steht."
+       },
+       {
+        "you": "Berichte kurz, was in deinem Text steht (3–4 Sätze).",
+        "min": 25,
+        "key": [
+         [
+          "text|artikel|geht es um",
+          "Einleitung"
+         ],
+         [
+          "fleisch|vegetarisch|vegan|essen",
+          "Thema"
+         ],
+         [
+          "viele|immer mehr|prozent|menschen|leute",
+          "Inhalt"
+         ]
+        ],
+        "model": "In meinem Text geht es darum, dass viele Menschen in Deutschland weniger Fleisch essen. Etwa zehn Prozent leben vegetarisch. Die Gründe sind oft Gesundheit oder Umwelt."
+       },
+       {
+        "who": "Anna",
+        "say": "In meinem Text steht, dass es in Kantinen jetzt jeden Tag ein vegetarisches Gericht gibt. Was denkst du darüber?"
+       },
+       {
+        "you": "Sag deine Meinung und begründe sie.",
+        "min": 15,
+        "key": [
+         [
+          "meiner meinung|ich finde|ich denke|ich glaube|meine meinung",
+          "Meinung"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da)\\b",
+          "Begründung"
+         ],
+         [
+          "fleisch|vegetarisch|vegan|essen",
+          "Thema"
+         ]
+        ],
+        "model": "Ich finde, man muss nicht ganz auf Fleisch verzichten, aber weniger Fleisch ist gut, weil es gesünder ist. Deshalb esse ich nur zweimal pro Woche Fleisch."
+       },
+       {
+        "who": "Anna",
+        "say": "Wie ist das in deinem Heimatland? Essen die Leute viel Fleisch?"
+       },
+       {
+        "you": "Erzähl von deinen Erfahrungen oder von deinem Heimatland.",
+        "min": 15,
+        "key": [
+         [
+          "in meinem (heimat)?land|bei uns|in indien|in deutschland|zu hause|früher",
+          "Vergleich / Erfahrung"
+         ],
+         [
+          "\\bich\\b",
+          "persönlich"
+         ]
+        ],
+        "model": "In meinem Heimatland Indien leben sehr viele Menschen vegetarisch, oft aus religiösen Gründen. Für mich war es in Deutschland am Anfang schwer, vegetarisches Essen zu finden."
+       },
+       {
+        "who": "Anna",
+        "say": "Sollte Fleisch teurer werden?"
+       },
+       {
+        "you": "Antworte Anna und stell ihr eine Frage zum Thema.",
+        "min": 12,
+        "key": [
+         [
+          "meiner meinung|ich finde|ich denke|ich glaube|meine meinung|ja|nein",
+          "Antwort"
+         ],
+         [
+          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
+          "Gegenfrage"
+         ]
+        ],
+        "model": "Vielleicht ein bisschen, denn dann geht es den Tieren besser. Aber für Familien mit wenig Geld wäre das schwierig. Wie siehst du das?"
+       },
+       {
+        "who": "Anna",
+        "say": "Ich sehe das ähnlich. Danke schön!"
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Gemeinsam etwas planen",
+      "tab": "Teil 3",
+      "intro": "Planen Sie zusammen mit Ihrer Partnerin: einen Umzug für eine Freundin. Machen Sie Vorschläge, reagieren Sie auf die Vorschläge und einigen Sie sich.",
+      "type": "speak",
+      "max": 30,
+      "time": 5,
+      "turns": [
+       {
+        "who": "Prüfer",
+        "say": "Im dritten Teil planen Sie zusammen: einen Umzug für eine Freundin. Sprechen Sie über den Termin, das Auto, die Helfer und das Essen. Anna, bitte beginnen Sie."
+       },
+       {
+        "who": "Anna",
+        "say": "Unsere Freundin Sara zieht nächsten Monat um. Wollen wir ihr helfen? Ich schlage den ersten Samstag vor."
+       },
+       {
+        "you": "Reagiere auf Annas Vorschlag: stimm zu oder schlag etwas anderes vor – mit Grund.",
+        "min": 10,
+        "key": [
+         [
+          "gute idee|einverstanden|okay|einverstanden|lieber|das finde ich|ja,|nein,|das passt|super|toll|klingt gut",
+          "Reaktion"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da)\\b",
+          "Begründung"
+         ]
+        ],
+        "model": "Ja, natürlich helfe ich. Samstag passt gut, weil dann alle frei haben. Wir sollten aber früh anfangen."
+       },
+       {
+        "who": "Anna",
+        "say": "Gut. Wie transportieren wir die Möbel?"
+       },
+       {
+        "you": "Mach einen eigenen Vorschlag.",
+        "min": 8,
+        "key": [
+         [
+          "wie wäre|wir könnten|ich schlage vor|lass uns|lasst uns|was hältst|vielleicht|sollen wir|hast du lust",
+          "Vorschlag"
+         ],
+         [
+          "umzug|transporter|auto|helfer|samstag|kartons|pizza|essen",
+          "zum Plan"
+         ]
+        ],
+        "model": "Wir könnten einen Transporter mieten. Ich schlage vor, dass wir ihn schon am Freitagabend abholen."
+       },
+       {
+        "who": "Anna",
+        "say": "Und wer organisiert die Helfer und das Essen?"
+       },
+       {
+        "you": "Antworte und kläre, wer was macht.",
+        "min": 8,
+        "key": [
+         [
+          "ich kann|ich mache|ich kümmere|ich bringe|ich übernehme|du kannst|du machst",
+          "Aufgaben verteilen"
+         ]
+        ],
+        "model": "Ich frage ein paar Freunde aus dem Kurs. Kannst du für alle Pizza bestellen?"
+       },
+       {
+        "who": "Anna",
+        "say": "Gut. Kannst du noch einmal zusammenfassen, was wir geplant haben?"
+       },
+       {
+        "you": "Fass euren Plan kurz zusammen.",
+        "min": 15,
+        "key": [
+         [
+          "also|zusammengefasst|dann|wir",
+          "Zusammenfassung"
+         ],
+         [
+          "umzug|transporter|auto|helfer|samstag|kartons|pizza|essen",
+          "Plan"
+         ]
+        ],
+        "model": "Also, wir helfen Sara am ersten Samstag. Wir mieten einen Transporter und holen ihn am Freitagabend ab. Ich frage die Helfer, und du bestellst Pizza für alle."
        },
        {
         "who": "Anna",

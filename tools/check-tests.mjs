@@ -10,7 +10,7 @@ const SIZE = { A1: [[6, 4, 5], [5, 5, 5], [5, "w"], ["s", "s", "s"]], B1: [[5, 5
 const PTS = { A1: [15, 15, 15, 15], B1: [105, 75, 45, 75] };
 const SPK = { A1: [3, 6, 6], B1: [15, 30, 30] };
 for (const [lv, tests] of [["A1", window.TESTS_A1], ["B1", window.TESTS_B1]]) {
-  if (tests.length !== 5) fail(lv, "needs 5 tests, has " + tests.length);
+  if (tests.length !== 7) fail(lv, "needs 7 tests, has " + tests.length);
   const ids = new Set();
   for (const t of tests) {
     if (ids.has(t.id)) fail(t.id, "duplicate id"); ids.add(t.id);

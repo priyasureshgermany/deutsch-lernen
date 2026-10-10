@@ -1,5 +1,8 @@
 # Releases
 
+## 1.18.0 — 2026-10-10
+- Two more Modelltests per level: Modelltest 6 and 7 for A1 and B1 – seven complete exams each, all with Hören, Lesen, Schreiben and Sprechen (virtual partners, recording and rating)
+
 ## 1.17.2 — 2026-10-10
 - Marks checked against telc for both levels: A1 15 per Prüfungsteil (60, pass 36); B1 Lesen 75, Sprachbausteine 30, Hören 75, Schreiben 45, Mündlich 75 (300; written from 135, oral from 45)
 - The exam information shows the grade ranges and what counts as good (A1: from 48 gut, from 54 sehr gut; B1: from 240 gut, from 270 sehr gut); every Modelltest result shows the bands with your band highlighted and your grade when passed
