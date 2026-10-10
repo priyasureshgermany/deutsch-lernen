@@ -9,17 +9,24 @@
      n × per   the exam has n questions worth per points each
      whole     points for the whole part (writing / speaking)
      none      practice material only, no points of its own
-     each      what one card is worth, when "… für den Teil" is not right */
+     each      what one card is worth, when "… für den Teil" is not right
+     f         raw points → exam points (A1: × 5/3, so 15 raw points = 25 points);
+               parts with f are shown in exam points, the raw points small */
 (function(){
-const num=x=>String(x).replace(".",",");
+const num=x=>String(Math.round(x*10)/10).replace(".",",");
+const rp=x=>`${num(x)} ${x===1?"Rohpunkt":"Rohpunkte"}`;
 const pt=x=>`${num(x)} ${x===1?"Punkt":"Punkte"}`;
 const e=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const Exam={
  pt,
  /* What one question on a card is worth. */
- each(x){return x.none?"":x.each?x.each:x.whole!=null?`${pt(x.whole)} für den Teil`:pt(x.per)},
+ each(x){if(x.none)return"";if(x.each)return x.each;
+  if(x.f)return x.whole!=null?`≈ ${pt(x.whole*x.f)} für den Teil`:rp(x.per);
+  return x.whole!=null?`${pt(x.whole)} für den Teil`:pt(x.per)},
  /* The part as a whole, for the list and the ⓘ panel. */
- part(x){return x.none?"Keine eigenen Punkte":x.whole!=null?`${pt(x.whole)} für den ganzen Teil`:`${x.n} Aufgaben × ${pt(x.per)} = ${pt(x.n*x.per)}`},
+ part(x){if(x.none)return"Keine eigenen Punkte";
+  if(x.f){const raw=x.whole!=null?x.whole:x.n*x.per;return `≈ ${pt(raw*x.f)}`+(x.whole!=null?` für den ganzen Teil (${rp(raw)})`:` (${x.n} Aufgaben × ${rp(x.per)})`)}
+  return x.whole!=null?`${pt(x.whole)} für den ganzen Teil`:`${x.n} Aufgaben × ${pt(x.per)} = ${pt(x.n*x.per)}`},
  line(x){return `<div class="xline"><b>${e(this.part(x))}</b>${x.play?` · ${e(x.play)}`:""}${x.note?` · ${e(x.note)}`:""}</div>`},
  /* "Prüfung im Überblick" under the page intro. */
  overview(EX,S){

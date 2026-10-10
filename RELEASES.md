@@ -1,5 +1,9 @@
 # Releases
 
+## 1.16.4 — 2026-10-10
+- A1: points are shown as in the exam result – every Prüfungsteil 25 points (Schreiben: Formular ≈ 8,3 + Mitteilung ≈ 16,7), the raw points only in brackets; the same in the Modelltests, including the writing self-assessment
+- A big box for your own text below each writing task (A1 Mitteilung, B1 Musterbriefe), with a word count, kept on the device; the writing box in the tests is much bigger and sits full width below the task (it was squeezed into a narrow column beside it)
+
 ## 1.16.3 — 2026-10-09
 - The Test pill is colourful: a violet–pink–orange gradient that slowly shifts, with a white exam sheet and a gold star; a paused test shows a pulsing dot
 - New: Darstellung – automatisch (like the phone) ◐, hell ☀ or dunkel ☾ for the whole app, remembered on the device

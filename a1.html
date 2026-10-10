@@ -131,6 +131,13 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 .tg .sm{display:none}
 @media (max-width:520px){.tg .lg{display:none}.tg .sm{display:inline}.tg{font-size:13px;padding:5px 10px}.toggles{gap:5px}}
 </style>
+<style>
+/* writing tasks: a big box for your own text right below the task, kept on this device */
+.wbox{margin-top:10px}
+.mywrite{display:block;width:100%;min-height:220px;font:inherit;font-size:16px;line-height:1.5;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);resize:vertical}
+.mywrite:focus{outline:2px solid var(--b1);outline-offset:1px}
+.wcount{font-size:13px;color:var(--muted);margin-top:4px}
+</style>
 <link rel="stylesheet" href="karten.css">
 <link rel="stylesheet" href="test.css">
 </head>
@@ -161,7 +168,7 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 <script src="test-a1.js"></script>
 <script>
 const S=[
-{de:"Hören",en:"Listening",info:"3 Teile · ca. 20 Minuten · 15 Rohpunkte ≈ 25 Punkte",infoEn:"3 parts · about 20 minutes · 15 raw points ≈ 25 points",parts:[
+{de:"Hören",en:"Listening",info:"3 Teile · ca. 20 Minuten · 25 Punkte (15 Rohpunkte)",infoEn:"3 parts · about 20 minutes · 25 points (15 raw points)",parts:[
 {t:"Teil 1 – Kurze Gespräche",te:"Part 1 – Short conversations",hear:true,
  intro:"Sie hören sechs kurze Gespräche. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
  introEn:"You hear six short conversations. You hear each text twice. Choose a, b or c.",rows:[
@@ -231,7 +238,7 @@ const S=[
  "Hallo, hier ist die Sprachschule Lingua. Ihr Deutschkurs am Mittwoch ist heute nicht in Raum 12, sondern in Raum 20 im zweiten Stock. Der Kurs beginnt wie immer um 18 Uhr.",
  "Hello, this is the Lingua language school. Your Wednesday German course today is not in room 12 but in room 20 on the second floor. The course starts at 6 pm as always.",
  "c) in einem anderen Raum – Raum 20 statt 12.","c) in a different room – room 20 instead of 12."]]}]},
-{de:"Lesen",en:"Reading",info:"3 Teile · ca. 25 Minuten · 15 Rohpunkte ≈ 25 Punkte",infoEn:"3 parts · about 25 minutes · 15 raw points ≈ 25 points",parts:[
+{de:"Lesen",en:"Reading",info:"3 Teile · ca. 25 Minuten · 25 Punkte (15 Rohpunkte)",infoEn:"3 parts · about 25 minutes · 25 points (15 raw points)",parts:[
 {t:"Teil 1 – Kurze Mitteilungen",te:"Part 1 – Short messages",
  intro:"Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
  introEn:"Read the two texts. Choose true or false.",
@@ -288,7 +295,7 @@ const S=[
  "Deutschkurs: Raum 204, 2. Stock. Der Aufzug ist kaputt. Bitte benutzen Sie die Treppe.",
  "German course: room 204, 2nd floor. The lift is broken. Please use the stairs.",
  "Richtig – der Aufzug ist kaputt.","True – the lift is broken."]]}]},
-{de:"Schreiben",en:"Writing",info:"2 Teile · ca. 20 Minuten · 15 Rohpunkte ≈ 25 Punkte",infoEn:"2 parts · about 20 minutes · 15 raw points ≈ 25 points",parts:[
+{de:"Schreiben",en:"Writing",info:"2 Teile · ca. 20 Minuten · 25 Punkte: Formular ≈ 8,3 + Mitteilung ≈ 16,7 (15 Rohpunkte)",infoEn:"2 parts · about 20 minutes · 25 points: form ≈ 8.3 + message ≈ 16.7 (15 raw points)",parts:[
 {t:"Teil 1 – Formular ausfüllen",te:"Part 1 – Fill in a form",
  intro:"Ihre Freundin möchte einen Deutschkurs machen. Sie helfen ihr beim Anmeldeformular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
  introEn:"Your friend wants to take a German course. You help her with the registration form. Read the text and fill in five pieces of information.",
@@ -299,7 +306,7 @@ const S=[
 ["Number of children","Anzahl der Kinder: ____","","","1 (ein Sohn)","1 (a son)"],
 ["Course time: mornings / evenings","Kurszeit: vormittags / abends","","","abends – sie arbeitet vormittags.","evenings – she works mornings."],
 ["Payment: bank transfer / cash","Zahlungsart: Überweisung / bar","","","bar","cash"]]},
-{t:"Teil 2 – Kurze Mitteilung",te:"Part 2 – Short message",
+{t:"Teil 2 – Kurze Mitteilung",te:"Part 2 – Short message",write:30,
  intro:"Schreiben Sie etwa 30 Wörter. Schreiben Sie zu allen drei Punkten. Vergessen Sie Anrede und Gruß nicht.",
  introEn:"Write about 30 words. Cover all three points. Don't forget the greeting and sign-off.",rows:[
 ["You're ill and can't come to the German course. Write to your teacher, Ms Klein: why you're writing, when you'll be back, ask for the homework.","Sie sind krank und können nicht zum Deutschkurs kommen. Schreiben Sie an Ihre Lehrerin, Frau Klein:\n– Warum schreiben Sie?\n– Wann kommen Sie wieder?\n– Bitte: Hausaufgaben","","",
@@ -317,7 +324,7 @@ const S=[
 ["Cancel your doctor's appointment on Tuesday: appointment, reason, new date.","Sie können am Dienstag nicht zum Arzt kommen. Schreiben Sie an die Praxis:\n– Termin\n– Warum nicht?\n– Neuer Termin?","","",
  "Sehr geehrte Damen und Herren, ich habe am Dienstag um 10 Uhr einen Termin bei Dr. Weber. Leider muss ich an diesem Tag arbeiten. Kann ich am Donnerstag kommen? Mit freundlichen Grüßen, Suresh [Nachname]",
  "Dear Sir or Madam, I have an appointment with Dr Weber on Tuesday at 10. Unfortunately I have to work that day. Can I come on Thursday? Kind regards, Suresh [surname]"]]}]},
-{de:"Sprechen",en:"Speaking",info:"3 Teile · ca. 15 Minuten · 15 Rohpunkte ≈ 25 Punkte · meist in der Gruppe",infoEn:"3 parts · about 15 minutes · 15 raw points ≈ 25 points · usually in a group",parts:[
+{de:"Sprechen",en:"Speaking",info:"3 Teile · ca. 15 Minuten · 25 Punkte (15 Rohpunkte) · meist in der Gruppe",infoEn:"3 parts · about 15 minutes · 25 points (15 raw points) · usually in a group",parts:[
 {t:"Teil 1 – Sich vorstellen",te:"Part 1 – Introduce yourself",
  intro:"Stellen Sie sich vor. Benutzen Sie die Stichwörter. Danach buchstabieren Sie etwas oder nennen eine Zahl.",
  introEn:"Introduce yourself using the keywords. Then you spell something or say a number.",rows:[
@@ -360,15 +367,17 @@ const S=[
 /* Exam facts – telc Deutsch A1 / Start Deutsch 1 (Goethe-Institut and telc):
    every Prüfungsteil gives 15 raw points, multiplied by 1,66 → 100 in all. */
 const EXAM={rows:[
- ["Schriftlich","Hören, Lesen, Schreiben · ca. 65 Minuten · 45 Rohpunkte ≈ 75 Punkte"],
- ["Mündlich","Sprechen · ca. 15 Minuten in der Gruppe · 15 Rohpunkte ≈ 25 Punkte"],
+ ["Schriftlich","Hören, Lesen, Schreiben · ca. 65 Minuten · 75 Punkte (45 Rohpunkte)"],
+ ["Mündlich","Sprechen · ca. 15 Minuten in der Gruppe · 25 Punkte (15 Rohpunkte)"],
  ["Gesamt","60 Rohpunkte × 1,66 = 100 Punkte"],
  ["Bestanden","ab 60 Punkten (36 Rohpunkte) · 90 sehr gut · 80 gut · 70 befriedigend · 60 ausreichend"]],
  skills:[
- {time:"ca. 20 Minuten",pts:"15 Rohpunkte ≈ 25 Punkte",parts:[{n:6,per:1,play:"2× hören"},{n:4,per:1,play:"1× hören"},{n:5,per:1,play:"2× hören"}]},
- {time:"25 Minuten",pts:"15 Rohpunkte ≈ 25 Punkte",parts:[{n:5,per:1},{n:5,per:1},{n:5,per:1}]},
- {time:"20 Minuten",pts:"15 Rohpunkte ≈ 25 Punkte",parts:[{n:5,per:1},{whole:10,each:"10 Punkte für die Mitteilung",note:"in der Prüfung eine Mitteilung, ca. 30 Wörter, zu allen 3 Punkten"}]},
- {time:"ca. 15 Minuten",pts:"15 Rohpunkte ≈ 25 Punkte",parts:[{whole:3},{whole:6,note:"Fragen stellen und antworten zu zwei Themen"},{whole:6,note:"Bitten formulieren und darauf reagieren"}]}]};
+ {time:"ca. 20 Minuten",pts:"25 Punkte (15 Rohpunkte)",parts:[{n:6,per:1,play:"2× hören"},{n:4,per:1,play:"1× hören"},{n:5,per:1,play:"2× hören"}]},
+ {time:"25 Minuten",pts:"25 Punkte (15 Rohpunkte)",parts:[{n:5,per:1},{n:5,per:1},{n:5,per:1}]},
+ {time:"20 Minuten",pts:"25 Punkte (15 Rohpunkte)",parts:[{n:5,per:1},{whole:10,each:"≈ 16,7 Punkte für die Mitteilung",note:"in der Prüfung eine Mitteilung, ca. 30 Wörter, zu allen 3 Punkten"}]},
+ {time:"ca. 15 Minuten",pts:"25 Punkte (15 Rohpunkte)",parts:[{whole:3},{whole:6,note:"Fragen stellen und antworten zu zwei Themen"},{whole:6,note:"Bitten formulieren und darauf reagieren"}]}]};
+/* Every Prüfungsteil is 25 points: 15 raw points × 5/3, shown on each part. */
+EXAM.skills.forEach(k=>k.parts.forEach(x=>x.f=5/3));
 /* Meine Angaben (me.js): the learner's own details in place of the [Platzhalter]. */
 S.forEach(sk=>sk.parts.forEach(p=>{const P=(o,a,b)=>{[o[a],o[b]]=Me.pair(o[a],o[b])};
  P(p,"intro","introEn");if(p.text)P(p,"text","textEn");p.rows.forEach(r=>{P(r,1,0);P(r,2,3);P(r,4,5)})}));
@@ -395,13 +404,18 @@ S.forEach((sk,si)=>{const id="s"+si;
   if(p.text)h+=`<div class="ttext"><div class="lab">Text</div><div class="blk">${block(p.text,p.textEn)}</div></div>`;
   h+=`<div class="wrap"><table><thead><tr><th>#</th><th class="c-en">English</th><th class="c-de">Aufgabe</th>${hasTx?`<th class="c-tx">${p.hear?"Hörtext":"Text"}</th>`:""}<th class="c-ans">Lösung</th></tr></thead><tbody>`;
   p.rows.forEach((r,j)=>{
-   h+=`<tr data-i="${D.length}" data-s="${esc((r.join(" ")).toLowerCase())}"><td class="num">${j+1}</td><td class="c-en" data-l="English"><span class="s" lang="en">${en(r[0])}</span>${SAY}</td><td class="c-de" data-l="Aufgabe">${block(r[1],"")}</td>`;
+   h+=`<tr data-i="${D.length}" data-s="${esc((r.join(" ")).toLowerCase())}"><td class="num">${j+1}</td><td class="c-en" data-l="English"><span class="s" lang="en">${en(r[0])}</span>${SAY}</td><td class="c-de" data-l="Aufgabe">${block(r[1],"")}${p.write?`<div class="wbox"><textarea class="mywrite" data-wk="${si}.${pi}.${j}" rows="9" lang="de" spellcheck="false" autocapitalize="sentences" placeholder="Schreiben Sie hier Ihren Text …"></textarea><div class="wcount"><span>0</span> Wörter · verlangt: etwa ${p.write}</div></div>`:""}</td>`;
    if(hasTx)h+=`<td class="c-tx${p.hear?" rv hear":""}" data-l="${p.hear?"Hörtext":"Text"}">${r[2]?block(r[2],r[3]):"—"}</td>`;
-   h+=`<td class="c-ans rv" data-l="Lösung">${block(r[4],r[5])}</td></tr>`;D.push({si,pi,j})});
+   h+=`<td class="c-ans rv" data-l="Lösung">${block(r[4],r[5])}</td></tr>`;D.push({si,pi,j});
+});
   h+=`</tbody></table></div></div>`});
  h+=`</section>`});
 const main=document.getElementById("main"),nav=document.getElementById("nav");
 main.innerHTML=h;nav.innerHTML=n;
+/* own texts for the writing tasks */
+const WK="dl:mywrite:a1:",wc=t=>(t.trim().match(/\S+/g)||[]).length;
+main.querySelectorAll(".mywrite").forEach(t=>{try{t.value=localStorage.getItem(WK+t.dataset.wk)||""}catch(e){}t.nextElementSibling.firstElementChild.textContent=wc(t.value)});
+main.addEventListener("input",e=>{const t=e.target;if(!t.classList.contains("mywrite"))return;try{localStorage.setItem(WK+t.dataset.wk,t.value)}catch(err){}t.nextElementSibling.firstElementChild.textContent=wc(t.value)});
 document.querySelector("header.hero").insertAdjacentHTML("beforeend",Exam.overview(EXAM,S));
 document.querySelectorAll(".tg[data-k]").forEach(b=>b.onclick=()=>{const on=b.getAttribute("aria-pressed")==="true";b.setAttribute("aria-pressed",String(!on));document.body.classList.toggle("hide-"+b.dataset.k,on)});
 const pr=document.getElementById("pr");

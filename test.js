@@ -118,7 +118,8 @@ function Pruefung(o){
  function strip(){const t=test(run.tid);return `<div class="tz-strip">${t.sections.map((x,i)=>{const st=run.secDone[i]?"done":run.si===i?"now":"";
   return `<span class="${st}">${st==="done"?"✓":st==="now"?"●":"○"} ${esc(short(x))}</span>`}).join('<i aria-hidden="true">›</i>')}</div>`}
  const short=x=>x.de.replace(/^Leseverstehen und Sprachbausteine$/,"Lesen + Sprachbausteine").replace(/^Hörverstehen$/,"Hören").replace(/^Schriftlicher Ausdruck$/,"Schreiben");
- const secPts=sec=>sec.parts.reduce((a,p)=>a+(p.type==="write"?(CRIT[p.crit||"a1"].max):p.items.length*p.per),0);
+ const partPts=p=>p.type==="write"?CRIT[p.crit||"a1"].max:p.items.length*p.per;
+ const secPts=sec=>sec.parts.reduce((a,p)=>a+partPts(p),0);
  /* The test's own start page: begin with any Prüfungsteil, in any order. */
  function choose(msg){view="choose";clearInterval(timer);const t=test(run.tid);
   if(t.sections.every((_,i)=>run.secDone[i])){finish();return}
@@ -134,7 +135,7 @@ function Pruefung(o){
   setTop(t.title,false);
   const pts=secPts(sec);
   body.innerHTML=`<div class="tz-pad">${strip()}<div class="tz-card big"><div class="tz-step">Prüfungsteil ${si+1} von ${t.sections.length}</div><h2>${esc(sec.de)}</h2><div class="tz-sub">${esc(sec.en||"")} · ${num(pts*o.scale.factor)} Punkte</div>
-   <ul class="tz-list">${sec.parts.map((p,j)=>`<li><b>${esc(tabName(p))}</b> · ${Math.round(partMs(si,j)/60000)} Minuten</li>`).join("")}</ul>
+   <ul class="tz-list">${sec.parts.map((p,j)=>`<li><b>${esc(tabName(p))}</b> · ${Math.round(partMs(si,j)/60000)} Minuten · ${o.scale.factor!==1?"≈ ":""}${num(partPts(p)*o.scale.factor)} Punkte</li>`).join("")}</ul>
    <p class="tz-sub">Jeder Teil hat seine eigene Uhr. Sie läuft nur, solange der Teil offen ist; ist sie um, wird der Teil abgegeben.${sec.parts.some(p=>p.plays)?" Die Hörtexte kannst du nur so oft abspielen wie in der Prüfung.":""}</p>
    <button type="button" class="tz-btn wide" data-go="begin">Starten</button><button type="button" class="tz-btn ghost wide" data-go="choose">‹ Anderen Prüfungsteil wählen</button></div></div>`;body.scrollTop=0}
  function begin(){const si=run.pick,sec=test(run.tid).sections[si];run.si=si;
@@ -171,14 +172,14 @@ function Pruefung(o){
  /* ---- one part of the running section ---- */
  function drawPart(){const s=test(run.tid).sections[run.si],pi=run.cur,p=s.parts[pi],si=run.si;
   const tabs=s.parts.length>1?`<div class="tz-tabs">${s.parts.map((x,j)=>{const dn=run.done[pk(si,j)];return `<button type="button" data-part="${j}" aria-pressed="${j===pi}"${dn?" disabled":""}>${esc(tabName(x))} <small>${dn?"✓":fmt(run.left[pk(si,j)])}</small></button>`}).join("")}</div>`:"";
-  let h=`<div class="tz-pad">${strip()}${tabs}<h3 class="tz-pt">${esc(p.t)}</h3><p class="tz-intro">${T(p.intro)}</p>`;
+  let h=`<div class="tz-pad">${strip()}${tabs}<h3 class="tz-pt">${esc(p.t)} <small class="tz-pts">${o.scale.factor!==1?"≈ ":""}${num(partPts(p)*o.scale.factor)} Punkte</small></h3><p class="tz-intro">${T(p.intro)}</p>`;
   if(p.audio)h+=`<div class="tz-audio">${playBtn(si+"."+pi,p.plays||1)}</div>`;
   if(p.list&&p.type==="match")h+=`<div class="tz-text list">${p.list.map((x,i)=>`<div><b>${L[i]})</b> ${T(x)}</div>`).join("")}</div>`;
   if(p.text&&p.type!=="write")h+=`<div class="tz-text">${T(p.text).replace(/\n/g,"<br>").replace(/\((\d{1,2})\)/g,'<b class="gap">($1)</b>')}</div>`;
   if(p.type==="gapbank")h+=`<div class="tz-bank">${p.list.map((x,i)=>`<span><b>${L[i]})</b> ${T(x)}</span>`).join("")}</div>`;
   if(p.type==="write"){const v=ans(si,pi,"w")||"";
-   h+=`<div class="tz-q"><div class="tz-qt">${T(p.task).replace(/\n/g,"<br>")}</div><ul class="tz-list">${p.points.map(x=>`<li>${T(x)}</li>`).join("")}</ul>
-    <textarea class="tz-write" data-w="${si}.${pi}" rows="10" placeholder="Schreiben Sie hier …" lang="de" spellcheck="false" autocapitalize="sentences">${esc(v)}</textarea><div class="tz-wc"><span>${words(v)}</span> Wörter${p.words?` · verlangt: etwa ${p.words}`:""}</div></div>`}
+   h+=`<div class="tz-wq"><div class="tz-qt">${T(p.task).replace(/\n/g,"<br>")}</div><ul class="tz-list">${p.points.map(x=>`<li>${T(x)}</li>`).join("")}</ul>
+    <textarea class="tz-write" data-w="${si}.${pi}" rows="16" placeholder="Schreiben Sie hier …" lang="de" spellcheck="false" autocapitalize="sentences">${esc(v)}</textarea><div class="tz-wc"><span>${words(v)}</span> Wörter${p.words?` · verlangt: etwa ${p.words}`:""}</div></div>`}
   else p.items.forEach((it,i)=>{const k=si+"."+pi+"."+i,v=run.ans[k];
    h+=`<div class="tz-q" id="q${k.replace(/\./g,"-")}"><div class="tz-qn">${p.type==="gapmc"||p.type==="gapbank"?`(${it.n})`:i+1}</div><div class="tz-qb">`;
    if(it.audio)h+=playBtn(k,p.plays||1);
@@ -246,7 +247,7 @@ function Pruefung(o){
      if(p.type==="write"){const k=si+"."+j,sa=(r.sa||{})[k]||{},c=CRIT[p.crit||"a1"],w=writeScore(p,(r.sa||{})[k]),txt=r.ans[k+".w"]||"";
       h+=`<div class="tz-qt">${T(p.task).replace(/\n/g,"<br>")}</div><div class="tz-lab">Dein Text (${words(txt)} Wörter)</div><div class="tz-text">${txt?esc(txt).replace(/\n/g,"<br>"):"<i>nichts geschrieben</i>"}</div>
        <div class="tz-lab">Musterlösung</div><div class="tz-text model">${T(p.model).replace(/\n/g,"<br>")}</div>
-       <div class="tz-lab">Selbst bewerten ${w==null?"":`– <b>${num(w)} / ${c.max} Punkte</b>`}</div>`;
+       <div class="tz-lab">Selbst bewerten ${w==null?"":o.scale.factor!==1?`– <b>≈ ${num(w*o.scale.factor)} / ${num(c.max*o.scale.factor)} Punkte</b> (${num(w)} / ${c.max} Rohpunkte)`:`– <b>${num(w)} / ${c.max} Punkte</b>`}</div>`;
       c.rows(p).forEach(row=>{
        if(row.check)h+=`<div class="tz-crit"><div>${esc(row.label)}:</div>${row.check.map((x,i)=>`<label class="tz-chk"><input type="checkbox" data-sa="${k}" data-id="${row.id}${i}"${sa[row.id+i]?" checked":""}> ${T(x)}</label>`).join("")}</div>`;
        else h+=`<div class="tz-crit"><div>${T(row.label)}:</div><div class="tz-opts">${row.opts.map(([v,l])=>`<button type="button" class="tz-opt" data-sa="${k}" data-id="${row.id}" data-v="${v}" aria-pressed="${sa[row.id]!=null&&+sa[row.id]===v}">${esc(l)} (${num(v)})</button>`).join("")}</div></div>`});

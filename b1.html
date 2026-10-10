@@ -130,6 +130,13 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 .tg .sm{display:none}
 @media (max-width:520px){.tg .lg{display:none}.tg .sm{display:inline}.tg{font-size:13px;padding:5px 10px}.toggles{gap:5px}}
 </style>
+<style>
+/* writing tasks: a big box for your own text right below the task, kept on this device */
+.wbox{margin-top:10px}
+.mywrite{display:block;width:100%;min-height:220px;font:inherit;font-size:16px;line-height:1.5;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);resize:vertical}
+.mywrite:focus{outline:2px solid var(--b1);outline-offset:1px}
+.wcount{font-size:13px;color:var(--muted);margin-top:4px}
+</style>
 <link rel="stylesheet" href="karten.css">
 <link rel="stylesheet" href="test.css">
 </head>
@@ -301,7 +308,7 @@ const S=[
  "Passengers on the flight to Lisbon, please note: your flight departs today not from gate A22 but from gate B14. Boarding begins in 15 minutes.",
  "Richtig – 15 Minuten = eine Viertelstunde.","True – 15 minutes = a quarter of an hour."]]}]},
 {de:"Schriftlicher Ausdruck",en:"Writing",info:"1 Brief oder E-Mail · 30 Minuten · Sie wählen eine von zwei Aufgaben · 45 Punkte",infoEn:"1 letter or email · 30 minutes · you choose one of two tasks · 45 points",parts:[
-{t:"Musterbriefe",te:"Model letters",
+{t:"Musterbriefe",te:"Model letters",write:150,
  intro:"Schreiben Sie einen Brief. Schreiben Sie zu allen vier Punkten. Denken Sie an Anrede, Einleitung, Schluss und Gruß.",
  introEn:"Write a letter covering all four points. Remember greeting, introduction, conclusion and sign-off.",rows:[
 ["Informal: a friend wants to move to Frankfurt and asks for tips. Points: flat hunting, which district, free time, offer help.","Ein Freund möchte nach Frankfurt ziehen und bittet um Tipps. Schreiben Sie ihm:\n– Wohnungssuche\n– Stadtteil und Verkehr\n– Freizeitmöglichkeiten\n– Angebot: Hilfe oder Übernachtung","","",
@@ -398,13 +405,18 @@ S.forEach((sk,si)=>{const id="s"+si;
   if(p.text)h+=`<div class="ttext"><div class="lab">${p.hear?"Hörtext":"Text"}</div><div class="blk${p.hear?" rv hear":""}">${block(p.text,p.textEn)}</div></div>`;
   h+=`<div class="wrap"><table><thead><tr><th>#</th><th class="c-en">English</th><th class="c-de">Aufgabe</th>${hasTx?`<th class="c-tx">${p.hear?"Hörtext":"Text"}</th>`:""}<th class="c-ans">Lösung</th></tr></thead><tbody>`;
   p.rows.forEach((r,j)=>{
-   h+=`<tr data-i="${D.length}" data-s="${esc((r.join(" ")).toLowerCase())}"><td class="num">${j+1}</td><td class="c-en" data-l="English"><span class="s" lang="en">${en(r[0])}</span>${SAY}</td><td class="c-de" data-l="Aufgabe">${block(r[1],"")}</td>`;
+   h+=`<tr data-i="${D.length}" data-s="${esc((r.join(" ")).toLowerCase())}"><td class="num">${j+1}</td><td class="c-en" data-l="English"><span class="s" lang="en">${en(r[0])}</span>${SAY}</td><td class="c-de" data-l="Aufgabe">${block(r[1],"")}${p.write?`<div class="wbox"><textarea class="mywrite" data-wk="${si}.${pi}.${j}" rows="9" lang="de" spellcheck="false" autocapitalize="sentences" placeholder="Schreiben Sie hier Ihren Text …"></textarea><div class="wcount"><span>0</span> Wörter · verlangt: etwa ${p.write}</div></div>`:""}</td>`;
    if(hasTx)h+=`<td class="c-tx${p.hear?" rv hear":""}" data-l="${p.hear?"Hörtext":"Text"}">${r[2]?block(r[2],r[3]):"—"}</td>`;
-   h+=`<td class="c-ans rv" data-l="Lösung">${block(r[4],r[5])}</td></tr>`;D.push({si,pi,j})});
+   h+=`<td class="c-ans rv" data-l="Lösung">${block(r[4],r[5])}</td></tr>`;D.push({si,pi,j});
+});
   h+=`</tbody></table></div></div>`});
  h+=`</section>`});
 const main=document.getElementById("main"),nav=document.getElementById("nav");
 main.innerHTML=h;nav.innerHTML=n;
+/* own texts for the writing tasks */
+const WK="dl:mywrite:b1:",wc=t=>(t.trim().match(/\S+/g)||[]).length;
+main.querySelectorAll(".mywrite").forEach(t=>{try{t.value=localStorage.getItem(WK+t.dataset.wk)||""}catch(e){}t.nextElementSibling.firstElementChild.textContent=wc(t.value)});
+main.addEventListener("input",e=>{const t=e.target;if(!t.classList.contains("mywrite"))return;try{localStorage.setItem(WK+t.dataset.wk,t.value)}catch(err){}t.nextElementSibling.firstElementChild.textContent=wc(t.value)});
 document.querySelector("header.hero").insertAdjacentHTML("beforeend",Exam.overview(EXAM,S));
 document.querySelectorAll(".tg[data-k]").forEach(b=>b.onclick=()=>{const on=b.getAttribute("aria-pressed")==="true";b.setAttribute("aria-pressed",String(!on));document.body.classList.toggle("hide-"+b.dataset.k,on)});
 const pr=document.getElementById("pr");

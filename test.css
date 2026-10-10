@@ -81,7 +81,11 @@ body.testing{overflow:hidden}
 .tz-opt{touch-action:manipulation;font:inherit;font-size:15px;text-align:left;padding:8px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;max-width:100%}
 .tz-opt[aria-pressed="true"]{border-color:var(--b1);background:var(--b1);color:#fff}
 .tz-sel,.tz-in{font:inherit;font-size:16px;width:100%;max-width:520px;padding:9px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink)}
-.tz-write{font:inherit;font-size:16px;line-height:1.5;width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);resize:vertical}
+.tz-pts{font-size:13px;font-weight:700;color:var(--b1);white-space:nowrap}
+/* the writing box: big, right below the task */
+.tz-wq{display:block;padding-top:12px;border-top:1px solid var(--line)}
+.tz-wq .tz-write{display:block;margin-top:6px}
+.tz-write{min-height:52vh;font:inherit;font-size:16px;line-height:1.5;width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);resize:vertical}
 .tz-wc{font-size:13px;color:var(--muted);margin-top:4px}
 .tz-score{font-size:22px;margin:6px 0 2px}.tz-score b{font-size:40px}
 .result.ok .tz-score b,.result.ok .tz-verdict{color:var(--a1)}
