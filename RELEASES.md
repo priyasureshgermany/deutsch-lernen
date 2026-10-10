@@ -1,5 +1,10 @@
 # Releases
 
+## 1.17.0 — 2026-10-10
+- Modelltests now include Sprechen (A1) and Mündlicher Ausdruck (B1): an examiner and virtual partners (Tom, Lea, Anna) speak with their own voices, ask you questions and answer yours; you record each answer with the microphone, hear it back and see what was understood; the result rates every answer automatically (gut / teilweise / fehlt, from the key points found) with a model answer – you can change each rating
+- Scoring as in the exam: A1 out of 100 (pass from 60), B1 out of 300 (written from 135 and oral from 45)
+- Two more Modelltests per level: Modelltest 4 and 5 for A1 and B1 – five complete exams each
+
 ## 1.16.4 — 2026-10-10
 - A1: points are shown as in the exam result – every Prüfungsteil 25 points (Schreiben: Formular ≈ 8,3 + Mitteilung ≈ 16,7), the raw points only in brackets; the same in the Modelltests, including the writing self-assessment
 - A big box for your own text below each writing task (A1 Mitteilung, B1 Musterbriefe), with a word count, kept on the device; the writing box in the tests is much bigger and sits full width below the task (it was squeezed into a narrow column beside it)

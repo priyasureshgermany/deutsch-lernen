@@ -531,7 +531,7 @@ const K=Karten({mount:main,
   {id:"mw",icon:"multi",label:"Mehrere Wörter",color:"var(--a2)",pressed:()=>multi,click:()=>mw.click()}]});
 document.querySelector(".toggles").prepend(K.button);
 /* ---- Modelltests (test.js): whole exams with a strict timer and marks ---- */
-const TZ=Pruefung({mount:main,level:"A1",tests:window.TESTS_A1,rate:()=>rate,scale:{factor:5/3,max:75,pass:45,rawLabel:"Rohpunkten",note:"Sprechen (25 Punkte) ist nicht Teil dieses Tests. In der echten Prüfung zählt die Summe: bestanden ab 60 von 100 Punkten – hier also ab 45 von 75 Punkten (60 %) im schriftlichen Teil."}});
+const TZ=Pruefung({mount:main,level:"A1",tests:window.TESTS_A1,rate:()=>rate,scale:{factor:5/3,max:100,pass:60,rawLabel:"Rohpunkten",note:"Wie in der echten Prüfung zählt die Summe aus Hören, Lesen, Schreiben und Sprechen: bestanden ab 60 von 100 Punkten. Sprechen wird automatisch aus deiner Aufnahme bewertet – du kannst jede Bewertung ändern."}});
 document.querySelector("header.hero .ladder").appendChild(TZ.entry);
 document.getElementById("px").addEventListener("click",K.sync);
 

@@ -6,10 +6,11 @@ const window = {};
 for (const f of ["../test-a1.js", "../test-b1.js"]) new Function("window", readFileSync(new URL(f, import.meta.url), "utf8"))(window);
 let bad = 0;
 const fail = (w, m) => { bad++; console.log("✗ " + w + ": " + m); };
-const SIZE = { A1: [[6, 4, 5], [5, 5, 5], [5, "w"]], B1: [[5, 5, 10, 10, 10], [5, 10, 5], ["w"]] };
-const PTS = { A1: [15, 15, 15], B1: [105, 75, 45] };
+const SIZE = { A1: [[6, 4, 5], [5, 5, 5], [5, "w"], ["s", "s", "s"]], B1: [[5, 5, 10, 10, 10], [5, 10, 5], ["w"], ["s", "s", "s"]] };
+const PTS = { A1: [15, 15, 15, 15], B1: [105, 75, 45, 75] };
+const SPK = { A1: [3, 6, 6], B1: [15, 30, 30] };
 for (const [lv, tests] of [["A1", window.TESTS_A1], ["B1", window.TESTS_B1]]) {
-  if (tests.length !== 3) fail(lv, "needs 3 tests, has " + tests.length);
+  if (tests.length !== 5) fail(lv, "needs 5 tests, has " + tests.length);
   const ids = new Set();
   for (const t of tests) {
     if (ids.has(t.id)) fail(t.id, "duplicate id"); ids.add(t.id);
@@ -19,6 +20,15 @@ for (const [lv, tests] of [["A1", window.TESTS_A1], ["B1", window.TESTS_B1]]) {
       s.parts.forEach((p, pi) => {
         const w = `${t.id} ${s.de} / ${p.t}`;
         const want = SIZE[lv][si][pi];
+        if (p.type === "speak") {
+          if (want !== "s") fail(w, "unexpected speaking part");
+          if (!s.oral) fail(w, "speaking section must be oral");
+          if (p.max !== SPK[lv][pi]) fail(w, `max ${p.max}, exam has ${SPK[lv][pi]}`);
+          const you = (p.turns || []).filter(x => x.you);
+          if (!you.length) fail(w, "no turns for you");
+          (p.turns || []).forEach((x, i) => { if (x.you) { if (!x.model || !Array.isArray(x.key)) fail(w + " #" + i, "you-turn needs model and key"); x.key.forEach(k => { try { new RegExp(k[0], "i"); } catch (e) { fail(w + " #" + i, "bad regex " + k[0]); } }); } else if (!x.who || !x.say) fail(w + " #" + i, "partner turn needs who and say"); });
+          pts += p.max; return;
+        }
         if (p.type === "write") { if (want !== "w") fail(w, "unexpected writing part"); if (!p.task || !p.model || !p.points || !p.points.length) fail(w, "writing part incomplete"); if (lv === "B1" && p.points.length !== 4) fail(w, "B1 letter needs 4 Leitpunkte"); pts += lv === "A1" ? 10 : 45; return; }
         if (p.items.length !== want) fail(w, `has ${p.items.length} questions, exam has ${want}`);
         if (!(p.per > 0)) fail(w, "no points per question");
@@ -49,7 +59,7 @@ for (const [lv, tests] of [["A1", window.TESTS_A1], ["B1", window.TESTS_B1]]) {
       if (Math.abs(pts - PTS[lv][si]) > 1e-9) fail(`${t.id} ${s.de}`, `${pts} points, exam has ${PTS[lv][si]}`);
     });
   }
-  console.log(`  ${lv}: ${tests.length} tests, ` + tests.map(t => t.sections.reduce((n, s) => n + s.parts.reduce((m, p) => m + (p.items ? p.items.length : 1), 0), 0)).join(" / ") + " questions");
+  console.log(`  ${lv}: ${tests.length} tests, ` + tests.map(t => t.sections.reduce((n, s) => n + s.parts.reduce((m, p) => m + (p.items ? p.items.length : p.turns ? p.turns.filter(x => x.you).length : 1), 0), 0)).join(" / ") + " questions");
 }
 if (bad) { console.log(bad + " problem(s)"); process.exit(1); }
 console.log("✓ all tests complete");
