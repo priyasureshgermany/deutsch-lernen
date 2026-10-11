@@ -1,5 +1,11 @@
 # Releases
 
+## 1.19.0 — 2026-10-11
+- Schreiben in the Modelltests is now evaluated by the app (no more "Selbst bewerten"): your letter is shown with each sentence coloured by the point it covers and every mistake underlined and numbered
+- Marks broken down point by point (A1: each of the three points + Anrede/Gruß; B1: Leitpunkte, Kommunikative Gestaltung, Formale Richtigkeit), each with why it got those marks and a sentence that would have earned them
+- Mistakes listed with the correction and the rule (German + English) – the app's own checks for typical B1 slips plus LanguageTool for spelling and grammar
+- "So wirst du besser": what to do next time; you can still change any rating, and "↺ wie die App" gives it back
+
 ## 1.18.0 — 2026-10-10
 - Two more Modelltests per level: Modelltest 6 and 7 for A1 and B1 – seven complete exams each, all with Hören, Lesen, Schreiben and Sprechen (virtual partners, recording and rating)
 
