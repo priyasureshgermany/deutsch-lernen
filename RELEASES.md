@@ -1,5 +1,10 @@
 # Releases
 
+## 1.21.0 — 2026-10-11
+- B1 Modelltests are now in the format of the telc Deutsch-Test für Zuwanderer (DTZ, A2–B1) – seven new exams: Hören 4 Teile (20 Aufgaben, every text once), Lesen 5 Teile (25 Aufgaben), Schreiben with a choice of Aufgabe A or B, Sprechen in 3 Teile (über sich sprechen, Foto und Erfahrungen, gemeinsam planen) with the examiner and a virtual partner
+- DTZ result: Hören + Lesen together (B1 from 33, A2 from 20 of 45), Schreiben and Sprechen as A2 or B1, and the overall result by the DTZ rule (B1 = Sprechen B1 plus Hören/Lesen or Schreiben B1); the B1 page's exam overview describes the DTZ
+- Earlier B1 test results (old telc-B1 format) are cleared once; A1 is unchanged
+
 ## 1.20.0 — 2026-10-11
 - Teilen: a share icon in the ⋯ menu opens "App teilen" – send the app's link by WhatsApp, E-Mail, SMS or Telegram, copy it, or use the phone's own share menu ("Andere Apps …")
 

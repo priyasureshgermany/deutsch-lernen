@@ -85,6 +85,10 @@ body.testing{overflow:hidden}
 .tz-bands span{padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
 .tz-bands span b{color:var(--ink);font-weight:700}
 .tz-bands span.on{background:var(--b1);border-color:var(--b1);color:#fff}.tz-bands span.on b{color:#fff}
+.tz-lv{display:inline-block;padding:2px 9px;border-radius:999px;font-size:13px;color:#fff;background:#888}
+.tz-lv.b1{background:#1a8f4c}.tz-lv.a2{background:#c77d00}.tz-lv.u{background:#b3261e}
+.tz-tab.dtz tr.how td{font-size:12px;color:var(--muted);padding-top:0}
+.tz-wpick{margin-bottom:10px}
 .tz-pts{font-size:13px;font-weight:700;color:var(--b1);white-space:nowrap}
 /* the writing box: big, right below the task */
 .tz-wq{display:block;padding-top:12px;border-top:1px solid var(--line)}

@@ -108,7 +108,7 @@ function segments(t){const out=[],re=/[^.!?\n]+[.!?]*/g;let m;
  return out}
 
 function analyse(p,tid,text,lt,fill){
- fill=fill||(s=>s);const t=String(text||""),b1=p.crit==="b1",keys=KEYS[tid]||[];
+ fill=fill||(s=>s);const t=String(text||""),b1=p.crit==="b1",keys=p.keys||KEYS[tid]||[];
  const words=wc(t),need=p.words||0,segs=segments(t);
  const an={text:t,b1,words,need,segs,points:[],checks:[],tips:[],auto:{},errs:null};
  /* Anrede: the first line; Gruß: near the end; the name after it is the signature */
