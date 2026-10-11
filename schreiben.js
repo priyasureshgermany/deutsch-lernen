@@ -64,7 +64,7 @@ const KEYS={
   ["sonst|anwalt|verbraucherzentrale|bewertung|nicht reagier|keine antwort|rechtlich|nie wieder|anderes reisebüro|empfehl","Wenn Sie nicht reagieren, schreibe ich eine Bewertung im Internet und gehe zur Verbraucherzentrale."]]};
 
 const ANREDE=/^\s*(sehr geehrte[rs]?|liebe[rs]?|hallo|guten tag|hi)[\s,]/i;
-const GRUSS=/(grüße|grüßen|gruß|bis bald|tschüss|alles liebe)/i;
+const GRUSS=/(grüße|grüßen|gruß|grüsse|grüse|gruse|grusse|(liebe|viele|herzliche|beste) gro(ß|ss)e|bis bald|tschüss|alles liebe)/i;
 const INTRO=/(schreibe|vielen dank|danke für|herzlichen dank|wie geht|hiermit|gelesen|gesehen|gekauft|gebucht|bekommen|erhalten|teilgenommen|mitglied|ich möchte|interessiere|mit diesem brief|wende mich|leider|beschwer|anfrage)/i;
 const CLOSE=/(ich freue mich|ich hoffe|ich warte|im voraus|über eine (baldige |schnelle )?antwort|antworten sie|melden sie sich|melde dich|schreib(e)? mir|bis bald|bis dann|wir sehen uns|würde mich freuen|wünsche|alles gute|für ihre (hilfe|mühe)|vielen dank für ihre|ich bitte um)/i;
 const LINK=["weil","dass","denn","deshalb","deswegen","darum","aber","wenn","obwohl","außerdem","trotzdem","damit","sondern","dann","danach","zuerst","später","ob","als","während","bis","leider","zum beispiel","also","oder","und dann"];
@@ -76,6 +76,12 @@ const KIND={TYPOS:["Rechtschreibung","spelling"],CASING:["Groß- und Kleinschrei
 const W="(?![A-Za-zÄÖÜäöüß])",B="(^|[^A-Za-zÄÖÜäöüß])";
 const PRON="(?:ich|du|er|sie|es|wir|ihr|man|Sie|der|die|mein|dein|unser|euer|Ihr)"+W;
 const RULES=[
+ {rx:B+"((?:[Ii]ch|[Ww]ir) (?:lade|laden)) (dir|ihm|ihr|euch|Ihnen)"+W,g:3,r:m=>({dir:"dich",ihm:"ihn",ihr:"sie",euch:"euch",Ihnen:"Sie"})[m],
+  de:"„einladen“ braucht den Akkusativ: Ich lade dich ein (nicht „dir“) · ich lade ihn / Sie ein.",en:"“einladen” takes the accusative: Ich lade dich ein (not “dir”)."},
+ {rx:B+"((?:[Ii]ch) (?:freue|freu)) (dich|dir|mir|sich)"+W,g:3,r:()=>"mich",
+  de:"„sich freuen“ ist reflexiv – das Pronomen passt zur Person: ich freue mich, du freust dich, wir freuen uns.",en:"“sich freuen” is reflexive: ich freue mich, du freust dich."},
+ {rx:B+"(?:[Ll]iebe|[Vv]iele|[Hh]erzliche|[Bb]este|[Ss]chöne) ([Gg]roße|[Gg]rosse|[Gg]rüse|[Gg]rüsse|[Gg]ruse|[Gg]russe)"+W,g:2,r:()=>"Grüße",
+  de:"Der Gruß am Ende heißt „Liebe Grüße“ / „Viele Grüße“ – mit ü und ß. „große“ bedeutet etwas anderes (groß = big).",en:"The sign-off is “Liebe Grüße” / “Viele Grüße” (with ü and ß); “große” means “big”."},
  {rx:"(freue mich|freuen uns|hoffe|glaube|denke|finde|weiß|wusste|sicher|schade|toll|froh|traurig|gesagt|gehört|gelesen),? (das) (?="+PRON+")",g:2,r:()=>"dass",
   de:"Nach „ich freue mich, hoffe, glaube, weiß …“ kommt die Konjunktion „dass“ (mit ss); „das“ ist Artikel oder Pronomen.",en:"After freuen, hoffen, glauben, wissen … the conjunction is “dass”."},
  {rx:B+"(ein|dein|mein|sein|unser|kein|das|den|einen|deinen|meinen|seinen|Ihr|Ihren|ihr|ihren) (E-Mail|Email|Mail)"+W,g:2,r:m=>({das:"die",den:"die",Ihr:"Ihre",Ihren:"Ihre"})[m]||m.replace(/en$/,"e").replace(/([^e])$/,"$1e"),
@@ -165,10 +171,12 @@ function analyse(p,tid,text,lt,fill){
   an.auto.k2=k2;an.missK2=miss}
  /* III · mistakes: the app's own checks, then LanguageTool's (where they don't overlap) */
  const mine=own(t);an.ltDone=!!(lt&&lt.m);an.errs=mine;
- if(an.ltDone){const known=new Set((fill(p.model||"")+" "+fill(p.task||"")+" "+segs.filter(g=>g.role==="sign"||g.role==="gruss").map(g=>g.txt).join(" ")).match(/[A-Za-zÄÖÜäöüß]+/g)||[]);
-  an.errs=mine.concat(lt.m.filter(e=>!SKIP_CAT.includes(e.cat)).filter(e=>{const w=t.substr(e.o,e.l);return !(e.cat==="TYPOS"&&(known.has(w)||/\d/.test(w)))})
+ if(an.ltDone){const last=(t.trim().split("\n").pop()||"").trim(),sig=/^[A-ZÄÖÜ][\wäöüß-]*( [A-ZÄÖÜ][\wäöüß-]*)?$/.test(last)?last:"";
+  const known=new Set((fill(p.model||"")+" "+fill(p.task||"")+" "+sig+" "+segs.filter(g=>g.role==="sign"||g.role==="gruss").map(g=>g.txt).join(" ")).match(/[A-Za-zÄÖÜäöüß]+/g)||[]);
+  an.errs=mine.concat(lt.m.filter(e=>!SKIP_CAT.includes(e.cat)).filter(e=>{const w=t.substr(e.o,e.l);return !(e.cat==="TYPOS"&&(known.has(w)||/^\d+$/.test(w)))})
    .filter(e=>!mine.some(x=>e.o<x.o+x.l&&x.o<e.o+e.l)))}
  an.errs=an.errs.sort((a,b)=>a.o-b.o).map((e,i)=>({...e,n:i+1,w:t.substr(e.o,e.l),kind:KIND[e.cat]||["Sonstiges","other"]}));
+ an.errs.forEach(e=>{bestRep(e);e.why=explain(e,t)});
  /* a one-word slip gets one-word fixes first ("Wohnungssuche", not "Wohnung suche") */
  an.errs.forEach(e=>{if(!/\s/.test(e.w))e.rep=e.rep.filter(r=>!/\s/.test(r)).concat(e.rep.filter(r=>/\s/.test(r)))});
  if(an.ltDone){
@@ -178,6 +186,46 @@ function analyse(p,tid,text,lt,fill){
   Object.values(by).sort((a,b)=>b.n-a.n).slice(0,2).forEach(x=>an.tips.push([`Achte auf ${x.kind[0]}: ${x.n} ${x.n===1?"Fehler":"Fehler"} – lies deinen Text am Ende noch einmal genau durch.`,`Watch your ${x.kind[1]}: ${x.n} mistake${x.n===1?"":"s"}`]))}
  if(!b1&&need&&words<need*.7)an.tips.push([`Schreib etwas mehr: ${words} von etwa ${need} Wörtern.`,`Write a bit more: ${words} of about ${need} words.`]);
  return an}
+
+/* A clear reason for a mistake, from what changes between the word and its fix.
+   The app's own rules bring their own; LanguageTool's messages are often
+   technical, so the common cases get a plain explanation. */
+const UML=s=>s.toLowerCase().replace(/ä/g,"a").replace(/ö/g,"o").replace(/ü/g,"u").replace(/ß/g,"ss");
+const ENG={when:"wenn",and:"und",is:"ist",the:"der / die / das",with:"mit",for:"für",but:"aber",or:"oder",my:"mein",i:"ich",you:"du",birthday:"Geburtstag",party:"Party / Feier",please:"bitte",come:"kommen",home:"Zuhause / nach Hause"};
+/* LanguageTool's first suggestion is often another word ("getranke" → "gedrängt"):
+   put first the one closest to what the learner meant (umlauts, case and
+   letter order ignored), and the German word for an English one. */
+function lev(a,b){const d=[...Array(b.length+1).keys()];for(let i=1;i<=a.length;i++){let p=d[0];d[0]=i;
+ for(let j=1;j<=b.length;j++){const t=d[j];d[j]=Math.min(d[j]+1,d[j-1]+1,p+(a[i-1]===b[j-1]?0:1));p=t}}return d[b.length]}
+function bestRep(e){if(e.rule==="OWN"||!e.rep||!e.rep.length)return;const w=e.w,k=UML(w).replace(/\s/g,""),so=x=>[...x].sort().join("");
+ const eng=ENG[w.toLowerCase()];if(eng&&!eng.includes("/")){e.rep=[eng].concat(e.rep.filter(r=>r!==eng));return}
+ const sc=r=>{const x=UML(r).replace(/\s/g,"");return x===k?0:so(x)===so(k)?.5:lev(x,k)};
+ e.rep=e.rep.map((r,i)=>[r,sc(r)+i*.01]).sort((a,b)=>a[1]-b[1]).map(x=>x[0])}
+function explain(e,t){if(e.rule==="OWN")return [e.msg,e.en||""];
+ const w=e.w,r=(e.rep||[])[0],q=x=>"„"+x+"“";
+ const start=/(^|[.!?:]\s*|\n\s*)$/.test(t.slice(0,e.o));
+ if(ENG[w.toLowerCase()])return [q(w)+" ist Englisch – auf Deutsch heißt es "+q(r||ENG[w.toLowerCase()])+".","“"+w+"” is English – in German: “"+(r||ENG[w.toLowerCase()])+"”."];
+ if(!r)return [e.msg,""];
+ const out=[],en=[];
+ if(w.replace(/\s/g,"")!==w||r.replace(/\s/g,"")!==r){if(w.replace(/\s/g,"").toLowerCase()===r.replace(/\s/g,"").toLowerCase()||UML(w.replace(/\s/g,""))===UML(r.replace(/\s/g,""))){
+   out.push(r.includes(" ")?"Das schreibt man getrennt: "+q(r)+".":"Das schreibt man zusammen: "+q(r)+".");en.push(r.includes(" ")?"Write it as two words.":"Write it as one word.")}}
+ const a=w.replace(/\s/g,""),b=r.replace(/\s/g,"");
+ if(UML(a)===UML(b)&&a.toLowerCase()!==b.toLowerCase()){const i=[...b.toLowerCase()].findIndex((c,k)=>c!==(a.toLowerCase()[k]||""));const u=(b.toLowerCase().match(/[äöüß]/)||[""])[0];
+  out.push(u==="ß"?"Hier schreibt man „ß“.":"Hier fehlt der Umlaut: „"+u+"“ statt „"+({"ä":"a","ö":"o","ü":"u"}[u]||"")+"“ – richtig: "+q(r)+".");en.push(u==="ß"?"Use “ß” here.":"Umlaut missing: “"+u+"”.")}
+ if(a[0]&&b[0]&&a[0]!==b[0]&&a[0].toLowerCase()===b[0].toLowerCase()){
+  if(b[0]===b[0].toUpperCase()){if(start){out.push("Am Satzanfang schreibt man groß: "+q(r)+".");en.push("Capital letter at the start of a sentence.")}
+   else{out.push("Nomen schreibt man im Deutschen immer groß: "+q(r)+".");en.push("German nouns always start with a capital letter.")}}
+  else{out.push("Dieses Wort schreibt man klein: "+q(r)+" (kein Nomen, nicht am Satzanfang).");en.push("This word is written in lower case.")}}
+ /* "meine Geburtstag" → mein / meinen / meinem Geburtstag: the ending of the word before the noun */
+ const ws=w.split(/\s+/),nn=ws[ws.length-1];
+ if(!out.length&&ws.length===2&&e.rep.length&&e.rep.every(x=>x.split(/\s+/).length===2&&x.split(/\s+/)[1]===nn)){const opts=e.rep.map(x=>x.split(/\s+/)[0]);
+  out.push("Die Endung von "+q(ws[0])+" passt nicht zum Nomen "+q(nn)+". Richtig ist – je nach Fall – "+opts.map(o=>q(o+" "+nn)).join(" / ")+" (Nominativ: wer/was? · Akkusativ: wen/was? · Dativ: wem?).");
+  en.push("The ending of “"+ws[0]+"” doesn't match the noun “"+nn+"”: "+opts.map(o=>o+" "+nn).join(" / ")+", depending on the case.")}
+ if(!out.length&&e.cat==="TYPOS"){const so=x=>[...x.toLowerCase()].sort().join("");
+  if(a.length===b.length&&so(a)===so(b)){out.push("Rechtschreibung: Die Buchstaben stehen in der falschen Reihenfolge – richtig: "+q(r)+".");en.push("Spelling: letters in the wrong order – correct: “"+r+"”.")}
+  else{out.push("Rechtschreibung: Das Wort schreibt man so: "+q(r)+".");en.push("Spelling: the word is spelled “"+r+"”.")}}
+ if(!out.length){out.push(e.msg.replace(/\s+/g," ").trim()+" Richtig: "+q(r)+".");en.push("Correct: “"+r+"”.")}
+ return [out.join(" "),en.filter(Boolean).join(" ")]}
 
 /* LanguageTool: spelling and grammar (free public API, about 20 checks a minute) */
 /* one more try after a slow or failed answer (a phone on a weak line) */

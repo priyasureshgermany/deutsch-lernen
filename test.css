@@ -185,3 +185,11 @@ mark.sw-err sup{color:#d32f2f;font-weight:800;font-size:10px;margin-left:1px}
 .sw-link{touch-action:manipulation;font:inherit;font-size:13.5px;font-weight:700;padding:2px 0;border:none;background:none;color:var(--b1);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .sw-edit{margin-top:6px;padding:8px;border-radius:10px;border:1px dashed var(--line)}
 .sw-edit>.sw-link{margin-top:6px}
+/* the mistakes, explained right under the learner's text */
+.sw-errbox{border-left:4px solid #d32f2f;padding-left:10px}
+.sw-errbox.ok{border-left-color:var(--a1)}
+.sw-errbox .sw-errs{padding-left:0;list-style:none}
+.sw-errbox .sw-errs li{display:flex;gap:10px;align-items:flex-start}
+.sw-no{flex:none;min-width:24px;height:24px;border-radius:12px;background:#d32f2f;color:#fff;font-size:13px;display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
+.sw-fix{font-size:16px}
+.sw-errbox .sw-msg{margin-top:2px}
