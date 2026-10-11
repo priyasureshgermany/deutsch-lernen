@@ -337,7 +337,7 @@ function Pruefung(o){
    body.innerHTML=h+`<div class="tz-pad"><div class="tz-row"><button type="button" class="tz-btn" data-go="home">Zu den Tests</button></div></div>`;
    if(fresh){body.scrollTop=0;fresh=false}}
   /* changing a rating of the writing redraws the totals; "auto" gives it back to the app */
-  const redraw=()=>{if(view!=="review")return;const y=body.scrollTop;draw();body.scrollTop=y};
+  const redraw=()=>{if(view!=="review")return;const y=body.scrollTop;draw();body.scrollTop=y};review.redraw=redraw;
   review.onSa=(k,id,v,chk)=>{r.sa=r.sa||{};r.sa[k]=r.sa[k]||{};if(v==="auto")delete r.sa[k][id];else if(chk!=null)r.sa[k][id]=chk;else r.sa[k][id]=v;redraw()};
   /* spelling and grammar: asked once per letter, kept with the result */
   review.lt=()=>t.sections.forEach((sec,si)=>{if(r.taken&&!r.taken.includes(si))return;sec.parts.forEach((p,j)=>{const k=si+"."+j,txt=(r.ans[k+".w"]||"").trim();
@@ -347,13 +347,20 @@ function Pruefung(o){
  }
  /* ---- Schreiben: the evaluation, point by point ---- */
  let LT={};
+/* rating controls the learner opened ("Bewertung ändern"), per result */
+const EDIT=new Set();
  function wan(r,si,j){const p=test(r.tid).sections[si].parts[j],k=si+"."+j;
   return window.Schreiben?Schreiben.analyse(p,r.tid,r.ans[k+".w"]||"",(r.lt||{})[k],fill):{auto:{},points:[],checks:[],tips:[],segs:[]}}
  function writeReview(r,si,j){const p=test(r.tid).sections[si].parts[j],k=si+"."+j,sa=(r.sa||{})[k]||{},c=CRIT[p.crit||"a1"],an=wan(r,si,j),txt=r.ans[k+".w"]||"",b1=p.crit==="b1";
   const w=writeScore(p,sa,an.auto),val=id=>sa[id]!=null?sa[id]:an.auto[id],P=x=>num(x*o.scale.factor);
   const row=id=>c.rows(p).find(x=>x.id===id);
   const how=id=>sa[id]!=null?`<button type="button" class="sw-reset" data-sa="${k}" data-id="${id}" data-v="auto">↺ wie die App</button>`:an.auto[id]!=null?`<span class="tz-sub">automatisch</span>`:"";
-  const opts=id=>`<div class="tz-opts">${row(id).opts.map(([v,l])=>`<button type="button" class="tz-opt" data-sa="${k}" data-id="${id}" data-v="${v}" aria-pressed="${val(id)!=null&&+val(id)===v}">${esc(l)} (${P(v)})</button>`).join("")}${how(id)}</div>`;
+  /* the app's rating with a small "Bewertung ändern"; the buttons only when opened (or when nothing is rated yet) */
+  const edit=(id,ctl)=>{const open=EDIT.has(r.tid+"|"+k+"|"+id)||val(id)==null,tag=`data-swtog="${r.tid}|${k}|${id}"`;
+   if(open)return `<div class="sw-edit">${ctl}${val(id)!=null?`<button type="button" class="sw-link" ${tag}>fertig</button>`:""}</div>`;
+   const o=row(id)&&row(id).opts,v=val(id),cur=o?(o.find(([x])=>x===+v)||[])[1]:"";
+   return `<div class="sw-cur">${cur?`<b>${esc(cur)}</b> (${P(v)}) · `:""}${sa[id]!=null?"von dir geändert":"automatisch"} <button type="button" class="sw-link" ${tag}>Bewertung ändern</button></div>`};
+  const opts=id=>edit(id,`<div class="tz-opts">${row(id).opts.map(([v,l])=>`<button type="button" class="tz-opt" data-sa="${k}" data-id="${id}" data-v="${v}" aria-pressed="${val(id)!=null&&+val(id)===v}">${esc(l)} (${P(v)})</button>`).join("")}${how(id)}</div>`);
   const en=s=>`<span class="sw-en">${esc(s)}</span>`;
   const chk=x=>`<li class="${x.ok?"ok":x.half?"half":"no"}"><span>${x.ok?"✓":x.half?"~":"✗"}</span><div>${esc(x.de)}${en(x.en)}${x.ok?"":`<div class="sw-tip">${esc(x.tip[0])}</div>`}</div></li>`;
   let h=`<div class="tz-qt">${T(p.task).replace(/\n/g,"<br>")}</div>
@@ -366,7 +373,7 @@ function Pruefung(o){
   const sum=b1?[["I","Inhalt: Leitpunkte behandelt","content: points covered",I,15],["II","Kommunikative Gestaltung","letter form and linking",val("k2"),15],["III","Formale Richtigkeit","grammar and spelling",val("k3"),15]]
    :p.points.map((x,i)=>[i+1,x,"",val("p"+i),3]).concat([["",`Anrede und Gruß`,"greeting and sign-off",val("ag"),1]]);
   h+=`<div class="sw-head"><span class="tz-lab">Bewertung</span><b>${w==null?"…":P(w)} / ${P(c.max)} Punkte</b></div>
-   <div class="tz-sub">Die App bewertet deinen Text automatisch nach den telc-Kriterien. Siehst du es anders, tippe eine andere Stufe an – deine Wahl zählt.</div>
+   <div class="tz-sub">Die App bewertet deinen Text automatisch nach den telc-Kriterien. Siehst du es anders, tippe auf „Bewertung ändern“ – deine Wahl zählt.</div>
    <div class="sw-sum">${sum.map(([n,de,e,v,m])=>`<div><b>${n}</b><span>${T(de)}${e?en(e):""}</span><b>${v==null?"…":P(v)} / ${P(m)}</b></div>`).join("")}</div>`;
   /* I · every point of the task */
   h+=`<div class="sw-sec"><h4>${b1?"I · Inhalt – die vier Leitpunkte":"Die drei Punkte der Aufgabe"}</h4>
@@ -376,7 +383,7 @@ function Pruefung(o){
     <div class="sw-why">${pt.st==="ok"?"✓":pt.st==="short"?"~":"✗"} ${esc(pt.why[0])}${en(pt.why[1])}</div>
     ${pt.hit.length?`<div class="sw-q">${pt.hit.map(g=>`„${esc(g.body)}“`).join(" ")}</div>`:""}
     ${pt.st!=="ok"&&pt.tip?`<div class="sw-tip">So geht es: „${T(pt.tip)}“</div>`:""}
-    ${b1?`<label class="tz-chk"><input type="checkbox" data-sa="${k}" data-id="${id}"${v?" checked":""}> zählt als behandelt</label>${how(id)}`:opts(id)}</div>`});
+    ${b1?edit(id,`<label class="tz-chk"><input type="checkbox" data-sa="${k}" data-id="${id}"${v?" checked":""}> zählt als behandelt</label>${how(id)}`):opts(id)}</div>`});
   h+=`</div>`;
   /* II · the letter's frame */
   h+=`<div class="sw-sec"><h4>${b1?"II · Kommunikative Gestaltung":"Anrede und Gruß"}</h4>
@@ -431,6 +438,7 @@ function Pruefung(o){
   if(g==="handin"){tick();if(run.si==null)return;const n=unansweredPart(run.si,run.cur),p=test(run.tid).sections[run.si].parts[run.cur];
    if(!confirm(n?`Noch ${n} ${n===1?"Aufgabe":"Aufgaben"} ohne Antwort. ${tabName(p)} trotzdem abgeben?`:`${tabName(p)} abgeben? Danach kannst du ihn nicht mehr ändern.`))return;
    stopAudio();run.done[pk(run.si,run.cur)]=true;nextPart();return}
+  if(b.dataset.swtog){const x=b.dataset.swtog;EDIT.has(x)?EDIT.delete(x):EDIT.add(x);const y=body.scrollTop;review.redraw();body.scrollTop=y;return}
   if(g==="ltretry"){delete LT[b.dataset.k];review.lt();return}
   if(g==="home"){home();return}
   if(g==="wrong"){const on=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",String(on));body.classList.toggle("only-wrong",on);return}});

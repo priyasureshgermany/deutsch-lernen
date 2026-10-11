@@ -176,3 +176,8 @@ mark.sw-err sup{color:#d32f2f;font-weight:800;font-size:10px;margin-left:1px}
 .sw-sec.better{background:color-mix(in srgb,var(--a1) 10%,var(--paper));border:1px solid color-mix(in srgb,var(--a1) 35%,var(--paper))}
 .sw-sec.better ul{margin:4px 0 0;padding-left:20px}.sw-sec.better li{margin:6px 0;font-size:14.5px}
 .sw-pt .tz-opts,.sw-sec .tz-opts{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}
+.sw-cur{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.6}
+.sw-cur b{color:var(--ink);font-weight:700}
+.sw-link{touch-action:manipulation;font:inherit;font-size:13.5px;font-weight:700;padding:2px 0;border:none;background:none;color:var(--b1);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.sw-edit{margin-top:6px;padding:8px;border-radius:10px;border:1px dashed var(--line)}
+.sw-edit>.sw-link{margin-top:6px}
