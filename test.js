@@ -27,7 +27,9 @@
      gapmc    part.text with (n); item {n, o:[…], a: index}
      gapbank  part.text with (n), part.list:[…]; item {n, a: index}
      form     part.text; item {q, a:[accepted …]} or {q, o:[…], a: index}
-     write    {task, points:[…], words, model, crit:"a1"|"b1"} – self-marked
+     write    {task, points:[…], words, model, crit:"a1"|"b1"} – evaluated by
+              schreiben.js (points, letter form, LanguageTool); every
+              rating can be changed on the result page
      speak    {max, turns:[{who, say} | {you, key:[[regex,label]…], min, model}]}
               virtual partners speak their turns; on "you" turns the learner
               records (microphone + speech recognition where the phone has it);
@@ -51,10 +53,11 @@ const CRIT={
  b1:{max:45,rows:p=>[{id:"lp",label:"Leitpunkte behandelt",check:p.points},
   {id:"k2",label:"Kommunikative Gestaltung (Anrede, Einleitung, Schluss, Gruß, Sätze verbunden, passendes Register)",opts:[[15,"A – ganz angemessen"],[10,"B – weitgehend"],[5,"C – kaum"],[0,"D – nicht"]]},
   {id:"k3",label:"Formale Richtigkeit (Grammatik, Wortschatz, Rechtschreibung)",opts:[[15,"A – kaum Fehler"],[10,"B – einige Fehler, gut verständlich"],[5,"C – viele Fehler"],[0,"D – kaum verständlich"]]}]}};
-function writeScore(p,sa){const c=CRIT[p.crit||"a1"];if(!sa)return null;let s=0,all=true;
+/* sa: the learner's own ratings, auto: schreiben.js's (the learner's win) */
+function writeScore(p,sa,auto){const c=CRIT[p.crit||"a1"],v=Object.assign({},auto||{},sa||{});let s=0,all=true;
  /* telc: all four Leitpunkte = A (15), three = B (10), two = C (5), fewer = D (0) */
- c.rows(p).forEach(r=>{if(r.check){const n=r.check.filter((_,i)=>sa[r.id+i]).length;s+=[0,0,5,10,15][Math.min(n,4)]}
-  else if(sa[r.id]==null)all=false;else s+=+sa[r.id]});
+ c.rows(p).forEach(r=>{if(r.check){const n=r.check.filter((_,i)=>v[r.id+i]).length;s+=[0,0,5,10,15][Math.min(n,4)]}
+  else if(v[r.id]==null)all=false;else s+=+v[r.id]});
  return all?Math.min(s,c.max):null}
 
 function Pruefung(o){
@@ -277,7 +280,7 @@ function Pruefung(o){
  function score(r){const t=test(r.tid);let raw=0,max=0,pending=false;const per=[];
   const took=si=>!r.taken||r.taken.includes(si);   /* results from before have no list: all taken */
   t.sections.forEach((s,si)=>{if(!took(si)){per.push({de:s.de,skip:true});return}let a=0,m=0;s.parts.forEach((p,j)=>{
-   if(p.type==="write"){const c=CRIT[p.crit||"a1"];m+=c.max;const w=writeScore(p,(r.sa||{})[si+"."+j]);if(w==null)pending=true;else a+=w;return}
+   if(p.type==="write"){const c=CRIT[p.crit||"a1"];m+=c.max;const w=writeScore(p,(r.sa||{})[si+"."+j],wan(r,si,j).auto);if(w==null)pending=true;else a+=w;return}
    if(p.type==="speak"){m+=p.max;const k=si+"."+j,yt=p.turns.map((t,i)=>t.you?i:-1).filter(i=>i>=0);let got=0;
     yt.forEach(i=>{const v=((r.sa||{})[k]||{})[i]!=null?+((r.sa||{})[k][i]):((r.auto||{})[k]||{})[i];if(v==null)pending=true;else got+=v});a+=got*p.max/yt.length;return}
    p.items.forEach((it,i)=>{m+=p.per;if(correct(p,it,r.ans[si+"."+j+"."+i]))a+=p.per})});
@@ -307,7 +310,7 @@ function Pruefung(o){
    const bands=o.scale.grades?`<div class="tz-bands">${o.scale.grades.map(([lo,hi,n])=>`<span${!s.partial&&!s.pending&&s.pts>=lo&&s.pts<=hi?' class="on"':""}><b>${esc(n)}</b> ${num(lo)}–${num(hi)}</span>`).join("")}<span><b>nicht bestanden</b> unter ${num(o.scale.pass)}</span></div>`:"";
    let h=`<div class="tz-pad"><div class="tz-card big result ${s.partial?(s.pct>=60?"ok":""):s.pass?"ok":s.pending?"":"no"}"><div class="tz-step">${esc(t.title)} · ${esc(r.date)}</div>
     ${head}${bands}
-    ${s.pending?`<div class="tz-warn">Bewerte unten noch dein Schreiben – erst dann ist die Punktzahl vollständig.</div>`:""}
+    ${s.pending?`<div class="tz-warn">${Object.values(LT).includes("busy")?"Schreiben: Rechtschreibung und Grammatik werden gerade geprüft …":"Bewerte unten noch die offenen Punkte beim Schreiben – erst dann ist die Punktzahl vollständig."}</div>`:""}
     <table class="tz-tab">${s.per.map(x=>x.skip?`<tr class="skip"><td>${esc(x.de)}</td><td>nicht gemacht</td><td></td></tr>`:`<tr><td>${esc(x.de)}</td><td>${num(x.a*o.scale.factor)} / ${num(x.m*o.scale.factor)}</td><td><span class="bar"><i style="width:${x.m?Math.round(x.a/x.m*100):0}%"></i></span></td></tr>`).join("")}</table>
     <p class="tz-note">${esc(o.scale.note)}</p>
     <div class="tz-row"><button type="button" class="tz-btn ghost" data-go="home">Alle Tests</button><button type="button" class="tz-btn ghost" data-go="wrong" aria-pressed="false">Nur Fehler zeigen</button></div></div>`;
@@ -321,14 +324,7 @@ function Pruefung(o){
         <div class="tz-lab">So könntest du es sagen</div><div class="tz-text model small">${T(tn.model||"")}</div>
         <div class="tz-opts">${[[1,"gut"],[.5,"teilweise"],[0,"fehlt"]].map(([x,l])=>`<button type="button" class="tz-opt" data-sa="${k}" data-id="${i}" data-v="${x}" aria-pressed="${v!=null&&v===x}">${l}</button>`).join("")}${sa[i]==null&&au[i]!=null?`<span class="tz-sub">automatisch bewertet</span>`:""}</div></div>`});
       h+=`</div>`;return}
-     if(p.type==="write"){const k=si+"."+j,sa=(r.sa||{})[k]||{},c=CRIT[p.crit||"a1"],w=writeScore(p,(r.sa||{})[k]),txt=r.ans[k+".w"]||"";
-      h+=`<div class="tz-qt">${T(p.task).replace(/\n/g,"<br>")}</div><div class="tz-lab">Dein Text (${words(txt)} Wörter)</div><div class="tz-text">${txt?esc(txt).replace(/\n/g,"<br>"):"<i>nichts geschrieben</i>"}</div>
-       <div class="tz-lab">Musterlösung</div><div class="tz-text model">${T(p.model).replace(/\n/g,"<br>")}</div>
-       <div class="tz-lab">Selbst bewerten ${w==null?"":o.scale.factor!==1?`– <b>≈ ${num(w*o.scale.factor)} / ${num(c.max*o.scale.factor)} Punkte</b> (${num(w)} / ${c.max} Rohpunkte)`:`– <b>${num(w)} / ${c.max} Punkte</b>`}</div>`;
-      c.rows(p).forEach(row=>{
-       if(row.check)h+=`<div class="tz-crit"><div>${esc(row.label)}:</div>${row.check.map((x,i)=>`<label class="tz-chk"><input type="checkbox" data-sa="${k}" data-id="${row.id}${i}"${sa[row.id+i]?" checked":""}> ${T(x)}</label>`).join("")}</div>`;
-       else h+=`<div class="tz-crit"><div>${T(row.label)}:</div><div class="tz-opts">${row.opts.map(([v,l])=>`<button type="button" class="tz-opt" data-sa="${k}" data-id="${row.id}" data-v="${v}" aria-pressed="${sa[row.id]!=null&&+sa[row.id]===v}">${esc(l)} (${num(v)})</button>`).join("")}</div></div>`});
-      h+=`</div>`;return}
+     if(p.type==="write"){h+=writeReview(r,si,j)+`</div>`;return}
      if(p.text)h+=`<details class="tz-det"><summary>${p.type==="gapmc"||p.type==="gapbank"?"Text mit Lösungen":p.audio?"Hörtext":"Text"}</summary><div class="tz-text">${solved(p).replace(/\n/g,"<br>")}</div></details>`;
      if(p.audio)h+=`<details class="tz-det"><summary>Hörtext</summary><div class="tz-text">${T(p.audio).replace(/\n/g,"<br>")}</div></details>`;
      if(p.list&&p.type==="match")h+=`<details class="tz-det"><summary>${o.level==="B1"&&p.x?"Anzeigen":"Überschriften"}</summary><div class="tz-text list">${p.list.map((x,i)=>`<div><b>${L[i]})</b> ${T(x)}</div>`).join("")}</div></details>`;
@@ -340,9 +336,71 @@ function Pruefung(o){
      h+=`</div>`})});
    body.innerHTML=h+`<div class="tz-pad"><div class="tz-row"><button type="button" class="tz-btn" data-go="home">Zu den Tests</button></div></div>`;
    if(fresh){body.scrollTop=0;fresh=false}}
-  /* self-marking of the writing redraws the totals */
-  review.onSa=(k,id,v,chk)=>{r.sa=r.sa||{};r.sa[k]=r.sa[k]||{};if(chk!=null)r.sa[k][id]=chk;else r.sa[k][id]=v;const y=body.scrollTop;draw();body.scrollTop=y};
+  /* changing a rating of the writing redraws the totals; "auto" gives it back to the app */
+  const redraw=()=>{if(view!=="review")return;const y=body.scrollTop;draw();body.scrollTop=y};
+  review.onSa=(k,id,v,chk)=>{r.sa=r.sa||{};r.sa[k]=r.sa[k]||{};if(v==="auto")delete r.sa[k][id];else if(chk!=null)r.sa[k][id]=chk;else r.sa[k][id]=v;redraw()};
+  /* spelling and grammar: asked once per letter, kept with the result */
+  review.lt=()=>t.sections.forEach((sec,si)=>{if(r.taken&&!r.taken.includes(si))return;sec.parts.forEach((p,j)=>{const k=si+"."+j,txt=(r.ans[k+".w"]||"").trim();
+   if(p.type!=="write"||!txt||(r.lt||{})[k]||LT[k]==="busy"||LT[k]==="fail"||!window.Schreiben)return;
+   LT[k]="busy";Schreiben.check(r.ans[k+".w"]).then(res=>{delete LT[k];r.lt=r.lt||{};r.lt[k]=res;redraw()}).catch(()=>{LT[k]="fail";redraw()})})});
+  LT={};review.lt();if(Object.keys(LT).length)redraw();
  }
+ /* ---- Schreiben: the evaluation, point by point ---- */
+ let LT={};
+ function wan(r,si,j){const p=test(r.tid).sections[si].parts[j],k=si+"."+j;
+  return window.Schreiben?Schreiben.analyse(p,r.tid,r.ans[k+".w"]||"",(r.lt||{})[k],fill):{auto:{},points:[],checks:[],tips:[],segs:[]}}
+ function writeReview(r,si,j){const p=test(r.tid).sections[si].parts[j],k=si+"."+j,sa=(r.sa||{})[k]||{},c=CRIT[p.crit||"a1"],an=wan(r,si,j),txt=r.ans[k+".w"]||"",b1=p.crit==="b1";
+  const w=writeScore(p,sa,an.auto),val=id=>sa[id]!=null?sa[id]:an.auto[id],P=x=>num(x*o.scale.factor);
+  const row=id=>c.rows(p).find(x=>x.id===id);
+  const how=id=>sa[id]!=null?`<button type="button" class="sw-reset" data-sa="${k}" data-id="${id}" data-v="auto">↺ wie die App</button>`:an.auto[id]!=null?`<span class="tz-sub">automatisch</span>`:"";
+  const opts=id=>`<div class="tz-opts">${row(id).opts.map(([v,l])=>`<button type="button" class="tz-opt" data-sa="${k}" data-id="${id}" data-v="${v}" aria-pressed="${val(id)!=null&&+val(id)===v}">${esc(l)} (${P(v)})</button>`).join("")}${how(id)}</div>`;
+  const en=s=>`<span class="sw-en">${esc(s)}</span>`;
+  const chk=x=>`<li class="${x.ok?"ok":x.half?"half":"no"}"><span>${x.ok?"✓":x.half?"~":"✗"}</span><div>${esc(x.de)}${en(x.en)}${x.ok?"":`<div class="sw-tip">${esc(x.tip[0])}</div>`}</div></li>`;
+  let h=`<div class="tz-qt">${T(p.task).replace(/\n/g,"<br>")}</div>
+   <div class="tz-lab">Dein Text (${words(txt)} Wörter${p.words?`, verlangt etwa ${p.words}`:""})</div>`;
+  if(!txt.trim())h+=`<div class="tz-text"><i>nichts geschrieben</i></div>`;
+  else h+=`<div class="tz-text sw-text">${Schreiben.marked(an,esc)}</div>
+   <div class="sw-legend"><b class="sw-chip c0">1</b> Satz zu Punkt 1 · <mark class="sw-err">Wort<sup>1</sup></mark> Fehler Nr. 1 (Liste unten)</div>`;
+  /* the marks at a glance */
+  const lpN=b1?p.points.filter((_,i)=>val("lp"+i)).length:0,I=b1?[0,0,5,10,15][Math.min(lpN,4)]:0;
+  const sum=b1?[["I","Inhalt: Leitpunkte behandelt","content: points covered",I,15],["II","Kommunikative Gestaltung","letter form and linking",val("k2"),15],["III","Formale Richtigkeit","grammar and spelling",val("k3"),15]]
+   :p.points.map((x,i)=>[i+1,x,"",val("p"+i),3]).concat([["",`Anrede und Gruß`,"greeting and sign-off",val("ag"),1]]);
+  h+=`<div class="sw-head"><span class="tz-lab">Bewertung</span><b>${w==null?"…":P(w)} / ${P(c.max)} Punkte</b></div>
+   <div class="tz-sub">Die App bewertet deinen Text automatisch nach den telc-Kriterien. Siehst du es anders, tippe eine andere Stufe an – deine Wahl zählt.</div>
+   <div class="sw-sum">${sum.map(([n,de,e,v,m])=>`<div><b>${n}</b><span>${T(de)}${e?en(e):""}</span><b>${v==null?"…":P(v)} / ${P(m)}</b></div>`).join("")}</div>`;
+  /* I · every point of the task */
+  h+=`<div class="sw-sec"><h4>${b1?"I · Inhalt – die vier Leitpunkte":"Die drei Punkte der Aufgabe"}</h4>
+   <p class="tz-sub">${b1?"telc zählt, wie viele Leitpunkte du behandelst: alle 4 = 15 Punkte · 3 = 10 · 2 = 5 · weniger = 0. Bei dir: "+lpN+" → <b>"+P(I)+" Punkte</b>.":"Pro Punkt: ganzer, verständlicher Satz = 3 · nur teilweise = 1,5 · fehlt = 0."}</p>`;
+  an.points.forEach(pt=>{const id=(b1?"lp":"p")+pt.i,v=val(id),ok=b1?!!v:v===3;
+   h+=`<div class="sw-pt c${pt.i%4} ${pt.st}"><div class="sw-pth"><b class="sw-chip c${pt.i%4}">${pt.i+1}</b><b>${T(pt.label)}</b><span class="sw-pts">${b1?(v?"✓ zählt":"✗ zählt nicht"):P(v)+" / "+P(3)}</span></div>
+    <div class="sw-why">${pt.st==="ok"?"✓":pt.st==="short"?"~":"✗"} ${esc(pt.why[0])}${en(pt.why[1])}</div>
+    ${pt.hit.length?`<div class="sw-q">${pt.hit.map(g=>`„${esc(g.body)}“`).join(" ")}</div>`:""}
+    ${pt.st!=="ok"&&pt.tip?`<div class="sw-tip">So geht es: „${T(pt.tip)}“</div>`:""}
+    ${b1?`<label class="tz-chk"><input type="checkbox" data-sa="${k}" data-id="${id}"${v?" checked":""}> zählt als behandelt</label>${how(id)}`:opts(id)}</div>`});
+  h+=`</div>`;
+  /* II · the letter's frame */
+  h+=`<div class="sw-sec"><h4>${b1?"II · Kommunikative Gestaltung":"Anrede und Gruß"}</h4>
+   ${b1?`<p class="tz-sub">Alles erfüllt = A (15) · eins fehlt = B (10) · zwei bis drei = C (5) · mehr = D (0). Bei dir fehlt: ${num(an.missK2||0)}.${an.short?" Dein Text ist kürzer als die Hälfte – dann gibt es höchstens C (5).":""}</p>`:""}
+   <ul class="sw-list">${an.checks.map(chk).join("")}</ul>${opts(b1?"k2":"ag")}</div>`;
+  /* III · mistakes */
+  const st=LT[k];
+  h+=`<div class="sw-sec"><h4>${b1?"III · Formale Richtigkeit":"Fehler – zum Lernen"}</h4>`;
+  const list=e=>`<ol class="sw-errs">${e.map(e=>`<li><span><s>${esc(e.w)}</s>${e.rep.length?` → <ins>${esc(e.rep[0])}</ins>`:""}${e.rep.length>1?` <small>(oder ${esc(e.rep.slice(1).join(", "))})</small>`:""}</span><small class="sw-kind">${esc(e.kind[0])}</small><div class="sw-msg">${esc(e.msg)}${e.en?en(e.en):""}</div></li>`).join("")}</ol>`;
+  if(!txt.trim())h+=`<p class="tz-sub">Kein Text – nichts zu prüfen.</p>`;
+  else if(an.ltDone){const n=an.errs.length;
+   h+=`<p class="tz-sub">${n?`${n} Fehler in ${an.words} Wörtern – etwa ${num(Math.round(an.per100*10)/10)} pro 100 Wörter.`:"Keine Fehler gefunden – sehr gut!"}
+    ${b1?" Bis 3 pro 100 Wörter = A (15) · bis 7 = B (10) · bis 12 = C (5) · mehr = D (0).":" Bei A1 kosten Fehler keine Punkte, solange man dich versteht – aber lerne aus ihnen."}${b1&&an.short?" Dein Text ist kürzer als die Hälfte – dann gibt es höchstens C (5).":""}</p>${n?list(an.errs):""}
+    <p class="sw-legend">Geprüft von der App und mit LanguageTool – eine automatische Prüfung findet nicht jeden Fehler.</p>`}
+  else{h+=st==="fail"?`<div class="tz-warn">Keine Verbindung zur Rechtschreibprüfung (LanguageTool).${b1?" Bewerte die Formale Richtigkeit selbst oder versuche es noch einmal.":""} <button type="button" class="sw-reset" data-go="ltretry" data-k="${k}">↻ noch einmal prüfen</button></div>`
+    :`<p class="tz-sub">Rechtschreibung und Grammatik werden geprüft …</p>`;
+   if(an.errs.length)h+=`<p class="tz-sub">Schon gefunden (Prüfung der App):</p>`+list(an.errs)}
+  if(b1)h+=opts("k3");
+  h+=`</div>`;
+  /* how to get better */
+  if(an.tips.length)h+=`<div class="sw-sec better"><h4>So wirst du besser</h4><ul>${an.tips.map(x=>`<li>${T(x[0])}${en(x[1])}</li>`).join("")}</ul></div>`;
+  else if(txt.trim()&&an.ltDone)h+=`<div class="sw-sec better"><h4>Sehr gut!</h4><p>Alle Punkte behandelt, Brief vollständig. Vergleiche trotzdem mit der Musterlösung.</p></div>`;
+  h+=`<div class="tz-lab">Musterlösung</div><div class="tz-text model">${T(p.model).replace(/\n/g,"<br>")}</div>`;
+  return h}
  function solved(p){let tx=T(p.text);if(p.type==="gapmc"||p.type==="gapbank")p.items.forEach(it=>{const w=p.type==="gapmc"?it.o[it.a]:p.list[it.a];tx=tx.replace("("+it.n+")",`<b class="gap ok">(${it.n}) ${esc(w)}</b>`)});return tx}
 
  /* ---- input ---- */
@@ -357,7 +415,7 @@ function Pruefung(o){
    const plays=part.plays||1;if((run.plays[k]||0)>=plays)return;run.plays[k]=(run.plays[k]||0)+1;save();
    const txt=k.split(".").length===3?part.items[+k.split(".")[2]].audio:part.audio;
    const left=plays-run.plays[k];b.querySelector("small").textContent=left?`noch ${left}×`:"letztes Mal";play(b,txt);if(!left)b.disabled=true;return}
-  if(b.dataset.sa){review.onSa(b.dataset.sa,b.dataset.id,+b.dataset.v);return}
+  if(b.dataset.sa){review.onSa(b.dataset.sa,b.dataset.id,b.dataset.v==="auto"?"auto":+b.dataset.v);return}
   if(b.dataset.rec){b.dataset.rec==="stop"?stopRec():startRec(b.dataset.rec);return}
   if(b.dataset.turn){if(rec)return;const k=b.dataset.turn;run.sp[k]=(run.sp[k]||0)+1;
    const p=test(run.tid).sections[run.si].parts[run.cur];while(run.sp[k]<p.turns.length&&false);save();stopAudio();drawPart();return}
@@ -373,6 +431,7 @@ function Pruefung(o){
   if(g==="handin"){tick();if(run.si==null)return;const n=unansweredPart(run.si,run.cur),p=test(run.tid).sections[run.si].parts[run.cur];
    if(!confirm(n?`Noch ${n} ${n===1?"Aufgabe":"Aufgaben"} ohne Antwort. ${tabName(p)} trotzdem abgeben?`:`${tabName(p)} abgeben? Danach kannst du ihn nicht mehr ändern.`))return;
    stopAudio();run.done[pk(run.si,run.cur)]=true;nextPart();return}
+  if(g==="ltretry"){delete LT[b.dataset.k];review.lt();return}
   if(g==="home"){home();return}
   if(g==="wrong"){const on=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",String(on));body.classList.toggle("only-wrong",on);return}});
  ov.addEventListener("change",e=>{const el=e.target;
