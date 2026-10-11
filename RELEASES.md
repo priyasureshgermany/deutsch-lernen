@@ -1,5 +1,8 @@
 # Releases
 
+## 1.33.0 — 2026-10-12
+- Hören: 10 new everyday announcements (now 36 scenes, 144 questions) – Supermarkt vor Ladenschluss, Hotel-Informationen (Probealarm, Sauna, Frühstück), Wartezimmer beim Arzt, Wartenummern im Bürgeramt, Verkehrsmeldungen im Radio, Wochenend-Tipps im Radio, Flughafen (Gepäck, Verspätung, Flüssigkeiten), U-Bahn (Haltestelle, Bauarbeiten, Fahrkarten), Hotline-Menü am Telefon, Anrufbeantworter der Schule – each with gong / ring / beep, background sound, 4 exam-style questions and English
+
 ## 1.32.0 — 2026-10-12
 - Alltagssätze for B1: every situation now has at least 6 groups and about 30 phrases – 44 new groups, 220 new phrases (now 111 groups, 552 phrases). New for example: sich vorstellen and Gäste empfangen, Sprache und Hobbys, Wertschätzung, Meinung sagen und widersprechen, zusagen, Dauer und Datum, Taxi und Zugausfall, Urlaub, Feiertage, Neuigkeiten, Nachbarn, Anstoßen, Beileid, das Thema wechseln und ein Gespräch beenden, Mailbox und Videoanruf, Termin am Telefon, Gesundheit, gute und schlechte Laune, Erlaubnis und Leihen, Hilfe bei Ämtern, höflich beschweren, im Geschäft, Preise, Umtausch und Pfand, im Restaurant, Schichten, Urlaub und Krankmeldung, neu im Job, Feedback, morgens und abends, Haushalt und Besuch
 
