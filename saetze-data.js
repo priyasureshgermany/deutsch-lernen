@@ -35,6 +35,20 @@ window.AS = [
    ["nach dem Einkaufen", "[[Schönen Tag noch]]! – Danke, gleichfalls!", "Have a nice day! – Thanks, you too!"],
    ["Freunde: pass auf dich auf", "[[Mach's gut]] und melde dich mal!", "Take care and get in touch!"],
    ["abends", "[[Gute Nacht]], schlaf gut!", "Good night, sleep well!"]]}
+ ]},
+ {g:"Vorstellen und Besuch", gen:"introductions and visitors", items:[
+  {w:"Darf ich mich vorstellen?", en:"may I introduce myself?", tag:"sich und andere vorstellen", ex:[
+   ["formell", "[[Darf ich mich vorstellen]]? Mein Name ist Tom Becker.", "May I introduce myself? My name is Tom Becker."],
+   ["informell", "[[Ich bin]] Tom, der neue Nachbar.", "I'm Tom, the new neighbour."],
+   ["jemanden vorstellen", "[[Das ist]] meine Kollegin Sara.", "This is my colleague Sara."],
+   ["Namen fragen", "[[Wie heißen Sie]], bitte?", "What's your name, please?"],
+   ["Namen vergessen", "Entschuldigung, [[wie war noch mal Ihr Name]]?", "Sorry, what was your name again?"]]},
+  {w:"Komm rein!", en:"come in!", tag:"Gäste empfangen", ex:[
+   ["informell", "Hallo! [[Komm rein]]!", "Hi! Come in!"],
+   ["formell", "[[Kommen Sie doch herein]].", "Do come in."],
+   ["freuen", "[[Schön, dass du da bist]]!", "So nice that you're here!"],
+   ["anbieten", "[[Was darf ich dir anbieten]]? Kaffee oder Tee?", "What can I offer you? Coffee or tea?"],
+   ["bequem", "[[Mach es dir bequem]]!", "Make yourself comfortable!"]]}
  ]}
 ]},
 {id:"ich", de:"Über mich", en:"Talking about yourself",
@@ -67,6 +81,20 @@ window.AS = [
    ["verheiratet", "[[Ich bin verheiratet]].", "I'm married."],
    ["Familie im Ausland", "[[Meine Eltern wohnen noch in]] Brasilien.", "My parents still live in Brazil."],
    ["Hobbys", "[[In meiner Freizeit]] spiele ich gern Fußball.", "In my free time I like playing football."]]}
+ ]},
+ {g:"Sprache und Freizeit", gen:"language and free time", items:[
+  {w:"Seit wann lernst du Deutsch?", en:"how long have you been learning German?", tag:"über Sprachen sprechen", ex:[
+   ["Frage", "[[Seit wann lernst du Deutsch]]?", "How long have you been learning German?"],
+   ["Antwort", "[[Ich lerne seit zwei Jahren Deutsch]].", "I've been learning German for two years."],
+   ["Muttersprache", "[[Meine Muttersprache ist]] Portugiesisch.", "My native language is Portuguese."],
+   ["wenig", "[[Ich spreche nur ein bisschen]] Deutsch.", "I only speak a little German."],
+   ["Kompliment", "[[Du sprichst aber gut Deutsch]]!", "You speak German really well!"]]},
+  {w:"Was machst du gern?", en:"what do you like doing?", tag:"Hobbys", ex:[
+   ["Frage", "[[Was machst du gern]] in deiner Freizeit?", "What do you like doing in your free time?"],
+   ["Sport", "[[Ich gehe zweimal pro Woche]] ins Fitnessstudio.", "I go to the gym twice a week."],
+   ["Lieblings-", "[[Mein Lieblingsessen ist]] Lasagne.", "My favourite food is lasagne."],
+   ["mögen", "[[Ich interessiere mich für]] Fotografie.", "I'm interested in photography."],
+   ["keine Zeit", "[[Für Hobbys habe ich leider wenig Zeit]].", "Unfortunately I have little time for hobbies."]]}
  ]}
 ]},
 {id:"danke", de:"Danke & Entschuldigung", en:"Thanks and apologies",
@@ -105,6 +133,14 @@ window.AS = [
    ["Mitgefühl", "Dein Vater ist krank? Das [[tut mir leid]].", "Your father is ill? I'm sorry to hear that."],
    ["Antwort: kein Problem", "Entschuldigung! – [[Macht nichts]].", "Sorry! – Never mind."],
    ["Antwort: schon gut", "Es tut mir leid. – [[Schon gut]], das passiert.", "I'm sorry. – It's fine, it happens."]]}
+ ]},
+ {g:"Wertschätzen", gen:"showing appreciation", items:[
+  {w:"Das ist sehr nett von Ihnen", en:"that's very kind of you", tag:"Danke sagen, aber stärker", ex:[
+   ["formell", "[[Das ist sehr nett von Ihnen]].", "That's very kind of you."],
+   ["informell", "[[Das ist echt lieb von dir]]!", "That's really sweet of you!"],
+   ["hilfreich", "[[Das war sehr hilfreich]], danke!", "That was very helpful, thanks!"],
+   ["ohne dich", "[[Ohne dich hätte ich das nicht geschafft]].", "I couldn't have done it without you."],
+   ["sehr schätzen", "[[Ich weiß das sehr zu schätzen]].", "I really appreciate that."]]}
  ]}
 ]},
 {id:"meinung", de:"Gefallen & Meinung", en:"Likes and opinions",
@@ -144,6 +180,20 @@ window.AS = [
    ["vielleicht", "[[Vielleicht]], ich sage dir morgen Bescheid.", "Maybe, I'll let you know tomorrow."],
    ["nachfragen", "[[Meinst du]]?", "Do you think so?"],
    ["keine Ahnung", "[[Keine Ahnung]], frag mal Tom.", "No idea, ask Tom."]]}
+ ]},
+ {g:"Meinung sagen", gen:"giving your opinion", items:[
+  {w:"Ich finde …", en:"I think …", tag:"die eigene Meinung", ex:[
+   ["finden", "[[Ich finde]] die Idee gut.", "I think the idea is good."],
+   ["mit dass", "[[Ich finde, dass]] der Kurs zu teuer ist.", "I think the course is too expensive."],
+   ["formell", "[[Meiner Meinung nach]] sollten wir früher anfangen.", "In my opinion we should start earlier."],
+   ["glauben", "[[Ich glaube]], das klappt.", "I think that'll work."],
+   ["ja, vermutlich", "Kommt er heute? – [[Ich denke schon]].", "Is he coming today? – I think so."]]},
+  {w:"Da bin ich anderer Meinung", en:"I disagree", tag:"widersprechen und zustimmen", ex:[
+   ["widersprechen, höflich", "[[Da bin ich anderer Meinung]].", "I disagree with that."],
+   ["teilweise", "[[Da hast du teilweise recht]], aber …", "You're partly right there, but …"],
+   ["zustimmen", "[[Ich bin ganz deiner Meinung]].", "I completely agree with you."],
+   ["Argument", "[[Das stimmt, aber auf der anderen Seite]] kostet es viel Geld.", "That's true, but on the other hand it costs a lot of money."],
+   ["Vor- und Nachteile", "[[Ein Vorteil ist]], dass man Zeit spart.", "One advantage is that you save time."]]}
  ]}
 ]},
 {id:"vorschlag", de:"Vorschläge & Treffen", en:"Suggestions and meeting up",
@@ -184,6 +234,14 @@ window.AS = [
    ["Grund", "[[Ich habe schon etwas vor]].", "I've already got plans."],
    ["später zusagen", "[[Ich schaue mal]] und sage dir Bescheid.", "I'll see and let you know."],
    ["Danke trotzdem", "[[Danke für die Einladung]], schade, dass es nicht klappt!", "Thanks for the invitation, shame it doesn't work out!"]]}
+ ]},
+ {g:"Zusagen", gen:"saying yes", items:[
+  {w:"Ich bin dabei!", en:"count me in!", tag:"gern zusagen", ex:[
+   ["zusagen, locker", "Grillen am Samstag? [[Ich bin dabei]]!", "Barbecue on Saturday? Count me in!"],
+   ["gern kommen", "[[Gern, ich komme]]!", "I'd love to come!"],
+   ["etwas mitbringen", "[[Soll ich etwas mitbringen]]?", "Shall I bring anything?"],
+   ["mitbringen anbieten", "[[Ich bringe einen Salat mit]].", "I'll bring a salad."],
+   ["fest", "Also, Samstag um sieben – [[abgemacht]]!", "So, Saturday at seven – it's a deal!"]]}
  ]}
 ]},
 {id:"zeit", de:"Zeit & Termine", en:"Time and appointments",
@@ -216,6 +274,20 @@ window.AS = [
    ["neuer Termin", "[[Haben Sie noch einen anderen Termin frei]]?", "Do you have another appointment free?"],
    ["bestätigen", "[[Also dann]]: Donnerstag um 14 Uhr.", "So then: Thursday at 2 pm."],
    ["erinnern", "[[Denk an]] den Termin morgen!", "Remember the appointment tomorrow!"]]}
+ ]},
+ {g:"Dauer und Datum", gen:"duration and dates", items:[
+  {w:"Wie lange dauert das?", en:"how long does it take?", tag:"Dauer", ex:[
+   ["fragen", "[[Wie lange dauert das]] ungefähr?", "Roughly how long does it take?"],
+   ["kurz", "[[Das dauert nicht lange]].", "It won't take long."],
+   ["noch", "[[Es dauert noch etwa]] zwanzig Minuten.", "It'll take about another twenty minutes."],
+   ["fast fertig", "[[Ich brauche noch fünf Minuten]].", "I need five more minutes."],
+   ["kein Stress", "[[Wir haben genug Zeit]].", "We have enough time."]]},
+  {w:"Der Wievielte ist heute?", en:"what's the date today?", tag:"Datum", ex:[
+   ["fragen", "[[Der Wievielte ist heute]]?", "What's the date today?"],
+   ["Antwort", "[[Heute ist der]] zwölfte Oktober.", "Today is the twelfth of October."],
+   ["Wochentag", "[[Welcher Tag ist heute]]? – Montag.", "What day is it today? – Monday."],
+   ["nächste Woche", "[[Nächste Woche]] habe ich Urlaub.", "I'm on holiday next week."],
+   ["Wochenende", "[[Am Wochenende]] besuchen wir meine Schwester.", "At the weekend we're visiting my sister."]]}
  ]}
 ]},
 {id:"unterwegs", de:"Unterwegs", en:"Out and about",
@@ -247,6 +319,20 @@ window.AS = [
    ["umsteigen", "[[Muss ich umsteigen]]?", "Do I have to change?"],
    ["Haltestelle", "[[Wie viele Stationen sind es]] noch?", "How many stops is it still?"],
    ["Ticket", "[[Wo kann ich ein Ticket kaufen]]?", "Where can I buy a ticket?"]]}
+ ]},
+ {g:"Auto, Taxi, Probleme", gen:"car, taxi, problems", items:[
+  {w:"Zum Bahnhof, bitte", en:"to the station, please", tag:"im Taxi und im Auto", ex:[
+   ["Taxi", "[[Zum Hauptbahnhof, bitte]].", "To the main station, please."],
+   ["anhalten", "[[Halten Sie bitte hier]].", "Please stop here."],
+   ["parken", "[[Wo kann ich hier parken]]?", "Where can I park here?"],
+   ["tanken", "[[Ich muss noch tanken]].", "I still need to get petrol."],
+   ["mitnehmen", "[[Kannst du mich mitnehmen]]?", "Can you give me a lift?"]]},
+  {w:"Der Zug fällt aus", en:"the train is cancelled", tag:"wenn etwas schiefgeht", ex:[
+   ["Ausfall", "[[Der Zug fällt heute aus]].", "The train is cancelled today."],
+   ["verpasst", "[[Ich habe den Bus verpasst]].", "I've missed the bus."],
+   ["Gleis", "[[Auf welchem Gleis]] fährt der Zug nach Köln?", "Which platform does the train to Cologne leave from?"],
+   ["Durchsage", "[[Haben Sie die Durchsage verstanden]]?", "Did you understand the announcement?"],
+   ["verlaufen", "[[Ich habe mich verlaufen]].", "I've got lost."]]}
  ]}
 ]},
 {id:"smalltalk", de:"Wetter & Wochenende", en:"Weather and weekend small talk",
@@ -267,6 +353,34 @@ window.AS = [
    ["ruhig", "[[Ganz ruhig]] – ich habe nur ausgeschlafen.", "Very quiet – I just had a lie-in."],
    ["Pläne fragen", "[[Was hast du am Wochenende vor]]?", "What are you doing at the weekend?"],
    ["noch nichts geplant", "[[Ich weiß noch nicht]], vielleicht gehen wir ins Kino.", "I don't know yet, maybe we'll go to the cinema."]]}
+ ]},
+ {g:"Urlaub und Feste", gen:"holidays and celebrations", items:[
+  {w:"Wie war der Urlaub?", en:"how was your holiday?", tag:"nach dem Urlaub", ex:[
+   ["fragen", "[[Wie war der Urlaub]]?", "How was your holiday?"],
+   ["schön", "[[Wunderschön]] – wir hatten jeden Tag Sonne.", "Wonderful – we had sunshine every day."],
+   ["wohin", "[[Wo warst du denn]]?", "Where did you go?"],
+   ["erholt", "[[Du siehst richtig erholt aus]]!", "You look really rested!"],
+   ["zu kurz", "[[Leider viel zu kurz]].", "Unfortunately far too short."]]},
+  {w:"Was machst du an Weihnachten?", en:"what are you doing for Christmas?", tag:"Feiertage", ex:[
+   ["fragen", "[[Was machst du an Weihnachten]]?", "What are you doing for Christmas?"],
+   ["Familie", "[[Wir feiern mit der Familie]].", "We're celebrating with the family."],
+   ["eigene Feste", "[[Bei uns feiert man vor allem]] das Zuckerfest.", "At home we mainly celebrate Eid al-Fitr."],
+   ["Silvester", "[[Was machst du an Silvester]]?", "What are you doing on New Year's Eve?"],
+   ["Brückentag", "[[Am Freitag ist ein Brückentag]] – ich habe frei.", "Friday is a bridge day – I've got the day off."]]}
+ ]},
+ {g:"Neuigkeiten und Nachbarn", gen:"news and neighbours", items:[
+  {w:"Stell dir vor …", en:"guess what …", tag:"etwas erzählen", ex:[
+   ["Neuigkeit ankündigen", "[[Stell dir vor]], ich habe die Stelle bekommen!", "Guess what, I got the job!"],
+   ["fragen, ob bekannt", "[[Hast du schon gehört]]? Tom zieht um.", "Have you heard? Tom is moving."],
+   ["weißt du", "[[Weißt du was]]? Wir bekommen ein Baby!", "You know what? We're having a baby!"],
+   ["erzählen", "[[Erzähl mal]], was ist passiert?", "Tell me, what happened?"],
+   ["nicht glauben", "[[Das glaube ich nicht]]!", "I don't believe it!"]]},
+  {w:"Sind Sie neu hier?", en:"are you new here?", tag:"im Treppenhaus", ex:[
+   ["neu im Haus", "[[Sind Sie neu hier]]?", "Are you new here?"],
+   ["seit wann", "[[Wohnen Sie schon lange hier]]?", "Have you lived here long?"],
+   ["Stock", "[[Wir wohnen im dritten Stock]].", "We live on the third floor."],
+   ["Paket", "[[Ich habe ein Paket für Sie angenommen]].", "I've taken in a parcel for you."],
+   ["Hilfe anbieten", "[[Wenn Sie etwas brauchen, klingeln Sie einfach]].", "If you need anything, just ring the bell."]]}
  ]}
 ]},
 {id:"freunde", de:"Mit Freunden", en:"With friends",
@@ -339,6 +453,26 @@ window.AS = [
    ["Prüfung, Job", "[[Glückwunsch]] zur bestandenen Prüfung!", "Congratulations on passing the exam!"],
    ["Hochzeit oder Baby", "[[Herzlichen Glückwunsch zur]] Hochzeit!", "Congratulations on your wedding!"],
    ["Feste", "[[Frohe Weihnachten]] und einen guten Rutsch!", "Merry Christmas and a happy new year!"]]}
+ ]},
+ {g:"Feiern und schwere Zeiten", gen:"celebrating and hard times", items:[
+  {w:"Prost! / Zum Wohl!", en:"cheers!", tag:"anstoßen", ex:[
+   ["locker", "[[Prost]]!", "Cheers!"],
+   ["formell", "[[Zum Wohl]]!", "Cheers! (formal)"],
+   ["auf jemanden", "[[Auf dich]] und deinen neuen Job!", "To you and your new job!"],
+   ["Feier", "[[Lass uns feiern]]!", "Let's celebrate!"],
+   ["Neujahr", "[[Frohes neues Jahr]]!", "Happy New Year!"]]},
+  {w:"Mein Beileid", en:"my condolences", tag:"Mitgefühl zeigen", ex:[
+   ["Tod, formell", "[[Mein herzliches Beileid]].", "My sincere condolences."],
+   ["Tod, informell", "[[Es tut mir so leid]], das mit deinem Opa.", "I'm so sorry about your grandpa."],
+   ["an jemanden denken", "[[Ich denke an dich]].", "I'm thinking of you."],
+   ["Hilfe", "[[Wenn ich etwas tun kann, sag Bescheid]].", "If there's anything I can do, let me know."],
+   ["Kraft wünschen", "[[Ich wünsche dir viel Kraft]].", "I wish you lots of strength."]]},
+  {w:"Frohe Ostern!", en:"Happy Easter!", tag:"Feiertagswünsche", ex:[
+   ["Ostern", "[[Frohe Ostern]]!", "Happy Easter!"],
+   ["Feiertage", "[[Schöne Feiertage]]!", "Happy holidays!"],
+   ["Ramadan", "[[Ramadan Mubarak]] – einen gesegneten Ramadan!", "Ramadan Mubarak – a blessed Ramadan!"],
+   ["Hochzeitstag", "[[Alles Liebe zum Hochzeitstag]]!", "Happy wedding anniversary!"],
+   ["Ruhestand", "[[Alles Gute für den Ruhestand]]!", "All the best for your retirement!"]]}
  ]}
 ]},
 {id:"gespraech", de:"Im Gespräch", en:"In a conversation",
@@ -370,6 +504,20 @@ window.AS = [
    ["Wort fehlt", "[[Wie heißt das auf Deutsch]]?", "What's that called in German?"],
    ["also", "[[Also]], ich glaube, das ist eine gute Lösung.", "Well, I think that's a good solution."],
    ["ehrlich", "[[Ehrlich gesagt]] weiß ich das nicht genau.", "To be honest, I don't know exactly."]]}
+ ]},
+ {g:"Thema wechseln und beenden", gen:"changing the subject and ending", items:[
+  {w:"Übrigens …", en:"by the way …", tag:"das Thema wechseln", ex:[
+   ["neues Thema", "[[Übrigens]], hast du am Samstag Zeit?", "By the way, are you free on Saturday?"],
+   ["passend dazu", "[[Apropos]] Urlaub – wohin fahrt ihr dieses Jahr?", "Speaking of holidays – where are you going this year?"],
+   ["noch etwas", "[[Was ich noch sagen wollte]]: Morgen ist die Kantine zu.", "What I wanted to say: the canteen is closed tomorrow."],
+   ["zurück zum Thema", "[[Um noch mal auf]] den Termin [[zurückzukommen]] …", "To come back to the appointment …"],
+   ["Beispiel", "[[Zum Beispiel]] könnten wir mit dem Zug fahren.", "For example, we could go by train."]]},
+  {w:"Ich muss jetzt leider los", en:"I'm afraid I have to go now", tag:"ein Gespräch beenden", ex:[
+   ["los müssen", "[[Ich muss jetzt leider los]].", "I'm afraid I have to go now."],
+   ["formell", "[[Es war schön, mit Ihnen zu sprechen]].", "It was nice talking to you."],
+   ["später weiter", "[[Wir sprechen später weiter]], ja?", "Let's talk more later, okay?"],
+   ["Grüße ausrichten", "[[Grüß deine Frau von mir]]!", "Say hello to your wife for me!"],
+   ["melden", "[[Lass uns in Kontakt bleiben]]!", "Let's stay in touch!"]]}
  ]}
 ]},
 {id:"telefon", de:"Telefon & Nachrichten", en:"Phone and messages",
@@ -396,6 +544,26 @@ window.AS = [
    ["später antworten", "[[Ich melde mich später]]!", "I'll get back to you later!"],
    ["angekommen", "[[Bin gut angekommen]]!", "Arrived safely!"],
    ["kurz entschuldigen", "Sorry, [[hab deine Nachricht erst jetzt gesehen]].", "Sorry, only just saw your message."]]}
+ ]},
+ {g:"Erreichbar sein", gen:"being reachable", items:[
+  {w:"Ich habe dich nicht erreicht", en:"I couldn't reach you", tag:"Mailbox und Akku", ex:[
+   ["nicht erreicht", "[[Ich habe dich heute nicht erreicht]].", "I couldn't reach you today."],
+   ["Mailbox", "[[Sprich mir einfach auf die Mailbox]].", "Just leave me a voicemail."],
+   ["Akku", "[[Mein Akku ist fast leer]].", "My battery's almost dead."],
+   ["kein Netz", "[[Ich habe hier kein Netz]].", "I've got no signal here."],
+   ["verpasster Anruf", "[[Du hast angerufen]]? Ich war gerade unter der Dusche.", "You called? I was just in the shower."]]},
+  {w:"Hörst du mich?", en:"can you hear me?", tag:"Videoanruf", ex:[
+   ["Ton", "[[Hörst du mich]]?", "Can you hear me?"],
+   ["stumm", "[[Du bist stumm geschaltet]].", "You're on mute."],
+   ["Bild", "[[Dein Bild ist eingefroren]].", "Your picture has frozen."],
+   ["Bildschirm", "[[Kannst du deinen Bildschirm teilen]]?", "Can you share your screen?"],
+   ["neu verbinden", "[[Ich wähle mich noch mal ein]].", "I'll dial in again."]]},
+  {w:"Ich möchte einen Termin vereinbaren", en:"I'd like to make an appointment", tag:"Termin am Telefon", ex:[
+   ["Grund", "[[Ich möchte einen Termin vereinbaren]].", "I'd like to make an appointment."],
+   ["frei", "[[Wann haben Sie etwas frei]]?", "When do you have something free?"],
+   ["möglichst bald", "[[Geht es vielleicht schon diese Woche]]?", "Is this week possible?"],
+   ["wiederholen", "[[Also am Mittwoch um 9 Uhr]], richtig?", "So Wednesday at 9 o'clock, right?"],
+   ["buchstabieren lassen", "[[Wie schreibt man das]]?", "How do you spell that?"]]}
  ]}
 ]},
 {id:"befinden", de:"Wie es mir geht", en:"How I feel",
@@ -422,6 +590,28 @@ window.AS = [
    ["passiert", "[[Das kann jedem passieren]].", "That can happen to anyone."],
    ["Mut machen", "[[Kopf hoch]]!", "Chin up!"],
    ["Hilfe anbieten", "[[Wenn du reden willst]], ich bin da.", "If you want to talk, I'm here."]]}
+ ]},
+ {g:"Gesundheit", gen:"health", items:[
+  {w:"Ich habe Kopfschmerzen", en:"I have a headache", tag:"beim Arzt und im Alltag", ex:[
+   ["Schmerzen", "[[Ich habe Kopfschmerzen]].", "I have a headache."],
+   ["wehtun", "[[Mir tut der Rücken weh]].", "My back hurts."],
+   ["Fieber", "[[Ich habe seit gestern Fieber]].", "I've had a fever since yesterday."],
+   ["erkältet", "[[Ich habe mich erkältet]].", "I've caught a cold."],
+   ["besser", "[[Es geht mir schon besser]], danke.", "I'm already feeling better, thanks."]]}
+ ]},
+ {g:"Gute und schlechte Laune", gen:"good and bad moods", items:[
+  {w:"Ich freue mich so!", en:"I'm so happy!", tag:"positive Gefühle", ex:[
+   ["Freude", "[[Ich freue mich so]]!", "I'm so happy!"],
+   ["gute Laune, locker", "[[Ich bin heute gut drauf]].", "I'm in a good mood today."],
+   ["erleichtert", "[[Ich bin so erleichtert]]!", "I'm so relieved!"],
+   ["stolz", "[[Ich bin stolz auf dich]]!", "I'm proud of you!"],
+   ["glücklich", "[[Ich bin richtig glücklich]] hier.", "I'm really happy here."]]},
+  {w:"Das ärgert mich", en:"that annoys me", tag:"negative Gefühle", ex:[
+   ["Ärger", "[[Das ärgert mich]] wirklich.", "That really annoys me."],
+   ["enttäuscht", "[[Ich bin enttäuscht]].", "I'm disappointed."],
+   ["nerven, umgangssprachlich", "[[Das nervt]]!", "That's annoying!"],
+   ["wütend, umgangssprachlich", "[[Ich bin total sauer]].", "I'm really angry."],
+   ["Sorgen", "[[Ich mache mir Sorgen um]] meinen Vater.", "I'm worried about my father."]]}
  ]}
 ]},
 {id:"bitten", de:"Bitten & Hilfe", en:"Requests and help",
@@ -440,6 +630,34 @@ window.AS = [
    ["Hilfe annehmen", "Ja, [[das wäre nett]]!", "Yes, that would be kind!"],
    ["Hilfe ablehnen", "[[Danke, es geht schon]].", "Thanks, I can manage."],
    ["Bescheid sagen", "[[Sag Bescheid]], wenn du etwas brauchst!", "Let me know if you need anything!"]]}
+ ]},
+ {g:"Erlaubnis und Leihen", gen:"permission and borrowing", items:[
+  {w:"Stört es Sie, wenn …?", en:"do you mind if …?", tag:"um Erlaubnis fragen", ex:[
+   ["höflich", "[[Stört es Sie, wenn]] ich das Fenster aufmache?", "Do you mind if I open the window?"],
+   ["informell", "[[Ist es okay, wenn]] ich etwas später komme?", "Is it okay if I come a bit later?"],
+   ["dürfen", "[[Darf ich hier]] parken?", "May I park here?"],
+   ["Antwort ja", "[[Ja, natürlich]]!", "Yes, of course!"],
+   ["Antwort nein", "[[Lieber nicht]], tut mir leid.", "I'd rather you didn't, sorry."]]},
+  {w:"Kannst du mir … leihen?", en:"can you lend me …?", tag:"etwas leihen", ex:[
+   ["leihen", "[[Kannst du mir]] dein Fahrrad [[leihen]]?", "Can you lend me your bike?"],
+   ["kurz brauchen", "[[Hast du mal einen Stift]]?", "Have you got a pen?"],
+   ["zurückgeben", "[[Ich gebe es dir morgen zurück]].", "I'll give it back to you tomorrow."],
+   ["borgen", "[[Darf ich mir kurz]] dein Ladekabel [[ausleihen]]?", "May I borrow your charger for a moment?"],
+   ["Geld", "[[Kannst du mir zehn Euro leihen]]? Ich habe mein Portemonnaie vergessen.", "Can you lend me ten euros? I forgot my wallet."]]}
+ ]},
+ {g:"Hilfe und Beschwerden", gen:"help and complaints", items:[
+  {w:"Können Sie mir das erklären?", en:"can you explain that to me?", tag:"Hilfe bei Ämtern", ex:[
+   ["erklären", "[[Können Sie mir das bitte erklären]]?", "Can you explain that to me, please?"],
+   ["nicht verstehen", "[[Ich verstehe dieses Formular nicht]].", "I don't understand this form."],
+   ["wo", "[[Wo bekomme ich]] das Formular?", "Where do I get the form?"],
+   ["zuständig", "[[Wer ist dafür zuständig]]?", "Who is responsible for that?"],
+   ["Dolmetscher", "[[Gibt es hier jemanden, der Englisch spricht]]?", "Is there anyone here who speaks English?"]]},
+  {w:"Leider funktioniert … nicht", en:"unfortunately … doesn't work", tag:"höflich beschweren", ex:[
+   ["Problem nennen", "[[Leider funktioniert]] die Heizung [[nicht]].", "Unfortunately the heating doesn't work."],
+   ["höflich einleiten", "[[Entschuldigung, aber]] das ist nicht meine Bestellung.", "Excuse me, but this isn't my order."],
+   ["prüfen", "[[Können Sie das bitte prüfen]]?", "Could you please check that?"],
+   ["beschweren", "[[Ich möchte mich beschweren]].", "I'd like to make a complaint."],
+   ["Lösung", "[[Was können Sie da machen]]?", "What can you do about it?"]]}
  ]}
 ]},
 {id:"einkaufen", de:"Einkaufen & Restaurant", en:"Shopping and eating out",
@@ -458,6 +676,40 @@ window.AS = [
    ["mit Karte", "[[Kann ich mit Karte zahlen]]?", "Can I pay by card?"],
    ["Trinkgeld", "Das macht 18,50 Euro. – [[Machen Sie 20]].", "That's 18.50 euros. – Make it 20."],
    ["Rest behalten", "Hier sind 20 Euro. [[Stimmt so]].", "Here's 20 euros. Keep the change."]]}
+ ]},
+ {g:"Im Geschäft", gen:"in the shop", items:[
+  {w:"Wo finde ich …?", en:"where can I find …?", tag:"suchen und anprobieren", ex:[
+   ["suchen", "[[Wo finde ich]] die Nudeln?", "Where can I find the pasta?"],
+   ["andere Farbe", "[[Haben Sie das auch in]] Blau?", "Do you have this in blue too?"],
+   ["anprobieren", "[[Kann ich das anprobieren]]?", "Can I try this on?"],
+   ["Umkleide", "[[Wo sind die Umkleidekabinen]]?", "Where are the changing rooms?"],
+   ["passt", "[[Das passt mir nicht]] – haben Sie eine Nummer größer?", "It doesn't fit me – do you have a size bigger?"]]},
+  {w:"Was kostet das?", en:"how much is it?", tag:"Preise", ex:[
+   ["Preis", "[[Was kostet das]]?", "How much is this?"],
+   ["Angebot", "[[Das ist diese Woche im Angebot]].", "It's on offer this week."],
+   ["Rabatt", "[[Gibt es dafür Rabatt]]?", "Is there a discount on it?"],
+   ["zu teuer", "[[Das ist mir zu teuer]].", "That's too expensive for me."],
+   ["günstig", "[[Das ist aber günstig]]!", "That's really cheap!"]]},
+  {w:"Kann ich das umtauschen?", en:"can I exchange this?", tag:"Kasse und Umtausch", ex:[
+   ["umtauschen", "[[Kann ich das umtauschen]]?", "Can I exchange this?"],
+   ["Kassenbon", "[[Haben Sie den Kassenbon noch]]?", "Do you still have the receipt?"],
+   ["zurückgeben", "[[Ich möchte das zurückgeben]].", "I'd like to return this."],
+   ["Tüte", "[[Brauchen Sie eine Tüte]]? – Nein, danke.", "Do you need a bag? – No, thanks."],
+   ["Pfand", "[[Wo kann ich die Pfandflaschen abgeben]]?", "Where can I return the deposit bottles?"]]}
+ ]},
+ {g:"Im Restaurant", gen:"in a restaurant", items:[
+  {w:"Haben Sie einen Tisch für zwei?", en:"do you have a table for two?", tag:"ankommen und bestellen", ex:[
+   ["Tisch", "[[Haben Sie einen Tisch für zwei]]?", "Do you have a table for two?"],
+   ["reserviert", "[[Ich habe einen Tisch reserviert]], auf den Namen Becker.", "I've booked a table, under the name Becker."],
+   ["Speisekarte", "[[Könnten wir bitte die Speisekarte haben]]?", "Could we have the menu, please?"],
+   ["Empfehlung", "[[Was können Sie empfehlen]]?", "What can you recommend?"],
+   ["Ernährung", "[[Ich esse kein Fleisch]] – haben Sie etwas Vegetarisches?", "I don't eat meat – do you have anything vegetarian?"]]},
+  {w:"Hat es geschmeckt?", en:"did you enjoy your meal?", tag:"nach dem Essen", ex:[
+   ["Kellner fragt", "[[Hat es Ihnen geschmeckt]]?", "Did you enjoy your meal?"],
+   ["Antwort", "[[Sehr gut, danke]]!", "Very good, thanks!"],
+   ["Problem", "[[Das Essen ist leider kalt]].", "Unfortunately the food is cold."],
+   ["mitnehmen", "[[Kann ich den Rest mitnehmen]]?", "Can I take the rest with me?"],
+   ["noch etwas", "[[Noch ein Wasser, bitte]].", "Another water, please."]]}
  ]}
 ]},
 {id:"arbeit", de:"Bei der Arbeit", en:"At work",
@@ -476,6 +728,34 @@ window.AS = [
    ["Wunsch zum Feierabend", "[[Schönen Feierabend]]! Bis morgen!", "Have a nice evening! See you tomorrow!"],
    ["Pause", "Lass uns kurz [[Pause machen]].", "Let's take a short break."],
    ["Arbeit gut gemacht", "[[Gut gemacht]]! Danke für deine Hilfe.", "Well done! Thanks for your help."]]}
+ ]},
+ {g:"Zeiten, Urlaub, Krankheit", gen:"hours, holidays, sick leave", items:[
+  {w:"Ich habe Frühschicht", en:"I'm on the early shift", tag:"Arbeitszeiten", ex:[
+   ["Schicht", "[[Ich habe diese Woche Frühschicht]].", "I'm on the early shift this week."],
+   ["Überstunden", "[[Ich mache heute Überstunden]].", "I'm doing overtime today."],
+   ["Pause", "[[Wann ist Mittagspause]]?", "When is the lunch break?"],
+   ["Teilzeit", "[[Ich arbeite Teilzeit]], 25 Stunden pro Woche.", "I work part-time, 25 hours a week."],
+   ["frei", "[[Morgen habe ich frei]].", "I'm off tomorrow."]]},
+  {w:"Ich nehme Urlaub", en:"I'm taking holiday", tag:"Urlaub und Krankheit", ex:[
+   ["Urlaub", "[[Ich nehme nächste Woche Urlaub]].", "I'm taking holiday next week."],
+   ["beantragen", "[[Ich habe meinen Urlaub schon beantragt]].", "I've already applied for my holiday."],
+   ["krank", "[[Ich bin bis Freitag krankgeschrieben]].", "I'm signed off sick until Friday."],
+   ["Vertretung", "[[Wer vertritt mich]], wenn ich weg bin?", "Who'll cover for me while I'm away?"],
+   ["zurück", "[[Ab Montag bin ich wieder da]].", "I'll be back from Monday."]]}
+ ]},
+ {g:"Neu im Job", gen:"new in the job", items:[
+  {w:"Ich bin neu hier", en:"I'm new here", tag:"die ersten Tage", ex:[
+   ["vorstellen", "Hallo, [[ich bin neu hier]] – ich heiße Tom.", "Hi, I'm new here – my name is Tom."],
+   ["zuständig", "[[Wer ist hier für]] die Urlaubsplanung [[zuständig]]?", "Who's in charge of holiday planning here?"],
+   ["zeigen", "[[Können Sie mir zeigen, wie]] das funktioniert?", "Can you show me how that works?"],
+   ["finden", "[[Wo finde ich]] die Toiletten?", "Where can I find the toilets?"],
+   ["fragen dürfen", "[[Darf ich Sie etwas fragen]]?", "May I ask you something?"]]},
+  {w:"Gute Arbeit!", en:"good work!", tag:"Lob und Feedback", ex:[
+   ["loben", "[[Gute Arbeit]]!", "Good work!"],
+   ["danke für Feedback", "[[Danke für das Feedback]].", "Thanks for the feedback."],
+   ["besser machen", "[[Was kann ich besser machen]]?", "What can I do better?"],
+   ["lernen", "[[Das merke ich mir]].", "I'll remember that."],
+   ["Hilfe annehmen", "[[Danke, dass du mir das gezeigt hast]].", "Thanks for showing me that."]]}
  ]}
 ]},
 {id:"buero", de:"Im Büro", en:"At the office",
@@ -546,6 +826,34 @@ window.AS = [
    ["Licht", "[[Mach bitte das Licht aus]].", "Please turn the light off."],
    ["suchen", "[[Hast du]] meinen Schlüssel [[gesehen]]?", "Have you seen my key?"],
    ["jetzt gleich", "[[Ich mache das gleich]].", "I'll do it in a minute."]]}
+ ]},
+ {g:"Morgens und abends", gen:"mornings and evenings", items:[
+  {w:"Aufstehen!", en:"time to get up!", tag:"morgens", ex:[
+   ["wecken", "[[Aufstehen]], es ist schon sieben!", "Time to get up, it's already seven!"],
+   ["geschlafen", "[[Hast du gut geschlafen]]?", "Did you sleep well?"],
+   ["schnell", "[[Beeil dich, sonst kommst du zu spät]]!", "Hurry up or you'll be late!"],
+   ["alles dabei", "[[Hast du alles]]? Schlüssel, Handy, Geld?", "Have you got everything? Keys, phone, money?"],
+   ["Frühstück", "[[Frühstück ist fertig]]!", "Breakfast is ready!"]]},
+  {w:"Zeit fürs Bett!", en:"time for bed!", tag:"abends", ex:[
+   ["Abendessen", "[[Was gibt's heute zum Abendessen]]?", "What's for dinner tonight?"],
+   ["Zähne", "[[Zähne putzen]], bitte!", "Brush your teeth, please!"],
+   ["Bett", "[[Zeit fürs Bett]]!", "Time for bed!"],
+   ["Licht", "[[Soll ich das Licht anlassen]]?", "Shall I leave the light on?"],
+   ["schlafen", "[[Schlaf schön]]!", "Sleep well!"]]}
+ ]},
+ {g:"Haushalt und Besuch", gen:"housework and visitors", items:[
+  {w:"Wir haben keine Milch mehr", en:"we've run out of milk", tag:"Haushalt", ex:[
+   ["leer", "[[Wir haben keine Milch mehr]].", "We've run out of milk."],
+   ["einkaufen", "[[Ich gehe einkaufen]] – brauchst du was?", "I'm going shopping – do you need anything?"],
+   ["Wäsche", "[[Kannst du bitte die Wäsche aufhängen]]?", "Can you hang the washing up, please?"],
+   ["Spülmaschine", "[[Die Spülmaschine ist fertig]] – räumst du sie aus?", "The dishwasher's finished – will you empty it?"],
+   ["kaputt", "[[Die Waschmaschine ist kaputt]].", "The washing machine is broken."]]},
+  {w:"Es klingelt!", en:"there's the doorbell!", tag:"Besuch kommt", ex:[
+   ["Klingel", "[[Es klingelt]]!", "There's the doorbell!"],
+   ["aufmachen", "[[Machst du bitte auf]]?", "Can you get the door, please?"],
+   ["wer", "[[Wer ist da]]?", "Who's there?"],
+   ["Schuhe", "[[Zieh bitte die Schuhe aus]].", "Please take your shoes off."],
+   ["wie zu Hause", "[[Fühl dich wie zu Hause]]!", "Make yourself at home!"]]}
  ]}
 ]}
 ];
@@ -858,5 +1166,180 @@ window.ASEN = {
  "sehr müde, umgangssprachlich":"very tired, colloquial",
  "zu viel":"too much",
  "nicht so wichtig":"not so important",
- "so lala":"so-so"
+ "so lala":"so-so",
+ "jemanden vorstellen":"introducing someone",
+ "Namen fragen":"asking someone's name",
+ "Namen vergessen":"forgotten the name",
+ "freuen":"being glad",
+ "anbieten":"offering",
+ "bequem":"comfortable",
+ "Muttersprache":"native language",
+ "wenig":"a little",
+ "Kompliment":"compliment",
+ "Sport":"sport",
+ "Lieblings-":"favourite …",
+ "mögen":"liking",
+ "hilfreich":"helpful",
+ "ohne dich":"without you",
+ "sehr schätzen":"really appreciating",
+ "finden":"finden (think)",
+ "mit dass":"with dass",
+ "glauben":"believing",
+ "ja, vermutlich":"yes, probably",
+ "widersprechen, höflich":"disagreeing politely",
+ "teilweise":"partly",
+ "zustimmen":"agreeing",
+ "Argument":"argument",
+ "Vor- und Nachteile":"pros and cons",
+ "zusagen, locker":"accepting, casual",
+ "gern kommen":"happy to come",
+ "etwas mitbringen":"bringing something",
+ "mitbringen anbieten":"offering to bring something",
+ "fest":"settled",
+ "fast fertig":"almost done",
+ "kein Stress":"no stress",
+ "Wochentag":"day of the week",
+ "nächste Woche":"next week",
+ "Wochenende":"weekend",
+ "Taxi":"taxi",
+ "anhalten":"stopping",
+ "parken":"parking",
+ "tanken":"getting petrol",
+ "mitnehmen":"giving a lift",
+ "Ausfall":"cancellation",
+ "verpasst":"missed",
+ "Gleis":"platform",
+ "Durchsage":"announcement",
+ "verlaufen":"lost",
+ "wohin":"where to",
+ "erholt":"rested",
+ "zu kurz":"too short",
+ "Familie":"family",
+ "eigene Feste":"your own celebrations",
+ "Silvester":"New Year's Eve",
+ "Brückentag":"bridge day",
+ "Neuigkeit ankündigen":"announcing news",
+ "fragen, ob bekannt":"asking if they've heard",
+ "weißt du":"you know",
+ "erzählen":"telling",
+ "neu im Haus":"new in the building",
+ "seit wann":"since when",
+ "Stock":"floor",
+ "Paket":"parcel",
+ "auf jemanden":"to someone",
+ "Feier":"party",
+ "Neujahr":"New Year",
+ "Tod, formell":"a death, formal",
+ "Tod, informell":"a death, informal",
+ "an jemanden denken":"thinking of someone",
+ "Hilfe":"help",
+ "Kraft wünschen":"wishing strength",
+ "Ostern":"Easter",
+ "Feiertage":"holidays",
+ "Ramadan":"Ramadan",
+ "Hochzeitstag":"wedding anniversary",
+ "Ruhestand":"retirement",
+ "neues Thema":"new topic",
+ "passend dazu":"speaking of which",
+ "noch etwas":"one more thing",
+ "zurück zum Thema":"back to the topic",
+ "los müssen":"having to go",
+ "später weiter":"continuing later",
+ "Grüße ausrichten":"sending regards",
+ "melden":"keeping in touch",
+ "nicht erreicht":"couldn't reach",
+ "Mailbox":"voicemail",
+ "Akku":"battery",
+ "kein Netz":"no signal",
+ "verpasster Anruf":"missed call",
+ "Ton":"sound",
+ "stumm":"muted",
+ "Bild":"picture",
+ "Bildschirm":"screen",
+ "neu verbinden":"reconnecting",
+ "frei":"free",
+ "möglichst bald":"as soon as possible",
+ "buchstabieren lassen":"asking for the spelling",
+ "Schmerzen":"pain",
+ "wehtun":"hurting",
+ "Fieber":"fever",
+ "erkältet":"a cold",
+ "besser":"better",
+ "Freude":"joy",
+ "gute Laune, locker":"good mood, casual",
+ "erleichtert":"relieved",
+ "stolz":"proud",
+ "glücklich":"happy",
+ "enttäuscht":"disappointed",
+ "nerven, umgangssprachlich":"annoying, colloquial",
+ "wütend, umgangssprachlich":"angry, colloquial",
+ "Sorgen":"worries",
+ "dürfen":"being allowed",
+ "leihen":"lending",
+ "kurz brauchen":"needing briefly",
+ "zurückgeben":"giving back",
+ "borgen":"borrowing",
+ "Geld":"money",
+ "erklären":"explaining",
+ "nicht verstehen":"not understanding",
+ "wo":"where",
+ "zuständig":"responsible",
+ "Dolmetscher":"interpreter",
+ "Problem nennen":"naming the problem",
+ "höflich einleiten":"polite opening",
+ "beschweren":"complaining",
+ "Lösung":"solution",
+ "andere Farbe":"another colour",
+ "anprobieren":"trying on",
+ "Umkleide":"changing room",
+ "Preis":"price",
+ "Angebot":"special offer",
+ "Rabatt":"discount",
+ "zu teuer":"too expensive",
+ "günstig":"cheap",
+ "umtauschen":"exchanging",
+ "Kassenbon":"receipt",
+ "Tüte":"bag",
+ "Pfand":"bottle deposit",
+ "Tisch":"table",
+ "reserviert":"booked",
+ "Speisekarte":"menu",
+ "Empfehlung":"recommendation",
+ "Ernährung":"diet",
+ "Kellner fragt":"the waiter asks",
+ "Problem":"problem",
+ "Schicht":"shift",
+ "Überstunden":"overtime",
+ "Teilzeit":"part-time",
+ "Urlaub":"holiday",
+ "beantragen":"applying for",
+ "Vertretung":"cover",
+ "zurück":"back",
+ "vorstellen":"introducing yourself",
+ "zeigen":"showing",
+ "fragen dürfen":"may I ask",
+ "loben":"praising",
+ "danke für Feedback":"thanks for feedback",
+ "besser machen":"doing better",
+ "lernen":"learning",
+ "wecken":"waking someone up",
+ "geschlafen":"slept",
+ "schnell":"quickly",
+ "alles dabei":"got everything",
+ "Frühstück":"breakfast",
+ "Abendessen":"dinner",
+ "Zähne":"teeth",
+ "Bett":"bed",
+ "schlafen":"sleeping",
+ "leer":"run out",
+ "Wäsche":"laundry",
+ "Spülmaschine":"dishwasher",
+ "kaputt":"broken",
+ "Klingel":"doorbell",
+ "aufmachen":"opening the door",
+ "wer":"who",
+ "Schuhe":"shoes",
+ "wie zu Hause":"at home",
+ "noch":"still to go",
+ "einkaufen":"going shopping"
 };

@@ -1,5 +1,8 @@
 # Releases
 
+## 1.32.0 — 2026-10-12
+- Alltagssätze for B1: every situation now has at least 6 groups and about 30 phrases – 44 new groups, 220 new phrases (now 111 groups, 552 phrases). New for example: sich vorstellen and Gäste empfangen, Sprache und Hobbys, Wertschätzung, Meinung sagen und widersprechen, zusagen, Dauer und Datum, Taxi und Zugausfall, Urlaub, Feiertage, Neuigkeiten, Nachbarn, Anstoßen, Beileid, das Thema wechseln und ein Gespräch beenden, Mailbox und Videoanruf, Termin am Telefon, Gesundheit, gute und schlechte Laune, Erlaubnis und Leihen, Hilfe bei Ämtern, höflich beschweren, im Geschäft, Preise, Umtausch und Pfand, im Restaurant, Schichten, Urlaub und Krankmeldung, neu im Job, Feedback, morgens und abends, Haushalt und Besuch
+
 ## 1.31.0 — 2026-10-12
 - Alltagssätze: two new situations, 65 more phrases (now 18 situations, 332 phrases) – Im Büro (Hast du kurz eine Minute?, Wie läuft's?, Können wir kurz sprechen?, Gute Frage!, Bis wann brauchst du das?, Ist erledigt!, Anbei finden Sie …, Ich setze dich in Kopie, Mein Computer hängt) and Mit Freunden (Na, alles gut?, Krass!, Echt jetzt?, Kein Ding!, Lust auf Kino?, Ich hol dich ab, Das geht auf mich, Ich drück dir die Daumen!, Mach dir keinen Kopf; colloquial words like Bock, kaputt, pleite are labelled umgangssprachlich)
 
