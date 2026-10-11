@@ -10,6 +10,7 @@
      whole     points for the whole part (writing / speaking)
      none      practice material only, no points of its own
      each      what one card is worth, when "… für den Teil" is not right
+     lvl       no points, rated as a level (DTZ Schreiben, Sprechen: A2 or B1)
      f         raw points → exam points (A1: × 5/3, so 15 raw points = 25 points);
                parts with f are shown in exam points, the raw points small */
 (function(){
@@ -20,11 +21,11 @@ const e=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&g
 const Exam={
  pt,
  /* What one question on a card is worth. */
- each(x){if(x.none)return"";if(x.each)return x.each;
+ each(x){if(x.none)return"";if(x.each)return x.each;if(x.lvl)return x.lvl;
   if(x.f)return x.whole!=null?`≈ ${pt(x.whole*x.f)} für den Teil`:rp(x.per);
   return x.whole!=null?`${pt(x.whole)} für den Teil`:pt(x.per)},
  /* The part as a whole, for the list and the ⓘ panel. */
- part(x){if(x.none)return"Keine eigenen Punkte";
+ part(x){if(x.none)return"Keine eigenen Punkte";if(x.lvl)return x.lvl;
   if(x.f){const raw=x.whole!=null?x.whole:x.n*x.per;return `≈ ${pt(raw*x.f)}`+(x.whole!=null?` für den ganzen Teil (${rp(raw)})`:` (${x.n} Aufgaben × ${rp(x.per)})`)}
   return x.whole!=null?`${pt(x.whole)} für den ganzen Teil`:`${x.n} Aufgaben × ${pt(x.per)} = ${pt(x.n*x.per)}`},
  line(x){return `<div class="xline"><b>${e(this.part(x))}</b>${x.play?` · ${e(x.play)}`:""}${x.note?` · ${e(x.note)}`:""}</div>`},
