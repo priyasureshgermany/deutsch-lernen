@@ -68,8 +68,9 @@ const GRUSS=/(grüße|grüßen|gruß|grüsse|grüse|gruse|grusse|(liebe|viele|he
 const INTRO=/(schreibe|vielen dank|danke für|herzlichen dank|wie geht|hiermit|gelesen|gesehen|gekauft|gebucht|bekommen|erhalten|teilgenommen|mitglied|ich möchte|interessiere|mit diesem brief|wende mich|leider|beschwer|anfrage)/i;
 const CLOSE=/(ich freue mich|ich hoffe|ich warte|im voraus|über eine (baldige |schnelle )?antwort|antworten sie|melden sie sich|melde dich|schreib(e)? mir|bis bald|bis dann|wir sehen uns|würde mich freuen|wünsche|alles gute|für ihre (hilfe|mühe)|vielen dank für ihre|ich bitte um)/i;
 const LINK=["weil","dass","denn","deshalb","deswegen","darum","aber","wenn","obwohl","außerdem","trotzdem","damit","sondern","dann","danach","zuerst","später","ob","als","während","bis","leider","zum beispiel","also","oder","und dann"];
+const MINOR=["PUNCTUATION","CORRESPONDENCE"];   /* shown, but no points lost */
 const SKIP_CAT=["TYPOGRAPHY","STYLE","REDUNDANCY","COLLOQUIALISMS","EMPFOHLENE_RECHTSCHREIBUNG","GENDER_NEUTRALITY","WIKIPEDIA"];
-const KIND={TYPOS:["Rechtschreibung","spelling"],CASING:["Groß- und Kleinschreibung","capital letters"],GRAMMAR:["Grammatik","grammar"],CONFUSED_WORDS:["Wortwahl","word choice"],COMPOUNDING:["Zusammen-/Getrenntschreibung","compound words"],PUNCTUATION:["Zeichensetzung","punctuation"]};
+const KIND={TYPOS:["Rechtschreibung","spelling"],CASING:["Groß- und Kleinschreibung","capital letters"],GRAMMAR:["Grammatik","grammar"],CONFUSED_WORDS:["Wortwahl","word choice"],COMPOUNDING:["Zusammen-/Getrenntschreibung","compound words"],PUNCTUATION:["Zeichensetzung","punctuation"],CORRESPONDENCE:["Briefform","letter form"]};
 
 /* The app's own checks for typical B1 mistakes, which the free LanguageTool
    misses; they run offline too. g: the group that is wrong, r: the fix. */
@@ -83,7 +84,7 @@ const RULES=[
  {rx:B+"(?:[Ll]iebe|[Vv]iele|[Hh]erzliche|[Bb]este|[Ss]chöne) ((?:[Gg]roße|[Gg]rosse|[Gg]rüse|[Gg]rüsse|[Gg]ruse|[Gg]russe|[Gg]ruße)"+W+"(?:,(?=[ \\t]*(?:\\n|$|[A-ZÄÖÜ])))?)",g:2,r:()=>"Grüße",
   de:"Der Gruß am Ende heißt „Liebe Grüße“ / „Viele Grüße“ – mit ü und ß, ohne Komma danach. „große“ bedeutet etwas anderes (groß = big).",en:"The sign-off is “Liebe Grüße” / “Viele Grüße” (with ü and ß, no comma after it); “große” means “big”."},
  /* the sign-off stands alone: no comma, the name on the next line (DIN 5008) */
- {rx:B+"(?:[Ll]iebe|[Vv]iele|[Hh]erzliche|[Bb]este|[Ss]chöne|[Ff]reundliche|[Ff]reundlichen) ((?:Grüße|Grüßen|Gruß),)(?=[ \\t]*(?:\\n|$|[A-ZÄÖÜ]))",g:2,r:m=>m.slice(0,-1),
+ {rx:B+"(?:[Ll]iebe|[Vv]iele|[Hh]erzliche|[Bb]este|[Ss]chöne|[Ff]reundliche|[Ff]reundlichen) ((?:Grüße|Grüßen|Gruß),)(?=[ \\t]*(?:\\n|$|[A-ZÄÖÜ]))",g:2,r:m=>m.slice(0,-1),minor:true,
   de:"Nach dem Gruß steht im Deutschen kein Komma: „Viele Grüße“ / „Mit freundlichen Grüßen“ – und in der nächsten Zeile dein Name.",en:"In German there is no comma after the sign-off (“Viele Grüße”, “Mit freundlichen Grüßen”); your name goes on the next line."},
  {rx:"(freue mich|freuen uns|hoffe|glaube|denke|finde|weiß|wusste|sicher|schade|toll|froh|traurig|gesagt|gehört|gelesen),? (das) (?="+PRON+")",g:2,r:()=>"dass",
   de:"Nach „ich freue mich, hoffe, glaube, weiß …“ kommt die Konjunktion „dass“ (mit ss); „das“ ist Artikel oder Pronomen.",en:"After freuen, hoffen, glauben, wissen … the conjunction is “dass”."},
@@ -105,7 +106,7 @@ const RULES=[
  {rx:"(^|[.!?\\n]\\s*)(Wann) (?=(?:ich|du|er|es|wir|ihr|man|Sie|sie)"+W+")",g:2,r:()=>"Wenn",
   de:"„Wann“ fragt nach der Zeit (Wann kommst du?). Für „falls / immer dann“ im Nebensatz: „Wenn ich Zeit habe, …“.",en:"“wann” asks when; for “if / whenever” use “wenn”."}];
 function own(t){const out=[];RULES.forEach(R=>{const re=new RegExp(R.rx,"gd");let m;
- while((m=re.exec(t))){const [a,b]=m.indices[R.g];out.push({o:a,l:b-a,msg:R.de,en:R.en,rep:[R.r(m[R.g])],cat:"GRAMMAR",rule:"OWN"});if(re.lastIndex===m.index)re.lastIndex++}});
+ while((m=re.exec(t))){const [a,b]=m.indices[R.g];out.push({o:a,l:b-a,msg:R.de,en:R.en,rep:[R.r(m[R.g])],cat:R.minor?"PUNCTUATION":"GRAMMAR",rule:"OWN"});if(re.lastIndex===m.index)re.lastIndex++}});
  return out}
 
 const wc=s=>(String(s).match(/[A-Za-zÄÖÜäöüß0-9]+/g)||[]).length;
@@ -182,10 +183,16 @@ function analyse(p,tid,text,lt,fill){
  an.errs.forEach(e=>{bestRep(e);e.why=explain(e,t)});
  /* a one-word slip gets one-word fixes first ("Wohnungssuche", not "Wohnung suche") */
  an.errs.forEach(e=>{if(!/\s/.test(e.w))e.rep=e.rep.filter(r=>!/\s/.test(r)).concat(e.rep.filter(r=>/\s/.test(r)))});
+ /* fair marking, as a telc examiner would: punctuation and letter-format slips
+    are shown but cost nothing, and the same slip made again counts once */
+ const seen=new Set();
+ an.errs.forEach(e=>{if(MINOR.includes(e.cat)){e.free="minor";return}
+  const key=e.w.toLowerCase()+"→"+(e.rep[0]||"").toLowerCase();if(seen.has(key))e.free="again";else seen.add(key)});
+ an.counted=an.errs.filter(e=>!e.free).length;
  if(an.ltDone){
-  const per=words?an.errs.length/words*100:0;an.per100=per;
+  const per=words?an.counted/words*100:0;an.per100=per;
   if(b1){let k3=!words?0:per<=3?15:per<=7?10:per<=12?5:0;if(an.short)k3=Math.min(k3,5);an.auto.k3=k3}
-  const by={};an.errs.forEach(e=>{const k=e.kind[0];by[k]=by[k]||{n:0,kind:e.kind};by[k].n++});
+  const by={};an.errs.filter(e=>!e.free).forEach(e=>{const k=e.kind[0];by[k]=by[k]||{n:0,kind:e.kind};by[k].n++});
   Object.values(by).sort((a,b)=>b.n-a.n).slice(0,2).forEach(x=>an.tips.push([`Achte auf ${x.kind[0]}: ${x.n} ${x.n===1?"Fehler":"Fehler"} – lies deinen Text am Ende noch einmal genau durch.`,`Watch your ${x.kind[1]}: ${x.n} mistake${x.n===1?"":"s"}`]))}
  if(!b1&&need&&words<need*.7)an.tips.push([`Schreib etwas mehr: ${words} von etwa ${need} Wörtern.`,`Write a bit more: ${words} of about ${need} words.`]);
  return an}

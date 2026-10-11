@@ -389,7 +389,7 @@ const EDIT=new Set();
   const opts=id=>edit(id,`<div class="tz-opts">${row(id).opts.map(([v,l])=>`<button type="button" class="tz-opt" data-sa="${k}" data-id="${id}" data-v="${v}" aria-pressed="${val(id)!=null&&+val(id)===v}">${esc(l)} (${P(v)})</button>`).join("")}${how(id)}</div>`);
   const en=s=>`<span class="sw-en">${esc(s)}</span>`;
   const chk=x=>`<li class="${x.ok?"ok":x.half?"half":"no"}"><span>${x.ok?"✓":x.half?"~":"✗"}</span><div>${esc(x.de)}${en(x.en)}${x.ok?"":`<div class="sw-tip">${esc(x.tip[0])}</div>`}</div></li>`;
-  const list=e=>`<ol class="sw-errs">${e.map(e=>`<li><b class="sw-no">${e.n}</b><div><div class="sw-fix"><s>${esc(e.w)}</s>${e.rep.length?` → <ins>${esc(e.rep[0])}</ins>`:""}${e.rep.length>1?` <small>(oder ${esc(e.rep.slice(1).join(", "))})</small>`:""} <small class="sw-kind">${esc(e.kind[0])}</small></div><div class="sw-msg">${esc((e.why||[e.msg])[0])}${(e.why&&e.why[1])?en(e.why[1]):e.en?en(e.en):""}</div></div></li>`).join("")}</ol>`;
+  const list=e=>`<ol class="sw-errs">${e.map(e=>`<li><b class="sw-no">${e.n}</b><div><div class="sw-fix"><s>${esc(e.w)}</s>${e.rep.length?` → <ins>${esc(e.rep[0])}</ins>`:""}${e.rep.length>1?` <small>(oder ${esc(e.rep.slice(1).join(", "))})</small>`:""} <small class="sw-kind">${esc(e.kind[0])}</small>${e.free?` <small class="sw-kind sw-free">${e.free==="again"?"schon gezählt":"kein Punktabzug"}</small>`:""}</div><div class="sw-msg">${esc((e.why||[e.msg])[0])}${(e.why&&e.why[1])?en(e.why[1]):e.en?en(e.en):""}</div></div></li>`).join("")}</ol>`;
   let h=`<div class="tz-qt">${T(p.task).replace(/\n/g,"<br>")}</div>
    <div class="tz-lab">Dein Text (${words(txt)} Wörter${p.words?`, verlangt etwa ${p.words}`:""})</div>`;
   if(!txt.trim())h+=`<div class="tz-text"><i>nichts geschrieben</i></div>`;
@@ -422,8 +422,8 @@ const EDIT=new Set();
   h+=`<div class="sw-sec"><h4>${b1?"III · Formale Richtigkeit":"Fehler – zum Lernen"}</h4>`;
   const list0=e=>`<ol class="sw-errs">${e.map(e=>`<li><span><s>${esc(e.w)}</s>${e.rep.length?` → <ins>${esc(e.rep[0])}</ins>`:""}${e.rep.length>1?` <small>(oder ${esc(e.rep.slice(1).join(", "))})</small>`:""}</span><small class="sw-kind">${esc(e.kind[0])}</small><div class="sw-msg">${esc(e.msg)}${e.en?en(e.en):""}</div></li>`).join("")}</ol>`;
   if(!txt.trim())h+=`<p class="tz-sub">Kein Text – nichts zu prüfen.</p>`;
-  else if(an.ltDone){const n=an.errs.length;
-   h+=`<p class="tz-sub">${n?`${n} Fehler in ${an.words} Wörtern – etwa ${num(Math.round(an.per100*10)/10)} pro 100 Wörter.`:"Keine Fehler gefunden – sehr gut!"}
+  else if(an.ltDone){const n=an.counted,free=an.errs.length-n;
+   h+=`<p class="tz-sub">${n?`${n} Fehler in ${an.words} Wörtern – etwa ${num(Math.round(an.per100*10)/10)} pro 100 Wörter.`:free?"Keine Fehler, die zählen – sehr gut!":"Keine Fehler gefunden – sehr gut!"}${free?` ${free} ${free===1?"Hinweis zählt":"Hinweise zählen"} nicht (Zeichensetzung, Briefform oder derselbe Fehler noch einmal) – wie bei telc.`:""}
     ${b1?" Bis 3 pro 100 Wörter = A (15) · bis 7 = B (10) · bis 12 = C (5) · mehr = D (0).":" Bei A1 kosten Fehler keine Punkte, solange man dich versteht – aber lerne aus ihnen."}${b1&&an.short?" Dein Text ist kürzer als die Hälfte – dann gibt es höchstens C (5).":""}${n?" Alle Fehler mit Erklärung stehen direkt unter deinem Text.":""}</p>
     <p class="sw-legend">Geprüft von der App und mit LanguageTool – eine automatische Prüfung findet nicht jeden Fehler.</p>`}
   else{h+=st==="fail"?`<div class="tz-warn">Keine Verbindung zur Rechtschreibprüfung (LanguageTool).${b1?" Bewerte die Formale Richtigkeit selbst oder versuche es noch einmal.":""} <button type="button" class="sw-reset" data-go="ltretry" data-k="${k}">↻ noch einmal prüfen</button></div>`
