@@ -206,7 +206,7 @@ window.TESTS_A1 = [
       "intro": "Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
       "type": "rf",
       "per": 1,
-      "text": "Text 1: Liebe Maria, ich bin jetzt in Hamburg. Die Stadt ist sehr schön, aber das Wetter ist schlecht. Es regnet jeden Tag. Mein Hotel ist klein, aber gut und nicht teuer. Morgen fahre ich mit dem Schiff auf der Elbe. Am Freitag komme ich zurück. Viele Grüße, Jonas\nText 2: Hallo Herr Nowak, der Termin mit Frau Berger am Donnerstag ist leider nicht möglich. Frau Berger ist krank. Können Sie am Montag um 11 Uhr kommen? Bitte rufen Sie mich an: 069 23 45 67. Mit freundlichen Grüßen, Sabine Roth",
+      "text": "Text 1: Liebe Maria, ich bin jetzt in Hamburg. Die Stadt ist sehr schön, aber das Wetter ist schlecht. Es regnet jeden Tag. Mein Hotel ist klein, aber gut und nicht teuer. Morgen fahre ich mit dem Schiff auf der Elbe. Am Freitag komme ich zurück.\nViele Grüße\nJonas\nText 2: Hallo Herr Nowak, der Termin mit Frau Berger am Donnerstag ist leider nicht möglich. Frau Berger ist krank. Können Sie am Montag um 11 Uhr kommen? Bitte rufen Sie mich an: 069 23 45 67.\nMit freundlichen Grüßen\nSabine Roth",
       "items": [
        {
         "q": "Text 1: In Hamburg ist das Wetter gut.",
@@ -412,7 +412,7 @@ window.TESTS_A1 = [
        "Wann kommen Sie wieder?",
        "Bitte: Hausaufgaben"
       ],
-      "model": "Liebe Frau Klein, ich bin leider krank und kann heute nicht zum Kurs kommen. Ich komme am Montag wieder. Können Sie mir bitte die Hausaufgaben schicken? Vielen Dank! Viele Grüße, Suresh",
+      "model": "Liebe Frau Klein,\nich bin leider krank und kann heute nicht zum Kurs kommen. Ich komme am Montag wieder. Können Sie mir bitte die Hausaufgaben schicken? Vielen Dank!\nViele Grüße\nSuresh",
       "time": 15
      }
     ]
@@ -891,7 +891,7 @@ window.TESTS_A1 = [
       "intro": "Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
       "type": "rf",
       "per": 1,
-      "text": "Text 1: Hallo Clara, wie geht es dir? Ich habe eine neue Arbeit in einem Hotel in München. Ich arbeite an der Rezeption, meistens am Nachmittag. Meine Kollegen sind sehr nett. Am Wochenende habe ich frei. Besuchst du mich im Juli? Liebe Grüße, Ben\nText 2: Liebe Eltern der Klasse 2b, am Freitag machen wir einen Ausflug in den Zoo. Wir treffen uns um 8 Uhr vor der Schule. Die Kinder brauchen etwas zu essen und zu trinken. Wir sind um 15 Uhr zurück. Viele Grüße, Frau Becker",
+      "text": "Text 1: Hallo Clara, wie geht es dir? Ich habe eine neue Arbeit in einem Hotel in München. Ich arbeite an der Rezeption, meistens am Nachmittag. Meine Kollegen sind sehr nett. Am Wochenende habe ich frei. Besuchst du mich im Juli?\nLiebe Grüße\nBen\nText 2: Liebe Eltern der Klasse 2b, am Freitag machen wir einen Ausflug in den Zoo. Wir treffen uns um 8 Uhr vor der Schule. Die Kinder brauchen etwas zu essen und zu trinken. Wir sind um 15 Uhr zurück.\nViele Grüße\nFrau Becker",
       "items": [
        {
         "q": "Text 1: Ben arbeitet in einem Restaurant.",
@@ -1087,7 +1087,7 @@ window.TESTS_A1 = [
        "Wo?",
        "Was soll er mitbringen?"
       ],
-      "model": "Lieber Markus, am Samstag habe ich Geburtstag und mache eine kleine Party. Sie beginnt um 19 Uhr bei mir zu Hause. Kannst du bitte Getränke mitbringen? Ich freue mich auf dich! Viele Grüße, Suresh",
+      "model": "Lieber Markus,\nam Samstag habe ich Geburtstag und mache eine kleine Party. Sie beginnt um 19 Uhr bei mir zu Hause. Kannst du bitte Getränke mitbringen? Ich freue mich auf dich!\nViele Grüße\nSuresh",
       "tab": "Teil 2",
       "time": 15
      }
@@ -1565,7 +1565,7 @@ window.TESTS_A1 = [
       "intro": "Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
       "type": "rf",
       "per": 1,
-      "text": "Text 1: Hallo Tom, am Samstag mache ich eine Fahrradtour an den Rhein. Kommst du mit? Wir fahren um 9 Uhr am Bahnhof los. Die Tour ist 40 Kilometer lang. Am Abend essen wir zusammen in einem Restaurant. Bitte schreib mir bis Donnerstag. Grüße, Nina\nText 2: Sehr geehrte Frau Schulz, Ihr Paket konnten wir heute nicht abgeben. Sie waren nicht zu Hause. Sie können es ab morgen in der Post in der Hauptstraße abholen. Bitte bringen Sie Ihren Ausweis mit. Ihr Paketdienst",
+      "text": "Text 1: Hallo Tom, am Samstag mache ich eine Fahrradtour an den Rhein. Kommst du mit? Wir fahren um 9 Uhr am Bahnhof los. Die Tour ist 40 Kilometer lang. Am Abend essen wir zusammen in einem Restaurant. Bitte schreib mir bis Donnerstag.\nGrüße\nNina\nText 2: Sehr geehrte Frau Schulz, Ihr Paket konnten wir heute nicht abgeben. Sie waren nicht zu Hause. Sie können es ab morgen in der Post in der Hauptstraße abholen. Bitte bringen Sie Ihren Ausweis mit. Ihr Paketdienst",
       "items": [
        {
         "q": "Text 1: Die Fahrradtour ist am Samstag.",
@@ -1755,7 +1755,7 @@ window.TESTS_A1 = [
        "Seit wann?",
        "Bitte: Handwerker"
       ],
-      "model": "Sehr geehrter Herr Braun, in meiner Wohnung ist die Heizung kaputt. Sie funktioniert seit Montag nicht mehr, und es ist sehr kalt. Können Sie bitte schnell einen Handwerker schicken? Mit freundlichen Grüßen, Suresh [Nachname]",
+      "model": "Sehr geehrter Herr Braun,\nin meiner Wohnung ist die Heizung kaputt. Sie funktioniert seit Montag nicht mehr, und es ist sehr kalt. Können Sie bitte schnell einen Handwerker schicken?\nMit freundlichen Grüßen\nSuresh [Nachname]",
       "tab": "Teil 2",
       "time": 15
      }
@@ -2260,7 +2260,7 @@ window.TESTS_A1 = [
         "why": "ab 7 Uhr"
        }
       ],
-      "text": "Text 1: Liebe Oma, wir sind jetzt in Spanien am Meer. Das Wetter ist super, jeden Tag 30 Grad. Die Kinder schwimmen den ganzen Tag. Unser Hotel ist direkt am Strand. Nächsten Samstag fliegen wir zurück. Viele Grüße, Nina\nText 2: Liebe Eltern, die Kita ist am Freitag geschlossen. Unsere Erzieherinnen haben eine Fortbildung. Am Montag sind wir wieder ab 7 Uhr für Sie da. Ihr Kita-Team",
+      "text": "Text 1: Liebe Oma, wir sind jetzt in Spanien am Meer. Das Wetter ist super, jeden Tag 30 Grad. Die Kinder schwimmen den ganzen Tag. Unser Hotel ist direkt am Strand. Nächsten Samstag fliegen wir zurück.\nViele Grüße\nNina\nText 2: Liebe Eltern, die Kita ist am Freitag geschlossen. Unsere Erzieherinnen haben eine Fortbildung. Am Montag sind wir wieder ab 7 Uhr für Sie da. Ihr Kita-Team",
       "time": 8
      },
      {
@@ -2422,7 +2422,7 @@ window.TESTS_A1 = [
        "Preis?",
        "Anmeldung?"
       ],
-      "model": "Sehr geehrte Damen und Herren, ich möchte einen Deutschkurs A2 machen. Wann beginnen die Abendkurse? Was kostet der Kurs? Wie kann ich mich anmelden? Mit freundlichen Grüßen, Suresh [Nachname]",
+      "model": "Sehr geehrte Damen und Herren,\nich möchte einen Deutschkurs A2 machen. Wann beginnen die Abendkurse? Was kostet der Kurs? Wie kann ich mich anmelden?\nMit freundlichen Grüßen\nSuresh [Nachname]",
       "tab": "Teil 2",
       "time": 15
      }
@@ -3082,7 +3082,7 @@ window.TESTS_A1 = [
        "Warum nicht?",
        "Neuer Termin?"
       ],
-      "model": "Sehr geehrte Damen und Herren, ich habe am Dienstag um 10 Uhr einen Termin bei Dr. Weber. Leider muss ich an diesem Tag arbeiten. Kann ich am Donnerstag kommen? Mit freundlichen Grüßen, Suresh [Nachname]",
+      "model": "Sehr geehrte Damen und Herren,\nich habe am Dienstag um 10 Uhr einen Termin bei Dr. Weber. Leider muss ich an diesem Tag arbeiten. Kann ich am Donnerstag kommen?\nMit freundlichen Grüßen\nSuresh [Nachname]",
       "tab": "Teil 2",
       "time": 15
      }
@@ -3581,7 +3581,7 @@ window.TESTS_A1 = [
         "a": true
        }
       ],
-      "text": "Text 1: Hallo Tina, ich habe endlich eine neue Wohnung! Sie hat drei Zimmer und einen Balkon. Am Samstag mache ich eine kleine Party. Kommst du? Bring bitte etwas zu trinken mit. Liebe Grüße, Lukas\nText 2: Liebe Kursteilnehmer, am Montag ist unsere Lehrerin krank. Der Kurs fällt aus. Wir machen den Unterricht am Mittwoch um 18 Uhr. Ihre Sprachschule",
+      "text": "Text 1: Hallo Tina, ich habe endlich eine neue Wohnung! Sie hat drei Zimmer und einen Balkon. Am Samstag mache ich eine kleine Party. Kommst du? Bring bitte etwas zu trinken mit.\nLiebe Grüße\nLukas\nText 2: Liebe Kursteilnehmer, am Montag ist unsere Lehrerin krank. Der Kurs fällt aus. Wir machen den Unterricht am Mittwoch um 18 Uhr. Ihre Sprachschule",
       "time": 8
      },
      {

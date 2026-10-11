@@ -80,8 +80,11 @@ const RULES=[
   de:"„einladen“ braucht den Akkusativ: Ich lade dich ein (nicht „dir“) · ich lade ihn / Sie ein.",en:"“einladen” takes the accusative: Ich lade dich ein (not “dir”)."},
  {rx:B+"((?:[Ii]ch) (?:freue|freu)) (dich|dir|mir|sich)"+W,g:3,r:()=>"mich",
   de:"„sich freuen“ ist reflexiv – das Pronomen passt zur Person: ich freue mich, du freust dich, wir freuen uns.",en:"“sich freuen” is reflexive: ich freue mich, du freust dich."},
- {rx:B+"(?:[Ll]iebe|[Vv]iele|[Hh]erzliche|[Bb]este|[Ss]chöne) ([Gg]roße|[Gg]rosse|[Gg]rüse|[Gg]rüsse|[Gg]ruse|[Gg]russe)"+W,g:2,r:()=>"Grüße",
-  de:"Der Gruß am Ende heißt „Liebe Grüße“ / „Viele Grüße“ – mit ü und ß. „große“ bedeutet etwas anderes (groß = big).",en:"The sign-off is “Liebe Grüße” / “Viele Grüße” (with ü and ß); “große” means “big”."},
+ {rx:B+"(?:[Ll]iebe|[Vv]iele|[Hh]erzliche|[Bb]este|[Ss]chöne) ((?:[Gg]roße|[Gg]rosse|[Gg]rüse|[Gg]rüsse|[Gg]ruse|[Gg]russe|[Gg]ruße)"+W+"(?:,(?=[ \\t]*(?:\\n|$|[A-ZÄÖÜ])))?)",g:2,r:()=>"Grüße",
+  de:"Der Gruß am Ende heißt „Liebe Grüße“ / „Viele Grüße“ – mit ü und ß, ohne Komma danach. „große“ bedeutet etwas anderes (groß = big).",en:"The sign-off is “Liebe Grüße” / “Viele Grüße” (with ü and ß, no comma after it); “große” means “big”."},
+ /* the sign-off stands alone: no comma, the name on the next line (DIN 5008) */
+ {rx:B+"(?:[Ll]iebe|[Vv]iele|[Hh]erzliche|[Bb]este|[Ss]chöne|[Ff]reundliche|[Ff]reundlichen) ((?:Grüße|Grüßen|Gruß),)(?=[ \\t]*(?:\\n|$|[A-ZÄÖÜ]))",g:2,r:m=>m.slice(0,-1),
+  de:"Nach dem Gruß steht im Deutschen kein Komma: „Viele Grüße“ / „Mit freundlichen Grüßen“ – und in der nächsten Zeile dein Name.",en:"In German there is no comma after the sign-off (“Viele Grüße”, “Mit freundlichen Grüßen”); your name goes on the next line."},
  {rx:"(freue mich|freuen uns|hoffe|glaube|denke|finde|weiß|wusste|sicher|schade|toll|froh|traurig|gesagt|gehört|gelesen),? (das) (?="+PRON+")",g:2,r:()=>"dass",
   de:"Nach „ich freue mich, hoffe, glaube, weiß …“ kommt die Konjunktion „dass“ (mit ss); „das“ ist Artikel oder Pronomen.",en:"After freuen, hoffen, glauben, wissen … the conjunction is “dass”."},
  {rx:B+"(ein|dein|mein|sein|unser|kein|das|den|einen|deinen|meinen|seinen|Ihr|Ihren|ihr|ihren) (E-Mail|Email|Mail)"+W,g:2,r:m=>({das:"die",den:"die",Ihr:"Ihre",Ihren:"Ihre"})[m]||m.replace(/en$/,"e").replace(/([^e])$/,"$1e"),
