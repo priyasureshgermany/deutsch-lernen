@@ -242,6 +242,90 @@ window.GD = [
  ]}
 ]},
 
+{id:"zeitang", de:"Zeitangaben", en:"Time expressions",
+ intro:"Für Zeitangaben braucht man die richtige Präposition: um + Uhrzeit, am + Tag und Datum, im + Monat und Jahreszeit. vor, seit und in stehen mit Dativ. Das Datum schreibt man 3.5. und sagt „am dritten Mai“. Die Jahreszahl steht ohne Präposition oder mit „im Jahr“.",
+ groups:[
+ {g:"Wann?", gen:"when?", items:[
+  {w:"um / am / im", en:"at / on / in", tag:"Uhrzeit · Tag · Monat", ex:[
+   ["um + Uhrzeit", "Der Kurs beginnt [[um]] halb neun.", "The course starts at half past eight."],
+   ["am + Tag", "[[Am]] Dienstag habe ich einen Termin beim Arzt.", "On Tuesday I have a doctor's appointment."],
+   ["am + Tageszeit (aber: in der Nacht)", "[[Am]] Abend lerne ich Vokabeln, [[in der]] Nacht schlafe ich.", "In the evening I learn vocabulary, at night I sleep."],
+   ["im + Monat", "[[Im]] August fahren wir in den Urlaub.", "In August we're going on holiday."],
+   ["im + Jahreszeit", "[[Im]] Winter ist die Heizung teuer.", "In winter the heating is expensive."]]},
+  {w:"Datum", en:"dates", tag:"am dritten Mai", ex:[
+   ["am + Ordnungszahl -ten", "Ich habe [[am dritten]] Mai Geburtstag.", "My birthday is on the third of May."],
+   ["geschrieben: am 3.5.", "Der Termin ist [[am 15.]] Oktober um 10 Uhr.", "The appointment is on 15 October at 10 o'clock."],
+   ["Heute ist der … (Nominativ)", "Heute ist [[der erste]] Juni.", "Today is the first of June."],
+   ["Datum im Brief: Ort, Datum", "Oben rechts im Brief steht: [[Frankfurt, 11.10.2026]].", "Frankfurt, 11 October 2026."],
+   ["vom … bis zum …", "Die Praxis ist [[vom]] 2. [[bis zum]] 16. August geschlossen.", "The practice is closed from 2 to 16 August."]]},
+  {w:"Jahreszahlen", en:"years", tag:"2015 · im Jahr 2015", ex:[
+   ["ohne Präposition", "Ich bin [[2019]] nach Deutschland gekommen.", "I came to Germany in 2019."],
+   ["im Jahr …", "[[Im Jahr]] 2020 war alles anders.", "In 2020 everything was different."],
+   ["so spricht man es: neunzehnhundert …", "Mein Vater ist [[neunzehnhundertsiebzig]] geboren.", "My father was born in 1970."],
+   ["ab 2000: zweitausend …", "Das Gesetz gilt seit [[zweitausendzwanzig]].", "The law has been in force since 2020."]]},
+  {w:"Uhrzeit", en:"telling the time", tag:"offiziell und im Alltag", ex:[
+   ["offiziell: 14:30 = vierzehn Uhr dreißig", "Der Zug fährt um [[vierzehn Uhr dreißig]] ab.", "The train leaves at 14:30."],
+   ["Alltag: halb = 30 Minuten vor", "Wir treffen uns um [[halb drei]].", "Let's meet at half past two."],
+   ["Viertel nach / Viertel vor", "Es ist schon [[Viertel nach]] sieben – wir sind spät dran!", "It's already quarter past seven – we're late!"],
+   ["kurz vor / kurz nach", "Der Bus kam erst [[kurz nach]] acht.", "The bus didn't come until just after eight."],
+   ["gegen = ungefähr", "Ich bin [[gegen]] sechs Uhr zu Hause.", "I'll be home around six."]]}
+ ]},
+ {g:"Wie lange? Seit wann?", gen:"how long? since when?", items:[
+  {w:"vor / seit / in", en:"ago / for (since) / in", tag:"+ Dativ", ex:[
+   ["vor = in der Vergangenheit (ago)", "Ich habe [[vor]] drei Jahren angefangen, Deutsch zu lernen.", "I started learning German three years ago."],
+   ["seit = bis jetzt (Präsens!)", "Ich wohne [[seit]] zwei Jahren in Frankfurt.", "I have been living in Frankfurt for two years."],
+   ["in = in der Zukunft", "[[In]] zwei Wochen habe ich die Prüfung.", "I have the exam in two weeks."],
+   ["seit + Zeitpunkt", "[[Seit]] Montag funktioniert die Heizung nicht.", "The heating hasn't worked since Monday."]]},
+  {w:"ab / bis / von … bis", en:"from / until", tag:"Anfang und Ende", ex:[
+   ["ab = von jetzt an", "[[Ab]] nächster Woche arbeite ich Vollzeit.", "From next week I'll be working full-time."],
+   ["bis = Ende", "Bitte antworten Sie [[bis]] Freitag.", "Please reply by Friday."],
+   ["von … bis", "Ich arbeite [[von]] neun [[bis]] fünf.", "I work from nine to five."],
+   ["bis zum + Datum", "Die Anmeldung ist [[bis zum]] 30. September möglich.", "Registration is possible until 30 September."]]},
+  {w:"Dauer", en:"duration", tag:"lange · Akkusativ", ex:[
+   ["Akkusativ ohne Präposition", "Ich habe [[den ganzen Tag]] gearbeitet.", "I worked the whole day."],
+   ["… lang", "Wir haben [[zwei Stunden lang]] gewartet.", "We waited for two hours."],
+   ["während + Genitiv", "[[Während des]] Kurses darf man nicht telefonieren.", "You mustn't use the phone during the course."],
+   ["innerhalb von / innerhalb + Genitiv", "Sie bekommen das Geld [[innerhalb von]] zehn Tagen.", "You'll get the money within ten days."]]},
+  {w:"Wie oft?", en:"how often?", tag:"-s und jeden …", ex:[
+   ["-s: montags, abends", "[[Montags]] gehe ich zum Deutschkurs.", "On Mondays I go to the German course."],
+   ["jeden / jede / jedes", "Ich fahre [[jeden]] Morgen mit dem Bus.", "I take the bus every morning."],
+   ["einmal, zweimal …", "Nehmen Sie die Tabletten [[dreimal]] am Tag.", "Take the tablets three times a day."],
+   ["alle … (alle zwei Wochen)", "Der Müll wird [[alle zwei Wochen]] abgeholt.", "The rubbish is collected every two weeks."]]}
+ ]}
+]},
+{id:"posverb", de:"stellen – stehen", en:"Put vs. be: stellen / stehen …",
+ intro:"Vier Verbpaare: Das erste beschreibt eine Bewegung (Wohin? + Akkusativ, regelmäßig), das zweite eine Position (Wo? + Dativ, unregelmäßig). stellen → stehen (senkrecht), legen → liegen (waagerecht), setzen → sitzen, hängen → hängen. Bei den Wohin-Verben macht man etwas mit einem Ding.",
+ groups:[
+ {g:"Wohin? und Wo?", gen:"where to? and where?", items:[
+  {w:"stellen / stehen", en:"to stand something / to be standing", tag:"senkrecht", ex:[
+   ["stellen: Wohin? + Akkusativ", "Ich [[stelle]] die Flasche in [[den]] Kühlschrank.", "I put the bottle in the fridge."],
+   ["stehen: Wo? + Dativ", "Die Flasche [[steht]] im Kühlschrank.", "The bottle is in the fridge."],
+   ["Perfekt: gestellt / gestanden", "Wer hat das Fahrrad vor die Tür [[gestellt]]?", "Who put the bike in front of the door?"],
+   ["stehen für Dinge, die senkrecht sind", "Im Wohnzimmer [[steht]] ein großes Regal.", "There's a big shelf in the living room."],
+   ["im Text: stehen = geschrieben sein", "Was [[steht]] in dem Brief vom Amt?", "What does the letter from the office say?"]]},
+  {w:"legen / liegen", en:"to lay / to lie", tag:"waagerecht", ex:[
+   ["legen: Wohin? + Akkusativ", "[[Leg]] die Schlüssel bitte auf [[den]] Tisch.", "Put the keys on the table, please."],
+   ["liegen: Wo? + Dativ", "Die Schlüssel [[liegen]] auf [[dem]] Tisch.", "The keys are on the table."],
+   ["Perfekt: gelegt / gelegen", "Ich habe die Dokumente in [[die]] Mappe [[gelegt]].", "I put the documents in the folder."],
+   ["Personen: liegen = im Bett", "Mein Sohn [[liegt]] mit Fieber im Bett.", "My son is in bed with a fever."],
+   ["Orte: liegen = sich befinden", "Frankfurt [[liegt]] am Main.", "Frankfurt is on the Main."]]},
+  {w:"setzen / sitzen", en:"to sit someone down / to be sitting", tag:"Personen", ex:[
+   ["sich setzen: Wohin? + Akkusativ", "Bitte [[setzen]] Sie sich auf [[den]] Stuhl.", "Please sit down on the chair."],
+   ["sitzen: Wo? + Dativ", "Die Patienten [[sitzen]] im Wartezimmer.", "The patients are sitting in the waiting room."],
+   ["jemanden setzen", "Ich [[setze]] das Baby in den Kinderwagen.", "I put the baby in the pram."],
+   ["Perfekt: gesetzt / gesessen", "Wir haben zwei Stunden im Zug [[gesessen]].", "We sat on the train for two hours."]]},
+  {w:"hängen / hängen", en:"to hang (something) / to be hanging", tag:"gleiches Verb, andere Formen", ex:[
+   ["hängen + Akkusativ (regelmäßig)", "Ich [[hänge]] das Bild an [[die]] Wand.", "I'm hanging the picture on the wall."],
+   ["hängen + Dativ (unregelmäßig)", "Das Bild [[hängt]] an [[der]] Wand.", "The picture is hanging on the wall."],
+   ["Perfekt Bewegung: gehängt", "Wer hat die Jacke an den Haken [[gehängt]]?", "Who hung the jacket on the hook?"],
+   ["Perfekt Position: gehangen", "Der Zettel hat die ganze Woche an der Tür [[gehangen]].", "The note was on the door all week."]]},
+  {w:"stecken, packen, tun", en:"put in: stecken, packen, tun", tag:"Alltag", ex:[
+   ["stecken: in etwas hinein", "Ich [[stecke]] das Handy in die Tasche.", "I put my phone in my bag."],
+   ["stecken: Wo? (ist drin)", "Der Schlüssel [[steckt]] noch in der Tür.", "The key is still in the door."],
+   ["packen: in den Koffer", "Hast du die Medikamente in den Koffer [[gepackt]]?", "Did you pack the medicine in the suitcase?"],
+   ["tun: gesprochen für legen / stellen", "[[Tu]] die Wurst bitte in den Kühlschrank.", "Put the sausage in the fridge, please."]]}
+ ]}
+]},
 {id:"konj", de:"Konjunktionen", en:"Conjunctions & connectors",
  intro:"Wichtig ist die Position des Verbs: nach und/aber/oder/denn/sondern bleibt alles gleich (Position 0), nach weil/dass/obwohl … steht das Verb am Ende, nach deshalb/trotzdem … kommt das Verb sofort (Position 2).",
  groups:[
@@ -509,6 +593,34 @@ window.GD = [
  ]}
 ]},
 
+{id:"partizip", de:"Partizip als Adjektiv", en:"Participles as adjectives",
+ intro:"Partizipien kann man wie Adjektive benutzen – mit den normalen Adjektivendungen. Partizip I (Infinitiv + d: wartend) beschreibt, was gerade passiert (aktiv). Partizip II (gemacht, geschrieben) beschreibt etwas Fertiges oder Passives. So wird ein Relativsatz kürzer: die Kinder, die spielen → die spielenden Kinder.",
+ groups:[
+ {g:"Partizip I und II", gen:"present and past participle", items:[
+  {w:"Partizip I: -end", en:"present participle: …ing", tag:"was gerade passiert", ex:[
+   ["Infinitiv + d", "Die [[wartenden]] Kunden waren schon ungeduldig.", "The waiting customers were already impatient."],
+   ["ersetzt einen Relativsatz", "Das [[weinende]] Kind sucht seine Mutter.", "The crying child is looking for its mother."],
+   ["als Adverb: wie?", "Er hat [[lachend]] die Tür geöffnet.", "He opened the door laughing."],
+   ["feste Ausdrücke", "Wir suchen [[dringend]] eine Wohnung.", "We are urgently looking for a flat."],
+   ["folgend = das Nächste", "Bitte beantworten Sie die [[folgenden]] Fragen.", "Please answer the following questions."]]},
+  {w:"Partizip II als Adjektiv", en:"past participle as adjective", tag:"fertig oder passiv", ex:[
+   ["etwas ist gemacht worden", "Die [[reparierte]] Heizung funktioniert wieder.", "The repaired heating works again."],
+   ["mit unregelmäßigem Partizip", "Bitte schicken Sie das [[ausgefüllte]] Formular zurück.", "Please send back the completed form."],
+   ["ersetzt einen Passiv-Relativsatz", "Das [[gestohlene]] Fahrrad wurde gefunden.", "The stolen bike was found."],
+   ["nach sein: ohne Endung", "Die Tür ist [[geschlossen]].", "The door is closed."],
+   ["feste Ausdrücke im Brief", "Im [[beigefügten]] Dokument finden Sie alle Informationen.", "In the attached document you'll find all the information."]]},
+  {w:"Partizip mit Ergänzungen", en:"participle with extra words", tag:"die im Brief genannten …", ex:[
+   ["Ergänzung vor dem Partizip", "Die [[im Brief genannten]] Termine passen mir nicht.", "The dates mentioned in the letter don't suit me."],
+   ["Zeitangabe vor dem Partizip", "Die [[seit Montag kaputte]] Ampel wird heute repariert.", "The traffic light that has been broken since Monday is being repaired today."],
+   ["Partizip I mit Ergänzung", "Die [[am Bahnhof wartenden]] Leute sind nass geworden.", "The people waiting at the station got wet."],
+   ["auflösen: Relativsatz", "Die Termine, [[die im Brief genannt sind]], passen mir nicht.", "The dates that are mentioned in the letter don't suit me."]]},
+  {w:"Partizip als Nomen", en:"participle as a noun", tag:"der Reisende, die Angestellte", ex:[
+   ["Person: der / die + Partizip I", "Alle [[Reisenden]] müssen jetzt aussteigen.", "All travellers must get off now."],
+   ["Person: der / die + Partizip II", "Meine Frau ist [[Angestellte]] bei einer Bank.", "My wife is an employee at a bank."],
+   ["mit Adjektivendung: ein Verletzter", "Bei dem Unfall gab es [[einen Verletzten]].", "There was one injured person in the accident."],
+   ["das Gesagte, das Erlebte", "Ich habe [[das Gesagte]] noch einmal aufgeschrieben.", "I wrote down what was said again."]]}
+ ]}
+]},
 {id:"vpraep", de:"Verben mit Präposition", en:"Verbs with prepositions",
  intro:"Diese Verben haben eine feste Präposition – lerne sie zusammen. Für Sachen fragt man mit wo(r)- (Worauf?) und antwortet mit da(r)- (darauf), für Personen mit Präposition + wen/wem (Auf wen?).",
  groups:[
@@ -677,6 +789,54 @@ window.GD = [
  ]}
 ]},
 
+{id:"nvv", de:"Nomen-Verb-Verbindungen", en:"Noun-verb collocations",
+ intro:"In Briefen und bei Ämtern benutzt man oft feste Verbindungen aus Nomen und Verb: einen Antrag stellen, eine Entscheidung treffen, in Kontakt bleiben. Das Verb hat dabei wenig Bedeutung – die Bedeutung steckt im Nomen. Diese Verbindungen klingen offiziell und passen gut in den DTZ-Brief.",
+ groups:[
+ {g:"Ämter und Briefe", gen:"offices and letters", items:[
+  {w:"einen Antrag stellen", en:"to submit an application", tag:"= beantragen", ex:[
+   ["Präsens", "Ich möchte [[einen Antrag]] auf Kindergeld [[stellen]].", "I'd like to apply for child benefit."],
+   ["Perfekt", "Ich habe den Antrag schon im März [[gestellt]].", "I already submitted the application in March."],
+   ["Passiv", "Der Antrag muss bis Ende Mai [[gestellt werden]].", "The application must be submitted by the end of May."],
+   ["auch: eine Frage stellen", "Darf ich Ihnen [[eine Frage stellen]]?", "May I ask you a question?"]]},
+  {w:"Bescheid geben / sagen", en:"to let someone know", tag:"= informieren", ex:[
+   ["Bitte + Dativ", "Bitte [[geben]] Sie mir [[Bescheid]], wenn die Unterlagen da sind.", "Please let me know when the documents arrive."],
+   ["gesprochen: Bescheid sagen", "[[Sag]] mir bitte [[Bescheid]], wann du kommst.", "Let me know when you're coming."],
+   ["Bescheid wissen = informiert sein", "Mein Chef [[weiß]] schon [[Bescheid]].", "My boss already knows."],
+   ["der Bescheid = Brief vom Amt", "Ich habe noch keinen [[Bescheid]] vom Jobcenter bekommen.", "I haven't got a decision letter from the job centre yet."]]},
+  {w:"in Kontakt treten / bleiben", en:"to get / stay in contact", tag:"Kontakt", ex:[
+   ["mit + Dativ", "Bitte [[treten]] Sie mit unserer Kundenberatung [[in Kontakt]].", "Please contact our customer service."],
+   ["bleiben: weiter", "Lass uns [[in Kontakt bleiben]]!", "Let's stay in touch!"],
+   ["Kontakt aufnehmen", "Ich habe [[Kontakt]] mit dem Vermieter [[aufgenommen]].", "I got in touch with the landlord."],
+   ["sich in Verbindung setzen", "Bitte [[setzen]] Sie sich mit mir [[in Verbindung]].", "Please get in touch with me."]]},
+  {w:"zur Verfügung stehen / stellen", en:"to be available / to provide", tag:"Verfügung", ex:[
+   ["stehen: ist da", "Für Fragen [[stehe]] ich Ihnen gern [[zur Verfügung]].", "I'm happy to answer any questions."],
+   ["stellen: gibt", "Die Firma [[stellt]] uns einen Laptop [[zur Verfügung]].", "The company provides us with a laptop."],
+   ["Passiv", "Parkplätze [[werden]] kostenlos [[zur Verfügung gestellt]].", "Parking spaces are provided free of charge."],
+   ["Briefschluss", "Ich [[stehe]] Ihnen jederzeit [[zur Verfügung]].", "I am available to you at any time."]]}
+ ]},
+ {g:"Alltag und Arbeit", gen:"everyday life and work", items:[
+  {w:"eine Entscheidung treffen", en:"to make a decision", tag:"= entscheiden", ex:[
+   ["Präsens", "Wir müssen bald [[eine Entscheidung treffen]].", "We have to make a decision soon."],
+   ["Perfekt", "Ich habe [[die Entscheidung]] noch nicht [[getroffen]].", "I haven't made the decision yet."],
+   ["auch: eine Vereinbarung treffen", "Wir haben [[eine Vereinbarung getroffen]].", "We've made an agreement."],
+   ["auch: Vorbereitungen treffen", "Für die Feier [[treffen]] wir schon [[Vorbereitungen]].", "We're already making preparations for the party."]]},
+  {w:"Rücksicht nehmen / in Anspruch nehmen", en:"to show consideration / to use (a service)", tag:"nehmen", ex:[
+   ["Rücksicht nehmen auf", "Bitte [[nehmen]] Sie [[Rücksicht]] auf die Nachbarn.", "Please be considerate of the neighbours."],
+   ["in Anspruch nehmen", "Sie können eine kostenlose Beratung [[in Anspruch nehmen]].", "You can use a free advice service."],
+   ["Abschied nehmen", "Am Bahnhof haben wir [[Abschied genommen]].", "We said goodbye at the station."],
+   ["Platz nehmen = sich setzen", "Bitte [[nehmen]] Sie [[Platz]].", "Please take a seat."]]},
+  {w:"Hilfe leisten / einen Fehler machen", en:"to give help / to make a mistake", tag:"leisten · machen", ex:[
+   ["Hilfe leisten", "Bei einem Unfall muss man [[Erste Hilfe leisten]].", "In an accident you have to give first aid."],
+   ["einen Fehler machen", "Entschuldigung, ich habe [[einen Fehler gemacht]].", "Sorry, I made a mistake."],
+   ["Sorgen machen", "Ich [[mache]] mir [[Sorgen]] um meine Mutter.", "I'm worried about my mother."],
+   ["einen Vorschlag machen", "Darf ich [[einen Vorschlag machen]]?", "May I make a suggestion?"]]},
+  {w:"zu Ende gehen / in Frage kommen", en:"to come to an end / to be possible", tag:"kommen · gehen", ex:[
+   ["zu Ende gehen", "Der Kurs [[geht]] im Juni [[zu Ende]].", "The course ends in June."],
+   ["in Frage kommen = möglich sein", "Ein Umzug [[kommt]] für uns nicht [[in Frage]].", "Moving is out of the question for us."],
+   ["zur Sprache kommen", "Das Problem [[kam]] in der Sitzung [[zur Sprache]].", "The problem was raised in the meeting."],
+   ["in Kraft treten", "Das neue Gesetz [[tritt]] im Januar [[in Kraft]].", "The new law comes into force in January."]]}
+ ]}
+]},
 {id:"rel", de:"Relativsätze", en:"Relative clauses",
  intro:"Das Relativpronomen hat das Genus des Nomens davor und den Kasus aus dem Relativsatz. Das Verb steht am Ende.",
  groups:[
@@ -869,6 +1029,49 @@ window.GD = [
  ]}
 ]},
 
+{id:"imp", de:"Imperativ", en:"Imperative",
+ intro:"Mit dem Imperativ bittet, rät oder fordert man: du-Form ohne -st und ohne du (Komm!), ihr-Form wie Präsens ohne ihr (Kommt!), Sie-Form mit Verb vorn und Sie danach (Kommen Sie!). Mit bitte, mal, doch klingt er freundlicher. Trennbare Verben: Präfix ans Ende.",
+ groups:[
+ {g:"Formen", gen:"forms", items:[
+  {w:"du-Form", en:"du form", tag:"komm! · nimm! · fahr!", ex:[
+   ["Präsens ohne -st", "[[Komm]] bitte pünktlich!", "Please come on time!"],
+   ["e → i bleibt", "[[Nimm]] einen Regenschirm mit!", "Take an umbrella with you!"],
+   ["a → ä fällt weg", "[[Fahr]] vorsichtig!", "Drive carefully!"],
+   ["-t / -d: mit -e", "[[Warte]] kurz, ich komme gleich!", "Wait a moment, I'm coming!"]]},
+  {w:"ihr-Form", en:"ihr form", tag:"kommt! · nehmt!", ex:[
+   ["Präsens ohne ihr", "Kinder, [[kommt]] zum Essen!", "Children, come and eat!"],
+   ["kein Vokalwechsel", "[[Nehmt]] eure Jacken mit!", "Take your jackets with you!"],
+   ["mit Modalpartikel", "[[Seid]] doch mal leise!", "Do be quiet!"],
+   ["trennbar", "[[Räumt]] bitte euer Zimmer [[auf]]!", "Tidy your room, please!"]]},
+  {w:"Sie-Form", en:"Sie form (polite)", tag:"Kommen Sie! · Nehmen Sie!", ex:[
+   ["Verb + Sie", "[[Kommen Sie]] bitte herein!", "Please come in!"],
+   ["Anweisung beim Arzt", "[[Nehmen Sie]] die Tabletten nach dem Essen.", "Take the tablets after meals."],
+   ["trennbar: Präfix am Ende", "[[Füllen Sie]] bitte das Formular [[aus]].", "Please fill in the form."],
+   ["in Briefen: Bitte + Imperativ", "[[Rufen Sie]] mich bitte zurück.", "Please call me back."]]},
+  {w:"sein und haben", en:"be and have", tag:"sei! seid! seien Sie!", ex:[
+   ["sein: du → sei", "[[Sei]] nicht traurig!", "Don't be sad!"],
+   ["sein: ihr → seid", "[[Seid]] bitte pünktlich!", "Please be on time!"],
+   ["sein: Sie → seien Sie", "[[Seien Sie]] bitte vorsichtig!", "Please be careful!"],
+   ["haben: hab / habt / haben Sie", "[[Hab]] keine Angst!", "Don't be afraid!"]]}
+ ]},
+ {g:"Freundlich oder direkt", gen:"polite or direct", items:[
+  {w:"bitte, mal, doch", en:"softening words", tag:"freundlicher", ex:[
+   ["bitte: höflich", "Schließen Sie [[bitte]] die Tür.", "Please close the door."],
+   ["mal: macht es leichter", "Komm [[mal]] her!", "Come here a moment!"],
+   ["doch: Rat oder Ungeduld", "Frag [[doch]] den Hausmeister!", "Why don't you ask the caretaker!"],
+   ["doch mal: Vorschlag", "Probier [[doch mal]] den Kuchen!", "Do try the cake!"]]},
+  {w:"Alternativen zum Imperativ", en:"alternatives to the imperative", tag:"höflicher fragen", ex:[
+   ["Können Sie …? Frage statt Befehl", "[[Können Sie]] mir bitte helfen?", "Can you help me, please?"],
+   ["Konjunktiv II: noch höflicher", "[[Könnten Sie]] das Fenster schließen?", "Could you close the window?"],
+   ["Infinitiv: Schilder, Anleitungen", "Bitte nicht [[rauchen]]!", "No smoking, please!"],
+   ["wir-Form: Vorschlag", "[[Gehen wir]] einen Kaffee trinken!", "Let's go and have a coffee!"]]},
+  {w:"Verneinung", en:"negative imperative", tag:"nicht · kein", ex:[
+   ["nicht am Ende oder vor dem Teil", "Vergiss [[nicht]] den Termin!", "Don't forget the appointment!"],
+   ["kein + Nomen", "Mach dir [[keine]] Sorgen!", "Don't worry!"],
+   ["Sie-Form", "Parken Sie [[nicht]] vor der Einfahrt!", "Don't park in front of the driveway!"],
+   ["nie: verstärkt", "Lass [[nie]] die Tasche im Auto liegen!", "Never leave your bag in the car!"]]}
+ ]}
+]},
 {id:"refl", de:"Reflexive Verben", en:"Reflexive verbs",
  intro:"Das Reflexivpronomen bezieht sich auf das Subjekt: ich → mich/mir, du → dich/dir, er/sie/es → sich, wir → uns, ihr → euch, sie/Sie → sich. Mit einem Akkusativobjekt steht das Reflexivpronomen im Dativ.",
  groups:[
@@ -1035,6 +1238,51 @@ window.GD = [
  ]}
 ]},
 
+{id:"frage", de:"Fragewörter", en:"Question words",
+ intro:"W-Fragen beginnen mit einem Fragewort, das Verb steht auf Position 2. welcher fragt nach einer Auswahl (wie der/die/das), was für ein nach der Art (wie ein/eine). Fragen mit Präposition: für Personen Präposition + wen/wem (mit wem?), für Sachen wo(r)- (womit?).",
+ groups:[
+ {g:"Die W-Fragen", gen:"wh-questions", items:[
+  {w:"wer / wen / wem / wessen", en:"who / whom / whose", tag:"Person in allen Fällen", ex:[
+   ["wer? Nominativ", "[[Wer]] hat den Termin vereinbart?", "Who made the appointment?"],
+   ["wen? Akkusativ", "[[Wen]] soll ich anrufen?", "Who should I call?"],
+   ["wem? Dativ", "[[Wem]] gehört diese Jacke?", "Who does this jacket belong to?"],
+   ["wessen? Genitiv", "[[Wessen]] Auto steht vor der Garage?", "Whose car is in front of the garage?"]]},
+  {w:"was / wo / woher / wohin", en:"what / where / where from / where to", tag:"Sache und Ort", ex:[
+   ["was? Sache", "[[Was]] kostet die Monatskarte?", "How much is the monthly ticket?"],
+   ["wo? Ort", "[[Wo]] ist hier die nächste Apotheke?", "Where is the nearest pharmacy?"],
+   ["woher? Herkunft", "[[Woher]] kommen Sie?", "Where are you from?"],
+   ["wohin? Richtung", "[[Wohin]] fahren Sie im Urlaub?", "Where are you going on holiday?"]]},
+  {w:"wann / wie lange / seit wann", en:"when / how long / since when", tag:"Zeit", ex:[
+   ["wann? Zeitpunkt", "[[Wann]] beginnt der Kurs?", "When does the course start?"],
+   ["wie lange? Dauer", "[[Wie lange]] dauert die Fahrt?", "How long does the journey take?"],
+   ["seit wann? Beginn bis jetzt", "[[Seit wann]] haben Sie die Schmerzen?", "How long have you had the pain?"],
+   ["wie oft? Häufigkeit", "[[Wie oft]] muss ich die Tabletten nehmen?", "How often do I have to take the tablets?"],
+   ["bis wann? Ende", "[[Bis wann]] muss ich den Antrag abgeben?", "By when do I have to hand in the application?"]]},
+  {w:"wie / warum / wie viel", en:"how / why / how much", tag:"Art, Grund, Menge", ex:[
+   ["wie? Art und Weise", "[[Wie]] komme ich zum Bahnhof?", "How do I get to the station?"],
+   ["warum / wieso? Grund", "[[Warum]] ist der Zug verspätet?", "Why is the train late?"],
+   ["wie viel? nicht zählbar", "[[Wie viel]] Geld brauchst du?", "How much money do you need?"],
+   ["wie viele? zählbar", "[[Wie viele]] Kinder haben Sie?", "How many children do you have?"],
+   ["wie + Adjektiv", "[[Wie alt]] ist Ihre Tochter?", "How old is your daughter?"]]}
+ ]},
+ {g:"Auswahl und Art", gen:"choice and kind", items:[
+  {w:"welcher / welche / welches", en:"which", tag:"Auswahl – Endung wie der/die/das", ex:[
+   ["Nominativ", "[[Welcher]] Bus fährt zum Krankenhaus?", "Which bus goes to the hospital?"],
+   ["Akkusativ", "[[Welchen]] Kurs möchten Sie besuchen?", "Which course would you like to attend?"],
+   ["Dativ", "In [[welchem]] Stock wohnen Sie?", "Which floor do you live on?"],
+   ["Plural", "[[Welche]] Unterlagen brauche ich?", "Which documents do I need?"]]},
+  {w:"was für ein", en:"what kind of", tag:"Art – Endung wie ein/eine", ex:[
+   ["Art fragen", "[[Was für ein]] Auto haben Sie?", "What kind of car do you have?"],
+   ["Akkusativ", "[[Was für einen]] Job suchen Sie?", "What kind of job are you looking for?"],
+   ["Plural: was für", "[[Was für]] Erfahrungen haben Sie?", "What kind of experience do you have?"],
+   ["Antwort: ein / eine", "Was für eine Wohnung suchen Sie? – [[Eine]] mit Balkon.", "What kind of flat are you looking for? – One with a balcony."]]},
+  {w:"Präposition + Fragewort", en:"preposition + question word", tag:"mit wem? · womit?", ex:[
+   ["Person: Präposition + wem", "[[Mit wem]] haben Sie gesprochen?", "Who did you speak to?"],
+   ["Person: Präposition + wen", "[[Für wen]] ist das Geschenk?", "Who is the present for?"],
+   ["Sache: wo + Präposition", "[[Womit]] fahren Sie zur Arbeit?", "How do you get to work (by what means)?"],
+   ["Sache: wor- vor Vokal", "[[Worauf]] warten Sie?", "What are you waiting for?"]]}
+ ]}
+]},
 {id:"ndekl", de:"n-Deklination", en:"Weak nouns (n-declension)",
  intro:"Einige maskuline Nomen bekommen in allen Kasus außer im Nominativ Singular die Endung -(e)n: vor allem Personen und Tiere auf -e (der Kollege, der Junge) und Wörter auf -ent, -ant, -ist (der Student, der Praktikant, der Polizist) sowie der Herr, der Mensch, der Nachbar.",
  groups:[
@@ -1754,6 +2002,92 @@ window.GD = [
    ["die Antwort – nicht wie das Wort", "Ich warte noch auf [[die]] Antwort vom Vermieter.", "I'm still waiting for the landlord's answer."],
    ["der Junge – männlich auf -e", "[[Der]] Junge von nebenan hat mein Fahrrad repariert.", "The boy next door repaired my bike."],
    ["das Ende – nicht die", "[[Das]] Ende der Ferien kommt immer zu schnell.", "The end of the holidays always comes too fast."]]}
+ ]}
+]},
+{id:"plural", de:"Plural", en:"Plural of nouns",
+ intro:"Der Artikel im Plural ist immer die. Die Endung muss man lernen, aber es gibt Tendenzen: Feminine Nomen bekommen meist -(e)n, viele maskuline -e (oft mit Umlaut), viele neutrale -er mit Umlaut, Nomen auf -er, -el, -en bleiben gleich, Fremdwörter und Abkürzungen bekommen -s. Im Dativ Plural kommt -n dazu.",
+ groups:[
+ {g:"Pluralendungen", gen:"plural endings", items:[
+  {w:"-(e)n", en:"-n / -en", tag:"fast alle femininen Nomen", ex:[
+   ["-e → -n", "Ich habe zwei [[Taschen]] dabei.", "I've got two bags with me."],
+   ["-ung, -heit, -keit → -en", "Bitte bezahlen Sie die [[Rechnungen]] bis Freitag.", "Please pay the bills by Friday."],
+   ["-in → -innen", "Die [[Lehrerinnen]] machen heute einen Ausflug.", "The (female) teachers are going on a trip today."],
+   ["n-Deklination: der Kollege → die Kollegen", "Meine [[Kollegen]] sind sehr nett.", "My colleagues are very nice."]]},
+  {w:"-e / ¨-e", en:"-e, often with umlaut", tag:"viele maskuline Nomen", ex:[
+   ["-e ohne Umlaut", "In der Küche stehen vier [[Tische]].", "There are four tables in the kitchen."],
+   ["¨-e mit Umlaut", "Ich habe zwei [[Söhne]] und eine Tochter.", "I have two sons and a daughter."],
+   ["einsilbige Nomen", "Wir haben heute drei [[Briefe]] bekommen.", "We received three letters today."],
+   ["auch feminin mit Umlaut", "In vielen [[Städten]] sind die Mieten hoch.", "Rents are high in many cities."]]},
+  {w:"-er / ¨-er", en:"-er, often with umlaut", tag:"viele neutrale Nomen", ex:[
+   ["¨-er mit Umlaut", "Die [[Häuser]] in unserer Straße sind alt.", "The houses on our street are old."],
+   ["-er ohne Umlaut", "Die [[Kinder]] gehen um acht zur Schule.", "The children go to school at eight."],
+   ["einsilbige neutrale Nomen", "Ich habe viele [[Bücher]] gelesen.", "I've read a lot of books."],
+   ["auch einige maskuline", "Die [[Männer]] spielen am Samstag Fußball.", "The men play football on Saturday."]]},
+  {w:"keine Endung / ¨", en:"no ending, sometimes umlaut", tag:"Nomen auf -er, -el, -en", ex:[
+   ["-er: gleich wie Singular", "Wir brauchen zwei neue [[Fenster]].", "We need two new windows."],
+   ["-el: gleich wie Singular", "Kannst du bitte die [[Löffel]] holen?", "Can you get the spoons, please?"],
+   ["nur Umlaut", "Meine [[Töchter]] gehen in den Kindergarten.", "My daughters go to nursery."],
+   ["-chen / -lein: gleich", "Wir kaufen sechs [[Brötchen]].", "We're buying six bread rolls."]]},
+  {w:"-s", en:"-s", tag:"Fremdwörter und Abkürzungen", ex:[
+   ["englische Wörter", "Alle [[Handys]] bitte ausschalten.", "Please switch off all mobile phones."],
+   ["Wörter auf -a, -i, -o, -u", "Wir haben zwei [[Autos]].", "We have two cars."],
+   ["Abkürzungen", "Bitte bringen Sie Ihre [[PDFs]] auf einem USB-Stick mit.", "Please bring your PDFs on a USB stick."],
+   ["Familiennamen", "Die [[Müllers]] wohnen über uns.", "The Müllers live above us."]]}
+ ]},
+ {g:"Besondere Fälle", gen:"special cases", items:[
+  {w:"Dativ Plural: -n", en:"dative plural adds -n", tag:"mit den Kindern", ex:[
+   ["Dativ Plural bekommt -n", "Ich spiele am Wochenende mit [[den Kindern]].", "I play with the children at the weekend."],
+   ["nach Präposition mit Dativ", "Ich wohne mit zwei [[Freunden]] zusammen.", "I live with two friends."],
+   ["kein -n bei -n oder -s", "Wir sprechen mit [[den Kollegen]] und [[den Chefs]].", "We talk to the colleagues and the bosses."],
+   ["Verben mit Dativ", "Das Haus gehört [[meinen Eltern]].", "The house belongs to my parents."]]},
+  {w:"nur Plural", en:"plural-only nouns", tag:"die Eltern, die Leute", ex:[
+   ["Personen", "Meine [[Eltern]] besuchen uns im Dezember.", "My parents are visiting us in December."],
+   ["Zeit", "In den [[Ferien]] fahren wir zu meiner Schwester.", "In the holidays we're going to my sister's."],
+   ["Geld", "Die [[Kosten]] für den Kurs übernimmt das Jobcenter.", "The job centre pays the costs of the course."],
+   ["Leute = Menschen allgemein", "Auf dem Fest waren sehr viele [[Leute]].", "There were very many people at the party."]]},
+  {w:"kein Plural", en:"no plural", tag:"Stoffe und Abstraktes", ex:[
+   ["Stoffe: Milch, Zucker, Geld", "Wir haben keine [[Milch]] mehr.", "We have no milk left."],
+   ["Abstraktes: Hilfe, Glück", "Vielen Dank für Ihre [[Hilfe]].", "Thank you very much for your help."],
+   ["Plural mit anderem Wort: Ratschläge", "Er hat mir gute [[Ratschläge]] gegeben.", "He gave me good advice."],
+   ["Plural mit -sorten / -arten", "Im Supermarkt gibt es viele [[Brotsorten]].", "There are many kinds of bread in the supermarket."]]}
+ ]}
+]},
+{id:"poss", de:"Possessivartikel", en:"Possessive articles",
+ intro:"mein, dein, sein, ihr, unser, euer, ihr / Ihr zeigen, wem etwas gehört. Die Endung passt zum Nomen danach (wie bei ein / kein): mein Bruder, meine Schwester, meinen Bruder (Akk.). Achtung: sein = von ihm (er, es), ihr = von ihr (sie) oder von ihnen (Plural), Ihr = höflich (Sie).",
+ groups:[
+ {g:"Wer? → Possessivartikel", gen:"who? → possessive", items:[
+  {w:"mein / dein", en:"my / your (du)", tag:"ich → mein, du → dein", ex:[
+   ["ich → mein", "Das ist [[mein]] Ausweis.", "That's my ID card."],
+   ["du → dein", "Ist das [[dein]] Fahrrad?", "Is that your bike?"],
+   ["feminin: + e", "[[Meine]] Frau arbeitet im Krankenhaus.", "My wife works in the hospital."],
+   ["Plural: + e", "Wo sind [[deine]] Kinder?", "Where are your children?"]]},
+  {w:"sein / ihr", en:"his / her", tag:"er, es → sein · sie → ihr", ex:[
+   ["er → sein", "Herr Klein hat [[seinen]] Schlüssel vergessen.", "Mr Klein forgot his key."],
+   ["sie → ihr", "Frau Klein hat [[ihren]] Schlüssel vergessen.", "Ms Klein forgot her key."],
+   ["es → sein", "Das Kind spielt mit [[seinem]] Ball.", "The child is playing with its ball."],
+   ["sie (Plural) → ihr", "Die Nachbarn haben [[ihr]] Auto verkauft.", "The neighbours have sold their car."]]},
+  {w:"unser / euer / Ihr", en:"our / your (ihr) / your (Sie)", tag:"wir → unser, ihr → euer, Sie → Ihr", ex:[
+   ["wir → unser", "[[Unsere]] Wohnung hat drei Zimmer.", "Our flat has three rooms."],
+   ["ihr → euer (euer + e → eure)", "Wann kommt [[eure]] Tochter nach Hause?", "When is your daughter coming home?"],
+   ["Sie → Ihr (groß)", "Bitte zeigen Sie mir [[Ihren]] Pass.", "Please show me your passport."],
+   ["Ihr im Brief", "Vielen Dank für [[Ihre]] schnelle Antwort.", "Thank you for your quick reply."]]}
+ ]},
+ {g:"Endungen", gen:"endings", items:[
+  {w:"Nominativ und Akkusativ", en:"nominative and accusative", tag:"nur maskulin ändert sich", ex:[
+   ["Nominativ maskulin: ohne Endung", "[[Mein]] Chef ist im Urlaub.", "My boss is on holiday."],
+   ["Akkusativ maskulin: -en", "Ich rufe [[meinen]] Chef an.", "I'm calling my boss."],
+   ["feminin: -e (Nom. und Akk.)", "Ich besuche [[meine]] Oma.", "I'm visiting my grandma."],
+   ["neutral: ohne Endung (Nom. und Akk.)", "Wir verkaufen [[unser]] Auto.", "We're selling our car."]]},
+  {w:"Dativ", en:"dative", tag:"-em · -er · -en", ex:[
+   ["maskulin / neutral: -em", "Ich fahre mit [[meinem]] Bruder nach Berlin.", "I'm driving to Berlin with my brother."],
+   ["feminin: -er", "Ich wohne bei [[meiner]] Schwester.", "I'm staying with my sister."],
+   ["Plural: -en + Nomen -n", "Ich helfe [[meinen]] Kindern bei den Hausaufgaben.", "I help my children with their homework."],
+   ["Verb mit Dativ", "Die Wohnung gefällt [[unserer]] Familie.", "Our family likes the flat."]]},
+  {w:"Genitiv und von", en:"genitive and von", tag:"wessen?", ex:[
+   ["Genitiv: -es / -er", "Das ist das Auto [[meines]] Bruders.", "That's my brother's car."],
+   ["gesprochen: von + Dativ", "Das ist das Auto [[von meinem]] Bruder.", "That's my brother's car."],
+   ["Namen: -s ohne Apostroph", "Das ist [[Annas]] Fahrrad.", "That's Anna's bike."],
+   ["feminin: -er", "Die Wohnung [[meiner]] Eltern ist sehr groß.", "My parents' flat is very big."]]}
  ]}
 ]}
 ];
