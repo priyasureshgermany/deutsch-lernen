@@ -1,5 +1,9 @@
 # Releases
 
+## 1.24.0 — 2026-10-11
+- Grammatik: eight new topics that were missing for B1 / DTZ, each with example sentences, English and read-aloud – Zeitangaben (um / am / im, Datum, Uhrzeit, vor / seit / in, wie oft), stellen – stehen (legen / liegen, setzen / sitzen, hängen), Partizip als Adjektiv, Nomen-Verb-Verbindungen (einen Antrag stellen, Bescheid geben, zur Verfügung stehen …), Imperativ, Fragewörter (welcher / was für ein, mit wem / womit), Plural, Possessivartikel (sein / ihr, Endungen)
+- They sit next to the topics they belong to; Grammatik now has 35 topics, 334 items and about 1450 sentences
+
 ## 1.23.0 — 2026-10-11
 - Grammatik: new topic **Artikel** (der, die, das) after Wortbildung – 26 items with example sentences, English and read-aloud: how to find the article (people, compounds, reading it from the sentence, plural, how to learn), der / die / das by ending and meaning, exceptions and traps (der See / die See …)
 - Spickzettel (cheat sheet) at the top of the topic: six steps, then der in blue, die in red, das in green – endings and meaning groups, ●●● how sure each rule is, and the exceptions
