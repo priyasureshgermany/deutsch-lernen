@@ -1,5 +1,9 @@
 # Releases
 
+## 1.22.1 — 2026-10-11
+- Schreiben: the mistakes are explained right under your text – number by number, wrong word → correction, with a plain reason in German and English (capital letters, missing umlauts, English words, word order of letters, endings, einladen + Akkusativ, sich freuen …); the best correction comes first (Getränke, not gedrängt)
+- „Liebe große“ is recognised as a misspelled „Liebe Grüße“, and your name under the letter is no longer marked as a mistake; „5uhr“ is checked too
+
 ## 1.22.0 — 2026-10-11
 - B1 practice exercises now follow the DTZ too: Hören in 4 Teile (Ansagen, Radio, Gespräche with richtig/falsch + a/b/c, Meinungen), Lesen in 5 Teile (Wegweiser, Anzeigen with x, kurze Texte, längerer Text, Brief mit Lücken), Schreiben with four DTZ-style model letters and phrases, Sprechen in 3 Teile (über sich sprechen, Foto und Erfahrungen, gemeinsam planen) – all with English, solutions and read-aloud
 - The exam lines show DTZ facts: 45 tasks for Hören and Lesen together, Schreiben and Sprechen rated A2 or B1

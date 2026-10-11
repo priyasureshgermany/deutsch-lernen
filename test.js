@@ -389,11 +389,13 @@ const EDIT=new Set();
   const opts=id=>edit(id,`<div class="tz-opts">${row(id).opts.map(([v,l])=>`<button type="button" class="tz-opt" data-sa="${k}" data-id="${id}" data-v="${v}" aria-pressed="${val(id)!=null&&+val(id)===v}">${esc(l)} (${P(v)})</button>`).join("")}${how(id)}</div>`);
   const en=s=>`<span class="sw-en">${esc(s)}</span>`;
   const chk=x=>`<li class="${x.ok?"ok":x.half?"half":"no"}"><span>${x.ok?"✓":x.half?"~":"✗"}</span><div>${esc(x.de)}${en(x.en)}${x.ok?"":`<div class="sw-tip">${esc(x.tip[0])}</div>`}</div></li>`;
+  const list=e=>`<ol class="sw-errs">${e.map(e=>`<li><b class="sw-no">${e.n}</b><div><div class="sw-fix"><s>${esc(e.w)}</s>${e.rep.length?` → <ins>${esc(e.rep[0])}</ins>`:""}${e.rep.length>1?` <small>(oder ${esc(e.rep.slice(1).join(", "))})</small>`:""} <small class="sw-kind">${esc(e.kind[0])}</small></div><div class="sw-msg">${esc((e.why||[e.msg])[0])}${(e.why&&e.why[1])?en(e.why[1]):e.en?en(e.en):""}</div></div></li>`).join("")}</ol>`;
   let h=`<div class="tz-qt">${T(p.task).replace(/\n/g,"<br>")}</div>
    <div class="tz-lab">Dein Text (${words(txt)} Wörter${p.words?`, verlangt etwa ${p.words}`:""})</div>`;
   if(!txt.trim())h+=`<div class="tz-text"><i>nichts geschrieben</i></div>`;
   else h+=`<div class="tz-text sw-text">${Schreiben.marked(an,esc)}</div>
-   <div class="sw-legend"><b class="sw-chip c0">1</b> Satz zu Punkt 1 · <mark class="sw-err">Wort<sup>1</sup></mark> Fehler Nr. 1 (Liste unten)</div>`;
+   <div class="sw-legend"><b class="sw-chip c0">1</b> Satz zu Punkt 1 · <mark class="sw-err">Wort<sup>1</sup></mark> Fehler Nr. 1 – erklärt direkt hier unten</div>
+   ${an.errs&&an.errs.length?`<div class="sw-sec sw-errbox"><h4>Deine Fehler – erklärt (${an.errs.length})</h4>${list(an.errs)}${an.ltDone?"":`<p class="tz-sub">Die Rechtschreibprüfung läuft noch – gleich können weitere Fehler dazukommen.</p>`}</div>`:an.ltDone?`<div class="sw-sec sw-errbox ok"><h4>Keine Fehler gefunden – sehr gut!</h4></div>`:""}`;
   /* the marks at a glance */
   const lpN=b1?p.points.filter((_,i)=>val("lp"+i)).length:0,I=b1?[0,0,5,10,15][Math.min(lpN,4)]:0;
   const sum=b1?[["I","Inhalt: Leitpunkte behandelt","content: points covered",I,15],["II","Kommunikative Gestaltung","letter form and linking",val("k2"),15],["III","Formale Richtigkeit","grammar and spelling",val("k3"),15]]
@@ -418,15 +420,15 @@ const EDIT=new Set();
   /* III · mistakes */
   const st=LT[k];
   h+=`<div class="sw-sec"><h4>${b1?"III · Formale Richtigkeit":"Fehler – zum Lernen"}</h4>`;
-  const list=e=>`<ol class="sw-errs">${e.map(e=>`<li><span><s>${esc(e.w)}</s>${e.rep.length?` → <ins>${esc(e.rep[0])}</ins>`:""}${e.rep.length>1?` <small>(oder ${esc(e.rep.slice(1).join(", "))})</small>`:""}</span><small class="sw-kind">${esc(e.kind[0])}</small><div class="sw-msg">${esc(e.msg)}${e.en?en(e.en):""}</div></li>`).join("")}</ol>`;
+  const list0=e=>`<ol class="sw-errs">${e.map(e=>`<li><span><s>${esc(e.w)}</s>${e.rep.length?` → <ins>${esc(e.rep[0])}</ins>`:""}${e.rep.length>1?` <small>(oder ${esc(e.rep.slice(1).join(", "))})</small>`:""}</span><small class="sw-kind">${esc(e.kind[0])}</small><div class="sw-msg">${esc(e.msg)}${e.en?en(e.en):""}</div></li>`).join("")}</ol>`;
   if(!txt.trim())h+=`<p class="tz-sub">Kein Text – nichts zu prüfen.</p>`;
   else if(an.ltDone){const n=an.errs.length;
    h+=`<p class="tz-sub">${n?`${n} Fehler in ${an.words} Wörtern – etwa ${num(Math.round(an.per100*10)/10)} pro 100 Wörter.`:"Keine Fehler gefunden – sehr gut!"}
-    ${b1?" Bis 3 pro 100 Wörter = A (15) · bis 7 = B (10) · bis 12 = C (5) · mehr = D (0).":" Bei A1 kosten Fehler keine Punkte, solange man dich versteht – aber lerne aus ihnen."}${b1&&an.short?" Dein Text ist kürzer als die Hälfte – dann gibt es höchstens C (5).":""}</p>${n?list(an.errs):""}
+    ${b1?" Bis 3 pro 100 Wörter = A (15) · bis 7 = B (10) · bis 12 = C (5) · mehr = D (0).":" Bei A1 kosten Fehler keine Punkte, solange man dich versteht – aber lerne aus ihnen."}${b1&&an.short?" Dein Text ist kürzer als die Hälfte – dann gibt es höchstens C (5).":""}${n?" Alle Fehler mit Erklärung stehen direkt unter deinem Text.":""}</p>
     <p class="sw-legend">Geprüft von der App und mit LanguageTool – eine automatische Prüfung findet nicht jeden Fehler.</p>`}
   else{h+=st==="fail"?`<div class="tz-warn">Keine Verbindung zur Rechtschreibprüfung (LanguageTool).${b1?" Bewerte die Formale Richtigkeit selbst oder versuche es noch einmal.":""} <button type="button" class="sw-reset" data-go="ltretry" data-k="${k}">↻ noch einmal prüfen</button></div>`
     :`<p class="tz-sub">Rechtschreibung und Grammatik werden geprüft …</p>`;
-   if(an.errs.length)h+=`<p class="tz-sub">Schon gefunden (Prüfung der App):</p>`+list(an.errs)}
+   if(an.errs.length)h+=`<p class="tz-sub">Was die App schon gefunden hat, steht mit Erklärung direkt unter deinem Text.</p>`}
   if(b1)h+=opts("k3");
   h+=`</div>`;
   /* how to get better */
