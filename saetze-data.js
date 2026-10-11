@@ -269,6 +269,52 @@ window.AS = [
    ["noch nichts geplant", "[[Ich weiß noch nicht]], vielleicht gehen wir ins Kino.", "I don't know yet, maybe we'll go to the cinema."]]}
  ]}
 ]},
+{id:"freunde", de:"Mit Freunden", en:"With friends",
+ intro:"Unter Freunden spricht man locker und kurz: Na? statt Wie geht es Ihnen?, Lust auf …? statt Hätten Sie Zeit …?. Viele Wörter sind umgangssprachlich (Bock, krass, pleite) – gut zum Verstehen, aber nicht für Briefe oder die Prüfung.",
+ groups:[
+ {g:"Locker reden", gen:"casual talk", items:[
+  {w:"Na, alles gut?", en:"hey, all good?", tag:"locker begrüßen", ex:[
+   ["kurz begrüßen", "[[Na, alles gut]]?", "Hey, all good?"],
+   ["was gibt's Neues", "[[Was gibt's Neues]]?", "What's new?"],
+   ["Antwort locker", "[[Alles gut]], und bei dir?", "All good, and with you?"],
+   ["sehr locker, jung", "Hey, [[was geht]]?", "Hey, what's up?"],
+   ["gut aussehen", "[[Du siehst gut aus]]!", "You look good!"]]},
+  {w:"Krass! / Echt jetzt?", en:"wow! / seriously?", tag:"locker reagieren", ex:[
+   ["Überraschung, umgangssprachlich", "Du hast im Lotto gewonnen? [[Krass]]!", "You won the lottery? Wow!"],
+   ["nicht glauben", "[[Echt jetzt]]?", "Seriously?"],
+   ["natürlich", "Kommst du mit? – [[Na klar]]!", "Are you coming? – Of course!"],
+   ["kein Problem, locker", "Danke für die Hilfe! – [[Kein Ding]]!", "Thanks for the help! – No big deal!"],
+   ["passt", "Um acht am Bahnhof? – [[Passt]]!", "Eight o'clock at the station? – Works for me!"]]}
+ ]},
+ {g:"Verabreden", gen:"making plans", items:[
+  {w:"Lust auf Kino?", en:"fancy the cinema?", tag:"Pläne machen", ex:[
+   ["kurz fragen", "[[Lust auf Kino]] heute Abend?", "Fancy the cinema tonight?"],
+   ["Pläne fragen", "[[Hast du heute Abend schon was vor]]?", "Have you got plans tonight?"],
+   ["Treffpunkt", "[[Wo treffen wir uns]]?", "Where shall we meet?"],
+   ["abholen", "[[Ich hol dich um sieben ab]].", "I'll pick you up at seven."],
+   ["unterwegs", "[[Bin in fünf Minuten da]]!", "Be there in five minutes!"]]},
+  {w:"Ich lade dich ein", en:"it's on me", tag:"bezahlen unter Freunden", ex:[
+   ["einladen", "[[Ich lade dich ein]]!", "It's on me!"],
+   ["auch üblich", "[[Das geht auf mich]].", "This one's on me."],
+   ["teilen", "[[Wollen wir teilen]]?", "Shall we split it?"],
+   ["nächstes Mal", "Danke! [[Nächstes Mal zahle ich]].", "Thanks! Next time I'll pay."],
+   ["kein Geld, umgangssprachlich", "Diesen Monat [[bin ich pleite]].", "I'm broke this month."]]}
+ ]},
+ {g:"Füreinander da sein", gen:"being there for each other", items:[
+  {w:"Ich drück dir die Daumen!", en:"fingers crossed for you", tag:"Glück wünschen und Mut machen", ex:[
+   ["vor einer Prüfung", "[[Ich drück dir die Daumen]]!", "I'll keep my fingers crossed for you!"],
+   ["Mut machen", "[[Du schaffst das]]!", "You can do it!"],
+   ["keine Sorgen", "[[Mach dir keinen Kopf]].", "Don't worry about it."],
+   ["Hauptsache", "Egal, wie es ausgeht – [[Hauptsache]], du bist gesund.", "Whatever happens – the main thing is you're healthy."],
+   ["Hilfe anbieten", "[[Wenn was ist, ruf an]].", "If anything's up, call me."]]},
+  {w:"Ich hab keinen Bock", en:"I can't be bothered", tag:"Umgangssprache verstehen", ex:[
+   ["keine Lust, umgangssprachlich", "[[Ich hab keinen Bock]] auf Sport heute.", "I can't be bothered with sport today."],
+   ["sehr müde, umgangssprachlich", "[[Ich bin total kaputt]].", "I'm completely knackered."],
+   ["zu viel", "[[Das ist mir zu stressig]].", "That's too stressful for me."],
+   ["nicht so wichtig", "[[Ist doch egal]]!", "It doesn't matter!"],
+   ["so lala", "Wie war's? – [[Na ja, ging so]].", "How was it? – Well, so-so."]]}
+ ]}
+]},
 {id:"wuensche", de:"Wünsche & Glückwünsche", en:"Wishes and congratulations",
  intro:"Für fast jede Situation gibt es einen festen Wunsch: Viel Glück, Viel Spaß, Gute Besserung, Schönes Wochenende. Die Antwort auf gute Wünsche ist oft Danke, gleichfalls! oder Danke, dir auch!",
  groups:[
@@ -430,6 +476,58 @@ window.AS = [
    ["Wunsch zum Feierabend", "[[Schönen Feierabend]]! Bis morgen!", "Have a nice evening! See you tomorrow!"],
    ["Pause", "Lass uns kurz [[Pause machen]].", "Let's take a short break."],
    ["Arbeit gut gemacht", "[[Gut gemacht]]! Danke für deine Hilfe.", "Well done! Thanks for your help."]]}
+ ]}
+]},
+{id:"buero", de:"Im Büro", en:"At the office",
+ intro:"Im Büro hört man viele kurze, feste Sätze – in der Kaffeeküche, in Besprechungen und in E-Mails. Mit Kollegen ist man oft per du und spricht locker, mit Chefs und Kunden eher per Sie. Diese Sätze helfen Ihnen, schnell und natürlich zu reagieren.",
+ groups:[
+ {g:"Kollegen", gen:"colleagues", items:[
+  {w:"Hast du kurz eine Minute?", en:"have you got a minute?", tag:"jemanden ansprechen", ex:[
+   ["kurz stören", "[[Hast du kurz eine Minute]]?", "Have you got a minute?"],
+   ["formell stören", "[[Störe ich gerade]]?", "Am I disturbing you?"],
+   ["später", "[[Passt es dir nach der Mittagspause]]?", "Does after lunch suit you?"],
+   ["Kaffee anbieten", "Ich hole mir einen Kaffee – [[willst du auch einen]]?", "I'm getting a coffee – do you want one too?"],
+   ["mitkommen", "[[Gehst du mit in die Kantine]]?", "Are you coming to the canteen?"]]},
+  {w:"Wie läuft's?", en:"how's it going?", tag:"kurz plaudern", ex:[
+   ["fragen", "Na, [[wie läuft's]]?", "So, how's it going?"],
+   ["viel Arbeit", "[[Heute ist echt viel los]].", "It's really busy today."],
+   ["ruhig", "[[Heute ist es zum Glück ruhig]].", "Luckily it's quiet today."],
+   ["Ende der Woche", "[[Endlich Freitag]]!", "Finally Friday!"],
+   ["bald fertig", "[[Nur noch eine Stunde]], dann ist Feierabend.", "Just one more hour, then it's home time."]]}
+ ]},
+ {g:"Besprechungen", gen:"meetings", items:[
+  {w:"Können wir kurz sprechen?", en:"can we have a quick talk?", tag:"Termin und Meeting", ex:[
+   ["kurzes Gespräch", "[[Können wir kurz sprechen]]?", "Can we have a quick talk?"],
+   ["besprechen", "[[Lass uns das morgen im Meeting besprechen]].", "Let's discuss it in the meeting tomorrow."],
+   ["keine Zeit", "[[Ich bin gleich in einem Meeting]].", "I'm about to go into a meeting."],
+   ["anfangen", "[[Sollen wir anfangen]]? Es sind alle da.", "Shall we start? Everyone's here."],
+   ["Protokoll", "[[Wer schreibt heute das Protokoll]]?", "Who's taking the minutes today?"]]},
+  {w:"Gute Frage!", en:"good question", tag:"im Meeting reagieren", ex:[
+   ["Zeit gewinnen", "[[Gute Frage]] – da muss ich kurz nachdenken.", "Good question – I need to think about that."],
+   ["nachsehen", "[[Das schaue ich nach]] und melde mich.", "I'll look that up and get back to you."],
+   ["ergänzen", "[[Darf ich kurz etwas ergänzen]]?", "May I add something quickly?"],
+   ["zusammenfassen", "[[Kurz zusammengefasst]]: Wir brauchen mehr Zeit.", "In short: we need more time."],
+   ["Aufgabe verteilen", "[[Wer übernimmt das]]?", "Who'll take care of that?"]]}
+ ]},
+ {g:"Aufgaben und E-Mails", gen:"tasks and emails", items:[
+  {w:"Bis wann brauchst du das?", en:"when do you need it by?", tag:"Fristen", ex:[
+   ["Frist fragen", "[[Bis wann brauchst du das]]?", "When do you need it by?"],
+   ["dringend", "[[Das ist dringend]] – bitte heute noch.", "This is urgent – please today."],
+   ["nicht schaffen", "[[Das schaffe ich heute nicht mehr]].", "I won't manage that today."],
+   ["prüfen lassen", "[[Kannst du mal drüberschauen]]?", "Can you have a quick look at it?"],
+   ["erledigt", "[[Ist erledigt]]!", "Done!"]]},
+  {w:"Ich schicke es dir gleich", en:"I'll send it to you right away", tag:"E-Mail und Dateien", ex:[
+   ["schicken", "[[Ich schicke es dir gleich]] per E-Mail.", "I'll email it to you right away."],
+   ["Anhang, formell", "[[Anbei finden Sie]] die Unterlagen.", "Please find the documents attached."],
+   ["weiterleiten", "[[Ich leite die E-Mail an Frau Klein weiter]].", "I'll forward the email to Ms Klein."],
+   ["in Kopie", "[[Ich setze dich in Kopie]].", "I'll copy you in."],
+   ["nicht da", "[[Ich bin morgen im Homeoffice]].", "I'm working from home tomorrow."]]},
+  {w:"Der Drucker geht nicht", en:"the printer isn't working", tag:"technische Probleme", ex:[
+   ["Gerät kaputt", "[[Der Drucker geht schon wieder nicht]].", "The printer isn't working again."],
+   ["Computer", "[[Mein Computer hängt]].", "My computer has frozen."],
+   ["Passwort", "[[Ich komme nicht ins System]].", "I can't log into the system."],
+   ["Hilfe suchen", "[[Wen kann ich da fragen]]?", "Who can I ask about that?"],
+   ["IT anrufen", "[[Ich rufe mal bei der IT an]].", "I'll give IT a call."]]}
  ]}
 ]},
 {id:"zuhause", de:"Zu Hause", en:"At home",
@@ -705,5 +803,60 @@ window.ASEN = {
  "anderes Mal":"another time",
  "Grund":"reason",
  "später zusagen":"deciding later",
- "Danke trotzdem":"thanks anyway"
+ "Danke trotzdem":"thanks anyway",
+ "kurz stören":"interrupting briefly",
+ "formell stören":"interrupting, formal",
+ "später":"later",
+ "Kaffee anbieten":"offering coffee",
+ "mitkommen":"coming along",
+ "viel Arbeit":"lots of work",
+ "Ende der Woche":"end of the week",
+ "bald fertig":"nearly done",
+ "kurzes Gespräch":"a quick talk",
+ "besprechen":"discussing",
+ "Protokoll":"minutes",
+ "Zeit gewinnen":"gaining time",
+ "nachsehen":"looking it up",
+ "ergänzen":"adding something",
+ "zusammenfassen":"summarising",
+ "Aufgabe verteilen":"handing out a task",
+ "Frist fragen":"asking for a deadline",
+ "dringend":"urgent",
+ "nicht schaffen":"not managing",
+ "prüfen lassen":"getting it checked",
+ "erledigt":"done",
+ "schicken":"sending",
+ "Anhang, formell":"attachment, formal",
+ "weiterleiten":"forwarding",
+ "in Kopie":"in copy",
+ "Gerät kaputt":"broken device",
+ "Computer":"computer",
+ "Passwort":"password",
+ "Hilfe suchen":"looking for help",
+ "IT anrufen":"calling IT",
+ "kurz begrüßen":"quick hello",
+ "was gibt's Neues":"what's new",
+ "Antwort locker":"casual answer",
+ "sehr locker, jung":"very casual, young people",
+ "gut aussehen":"looking good",
+ "Überraschung, umgangssprachlich":"surprise, colloquial",
+ "nicht glauben":"not believing it",
+ "natürlich":"of course",
+ "kein Problem, locker":"no problem, casual",
+ "passt":"fine",
+ "kurz fragen":"asking briefly",
+ "Treffpunkt":"meeting point",
+ "abholen":"picking up",
+ "unterwegs":"on the way",
+ "einladen":"treating someone",
+ "teilen":"splitting the bill",
+ "nächstes Mal":"next time",
+ "kein Geld, umgangssprachlich":"no money, colloquial",
+ "keine Sorgen":"no worries",
+ "Hauptsache":"the main thing",
+ "keine Lust, umgangssprachlich":"no desire, colloquial",
+ "sehr müde, umgangssprachlich":"very tired, colloquial",
+ "zu viel":"too much",
+ "nicht so wichtig":"not so important",
+ "so lala":"so-so"
 };
