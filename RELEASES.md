@@ -1,5 +1,9 @@
 # Releases
 
+## 1.29.0 — 2026-10-11
+- Alltagssätze: 7 new situations and about 120 more phrases (now 16 situations, 267 phrases) – Über mich (Woher kommst du? Was machst du beruflich?), Zeit & Termine (Ich bin spät dran, Wann passt es Ihnen?, Können wir das verschieben?), Unterwegs (Wie komme ich zum …?, Ist hier noch frei?, Muss ich umsteigen?), Wetter & Wochenende (Wie war dein Wochenende?), Telefon & Nachrichten (Kann ich etwas ausrichten?, Bin gut angekommen!), Wie es mir geht (Mir ist kalt, Ich habe keine Lust, Keine Sorge!), Zu Hause (Das Essen ist fertig!, Ich bin satt)
+- New groups in existing situations: Unsicher sein (Kommt darauf an, Keine Ahnung) and Absagen (Leider kann ich nicht, Vielleicht ein anderes Mal)
+
 ## 1.28.0 — 2026-10-11
 - New tab **Alltagssätze** (Sätze): about 150 everyday phrases in 9 situations – Hallo & Tschüss (Bis später!, Auf Wiederhören), Danke & Entschuldigung (Danke für Ihr Verständnis, Gern geschehen, Tut mir leid), Gefallen & Meinung (Das gefällt mir, Klingt gut, Schade), Vorschläge & Treffen (Los geht's!, Wollen wir …?, Ich freue mich darauf, dich zu sehen), Wünsche & Glückwünsche, Im Gespräch (Wie bitte?, Moment mal), Bitten & Hilfe, Einkaufen & Restaurant (Stimmt so), Bei der Arbeit (Mahlzeit!, Ich kümmere mich darum)
 - Every phrase sits in a short example sentence, with ▶ read-aloud, English, tap-to-translate and Karten – the same layout as Grammatik
