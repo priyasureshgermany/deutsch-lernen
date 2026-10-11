@@ -1,5 +1,9 @@
 # Releases
 
+## 1.28.0 — 2026-10-11
+- New tab **Alltagssätze** (Sätze): about 90 everyday phrases in 9 situations – Hallo & Tschüss (Bis später!, Auf Wiederhören), Danke & Entschuldigung (Danke für Ihr Verständnis, Gern geschehen, Tut mir leid), Gefallen & Meinung (Das gefällt mir, Klingt gut, Schade), Vorschläge & Treffen (Los geht's!, Wollen wir …?, Ich freue mich darauf, dich zu sehen), Wünsche & Glückwünsche, Im Gespräch (Wie bitte?, Moment mal), Bitten & Hilfe, Einkaufen & Restaurant (Stimmt so), Bei der Arbeit (Mahlzeit!, Ich kümmere mich darum)
+- Every phrase sits in a short example sentence, with ▶ read-aloud, English, tap-to-translate and Karten – the same layout as Grammatik
+
 ## 1.27.0 — 2026-10-11
 - Briefe: 10 new letters (now 34) – formal: Jobcenter (Bildungsgutschein), Vermieter (Erlaubnis für einen Hund), Schule (Klassenfahrt, Ratenzahlung), Deutsche Bahn (Entschädigung für Verspätung), Arztpraxis (Befund anfordern), Sportverein (Kind anmelden), Stadtwerke (Nachzahlung und Abschlag); informal: Glückwunsch zur Geburt, Nachbarin (Blumen gießen im Urlaub), Freunde (Hilfe beim Umzug) – each with task, Leitpunkte, English, Wichtige Sätze and your own details filled in
 

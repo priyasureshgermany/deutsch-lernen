@@ -152,9 +152,9 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 </head>
 <body>
 <header class="hero">
- <div class="ladder"><span style="background:var(--b1)">B1</span><span style="background:var(--a2)">Grammatik</span></div>
- <h1>B1 Grammatik mit Beispielen</h1>
- <p class="sub">Wähle ein Thema und dann links ein Wort. Rechts erscheinen vier bis fünf Beispielsätze – jeder zeigt eine andere Verwendung (Kasus, Bedeutung, Satzposition, Zeit). ▶ liest den Satz vor, „EN“ zeigt die Übersetzung, und jedes Wort kannst du antippen.</p>
+ <div class="ladder"><span style="background:var(--b1)">B1</span><span style="background:var(--a2)" id="kind">Grammatik</span></div>
+ <h1 id="h1">B1 Grammatik mit Beispielen</h1>
+ <p class="sub" id="sub">Wähle ein Thema und dann links ein Wort. Rechts erscheinen vier bis fünf Beispielsätze – jeder zeigt eine andere Verwendung (Kasus, Bedeutung, Satzposition, Zeit). ▶ liest den Satz vor, „EN“ zeigt die Übersetzung, und jedes Wort kannst du antippen.</p>
 </header>
 <div class="bar">
  <nav class="topics" id="topics" aria-label="Themen"></nav>
@@ -173,6 +173,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 <script src="karten.js"></script>
 <script src="grammatik-data.js"></script>
 <script src="grammatik-en.js"></script>
+<script src="saetze-data.js"></script>
 <script src="artikel.js"></script>
 <script src="translate.js"></script>
 <script>
@@ -186,17 +187,22 @@ function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localSto
 const topicsEl=document.getElementById("topics"),listEl=document.getElementById("list"),detailEl=document.getElementById("detail"),introEl=document.getElementById("intro");
 const q=document.getElementById("q"),empty=document.getElementById("empty");
 const narrow=matchMedia("(max-width:760px)");
-let topic=GD.find(t=>t.id===store("gr:topic"))||GD[0],open=null;
+/* grammatik.html?t=saetze shows the Alltagssätze (saetze-data.js) with the same layout */
+const SAETZE=new URLSearchParams(location.search).get("t")==="saetze",TK=SAETZE?"as:topic":"gr:topic";
+if(SAETZE){window.GD=AS;Object.assign(GDEN,ASEN);document.title="Alltagssätze";document.getElementById("kind").textContent="Alltag";
+ document.getElementById("h1").textContent="Alltagssätze";
+ document.getElementById("sub").innerHTML="Die wichtigsten Sätze für jeden Tag – Begrüßen, Danken, Vorschläge, Wünsche, im Gespräch, beim Einkaufen und bei der Arbeit. Wähle eine Situation und links eine Gruppe: Jeder Satz steht in einem kurzen Beispiel. ▶ liest vor, „EN“ zeigt die Übersetzung, und jedes Wort kannst du antippen."}
+let topic=GD.find(t=>t.id===store(TK))||GD[0],open=null;
 
 topicsEl.innerHTML=GD.map(t=>`<button type="button" data-t="${t.id}" aria-pressed="${t===topic}">${esc(t.de)}</button>`).join("");
-topicsEl.onclick=e=>{const b=e.target.closest("[data-t]");if(!b)return;topic=GD.find(t=>t.id===b.dataset.t);store("gr:topic",topic.id);
+topicsEl.onclick=e=>{const b=e.target.closest("[data-t]");if(!b)return;topic=GD.find(t=>t.id===b.dataset.t);store(TK,topic.id);
  topicsEl.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));q.value="";drawTopic()};
 
 function drawTopic(){
  open=null;closePop();stopSay();
  introEl.innerHTML=`<b>${esc(topic.de)}</b> · <span class="muted">${esc(topic.en)}</span><br>${esc(topic.intro)}`;
  listEl.innerHTML=topic.groups.map((g,gi)=>`<h3>${esc(g.g)}${g.gen?` <span class="gen">· ${esc(g.gen)}</span>`:""}</h3>`+g.items.map((it,ii)=>`<button type="button" class="it" data-k="${gi}-${ii}" aria-expanded="false"><span class="itl"><b>${esc(it.w)}</b><small>${esc(it.tag)}</small></span>${it.en?`<i class="ien" lang="en">${esc(it.en)}</i>`:""}</button><div class="inl" data-for="${gi}-${ii}" hidden></div>`).join("")).join("");
- detailEl.innerHTML=`<div class="ph">Wähle links ein Wort – dann erscheinen hier die Beispielsätze.</div>`;
+ detailEl.innerHTML=`<div class="ph">${SAETZE?"Wähle links eine Gruppe – dann erscheinen hier die Sätze.":"Wähle links ein Wort – dann erscheinen hier die Beispielsätze."}</div>`;
  drawSheet();filter()}
 
 /* ---- Artikel: the cheat sheet and the finder (artikel.js) ---- */
