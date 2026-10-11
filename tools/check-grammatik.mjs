@@ -1,15 +1,16 @@
-// Checks grammatik-data.js:  node tools/check-grammatik.mjs
+// Checks grammatik-data.js and saetze-data.js:  node tools/check-grammatik.mjs
 // Every item needs at least four examples, each with an explanation, a German
 // sentence with a [[marked]] word, and an English line; no two explanations
 // of one item may be the same.
 import { readFileSync } from "node:fs";
 
 const window = {};
-for (const f of ["../grammatik-data.js", "../grammatik-en.js"])
+for (const f of ["../grammatik-data.js", "../grammatik-en.js", "../saetze-data.js"])
   new Function("window", readFileSync(new URL(f, import.meta.url), "utf8"))(window);
 let bad = 0, items = 0, sentences = 0;
 const fail = (w, m) => { bad++; console.log("✗ " + w + ": " + m); };
-for (const t of window.GD) {
+/* the grammar topics with their labels, then the Alltagssätze with theirs */
+for (const [SET, EN] of [[window.GD, window.GDEN], [window.AS, window.ASEN]]) for (const t of SET) {
   let n = 0;
   for (const g of t.groups) if (!g.gen) fail(t.de + " / " + g.g, "heading has no English (gen)");
   for (const g of t.groups) for (const it of g.items) {
@@ -21,7 +22,7 @@ for (const t of window.GD) {
     sentences += it.ex.length;
     it.ex.forEach(([why, de, en], i) => {
       if (!why || !de || !en) fail(where, "example " + (i + 1) + " is missing a field");
-      if (why && !window.GDEN[why]) fail(where, "example " + (i + 1) + " label has no English in grammatik-en.js");
+      if (why && !EN[why]) fail(where, "example " + (i + 1) + " label has no English in grammatik-en.js");
       if (!/\[\[[^\]]+\]\]/.test(de)) fail(where, "example " + (i + 1) + " marks no word");
       if ((de.match(/\[\[/g) || []).length !== (de.match(/\]\]/g) || []).length) fail(where, "unbalanced [[ ]]");
       if (/"/.test(de)) fail(where, "straight quote in the sentence breaks the word popup");
