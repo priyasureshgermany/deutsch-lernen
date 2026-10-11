@@ -1,5 +1,8 @@
 # Releases
 
+## 1.26.0 — 2026-10-11
+- Gespräche: 10 new everyday dialogues (now 34) – Jobcenter (Bildungsgutschein), Kita-Platz anmelden, Familienkasse (Kindergeld fehlt), Krankenkasse (neue Karte, neue Adresse), sich beim Chef krank melden, Integrationskurs anmelden, Fundbüro, Handyvertrag kündigen und neu abschließen, Schicht mit einer Kollegin tauschen, Fahrrad gestohlen bei der Polizei – each with situation, English, Wichtige Sätze and male / female voices
+
 ## 1.25.1 — 2026-10-11
 - Wörter: a „?“ at the start of the S·V·O key explains AkkO and DatO – Wen oder was? / Wem?, examples, both in one sentence, how the article shows it (der → den / dem), and which verbs always take the dative; in German and English
 
