@@ -104,6 +104,18 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 .fc-card .en{font-size:.85em}
 .fc-card .fc-kick{text-transform:none;letter-spacing:0}
 .fc-card .fc-kick b{color:var(--b1);font-size:1.25em}
+/* Tipps & typische Fehler */
+.gtip{border:1.5px solid var(--a2);border-radius:12px;margin-bottom:14px;background:color-mix(in srgb,var(--a2) 7%,var(--paper))}
+.gtip>summary{cursor:pointer;padding:9px 14px;font-weight:800;font-size:16px;list-style:none;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.gtip>summary::-webkit-details-marker{display:none}
+.gtip>summary::after{content:"▸";margin-left:auto;color:var(--muted)}.gtip[open]>summary::after{content:"▾"}
+.gtip>summary small{font-weight:400;color:var(--muted);font-size:13px}
+.gtip ol{margin:0;padding:0 14px 12px 34px;display:grid;gap:10px}
+.gtip li{font-size:15px;line-height:1.45}.gtip li b{font-weight:700}
+.gtip .ten{display:block;color:var(--muted);font-style:italic;font-size:13.5px}
+.gtip .tx{margin-top:4px;padding:6px 10px;border-radius:8px;background:var(--surface);font-size:15px}
+.gtip .tno{color:#c62828;font-weight:800}.gtip .tok{color:var(--a1);font-weight:800}.gtip .tar{color:var(--muted)}
+.gtip s{text-decoration-color:#c62828;color:var(--muted)}.gtip .tsoft{color:var(--a2);font-weight:700;font-size:13px}
 /* Artikel: cheat sheet (Spickzettel) and Artikel-Finder */
 .ash{border:1.5px solid var(--line);border-radius:12px;margin-bottom:14px;background:var(--paper)}
 .ash>summary{cursor:pointer;padding:10px 14px;font-weight:800;font-size:17px;list-style:none;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
@@ -162,6 +174,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 </div>
 <main>
  <div class="intro" id="intro"></div>
+ <div id="tips"></div>
  <div id="sheet"></div>
  <div class="split">
   <div class="list" id="list"></div>
@@ -174,6 +187,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 <script src="grammatik-data.js"></script>
 <script src="grammatik-en.js"></script>
 <script src="saetze-data.js"></script>
+<script src="grammatik-tipps.js"></script>
 <script src="artikel.js"></script>
 <script src="translate.js"></script>
 <script>
@@ -203,7 +217,15 @@ function drawTopic(){
  introEl.innerHTML=`<b>${esc(topic.de)}</b> · <span class="muted">${esc(topic.en)}</span><br>${esc(topic.intro)}`;
  listEl.innerHTML=topic.groups.map((g,gi)=>`<h3>${esc(g.g)}${g.gen?` <span class="gen">· ${esc(g.gen)}</span>`:""}</h3>`+g.items.map((it,ii)=>`<button type="button" class="it" data-k="${gi}-${ii}" aria-expanded="false"><span class="itl"><b>${esc(it.w)}</b><small>${esc(it.tag)}</small></span>${it.en?`<i class="ien" lang="en">${esc(it.en)}</i>`:""}</button><div class="inl" data-for="${gi}-${ii}" hidden></div>`).join("")).join("");
  detailEl.innerHTML=`<div class="ph">${SAETZE?"Wähle links eine Gruppe – dann erscheinen hier die Sätze.":"Wähle links ein Wort – dann erscheinen hier die Beispielsätze."}</div>`;
- drawSheet();filter()}
+ drawTips();drawSheet();filter()}
+
+/* ---- Tipps & typische Fehler (grammatik-tipps.js): a box under the intro ---- */
+const tipsEl=document.getElementById("tips");
+function drawTips(){const T=!SAETZE&&window.GT&&GT[topic.id];if(!T){tipsEl.innerHTML="";return}
+ const open=store("gr:tips")!=="0",ex=s=>`<span class="s" lang="de">${W(esc(s))}</span>`;
+ tipsEl.innerHTML=`<details class="gtip" id="gtip"${open?" open":""}><summary>💡 Tipps & typische Fehler <small>${T.length} · tips and common mistakes</small></summary><ol>${T.map(([de,en,w,r])=>{const soft=w&&w[0]==="~";
+  return `<li><b>${esc(de)}</b><span class="ten" lang="en">${esc(en)}</span>${w?`<div class="tx">${soft?`<span class="tsoft">geht, aber besser:</span> ${ex(w.slice(1))}`:`<span class="tno">✗</span> <s>${ex(w)}</s>`} <span class="tar">→</span> <span class="tok">✓</span> ${ex(r)}</div>`:""}</li>`}).join("")}</ol></details>`;
+ document.getElementById("gtip").ontoggle=e=>store("gr:tips",e.target.open?"1":"0")}
 
 /* ---- Artikel: the cheat sheet and the finder (artikel.js) ---- */
 const sheetEl=document.getElementById("sheet"),AC={der:"var(--der)",die:"var(--die)",das:"var(--das)"};
