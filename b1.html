@@ -7,7 +7,7 @@
 try{set(localStorage.getItem("dl:theme"))}catch(e){}
 addEventListener("message",e=>{if(e.origin===location.origin&&e.data&&"dlTheme" in e.data)set(e.data.dlTheme)})})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>telc Deutsch B1 – Prüfungstraining</title>
+<title>B1 · DTZ – Prüfungstraining</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
@@ -142,10 +142,10 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 </head>
 <body>
 <header class="hero">
- <div class="ladder"><span class="l3">B1</span><span class="l2">telc</span><span class="l1">Zertifikat Deutsch</span></div>
- <h1>telc Deutsch B1: alle Prüfungsteile</h1>
+ <div class="ladder"><span class="l3">B1</span><span class="l2">telc</span><span class="l1">DTZ · Deutsch-Test für Zuwanderer</span></div>
+ <h1>B1 · telc Deutsch-Test für Zuwanderer (DTZ, A2–B1)</h1>
  <p class="sub">Übungsaufgaben im Stil der Prüfung für Leseverstehen, Sprachbausteine, Hörverstehen, Schriftlichen und Mündlichen Ausdruck – mit englischer Übersetzung, Lösungen, Wortübersetzung per Tippen und Vorlesen.</p>
- <p class="note">So übst du Hören: Schalte den <b>Übungsmodus</b> ein. Dann sind Hörtexte und Lösungen verdeckt – tippe ▶, hör zu, wähle deine Antwort und decke dann Text und Lösung auf. Wörter in <span class="ph">[Klammern]</span> ersetzt du mit deinen eigenen Angaben. Bestanden, wenn Sie in der schriftlichen und in der mündlichen Prüfung jeweils mindestens 60 % erreichen.</p>
+ <p class="note">So übst du Hören: Schalte den <b>Übungsmodus</b> ein. Dann sind Hörtexte und Lösungen verdeckt – tippe ▶, hör zu, wähle deine Antwort und decke dann Text und Lösung auf. Wörter in <span class="ph">[Klammern]</span> ersetzt du mit deinen eigenen Angaben. DTZ: Zertifikat B1, wenn Sie im Sprechen B1 erreichen und dazu in Hören/Lesen (ab 33 von 45) oder im Schreiben B1. Die Modelltests (Test oben) sind im DTZ-Format.</p>
 </header>
 <div class="bar"><div class="bar-inner">
  <input type="hidden" id="q" value="">
@@ -367,15 +367,15 @@ const S=[
 ["Share tasks","Aufgaben verteilen","","","Also, ich kümmere mich um das Geschenk, und du schreibst die Einladung an alle. Einverstanden?","So, I'll take care of the gift and you write the invitation to everyone. Agreed?"],
 ["Summarise","Zusammenfassen","","","Gut, dann machen wir es so: Donnerstag um 16 Uhr im Konferenzraum, mit Buffet und einem Gutschein als Geschenk.","Good, so that's the plan: Thursday at 4 pm in the conference room, with a buffet and a voucher as a gift."]]}]}
 ];
-/* Exam facts – telc Deutsch B1 (Zertifikat Deutsch): 225 written + 75 oral
-   points; each of the two must reach 60 % on its own. */
+/* Exam facts – telc Deutsch-Test für Zuwanderer (DTZ, A2–B1). The practice
+   parts below (skills) keep their telc-B1 task style and points. */
 const EXAM={rows:[
- ["Schriftlich","225 Punkte · Lesen + Sprachbausteine 90 Min., Hören ca. 30 Min., Schreiben 30 Min."],
- ["Mündlich","75 Punkte · ca. 15 Minuten zu zweit, 20 Minuten Vorbereitung"],
- ["Gesamt","300 Punkte"],
- ["Bestanden","schriftlich ab 135 und mündlich ab 45 Punkten – jeder Teil für sich (60 %)"],
- ["Noten","270–300 sehr gut · 240–269,5 gut · 210–239,5 befriedigend · 180–209,5 ausreichend (Gesamtpunkte)"],
- ["Gut ist","ab 240 Punkten (80 %) – schriftlich etwa ab 180 von 225, mündlich etwa ab 60 von 75; ab 270 sehr gut"]],
+ ["Schriftlich","Hören 4 Teile (20 Aufgaben, ca. 25 Min., jeder Text einmal) · Lesen 5 Teile (25 Aufgaben, 45 Min.) · Schreiben: Aufgabe A oder B, ein Brief oder eine E-Mail zu vier Punkten (30 Min.)"],
+ ["Mündlich","ca. 16 Minuten zu zweit: 1 Über sich sprechen · 2 Über Erfahrungen sprechen (Foto, Heimatland) · 3 Gemeinsam etwas planen"],
+ ["Hören + Lesen","45 Aufgaben zusammen, je 1 Punkt: ab 33 = B1 · ab 20 = A2 · darunter: unter A2"],
+ ["Schreiben, Sprechen","die Prüfenden bewerten, ob die Leistung A2 oder B1 entspricht (Inhalt, Kommunikative Gestaltung, Korrektheit, Wortschatz, Aussprache, Flüssigkeit)"],
+ ["Ergebnis","Zertifikat B1: Sprechen B1 und dazu Hören/Lesen oder Schreiben B1 · sonst A2 nach derselben Regel · keine Noten, nur A2 oder B1"],
+ ["Gut ist","Hören + Lesen ab 33 von 45 (B1) – mit 38 oder mehr bist du auf der sicheren Seite; im Sprechen alle drei Teile ausführlich und mit Begründungen"]],
  skills:[
  {time:"90 Minuten mit Sprachbausteinen",pts:"75 Punkte",parts:[{n:5,per:5},{n:5,per:5},{n:10,per:2.5}]},
  {time:"in den 90 Minuten",pts:"30 Punkte",parts:[{n:10,per:1.5},{n:10,per:1.5}]},
@@ -534,7 +534,7 @@ const K=Karten({mount:main,
   {id:"mw",icon:"multi",label:"Mehrere Wörter",color:"var(--a2)",pressed:()=>multi,click:()=>mw.click()}]});
 document.querySelector(".toggles").prepend(K.button);
 /* ---- Modelltests (test.js): whole exams with a strict timer and marks ---- */
-const TZ=Pruefung({mount:main,level:"B1",tests:window.TESTS_B1,rate:()=>rate,scale:{factor:1,max:300,pass:180,grades:[[270,300,"sehr gut"],[240,269.5,"gut"],[210,239.5,"befriedigend"],[180,209.5,"ausreichend"]],rawLabel:"Punkten",passRule:per=>{let w=0,m=0;per.forEach(x=>x.oral?m+=x.a:w+=x.a);return w>=135&&m>=45},passText:"schriftlich ab 135 und mündlich ab 45 Punkten",note:"Wie in der echten Prüfung müssen schriftlich (ab 135 von 225) und mündlich (ab 45 von 75) jeweils 60 % erreicht werden. Der mündliche Teil wird automatisch aus deiner Aufnahme bewertet – du kannst jede Bewertung ändern."}});
+const TZ=Pruefung({mount:main,level:"B1",tests:window.TESTS_B1,rate:()=>rate,scale:{factor:1,max:165,dtz:true,rawLabel:"Punkten",passText:"Gesamt B1: Sprechen B1 und dazu Hören/Lesen oder Schreiben B1",note:"Wie beim Deutsch-Test für Zuwanderer (DTZ): Hören und Lesen zählen zusammen (45 Aufgaben – B1 ab 33, A2 ab 20). Schreiben und Sprechen bewerten in der Prüfung die Prüfenden als A2 oder B1; die App bewertet automatisch nach den Kriterien und rechnet mit demselben Verhältnis – du kannst jede Bewertung ändern. Gesamtergebnis B1: Sprechen B1 und mindestens ein schriftlicher Teil (Hören/Lesen oder Schreiben) B1."}});
 document.querySelector("header.hero .ladder").appendChild(TZ.entry);
 document.getElementById("px").addEventListener("click",K.sync);
 

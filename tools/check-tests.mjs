@@ -6,9 +6,9 @@ const window = {};
 for (const f of ["../test-a1.js", "../test-b1.js"]) new Function("window", readFileSync(new URL(f, import.meta.url), "utf8"))(window);
 let bad = 0;
 const fail = (w, m) => { bad++; console.log("✗ " + w + ": " + m); };
-const SIZE = { A1: [[6, 4, 5], [5, 5, 5], [5, "w"], ["s", "s", "s"]], B1: [[5, 5, 10, 10, 10], [5, 10, 5], ["w"], ["s", "s", "s"]] };
-const PTS = { A1: [15, 15, 15, 15], B1: [105, 75, 45, 75] };
-const SPK = { A1: [3, 6, 6], B1: [15, 30, 30] };
+const SIZE = { A1: [[6, 4, 5], [5, 5, 5], [5, "w"], ["s", "s", "s"]], B1: [[4, 5, 8, 3], [5, 5, 6, 3, 6], ["w"], ["s", "s", "s"]] };   // B1 = DTZ
+const PTS = { A1: [15, 15, 15, 15], B1: [20, 25, 45, 100] };
+const SPK = { A1: [3, 6, 6], B1: [20, 40, 40] };
 for (const [lv, tests] of [["A1", window.TESTS_A1], ["B1", window.TESTS_B1]]) {
   if (tests.length !== 7) fail(lv, "needs 7 tests, has " + tests.length);
   const ids = new Set();
@@ -29,7 +29,7 @@ for (const [lv, tests] of [["A1", window.TESTS_A1], ["B1", window.TESTS_B1]]) {
           (p.turns || []).forEach((x, i) => { if (x.you) { if (!x.model || !Array.isArray(x.key)) fail(w + " #" + i, "you-turn needs model and key"); x.key.forEach(k => { try { new RegExp(k[0], "i"); } catch (e) { fail(w + " #" + i, "bad regex " + k[0]); } }); } else if (!x.who || !x.say) fail(w + " #" + i, "partner turn needs who and say"); });
           pts += p.max; return;
         }
-        if (p.type === "write") { if (want !== "w") fail(w, "unexpected writing part"); if (!p.task || !p.model || !p.points || !p.points.length) fail(w, "writing part incomplete"); if (lv === "B1" && p.points.length !== 4) fail(w, "B1 letter needs 4 Leitpunkte"); pts += lv === "A1" ? 10 : 45; return; }
+        if (p.type === "write") { if (want !== "w") fail(w, "unexpected writing part"); if (!p.task || !p.model || !p.points || !p.points.length) fail(w, "writing part incomplete"); if (lv === "B1" && (p.points.length !== 4 || !p.alt || !p.alt.task || !p.alt.model || (p.alt.points || []).length !== 4)) fail(w, "DTZ: Aufgabe A and B, each with 4 Leitpunkte"); pts += lv === "A1" ? 10 : 45; return; }
         if (p.items.length !== want) fail(w, `has ${p.items.length} questions, exam has ${want}`);
         if (!(p.per > 0)) fail(w, "no points per question");
         pts += p.items.length * p.per;
@@ -38,6 +38,7 @@ for (const [lv, tests] of [["A1", window.TESTS_A1], ["B1", window.TESTS_B1]]) {
         p.items.forEach((it, i) => {
           const q = `${w} #${i + 1}`;
           if (p.type === "rf" && typeof it.a !== "boolean") fail(q, "rf needs true/false");
+          if (p.type === "mix" && typeof it.a !== "boolean" && !(Array.isArray(it.o) && it.a >= 0 && it.a < it.o.length)) fail(q, "mix item needs true/false or a valid option");
           if (p.type === "mc" || p.type === "gapmc" || (p.type === "form" && it.o)) { if (!Array.isArray(it.o) || it.o.length < 2) fail(q, "options missing"); else if (!(it.a >= 0 && it.a < it.o.length)) fail(q, "key out of range"); }
           if (p.type === "form" && !it.o && !(Array.isArray(it.a) && it.a.length)) fail(q, "form needs accepted answers");
           if (p.type === "match" || p.type === "gapbank") {
@@ -45,11 +46,11 @@ for (const [lv, tests] of [["A1", window.TESTS_A1], ["B1", window.TESTS_B1]]) {
             if (it.a !== -1) { if (used.has(it.a)) fail(q, "answer used twice: " + it.a); used.add(it.a); }
           }
           if ((p.type === "gapmc" || p.type === "gapbank") && !p.text.includes("(" + it.n + ")")) fail(q, `gap (${it.n}) not in text`);
-          if (p.plays && !p.audio && !it.audio) fail(q, "no recording");
-          if (p.type === "match" && !p.x && !it.text) fail(q, "no text to match");
+          if (p.plays && !p.audio && !it.audio && !it.same) fail(q, "no recording");
+          if (p.type === "match" && !p.x && !it.text && !it.audio) fail(q, "no text or recording to match");
         });
-        if (p.type === "match" && p.x) { if (p.list.length !== 12) fail(w, "needs 12 ads, has " + p.list.length); if (!p.items.some(it => it.a === -1)) fail(w, "no x answer"); }
-        if (p.type === "match" && !p.x && p.list.length !== 10) fail(w, "needs 10 headlines");
+        if (p.type === "match" && p.x) { if (p.list.length !== (lv === "B1" ? 8 : 12)) fail(w, "wrong number of ads/texts: " + p.list.length); if (!p.items.some(it => it.a === -1)) fail(w, "no x answer"); }
+        if (p.type === "match" && !p.x && p.list.length !== (lv === "B1" ? 6 : 10)) fail(w, "wrong number of headlines/sentences: " + p.list.length);
         if (p.type === "gapbank" && p.list.length !== 15) fail(w, "word list needs 15 words");
         const keys = p.items.map(it => it.a);
         if (["mc", "gapmc"].includes(p.type) && new Set(keys).size === 1) fail(w, "every answer is the same letter");
