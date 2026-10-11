@@ -1,5 +1,9 @@
 # Releases
 
+## 1.22.2 — 2026-10-11
+- A1 sample letters are now written the right way: greeting on its own line, „Viele Grüße“ / „Mit freundlichen Grüßen“ without a comma, your name on the next line (DIN 5008, like the B1 letters and Briefe); the A1 reading texts too
+- Schreiben: a comma after the sign-off is explained clearly („Nach dem Gruß steht kein Komma“), and „Viele Gruße“ without ü is caught even offline
+
 ## 1.22.1 — 2026-10-11
 - Schreiben: the mistakes are explained right under your text – number by number, wrong word → correction, with a plain reason in German and English (capital letters, missing umlauts, English words, word order of letters, endings, einladen + Akkusativ, sich freuen …); the best correction comes first (Getränke, not gedrängt)
 - „Liebe große“ is recognised as a misspelled „Liebe Grüße“, and your name under the letter is no longer marked as a mistake; „5uhr“ is checked too
