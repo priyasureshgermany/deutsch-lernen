@@ -1,5 +1,8 @@
 # Releases
 
+## 1.27.0 — 2026-10-11
+- Briefe: 10 new letters (now 34) – formal: Jobcenter (Bildungsgutschein), Vermieter (Erlaubnis für einen Hund), Schule (Klassenfahrt, Ratenzahlung), Deutsche Bahn (Entschädigung für Verspätung), Arztpraxis (Befund anfordern), Sportverein (Kind anmelden), Stadtwerke (Nachzahlung und Abschlag); informal: Glückwunsch zur Geburt, Nachbarin (Blumen gießen im Urlaub), Freunde (Hilfe beim Umzug) – each with task, Leitpunkte, English, Wichtige Sätze and your own details filled in
+
 ## 1.26.0 — 2026-10-11
 - Gespräche: 10 new everyday dialogues (now 34) – Jobcenter (Bildungsgutschein), Kita-Platz anmelden, Familienkasse (Kindergeld fehlt), Krankenkasse (neue Karte, neue Adresse), sich beim Chef krank melden, Integrationskurs anmelden, Fundbüro, Handyvertrag kündigen und neu abschließen, Schicht mit einer Kollegin tauschen, Fahrrad gestohlen bei der Polizei – each with situation, English, Wichtige Sätze and male / female voices
 
