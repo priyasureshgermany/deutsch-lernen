@@ -180,7 +180,9 @@ function analyse(p,tid,text,lt,fill){
  return an}
 
 /* LanguageTool: spelling and grammar (free public API, about 20 checks a minute) */
-function check(text){const ctl=window.AbortController?new AbortController():null,tm=setTimeout(()=>ctl&&ctl.abort(),15000);
+/* one more try after a slow or failed answer (a phone on a weak line) */
+function check(text){return ask(text).catch(()=>new Promise(r=>setTimeout(r,1500)).then(()=>ask(text)))}
+function ask(text){const ctl=window.AbortController?new AbortController():null,tm=setTimeout(()=>ctl&&ctl.abort(),15000);
  const body=new URLSearchParams({text:String(text),language:"de-DE",level:"picky"});
  return fetch("https://api.languagetool.org/v2/check",{method:"POST",body,signal:ctl&&ctl.signal}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()})
   .then(j=>{clearTimeout(tm);return {m:(j.matches||[]).map(x=>({o:x.offset,l:x.length,msg:x.message,rep:(x.replacements||[]).slice(0,3).map(r=>r.value),cat:x.rule&&x.rule.category&&x.rule.category.id||"",rule:x.rule&&x.rule.id||""}))}})

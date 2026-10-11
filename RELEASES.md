@@ -1,5 +1,8 @@
 # Releases
 
+## 1.19.1 — 2026-10-11
+- Schreiben: when the spelling check answers slowly or not at all, the app tries once more by itself before showing "Keine Verbindung"
+
 ## 1.19.0 — 2026-10-11
 - Schreiben in the Modelltests is now evaluated by the app (no more "Selbst bewerten"): your letter is shown with each sentence coloured by the point it covers and every mistake underlined and numbered
 - Marks broken down point by point (A1: each of the three points + Anrede/Gruß; B1: Leitpunkte, Kommunikative Gestaltung, Formale Richtigkeit), each with why it got those marks and a sentence that would have earned them
