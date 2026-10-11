@@ -1,5 +1,8 @@
 # Releases
 
+## 1.19.2 — 2026-10-11
+- Schreiben: the rating buttons (vollständig / teilweise / fehlt, A–D, "zählt als behandelt") are hidden – you see the app's rating and a small "Bewertung ändern" link that opens them; "fertig" closes them again
+
 ## 1.19.1 — 2026-10-11
 - Schreiben: when the spelling check answers slowly or not at all, the app tries once more by itself before showing "Keine Verbindung"
 
