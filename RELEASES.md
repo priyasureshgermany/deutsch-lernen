@@ -1,5 +1,8 @@
 # Releases
 
+## 1.31.0 — 2026-10-12
+- Alltagssätze: two new situations, 65 more phrases (now 18 situations, 332 phrases) – Im Büro (Hast du kurz eine Minute?, Wie läuft's?, Können wir kurz sprechen?, Gute Frage!, Bis wann brauchst du das?, Ist erledigt!, Anbei finden Sie …, Ich setze dich in Kopie, Mein Computer hängt) and Mit Freunden (Na, alles gut?, Krass!, Echt jetzt?, Kein Ding!, Lust auf Kino?, Ich hol dich ab, Das geht auf mich, Ich drück dir die Daumen!, Mach dir keinen Kopf; colloquial words like Bock, kaputt, pleite are labelled umgangssprachlich)
+
 ## 1.30.0 — 2026-10-11
 - Grammatik: every one of the 35 topics now has a „💡 Tipps & typische Fehler“ box under its intro – 123 tips in all: memory tricks (aus, bei, mit, nach, seit, von, zu · DOGFU · TeKaMoLo …) and the most common B1 mistakes as ✗ wrong → ✓ right (…, weil ich habe → …, weil ich habe … am Ende; Ich habe nach Berlin gefahren → bin; Ich helfe dich → dir …), in German and English
 - Examples that are correct but less natural are marked „geht, aber besser“ instead of ✗; the box is open by default and remembers if you close it
