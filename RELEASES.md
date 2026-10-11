@@ -1,5 +1,9 @@
 # Releases
 
+## 1.30.0 — 2026-10-11
+- Grammatik: every one of the 35 topics now has a „💡 Tipps & typische Fehler“ box under its intro – 123 tips in all: memory tricks (aus, bei, mit, nach, seit, von, zu · DOGFU · TeKaMoLo …) and the most common B1 mistakes as ✗ wrong → ✓ right (…, weil ich habe → …, weil ich habe … am Ende; Ich habe nach Berlin gefahren → bin; Ich helfe dich → dir …), in German and English
+- Examples that are correct but less natural are marked „geht, aber besser“ instead of ✗; the box is open by default and remembers if you close it
+
 ## 1.29.0 — 2026-10-11
 - Alltagssätze: 7 new situations and about 120 more phrases (now 16 situations, 267 phrases) – Über mich (Woher kommst du? Was machst du beruflich?), Zeit & Termine (Ich bin spät dran, Wann passt es Ihnen?, Können wir das verschieben?), Unterwegs (Wie komme ich zum …?, Ist hier noch frei?, Muss ich umsteigen?), Wetter & Wochenende (Wie war dein Wochenende?), Telefon & Nachrichten (Kann ich etwas ausrichten?, Bin gut angekommen!), Wie es mir geht (Mir ist kalt, Ich habe keine Lust, Keine Sorge!), Zu Hause (Das Essen ist fertig!, Ich bin satt)
 - New groups in existing situations: Unsicher sein (Kommt darauf an, Keine Ahnung) and Absagen (Leider kann ich nicht, Vielleicht ein anderes Mal)

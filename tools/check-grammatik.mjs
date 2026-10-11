@@ -5,7 +5,7 @@
 import { readFileSync } from "node:fs";
 
 const window = {};
-for (const f of ["../grammatik-data.js", "../grammatik-en.js", "../saetze-data.js"])
+for (const f of ["../grammatik-data.js", "../grammatik-en.js", "../saetze-data.js", "../grammatik-tipps.js"])
   new Function("window", readFileSync(new URL(f, import.meta.url), "utf8"))(window);
 let bad = 0, items = 0, sentences = 0;
 const fail = (w, m) => { bad++; console.log("✗ " + w + ": " + m); };
@@ -35,6 +35,14 @@ for (const [SET, EN] of [[window.GD, window.GDEN], [window.AS, window.ASEN]]) fo
   }
   console.log("  " + t.de + ": " + n + " items");
 }
+/* Tipps: every grammar topic has at least three, each with English; a wrong example needs its fix */
+for (const t of window.GD) {
+  const T = window.GT[t.id] || [];
+  if (T.length < 3) fail(t.de, "needs at least three tips in grammatik-tipps.js, has " + T.length);
+  T.forEach(([de, en, w, r], i) => { if (!de || !en) fail(t.de, "tip " + (i + 1) + " is missing German or English"); if (w && !r) fail(t.de, "tip " + (i + 1) + " has a wrong example but no fix"); });
+}
+for (const id in window.GT) if (!window.GD.some(t => t.id === id)) fail("Tipps", "no topic " + id);
+console.log("  Tipps: " + Object.values(window.GT).reduce((n, T) => n + T.length, 0) + " tips");
 /* Artikel: the cheat sheet's own examples, "aber" words and exceptions must
    come out right from the finder that the sheet is built from */
 new Function("window", readFileSync(new URL("../artikel.js", import.meta.url), "utf8"))(window);
