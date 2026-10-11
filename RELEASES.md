@@ -1,5 +1,8 @@
 # Releases
 
+## 1.20.0 — 2026-10-11
+- Teilen: a share icon in the ⋯ menu opens "App teilen" – send the app's link by WhatsApp, E-Mail, SMS or Telegram, copy it, or use the phone's own share menu ("Andere Apps …")
+
 ## 1.19.2 — 2026-10-11
 - Schreiben: the rating buttons (vollständig / teilweise / fehlt, A–D, "zählt als behandelt") are hidden – you see the app's rating and a small "Bewertung ändern" link that opens them; "fertig" closes them again
 

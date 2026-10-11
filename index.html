@@ -57,6 +57,15 @@ button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
 /* Translator: German ⇄ English only. */
 #trd{width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 24px);margin:max(12px,8vh) auto auto;padding:14px 16px 12px;border:1px solid var(--line);border-radius:16px;
  background:var(--paper);color:var(--ink);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+#shd{width:min(440px,calc(100vw - 24px));margin:max(12px,8vh) auto auto;padding:14px 16px 16px;border:1px solid var(--line);border-radius:16px;background:var(--paper);color:var(--ink)}
+#shd::backdrop{background:rgba(10,14,24,.45)}
+.shnote{margin:0 0 8px;color:var(--muted);font-size:14.5px}
+.shlink{font-size:13.5px;padding:8px 10px;border-radius:10px;background:var(--surface);word-break:break-all;margin-bottom:12px}
+.shgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sho{touch-action:manipulation;display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 4px;border-radius:14px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer;text-align:center}
+.sho svg{width:30px;height:30px}
+.sho.wa svg{color:#25d366}.sho.mail svg{color:#ea4335}.sho.sms svg{color:#34a853}.sho.tg svg{color:#2aabee}.sho.copy svg,.sho.more svg{color:var(--b1)}
+.sho.done{border-color:var(--a1);color:var(--a1)}
 #trd::backdrop{background:rgba(10,14,24,.45)}
 .trhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .trhead b{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:19px}
@@ -128,7 +137,7 @@ nav .i{display:none}
 <header><div class="top">
  <div class="brand">Deutsch <span>lernen</span></div>
  <button id="upd" type="button" title="Nach neuer Version suchen">v–</button>
- <button id="moreB" class="fsb" type="button" aria-label="Mehr: Tempo, Darstellung, Meine Angaben, Übersetzen, Vollbild" title="Mehr" aria-expanded="false" aria-controls="more"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="12" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="18.5" cy="12" r="1.9"/></svg></button>
+ <button id="moreB" class="fsb" type="button" aria-label="Mehr: Tempo, Darstellung, Meine Angaben, Übersetzen, Teilen, Vollbild" title="Mehr" aria-expanded="false" aria-controls="more"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="12" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="18.5" cy="12" r="1.9"/></svg></button>
  <nav role="tablist" aria-label="Bereiche">
   <button role="tab" data-m="a1" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3.5" width="14" height="18" rx="2"/><path d="M9 3.5h6v2.5H9z"/><path d="m9 13 2 2 4-4.5"/></svg></span><span class="l">A1 Prüfung</span><span class="s">A1</span></button>
   <button role="tab" data-m="b1" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3.5" width="14" height="18" rx="2"/><path d="M9 3.5h6v2.5H9z"/><path d="m9 13 2 2 4-4.5"/></svg></span><span class="l">B1 Prüfung</span><span class="s">B1</span></button>
@@ -146,6 +155,7 @@ nav .i{display:none}
  <div class="mrow" data-keep="1"><button id="theme" class="fsb" type="button"></button></div>
  <div class="mrow"><button id="me" class="fsb" type="button" title="Meine Angaben" aria-label="Meine Angaben" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 4-6.5 8-6.5s7.2 2.5 8 6.5"/></svg></button></div>
  <div class="mrow"><button id="tr" class="fsb" type="button" title="Übersetzen (Deutsch ⇄ Englisch)" aria-label="Übersetzen" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h8M8 3v2M10.5 5c-.8 3.2-3 5.8-6 7.2M6 8.5c1.2 1.6 2.7 2.8 4.5 3.5"/><path d="M13 21l4-10 4 10M14.5 17.5h5"/></svg></button></div>
+ <div class="mrow"><button id="share" class="fsb" type="button" title="App teilen" aria-label="App teilen" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="M8.3 10.8l7.4-4.4M8.3 13.2l7.4 4.4"/></svg></button></div>
  <div class="mrow"><button id="fs" class="fsb" type="button" title="Vollbild" aria-label="Vollbild"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div>
 </div></header>
 <main id="stage"></main>
@@ -164,12 +174,25 @@ nav .i{display:none}
   <div class="tract"><button id="trsayout" class="fsb" type="button" aria-label="Übersetzung vorlesen" title="Vorlesen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button id="trcopy" class="chipb" type="button">Kopieren</button></div></div>
  <p class="trnote">Nur Deutsch und Englisch · braucht Internet</p>
 </dialog>
+<dialog id="shd" aria-labelledby="shh">
+ <div class="trhead"><b id="shh">App teilen</b><button id="shx" class="fsb" type="button" aria-label="Schließen">✕</button></div>
+ <p class="shnote">Schick den Link an Freunde, die auch Deutsch lernen:</p>
+ <div class="shlink" id="shurl"></div>
+ <div class="shgrid">
+  <a id="shwa" class="sho wa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M8.8 8.6c.2-.5.5-.5.8-.5h.5c.2 0 .4 0 .5.4l.7 1.6c.1.2 0 .4-.1.5l-.5.6c-.1.1-.2.3 0 .5.6 1 1.4 1.8 2.5 2.4.2.1.4.1.5 0l.6-.7c.2-.2.3-.2.5-.1l1.6.8c.2.1.3.2.3.4 0 .5-.2 1.1-.7 1.4-.5.3-1.3.5-2.3.1-1.9-.7-3.6-2.3-4.4-4.1-.6-1.3-.2-2.4 0-2.8z" fill="currentColor" stroke="none"/></svg><span>WhatsApp</span></a>
+  <a id="shmail" class="sho mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg><span>E-Mail</span></a>
+  <a id="shsms" class="sho sms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg><span>SMS</span></a>
+  <a id="shtg" class="sho tg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4L3 11l6 2 2 6 3-4 5 4z"/><path d="M9 13l12-9"/></svg><span>Telegram</span></a>
+  <button id="shcopy" class="sho copy" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>Link kopieren</span></button>
+  <button id="shmore" class="sho more" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="M8.3 10.8l7.4-4.4M8.3 13.2l7.4 4.4"/></svg><span>Andere Apps …</span></button>
+ </div>
+</dialog>
 <button id="fsxTab" type="button" title="Knopf zurückholen" aria-label="Vollbild-Knopf zurückholen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
 <button id="fsx" class="fsb" type="button" title="Vollbild beenden – nach rechts wischen zum Verstecken" aria-label="Vollbild beenden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg></button>
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.19.2";
+const APP_VERSION = "1.20.0";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -323,6 +346,24 @@ document.getElementById("trsayin").onclick = () => speakText(trin.value.trim(), 
 document.getElementById("trsayout").onclick = () => speakText(trLast.out, trLast.src === "de" ? "en" : "de");
 document.getElementById("tr").onclick = () => { try{ trd.showModal(); }catch(e){ trd.setAttribute("open", ""); } setTimeout(() => trin.focus(), 50); };
 document.getElementById("trx").onclick = () => trd.close();
+/* Teilen: the live address (not this device's), as links for WhatsApp, mail, SMS, Telegram; the phone's own share sheet when it has one */
+const SHARE_URL = "https://priyasureshgermany.github.io/deutsch-lernen/";
+const SHARE_TEXT = "Deutsch lernen – telc A1/B1 Prüfungstraining mit Wörtern, Grammatik, Gesprächen, Briefen, Hören und Modelltests. Kostenlos, als App installierbar, auch offline:";
+const shd = document.getElementById("shd"), enc = encodeURIComponent;
+document.getElementById("shurl").textContent = SHARE_URL;
+document.getElementById("shwa").href = "https://wa.me/?text=" + enc(SHARE_TEXT + " " + SHARE_URL);
+document.getElementById("shmail").href = "mailto:?subject=" + enc("Deutsch lernen – App-Tipp") + "&body=" + enc("Hallo,\n\n" + SHARE_TEXT + "\n" + SHARE_URL + "\n\nViele Grüße");
+document.getElementById("shsms").href = "sms:?&body=" + enc(SHARE_TEXT + " " + SHARE_URL);
+document.getElementById("shtg").href = "https://t.me/share/url?url=" + enc(SHARE_URL) + "&text=" + enc(SHARE_TEXT);
+const shmore = document.getElementById("shmore");
+if(navigator.share) shmore.hidden = false;
+shmore.onclick = () => navigator.share({ title: "Deutsch lernen", text: SHARE_TEXT, url: SHARE_URL }).catch(() => {});
+document.getElementById("shcopy").onclick = e => { const b = e.currentTarget, done = () => { b.classList.add("done"); b.lastChild.textContent = "Kopiert ✓"; setTimeout(() => { b.classList.remove("done"); b.lastChild.textContent = "Link kopieren"; }, 1800); };
+  (navigator.clipboard ? navigator.clipboard.writeText(SHARE_URL) : Promise.reject()).then(done, () => { const r = document.createRange(); r.selectNodeContents(document.getElementById("shurl")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); try{ document.execCommand("copy"); done(); }catch(x){} }); };
+document.getElementById("share").onclick = () => { try{ shd.showModal(); }catch(e){ shd.setAttribute("open", ""); } };
+document.getElementById("shx").onclick = () => shd.close();
+shd.addEventListener("click", e => { const r = shd.getBoundingClientRect();
+  if(e.target === shd && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom)) shd.close(); });
 trd.addEventListener("click", e => {   // a tap on the dimmed page outside the card closes it
   const r = trd.getBoundingClientRect();
   if(e.target === trd && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom)) trd.close();
