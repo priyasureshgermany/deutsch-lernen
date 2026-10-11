@@ -1,5 +1,8 @@
 # Releases
 
+## 1.22.3 — 2026-10-11
+- Fairer marking of Formale Richtigkeit (B1), as a telc examiner would: punctuation and letter-format slips (e.g. a comma after „Viele Grüße“) are still shown and explained but marked „kein Punktabzug“, and the same mistake made again counts only once („schon gezählt“)
+
 ## 1.22.2 — 2026-10-11
 - A1 sample letters are now written the right way: greeting on its own line, „Viele Grüße“ / „Mit freundlichen Grüßen“ without a comma, your name on the next line (DIN 5008, like the B1 letters and Briefe); the A1 reading texts too
 - Schreiben: a comma after the sign-off is explained clearly („Nach dem Gruß steht kein Komma“), and „Viele Gruße“ without ü is caught even offline
