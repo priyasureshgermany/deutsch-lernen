@@ -1,5 +1,8 @@
 # Releases
 
+## 1.25.0 — 2026-10-11
+- Wörter: new optional S·V·O button – every sentence part gets a small coloured label after its last word (S Subjekt, V Verb, AkkO, DatO, PräpO, Adv, Gen, Präd, Attr, Konj), with a one-line key; off by default, remembered on your phone, also in Karten; hidden in Übungsmodus so it doesn't give answers away
+
 ## 1.24.0 — 2026-10-11
 - Grammatik: eight new topics that were missing for B1 / DTZ, each with example sentences, English and read-aloud – Zeitangaben (um / am / im, Datum, Uhrzeit, vor / seit / in, wie oft), stellen – stehen (legen / liegen, setzen / sitzen, hängen), Partizip als Adjektiv, Nomen-Verb-Verbindungen (einen Antrag stellen, Bescheid geben, zur Verfügung stehen …), Imperativ, Fragewörter (welcher / was für ein, mit wem / womit), Plural, Possessivartikel (sein / ihr, Endungen)
 - They sit next to the topics they belong to; Grammatik now has 35 topics, 334 items and about 1450 sentences
