@@ -89,6 +89,17 @@ h2{font-size:clamp(24px,4vw,34px);font-weight:800;letter-spacing:-.01em}
 .tk.on.off{color:var(--muted)!important;text-decoration-color:transparent!important;background:none!important;border-color:transparent!important}
 .tk.sel{outline:2px solid var(--col);outline-offset:1px;background:var(--surface)}
 .tk.dim{opacity:.2}
+/* S·V·O: an optional short label for the sentence part, after its last word */
+.tg.sg{--c:var(--r-S)}
+body.sg .tk[data-sb]::after{content:attr(data-sb);display:inline-block;margin-left:2px;font-size:.6em;font-weight:700;line-height:1;vertical-align:-.45em;color:var(--sbc,var(--muted));letter-spacing:0;text-decoration:none}
+body.quiz .tk[data-sb]::after{display:none}
+body.sg .tk[data-sb]{white-space:nowrap}
+.sgl{display:none;max-width:1100px;margin:6px auto 0;font-size:12px;color:var(--muted);gap:4px 10px;flex-wrap:wrap}
+body.sg .sgl{display:flex}
+body.quiz .sgl{display:none}
+.sgl b{color:var(--sbc)}
+.sgl span{flex:none}
+@media (max-width:760px){.sgl{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.sgl::-webkit-scrollbar{display:none}.sgl i{display:none}}
 .card-h .tb{font:inherit;font-size:13px;font-weight:700;padding:3px 10px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
 .card-h .tb[aria-expanded="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .sb{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
@@ -187,10 +198,12 @@ body.show-en .fc-card .fc-en{display:block}
  <button class="tg a1" data-lv="A1" aria-pressed="true">A1</button>
  <button class="tg b1" data-lv="B1" aria-pressed="true">B1</button>
  <button class="tg en" id="en" aria-pressed="false">EN</button>
+ <button class="tg sg" id="sg" aria-pressed="false" title="Satzglieder als Kürzel zeigen (Subjekt, Verb, Objekt …)">S·V·O</button>
  <button class="tg quiz" id="qz" aria-pressed="false">Übungsmodus</button>
  <span id="score"></span>
 </div>
 <div class="legend" id="legend"></div>
+<div class="sgl" id="sgl"></div>
 <nav class="topics" id="nav" aria-label="Themen"></nav></div>
 <main id="main"></main>
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="ph1"><span id="pw"></span><button class="say" id="psay" type="button" aria-label="Wort vorlesen"></button><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
@@ -207,6 +220,8 @@ const CASEL={N:["Nominativ","Wer? Was?"],A:["Akkusativ","Wen? Was?"],D:["Dativ",
 const GEN={m:"maskulin",f:"feminin",n:"neutral",p:"Plural"};
 const TMC={te:"var(--t-te)",ka:"var(--t-ka)",mo:"var(--t-mo)",lo:"var(--t-lo)"};
 const ROLEL={S:["Subjekt","subject"],P:["Prädikat","predicate – the verb"],AO:["Akkusativobjekt","direct object"],DO:["Dativobjekt","indirect object"],GA:["Genitivattribut","genitive – whose?"],AB:["Adverbiale","adverbial – when, where, how, why"],PO:["Präpositionalobjekt","prepositional object"],PN:["Prädikativ","predicative – after sein, heißen"],AT:["Attribut","attribute – describes a noun"],K:["Verbindung","connector"]};
+/* S·V·O labels: the short form of each Satzglied */
+const SB={S:"S",P:"V",AO:"AkkO",DO:"DatO",PO:"PräpO",AB:"Adv",GA:"Gen",PN:"Präd",AT:"Attr",K:"Konj"};
 const ROLEWHY={S:"Wer oder was? The subject is always in the nominative.",AO:"Wen oder was? → accusative object.",DO:"Wem? → dative object.",GA:"Wessen? Whose? → genitive.",PN:"After sein, werden and heißen the noun stays in the nominative."};
 
 /* ---- parse ---- */
@@ -219,7 +234,16 @@ function parse(src){const out=[];
   const [pos,sub]=tag.split(".");
   const k={w,pos,sub,g:GROUP[pos]||pos,c:c[0]||"",gen:c[1]||"",role,lemma,en,note,punct:""};
   k.si=WL.subInfo(k);out.push(k)}
- WL.tekamolo(out);return out}
+ WL.tekamolo(out);
+ /* the sentence parts (as in Satzbau); the last word of each carries its S·V·O label */
+ groupParts(out).forEach(pt=>{const t=pt.toks[pt.toks.length-1];if(SB[pt.role])t.sb=SB[pt.role]});
+ return out}
+function groupParts(toks){const parts=[];
+ toks.forEach((t,i)=>{
+  const prev=toks[i-1],last=parts[parts.length-1];
+  const same=last&&!prev.punct&&t.role===last.role&&t.role!=="P"&&t.role!=="K"&&(t.role!=="AB"||t.ph===prev.ph);
+  if(same)last.toks.push(t);else parts.push({role:t.role,toks:[t]})});
+ return parts}
 
 /* ---- draw ---- */
 let h="",n="";
@@ -233,7 +257,7 @@ WD.forEach((t,ti)=>{
    body+=`<span class="sent">`+toks.map(k=>{
     const i=TOK.length;TOK.push(Object.assign(k,{i,sid,sen:toks,senEn:en}));
     if(k.c)cnt[k.c]++;
-    return `<span class="tk" data-i="${i}" data-g="${k.g}" data-p="${k.pos}" data-s="${k.si.code}"${k.c?` data-k="${k.c}"`:""} data-r="${k.role}"${k.tm?` data-t="${k.tm}"`:""}>${esc(k.w)}</span>${esc(k.punct)}`}).join(" ")+`</span> `;
+    return `<span class="tk" data-i="${i}" data-g="${k.g}" data-p="${k.pos}" data-s="${k.si.code}"${k.c?` data-k="${k.c}"`:""} data-r="${k.role}"${k.tm?` data-t="${k.tm}"`:""}${k.sb?` data-sb="${k.sb}"`:""}>${esc(k.w)}</span>${esc(k.punct)}`}).join(" ")+`</span> `;
    tr+=`<li>${esc(en)}</li>`});
   h+=`<div class="card" data-lvl="${p.lvl}"><div class="card-h"><span class="lvl ${p.lvl}">${p.lvl}</span><div class="cases">${"NADG".split("").map(c=>`<span style="--kc:var(--k-${c})"><b>${CASEL[c][0].slice(0,3)}</b> ${cnt[c]}</span>`).join("")}</div><button class="tb" type="button" data-sb aria-expanded="false" style="margin-left:auto">Satzbau</button><button class="say" type="button" data-para aria-label="Text vorlesen"></button></div><p class="para" lang="de">${body}</p><ol class="trl" lang="en">${tr}</ol><div class="sb">${satzbau(sents)}</div></div>`});
  h+=`</section>`});
@@ -243,11 +267,7 @@ WD.forEach((t,ti)=>{
 function satzbau(sents){
  let out=`<div class="rule"><b>Hauptsatz:</b> das konjugierte Verb steht auf <b>Position 2</b>, Infinitiv / Partizip / Vorsilbe am <b>Ende</b>. <b>Nebensatz</b> (weil, obwohl, wenn, dass …): Verb ganz am Ende. <b>Mittelfeld:</b> meist <span class="tm" style="background:var(--t-te)">Te</span> wann? → <span class="tm" style="background:var(--t-ka)">Ka</span> warum? → <span class="tm" style="background:var(--t-mo)">Mo</span> wie? → <span class="tm" style="background:var(--t-lo)">Lo</span> wo?</div>`;
  sents.forEach(([toks,en],si)=>{
-  const parts=[];
-  toks.forEach((t,i)=>{
-   const prev=toks[i-1],last=parts[parts.length-1];
-   const same=last&&!prev.punct&&t.role===last.role&&t.role!=="P"&&t.role!=="K"&&(t.role!=="AB"||t.ph===prev.ph);
-   if(same)last.toks.push(t);else parts.push({role:t.role,toks:[t]})});
+  const parts=groupParts(toks);
   out+=`<div class="srow"><span class="no">${si+1}</span>`+parts.map(pt=>{
    const t=pt.toks[0],words=pt.toks.map(x=>esc(x.w)+esc(x.punct)).join(" ");
    let lab,col,v="";
@@ -268,7 +288,7 @@ const TKEL=[...main.querySelectorAll(".tk")];
  css+=`.tk[data-p="VT"]{--ds:dashed}.tk[data-p="PA"]{--ds:dotted}`;
  "NADG".split("").forEach(c=>{css+=`body.m-case .tk[data-k="${c}"]{--col:var(--k-${c})}`});
  css+=`body.m-case .tk:not([data-k]){--col:var(--muted)}`;
- Object.keys(ROLEL).forEach(r=>{css+=`body.m-role .tk[data-r="${r}"]{--col:var(--r-${r})}`});
+ Object.keys(ROLEL).forEach(r=>{css+=`body.m-role .tk[data-r="${r}"]{--col:var(--r-${r})}.tk[data-r="${r}"]{--sbc:var(--r-${r})}`});
  css+=`body.m-sub .tk{--col:var(--muted)}`;
  Object.keys(TMC).forEach(t=>{css+=`body.m-tm .tk[data-t="${t}"]{--col:${TMC[t]}}`});
  GROUPS.forEach(g=>WL.SUBS[g].forEach(([s],i)=>{css+=`body.m-sub[data-sp="${g}"] .tk[data-s="${g}-${s}"]{--col:var(--s${i+1})}`}));
@@ -308,6 +328,12 @@ setMode(["pos","sub","case","role","tm"].includes(saved)?saved:"pos");
 document.querySelectorAll(".tg[data-lv]").forEach(b=>b.onclick=()=>{const on=b.getAttribute("aria-pressed")==="true";b.setAttribute("aria-pressed",String(!on));document.body.classList.toggle("hide-"+b.dataset.lv,on)});
 const enB=document.getElementById("en");
 enB.onclick=()=>{const on=enB.getAttribute("aria-pressed")!=="true";enB.setAttribute("aria-pressed",String(on));document.body.classList.toggle("show-en",on)};
+/* S·V·O: optional labels for the sentence parts, remembered on this phone */
+const sgB=document.getElementById("sg");
+document.getElementById("sgl").innerHTML=Object.keys(SB).map(r=>`<span style="--sbc:var(--r-${r})"><b>${SB[r]}</b> ${esc(ROLEL[r][0])} <i>${esc(ROLEL[r][1].split(" – ")[0])}</i></span>`).join("");
+function setSg(on){sgB.setAttribute("aria-pressed",String(on));document.body.classList.toggle("sg",on);try{localStorage.setItem("wd:sg",on?"1":"0")}catch(e){}}
+sgB.onclick=()=>setSg(sgB.getAttribute("aria-pressed")!=="true");
+try{if(localStorage.getItem("wd:sg")==="1")setSg(true)}catch(e){}
 
 /* ---- speech ---- */
 const synth=window.speechSynthesis;let rate=1,playing=null;
@@ -468,6 +494,7 @@ const K=Karten({mount:main,
  tools:[
   {id:"play",icon:"play",label:"Satz vorlesen",color:"var(--b1)",click:k=>{const b=k.body.querySelector("[data-para]");if(b)b.click()}},
   {id:"en",icon:"en",label:"Englisch",color:"var(--muted)",pressed:()=>document.body.classList.contains("show-en"),click:()=>enB.click()},
+  {id:"sg",text:"S·V",label:"Satzglieder als Kürzel",color:"var(--r-S)",pressed:()=>document.body.classList.contains("sg"),click:()=>sgB.click()},
   {id:"pal",icon:"palette",label:"Farben nach …",color:"var(--a2)",pressed:()=>wPal,click:k=>{wPal=!wPal;k.redraw()}},
   {id:"fill",icon:"brush",label:"Alle färben",click:k=>{if(quiz)return;k.item.el.querySelectorAll(".tk").forEach(x=>x.classList.add("on"));k.redraw()}},
   {id:"clear",icon:"eraser",label:"Leeren",click:k=>{closePop();k.item.el.querySelectorAll(".tk").forEach(x=>x.classList.remove("on","done"));k.redraw()}}]});
