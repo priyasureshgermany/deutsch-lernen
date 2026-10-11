@@ -16,6 +16,10 @@ addEventListener("message",e=>{if(e.origin===location.origin&&e.data&&"dlTheme" 
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--hl:#9db3ff;--hlbg:#232c47}}
 :root[data-theme="dark"]{--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--hl:#9db3ff;--hlbg:#232c47}
 *,*::before,*::after{box-sizing:border-box;touch-action:manipulation}
+/* der / die / das colours for the Artikel cheat sheet and finder */
+:root{--der:#2f5bd3;--die:#c62f45;--das:#1b8a6b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--der:#8aa6ff;--die:#ff8796;--das:#4cc79f}}
+:root[data-theme="dark"]{--der:#8aa6ff;--die:#ff8796;--das:#4cc79f}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
 h1,h2,h3{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
 header.hero{padding:24px 20px 12px;max-width:1100px;margin:0 auto}
@@ -100,6 +104,47 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 .fc-card .en{font-size:.85em}
 .fc-card .fc-kick{text-transform:none;letter-spacing:0}
 .fc-card .fc-kick b{color:var(--b1);font-size:1.25em}
+/* Artikel: cheat sheet (Spickzettel) and Artikel-Finder */
+.ash{border:1.5px solid var(--line);border-radius:12px;margin-bottom:14px;background:var(--paper)}
+.ash>summary{cursor:pointer;padding:10px 14px;font-weight:800;font-size:17px;list-style:none;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.ash>summary::-webkit-details-marker{display:none}
+.ash>summary::before{content:"▸";color:var(--muted);transition:transform .15s}
+.ash[open]>summary::before{transform:rotate(90deg)}
+.ash>summary small{font-weight:400;color:var(--muted);font-style:italic;font-size:14px}
+.ashb{padding:0 14px 14px}
+.ast{margin:0 0 12px;padding:0;list-style:none;counter-reset:st;display:grid;gap:6px}
+.ast li{counter-increment:st;display:grid;grid-template-columns:24px 1fr;gap:2px 8px;font-size:15px}
+.ast li::before{content:counter(st);grid-row:span 3;width:22px;height:22px;border-radius:50%;background:var(--a2);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.ast .ase{color:var(--b1);font-style:italic;font-size:13px}
+.ast .ax{color:var(--muted);font-size:14px}
+.acols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.acol{border-top:4px solid var(--c);background:var(--surface);border-radius:10px;padding:8px 10px}
+.acol h4{margin:0 0 4px;font-size:22px;color:var(--c);font-family:"Bricolage Grotesque",sans-serif}
+.acol h4 small{font-size:13px;color:var(--muted);font-weight:400;font-family:"Atkinson Hyperlegible",sans-serif}
+.acol h5{margin:8px 0 2px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.acol ul{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.acol li{font-size:14px;line-height:1.35}
+.ae{color:var(--c);font-size:15px}
+.dots{color:var(--c);font-size:9px;letter-spacing:1px;margin-left:4px;vertical-align:2px}
+.dots i{opacity:.25;font-style:normal}
+.acol .ax{display:block;color:var(--ink)}
+.acol .an{display:block;color:var(--muted);font-size:12.5px;font-style:italic}
+.acol .ame{color:var(--muted);font-size:12px;font-style:italic}
+.afoot{margin:10px 0 0;font-size:13px;color:var(--muted)}
+.afind{border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:14px}
+.afind label{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;font-size:17px;font-weight:800}
+.afind label span{font-weight:400;font-size:14px;color:var(--muted);font-style:italic}
+.arow{display:flex;gap:8px;margin-top:8px}
+.arow input{flex:1;min-width:0;font:inherit;font-size:17px;padding:8px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
+.arow button{font:inherit;font-weight:700;border:none;border-radius:10px;padding:8px 16px;background:var(--b1);color:#fff;cursor:pointer}
+.ares{margin-top:10px}
+.ares:empty{display:none}
+.agu{font-size:26px;font-weight:800;font-family:"Bricolage Grotesque",sans-serif}
+.agu b{color:var(--c)}
+.awhy{font-size:15px}.awhy small{color:var(--muted)}
+.adict{margin-top:6px;padding:8px 10px;border-radius:8px;background:var(--surface);font-size:15px}
+.adict.ok{border-left:4px solid var(--das)}.adict.no{border-left:4px solid var(--die)}
+@media (max-width:760px){.acols{grid-template-columns:1fr}.ashb,.ash>summary{padding-left:12px;padding-right:12px}}
 /* Übungsmodus: the English stays, the German is to be said first. */
 .fc.fc-pr .fc-card .en{display:block}
 </style>
@@ -117,6 +162,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 </div>
 <main>
  <div class="intro" id="intro"></div>
+ <div id="sheet"></div>
  <div class="split">
   <div class="list" id="list"></div>
   <div class="detail" id="detail"></div>
@@ -127,6 +173,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 <script src="karten.js"></script>
 <script src="grammatik-data.js"></script>
 <script src="grammatik-en.js"></script>
+<script src="artikel.js"></script>
 <script src="translate.js"></script>
 <script>
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
@@ -150,7 +197,55 @@ function drawTopic(){
  introEl.innerHTML=`<b>${esc(topic.de)}</b> · <span class="muted">${esc(topic.en)}</span><br>${esc(topic.intro)}`;
  listEl.innerHTML=topic.groups.map((g,gi)=>`<h3>${esc(g.g)}${g.gen?` <span class="gen">· ${esc(g.gen)}</span>`:""}</h3>`+g.items.map((it,ii)=>`<button type="button" class="it" data-k="${gi}-${ii}" aria-expanded="false"><span class="itl"><b>${esc(it.w)}</b><small>${esc(it.tag)}</small></span>${it.en?`<i class="ien" lang="en">${esc(it.en)}</i>`:""}</button><div class="inl" data-for="${gi}-${ii}" hidden></div>`).join("")).join("");
  detailEl.innerHTML=`<div class="ph">Wähle links ein Wort – dann erscheinen hier die Beispielsätze.</div>`;
- filter()}
+ drawSheet();filter()}
+
+/* ---- Artikel: the cheat sheet and the finder (artikel.js) ---- */
+const sheetEl=document.getElementById("sheet"),AC={der:"var(--der)",die:"var(--die)",das:"var(--das)"};
+const dots=s=>`<span class="dots" title="${ARTIKEL.SURE[s]}">${"●".repeat(s+1)}<i>${"●".repeat(2-s)}</i></span>`;
+function drawSheet(){
+ if(topic.sheet!=="artikel"||!window.ARTIKEL){sheetEl.innerHTML="";return}
+ const A=ARTIKEL,open=store("gr:sheet")!=="0";
+ const col=a=>`<section class="acol" style="--c:${AC[a]}"><h4>${a} <small>${{der:"maskulin · masculine",die:"feminin · feminine",das:"neutral · neuter"}[a]}</small></h4>
+  <h5>Endungen</h5><ul>${A.RULES.filter(r=>r.a===a).map(r=>`<li><b class="ae">${esc(r.e)}</b>${dots(r.s)}<span class="ax s" lang="de">${W(esc(r.x))}</span>${r.n?`<span class="an">${esc(r.n)}</span>`:""}</li>`).join("")}</ul>
+  <h5>Bedeutung</h5><ul>${A.GROUPS.filter(g=>g.a===a).map(g=>`<li><b>${esc(g.m)}</b> <span class="ame" lang="en">${esc(g.men)}</span><span class="ax s" lang="de">${W(esc(g.x))}</span>${g.n?`<span class="an">${esc(g.n)}</span>`:""}</li>`).join("")}</ul></section>`;
+ sheetEl.innerHTML=`<details class="ash" id="ash"${open?" open":""}><summary>Spickzettel: der, die, das erkennen <small>cheat sheet</small></summary><div class="ashb">
+  <ol class="ast">${A.STEPS.map(([de,en,x])=>`<li><b>${esc(de)}</b><span class="ase" lang="en">${esc(en)}</span><span class="ax s" lang="de">${W(esc(x))}</span></li>`).join("")}</ol>
+  <div class="acols">${["der","die","das"].map(col).join("")}</div>
+  <p class="afoot">${dots(2)} immer / fast immer · ${dots(1)} meistens · ${dots(0)} oft – Plural ist immer die. Bei zusammengesetzten Nomen gilt das letzte Wort.</p></div></details>
+ <form class="afind" id="afind" autocomplete="off"><label for="aq">Artikel-Finder <span>ein Nomen eingeben – auch ein englisches Wort</span></label>
+  <div class="arow"><input id="aq" type="text" enterkeyhint="search" autocapitalize="sentences" spellcheck="false" placeholder="z. B. Kühlschrank, Rechnung, kitchen"><button type="submit">Prüfen</button></div>
+  <div class="ares" id="ares" aria-live="polite"></div></form>`;
+ document.getElementById("ash").ontoggle=e=>store("gr:sheet",e.target.open?"1":"0");
+ document.getElementById("afind").onsubmit=e=>{e.preventDefault();const v=document.getElementById("aq").value.trim();if(v)findArt(v);document.getElementById("aq").blur()}}
+
+let artCtl=null;
+const cap=s=>s?s[0].toUpperCase()+s.slice(1):s;
+function guessHtml(g){
+ if(!g||!g.a)return `<div class="awhy">${esc(g?g.text:"Bitte ein einzelnes Nomen eingeben.")}</div>`;
+ const one=g.a.split(" / ")[0];
+ return `<div class="agu" style="--c:${AC[one]||"var(--ink)"}"><b>${esc(g.a)}</b> ${esc(cap(g.word))}</div>
+  <div class="awhy">${esc(g.text)}${g.kind==="rule"?" "+dots(g.s):""}${g.n?` <small>· ${esc(g.n)}</small>`:""}</div>`}
+async function findArt(raw){
+ const res=document.getElementById("ares");
+ if(artCtl)artCtl.abort();artCtl=new AbortController();const my=artCtl;
+ let word=cap(raw.replace(/^(der|die|das)\s+/i,"").trim()),pre="";
+ let g=ARTIKEL.guess(word);
+ res.innerHTML=guessHtml(g)+`<div class="adict"><span class="muted">Wörterbuch wird gefragt …</span></div>`;
+ let d=window.dlNounTable?await window.dlNounTable(word):null;
+ if(my.signal.aborted)return;
+ /* not a German noun? maybe English: translate it and try again */
+ if(!d&&window.dlTranslate){try{const t=await window.dlTranslate(raw,"auto",my.signal);
+   if(t&&t.src==="en"){const de=cap(String(t.text).trim().replace(/^(der|die|das)\s+/i,"").split(/\s+/)[0].replace(/[^A-Za-zÄÖÜäöüß-]/g,""));
+    if(de){pre=`<div class="awhy"><small>Englisch „${esc(raw)}“ = Deutsch „${esc(de)}“</small></div>`;word=de;g=ARTIKEL.guess(de);d=window.dlNounTable?await window.dlNounTable(de):null}}}
+  catch(e){}}
+ if(my.signal.aborted)return;
+ const art=d?{m:"der",f:"die",n:"das"}[d.g]:"";
+ let dict;
+ if(!d)dict=`<div class="adict"><span class="muted">Im Wörterbuch nicht gefunden (offline oder kein Nomen?). Die Regel oben ist ein guter Tipp, aber keine Garantie.</span></div>`;
+ else{const same=g&&g.a&&g.a.split(" / ").includes(art);
+  dict=`<div class="adict ${same?"ok":g&&g.a?"no":""}">Wörterbuch: <b style="color:${AC[art]}">${art} ${esc(d.sg||word)}</b>${d.pl?` · Plural: die ${esc(d.pl)}`:" · kein Plural"}<br>
+   ${!g||!g.a?"Keine Regel passt – diesen Artikel einfach lernen.":same?"✓ Die Regel stimmt.":`✗ Ausnahme – merke dir: <b>${art} ${esc(d.sg||word)}</b>.`}</div>`}
+ res.innerHTML=pre+guessHtml(g)+dict}
 
 function item(k){const [g,i]=k.split("-").map(Number);return topic.groups[g].items[i]}
 function card(it){

@@ -2,7 +2,7 @@
    Every page is served from one cache, which nothing replaces on its own:
    installing a newer worker only adds files that are missing. The Update
    button in the top bar clears the cache and reloads. */
-const VERSION = "1.22.3";
+const VERSION = "1.23.0";
 const CACHE = "deutsch-lernen-shell";
 
 const FILES = [
@@ -27,6 +27,7 @@ const FILES = [
   "./grammatik.html",
   "./grammatik-data.js",
   "./grammatik-en.js",
+  "./artikel.js",
   "./alltag.html",
   "./gespraeche-data.js",
   "./briefe-data.js",
