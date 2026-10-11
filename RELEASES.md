@@ -1,5 +1,10 @@
 # Releases
 
+## 1.23.0 — 2026-10-11
+- Grammatik: new topic **Artikel** (der, die, das) after Wortbildung – 26 items with example sentences, English and read-aloud: how to find the article (people, compounds, reading it from the sentence, plural, how to learn), der / die / das by ending and meaning, exceptions and traps (der See / die See …)
+- Spickzettel (cheat sheet) at the top of the topic: six steps, then der in blue, die in red, das in green – endings and meaning groups, ●●● how sure each rule is, and the exceptions
+- Artikel-Finder: type any noun (or an English word) – it says which rule fits, also for compound words (Geburtstags|feier → die), then checks the dictionary for the real article and plural and tells you when it is an exception
+
 ## 1.22.3 — 2026-10-11
 - Fairer marking of Formale Richtigkeit (B1), as a telc examiner would: punctuation and letter-format slips (e.g. a comma after „Viele Grüße“) are still shown and explained but marked „kein Punktabzug“, and the same mistake made again counts only once („schon gezählt“)
 

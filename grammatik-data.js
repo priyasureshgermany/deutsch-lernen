@@ -1599,5 +1599,161 @@ window.GD = [
    ["-lich: die Person → persönlich", "Darf ich Ihnen eine [[persönliche]] Frage stellen?", "May I ask you a personal question?"],
    ["-voll = mit viel", "Das war ein [[wertvoller]] Tipp, danke!", "That was a valuable tip, thanks!"]]}
  ]}
+]},
+{id:"artikel", de:"Artikel", en:"Articles: der, die, das", sheet:"artikel",
+ intro:"Jedes Nomen hat ein Genus: der (maskulin), die (feminin) oder das (neutral). Oft hilft die Endung (-ung → die, -chen → das, -ling → der), oft die Bedeutung (Tage → der, Farben → das), und bei zusammengesetzten Nomen entscheidet immer das letzte Wort. Der Spickzettel unten fasst alles zusammen; mit dem Artikel-Finder prüfst du jedes Wort. Lerne Nomen immer mit Artikel und Plural.",
+ groups:[
+ {g:"So findest du den Artikel", gen:"how to find the article", items:[
+  {w:"Personen und Tiere", en:"people and animals: natural gender", tag:"Mann → der · Frau → die", ex:[
+   ["Mann → der, Frau → die", "[[Der]] Vater bringt die Kinder zur Schule, [[die]] Mutter holt sie ab.", "The father takes the children to school, the mother picks them up."],
+   ["Beruf: der …er, die …erin", "[[Der]] Lehrer ist krank, deshalb kommt heute [[die]] Lehrerin aus Klasse 3.", "The (male) teacher is ill, so today the (female) teacher from class 3 is coming."],
+   ["Tiere: männlich und weiblich", "[[Der]] Kater schläft, aber [[die]] Katze spielt im Garten.", "The tomcat is asleep, but the cat is playing in the garden."],
+   ["Ausnahme: -chen ist stärker", "[[Das]] Mädchen heißt Mia und ist sieben Jahre alt.", "The girl is called Mia and is seven years old."],
+   ["immer gleich, egal wer", "[[Die]] Person am Schalter war sehr freundlich – es war ein junger Mann.", "The person at the counter was very friendly – it was a young man."]]},
+  {w:"Das letzte Wort entscheidet", en:"compounds: the last word decides", tag:"das Haus + die Tür = die Haustür", ex:[
+   ["Nomen + Nomen", "Kannst du bitte [[die]] Haustür abschließen?", "Can you lock the front door, please?"],
+   ["mit Fugen-s", "[[Der]] Arbeitsplatz ist nur zehn Minuten von meiner Wohnung entfernt.", "My workplace is only ten minutes from my flat."],
+   ["Verb + Nomen: schreiben + der Tisch", "Ich brauche [[einen]] neuen Schreibtisch für das Homeoffice.", "I need a new desk for working from home."],
+   ["Adjektiv + Nomen: hoch + das Haus", "[[Das]] Hochhaus neben dem Bahnhof hat 30 Stockwerke.", "The tower block next to the station has 30 floors."],
+   ["drei Teile: nur der letzte zählt", "Haben Sie [[die]] Krankenversicherungskarte dabei?", "Do you have your health insurance card with you?"]]},
+  {w:"Artikel aus dem Satz ablesen", en:"reading the gender from a sentence", tag:"zur → die · einen → der", ex:[
+   ["zur = zu der → die", "Ich fahre jeden Tag mit dem Rad [[zur]] Arbeit.", "I cycle to work every day."],
+   ["zum = zu dem → der oder das", "Morgen muss ich [[zum]] Arzt.", "I have to go to the doctor tomorrow."],
+   ["einen im Akkusativ → immer der", "Ich habe [[einen]] Termin beim Jobcenter.", "I have an appointment at the job centre."],
+   ["eine → die", "Darf ich Ihnen [[eine]] Frage stellen?", "May I ask you a question?"],
+   ["ein im Akkusativ → das", "Wir suchen [[ein]] Zimmer mit Balkon.", "We are looking for a room with a balcony."]]},
+  {w:"Plural: immer die", en:"plural: always die", tag:"der / die / das → die", ex:[
+   ["der Tisch → die Tische", "[[Die]] Tische im Kursraum sind zu klein.", "The tables in the classroom are too small."],
+   ["das Kind → die Kinder", "[[Die]] Kinder spielen nach der Schule im Park.", "The children play in the park after school."],
+   ["Dativ Plural: den … -n", "Ich helfe [[den]] Kindern bei den Hausaufgaben.", "I help the children with their homework."],
+   ["nur Plural: die Eltern, die Leute", "[[Die]] Eltern meiner Frau wohnen in Köln.", "My wife's parents live in Cologne."]]},
+  {w:"So lernst du Artikel", en:"how to learn articles", tag:"Tipps zum Merken", ex:[
+   ["immer mit Artikel und Plural", "Lerne nicht nur Tisch, sondern [[der Tisch, die Tische]].", "Don't just learn Tisch, but der Tisch, die Tische."],
+   ["Farben: blau, rot, grün", "Ich schreibe [[der]]-Wörter blau, [[die]]-Wörter rot und [[das]]-Wörter grün.", "I write der words in blue, die words in red and das words in green."],
+   ["Gruppen nach Endung", "Alle Wörter auf -ung schreibe ich zusammen: [[die]] Wohnung, [[die]] Zeitung, [[die]] Rechnung.", "I write all words ending in -ung together: flat, newspaper, bill."],
+   ["im Wörterbuch: m, f, n", "Im Wörterbuch steht bei Tisch [[m]] – also der Tisch.", "The dictionary says m for Tisch – so it's der Tisch."],
+   ["Bild im Kopf", "Stell dir [[den]] Löffel als Mann und [[die]] Gabel als Frau vor.", "Imagine the spoon as a man and the fork as a woman."]]}
+ ]},
+ {g:"der – maskulin", gen:"masculine", items:[
+  {w:"-ling, -ismus, -ig, -eur", en:"always der", tag:"sichere Endungen", ex:[
+   ["-ling: immer der", "[[Der]] Frühling ist meine Lieblingsjahreszeit.", "Spring is my favourite season."],
+   ["-ismus: immer der", "[[Der]] Tourismus ist für die Stadt sehr wichtig.", "Tourism is very important for the city."],
+   ["-ig: immer der", "Ich esse morgens Brot mit [[dem]] Honig von meinem Nachbarn.", "In the morning I eat bread with the honey from my neighbour."],
+   ["-eur: Berufe", "[[Der]] Friseur hat am Montag geschlossen.", "The hairdresser is closed on Monday."]]},
+  {w:"-er, -ist, -or, -ant, -ent", en:"mostly der (people, devices)", tag:"meistens der", ex:[
+   ["-er: Personen", "[[Der]] Fahrer hat uns direkt vor dem Hotel abgesetzt.", "The driver dropped us right in front of the hotel."],
+   ["-er: Geräte", "[[Der]] Drucker im Büro ist schon wieder kaputt.", "The printer in the office is broken again."],
+   ["-ist: Personen", "[[Der]] Polizist hat mir den Weg erklärt.", "The policeman explained the way to me."],
+   ["-or: der Motor, der Doktor", "[[Der]] Motor macht seit gestern komische Geräusche.", "The engine has been making strange noises since yesterday."],
+   ["-ant / -ent: Personen", "[[Der]] Praktikant und [[der]] Student fangen am Montag an.", "The intern and the student start on Monday."]]},
+  {w:"Zeit: Tage, Monate, Jahreszeiten", en:"days, months, seasons, times of day", tag:"der Montag, der Mai", ex:[
+   ["Wochentage", "Am Montag habe ich frei – [[der]] Montag ist mein Lieblingstag.", "I'm off on Monday – Monday is my favourite day."],
+   ["Monate", "[[Der]] Mai war dieses Jahr sehr warm.", "May was very warm this year."],
+   ["Jahreszeiten", "Im Winter ist es hier dunkel, [[der]] Sommer ist viel schöner.", "In winter it's dark here, summer is much nicer."],
+   ["Tageszeiten", "[[Der]] Abend war lang, aber sehr lustig.", "The evening was long but very funny."],
+   ["Ausnahme: die Nacht, die Woche", "[[Die]] Nacht war kurz, und [[die]] Woche war anstrengend.", "The night was short and the week was tiring."]]},
+  {w:"Wetter und Himmelsrichtungen", en:"weather and compass points", tag:"der Regen, der Norden", ex:[
+   ["Niederschlag: der Regen, der Schnee", "[[Der]] Regen hört heute nicht mehr auf.", "The rain isn't going to stop today."],
+   ["der Wind, der Sturm", "[[Der]] Sturm hat einen Baum auf die Straße geworfen.", "The storm threw a tree onto the road."],
+   ["Himmelsrichtungen", "Meine Familie wohnt im Norden, [[der]] Süden ist mir zu heiß.", "My family lives in the north; the south is too hot for me."],
+   ["Ausnahme: die Sonne, das Gewitter", "Nach [[dem]] Gewitter kam endlich [[die]] Sonne.", "After the thunderstorm the sun finally came out."]]},
+  {w:"Verbstamm ohne Endung", en:"verb stem as a noun", tag:"anrufen → der Anruf", ex:[
+   ["anrufen → der Anruf", "Vielen Dank für [[den]] Anruf!", "Thank you very much for the call."],
+   ["besuchen → der Besuch", "[[Der]] Besuch beim Amt hat zwei Stunden gedauert.", "The visit to the office took two hours."],
+   ["kaufen → der Kauf", "Bewahren Sie den Kassenbon nach [[dem]] Kauf gut auf.", "Keep the receipt safe after the purchase."],
+   ["umziehen → der Umzug", "[[Der]] Umzug ist am Samstag – hilfst du mir?", "The move is on Saturday – will you help me?"]]},
+  {w:"Getränke und Automarken", en:"drinks and car makes", tag:"der Wein, der BMW", ex:[
+   ["Alkohol: der Wein, der Sekt", "[[Der]] Wein aus der Pfalz schmeckt mir sehr gut.", "I really like the wine from the Palatinate."],
+   ["auch der Kaffee, der Tee, der Saft", "Möchtest du [[den]] Kaffee mit Milch?", "Would you like the coffee with milk?"],
+   ["Automarken", "[[Der]] neue BMW meines Kollegen ist elektrisch.", "My colleague's new BMW is electric."],
+   ["Ausnahme: das Bier, das Wasser, die Milch", "[[Das]] Bier ist alle, aber es gibt noch [[das]] Wasser und [[die]] Milch.", "The beer is gone, but there is still the water and the milk."]]}
+ ]},
+ {g:"die – feminin", gen:"feminine", items:[
+  {w:"-ung, -heit, -keit, -schaft", en:"always die", tag:"sichere Endungen", ex:[
+   ["-ung", "[[Die]] Rechnung für den Strom ist dieses Jahr höher.", "The electricity bill is higher this year."],
+   ["-heit", "[[Die]] Gesundheit meiner Mutter ist mir sehr wichtig.", "My mother's health is very important to me."],
+   ["-keit", "Es gibt [[die]] Möglichkeit, den Kurs online zu machen.", "There's the option of doing the course online."],
+   ["-schaft", "[[Die]] Freundschaft mit meinen Nachbarn ist mir viel wert.", "The friendship with my neighbours means a lot to me."]]},
+  {w:"-ion, -tät, -enz, -anz", en:"always die (foreign words)", tag:"Fremdwörter", ex:[
+   ["-ion", "[[Die]] Information finden Sie auf unserer Website.", "You can find the information on our website."],
+   ["-tät", "[[Die]] Universität liegt direkt neben dem Bahnhof.", "The university is right next to the station."],
+   ["-enz", "[[Die]] Konferenz beginnt um neun Uhr.", "The conference starts at nine o'clock."],
+   ["-anz", "[[Die]] Distanz zur Arbeit ist mit dem Rad kein Problem.", "The distance to work is no problem by bike."]]},
+  {w:"-ik, -ur, -ei, -ie", en:"mostly die", tag:"meistens die", ex:[
+   ["-ik", "[[Die]] Musik im Café ist zu laut.", "The music in the café is too loud."],
+   ["-ur", "[[Die]] Reparatur der Waschmaschine kostet 120 Euro.", "The repair of the washing machine costs 120 euros."],
+   ["-ei", "[[Die]] Bäckerei an der Ecke öffnet schon um sechs.", "The bakery on the corner opens at six."],
+   ["-ie", "[[Die]] Familie meines Mannes kommt aus Italien.", "My husband's family comes from Italy."],
+   ["Ausnahme: das Abitur, das Ei", "[[Das]] Abitur hat sie mit einer guten Note bestanden.", "She passed her Abitur with a good grade."]]},
+  {w:"-e am Ende", en:"words ending in -e (about 90 % die)", tag:"die Tasche, die Straße", ex:[
+   ["Dinge auf -e", "[[Die]] Tasche habe ich im Bus vergessen.", "I forgot the bag on the bus."],
+   ["Orte auf -e", "[[Die]] Straße ist wegen einer Baustelle gesperrt.", "The street is closed because of a building site."],
+   ["Ausnahme: männliche Personen auf -e", "[[Der]] Kollege von meiner Frau heißt Jonas.", "My wife's colleague is called Jonas."],
+   ["Ausnahme: der Name, der Käse", "Wie war noch mal [[der]] Name von Ihrem Arzt?", "What was the name of your doctor again?"],
+   ["Ausnahme: das Ende, das Auge", "[[Das]] Ende des Films war traurig.", "The end of the film was sad."]]},
+  {w:"-in: Frauen", en:"-in: female forms", tag:"die Ärztin, die Freundin", ex:[
+   ["Beruf: die …in", "[[Die]] Ärztin hat mir ein Rezept gegeben.", "The (female) doctor gave me a prescription."],
+   ["Person: die Freundin, die Nachbarin", "[[Die]] Nachbarin gießt im Urlaub unsere Blumen.", "The neighbour waters our flowers during the holiday."],
+   ["Plural: -innen", "Alle Lehrerinnen und Lehrer treffen sich in [[der]] Pause.", "All the teachers meet during the break."],
+   ["Achtung: der Termin, das Benzin", "[[Der]] Termin ist um zehn, und [[das]] Benzin ist wieder teurer.", "The appointment is at ten, and petrol is more expensive again."]]},
+  {w:"Zahlen, Bäume, Blumen, Flüsse", en:"numbers, trees, flowers, rivers", tag:"die Eins, die Rose", ex:[
+   ["Zahlen als Nomen: Noten", "In Mathe hat meine Tochter [[eine]] Eins bekommen.", "My daughter got a one (top grade) in maths."],
+   ["Zahlen als Nomen: Bus und Bahn", "Nehmen Sie [[die]] Zwölf bis zum Rathaus.", "Take the number 12 to the town hall."],
+   ["Bäume und Blumen", "[[Die]] Rose im Garten blüht schon.", "The rose in the garden is already flowering."],
+   ["Flüsse: die Donau – aber der Rhein", "[[Die]] Donau fließt nach Osten, [[der]] Rhein nach Norden.", "The Danube flows east, the Rhine flows north."]]}
+ ]},
+ {g:"das – neutral", gen:"neuter", items:[
+  {w:"-chen, -lein", en:"always das (small things)", tag:"das Brötchen", ex:[
+   ["-chen: immer das", "[[Das]] Brötchen ist noch warm.", "The bread roll is still warm."],
+   ["auch bei Personen: das Mädchen", "[[Das]] Mädchen von nebenan spielt Klavier.", "The girl next door plays the piano."],
+   ["mit Umlaut: das Häuschen", "Wir mieten im Urlaub [[ein]] kleines Häuschen am See.", "On holiday we rent a little house by the lake."],
+   ["Achtung: der Kuchen ist kein -chen", "[[Der]] Kuchen ist für den Geburtstag von Oma.", "The cake is for grandma's birthday."]]},
+  {w:"-ment, -um, -tum, -nis, -ma, -o", en:"mostly das", tag:"meistens das", ex:[
+   ["-ment", "[[Das]] Medikament nehmen Sie bitte nach dem Essen.", "Please take the medicine after meals."],
+   ["-um", "[[Das]] Museum ist montags geschlossen.", "The museum is closed on Mondays."],
+   ["-nis", "[[Das]] Ergebnis der Prüfung kommt in vier Wochen.", "The exam result will come in four weeks."],
+   ["-ma", "[[Das]] Thema heute ist Wohnen in Deutschland.", "Today's topic is living in Germany."],
+   ["-o", "[[Das]] Konto habe ich bei der Sparkasse eröffnet.", "I opened the account at the Sparkasse."]]},
+  {w:"Ge- am Anfang", en:"Ge- words (often das)", tag:"das Geschenk, das Gemüse", ex:[
+   ["Ge- … -e: das Gemüse, das Gebäude", "[[Das]] Gemüse vom Markt ist frischer.", "The vegetables from the market are fresher."],
+   ["Ge- + Wort: das Geschenk", "[[Das]] Geschenk für meine Frau habe ich gut versteckt.", "I've hidden the present for my wife well."],
+   ["das Gespräch, das Getränk", "[[Das]] Gespräch mit dem Chef war positiv.", "The conversation with the boss was positive."],
+   ["Ausnahme: der Geburtstag, die Gefahr", "[[Der]] Geburtstag meines Sohnes ist im Juli.", "My son's birthday is in July."]]},
+  {w:"Verb als Nomen", en:"infinitive as a noun: always das", tag:"das Essen, beim Kochen", ex:[
+   ["das + Infinitiv", "[[Das]] Essen in der Kantine ist günstig.", "The food in the canteen is cheap."],
+   ["beim = bei dem", "[[Beim]] Autofahren telefoniere ich nie.", "I never phone while driving."],
+   ["zum = zu dem: wofür?", "Ich brauche mehr Zeit [[zum]] Lernen.", "I need more time for studying."],
+   ["auch das Leben, das Schwimmen", "[[Das]] Leben in einer großen Stadt ist teuer.", "Life in a big city is expensive."]]},
+  {w:"Farben, Sprachen, Metalle", en:"colours, languages, metals", tag:"das Blau, das Deutsch", ex:[
+   ["Farben als Nomen", "[[Das]] Blau der Jacke gefällt mir.", "I like the blue of the jacket."],
+   ["Sprachen als Nomen", "[[Das]] Deutsch meiner Kinder ist besser als meins.", "My children's German is better than mine."],
+   ["Metalle", "[[Das]] Gold ist im Moment sehr teuer.", "Gold is very expensive at the moment."],
+   ["Sprache ohne Artikel: Ich spreche …", "Ich spreche [[Deutsch]] und Englisch.", "I speak German and English."]]},
+  {w:"Länder, Städte, Kinder", en:"countries, cities, children and young animals", tag:"das Kind, das schöne Berlin", ex:[
+   ["Länder und Städte (mit Adjektiv)", "[[Das]] alte Frankfurt sieht man noch am Römer.", "You can still see old Frankfurt at the Römer."],
+   ["Ausnahme: die Schweiz, die Türkei", "Im Sommer fahren wir in [[die]] Türkei.", "In summer we're going to Turkey."],
+   ["Kinder und Babys", "[[Das]] Baby schläft endlich.", "The baby is finally asleep."],
+   ["junge Tiere", "Auf dem Bauernhof haben die Kinder [[ein]] Kalb gesehen.", "At the farm the children saw a calf."],
+   ["englische Wörter auf -ing", "[[Das]] Meeting wurde auf Donnerstag verschoben.", "The meeting was moved to Thursday."]]}
+ ]},
+ {g:"Ausnahmen und Fallen", gen:"exceptions and traps", items:[
+  {w:"-er, aber nicht der", en:"-er words that are not der", tag:"die Mutter, das Zimmer", ex:[
+   ["Frauen: die Mutter, die Schwester", "[[Die]] Schwester meiner Frau besucht uns am Wochenende.", "My wife's sister is visiting us at the weekend."],
+   ["die Butter", "Kannst du bitte [[die]] Butter aus dem Kühlschrank holen?", "Can you get the butter from the fridge, please?"],
+   ["das Zimmer, das Fenster", "[[Das]] Zimmer ist hell, weil [[das]] Fenster so groß ist.", "The room is bright because the window is so big."],
+   ["das Wetter, das Wasser", "[[Das]] Wetter ist schön – nehmt genug Wasser mit!", "The weather is nice – take enough water with you!"],
+   ["die Nummer, die Feier", "Ich schicke dir [[die]] Nummer für [[die]] Feier.", "I'll send you the number for the party."]]},
+  {w:"gleiches Wort, anderer Artikel", en:"same word, different article and meaning", tag:"der See / die See", ex:[
+   ["der See = Wasser im Land, die See = das Meer", "Wir baden im Sommer im [[See]] und fahren im Herbst an [[die]] See.", "In summer we swim in the lake, in autumn we go to the seaside."],
+   ["der Leiter = Chef, die Leiter = zum Steigen", "[[Der]] Leiter der Firma stand selbst auf [[der]] Leiter.", "The head of the company stood on the ladder himself."],
+   ["die Steuer = Geld, das Steuer = im Auto", "[[Die]] Steuer zahlt man ans Finanzamt, [[das]] Steuer hält man beim Fahren.", "You pay tax to the tax office; you hold the steering wheel when you drive."],
+   ["der Teil = Anteil, das Teil = Ding", "[[Der]] größte Teil ist fertig, nur [[das]] Teil für die Lampe fehlt.", "Most of it is done, only the part for the lamp is missing."]]},
+  {w:"typische Fehler", en:"typical mistakes", tag:"die Person, das Ende", ex:[
+   ["die Person – auch für Männer", "Herr Klein ist [[die]] richtige Person für diese Stelle.", "Mr Klein is the right person for this job."],
+   ["das Mitglied – auch für Frauen", "Meine Frau ist [[ein]] neues Mitglied im Sportverein.", "My wife is a new member of the sports club."],
+   ["die Antwort – nicht wie das Wort", "Ich warte noch auf [[die]] Antwort vom Vermieter.", "I'm still waiting for the landlord's answer."],
+   ["der Junge – männlich auf -e", "[[Der]] Junge von nebenan hat mein Fahrrad repariert.", "The boy next door repaired my bike."],
+   ["das Ende – nicht die", "[[Das]] Ende der Ferien kommt immer zu schnell.", "The end of the holidays always comes too fast."]]}
+ ]}
 ]}
 ];

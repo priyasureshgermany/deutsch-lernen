@@ -34,5 +34,14 @@ for (const t of window.GD) {
   }
   console.log("  " + t.de + ": " + n + " items");
 }
+/* Artikel: the cheat sheet's own examples, "aber" words and exceptions must
+   come out right from the finder that the sheet is built from */
+new Function("window", readFileSync(new URL("../artikel.js", import.meta.url), "utf8"))(window);
+const AR = window.ARTIKEL, art = [];
+const words = s => [...(s || "").matchAll(/(der|die|das) (?:[a-zäöü]+ )?([A-ZÄÖÜ][a-zäöüß]*)(?= ·|,|$)/g)];
+for (const r of [...AR.RULES, ...AR.GROUPS]) for (const m of [...words(r.x), ...words(r.n)]) art.push([m[2], m[1], r.e || r.m]);
+for (const k in AR.EXC) art.push([k, AR.EXC[k][0], "Ausnahme"]);
+for (const [w, a, where] of art) { const g = AR.guess(w); if (!g || g.a !== a) fail("Artikel / " + where, w + " should be " + a + ", finder says " + (g && g.a || "nothing")); }
+console.log("  Artikel-Finder: " + art.length + " words checked");
 if (bad) { console.log(bad + " problem(s)"); process.exit(1); }
 console.log("✓ " + items + " items, " + sentences + " sentences");
