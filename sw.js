@@ -2,7 +2,7 @@
    Every page is served from one cache, which nothing replaces on its own:
    installing a newer worker only adds files that are missing. The Update
    button in the top bar clears the cache and reloads. */
-const VERSION = "1.33.1";
+const VERSION = "1.34.0";
 const CACHE = "deutsch-lernen-shell";
 
 const FILES = [
@@ -16,6 +16,7 @@ const FILES = [
   "./karten.css",
   "./exam.js",
   "./schreiben.js",
+  "./speak.js",
   "./test.js",
   "./test.css",
   "./test-a1.js",

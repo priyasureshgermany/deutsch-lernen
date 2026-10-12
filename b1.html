@@ -164,6 +164,7 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 <script src="me.js"></script>
 <script src="exam.js"></script>
 <script src="schreiben.js"></script>
+<script src="speak.js"></script>
 <script src="test.js"></script>
 <script src="test-b1.js"></script>
 <script>
@@ -406,7 +407,7 @@ S.forEach((sk,si)=>{const id="s"+si;
   h+=`</tbody></table></div></div>`});
  h+=`</section>`});
 const main=document.getElementById("main"),nav=document.getElementById("nav");
-main.innerHTML=h;nav.innerHTML=n;
+main.innerHTML=h;nav.innerHTML=n;if(window.skillNav)skillNav(nav);
 /* own texts for the writing tasks */
 const WK="dl:mywrite:b1dtz:",wc=t=>(t.trim().match(/\S+/g)||[]).length;
 main.querySelectorAll(".mywrite").forEach(t=>{try{t.value=localStorage.getItem(WK+t.dataset.wk)||""}catch(e){}t.nextElementSibling.firstElementChild.textContent=wc(t.value)});
@@ -424,18 +425,16 @@ function voices(lang){if(!synth)return[];const vs=synth.getVoices().filter(v=>v.
  const pref=["premium","enhanced","google","natural","anna","helena","katja","markus","yannick","daniel","samantha"];
  return vs.sort((a,b)=>{const sa=pref.findIndex(p=>a.name.toLowerCase().includes(p)),sb=pref.findIndex(p=>b.name.toLowerCase().includes(p));return (sa<0?99:sa)-(sb<0?99:sb)})}
 if(synth){synth.getVoices();synth.onvoiceschanged=()=>synth.getVoices()}
-function stopSay(){if(synth)synth.cancel();if(playing)playing.classList.remove("on");playing=null}
-function say(btn){if(!synth)return;if(playing===btn){stopSay();return}stopSay();
+function stopSay(){if(window.Speak)Speak.stop();else if(synth)synth.cancel();if(playing)playing.classList.remove("on");playing=null}
+function say(btn){if(!synth||!window.Speak)return;if(playing===btn){stopSay();return}stopSay();
  const s=btn.previousElementSibling;const lang=s.getAttribute("lang")||"de";
  const lines=[...s.querySelectorAll(".ln")];const parts=(lines.length?lines.map(l=>l.textContent):[s.textContent]).map(t=>t.replace(/[\[\]]/g,"").trim()).filter(Boolean);
  const vs=voices(lang);const spk={};let k=0;
  playing=btn;btn.classList.add("on");
- parts.forEach((t,i)=>{let v=vs[0]||null;const m=t.match(/^([A-Za-zÄÖÜäöüß ]{2,20}):\s*(.+)$/);
+ const pieces=parts.map(t=>{let v=vs[0]||null;const m=t.match(/^([A-Za-zÄÖÜäöüß ]{2,20}):\s*(.+)$/);
   if(m&&lang==="de"&&!/^(Text \d|Frage|Antwort|Bitte|Reaktion|Prüfer|Bild|Thema)/.test(m[1])){if(!(m[1] in spk))spk[m[1]]=k++;v=vs[spk[m[1]]%Math.max(vs.length,1)]||v;t=m[2]}
-  const u=new SpeechSynthesisUtterance(t);u.lang=lang==="de"?"de-DE":"en-GB";u.rate=rate;if(v)u.voice=v;
-  if(i===parts.length-1)u.onend=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
-  u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
-  synth.speak(u)})}
+  return {text:t,voice:v,lang:lang==="de"?"de-DE":"en-GB",rate}});
+ Speak.run(pieces,{onend:()=>{if(playing===btn){btn.classList.remove("on");playing=null}}})}
 /* Tempo is set by the button at the top of the app (index.html). */
 addEventListener("message",e=>{if(e.origin===location.origin&&e.data&&e.data.dlRate)rate=e.data.dlRate});
 

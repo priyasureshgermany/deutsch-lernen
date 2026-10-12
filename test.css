@@ -10,7 +10,7 @@
 /* a paused test: a soft white dot that pulses */
 .tz-entry.paused::after{content:"";width:7px;height:7px;border-radius:50%;background:#fff;animation:tzDot 1.4s ease-in-out infinite}
 @keyframes tzDot{50%{opacity:.35}}
-.tz-open{touch-action:manipulation;font:inherit;font-size:13px;font-weight:800;display:inline-flex;align-items:center;gap:4px;flex:none;height:34px;padding:0 11px 0 8px;border:2px solid var(--b1);border-radius:999px;background:var(--b1);color:#fff;cursor:pointer}
+.tz-open{touch-action:manipulation;font:inherit;font-size:13px;font-weight:800;display:inline-flex;align-items:center;gap:4px;flex:none;height:34px;padding:0 11px 0 8px;border:2px solid var(--acc);border-radius:999px;background:var(--acc);color:#fff;cursor:pointer}
 .tz-open svg{width:18px;height:18px}
 .tz{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;background:var(--paper);color:var(--ink)}
 .tz[hidden]{display:none}
@@ -20,7 +20,7 @@ body.testing{overflow:hidden}
 .tz-title{font-size:16px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .tz-time{font-variant-numeric:tabular-nums;font-weight:800;font-size:16px;padding:3px 10px;border-radius:999px;background:var(--surface);color:var(--ink)}
 .tz-time.low{background:#c62828;color:#fff}
-.tz-pause{touch-action:manipulation;font:inherit;font-size:13px;font-weight:900;letter-spacing:-1px;width:38px;height:38px;border:none;border-radius:50%;background:var(--b1);color:#fff;cursor:pointer;flex:none}
+.tz-pause{touch-action:manipulation;font:inherit;font-size:13px;font-weight:900;letter-spacing:-1px;width:38px;height:38px;border:none;border-radius:50%;background:var(--acc);color:#fff;cursor:pointer;flex:none}
 .tz-pause[hidden]{display:none}
 .tz-x{touch-action:manipulation;font:inherit;font-size:18px;width:38px;height:38px;border:none;border-radius:50%;background:var(--surface);color:var(--ink);cursor:pointer;flex:none}
 .tz-body{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
@@ -33,15 +33,15 @@ body.testing{overflow:hidden}
 .tz-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .tz-h b{font-size:18px}.tz-h span{color:var(--muted);font-size:14px}
 .tz-sub{color:var(--muted);font-size:14px}
-.tz-step{color:var(--b1);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.03em}
+.tz-step{color:var(--acc);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.03em}
 .tz-secs{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
 .tz-secs span{font-size:12px;padding:3px 8px;border-radius:999px;background:var(--surface)}
 .tz-last{font-size:14px;margin:4px 0 2px}.tz-last.ok b{color:var(--a1)}.tz-last.no b{color:#c62828}
 .tz-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .tz-row.end{justify-content:flex-end;margin-top:16px}
-.tz-btn{touch-action:manipulation;font:inherit;font-weight:800;font-size:15px;padding:10px 16px;border-radius:999px;border:2px solid var(--b1);background:var(--b1);color:#fff;cursor:pointer}
-.tz-btn.ghost{background:transparent;color:var(--b1)}
-.tz-btn.ghost[aria-pressed="true"]{background:var(--b1);color:#fff}
+.tz-btn{touch-action:manipulation;font:inherit;font-weight:800;font-size:15px;padding:10px 16px;border-radius:999px;border:2px solid var(--acc);background:var(--acc);color:#fff;cursor:pointer}
+.tz-btn.ghost{background:transparent;color:var(--acc)}
+.tz-btn.ghost[aria-pressed="true"]{background:var(--acc);color:#fff}
 .tz-btn.wide{width:100%;margin-top:12px}
 .tz-btn:disabled{opacity:.4;cursor:default}
 .tz-list{margin:8px 0;padding-left:20px}.tz-list li{margin:3px 0}
@@ -50,12 +50,12 @@ body.testing{overflow:hidden}
 .tz-tabs button{touch-action:manipulation;flex:none;font:inherit;font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
 .tz-tabs button small{font-weight:600;font-variant-numeric:tabular-nums;opacity:.75;margin-left:2px}
 .tz-tabs button:disabled{opacity:.45;cursor:default}
-.tz-tabs button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tz-tabs button[aria-pressed="true"]{background:var(--acc);color:#fff;border-color:var(--acc)}
 /* all Prüfungsteile at a glance */
 .tz-strip{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;font-size:13px;font-weight:700;margin:0 0 10px;color:var(--muted)}
 .tz-strip span{padding:3px 9px;border-radius:999px;background:var(--surface)}
 .tz-strip span.done{background:color-mix(in srgb,var(--a1) 18%,var(--paper));color:var(--a1)}
-.tz-strip span.now{background:var(--b1);color:#fff}
+.tz-strip span.now{background:var(--acc);color:#fff}
 .tz-strip i{font-style:normal;opacity:.6}
 .tz-card.done{opacity:.7}
 .tz-tab tr.skip td{color:var(--muted);font-weight:400}
@@ -65,13 +65,13 @@ body.testing{overflow:hidden}
 .tz-text.small{font-size:15px;margin:6px 0}
 .tz-text.list div{margin:2px 0}
 .tz-text.model{background:color-mix(in srgb,var(--a1) 10%,var(--paper))}
-.tz-text .gap{color:var(--b1)}.tz-text .gap.ok{color:var(--a1)}
+.tz-text .gap{color:var(--acc)}.tz-text .gap.ok{color:var(--a1)}
 .tz-bank{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
 .tz-bank span{font-size:14px;padding:4px 9px;border-radius:8px;border:1px solid var(--line)}
 .tz-audio{margin:0 0 12px}
-.tz-play{touch-action:manipulation;font:inherit;font-weight:800;font-size:15px;padding:8px 14px;border-radius:999px;border:2px solid var(--b1);background:transparent;color:var(--b1);cursor:pointer;margin:0 0 6px}
+.tz-play{touch-action:manipulation;font:inherit;font-weight:800;font-size:15px;padding:8px 14px;border-radius:999px;border:2px solid var(--acc);background:transparent;color:var(--acc);cursor:pointer;margin:0 0 6px}
 .tz-play small{font-weight:600;color:var(--muted);margin-left:4px}
-.tz-play.on{background:var(--b1);color:#fff}.tz-play.on small{color:#fff}
+.tz-play.on{background:var(--acc);color:#fff}.tz-play.on small{color:#fff}
 .tz-play:disabled{opacity:.45;cursor:default}
 .tz-q,.tz-rv{display:flex;gap:10px;padding:12px 0;border-top:1px solid var(--line)}
 .tz-qn{flex:none;width:30px;height:30px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
@@ -79,17 +79,17 @@ body.testing{overflow:hidden}
 .tz-qt{font-size:16px;margin:0 0 8px}
 .tz-opts{display:flex;flex-wrap:wrap;gap:6px}
 .tz-opt{touch-action:manipulation;font:inherit;font-size:15px;text-align:left;padding:8px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;max-width:100%}
-.tz-opt[aria-pressed="true"]{border-color:var(--b1);background:var(--b1);color:#fff}
+.tz-opt[aria-pressed="true"]{border-color:var(--acc);background:var(--acc);color:#fff}
 .tz-sel,.tz-in{font:inherit;font-size:16px;width:100%;max-width:520px;padding:9px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink)}
 .tz-bands{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;font-size:13px}
 .tz-bands span{padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
 .tz-bands span b{color:var(--ink);font-weight:700}
-.tz-bands span.on{background:var(--b1);border-color:var(--b1);color:#fff}.tz-bands span.on b{color:#fff}
+.tz-bands span.on{background:var(--acc);border-color:var(--acc);color:#fff}.tz-bands span.on b{color:#fff}
 .tz-lv{display:inline-block;padding:2px 9px;border-radius:999px;font-size:13px;color:#fff;background:#888}
 .tz-lv.b1{background:#1a8f4c}.tz-lv.a2{background:#c77d00}.tz-lv.u{background:#b3261e}
 .tz-tab.dtz tr.how td{font-size:12px;color:var(--muted);padding-top:0}
 .tz-wpick{margin-bottom:10px}
-.tz-pts{font-size:13px;font-weight:700;color:var(--b1);white-space:nowrap}
+.tz-pts{font-size:13px;font-weight:700;color:var(--acc);white-space:nowrap}
 /* the writing box: big, right below the task */
 .tz-wq{display:block;padding-top:12px;border-top:1px solid var(--line)}
 .tz-wq .tz-write{display:block;margin-top:6px}
@@ -105,7 +105,7 @@ body.testing{overflow:hidden}
 .tz-tab td:nth-child(2){white-space:nowrap;font-weight:700;text-align:right}
 .tz-tab td:nth-child(3){width:30%}
 .tz-tab .bar{display:block;height:8px;border-radius:4px;background:var(--surface);overflow:hidden}
-.tz-tab .bar i{display:block;height:100%;background:var(--b1)}
+.tz-tab .bar i{display:block;height:100%;background:var(--acc)}
 .tz-sec{font-size:20px;margin:18px 14px 8px;max-width:780px}
 @media (min-width:808px){.tz-sec{margin-left:auto;margin-right:auto;padding:0 14px}}
 /* result page: the part cards sit straight in the scrolling body */
@@ -119,7 +119,7 @@ body.testing{overflow:hidden}
 .tz-a.none{color:#c62828;font-style:italic}
 .tz-why{font-size:14px;color:var(--muted);margin-top:4px}
 .tz-det{margin:6px 0}
-.tz-det summary{cursor:pointer;color:var(--b1);font-weight:700;font-size:14px}
+.tz-det summary{cursor:pointer;color:var(--acc);font-weight:700;font-size:14px}
 .tz-lab{font-weight:800;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
 .tz-crit{margin:8px 0;font-size:15px}.tz-crit>div:first-child{margin-bottom:4px}
 .tz-chk{display:flex;gap:8px;align-items:flex-start;padding:4px 0}
@@ -129,12 +129,12 @@ body.testing{overflow:hidden}
 /* Sprechen: the partners' lines and your answers */
 .tz-chat{display:flex;flex-direction:column;gap:10px;margin-top:6px}
 .tz-say{align-self:flex-start;max-width:88%;padding:9px 12px;border-radius:14px 14px 14px 4px;background:var(--surface);font-size:16px}
-.tz-say b{display:block;font-size:12px;color:var(--b1);margin-bottom:2px}
+.tz-say b{display:block;font-size:12px;color:var(--acc);margin-bottom:2px}
 .tz-say.small{font-size:15px;margin:6px 0}
 .tz-live{display:block;font-size:12px;color:var(--muted)}
-.tz-you{align-self:stretch;padding:10px 12px;border-radius:14px;border:1.5px dashed var(--b1);margin:6px 0}
+.tz-you{align-self:stretch;padding:10px 12px;border-radius:14px;border:1.5px dashed var(--acc);margin:6px 0}
 .tz-task{font-weight:700;font-size:15px;margin-bottom:6px}
-.tz-tx{font-size:16px;padding:8px 10px;border-radius:10px;background:color-mix(in srgb,var(--b1) 10%,var(--paper));margin:6px 0}
+.tz-tx{font-size:16px;padding:8px 10px;border-radius:10px;background:color-mix(in srgb,var(--acc) 10%,var(--paper));margin:6px 0}
 .tz-tx.live{color:var(--muted)}
 .tz-you audio{width:100%;height:36px;margin:4px 0}
 .tz-btn.rec{background:#c62828;border-color:#c62828}
@@ -152,11 +152,11 @@ mark.sw-err{background:none;color:inherit;text-decoration:underline wavy #d32f2f
 mark.sw-err sup{color:#d32f2f;font-weight:800;font-size:10px;margin-left:1px}
 .sw-legend{font-size:13px;color:var(--muted);margin:-6px 0 8px}
 .sw-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:16px;padding-top:10px;border-top:2px solid var(--line)}
-.sw-head .tz-lab{margin:0}.sw-head b{font-size:20px;color:var(--b1)}
+.sw-head .tz-lab{margin:0}.sw-head b{font-size:20px;color:var(--acc)}
 .sw-en{display:block;font-size:12.5px;color:var(--en);font-weight:400}
 .sw-sum{margin:8px 0 4px;font-size:15px}
 .sw-sum>div{display:grid;grid-template-columns:24px 1fr auto;gap:8px;align-items:baseline;padding:7px 2px;border-bottom:1px solid var(--line)}
-.sw-sum>div>b:first-child{color:var(--b1)}.sw-sum>div>b:last-child{white-space:nowrap}
+.sw-sum>div>b:first-child{color:var(--acc)}.sw-sum>div>b:last-child{white-space:nowrap}
 .sw-sec{margin:14px 0 0;padding:10px 12px;border-radius:12px;background:var(--surface)}
 .sw-sec h4{margin:0 0 4px;font-size:16px}
 .sw-sec>.tz-sub{margin:0 0 8px;font-size:13.5px}
@@ -176,13 +176,13 @@ mark.sw-err sup{color:#d32f2f;font-weight:800;font-size:10px;margin-left:1px}
 .sw-errs s{color:#d32f2f}.sw-errs ins{text-decoration:none;color:var(--a1);font-weight:800}
 .sw-kind{margin-left:6px;padding:1px 7px;border-radius:999px;background:var(--surface);color:var(--muted);font-size:12px}
 .sw-msg{font-size:13px;color:var(--muted)}
-.sw-reset{touch-action:manipulation;font:inherit;font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--b1);cursor:pointer}
+.sw-reset{touch-action:manipulation;font:inherit;font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--acc);cursor:pointer}
 .sw-sec.better{background:color-mix(in srgb,var(--a1) 10%,var(--paper));border:1px solid color-mix(in srgb,var(--a1) 35%,var(--paper))}
 .sw-sec.better ul{margin:4px 0 0;padding-left:20px}.sw-sec.better li{margin:6px 0;font-size:14.5px}
 .sw-pt .tz-opts,.sw-sec .tz-opts{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}
 .sw-cur{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.6}
 .sw-cur b{color:var(--ink);font-weight:700}
-.sw-link{touch-action:manipulation;font:inherit;font-size:13.5px;font-weight:700;padding:2px 0;border:none;background:none;color:var(--b1);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.sw-link{touch-action:manipulation;font:inherit;font-size:13.5px;font-weight:700;padding:2px 0;border:none;background:none;color:var(--acc);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .sw-edit{margin-top:6px;padding:8px;border-radius:10px;border:1px dashed var(--line)}
 .sw-edit>.sw-link{margin-top:6px}
 /* the mistakes, explained right under the learner's text */
@@ -194,3 +194,57 @@ mark.sw-err sup{color:#d32f2f;font-weight:800;font-size:10px;margin-left:1px}
 .sw-fix{font-size:16px}
 .sw-errbox .sw-msg{margin-top:2px}
 .sw-free{background:color-mix(in srgb,var(--a1) 14%,transparent);color:var(--a1)}
+
+/* Hören, Lesen, Schreiben, Sprechen: one colour each, in the tests and on the
+   practice page. Inside a running Prüfungsteil the whole test takes its colour
+   (--acc), so you always see which one you are in. */
+:root{--acc:var(--b1);--sk-hoeren:#2563eb;--sk-lesen:#0f8a5f;--sk-schreiben:#c2560c;--sk-sprechen:#a12fd0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sk-hoeren:#7aa7ff;--sk-lesen:#4fd09a;--sk-schreiben:#f59e4b;--sk-sprechen:#d08cf5}}
+:root[data-theme="dark"]{--sk-hoeren:#7aa7ff;--sk-lesen:#4fd09a;--sk-schreiben:#f59e4b;--sk-sprechen:#d08cf5}
+.sk-hoeren{--sk:var(--sk-hoeren)}.sk-lesen{--sk:var(--sk-lesen)}.sk-schreiben{--sk:var(--sk-schreiben)}.sk-sprechen{--sk:var(--sk-sprechen)}
+.sk-hl{--sk:linear-gradient(90deg,var(--sk-hoeren) 50%,var(--sk-lesen) 50%)}
+.tz[data-sk="hoeren"]{--acc:var(--sk-hoeren)}.tz[data-sk="lesen"]{--acc:var(--sk-lesen)}.tz[data-sk="schreiben"]{--acc:var(--sk-schreiben)}.tz[data-sk="sprechen"]{--acc:var(--sk-sprechen)}
+.tz[data-sk] .tz-top{border-bottom:4px solid var(--acc)}
+.tz[data-sk] .tz-top .tz-title{color:var(--acc)}
+/* chips: ○ to do = outline, ✓ done = soft tint, ● now = filled */
+.tz-strip span[class*="sk-"],.tz-secs span[class*="sk-"]{border:2px solid var(--sk);color:var(--sk);background:transparent;padding:2px 9px}
+.tz-strip span[class*="sk-"].done,.tz-secs span[class*="sk-"].done{background:color-mix(in srgb,var(--sk) 16%,var(--paper))}
+.tz-strip span[class*="sk-"].now,.tz-secs span[class*="sk-"].now{background:var(--sk);color:#fff;box-shadow:0 0 0 3px color-mix(in srgb,var(--sk) 30%,transparent)}
+.tz-secs span small{font-weight:800;margin-left:3px}
+.tz-secs span{font-weight:700}
+.tz-legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted);margin:-4px 0 12px}
+/* a test's state on the overview */
+.tz-test .tz-h{flex-wrap:wrap}
+.tz-stat{font-size:13px!important;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--surface);color:var(--muted)!important}
+.tz-test.wip{border-color:var(--a2);border-width:2px}
+.tz-test.wip .tz-stat{background:color-mix(in srgb,var(--a2) 18%,var(--paper));color:var(--ink)!important}
+.tz-test.fin .tz-stat{background:color-mix(in srgb,var(--a1) 18%,var(--paper));color:var(--a1)!important}
+.tz-link{touch-action:manipulation;font:inherit;font-size:14px;font-weight:700;background:none;border:none;color:var(--muted);text-decoration:underline;cursor:pointer;padding:10px 6px;margin-left:auto}
+/* the chooser: each Prüfungsteil in its colour */
+.tz-card.tz-sk{border-left:6px solid var(--sk)}
+.tz-card.tz-sk .tz-h b{color:var(--sk)}
+.tz-card.tz-sk .tz-btn{background:var(--sk);border-color:var(--sk)}
+.tz-card.tz-sk.done{opacity:1;background:color-mix(in srgb,var(--sk) 7%,var(--paper))}
+.tz-done{font-weight:800;color:var(--sk)}
+/* result: one row per Prüfungsteil with its pass mark */
+.tz-tab.marks td:first-child{font-weight:700}
+.tz-tab.marks td:nth-child(3){width:auto;text-align:right;white-space:nowrap}
+.tz-tab.marks tr.how td{font-size:12px;color:var(--muted);padding-top:0;font-weight:400;text-align:left;white-space:normal}
+.tz-tab.marks tr.how td b{color:var(--ink)}
+.tz-tab.marks tr.combo td{border-top:2px solid var(--ink)}
+.tz-tab.marks tr.how+tr.combo td{padding-top:8px}
+.tz-dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--sk,var(--ink));margin-right:7px;vertical-align:baseline}
+.sk-all .tz-dot{background:var(--ink)}
+.tz-pend{font-size:13px;font-weight:700;color:var(--a2)}
+.tz-sec[class*="sk-"]{color:var(--sk);border-left:6px solid var(--sk);padding-left:10px}
+@media (min-width:808px){.tz-sec[class*="sk-"]{padding-left:10px}}
+/* practice page (skillNav in test.js) */
+.topics a[class*="sk-"]{border:2px solid var(--sk);color:var(--sk);background:transparent;font-weight:700;padding:3px 10px;border-radius:999px}
+.topics a[class*="sk-"].on{background:var(--sk);color:#fff}
+@media (hover:hover){.topics a[class*="sk-"]:not(.on):hover{background:color-mix(in srgb,var(--sk) 14%,transparent)}}
+section.skill[class*="sk-"] .th h2{color:var(--sk)}
+section.skill[class*="sk-"] .th .n{display:inline-grid;place-items:center;min-width:28px;height:28px;border-radius:50%;background:var(--sk);color:#fff;align-self:center}
+section.skill[class*="sk-"]{border-top:4px solid var(--sk);padding-top:14px}
+/* the practice page turns tables into stacked blocks on phones – not the result table */
+table.tz-tab{display:table;width:100%}.tz-tab tbody{display:table-row-group}.tz-tab tr{display:table-row;width:auto;border:none;margin:0;border-radius:0}
+.tz-tab td{display:table-cell;width:auto;border-left:none;border-right:none;background:none}

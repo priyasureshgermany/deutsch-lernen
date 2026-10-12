@@ -63,7 +63,7 @@ function writeScore(p,sa,auto){const c=CRIT[p.crit||"a1"],v=Object.assign({},aut
 function Pruefung(o){
  const K="dl:test:"+o.level.toLowerCase(),RUN=K+":run",RES=K+":res";
  /* B1 became the DTZ format: runs and results of the old telc-B1 tests no longer fit – start fresh once */
- if(o.scale.dtz&&store.get(K+":fmt")!=="dtz"){store.set(RUN,null);store.set(RES,null);o.tests.forEach(t=>store.set(K+":last:"+t.id,null));store.set(K+":fmt","dtz")}
+ if(o.scale.dtz&&store.get(K+":fmt")!=="dtz"){store.set(RUN,null);store.set(RES,null);o.tests.forEach(t=>{store.set(K+":last:"+t.id,null);store.set(RUN+":"+t.id,null)});store.set(K+":fmt","dtz")}
  const ov=document.createElement("div");ov.className="tz";ov.hidden=true;ov.setAttribute("role","region");ov.setAttribute("aria-label","Modelltest");
  ov.innerHTML=`<div class="tz-top"><b class="tz-title"></b><span class="tz-time" hidden></span><span class="sp"></span><button type="button" class="tz-pause" aria-label="Pause" title="Pause" hidden>❚❚</button><button type="button" class="tz-x" aria-label="Schließen">✕</button></div><div class="tz-body"></div>`;
  o.mount.appendChild(ov);
@@ -75,11 +75,24 @@ function Pruefung(o){
  /* a white exam sheet with a gold star, on a colourful pill */
  entry.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="2.5" width="13" height="17.5" rx="2.4" fill="#fff"/><path d="M7 7.5h6M7 11h6M7 14.5h3.5" stroke="#9333ea" stroke-width="1.7" stroke-linecap="round" fill="none"/><path d="M17.5 11.6l1.45 2.95 3.25.47-2.35 2.29.56 3.24-2.91-1.53-2.91 1.53.56-3.24-2.35-2.29 3.25-.47z" fill="#fde047" stroke="#c2410c" stroke-width=".7" stroke-linejoin="round"/></svg><span>Test</span>`;
  /* small, next to the exam's name; amber with a dot while a test is paused */
- const label=()=>{const r=store.get(RUN),t=r&&test(r.tid)?`Modelltest pausiert: ${test(r.tid).title} – weitermachen`:"Modelltests: 3 Prüfungen mit Zeit und Punkten";
+ const label=()=>{const r=o.tests.map(t=>store.get(RUN+":"+t.id)).find(x=>x&&x.si!=null),
+  t=r?`Modelltest pausiert: ${test(r.tid).title} – weitermachen`:`Modelltests: ${o.tests.length} Prüfungen mit Zeit und Punkten`;
   entry.classList.toggle("paused",!!r);entry.title=t;entry.setAttribute("aria-label",t)};
  let run=null,timer=0,view="home";
  const test=id=>o.tests.find(t=>t.id===id);
- const save=()=>store.set(RUN,run);
+ /* Every test keeps its own progress (RUN:<id>) until all its Prüfungsteile are done,
+    so you can do Hören today and Lesen another day – in any test, in any order.
+    CUR remembers the test that was open last. */
+ const CUR=K+":cur",runOf=id=>store.get(RUN+":"+id),lastOf=id=>store.get(K+":last:"+id);
+ {const old=store.get(RUN);if(old&&test(old.tid)){store.set(RUN+":"+old.tid,old);store.set(CUR,old.tid)}store.set(RUN,null)}
+ const save=()=>{if(run){store.set(RUN+":"+run.tid,run);store.set(CUR,run.tid)}};
+ /* Hören, Lesen, Schreiben, Sprechen each have a colour (test.css --sk-*) */
+ const skOf=sec=>{const s=(sec.id||"")+" "+sec.de;return /h(ö|oe)r/i.test(s)?"hoeren":/sprech|mündl/i.test(s)?"sprechen":/schreib|schriftl/i.test(s)?"schreiben":/les/i.test(s)?"lesen":""};
+ const tint=sec=>{if(sec)ov.dataset.sk=skOf(sec);else delete ov.dataset.sk};
+ /* where a test stands: per Prüfungsteil "done" | "now" (paused inside) | "" */
+ function stateOf(t){const r=runOf(t.id),l=lastOf(t.id);
+  const st=t.sections.map((_,i)=>r?(r.secDone&&r.secDone[i]?"done":r.si===i?"now":""):l&&(!l.taken||l.taken.includes(i))?"done":"");
+  return {run:r,last:l,st,n:st.filter(x=>x==="done").length,all:st.every(x=>x==="done"),begun:!!r||!!l}}
  const toShell=on=>{try{if(parent!==window)parent.postMessage({dlCards:on},location.origin)}catch(e){}};
  const ans=(si,p,i)=>run.ans[si+"."+p+"."+i];
 
@@ -89,16 +102,14 @@ function Pruefung(o){
   const pref=["premium","enhanced","natural","google","anna","helena","katja","markus","yannick","petra","martin"];
   return v.sort((a,b)=>{const f=n=>{const i=pref.findIndex(p=>n.name.toLowerCase().includes(p));return i<0?99:i};return f(a)-f(b)})}
  if(synth){synth.getVoices();synth.addEventListener&&synth.addEventListener("voiceschanged",()=>synth.getVoices())}
- function stopAudio(){if(synth)synth.cancel();if(speaking){speaking.classList.remove("on");speaking=null}}
- function play(btn,text){if(!synth){btn.textContent="Kein Ton auf diesem Gerät";return}
+ function stopAudio(){if(window.Speak)Speak.stop();else if(synth)synth.cancel();if(speaking){speaking.classList.remove("on");speaking=null}}
+ /* speak.js reads it sentence by sentence and never hangs; done(false) = nothing was heard */
+ function play(btn,text,done){if(!synth||!window.Speak){btn.textContent="Kein Ton auf diesem Gerät";done&&done(false);return}
   stopAudio();const vs=voices(),spk={};let k=0;speaking=btn;btn.classList.add("on");
-  const lines=String(text).split("\n").map(s=>s.trim()).filter(Boolean);
-  lines.forEach((t,i)=>{let v=vs[0]||null;const m=t.match(/^([A-Za-zÄÖÜäöüß. ]{2,24}):\s*(.+)$/);
+  const pieces=String(text).split("\n").map(s=>s.trim()).filter(Boolean).map(t=>{let v=vs[0]||null;const m=t.match(/^([A-Za-zÄÖÜäöüß. ]{2,24}):\s*(.+)$/);
    if(m){if(!(m[1] in spk))spk[m[1]]=k++;v=vs[spk[m[1]]%Math.max(vs.length,1)]||v;t=m[2]}
-   const u=new SpeechSynthesisUtterance(fill(t));u.lang="de-DE";u.rate=o.rate?o.rate():1;if(v)u.voice=v;
-   if(i===lines.length-1)u.onend=()=>{if(speaking===btn){btn.classList.remove("on");speaking=null}};
-   u.onerror=()=>{if(speaking===btn){btn.classList.remove("on");speaking=null}};
-   synth.speak(u)})}
+   return {text:fill(t),voice:v,lang:"de-DE",rate:o.rate?o.rate():1}});
+  Speak.run(pieces,{onend:ok=>{if(speaking===btn){btn.classList.remove("on");speaking=null}done&&done(ok)}})}
  function playBtn(key,plays){const used=run.plays[key]||0,left=Math.max(0,plays-used);
   return `<button type="button" class="tz-play" data-play="${key}"${left?"":" disabled"}>▶ Abspielen <small>${left?`noch ${left}×`:"schon gehört"}</small></button>`}
 
@@ -107,44 +118,65 @@ function Pruefung(o){
  function partMs(si,j){const sec=test(run.tid).sections[si],p=sec.parts[j];return (p.time||sec.time/sec.parts.length)*60000}
  const fmt=ms=>{ms=Math.max(0,ms);const m=Math.floor(ms/60000),x=Math.floor(ms/1000)%60;return m+":"+String(x).padStart(2,"0")};
  const tabName=p=>p.tab||p.t.split(" – ")[0];
- function open(){toShell(true);document.body.classList.add("testing");ov.hidden=false;run=store.get(RUN);
-  if(run&&(!test(run.tid)||run.deadline!==undefined))run=null;   /* gone, or a run from the one-clock version */
-  if(run&&!run.secDone){run.secDone={};for(let i=0;i<(run.next||0);i++)run.secDone[i]=true}
-  if(run&&!run.sp)run.sp={};
-  if(run&&run.si!=null){run.t0=null;run.paused=true;save();showPause();return}home()}
+ /* the run of test id, picked up where it was – or rebuilt from a partial result */
+ function load(id){let r=runOf(id);
+  if(r&&r.deadline!==undefined)r=null;   /* a run from the one-clock version */
+  if(!r){const l=lastOf(id);if(!l)return null;const t=test(id);
+   r={tid:id,secDone:{},sp:{},si:null,cur:0,left:{},done:{},t0:null,paused:false,ans:Object.assign({},l.ans),plays:{},sa:{},begun:new Date().toISOString()};
+   t.sections.forEach((_,i)=>{if(!l.taken||l.taken.includes(i))r.secDone[i]=true})}
+  if(!r.secDone){r.secDone={};for(let i=0;i<(r.next||0);i++)r.secDone[i]=true}
+  if(!r.sp)r.sp={};return r}
+ function open(){toShell(true);document.body.classList.add("testing");ov.hidden=false;run=null;
+  const c=store.get(CUR),r=c&&test(c)?runOf(c):null;
+  if(r&&r.si!=null){run=load(c);run.t0=null;run.paused=true;save();showPause();return}home()}
+ function resume(id){run=load(id);if(!run){start(id);return}save();label();
+  if(run.si!=null){run.t0=null;run.paused=true;save();showPause()}else choose()}
+ function restart(id){store.set(RUN+":"+id,null);store.set(K+":last:"+id,null);
+  const all=store.get(RES)||{};delete all[id];store.set(RES,all);start(id)}
  function close(){if(view==="section")pause(true);stopAudio();clearInterval(timer);ov.hidden=true;document.body.classList.remove("testing");toShell(false);label()}
  function setTop(t,showClock){title.textContent=t;clock.hidden=!showClock;pauseB.hidden=!showClock}
- function home(){view="home";clearInterval(timer);setTop("Modelltests "+o.level,false);const res=store.get(RES)||{};
-  const rt=run&&test(run.tid),cur=rt&&run.si!=null?rt.sections[run.si]:null;
-  body.innerHTML=`<div class="tz-pad"><p class="tz-lead">Eine ganze Prüfung wie im echten Test. <b>Jeder Teil hat seine eigene Zeit</b> – die Uhr läuft nur für den Teil, den du gerade bearbeitest; ist sie um, wird der Teil abgegeben. Mit <b>❚❚</b> pausierst du jederzeit. Danach siehst du deine Punkte und bei jedem Fehler die richtige Antwort.</p>
-   ${rt?`<div class="tz-card warn"><b>Pausiert: ${esc(rt.title)}</b><div>${cur?esc(cur.de+" – "+cur.parts[run.cur].t):"Erledigt: "+(rt.sections.filter((_,i)=>run.secDone[i]).map(x=>esc(x.de)).join(", ")||"noch nichts")}</div><div class="tz-row"><button type="button" class="tz-btn" data-go="resume">Weitermachen</button><button type="button" class="tz-btn ghost" data-go="drop">Test verwerfen</button></div></div>`:""}
-   ${o.tests.map(t=>{/* scored again from the saved answers, so a changed scale shows right */
-    const L=store.get(K+":last:"+t.id);let r=res[t.id];if(L)try{const s=score(L);r={pts:s.pts,pass:s.pass,lvl:s.lvl,dtz:!!s.dtz,date:L.date,pending:s.pending,partial:s.partial,pct:s.pct}}catch(e){}
-    return `<div class="tz-card"><div class="tz-h"><b>${esc(t.title)}</b></div><div class="tz-sub">${esc(t.sub||"")}</div>
-     <div class="tz-secs">${t.sections.map(x=>`<span>${esc(x.de)}</span>`).join("")}</div>
-     ${r&&r.dtz?`<div class="tz-last ${r.lvl==="B1"?"ok":r.lvl?"":""}">Zuletzt: <b>${r.lvl?"Gesamtergebnis "+esc(r.lvl):"Teilergebnis"}</b> · ${esc(r.date)}</div>`:r?(r.partial?`<div class="tz-last">Zuletzt: <b>Teilergebnis ${Math.round(r.pct)} %</b> · ${esc(r.date)}</div>`:`<div class="tz-last ${r.pass?"ok":r.pending?"":"no"}">Zuletzt: <b>${num(r.pts)} / ${num(o.scale.max)} Punkte</b> · ${r.pass?"bestanden":r.pending?"noch offen":"nicht bestanden"} · ${esc(r.date)}${r.pending?" · Schreiben noch nicht bewertet":""}</div>`):""}
-     <div class="tz-row"><button type="button" class="tz-btn" data-start="${t.id}"${run?" disabled":""}>Test starten</button>${r?`<button type="button" class="tz-btn ghost" data-review="${t.id}">Auswertung ansehen</button>`:""}</div></div>`}).join("")}
+ /* the mark of one Prüfungsteil for the chips: "15 / 20" or the DTZ level */
+ function chipMark(s,i){const x=s&&s.rows.find(r=>r.si===i);if(!x)return "";return x.pend?"noch bewerten":num(x.a)+"/"+num(x.m)+(x.lv?" · "+x.lv:x.ok?" ✓":"")}
+ function home(){view="home";clearInterval(timer);tint(null);setTop("Modelltests "+o.level,false);
+  /* a run from before results were kept per Prüfungsteil: write its result now */
+  o.tests.forEach(t=>{const r=runOf(t.id);if(r&&r.secDone&&Object.values(r.secDone).some(Boolean)&&!lastOf(t.id)){run=load(t.id);record()}});run=null;
+  body.innerHTML=`<div class="tz-pad"><p class="tz-lead">Eine ganze Prüfung wie im echten Test. <b>Jeder Teil hat seine eigene Zeit</b> – die Uhr läuft nur für den Teil, den du gerade bearbeitest; ist sie um, wird der Teil abgegeben. Mit <b>❚❚</b> pausierst du jederzeit. <b>Du musst nicht alles auf einmal machen:</b> mach z. B. nur Hören und die anderen Teile später – jeder Test merkt sich, was du schon gemacht hast.</p>
+   <div class="tz-legend"><span>✓ fertig</span><span>● pausiert</span><span>○ noch offen</span></div>
+   ${o.tests.map(t=>{const S=stateOf(t);let s=null;
+    if(S.last)try{s=score(S.last)}catch(e){}   /* scored again from the saved answers, so a changed scale shows right */
+    const cls=S.all?"fin":S.begun?"wip":"";
+    const status=S.all?"Fertig":S.run&&S.run.si!=null?`In Arbeit – pausiert in ${esc(short(t.sections[S.run.si]))}`:S.begun?`In Arbeit – ${S.n} von ${t.sections.length} Prüfungsteilen fertig`:"Noch nicht begonnen";
+    const total=S.all&&s?(s.dtz?`Gesamtergebnis: <b>${s.lvl?esc(s.lvl):"noch offen"}</b>`:`<b>${num(s.pts)} / ${num(o.scale.max)}</b> Punkte · ${s.pass?"bestanden":s.pending?"noch offen":"nicht bestanden"}`):"";
+    return `<div class="tz-card tz-test ${cls}"><div class="tz-h"><b>${esc(t.title)}</b><span class="tz-stat">${status}</span></div><div class="tz-sub">${esc(t.sub||"")}</div>
+     <div class="tz-secs">${t.sections.map((x,i)=>{const st=S.st[i],m=st==="done"?chipMark(s,i):"";
+      return `<span class="sk-${skOf(x)} ${st}">${st==="done"?"✓":st==="now"?"●":"○"} ${esc(short(x))}${m?` <small>${esc(m)}</small>`:""}</span>`}).join("")}</div>
+     ${total?`<div class="tz-last ${s.pass?"ok":s.pending?"":"no"}">${total}${S.last&&S.last.date?" · "+esc(S.last.date):""}</div>`:""}
+     <div class="tz-row">${S.all?`<button type="button" class="tz-btn" data-review="${t.id}">Auswertung ansehen</button>`
+      :S.begun?`<button type="button" class="tz-btn" data-resume="${t.id}">Weitermachen</button>${S.n?`<button type="button" class="tz-btn ghost" data-review="${t.id}">Auswertung bisher</button>`:""}`
+      :`<button type="button" class="tz-btn" data-start="${t.id}">Test starten</button>`}
+      ${S.begun?`<button type="button" class="tz-link" data-restart="${t.id}">Neu beginnen</button>`:""}</div></div>`}).join("")}
    <p class="tz-note">${esc(o.scale.note)}</p></div>`;body.scrollTop=0}
  function start(id){run={tid:id,secDone:{},sp:{},si:null,cur:0,left:{},done:{},t0:null,paused:false,ans:{},plays:{},sa:{},begun:new Date().toISOString()};save();label();choose()}
- /* All Prüfungsteile at a glance: ✓ done, ● running, ○ to do. */
- function strip(){const t=test(run.tid);return `<div class="tz-strip">${t.sections.map((x,i)=>{const st=run.secDone[i]?"done":run.si===i?"now":"";
-  return `<span class="${st}">${st==="done"?"✓":st==="now"?"●":"○"} ${esc(short(x))}</span>`}).join('<i aria-hidden="true">›</i>')}</div>`}
+ /* All Prüfungsteile at a glance, each in its colour: ✓ done, ● running, ○ to do. */
+ function strip(){const t=test(run.tid);return `<div class="tz-strip">${t.sections.map((x,i)=>{const st=run.secDone[i]?"done":run.si===i||(run.si==null&&view==="intro"&&run.pick===i)?"now":"";
+  return `<span class="sk-${skOf(x)} ${st}">${st==="done"?"✓":st==="now"?"●":"○"} ${esc(short(x))}</span>`}).join('<i aria-hidden="true">›</i>')}</div>`}
  const short=x=>x.de.replace(/^Leseverstehen und Sprachbausteine$/,"Lesen + Sprachbausteine").replace(/^Hörverstehen$/,"Hören").replace(/^Mündlicher Ausdruck$/,"Sprechen").replace(/^Schriftlicher Ausdruck$/,"Schreiben");
  const partPts=p=>p.type==="write"?CRIT[p.crit||"a1"].max:p.type==="speak"?p.max:p.items.length*p.per;
  const secPts=sec=>sec.parts.reduce((a,p)=>a+partPts(p),0);
  /* The test's own start page: begin with any Prüfungsteil, in any order. */
- function choose(msg){view="choose";clearInterval(timer);const t=test(run.tid);
+ function choose(msg){view="choose";clearInterval(timer);tint(null);const t=test(run.tid);
   if(t.sections.every((_,i)=>run.secDone[i])){finish();return}
-  setTop(t.title,false);const any=t.sections.some((_,i)=>run.secDone[i]);
-  body.innerHTML=`<div class="tz-pad">${strip()}<p class="tz-lead">Wähle einen Prüfungsteil – die Reihenfolge bestimmst du. Du kannst auch nur einen Teil machen und den Rest später.</p>
-   ${t.sections.map((x,i)=>{const dn=run.secDone[i],mins=x.parts.reduce((a,p,j)=>a+Math.round(partMs(i,j)/60000),0);
-    return `<div class="tz-card${dn?" done":""}"><div class="tz-h"><b>${dn?"✓ ":""}${esc(x.de)}</b><span>${num(secPts(x)*o.scale.factor)} Punkte</span></div>
+  setTop(t.title,false);const any=t.sections.some((_,i)=>run.secDone[i]);let s=null;
+  if(any){const l=lastOf(run.tid);if(l)try{s=score(l)}catch(e){}}
+  body.innerHTML=`<div class="tz-pad">${strip()}<p class="tz-lead">Wähle einen Prüfungsteil – die Reihenfolge bestimmst du. Du kannst auch nur einen Teil machen und den Rest später: mit ✕ schließen, später „Weitermachen“.</p>
+   ${t.sections.map((x,i)=>{const dn=run.secDone[i],mins=x.parts.reduce((a,p,j)=>a+Math.round(partMs(i,j)/60000),0),m=dn?chipMark(s,i):"";
+    return `<div class="tz-card tz-sk sk-${skOf(x)}${dn?" done":""}"><div class="tz-h"><b>${dn?"✓ ":""}${esc(x.de)}</b><span>${num(secPts(x)*o.scale.factor)} Punkte</span></div>
      <div class="tz-sub">${x.parts.map(p=>esc(tabName(p))).join(" · ")} · ${mins} Minuten</div>
-     <div class="tz-row">${dn?`<span class="tz-sub">abgegeben</span>`:`<button type="button" class="tz-btn" data-sec="${i}">${esc(short(x))} starten</button>`}</div></div>`}).join("")}
-   ${any?`<div class="tz-row"><button type="button" class="tz-btn ghost" data-go="score">Jetzt auswerten</button></div><p class="tz-note">Ausgewertet werden die Prüfungsteile, die du schon gemacht hast.</p>`:""}</div>`;
+     <div class="tz-row">${dn?`<span class="tz-done">✓ fertig${m?" · "+esc(m):""}</span>`:`<button type="button" class="tz-btn" data-sec="${i}">${esc(short(x))} starten</button>`}</div></div>`}).join("")}
+   ${any?`<div class="tz-row"><button type="button" class="tz-btn ghost" data-review="${run.tid}">Auswertung bisher ansehen</button></div><p class="tz-note">Die Auswertung zeigt die fertigen Prüfungsteile – der Test bleibt offen, du kannst danach weitermachen.</p>`:""}</div>`;
   body.scrollTop=0;if(msg)note(msg)}
  function sectionIntro(si){view="intro";clearInterval(timer);const t=test(run.tid),sec=t.sections[si];run.pick=si;
-  setTop(t.title,false);
+  setTop(t.title,false);tint(sec);
   const pts=secPts(sec);
   body.innerHTML=`<div class="tz-pad">${strip()}<div class="tz-card big"><div class="tz-step">Prüfungsteil ${si+1} von ${t.sections.length}</div><h2>${esc(sec.de)}</h2><div class="tz-sub">${esc(sec.en||"")} · ${num(pts*o.scale.factor)} Punkte</div>
    <ul class="tz-list">${sec.parts.map((p,j)=>`<li><b>${esc(tabName(p))}</b> · ${Math.round(partMs(si,j)/60000)} Minuten · ${o.scale.factor!==1?"≈ ":""}${num(partPts(p)*o.scale.factor)} Punkte</li>`).join("")}</ul>
@@ -153,7 +185,7 @@ function Pruefung(o){
  function begin(){const si=run.pick,sec=test(run.tid).sections[si];run.si=si;
   sec.parts.forEach((_,j)=>{run.left[pk(si,j)]=partMs(si,j);delete run.done[pk(si,j)]});
   run.cur=0;run.paused=false;run.t0=Date.now();save();runClock();drawPart()}
- function runClock(){view="section";setTop(test(run.tid).sections[run.si].de,true);clearInterval(timer);timer=setInterval(tick,1000);tick()}
+ function runClock(){view="section";setTop(test(run.tid).sections[run.si].de,true);tint(test(run.tid).sections[run.si]);clearInterval(timer);timer=setInterval(tick,1000);tick()}
  /* The open Teil uses up its own time; the time is saved every second. */
  function tick(){if(!run||run.si==null||run.t0==null)return;const now=Date.now(),k=pk(run.si,run.cur);
   run.left[k]-=now-run.t0;run.t0=now;save();
@@ -167,16 +199,17 @@ function Pruefung(o){
   if(j<0){finishSection(msg);return}
   run.cur=j;run.t0=Date.now();save();drawPart();if(msg)note(msg)}
  function note(msg){body.insertAdjacentHTML("afterbegin",`<div class="tz-pad tz-msg"><div class="tz-card warn"><b>${esc(msg)}</b></div></div>`)}
- function finishSection(msg){stopAudio();clearInterval(timer);run.secDone[run.si]=true;run.si=null;run.t0=null;save();
-  const t=test(run.tid);if(t.sections.every((_,i)=>run.secDone[i])){finish();return}choose(msg)}
+ function finishSection(msg){stopAudio();clearInterval(timer);const sec=test(run.tid).sections[run.si];run.secDone[run.si]=true;run.si=null;run.t0=null;save();
+  const t=test(run.tid);if(t.sections.every((_,i)=>run.secDone[i])){finish();return}
+  record();choose((msg?msg+" ":"")+`✓ ${short(sec)} ist fertig und gespeichert.`)}
  function switchPart(j){if(j===run.cur||run.done[pk(run.si,j)])return;tick();if(run.si==null)return;stopAudio();run.cur=j;run.t0=Date.now();save();drawPart()}
  function pause(silent){if(rec)stopRec();if(!run||run.si==null||run.t0==null)return;tick();if(run.si==null)return;
   run.t0=null;run.paused=true;save();stopAudio();clearInterval(timer);if(!silent)showPause()}
- function showPause(){view="pause";clearInterval(timer);const t=test(run.tid),sec=t.sections[run.si];setTop(t.title+" – Pause",false);
+ function showPause(){view="pause";clearInterval(timer);const t=test(run.tid),sec=t.sections[run.si];setTop(t.title+" – Pause",false);tint(sec);
   body.innerHTML=`<div class="tz-pad">${strip()}<div class="tz-card big"><div class="tz-step">❚❚ Pause</div><h2>${esc(sec.de)}</h2>
    <ul class="tz-list">${sec.parts.map((x,j)=>`<li><b>${esc(tabName(x))}</b>: ${run.done[pk(run.si,j)]?"abgegeben":"noch "+fmt(run.left[pk(run.si,j)])+(j===run.cur?" – hier geht es weiter":"")}</li>`).join("")}</ul>
    <p class="tz-sub">Die Uhr steht. Während der Pause sind die Aufgaben verdeckt.</p>
-   <button type="button" class="tz-btn wide" data-go="unpause">Weiter</button></div></div>`;body.scrollTop=0}
+   <button type="button" class="tz-btn wide" data-go="unpause">Weiter</button><button type="button" class="tz-btn ghost wide" data-go="home">Später weitermachen – zu allen Tests</button></div></div>`;body.scrollTop=0}
  function unpause(){run.paused=false;run.t0=Date.now();save();runClock();drawPart()}
  function unansweredPart(si,j){const p=test(run.tid).sections[si].parts[j];if(p.type==="write")return (ans(si,j,"w")||"").trim()?0:1;
   if(p.type==="speak")return p.turns.filter((t,i)=>t.you&&!(ans(si,j,i)||"").trim()).length;
@@ -286,58 +319,84 @@ function Pruefung(o){
   return L[v]+") "+it.o[v]}
  function score(r){const t=test(r.tid);let raw=0,max=0,pending=false;const per=[];
   const took=si=>!r.taken||r.taken.includes(si);   /* results from before have no list: all taken */
-  t.sections.forEach((s,si)=>{if(!took(si)){per.push({de:s.de,skip:true});return}let a=0,m=0;s.parts.forEach((p,j)=>{
-   if(p.type==="write"){const c=CRIT[p.crit||"a1"];m+=c.max;const w=writeScore(wpart(r,si,j),(r.sa||{})[si+"."+j],wan(r,si,j).auto);if(w==null)pending=true;else a+=w;return}
+  t.sections.forEach((s,si)=>{if(!took(si)){per.push({si,id:s.id,de:s.de,sk:skOf(s),skip:true});return}let a=0,m=0,pend=false;s.parts.forEach((p,j)=>{
+   if(p.type==="write"){const c=CRIT[p.crit||"a1"];m+=c.max;const w=writeScore(wpart(r,si,j),(r.sa||{})[si+"."+j],wan(r,si,j).auto);if(w==null)pend=true;else a+=w;return}
    if(p.type==="speak"){m+=p.max;const k=si+"."+j,yt=p.turns.map((t,i)=>t.you?i:-1).filter(i=>i>=0);let got=0;
-    yt.forEach(i=>{const v=((r.sa||{})[k]||{})[i]!=null?+((r.sa||{})[k][i]):((r.auto||{})[k]||{})[i];if(v==null)pending=true;else got+=v});a+=got*p.max/yt.length;return}
+    yt.forEach(i=>{const v=((r.sa||{})[k]||{})[i]!=null?+((r.sa||{})[k][i]):((r.auto||{})[k]||{})[i];if(v==null)pend=true;else got+=v});a+=got*p.max/yt.length;return}
    p.items.forEach((it,i)=>{m+=p.per;if(correct(p,it,r.ans[si+"."+j+"."+i]))a+=p.per})});
-   per.push({id:s.id,de:s.de,a,m,oral:!!s.oral});raw+=a;max+=m});
+   if(pend)pending=true;
+   per.push({si,id:s.id,de:s.de,sk:skOf(s),a,m,pend,oral:!!s.oral});raw+=a;max+=m});
   const pts=raw*o.scale.factor,partial=per.some(x=>x.skip),pct=max?raw/max*100:0;
-  if(o.scale.dtz){const d=dtz(per,pending);return {raw,max,pts,per,pending,partial,pct,dtz:d,lvl:d.lvl,pass:d.lvl==="B1"}}
-  return {raw,max,pts,per,pending,partial,pct,pass:!partial&&(o.scale.passRule?o.scale.passRule(per):pts>=o.scale.pass)}}
+  if(o.scale.dtz){const d=dtz(per,pending);return {raw,max,pts,per,pending,partial,pct,dtz:d,rows:d.rows,lvl:d.lvl,pass:d.lvl==="B1"}}
+  return {raw,max,pts,per,pending,partial,pct,rows:marks(per),pass:!partial&&(o.scale.passRule?o.scale.passRule(per):pts>=o.scale.pass)}}
+ /* Pass marks per Prüfungsteil and for what is done together. The exam itself only
+    knows the total (bestanden ab scale.pass of scale.max); a single Teil or a few
+    of them are held to the same share. */
+ function marks(per){const f=o.scale.factor,q=o.scale.pass/o.scale.max,done=per.filter(x=>!x.skip);
+  const row=(x,de,how)=>{const a=x.a*f,m=x.m*f,need=Math.ceil(m*q*2-1e-9)/2;return {si:x.si,sk:x.sk,de,a,m,need,pend:x.pend,ok:!x.pend&&a>=need-1e-9,how}};
+  const rows=done.map(x=>row(x,x.de,`von ${num(x.m*f)} Punkten (${Math.round(q*100)} %)`));
+  if(done.length>1){const sum={a:done.reduce((s,x)=>s+x.a,0),m:done.reduce((s,x)=>s+x.m,0),pend:done.some(x=>x.pend)},all=done.length===per.length;
+   const r=row(sum,all?"Gesamt":"Zusammen: "+done.map(x=>short(x)).join(" + "),all?`von ${num(o.scale.max)} Punkten – wie in der Prüfung`:`von ${num(sum.m*f)} Punkten (${Math.round(q*100)} %) – bisher ${done.length} von ${per.length} Prüfungsteilen`);
+   r.combo=true;if(all)r.need=o.scale.pass,r.ok=!r.pend&&r.a>=o.scale.pass;rows.push(r)}
+  return rows}
  /* DTZ: Hören + Lesen together (45 tasks): B1 from 33, A2 from 20. Schreiben and
     Sprechen are judged A2/B1 by the examiners – the app uses the same share
     (B1 from 33/45, A2 from 20/45 of the points). Overall B1 = Sprechen B1 and
     Hören/Lesen or Schreiben B1; the same for A2. */
  function dtz(per,pending){const g=id=>per.find(x=>x.id===id&&!x.skip),R=["unter A2","A2","B1"];
-  const lv=x=>x?(x.a>=x.m*33/45-1e-9?2:x.a>=x.m*20/45-1e-9?1:0):null;
+  const need=(m,k)=>Math.ceil(m*k/45-1e-9),lv=x=>x.a>=need(x.m,33)?2:x.a>=need(x.m,20)?1:0;
   const h=g("hoeren"),l=g("lesen"),hl=h&&l?{a:h.a+l.a,m:h.m+l.m}:null,w=g("schreiben"),sp=g("sprechen");
-  const half=!hl&&(h||l)?Object.assign({},h||l,{only:h?"nur Hören – Lesen fehlt noch":"nur Lesen – Hören fehlt noch"}):null;
-  const rows=[["Hören + Lesen",hl,"B1 ab 33, A2 ab 20 von 45 Aufgaben"],["Schreiben",w,"B1 ab etwa 73 %, A2 ab etwa 44 % – Orientierung"],["Sprechen",sp,"B1 ab etwa 73 %, A2 ab etwa 44 % – Orientierung"]]
-   .map(([de,x,how],i)=>({de,x:x||(i===0?half:null),how,lv:x?R[lv(x)]:null}));
+  const row=(x,de,how,combo)=>({si:x.si,sk:x.sk,de,a:x.a,m:x.m,pend:x.pend,combo,b1:need(x.m,33),a2:need(x.m,20),how,lv:x.pend?null:R[lv(x)]});
+  const rows=per.filter(x=>!x.skip).map(x=>row(x,x.de,x.id==="hoeren"||x.id==="lesen"
+   ?`B1 ab ${need(x.m,33)}, A2 ab ${need(x.m,20)} von ${num(x.m)} – Orientierung; in der Prüfung zählen Hören und Lesen zusammen`
+   :`B1 ab ${need(x.m,33)}, A2 ab ${need(x.m,20)} von ${num(x.m)} – Orientierung (in der Prüfung bewerten die Prüfenden)`));
+  if(hl)rows.push(row(Object.assign({sk:"hl"},hl),"Hören + Lesen zusammen","B1 ab 33, A2 ab 20 von 45 Aufgaben – so zählt es in der Prüfung",true));
   let lvl=null;if(hl&&w&&sp&&!pending){const S=lv(sp),best=Math.max(lv(hl),lv(w));lvl=R[Math.min(S,best)]}
-  return {rows,lvl}}
- function finish(){clearInterval(timer);setTimeout(label);const auto={};
-  test(run.tid).sections.forEach((sec,si)=>sec.parts.forEach((p,j)=>{if(p.type!=="speak")return;const k=si+"."+j;auto[k]={};
-   p.turns.forEach((t,i)=>{if(t.you){const v=rate(t,run.ans[k+"."+i]);if(v!=null)auto[k][i]=v}})}));
-  const r={tid:run.tid,ans:run.ans,sa:{},auto,taken:Object.keys(run.secDone).filter(k=>run.secDone[k]).map(Number),date:new Date().toLocaleDateString("de-DE")};
-  store.set(K+":last:"+run.tid,r);run=null;store.set(RUN,null);review(r.tid,true)}
+  const miss=per.filter(x=>x.skip).map(x=>short(x));
+  return {rows,lvl,miss}}
+ /* The result so far: written after every finished Prüfungsteil, so the evaluation
+    always shows what is done. Ratings changed on the result page (sa) and the
+    spelling check (lt) stay. */
+ function record(){const t=test(run.tid),old=lastOf(run.tid)||{},auto=Object.assign({},old.auto||{});
+  const taken=t.sections.map((_,i)=>i).filter(i=>run.secDone[i]);
+  taken.forEach(si=>t.sections[si].parts.forEach((p,j)=>{if(p.type!=="speak")return;const k=si+"."+j;if(auto[k])return;auto[k]={};
+   p.turns.forEach((tn,i)=>{if(tn.you){const v=rate(tn,run.ans[k+"."+i]);if(v!=null)auto[k][i]=v}})}));
+  const r=Object.assign(old,{tid:run.tid,ans:Object.assign({},run.ans),sa:old.sa||{},auto,taken,date:new Date().toLocaleDateString("de-DE")});
+  keep(r);return r}
+ function finish(){clearInterval(timer);setTimeout(label);const r=record();
+  store.set(RUN+":"+run.tid,null);run=null;review(r.tid,true)}
  /* the exam's grade for a total (only when passed) */
  const grade=p=>{const g=(o.scale.grades||[]).find(([lo])=>p>=lo);return g?g[2]:""};
  function keep(r){const s=score(r);const all=store.get(RES)||{};all[r.tid]={pts:s.pts,pass:s.pass,lvl:s.lvl,date:r.date,pending:s.pending,partial:s.partial,pct:s.pct};store.set(RES,all);store.set(K+":last:"+r.tid,r)}
 
  /* ---- the result: points, then every question with the right answer ---- */
  function review(tid,fresh){view="review";const r=store.get(K+":last:"+tid);if(!r){home();return}
-  const t=test(tid);setTop(t.title+" – Auswertung",false);keep(r);draw();
+  const t=test(tid);setTop(t.title+" – Auswertung",false);tint(null);run=null;keep(r);draw();
   function draw(){const s=score(r);keep(r);
-   const head=s.dtz?`<div class="tz-score"><b>${s.dtz.lvl?esc(s.dtz.lvl):"…"}</b> ${s.dtz.lvl?"Gesamtergebnis":"Gesamtergebnis noch offen"}</div>
-    <table class="tz-tab dtz">${s.dtz.rows.map(x=>`<tr><td>${esc(x.de)}</td><td>${x.x?num(x.x.a)+" / "+num(x.x.m)+(x.x.only?` <small>(${esc(x.x.only)})</small>`:""):"nicht gemacht"}</td><td>${x.lv?`<b class="tz-lv ${x.lv==="B1"?"b1":x.lv==="A2"?"a2":"u"}">${esc(x.lv)}</b>`:""}</td></tr><tr class="how"><td colspan="3">${esc(x.how)}</td></tr>`).join("")}</table>
-    <div class="tz-verdict">${s.dtz.lvl==="B1"?"✓ Zertifikat B1":s.dtz.lvl==="A2"?"Zertifikat A2 – für B1 fehlt noch etwas":s.dtz.lvl?"✗ unter A2":s.pending?"Noch offen":"Noch nicht alle Prüfungsteile gemacht"} <small>(${esc(o.scale.passText)})</small></div>`
+   /* one row per Prüfungsteil (in its colour) with its pass mark, then what is done together */
+   const lvB=lv=>`<b class="tz-lv ${lv==="B1"?"b1":lv==="A2"?"a2":"u"}">${esc(lv)}</b>`;
+   const table=`<table class="tz-tab marks">${s.rows.map(x=>`<tr class="sk-${x.sk||"all"}${x.combo?" combo":""}"><td><span class="tz-dot"></span>${esc(x.de)}</td><td>${num(x.a)} / ${num(x.m)}</td>
+     <td>${x.pend?`<span class="tz-pend">noch bewerten</span>`:s.dtz?lvB(x.lv):x.ok?`<b class="tz-lv b1">✓ bestanden</b>`:`<b class="tz-lv u">✗ noch nicht</b>`}</td></tr>
+     <tr class="how"><td colspan="3">${s.dtz?"":`<b>Bestanden ab ${num(x.need)}</b> `}${esc(x.how)}</td></tr>`).join("")}</table>`;
+   const rest=t.sections.filter((_,i)=>r.taken&&!r.taken.includes(i)).map(short);
+   const head=s.dtz?`<div class="tz-score">${s.dtz.lvl?`<b>${esc(s.dtz.lvl)}</b> Gesamtergebnis`:rest.length?`<b>Teilergebnis</b></div><div class="tz-sub">${t.sections.length-rest.length} von ${t.sections.length} Prüfungsteilen fertig`:"<b>…</b> Gesamtergebnis noch offen"}</div>${table}
+    <div class="tz-verdict">${s.dtz.lvl==="B1"?"✓ Zertifikat B1":s.dtz.lvl==="A2"?"Zertifikat A2 – für B1 fehlt noch etwas":s.dtz.lvl?"✗ unter A2":s.pending?"Noch offen":"Für das Gesamtergebnis fehlt noch: "+esc(rest.join(", "))} <small>(${esc(o.scale.passText)})</small></div>`
     :s.partial
-    ?`<div class="tz-score"><b>${Math.round(s.pct)} %</b> Teilergebnis</div><div class="tz-sub">${num(s.raw*o.scale.factor)} von ${num(s.max*o.scale.factor)} Punkten in den gemachten Prüfungsteilen</div>
-      <div class="tz-verdict">${s.pct>=60?"Auf gutem Weg":"Noch üben"} <small>(bestanden wäre ab 60 %)</small></div>`
+    ?`<div class="tz-score"><b>${num(s.raw*o.scale.factor)}</b> / ${num(s.max*o.scale.factor)} Punkte · Teilergebnis</div>${table}
+      <div class="tz-verdict">Für das Gesamtergebnis fehlt noch: ${esc(rest.join(", "))} <small>(${esc(o.scale.passText||"bestanden ab "+num(o.scale.pass)+" von "+num(o.scale.max)+" Punkten")})</small></div>`
     :`<div class="tz-score"><b>${num(s.pts)}</b> / ${num(o.scale.max)} Punkte</div>
-    ${o.scale.factor!==1?`<div class="tz-sub">${num(s.raw)} von ${num(s.max)} ${esc(o.scale.rawLabel)}, umgerechnet auf ${num(o.scale.max)} Punkte</div>`:""}
+    ${o.scale.factor!==1?`<div class="tz-sub">${num(s.raw)} von ${num(s.max)} ${esc(o.scale.rawLabel)}, umgerechnet auf ${num(o.scale.max)} Punkte</div>`:""}${table}
     <div class="tz-verdict">${s.pass?"✓ Bestanden"+(grade(s.pts)?" – Note: <b>"+grade(s.pts)+"</b>":""):s.pending?"Noch offen":"✗ Nicht bestanden"} <small>(${esc(o.scale.passText||"ab "+num(o.scale.pass)+" Punkten")})</small></div>`;
+   const more=rest.length&&runOf(tid)?`<div class="tz-row"><button type="button" class="tz-btn" data-resume="${tid}">Weitermachen – noch offen: ${esc(rest.join(", "))}</button></div>`:"";
    /* what range is good: the exam's grade bands */
    const bands=o.scale.grades?`<div class="tz-bands">${o.scale.grades.map(([lo,hi,n])=>`<span${!s.partial&&!s.pending&&s.pts>=lo&&s.pts<=hi?' class="on"':""}><b>${esc(n)}</b> ${num(lo)}–${num(hi)}</span>`).join("")}<span><b>nicht bestanden</b> unter ${num(o.scale.pass)}</span></div>`:"";
-   let h=`<div class="tz-pad"><div class="tz-card big result ${s.partial?(s.pct>=60?"ok":""):s.pass?"ok":s.pending?"":"no"}"><div class="tz-step">${esc(t.title)} · ${esc(r.date)}</div>
-    ${head}${bands}
+   let h=`<div class="tz-pad"><div class="tz-card big result ${s.partial?"":s.pass?"ok":s.pending?"":"no"}"><div class="tz-step">${esc(t.title)} · ${esc(r.date)}</div>
+    ${head}${s.partial?"":bands}
     ${s.pending?`<div class="tz-warn">${Object.values(LT).includes("busy")?"Schreiben: Rechtschreibung und Grammatik werden gerade geprüft …":"Bewerte unten noch die offenen Punkte beim Schreiben – erst dann ist die Punktzahl vollständig."}</div>`:""}
-    ${s.dtz?"":`<table class="tz-tab">${s.per.map(x=>x.skip?`<tr class="skip"><td>${esc(x.de)}</td><td>nicht gemacht</td><td></td></tr>`:`<tr><td>${esc(x.de)}</td><td>${num(x.a*o.scale.factor)} / ${num(x.m*o.scale.factor)}</td><td><span class="bar"><i style="width:${x.m?Math.round(x.a/x.m*100):0}%"></i></span></td></tr>`).join("")}</table>`}
+    ${more}
     <p class="tz-note">${esc(o.scale.note)}</p>
     <div class="tz-row"><button type="button" class="tz-btn ghost" data-go="home">Alle Tests</button><button type="button" class="tz-btn ghost" data-go="wrong" aria-pressed="false">Nur Fehler zeigen</button></div></div>`;
-   t.sections.forEach((sec,si)=>{if(r.taken&&!r.taken.includes(si))return;h+=`<h2 class="tz-sec">${esc(sec.de)}</h2>`;
+   t.sections.forEach((sec,si)=>{if(r.taken&&!r.taken.includes(si))return;h+=`<h2 class="tz-sec sk-${skOf(sec)}">${esc(sec.de)}</h2>`;
     sec.parts.forEach((p,j)=>{h+=`<div class="tz-card"><h3 class="tz-pt">${esc(p.t)}</h3>`;
      if(p.type==="speak"){const k=si+"."+j,sa=(r.sa||{})[k]||{},au=(r.auto||{})[k]||{};
       p.turns.forEach((tn,i)=>{if(tn.say){h+=`<div class="tz-say small"><b>${esc(tn.who)}</b><span>${T(tn.say)}</span></div>`;return}
@@ -357,7 +416,7 @@ function Pruefung(o){
        ${it.why?`<div class="tz-why">${T(it.why)}</div>`:""}
        ${it.audio?`<details class="tz-det"><summary>Hörtext</summary><div class="tz-text small">${T(it.audio).replace(/\n/g,"<br>")}</div></details>`:it.text?`<details class="tz-det"><summary>Text</summary><div class="tz-text small">${T(it.text).replace(/\n/g,"<br>")}</div></details>`:""}</div></div>`});
      h+=`</div>`})});
-   body.innerHTML=h+`<div class="tz-pad"><div class="tz-row"><button type="button" class="tz-btn" data-go="home">Zu den Tests</button></div></div>`;
+   body.innerHTML=h+`<div class="tz-pad">${more}<div class="tz-row"><button type="button" class="tz-btn" data-go="home">Zu den Tests</button></div></div>`;
    if(fresh){body.scrollTop=0;fresh=false}}
   /* changing a rating of the writing redraws the totals; "auto" gives it back to the app */
   const redraw=()=>{if(view!=="review")return;const y=body.scrollTop;draw();body.scrollTop=y};review.redraw=redraw;
@@ -445,11 +504,17 @@ const EDIT=new Set();
   if(b.dataset.start){start(b.dataset.start);return}
   if(b.dataset.sec!=null){sectionIntro(+b.dataset.sec);return}
   if(b.dataset.review){review(b.dataset.review,true);return}
+  if(b.dataset.resume){resume(b.dataset.resume);return}
+  if(b.dataset.restart){const t=test(b.dataset.restart);
+   if(confirm(`${t.title} neu beginnen? Was du in diesem Test schon gemacht hast, wird gelöscht.`))restart(t.id);return}
   if(b.dataset.part!=null){switchPart(+b.dataset.part);return}
   if(b.dataset.play){const k=b.dataset.play,p=b.closest(".tz-q,.tz-audio");const s=test(run.tid).sections[run.si],[,pj]=k.split(".").map(Number),part=s.parts[pj];
    const plays=part.plays||1;if((run.plays[k]||0)>=plays)return;run.plays[k]=(run.plays[k]||0)+1;save();
    const txt=k.split(".").length===3?part.items[+k.split(".")[2]].audio:part.audio;
-   const left=plays-run.plays[k];b.querySelector("small").textContent=left?`noch ${left}×`:"letztes Mal";play(b,txt);if(!left)b.disabled=true;return}
+   const left=plays-run.plays[k];b.querySelector("small").textContent=left?`noch ${left}×`:"letztes Mal";if(!left)b.disabled=true;
+   /* the device did not speak at all: this play does not count */
+   play(b,txt,ok=>{if(ok||!run||!(run.plays[k]>0))return;run.plays[k]--;save();const l=plays-run.plays[k];
+    b.disabled=false;b.querySelector("small").textContent=`Kein Ton – noch ${l}× · nochmal tippen`});return}
   if(b.dataset.sa){review.onSa(b.dataset.sa,b.dataset.id,b.dataset.v==="auto"?"auto":+b.dataset.v);return}
   if(b.dataset.rec){b.dataset.rec==="stop"?stopRec():startRec(b.dataset.rec);return}
   if(b.dataset.turn){if(rec)return;const k=b.dataset.turn;run.sp[k]=(run.sp[k]||0)+1;
@@ -457,12 +522,8 @@ const EDIT=new Set();
   if(b.dataset.wc){run.ans[b.dataset.wc+".c"]=+b.dataset.v;save();drawPart();return}
   if(b.dataset.a){run.ans[b.dataset.a]=+b.dataset.v;save();b.parentElement.querySelectorAll(".tz-opt").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));return}
   const g=b.dataset.go;
-  if(g==="resume"){run.si!=null?showPause():choose();return}
   if(g==="choose"){choose();return}
-  if(g==="score"){const t=test(run.tid),miss=t.sections.filter((_,i)=>!run.secDone[i]).map(short);
-   if(!confirm(`Noch nicht gemacht: ${miss.join(", ")}. Jetzt auswerten? Der Test ist dann beendet.`))return;finish();return}
   if(g==="unpause"){unpause();return}
-  if(g==="drop"){if(confirm("Pausierten Test verwerfen?")){run=null;store.set(RUN,null);label();home()}return}
   if(g==="begin"){begin();return}
   if(g==="handin"){tick();if(run.si==null)return;const n=unansweredPart(run.si,run.cur),p=test(run.tid).sections[run.si].parts[run.cur];
    if(!confirm(n?`Noch ${n} ${n===1?"Aufgabe":"Aufgaben"} ohne Antwort. ${tabName(p)} trotzdem abgeben?`:`${tabName(p)} abgeben? Danach kannst du ihn nicht mehr ändern.`))return;
@@ -483,4 +544,20 @@ const EDIT=new Set();
  button.onclick=open;entry.onclick=open;label();
  return {button,entry,open,close}}
 window.Pruefung=Pruefung;
+
+/* The practice page: Hören, Lesen, Schreiben, Sprechen in their colours in the
+   nav and on their headings; the nav link of the part you are reading is filled. */
+window.skillNav=function(nav){
+ const key=s=>/h(ö|oe)r/i.test(s)?"hoeren":/sprech/i.test(s)?"sprechen":/schreib/i.test(s)?"schreiben":/les/i.test(s)?"lesen":"";
+ const pairs=[...nav.querySelectorAll('a[href^="#"]')].map(a=>{const s=document.getElementById(a.hash.slice(1));if(!s)return null;
+  const k=key((s.querySelector("h2")||s).textContent);if(k){a.classList.add("sk-"+k);s.classList.add("sk-"+k)}return [a,s]}).filter(Boolean);
+ let cur=null,busy=false;
+ function mark(){busy=false;const top=parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0;
+  let on=null;pairs.forEach(([a,s])=>{if(s.offsetParent!==null&&s.getBoundingClientRect().top<=top+40)on=a});
+  if(!on&&pairs.length)on=pairs[0][0];if(on===cur)return;
+  if(cur){cur.classList.remove("on");cur.removeAttribute("aria-current")}cur=on;
+  if(on){on.classList.add("on");on.setAttribute("aria-current","true");
+   const l=on.offsetLeft-nav.offsetLeft;if(l<nav.scrollLeft||l+on.offsetWidth>nav.scrollLeft+nav.clientWidth)nav.scrollLeft=l-8}}
+ addEventListener("scroll",()=>{if(!busy){busy=true;requestAnimationFrame(mark)}},{passive:true});
+ addEventListener("resize",mark);mark()};
 })();
