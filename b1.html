@@ -168,10 +168,10 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 <script src="test-b1.js"></script>
 <script>
 const S=[
-{de:"Hören",en:"Listening",info:"4 Teile · ca. 25 Minuten · 20 Aufgaben · jeder Text nur einmal",infoEn:"4 parts · about 25 minutes · 20 tasks · every text only once",parts:[
+{de:"Hören",en:"Listening",info:"4 Teile · ca. 25 Minuten · 20 Aufgaben · Ansagen am Telefon, Gespräche und Aussagen zweimal, Radio einmal",infoEn:"4 parts · about 25 minutes · 20 tasks · phone messages, conversations and statements twice, radio once",parts:[
 {t:"Teil 1 – Ansagen",te:"Part 1 – Messages",hear:true,
- intro:"Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text einmal.",
- introEn:"You hear four messages. There is one task for each. Which answer (a, b or c) fits best? You hear each text once.",rows:[
+ intro:"Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text zweimal.",
+ introEn:"You hear four messages. There is one task for each. Which answer (a, b or c) fits best? You hear each text twice.",rows:[
 ["What should Mr Ivanov do?","Was soll Herr Ivanov tun?\na) Die Schlüssel abholen.\nb) Den Mietvertrag unterschreiben.\nc) Den Hausmeister anrufen.",
  "Guten Tag, Herr Ivanov, hier ist Frau Berg von der Hausverwaltung. Ihr Mietvertrag ist fertig. Bitte kommen Sie am Donnerstag zwischen 9 und 12 Uhr in unser Büro und unterschreiben Sie ihn. Die Schlüssel bekommen Sie dann am Monatsanfang.",
  "Hello Mr Ivanov, this is Ms Berg from the property management. Your tenancy agreement is ready. Please come to our office on Thursday between 9 and 12 and sign it. You'll get the keys at the start of the month.",
@@ -212,8 +212,8 @@ const S=[
  "A tip for everyone new in town: at the city library volunteers help with filling in forms and applications every Tuesday from 4 to 6 pm – free and without an appointment.",
  "b) Hilfe beim Ausfüllen von Formularen.","b) Help with filling in forms."]]},
 {t:"Teil 3 – Gespräche",te:"Part 3 – Conversations",hear:true,
- intro:"Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben: Ist die Aussage richtig oder falsch? Und welche Antwort (a, b oder c) passt am besten? Sie hören jedes Gespräch einmal.",
- introEn:"You hear four conversations. Each has two tasks: is the statement true or false? And which answer (a, b or c) fits best? You hear each conversation once.",rows:[
+ intro:"Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben: Ist die Aussage richtig oder falsch? Und welche Antwort (a, b oder c) passt am besten? Sie hören jedes Gespräch zweimal.",
+ introEn:"You hear four conversations. Each has two tasks: is the statement true or false? And which answer (a, b or c) fits best? You hear each conversation twice.",rows:[
 ["The woman talks to a colleague. – What does she want?","Die Frau spricht mit einer Kollegin. Richtig oder falsch?\nWas möchte sie?\na) Früher Feierabend machen.\nb) Mit dem Chef sprechen.\nc) Ihre Schicht tauschen.",
  "Frau: Du, Jana, kannst du am Freitag meine Spätschicht übernehmen? Meine Tochter hat Geburtstag.\nJana: Am Freitag? Hm, ja, das geht. Dann machst du aber meine Frühschicht am Montag.\nFrau: Klar, kein Problem. Danke dir!",
  "Woman: Jana, could you take my late shift on Friday? It's my daughter's birthday.\nJana: Friday? Hm, yes, that works. But then you do my early shift on Monday.\nWoman: Sure, no problem. Thanks!",
@@ -231,8 +231,8 @@ const S=[
  "Woman: Lingua language school, hello.\nMan: Hello, this is Ali Hassan. I'm doing the integration course with you. When exactly is the DTZ exam?\nWoman: On 14 June, a Saturday. You'll get the invitation by post two weeks before.",
  "Richtig · a) Wann die Prüfung ist.","True · a) When the exam is."]]},
 {t:"Teil 4 – Meinungen",te:"Part 4 – Opinions",hear:true,
- intro:"Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze. Sie hören jede Aussage einmal. Thema: Deutsch lernen",
- introEn:"You hear statements on a topic. Which of the sentences a–f fits each statement? Read the sentences first. You hear each statement once. Topic: learning German",
+ intro:"Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze. Sie hören jede Aussage zweimal. Thema: Deutsch lernen",
+ introEn:"You hear statements on a topic. Which of the sentences a–f fits each statement? Read the sentences first. You hear each statement twice. Topic: learning German",
  text:"a) Am besten lernt man Deutsch bei der Arbeit.\nb) Ohne Kurs lernt man die Grammatik nicht richtig.\nc) Mit Apps kann man jeden Tag ein bisschen lernen.\nd) Deutsch ist zu schwer für Erwachsene.\ne) Kontakt mit Deutschen ist wichtiger als Bücher.\nf) Die Kinder lernen schneller als die Eltern.",
  textEn:"a) The best way to learn German is at work. / b) Without a course you don't learn grammar properly. / c) With apps you can learn a little every day. / d) German is too hard for adults. / e) Contact with Germans is more important than books. / f) Children learn faster than their parents.",rows:[
 ["Statement 1 – which sentence fits?","Aussage 1: Welcher Satz passt?",
@@ -362,14 +362,14 @@ const S=[
 /* Exam facts – telc Deutsch-Test für Zuwanderer (DTZ, A2–B1): Hören and Lesen
    count together (45 tasks), Schreiben and Sprechen are rated A2 or B1 (lvl). */
 const EXAM={rows:[
- ["Schriftlich","Hören 4 Teile (20 Aufgaben, ca. 25 Min., jeder Text einmal) · Lesen 5 Teile (25 Aufgaben, 45 Min.) · Schreiben: Aufgabe A oder B, ein Brief oder eine E-Mail zu vier Punkten (30 Min.)"],
+ ["Schriftlich","Hören 4 Teile (20 Aufgaben, ca. 25 Min.; Ansagen am Telefon, Gespräche und Aussagen 2×, Radio 1×) · Lesen 5 Teile (25 Aufgaben, 45 Min.) · Schreiben: Aufgabe A oder B, ein Brief oder eine E-Mail zu vier Punkten (30 Min.)"],
  ["Mündlich","ca. 16 Minuten zu zweit: 1 Über sich sprechen · 2 Über Erfahrungen sprechen (Foto, Heimatland) · 3 Gemeinsam etwas planen"],
  ["Hören + Lesen","45 Aufgaben zusammen, je 1 Punkt: ab 33 = B1 · ab 20 = A2 · darunter: unter A2"],
  ["Schreiben, Sprechen","die Prüfenden bewerten, ob die Leistung A2 oder B1 entspricht (Inhalt, Kommunikative Gestaltung, Korrektheit, Wortschatz, Aussprache, Flüssigkeit)"],
  ["Ergebnis","Zertifikat B1: Sprechen B1 und dazu Hören/Lesen oder Schreiben B1 · sonst A2 nach derselben Regel · keine Noten, nur A2 oder B1"],
  ["Gut ist","Hören + Lesen ab 33 von 45 (B1) – mit 38 oder mehr bist du auf der sicheren Seite; im Sprechen alle drei Teile ausführlich und mit Begründungen"]],
  skills:[
- {time:"ca. 25 Minuten · jeder Text einmal",pts:"20 Aufgaben (mit Lesen 45)",parts:[{n:4,per:1,play:"1× hören"},{n:5,per:1,play:"1× hören"},{n:4,per:2,play:"1× hören",note:"je Gespräch 2 Aufgaben: richtig/falsch und a/b/c"},{n:3,per:1,play:"1× hören"}]},
+ {time:"ca. 25 Minuten · Radio 1×, sonst 2×",pts:"20 Aufgaben (mit Lesen 45)",parts:[{n:4,per:1,play:"2× hören"},{n:5,per:1,play:"1× hören"},{n:4,per:2,play:"2× hören",note:"je Gespräch 2 Aufgaben: richtig/falsch und a/b/c"},{n:3,per:1,play:"2× hören"}]},
  {time:"45 Minuten",pts:"25 Aufgaben (mit Hören 45)",parts:[{n:5,per:1},{n:5,per:1,note:"eine Situation ohne passenden Text (x)"},{n:3,per:2,note:"je Text 2 Aufgaben: richtig/falsch und a/b/c"},{n:3,per:1},{n:6,per:1}]},
  {time:"30 Minuten",pts:"A2 oder B1",parts:[{lvl:"bewertet als A2 oder B1",note:"Aufgabe A oder B – ein Brief oder eine E-Mail zu vier Punkten"},{none:true,note:"Redemittel zum Schreiben"}]},
  {time:"ca. 16 Minuten zu zweit",pts:"A2 oder B1",parts:[{lvl:"zählt zur Bewertung A2/B1",note:"ca. 1–2 Minuten pro Person"},{lvl:"zählt zur Bewertung A2/B1",note:"ca. 3 Minuten Foto, dann Fragen"},{lvl:"zählt zur Bewertung A2/B1",note:"ca. 6 Minuten zusammen"}]}]};
