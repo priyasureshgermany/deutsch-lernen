@@ -1,5 +1,8 @@
 # Releases
 
+## 1.33.1 — 2026-10-12
+- B1 Hören follows the telc pattern: Teil 1 (Ansagen am Telefon), Teil 3 (Gespräche) and Teil 4 (Aussagen) are heard twice, only Teil 2 (Radio) once – in all 7 Modelltests (▶ noch 2×) and in the instructions and exam info on the B1 page
+
 ## 1.33.0 — 2026-10-12
 - Hören: 10 new everyday announcements (now 36 scenes, 144 questions) – Supermarkt vor Ladenschluss, Hotel-Informationen (Probealarm, Sauna, Frühstück), Wartezimmer beim Arzt, Wartenummern im Bürgeramt, Verkehrsmeldungen im Radio, Wochenend-Tipps im Radio, Flughafen (Gepäck, Verspätung, Flüssigkeiten), U-Bahn (Haltestelle, Bauarbeiten, Fahrkarten), Hotline-Menü am Telefon, Anrufbeantworter der Schule – each with gong / ring / beep, background sound, 4 exam-style questions and English
 

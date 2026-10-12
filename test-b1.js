@@ -19,10 +19,10 @@ window.TESTS_B1 = [
      {
       "t": "Teil 1 – Ansagen",
       "tab": "Teil 1",
-      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text einmal.",
+      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text zweimal.",
       "type": "mc",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 5,
       "items": [
        {
@@ -139,10 +139,10 @@ window.TESTS_B1 = [
      {
       "t": "Teil 3 – Gespräche",
       "tab": "Teil 3",
-      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch einmal.",
+      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch zweimal.",
       "type": "mix",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 9,
       "items": [
        {
@@ -214,11 +214,11 @@ window.TESTS_B1 = [
      {
       "t": "Teil 4 – Meinungen",
       "tab": "Teil 4",
-      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage einmal. Thema: Arbeiten und Familie",
+      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage zweimal. Thema: Arbeiten und Familie",
       "type": "match",
       "listName": "Sätze",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 5,
       "list": [
        "Ohne die Großeltern wäre der Alltag nicht möglich.",
@@ -879,10 +879,10 @@ window.TESTS_B1 = [
      {
       "t": "Teil 1 – Ansagen",
       "tab": "Teil 1",
-      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text einmal.",
+      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text zweimal.",
       "type": "mc",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 5,
       "items": [
        {
@@ -996,10 +996,10 @@ window.TESTS_B1 = [
      {
       "t": "Teil 3 – Gespräche",
       "tab": "Teil 3",
-      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch einmal.",
+      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch zweimal.",
       "type": "mix",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 9,
       "items": [
        {
@@ -1070,11 +1070,11 @@ window.TESTS_B1 = [
      {
       "t": "Teil 4 – Meinungen",
       "tab": "Teil 4",
-      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage einmal. Thema: Handys in der Schule",
+      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage zweimal. Thema: Handys in der Schule",
       "type": "match",
       "listName": "Sätze",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 5,
       "list": [
        "Handys gehören in der Schule in die Tasche.",
@@ -1734,10 +1734,10 @@ window.TESTS_B1 = [
      {
       "t": "Teil 1 – Ansagen",
       "tab": "Teil 1",
-      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text einmal.",
+      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text zweimal.",
       "type": "mc",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 5,
       "items": [
        {
@@ -1851,10 +1851,10 @@ window.TESTS_B1 = [
      {
       "t": "Teil 3 – Gespräche",
       "tab": "Teil 3",
-      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch einmal.",
+      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch zweimal.",
       "type": "mix",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 9,
       "items": [
        {
@@ -1924,11 +1924,11 @@ window.TESTS_B1 = [
      {
       "t": "Teil 4 – Meinungen",
       "tab": "Teil 4",
-      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage einmal. Thema: Mit dem Auto oder mit dem Fahrrad in die Stadt?",
+      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage zweimal. Thema: Mit dem Auto oder mit dem Fahrrad in die Stadt?",
       "type": "match",
       "listName": "Sätze",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 5,
       "list": [
        "Ohne Auto geht es auf dem Land nicht.",
@@ -2585,10 +2585,10 @@ window.TESTS_B1 = [
      {
       "t": "Teil 1 – Ansagen",
       "tab": "Teil 1",
-      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text einmal.",
+      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text zweimal.",
       "type": "mc",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 5,
       "items": [
        {
@@ -2702,10 +2702,10 @@ window.TESTS_B1 = [
      {
       "t": "Teil 3 – Gespräche",
       "tab": "Teil 3",
-      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch einmal.",
+      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch zweimal.",
       "type": "mix",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 9,
       "items": [
        {
@@ -2777,11 +2777,11 @@ window.TESTS_B1 = [
      {
       "t": "Teil 4 – Meinungen",
       "tab": "Teil 4",
-      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage einmal. Thema: Einkaufen im Internet",
+      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage zweimal. Thema: Einkaufen im Internet",
       "type": "match",
       "listName": "Sätze",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 5,
       "list": [
        "Im Internet zu kaufen spart viel Zeit.",
@@ -3442,10 +3442,10 @@ window.TESTS_B1 = [
      {
       "t": "Teil 1 – Ansagen",
       "tab": "Teil 1",
-      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text einmal.",
+      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text zweimal.",
       "type": "mc",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 5,
       "items": [
        {
@@ -3559,10 +3559,10 @@ window.TESTS_B1 = [
      {
       "t": "Teil 3 – Gespräche",
       "tab": "Teil 3",
-      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch einmal.",
+      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch zweimal.",
       "type": "mix",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 9,
       "items": [
        {
@@ -3634,11 +3634,11 @@ window.TESTS_B1 = [
      {
       "t": "Teil 4 – Meinungen",
       "tab": "Teil 4",
-      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage einmal. Thema: Arbeitszeit",
+      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage zweimal. Thema: Arbeitszeit",
       "type": "match",
       "listName": "Sätze",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 5,
       "list": [
        "Eine Vier-Tage-Woche wäre für alle besser.",
@@ -4300,10 +4300,10 @@ window.TESTS_B1 = [
      {
       "t": "Teil 1 – Ansagen",
       "tab": "Teil 1",
-      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text einmal.",
+      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text zweimal.",
       "type": "mc",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 5,
       "items": [
        {
@@ -4415,10 +4415,10 @@ window.TESTS_B1 = [
      {
       "t": "Teil 3 – Gespräche",
       "tab": "Teil 3",
-      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch einmal.",
+      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch zweimal.",
       "type": "mix",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 9,
       "items": [
        {
@@ -4489,11 +4489,11 @@ window.TESTS_B1 = [
      {
       "t": "Teil 4 – Meinungen",
       "tab": "Teil 4",
-      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage einmal. Thema: Nachbarn",
+      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage zweimal. Thema: Nachbarn",
       "type": "match",
       "listName": "Sätze",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 5,
       "list": [
        "Gute Nachbarn helfen sich gegenseitig.",
@@ -5154,10 +5154,10 @@ window.TESTS_B1 = [
      {
       "t": "Teil 1 – Ansagen",
       "tab": "Teil 1",
-      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text einmal.",
+      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text zweimal.",
       "type": "mc",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 5,
       "items": [
        {
@@ -5271,10 +5271,10 @@ window.TESTS_B1 = [
      {
       "t": "Teil 3 – Gespräche",
       "tab": "Teil 3",
-      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch einmal.",
+      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch zweimal.",
       "type": "mix",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 9,
       "items": [
        {
@@ -5346,11 +5346,11 @@ window.TESTS_B1 = [
      {
       "t": "Teil 4 – Meinungen",
       "tab": "Teil 4",
-      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage einmal. Thema: Feste und Feiertage",
+      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage zweimal. Thema: Feste und Feiertage",
       "type": "match",
       "listName": "Sätze",
       "per": 1,
-      "plays": 1,
+      "plays": 2,
       "time": 5,
       "list": [
        "Feste sind vor allem für die Kinder schön.",
