@@ -1,5 +1,8 @@
 # Releases
 
+## 1.37.1 — 2026-10-12
+- A1/B1: Lösung off means no solution at all – also in Übungsmodus (it showed blurred). Lösung on + Übungsmodus: covered, tap to uncover; Lösung on alone: open. Tour and hold texts say so
+
 ## 1.37.0 — 2026-10-12
 - Every tab explains its buttons without any extra button: press and hold a button (or rest the mouse on it) and a bubble says what it does – letting go does not press it
 - A short tour the first time a tab is opened points at each button in turn (Weiter / Überspringen); Gespräche, Briefe, Hören and Grammatik/Sätze show a second short tour the first time a situation or item is opened. ⋯ → Tour replays it for the open tab
