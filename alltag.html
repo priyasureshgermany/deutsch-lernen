@@ -201,6 +201,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 <script src="hoeren-data.js"></script>
 <script src="translate.js"></script>
 <script src="speak.js"></script>
+<script src="hilfe.js"></script>
 <script>
 /* One page, two tabs: ?t=dialog (Gespräche) or ?t=brief (Briefe). */
 const MODE=({brief:"brief",hoeren:"hoeren"})[new URLSearchParams(location.search).get("t")]||"dialog";
@@ -574,6 +575,27 @@ const K=Karten({mount:document.querySelector("main"),
     {id:"en",icon:"en",label:"Englisch",color:"var(--muted)",pressed:()=>alEn,click:k=>{alEn=!alEn;k.redraw()}},
     {builtin:"practice"}]});
 document.querySelector(".ladder").appendChild(K.button);
+/* press and hold a button to see what it does; a short tour on the first visit,
+   and one for the controls of a situation the first time one is opened (hilfe.js) */
+if(window.Hilfe)Hilfe.setup({tab:MODE,tours:[
+ {id:"page",steps:[
+  {sel:".fc-open",t:"Karten",de:MODE==="hoeren"?"Eine Frage pro Bildschirm – die Szene spielt weiter, während du blätterst.":"Situation, Text und wichtige Sätze einzeln – gut fürs Handy.",en:"Cards: one per screen."},
+  {sel:"#list .it",t:"Situation wählen",de:"Tippe eine Situation an – dann geht es los.",en:"Tap a situation to open it.",hold:false}]},
+ {id:"card",need:"[data-all],[data-scene]",steps:[
+  {sel:"[data-scene]",t:"▶ Abspielen",de:"Die Szene mit Geräuschen und Stimmen; noch einmal tippen = Stopp. Lies vorher die Aufgaben!",en:"Play the scene; read the tasks first."},
+  {sel:"[data-twice]",t:"2× hören",de:"Alles läuft zweimal, mit kurzer Pause – wie in der Prüfung.",en:"Plays twice, as in the exam."},
+  {sel:"[data-bg]",t:"Hintergrund",de:"Bahnhofshalle, Café, Straße … an oder aus.",en:"Background sound on or off."},
+  {sel:".hqo button",t:"Antwort antippen",de:"Du siehst sofort, ob sie stimmt – mit Erklärung.",en:"Tap an answer to check it.",hold:false},
+  {sel:"[data-solve]",t:"Alle Lösungen zeigen",de:"Deckt alle Antworten auf einmal auf.",en:"Show all answers."},
+  {sel:"[data-text]",t:"Text zeigen",de:"Den Hörtext lesen – der gerade gesprochene Satz wird hellblau.",en:"Show the transcript."},
+  {sel:"[data-all]",t:MODE==="brief"?"▶ Ganzen Brief vorlesen":"▶ Ganzes Gespräch",de:MODE==="brief"?"Liest den ganzen Brief vor.":"Spielt den Dialog mit zwei Stimmen, Satz für Satz.",en:"Plays it all."},
+  {sel:"[data-hide]",t:"Selbst schreiben",de:"Der Musterbrief wird versteckt – schreib zuerst selbst, dann vergleichen.",en:"Hide the model letter."},
+  {sel:"[data-role]",t:"Rolle üben",de:"Eine Person wird versteckt – sprich ihren Teil selbst, dann tippen zum Kontrollieren.",en:"Hide one role and say it yourself."},
+  {sel:"[data-me]",t:"Meine Stimme",de:"Ob „ich“ im Gespräch mit Männer- oder Frauenstimme spricht.",en:"Male or female voice for “me”."},
+  {sel:"[data-vbox]",t:"🔊 Stimmen",de:"Alle deutschen Stimmen deines Geräts anhören und den Personen zuordnen.",en:"Hear and assign your device's voices."},
+  {sel:"button.say",t:"▶ Vorlesen",de:"Liest den Text vor; noch einmal tippen = Stopp. Langsamer: ⋯ oben → Tempo.",en:"Read aloud; tap again to stop. Speed: ⋯ → Tempo."},
+  {sel:".enb",t:"EN",de:"Die Übersetzung für diesen Satz oder diese Frage.",en:"English for this line."},
+  {sel:"#detail .w,.inl .w",t:"Wort antippen",de:"Tippe ein Wort an: Übersetzung, bei Nomen mit Artikel und Plural.",en:"Tap a word for its translation.",hold:false},{sel:".ph",t:"[Platzhalter]",de:"Hier gehören deine Angaben hin – einmal unter ⋯ → Meine Angaben eintragen, dann stehen sie überall.",en:"Placeholders: enter your details under ⋯ → Meine Angaben.",hold:false}]}]});
 /* Hören card: only this question shows; the scene goes on playing while you
    move between its questions, and answers and "Text zeigen" stay. */
 function hoerShown(x,body,was){const card=body.querySelector(".dcard");

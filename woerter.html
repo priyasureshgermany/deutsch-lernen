@@ -253,6 +253,7 @@ body.show-en .fc-card .fc-en{display:block}
 <script src="woerter-lex.js"></script>
 <script src="translate.js"></script>
 <script src="karten.js"></script>
+<script src="hilfe.js"></script>
 <script>
 /* ---- what the tags mean ---- */
 const POSL={N:["Nomen","noun"],V:["Verb","verb (conjugated)"],VT:["Verbteil","verb part: infinitive, participle or prefix"],P:["Pronomen","pronoun"],A:["Artikel","article / determiner"],J:["Adjektiv","adjective"],ADV:["Adverb","adverb"],PR:["Präposition","preposition"],PA:["Präposition + Artikel","preposition fused with article"],K:["Konjunktion","conjunction"],Z:["Zahlwort","numeral"],T:["Partikel","particle"]};
@@ -545,6 +546,21 @@ const K=Karten({mount:main,
   {id:"fill",icon:"brush",label:"Alle färben",click:k=>{if(quiz)return;k.item.el.querySelectorAll(".tk").forEach(x=>x.classList.add("on"));k.redraw()}},
   {id:"clear",icon:"eraser",label:"Leeren",click:k=>{closePop();k.item.el.querySelectorAll(".tk").forEach(x=>x.classList.remove("on","done"));k.redraw()}}]});
 document.querySelector(".bar-inner").prepend(K.button);
+/* press and hold a button to see what it does; a short tour on the first visit (hilfe.js) */
+if(window.Hilfe)Hilfe.setup({tab:"woerter",tours:[{id:"page",steps:[
+ {sel:".fc-open",t:"Karten",de:"Eine Aufgabe pro Bildschirm – gut fürs Handy. ‹ › blättern, zweimal schnell tippen = erste bzw. letzte.",en:"Cards: one per screen; ‹ › to move."},
+ {sel:".seg button",t:"Farben nach",de:"Was die Farben zeigen: Wortart, Unterart, Kasus, Satzglied oder TeKaMoLo (wann, warum, wie, wo).",en:"What the colours show."},
+ {sel:"#fill",t:"Alle färben",de:"Färbt den ganzen Text auf einmal.",en:"Colour the whole text."},
+ {sel:"#clear",t:"Leeren",de:"Macht den Text wieder neutral.",en:"Remove the colours."},
+ {sel:'.tg[data-lv="A1"]',t:"A1 · B1",de:"Texte dieses Niveaus zeigen oder ausblenden.",en:"Show or hide a level."},
+ {sel:'.tg[data-lv="B1"]',t:"B1",de:"Die B1-Texte zeigen oder ausblenden.",en:"Show or hide B1 texts.",tour:false},
+ {sel:"#en",t:"EN",de:"Die englische Übersetzung der Texte.",en:"English translation."},
+ {sel:"#sg",t:"S·V·O",de:"Kleine Kürzel an den Satzteilen: S Subjekt, V Verb, AkkO / DatO Objekte …",en:"Labels for subject, verb, objects …"},
+ {sel:"#qz",t:"Übungsmodus",de:"Tippe ein Wort an und bestimme seine Wortart selbst; oben stehen deine Punkte.",en:"Guess the word type; see your score."},
+ {sel:"#nav a",t:"Themen",de:"Springt zu einem Thema.",en:"Jump to a topic.",hold:false},
+ {sel:".tk",t:"Wort antippen",de:"Einmal: es bekommt seine Farbe. Noch einmal: was es genau ist, warum es diese Form hat, alle Formen.",en:"Tap once to colour, again for details.",hold:false},
+ {sel:"[data-sb][aria-expanded]",t:"Satzbau",de:"Zeigt jeden Satz in seinen Teilen – so lernst du, wie deutsche Sätze gebaut sind.",en:"Each sentence split into its parts."},
+ {sel:"button.say",t:"▶ Vorlesen",de:"Liest den Text vor; noch einmal tippen = Stopp. Langsamer: ⋯ oben → Tempo.",en:"Read aloud; tap again to stop. Speed: ⋯ → Tempo."}]}]});
 /* A word coloured or opened on the card: the same in the list. A new view or
    a legend filter: draw the card again from the list. */
 K.body.addEventListener("click",e=>{const tk=e.target.closest(".tk");

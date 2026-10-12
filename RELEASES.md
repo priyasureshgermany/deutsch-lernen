@@ -1,5 +1,10 @@
 # Releases
 
+## 1.37.0 — 2026-10-12
+- Every tab explains its buttons without any extra button: press and hold a button (or rest the mouse on it) and a bubble says what it does – letting go does not press it
+- A short tour the first time a tab is opened points at each button in turn (Weiter / Überspringen); Gespräche, Briefe, Hören and Grammatik/Sätze show a second short tour the first time a situation or item is opened. ⋯ → Tour replays it for the open tab
+- A1/B1: the ? button is gone
+
 ## 1.36.0 — 2026-10-12
 - Alltag (Hören scenes, Gespräche, Briefe, voice preview) speaks through speak.js too: sentence by sentence, never hangs, retries a sentence that does not start; the light-blue read-along follows across split sentences. Flipping Hören cards no longer cuts the running scene (it used to stop the speech and the scene waited forever)
 - speak.js waits 120 ms after a stop before speaking (phone voices stutter otherwise) – now for A1/B1 and the tests too

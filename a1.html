@@ -534,7 +534,17 @@ document.querySelector(".toggles").prepend(K.button);
 /* ---- Modelltests (test.js): whole exams with a strict timer and marks ---- */
 const TZ=Pruefung({mount:main,level:"A1",tests:window.TESTS_A1,rate:()=>rate,scale:{factor:1,max:60,pass:36,grades:[[54,60,"sehr gut"],[48,53.5,"gut"],[42,47.5,"befriedigend"],[36,41.5,"ausreichend"]],rawLabel:"Punkten",note:"Wie bei telc Start Deutsch 1: jeder Prüfungsteil 15 Punkte, zusammen 60 – bestanden ab 36 Punkten (60 %). Sprechen wird automatisch aus deiner Aufnahme bewertet – du kannst jede Bewertung ändern."}});
 document.querySelector("header.hero .ladder").appendChild(TZ.entry);
-if(window.Hilfe)Hilfe({level:"A1",row:document.querySelector(".toggles"),cards:K.button,test:TZ.entry});
+if(window.Hilfe)Hilfe.setup({tab:"a1",tours:[{id:"page",steps:[
+ {sel:".fc-open",t:"Karten",de:"Eine Aufgabe pro Bildschirm – gut fürs Handy. ‹ › blättern, zweimal schnell tippen = erste bzw. letzte.",en:"Cards: one per screen; ‹ › to move."},
+ {sel:'.tg[data-k="en"]',t:"EN",de:"Englisch für alle Aufgaben ein oder aus. Jeder Satz hat außerdem seinen eigenen Englisch-Knopf.",en:"English for everything on or off."},
+ {sel:'.tg[data-k="ans"]',t:"Lösung",de:"An: alle Lösungen offen. Aus: im Übungsmodus deckst du jede Lösung selbst auf.",en:"On: all answers open. Off: uncover them yourself."},
+ {sel:"#pr",t:"Übungsmodus",de:"Hörtexte und Lösungen sind verdeckt: ▶ hören, antworten, dann tippen zum Aufdecken.",en:"Texts and answers covered – listen, answer, tap to uncover."},
+ {sel:"#mw",t:"Mehrere Wörter",de:"Mehrere Wörter in einem Satz antippen, dann „Übersetzen“ – für Ausdrücke.",en:"Tap several words, then translate – for phrases."},
+ {sel:".tz-entry",t:"Test",de:"Ganze Prüfung mit Zeit und Punkten – auch Teil für Teil, später weitermachen.",en:"Mock exam with time and marks."},
+ {sel:"#nav a",t:"Hören · Lesen · Schreiben · Sprechen",de:"Springt zum Prüfungsteil; der Teil, den du gerade liest, ist ausgefüllt.",en:"Jump to a part of the exam.",hold:false},
+ {sel:"button.say",t:"▶ Vorlesen",de:"Liest den Text vor; noch einmal tippen = Stopp. Langsamer: ⋯ oben → Tempo.",en:"Read aloud; tap again to stop. Speed: ⋯ → Tempo."},
+ {sel:".trb",t:"Englisch zeigen",de:"Übersetzung nur für diesen einen Satz.",en:"English for this sentence."},
+ {sel:".w",t:"Wort antippen",de:"Tippe ein Wort an: Übersetzung, bei Nomen mit Artikel und Plural.",en:"Tap a word for its translation.",hold:false},{sel:".ph",t:"[Platzhalter]",de:"Hier gehören deine Angaben hin – einmal unter ⋯ → Meine Angaben eintragen, dann stehen sie überall.",en:"Placeholders: enter your details under ⋯ → Meine Angaben.",hold:false}]}]});
 document.getElementById("px").addEventListener("click",K.sync);
 
 /* ---- search ---- */
