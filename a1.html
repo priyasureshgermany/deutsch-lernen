@@ -56,15 +56,15 @@ td.c-a2{border-left:3px solid var(--a2)}
 td.c-a1{border-left:3px solid var(--a1)}
 td.c-ans{background:var(--ansbg);border-left:3px solid var(--ans)}
 .ph{color:var(--ans);font-weight:700}
-body.hide-en .c-en,body.hide-b1 .c-b1,body.hide-a2 .c-a2,body.hide-a1 .c-a1,body.hide-ans:not(.practice) .c-ans{display:none}
-body.practice.hide-ans td.c-ans .t{filter:blur(6px);cursor:pointer;user-select:none;transition:filter .2s}
-body.practice.hide-ans td.c-ans.shown .t{filter:none}
-body.practice.hide-ans td.c-ans:not(.shown)::after{content:"Tippen zum Aufdecken";display:block;font-size:12px;color:var(--ans);margin-top:4px}
+body.hide-en .c-en,body.hide-b1 .c-b1,body.hide-a2 .c-a2,body.hide-a1 .c-a1,body.hide-ans .c-ans{display:none}
+body.practice td.c-ans .t{filter:blur(6px);cursor:pointer;user-select:none;transition:filter .2s}
+body.practice td.c-ans.shown .t{filter:none}
+body.practice td.c-ans:not(.shown)::after{content:"Tippen zum Aufdecken";display:block;font-size:12px;color:var(--ans);margin-top:4px}
 
 td.c-ans .tr{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--ans);color:var(--muted);font-style:italic}
 td.c-ans.en-on .tr{display:block}
 .trb{display:block;margin-top:6px;font:inherit;font-size:12px;font-weight:700;color:var(--ans);background:none;border:1px solid var(--ans);border-radius:999px;padding:2px 10px;cursor:pointer}
-body.practice.hide-ans td.c-ans:not(.shown) .trb{display:none}
+body.practice td.c-ans:not(.shown) .trb{display:none}
 .w{cursor:pointer;border-radius:3px;transition:background .15s}
 @media (hover:hover){.w:hover{background:var(--surface)}}
 .w.sel{background:var(--b1);color:#fff}
@@ -83,7 +83,7 @@ body.practice.hide-ans td.c-ans:not(.shown) .trb{display:none}
 .say.on::before{border:none;width:8px;height:8px;background:currentColor;margin:0}
 td.c-b1 .say{color:var(--b1)}td.c-a2 .say{color:var(--a2)}td.c-a1 .say{color:var(--a1)}td.c-ans .say{color:var(--ans)}td.c-ans .say.on{color:#fff}
 body.no-tts .say,body.no-tts #sp{display:none}
-body.practice.hide-ans td.c-ans:not(.shown) > .say{display:none}
+body.practice td.c-ans:not(.shown) > .say{display:none}
 .w.pk{background:var(--a2);color:#fff}
 .pact{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 .pbtn{font:inherit;font-size:14px;font-weight:700;padding:6px 14px;border-radius:999px;border:2px solid var(--b1);background:var(--b1);color:#fff;cursor:pointer}
@@ -116,11 +116,11 @@ td.c-tx{border-left:3px solid var(--a2)}
 th.c-tx,td.c-tx::before{color:var(--a2)}
 td.c-de{border-left:3px solid var(--b1)}
 th.c-de,td.c-de::before{color:var(--b1)}
-body.practice .rv:not(.shown):not(.c-ans) > .s,body.practice.hide-ans .rv.c-ans:not(.shown) > .s{filter:blur(6px);user-select:none;cursor:pointer}
-body.practice .rv:not(.shown):not(.c-ans)::after,body.practice.hide-ans .rv.c-ans:not(.shown)::after{content:"Tippen zum Aufdecken";display:block;font-size:12px;color:var(--ans);margin-top:4px}
+body.practice .rv:not(.shown) > .s{filter:blur(6px);user-select:none;cursor:pointer}
+body.practice .rv:not(.shown)::after{content:"Tippen zum Aufdecken";display:block;font-size:12px;color:var(--ans);margin-top:4px}
 body.practice .rv.hear:not(.shown)::after{content:"▶ anhören, dann tippen zum Aufdecken"}
-body.practice .rv:not(.shown):not(.c-ans) > .trb,body.practice.hide-ans .rv.c-ans:not(.shown) > .trb,body.practice .rv:not(.shown):not(.c-ans) > .tr,body.practice.hide-ans .rv.c-ans:not(.shown) > .tr{display:none}
-body.practice .rv:not(.hear):not(.shown):not(.c-ans) > .say,body.practice.hide-ans .rv.c-ans:not(.shown) > .say{display:none}
+body.practice .rv:not(.shown) > .trb,body.practice .rv:not(.shown) > .tr{display:none}
+body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 .en-on > .tr{display:block}
 .tr{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--ans);color:var(--muted);font-style:italic}
 .tip{font-size:14px;color:var(--muted);max-width:70ch}
@@ -500,7 +500,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closePop()});
 function tap(e){
  const sb=e.target.closest(".say");if(sb){say(sb);return}
  const rv=e.target.closest(".rv");
- if(rv&&document.body.classList.contains("practice")&&!rv.classList.contains("shown")&&!(rv.classList.contains("c-ans")&&!document.body.classList.contains("hide-ans"))){rv.classList.add("shown");return}
+ if(rv&&document.body.classList.contains("practice")&&!rv.classList.contains("shown")){rv.classList.add("shown");return}
  const tb=e.target.closest(".trb");if(tb){const c=tb.parentElement;c.classList.toggle("en-on");tb.textContent=c.classList.contains("en-on")?"Englisch ausblenden":"Englisch zeigen";return}
  const w=e.target.closest(".w");if(w){multi?pick(w):lookup(w)}}
 main.addEventListener("click",tap);
@@ -537,8 +537,8 @@ document.querySelector("header.hero .ladder").appendChild(TZ.entry);
 if(window.Hilfe)Hilfe.setup({tab:"a1",tours:[{id:"page",steps:[
  {sel:".fc-open",t:"Karten",de:"Eine Aufgabe pro Bildschirm – gut fürs Handy. ‹ › blättern, zweimal schnell tippen = erste bzw. letzte.",en:"Cards: one per screen; ‹ › to move."},
  {sel:'.tg[data-k="en"]',t:"EN",de:"Englisch für alle Aufgaben ein oder aus. Jeder Satz hat außerdem seinen eigenen Englisch-Knopf.",en:"English for everything on or off."},
- {sel:'.tg[data-k="ans"]',t:"Lösung",de:"An: alle Lösungen offen. Aus: im Übungsmodus deckst du jede Lösung selbst auf.",en:"On: all answers open. Off: uncover them yourself."},
- {sel:"#pr",t:"Übungsmodus",de:"Hörtexte und Lösungen sind verdeckt: ▶ hören, antworten, dann tippen zum Aufdecken.",en:"Texts and answers covered – listen, answer, tap to uncover."},
+ {sel:'.tg[data-k="ans"]',t:"Lösung",de:"Die Lösungen zeigen oder ausblenden. Im Übungsmodus sind sie zuerst verdeckt – tippen zum Aufdecken.",en:"Show or hide the answers; in practice mode they start covered."},
+ {sel:"#pr",t:"Übungsmodus",de:"Hörtexte sind verdeckt: ▶ hören, antworten, dann tippen zum Aufdecken. Mit „Lösung“ siehst du auch die Lösung – zuerst verdeckt.",en:"Texts covered – listen, answer, tap to uncover; turn on Lösung to check."},
  {sel:"#mw",t:"Mehrere Wörter",de:"Mehrere Wörter in einem Satz antippen, dann „Übersetzen“ – für Ausdrücke.",en:"Tap several words, then translate – for phrases."},
  {sel:".tz-entry",t:"Test",de:"Ganze Prüfung mit Zeit und Punkten – auch Teil für Teil, später weitermachen.",en:"Mock exam with time and marks."},
  {sel:"#nav a",t:"Hören · Lesen · Schreiben · Sprechen",de:"Springt zum Prüfungsteil; der Teil, den du gerade liest, ist ausgefüllt.",en:"Jump to a part of the exam.",hold:false},
