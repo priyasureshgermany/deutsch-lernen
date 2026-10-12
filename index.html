@@ -48,9 +48,7 @@ main{flex:1;min-height:0;position:relative}
 iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--paper)}
 iframe[hidden]{display:none}
 button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
-/* Full screen: only the section is left. The browser's own full screen where
-   it is allowed (laptop, Android); on iPhone, which allows it only for video,
-   hiding the bars is what gives the room. One round button brings them back. */
+/* small round icon buttons (header, ⋯ row, dialogs) */
 .fsb{display:flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--muted);cursor:pointer}
 .fsb svg{width:17px;height:17px}
 #tempo[aria-pressed="true"]{background:var(--a1);border-color:var(--a1);color:#fff}
@@ -59,6 +57,21 @@ button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
  background:var(--paper);color:var(--ink);box-shadow:0 12px 40px rgba(0,0,0,.35)}
 #shd{width:min(440px,calc(100vw - 24px));margin:max(12px,8vh) auto auto;padding:14px 16px 16px;border:1px solid var(--line);border-radius:16px;background:var(--paper);color:var(--ink)}
 #shd::backdrop{background:rgba(10,14,24,.45)}
+/* Feedback: what kind, the message, then send by e-mail or as a GitHub issue */
+#fbd{width:min(460px,calc(100vw - 24px));margin:max(12px,6vh) auto auto;padding:14px 16px 16px;border:1px solid var(--line);border-radius:16px;background:var(--paper);color:var(--ink)}
+#fbd::backdrop{background:rgba(10,14,24,.45)}
+.fbkind{display:flex;gap:8px;margin:0 0 10px}
+.fbkind button{touch-action:manipulation;flex:1;font:inherit;font-size:14px;font-weight:700;padding:8px 6px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.fbkind button[aria-checked="true"]{border-color:var(--b1);background:var(--b1);color:#fff}
+#fbtext{box-sizing:border-box;width:100%;min-height:130px;font:inherit;font-size:16px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);resize:vertical}
+.fbinfo{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--muted);margin:8px 0 12px}
+.fbinfo input{margin-top:2px;width:18px;height:18px;flex:none}
+.fbsend{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fbsend a{touch-action:manipulation;display:flex;align-items:center;justify-content:center;gap:8px;padding:11px 8px;border-radius:999px;font-weight:800;font-size:15px;text-decoration:none;border:2px solid var(--b1)}
+.fbsend a.mail{background:var(--b1);color:#fff}.fbsend a.gh{color:var(--b1)}
+.fbsend a[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.fbsend svg{width:19px;height:19px}
+.fbnote{font-size:12.5px;color:var(--muted);margin:10px 0 0}
 .shnote{margin:0 0 8px;color:var(--muted);font-size:14.5px}
 .shlink{font-size:13.5px;padding:8px 10px;border-radius:10px;background:var(--surface);word-break:break-all;margin-bottom:12px}
 .shgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -93,26 +106,10 @@ button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
 #med .meact button{font:inherit;font-weight:700;font-size:15px;border-radius:999px;padding:8px 16px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink)}
 #med .meact .go{background:var(--b1);border-color:var(--b1);color:#fff}
 #med .menote{font-size:13px;color:var(--muted);margin:0 0 10px}
-#fsx{display:none;position:fixed;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:20;width:42px;height:42px;
- border:none;background:var(--b1);color:#fff;opacity:.9;box-shadow:0 2px 10px rgba(0,0,0,.3)}
-body.full header,body.full nav{display:none}
-body.full main{margin:env(safe-area-inset-top,0px) 0 0}
-body.full #fsx{display:flex}
 /* A section showing cards (one question per screen) asks for the whole frame:
    header and tab bar step aside until it goes back to its list. */
 body.cards header,body.cards nav{display:none}
 body.cards main{margin:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
-/* Well above the bottom edge: on iPhone the bottom strip belongs to the
-   system's home swipe, which swallowed drags that started on the button. */
-/* Swiped off the right edge, as in the expense tracker: it slides away rather
-   than vanishing, and a small tab on the edge brings it back. */
-#fsx{touch-action:none;transition:transform .3s cubic-bezier(.2,.7,.3,1),opacity .22s ease}
-html.fsx-tucked #fsx{transform:translateX(110px) scale(.9);opacity:0;pointer-events:none}
-#fsxTab{display:none;position:fixed;right:0;bottom:calc(93px + env(safe-area-inset-bottom,0px));z-index:20;width:24px;height:48px;padding:0;place-items:center;
- border:1px solid var(--line);border-right:0;border-radius:11px 0 0 11px;background:var(--surface);color:var(--muted);opacity:.85;box-shadow:0 2px 8px rgba(0,0,0,.2);cursor:pointer}
-#fsxTab svg{width:15px;height:15px}
-html.fsx-tucked body.full #fsxTab{display:grid}
-@media (prefers-reduced-motion:reduce){#fsx{transition:none}}
 nav .i{display:none}
 @media (max-width:1100px){nav .l{display:none}nav .s{display:inline}}
 /* Phones: the section bar moves to the bottom, as in an app – icon over a
@@ -157,8 +154,8 @@ nav .i{display:none}
  <div class="mrow"><button id="me" class="fsb" type="button" title="Meine Angaben" aria-label="Meine Angaben" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 4-6.5 8-6.5s7.2 2.5 8 6.5"/></svg></button></div>
  <div class="mrow"><button id="tr" class="fsb" type="button" title="Übersetzen (Deutsch ⇄ Englisch)" aria-label="Übersetzen" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h8M8 3v2M10.5 5c-.8 3.2-3 5.8-6 7.2M6 8.5c1.2 1.6 2.7 2.8 4.5 3.5"/><path d="M13 21l4-10 4 10M14.5 17.5h5"/></svg></button></div>
  <div class="mrow"><button id="share" class="fsb" type="button" title="App teilen" aria-label="App teilen" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="M8.3 10.8l7.4-4.4M8.3 13.2l7.4 4.4"/></svg></button></div>
- <div class="mrow"><button id="fs" class="fsb" type="button" title="Vollbild" aria-label="Vollbild"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div>
-</div></header>
+ <div class="mrow"><button id="fb" class="fsb" type="button" title="Feedback – Fehler melden oder Ideen schicken" aria-label="Feedback" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"/><path d="M12 8v4.5"/><path d="M12 15.6v.1"/></svg></button></div>
+ </div></header>
 <main id="stage"></main>
 <dialog id="med" aria-labelledby="meh">
  <div class="trhead"><b id="meh">Meine Angaben</b><button id="mex" class="fsb" type="button" aria-label="Schließen">✕</button></div>
@@ -188,12 +185,25 @@ nav .i{display:none}
   <button id="shmore" class="sho more" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="M8.3 10.8l7.4-4.4M8.3 13.2l7.4 4.4"/></svg><span>Andere Apps …</span></button>
  </div>
 </dialog>
-<button id="fsxTab" type="button" title="Knopf zurückholen" aria-label="Vollbild-Knopf zurückholen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
-<button id="fsx" class="fsb" type="button" title="Vollbild beenden – nach rechts wischen zum Verstecken" aria-label="Vollbild beenden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg></button>
+<dialog id="fbd" aria-labelledby="fbh">
+ <div class="trhead"><b id="fbh">Feedback</b><button id="fbx" class="fsb" type="button" aria-label="Schließen">✕</button></div>
+ <div class="fbkind" role="radiogroup" aria-label="Art">
+  <button type="button" role="radio" data-k="Feedback" aria-checked="true">💬 Feedback</button>
+  <button type="button" role="radio" data-k="Fehler" aria-checked="false">🐞 Fehler</button>
+  <button type="button" role="radio" data-k="Idee" aria-checked="false">💡 Idee</button>
+ </div>
+ <textarea id="fbtext" lang="de" aria-label="Deine Nachricht"></textarea>
+ <label class="fbinfo"><input type="checkbox" id="fbtech" checked><span>Technische Infos mitschicken (hilft bei Fehlern): <b id="fbtechtx"></b></span></label>
+ <div class="fbsend">
+  <a id="fbmail" class="mail" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>Per E-Mail</a>
+  <a id="fbgh" class="gh" target="_blank" rel="noopener" aria-disabled="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.2-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.5.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>GitHub</a>
+ </div>
+ <p class="fbnote">„Per E-Mail“ öffnet deine E-Mail-App, „GitHub“ ein vorausgefülltes Issue (braucht ein GitHub-Konto). Abschicken tust du selbst.</p>
+</dialog>
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.34.0";
+const APP_VERSION = "1.35.0";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren", saetze: "grammatik.html?t=saetze" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -361,6 +371,43 @@ if(navigator.share) shmore.hidden = false;
 shmore.onclick = () => navigator.share({ title: "Deutsch lernen", text: SHARE_TEXT, url: SHARE_URL }).catch(() => {});
 document.getElementById("shcopy").onclick = e => { const b = e.currentTarget, done = () => { b.classList.add("done"); b.lastChild.textContent = "Kopiert ✓"; setTimeout(() => { b.classList.remove("done"); b.lastChild.textContent = "Link kopieren"; }, 1800); };
   (navigator.clipboard ? navigator.clipboard.writeText(SHARE_URL) : Promise.reject()).then(done, () => { const r = document.createRange(); r.selectNodeContents(document.getElementById("shurl")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); try{ document.execCommand("copy"); done(); }catch(x){} }); };
+/* Feedback: the message goes out through the person's own mail app or as a GitHub
+   issue – the app itself has no server. The draft is kept until it is sent. */
+const FB_MAIL = "priyasureshgermany@gmail.com", FB_REPO = "https://github.com/priyasureshgermany/deutsch-lernen";
+const fbd = document.getElementById("fbd"), fbtext = document.getElementById("fbtext"), fbtech = document.getElementById("fbtech");
+const FB_HINT = { Feedback: "Was gefällt dir, was stört dich?", Fehler: "Was ist passiert? Wo (Bereich, Aufgabe)? Was hast du erwartet?", Idee: "Was soll die App noch können?" };
+let fbKind = "Feedback";
+function fbTech(){
+  const tab = tabs.find(t => t.getAttribute("aria-selected") === "true"), ua = navigator.userAgent;
+  const dev = /iPhone|iPad/.test(ua) ? "iPhone/iPad" : /Android/.test(ua) ? "Android" : /Windows/.test(ua) ? "Windows" : /Mac/.test(ua) ? "Mac" : "anderes Gerät";
+  const br = /CriOS|Chrome/.test(ua) && !/Edg/.test(ua) ? "Chrome" : /Edg/.test(ua) ? "Edge" : /Firefox|FxiOS/.test(ua) ? "Firefox" : /Safari/.test(ua) ? "Safari" : "Browser";
+  const app = matchMedia("(display-mode: standalone)").matches || navigator.standalone ? "App" : "Browser";
+  return "v" + APP_VERSION + " · " + (tab ? tab.querySelector(".l").textContent : "") + " · " + dev + " · " + br + " (" + app + ")";
+}
+function fbUpdate(){
+  const msg = fbtext.value.trim(), tech = fbtech.checked ? "\n\n— " + fbTech() : "";
+  store("dl:fb:draft", fbtext.value);
+  const title = fbKind + ": " + (msg.split("\n")[0].slice(0, 60) || "…");
+  const body = msg.slice(0, 1500) + tech;
+  const m = document.getElementById("fbmail"), g = document.getElementById("fbgh");
+  m.href = "mailto:" + FB_MAIL + "?subject=" + enc("Deutsch lernen – " + title) + "&body=" + enc(body);
+  g.href = FB_REPO + "/issues/new?title=" + enc(title) + "&body=" + enc(body);
+  [m, g].forEach(a => a.setAttribute("aria-disabled", String(!msg)));
+}
+document.querySelectorAll(".fbkind button").forEach(b => b.onclick = () => {
+  fbKind = b.dataset.k; document.querySelectorAll(".fbkind button").forEach(x => x.setAttribute("aria-checked", String(x === b)));
+  fbtext.placeholder = FB_HINT[fbKind]; fbUpdate(); });
+fbtext.addEventListener("input", fbUpdate); fbtech.addEventListener("change", fbUpdate);
+document.getElementById("fb").onclick = () => {
+  fbtext.value = store("dl:fb:draft") || ""; fbtext.placeholder = FB_HINT[fbKind];
+  document.getElementById("fbtechtx").textContent = fbTech(); fbUpdate();
+  try{ fbd.showModal(); }catch(e){ fbd.setAttribute("open", ""); }
+};
+/* sent (or at least handed to the mail app / GitHub): the draft can go */
+["fbmail", "fbgh"].forEach(id => document.getElementById(id).addEventListener("click", () => setTimeout(() => { store("dl:fb:draft", ""); fbtext.value = ""; fbUpdate(); fbd.close(); }, 400)));
+document.getElementById("fbx").onclick = () => fbd.close();
+fbd.addEventListener("click", e => { const r = fbd.getBoundingClientRect();
+  if(e.target === fbd && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom)) fbd.close(); });
 document.getElementById("share").onclick = () => { try{ shd.showModal(); }catch(e){ shd.setAttribute("open", ""); } };
 document.getElementById("shx").onclick = () => shd.close();
 shd.addEventListener("click", e => { const r = shd.getBoundingClientRect();
@@ -421,40 +468,6 @@ more.addEventListener("click", e => {
 document.addEventListener("click", e => { if(!more.contains(e.target) && !moreB.contains(e.target)) moreOpen(false); });
 document.addEventListener("keydown", e => { if(e.key === "Escape") moreOpen(false); });
 addEventListener("blur", () => moreOpen(false));
-function full(on){
-  document.body.classList.toggle("full", on);
-  try{
-    if(on && root.requestFullscreen && !document.fullscreenElement) root.requestFullscreen().catch(() => {});
-    if(!on && document.fullscreenElement) document.exitFullscreen().catch(() => {});
-  }catch(e){}
-}
-document.getElementById("fs").onclick = () => full(true);
-const fsx = document.getElementById("fsx");
-/* A tap leaves full screen; a drag to the right past 40px tucks the button
-   away instead. The button follows the finger, so what will happen is plain. */
-let fsxFrom = null, fsxDx = 0, fsxDragged = false;
-function tuck(on){ root.classList.toggle("fsx-tucked", on); store("dl:fsxTucked", on ? "1" : "0"); }
-fsx.addEventListener("pointerdown", e => { fsxFrom = e.clientX; fsxDx = 0; fsxDragged = false; try{ fsx.setPointerCapture(e.pointerId); }catch(err){} });
-fsx.addEventListener("pointermove", e => {
-  if(fsxFrom === null) return;
-  fsxDx = e.clientX - fsxFrom;
-  if(Math.abs(fsxDx) > 6) fsxDragged = true;
-  fsx.style.transition = "none";
-  fsx.style.transform = "translateX(" + Math.max(0, fsxDx) + "px)";   // outwards only
-});
-function fsxSettle(){
-  if(fsxFrom === null) return;
-  fsx.style.transition = ""; fsx.style.transform = "";
-  if(fsxDragged && fsxDx > 40) tuck(true);
-  fsxFrom = null;
-}
-fsx.addEventListener("pointerup", fsxSettle);
-fsx.addEventListener("pointercancel", fsxSettle);
-fsx.onclick = () => { if(fsxDragged){ fsxDragged = false; return; } full(false); };
-document.getElementById("fsxTab").onclick = () => tuck(false);
-tuck(store("dl:fsxTucked") === "1");
-/* Esc (or the system's own exit) leaves the browser's full screen: follow it. */
-document.addEventListener("fullscreenchange", () => { if(!document.fullscreenElement) document.body.classList.remove("full"); });
 
 if("serviceWorker" in navigator && location.protocol !== "file:"){
   navigator.serviceWorker.register("sw.js").catch(() => {});

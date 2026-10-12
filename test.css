@@ -239,7 +239,8 @@ mark.sw-err sup{color:#d32f2f;font-weight:800;font-size:10px;margin-left:1px}
 .tz-sec[class*="sk-"]{color:var(--sk);border-left:6px solid var(--sk);padding-left:10px}
 @media (min-width:808px){.tz-sec[class*="sk-"]{padding-left:10px}}
 /* practice page (skillNav in test.js) */
-.topics a[class*="sk-"]{border:2px solid var(--sk);color:var(--sk);background:transparent;font-weight:700;padding:3px 10px;border-radius:999px}
+/* German only, small rounded squares – set apart from the round buttons above */
+.topics a[class*="sk-"]{border:1.5px solid var(--sk);color:var(--sk);background:transparent;font-size:12px;font-weight:700;line-height:1.2;padding:3px 8px;border-radius:7px}
 .topics a[class*="sk-"].on{background:var(--sk);color:#fff}
 @media (hover:hover){.topics a[class*="sk-"]:not(.on):hover{background:color-mix(in srgb,var(--sk) 14%,transparent)}}
 section.skill[class*="sk-"] .th h2{color:var(--sk)}
@@ -248,3 +249,5 @@ section.skill[class*="sk-"]{border-top:4px solid var(--sk);padding-top:14px}
 /* the practice page turns tables into stacked blocks on phones – not the result table */
 table.tz-tab{display:table;width:100%}.tz-tab tbody{display:table-row-group}.tz-tab tr{display:table-row;width:auto;border:none;margin:0;border-radius:0}
 .tz-tab td{display:table-cell;width:auto;border-left:none;border-right:none;background:none}
+/* Übungsmodus is drawn in the text colour: when on, its label takes the page colour (readable in dark mode too) */
+.tg.practice[aria-pressed="true"]{color:var(--paper)}
