@@ -1,5 +1,10 @@
 # Releases
 
+## 1.36.0 — 2026-10-12
+- Alltag (Hören scenes, Gespräche, Briefe, voice preview) speaks through speak.js too: sentence by sentence, never hangs, retries a sentence that does not start; the light-blue read-along follows across split sentences. Flipping Hören cards no longer cuts the running scene (it used to stop the speech and the scene waited forever)
+- speak.js waits 120 ms after a stop before speaking (phone voices stutter otherwise) – now for A1/B1 and the tests too
+- Feedback: e-mail only – „E-Mail-Entwurf öffnen“ (your mail app) or „In Gmail öffnen“ opens a ready draft to the team; then „Gesendet ✓“ clears it. GitHub removed
+
 ## 1.35.0 — 2026-10-12
 - A1/B1: Übungsmodus is on by default, EN and Lösung off. In Übungsmodus each solution is covered until tapped; Lösung on opens all solutions at once
 - A1/B1: a round ? at the start of the tool row explains every button as it looks (Karten, EN, Lösung, Übungsmodus, Mehrere Wörter, Test, ▶, Englisch zeigen, tap a word, [Platzhalter], the Prüfungsteile, ⋯) in German with English; it pulses until opened once

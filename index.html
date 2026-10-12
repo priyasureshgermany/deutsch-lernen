@@ -57,7 +57,7 @@ button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
  background:var(--paper);color:var(--ink);box-shadow:0 12px 40px rgba(0,0,0,.35)}
 #shd{width:min(440px,calc(100vw - 24px));margin:max(12px,8vh) auto auto;padding:14px 16px 16px;border:1px solid var(--line);border-radius:16px;background:var(--paper);color:var(--ink)}
 #shd::backdrop{background:rgba(10,14,24,.45)}
-/* Feedback: what kind, the message, then send by e-mail or as a GitHub issue */
+/* Feedback: what kind, the message, then a ready e-mail draft to send */
 #fbd{width:min(460px,calc(100vw - 24px));margin:max(12px,6vh) auto auto;padding:14px 16px 16px;border:1px solid var(--line);border-radius:16px;background:var(--paper);color:var(--ink)}
 #fbd::backdrop{background:rgba(10,14,24,.45)}
 .fbkind{display:flex;gap:8px;margin:0 0 10px}
@@ -66,9 +66,16 @@ button:focus-visible{outline:3px solid var(--b1);outline-offset:2px}
 #fbtext{box-sizing:border-box;width:100%;min-height:130px;font:inherit;font-size:16px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);resize:vertical}
 .fbinfo{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--muted);margin:8px 0 12px}
 .fbinfo input{margin-top:2px;width:18px;height:18px;flex:none}
-.fbsend{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fbsend{display:grid;grid-template-columns:1fr;gap:8px}
+.fbsend[hidden],.fbdone[hidden]{display:none}
 .fbsend a{touch-action:manipulation;display:flex;align-items:center;justify-content:center;gap:8px;padding:11px 8px;border-radius:999px;font-weight:800;font-size:15px;text-decoration:none;border:2px solid var(--b1)}
-.fbsend a.mail{background:var(--b1);color:#fff}.fbsend a.gh{color:var(--b1)}
+.fbsend a.mail{background:var(--b1);color:#fff}
+.fbsend a.gm{border:none;padding:6px;font-size:14px;font-weight:700;color:var(--b1);text-decoration:underline}
+.fbdone{padding:12px;border-radius:12px;background:color-mix(in srgb,var(--a1) 14%,var(--paper));border:1px solid var(--a1);font-size:14.5px;line-height:1.45}
+.fbdrow{display:flex;gap:8px;margin:10px 0 6px}
+.fbdrow button,.fbhelp button{touch-action:manipulation;font:inherit;font-weight:700;font-size:14px;border-radius:999px;padding:8px 14px;cursor:pointer;border:1.5px solid var(--line);background:var(--paper);color:var(--ink)}
+.fbdrow .go{background:var(--a1);border-color:var(--a1);color:#fff}
+.fbhelp{font-size:12.5px;color:var(--muted)}.fbhelp b{color:var(--ink);word-break:break-all}.fbhelp button{padding:3px 10px;font-size:12.5px;margin-left:4px}
 .fbsend a[aria-disabled="true"]{opacity:.45;pointer-events:none}
 .fbsend svg{width:19px;height:19px}
 .fbnote{font-size:12.5px;color:var(--muted);margin:10px 0 0}
@@ -194,16 +201,21 @@ nav .i{display:none}
  </div>
  <textarea id="fbtext" lang="de" aria-label="Deine Nachricht"></textarea>
  <label class="fbinfo"><input type="checkbox" id="fbtech" checked><span>Technische Infos mitschicken (hilft bei Fehlern): <b id="fbtechtx"></b></span></label>
- <div class="fbsend">
-  <a id="fbmail" class="mail" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>Per E-Mail</a>
-  <a id="fbgh" class="gh" target="_blank" rel="noopener" aria-disabled="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.2-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.5.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>GitHub</a>
+ <div class="fbsend" id="fbsend">
+  <a id="fbmail" class="mail" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>E-Mail-Entwurf öffnen</a>
+  <a id="fbgm" class="gm" target="_blank" rel="noopener" aria-disabled="true">In Gmail öffnen</a>
  </div>
- <p class="fbnote">„Per E-Mail“ öffnet deine E-Mail-App, „GitHub“ ein vorausgefülltes Issue (braucht ein GitHub-Konto). Abschicken tust du selbst.</p>
+ <div class="fbdone" id="fbdone" hidden>
+  <b>✓ Dein Entwurf ist offen.</b> Prüfe ihn in deiner E-Mail-App und tippe dort auf <b>„Senden“</b>.
+  <div class="fbdrow"><button type="button" id="fbsent" class="go">Gesendet ✓</button><button type="button" id="fbagain">Nochmal öffnen</button></div>
+  <div class="fbhelp">Es hat sich nichts geöffnet? Schreib direkt an <b id="fbaddr"></b> <button type="button" id="fbcopy">Text kopieren</button></div>
+ </div>
+ <p class="fbnote">Die App öffnet eine fertige E-Mail an das Deutsch-lernen-Team in deiner E-Mail-App (oder in Gmail) – du musst sie dort nur noch absenden.</p>
 </dialog>
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.35.0";
+const APP_VERSION = "1.36.0";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren", saetze: "grammatik.html?t=saetze" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -371,9 +383,10 @@ if(navigator.share) shmore.hidden = false;
 shmore.onclick = () => navigator.share({ title: "Deutsch lernen", text: SHARE_TEXT, url: SHARE_URL }).catch(() => {});
 document.getElementById("shcopy").onclick = e => { const b = e.currentTarget, done = () => { b.classList.add("done"); b.lastChild.textContent = "Kopiert ✓"; setTimeout(() => { b.classList.remove("done"); b.lastChild.textContent = "Link kopieren"; }, 1800); };
   (navigator.clipboard ? navigator.clipboard.writeText(SHARE_URL) : Promise.reject()).then(done, () => { const r = document.createRange(); r.selectNodeContents(document.getElementById("shurl")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); try{ document.execCommand("copy"); done(); }catch(x){} }); };
-/* Feedback: the message goes out through the person's own mail app or as a GitHub
-   issue – the app itself has no server. The draft is kept until it is sent. */
-const FB_MAIL = "priyasureshgermany@gmail.com", FB_REPO = "https://github.com/priyasureshgermany/deutsch-lernen";
+/* Feedback: the app has no server, so it opens a ready e-mail draft in the
+   person's own mail app (mailto) – or in Gmail's compose window – and they send
+   it there. The text stays in the app until they say it is sent. */
+const FB_MAIL = "priyasureshgermany@gmail.com";
 const fbd = document.getElementById("fbd"), fbtext = document.getElementById("fbtext"), fbtech = document.getElementById("fbtech");
 const FB_HINT = { Feedback: "Was gefällt dir, was stört dich?", Fehler: "Was ist passiert? Wo (Bereich, Aufgabe)? Was hast du erwartet?", Idee: "Was soll die App noch können?" };
 let fbKind = "Feedback";
@@ -389,22 +402,30 @@ function fbUpdate(){
   store("dl:fb:draft", fbtext.value);
   const title = fbKind + ": " + (msg.split("\n")[0].slice(0, 60) || "…");
   const body = msg.slice(0, 1500) + tech;
-  const m = document.getElementById("fbmail"), g = document.getElementById("fbgh");
-  m.href = "mailto:" + FB_MAIL + "?subject=" + enc("Deutsch lernen – " + title) + "&body=" + enc(body);
-  g.href = FB_REPO + "/issues/new?title=" + enc(title) + "&body=" + enc(body);
+  const m = document.getElementById("fbmail"), g = document.getElementById("fbgm"), sub = "Deutsch lernen – " + title;
+  m.href = "mailto:" + FB_MAIL + "?subject=" + enc(sub) + "&body=" + enc(body);
+  g.href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + enc(FB_MAIL) + "&su=" + enc(sub) + "&body=" + enc(body);
+  fbUpdate.text = sub + "\n\n" + body;
   [m, g].forEach(a => a.setAttribute("aria-disabled", String(!msg)));
 }
+const fbdone = document.getElementById("fbdone"), fbsend = document.getElementById("fbsend");
+function fbStep(opened){ fbdone.hidden = !opened; fbsend.hidden = opened; }
 document.querySelectorAll(".fbkind button").forEach(b => b.onclick = () => {
   fbKind = b.dataset.k; document.querySelectorAll(".fbkind button").forEach(x => x.setAttribute("aria-checked", String(x === b)));
   fbtext.placeholder = FB_HINT[fbKind]; fbUpdate(); });
 fbtext.addEventListener("input", fbUpdate); fbtech.addEventListener("change", fbUpdate);
 document.getElementById("fb").onclick = () => {
   fbtext.value = store("dl:fb:draft") || ""; fbtext.placeholder = FB_HINT[fbKind];
-  document.getElementById("fbtechtx").textContent = fbTech(); fbUpdate();
+  document.getElementById("fbtechtx").textContent = fbTech(); fbUpdate(); fbStep(false);
   try{ fbd.showModal(); }catch(e){ fbd.setAttribute("open", ""); }
 };
-/* sent (or at least handed to the mail app / GitHub): the draft can go */
-["fbmail", "fbgh"].forEach(id => document.getElementById(id).addEventListener("click", () => setTimeout(() => { store("dl:fb:draft", ""); fbtext.value = ""; fbUpdate(); fbd.close(); }, 400)));
+/* the draft is open in the mail app: ask them to press Senden there */
+["fbmail", "fbgm"].forEach(id => document.getElementById(id).addEventListener("click", () => setTimeout(() => fbStep(true), 300)));
+document.getElementById("fbaddr").textContent = FB_MAIL;
+document.getElementById("fbsent").onclick = () => { store("dl:fb:draft", ""); fbtext.value = ""; fbUpdate(); fbStep(false); fbd.close(); };
+document.getElementById("fbagain").onclick = () => fbStep(false);
+document.getElementById("fbcopy").onclick = e => { const b = e.currentTarget;
+  (navigator.clipboard ? navigator.clipboard.writeText(FB_MAIL + "\n\n" + fbUpdate.text) : Promise.reject()).then(() => { b.textContent = "Kopiert ✓"; setTimeout(() => b.textContent = "Text kopieren", 1800); }, () => {}); };
 document.getElementById("fbx").onclick = () => fbd.close();
 fbd.addEventListener("click", e => { const r = fbd.getBoundingClientRect();
   if(e.target === fbd && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom)) fbd.close(); });
