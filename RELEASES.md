@@ -1,5 +1,11 @@
 # Releases
 
+## 1.34.0 — 2026-10-12
+- Modelltests keep their progress per test: do only Hören today and Lesen, Schreiben or Sprechen later, in any order – several tests can be in progress at once. Every test card shows Noch nicht begonnen / In Arbeit / Fertig and ✓ fertig · ● pausiert · ○ noch offen per Prüfungsteil with its mark, plus Weitermachen, Auswertung bisher and Neu beginnen
+- Results show the pass mark of every Prüfungsteil done (A1: 60 % of its points; B1/DTZ: B1/A2 thresholds) and the combined line once two or more are done (A1: Zusammen …, at the end Gesamt; DTZ: Hören + Lesen zusammen, B1 ab 33 / A2 ab 20 of 45). Looking at the result no longer ends the test
+- Hören no longer gets stuck: new speak.js reads A1/B1 practice and Modelltest texts sentence by sentence, keeps every utterance until it ends (Chrome lost the end event, the ▶ stayed on), retries a sentence that does not start (Safari), and moves on if the browser goes silent. In a Modelltest a play that produced no sound does not count (Kein Ton – nochmal tippen)
+- Hören (blue), Lesen (green), Schreiben (orange), Sprechen (purple) have their own colour in the tests and on the A1/B1 practice pages; the running Prüfungsteil colours the whole test, and the practice nav fills the part you are reading
+
 ## 1.33.1 — 2026-10-12
 - B1 Hören follows the telc pattern: Teil 1 (Ansagen am Telefon), Teil 3 (Gespräche) and Teil 4 (Aussagen) are heard twice, only Teil 2 (Radio) once – in all 7 Modelltests (▶ noch 2×) and in the instructions and exam info on the B1 page
 
