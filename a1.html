@@ -56,15 +56,15 @@ td.c-a2{border-left:3px solid var(--a2)}
 td.c-a1{border-left:3px solid var(--a1)}
 td.c-ans{background:var(--ansbg);border-left:3px solid var(--ans)}
 .ph{color:var(--ans);font-weight:700}
-body.hide-en .c-en,body.hide-b1 .c-b1,body.hide-a2 .c-a2,body.hide-a1 .c-a1,body.hide-ans .c-ans{display:none}
-body.practice td.c-ans .t{filter:blur(6px);cursor:pointer;user-select:none;transition:filter .2s}
-body.practice td.c-ans.shown .t{filter:none}
-body.practice td.c-ans:not(.shown)::after{content:"Tippen zum Aufdecken";display:block;font-size:12px;color:var(--ans);margin-top:4px}
+body.hide-en .c-en,body.hide-b1 .c-b1,body.hide-a2 .c-a2,body.hide-a1 .c-a1,body.hide-ans:not(.practice) .c-ans{display:none}
+body.practice.hide-ans td.c-ans .t{filter:blur(6px);cursor:pointer;user-select:none;transition:filter .2s}
+body.practice.hide-ans td.c-ans.shown .t{filter:none}
+body.practice.hide-ans td.c-ans:not(.shown)::after{content:"Tippen zum Aufdecken";display:block;font-size:12px;color:var(--ans);margin-top:4px}
 
 td.c-ans .tr{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--ans);color:var(--muted);font-style:italic}
 td.c-ans.en-on .tr{display:block}
 .trb{display:block;margin-top:6px;font:inherit;font-size:12px;font-weight:700;color:var(--ans);background:none;border:1px solid var(--ans);border-radius:999px;padding:2px 10px;cursor:pointer}
-body.practice td.c-ans:not(.shown) .trb{display:none}
+body.practice.hide-ans td.c-ans:not(.shown) .trb{display:none}
 .w{cursor:pointer;border-radius:3px;transition:background .15s}
 @media (hover:hover){.w:hover{background:var(--surface)}}
 .w.sel{background:var(--b1);color:#fff}
@@ -83,7 +83,7 @@ body.practice td.c-ans:not(.shown) .trb{display:none}
 .say.on::before{border:none;width:8px;height:8px;background:currentColor;margin:0}
 td.c-b1 .say{color:var(--b1)}td.c-a2 .say{color:var(--a2)}td.c-a1 .say{color:var(--a1)}td.c-ans .say{color:var(--ans)}td.c-ans .say.on{color:#fff}
 body.no-tts .say,body.no-tts #sp{display:none}
-body.practice td.c-ans:not(.shown) > .say{display:none}
+body.practice.hide-ans td.c-ans:not(.shown) > .say{display:none}
 .w.pk{background:var(--a2);color:#fff}
 .pact{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 .pbtn{font:inherit;font-size:14px;font-weight:700;padding:6px 14px;border-radius:999px;border:2px solid var(--b1);background:var(--b1);color:#fff;cursor:pointer}
@@ -116,11 +116,11 @@ td.c-tx{border-left:3px solid var(--a2)}
 th.c-tx,td.c-tx::before{color:var(--a2)}
 td.c-de{border-left:3px solid var(--b1)}
 th.c-de,td.c-de::before{color:var(--b1)}
-body.practice .rv:not(.shown) > .s{filter:blur(6px);user-select:none;cursor:pointer}
-body.practice .rv:not(.shown)::after{content:"Tippen zum Aufdecken";display:block;font-size:12px;color:var(--ans);margin-top:4px}
+body.practice .rv:not(.shown):not(.c-ans) > .s,body.practice.hide-ans .rv.c-ans:not(.shown) > .s{filter:blur(6px);user-select:none;cursor:pointer}
+body.practice .rv:not(.shown):not(.c-ans)::after,body.practice.hide-ans .rv.c-ans:not(.shown)::after{content:"Tippen zum Aufdecken";display:block;font-size:12px;color:var(--ans);margin-top:4px}
 body.practice .rv.hear:not(.shown)::after{content:"▶ anhören, dann tippen zum Aufdecken"}
-body.practice .rv:not(.shown) > .trb,body.practice .rv:not(.shown) > .tr{display:none}
-body.practice .rv:not(.hear):not(.shown) > .say{display:none}
+body.practice .rv:not(.shown):not(.c-ans) > .trb,body.practice.hide-ans .rv.c-ans:not(.shown) > .trb,body.practice .rv:not(.shown):not(.c-ans) > .tr,body.practice.hide-ans .rv.c-ans:not(.shown) > .tr{display:none}
+body.practice .rv:not(.hear):not(.shown):not(.c-ans) > .say,body.practice.hide-ans .rv.c-ans:not(.shown) > .say{display:none}
 .en-on > .tr{display:block}
 .tr{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--ans);color:var(--muted);font-style:italic}
 .tip{font-size:14px;color:var(--muted);max-width:70ch}
@@ -141,19 +141,19 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 <link rel="stylesheet" href="karten.css">
 <link rel="stylesheet" href="test.css">
 </head>
-<body>
+<body class="practice hide-en hide-ans">
 <header class="hero">
  <div class="ladder"><span class="l1">A1</span><span class="l2">telc</span><span class="l3">Start Deutsch 1</span></div>
  <h1>telc Deutsch A1: alle vier Prüfungsteile</h1>
  <p class="sub">Übungsaufgaben im Stil der Prüfung für Hören, Lesen, Schreiben und Sprechen – mit englischer Übersetzung, Lösungen, Wortübersetzung per Tippen und Vorlesen.</p>
- <p class="note">So übst du Hören: Schalte den <b>Übungsmodus</b> ein. Dann ist der Hörtext verdeckt – tippe ▶, hör zu, wähle deine Antwort und decke dann Text und Lösung auf. Wörter in <span class="ph">[Klammern]</span> ersetzt du mit deinen eigenen Angaben. Bestanden ab 36 von 60 Punkten (60 %).</p>
+ <p class="note">So übst du Hören: Der <b>Übungsmodus</b> ist an (Knopf oben). Dann ist der Hörtext verdeckt – tippe ▶, hör zu, wähle deine Antwort und decke dann Text und Lösung auf. Wörter in <span class="ph">[Klammern]</span> ersetzt du mit deinen eigenen Angaben. Bestanden ab 36 von 60 Punkten (60 %).</p>
 </header>
 <div class="bar"><div class="bar-inner">
  <input type="hidden" id="q" value="">
  <div class="toggles">
-  <button class="tg en" data-k="en" aria-pressed="true">EN</button>
-  <button class="tg ans" data-k="ans" aria-pressed="true">Lösung</button>
-  <button class="tg practice" id="pr" aria-pressed="false"><span class="lg">Übungsmodus</span><span class="sm">Üben</span></button>
+  <button class="tg en" data-k="en" aria-pressed="false">EN</button>
+  <button class="tg ans" data-k="ans" aria-pressed="false">Lösung</button>
+  <button class="tg practice" id="pr" aria-pressed="true"><span class="lg">Übungsmodus</span><span class="sm">Üben</span></button>
   <button class="tg multi" id="mw" aria-pressed="false"><span class="lg">Mehrere Wörter</span><span class="sm">Wörter</span></button>
  </div>
 </div><nav class="topics" id="nav" aria-label="Prüfungsteile"></nav></div>
@@ -166,6 +166,7 @@ body.practice .rv:not(.hear):not(.shown) > .say{display:none}
 <script src="exam.js"></script>
 <script src="schreiben.js"></script>
 <script src="speak.js"></script>
+<script src="hilfe.js"></script>
 <script src="test.js"></script>
 <script src="test-a1.js"></script>
 <script>
@@ -396,7 +397,7 @@ function en(s){return PH(esc(s))}
 function block(deTxt,enTxt){return `<span class="s" lang="de">${de(deTxt)}</span>${SAY}${enTxt?TRB+`<span class="tr"><span class="s" lang="en">${en(enTxt)}</span>${SAY}</span>`:""}`}
 let h="",n="";const D=[];/* D: every question in order, for the cards */
 S.forEach((sk,si)=>{const id="s"+si;
- n+=`<a href="#${id}">${esc(sk.de)} · ${esc(sk.en)}</a>`;
+ n+=`<a href="#${id}" title="${esc(sk.en)}">${esc(sk.de)}</a>`;
  h+=`<section class="skill" id="${id}"><div class="th"><span class="n">${si+1}</span><h2>${esc(sk.de)}</h2><span class="en">${esc(sk.en)}</span></div><div class="skill-info">${esc(sk.info)} <i>(${esc(sk.infoEn)})</i></div>`;
  sk.parts.forEach((p,pi)=>{
   const hasTx=p.rows.some(r=>r[2]);
@@ -499,7 +500,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closePop()});
 function tap(e){
  const sb=e.target.closest(".say");if(sb){say(sb);return}
  const rv=e.target.closest(".rv");
- if(rv&&document.body.classList.contains("practice")&&!rv.classList.contains("shown")){rv.classList.add("shown");return}
+ if(rv&&document.body.classList.contains("practice")&&!rv.classList.contains("shown")&&!(rv.classList.contains("c-ans")&&!document.body.classList.contains("hide-ans"))){rv.classList.add("shown");return}
  const tb=e.target.closest(".trb");if(tb){const c=tb.parentElement;c.classList.toggle("en-on");tb.textContent=c.classList.contains("en-on")?"Englisch ausblenden":"Englisch zeigen";return}
  const w=e.target.closest(".w");if(w){multi?pick(w):lookup(w)}}
 main.addEventListener("click",tap);
@@ -533,6 +534,7 @@ document.querySelector(".toggles").prepend(K.button);
 /* ---- Modelltests (test.js): whole exams with a strict timer and marks ---- */
 const TZ=Pruefung({mount:main,level:"A1",tests:window.TESTS_A1,rate:()=>rate,scale:{factor:1,max:60,pass:36,grades:[[54,60,"sehr gut"],[48,53.5,"gut"],[42,47.5,"befriedigend"],[36,41.5,"ausreichend"]],rawLabel:"Punkten",note:"Wie bei telc Start Deutsch 1: jeder Prüfungsteil 15 Punkte, zusammen 60 – bestanden ab 36 Punkten (60 %). Sprechen wird automatisch aus deiner Aufnahme bewertet – du kannst jede Bewertung ändern."}});
 document.querySelector("header.hero .ladder").appendChild(TZ.entry);
+if(window.Hilfe)Hilfe({level:"A1",row:document.querySelector(".toggles"),cards:K.button,test:TZ.entry});
 document.getElementById("px").addEventListener("click",K.sync);
 
 /* ---- search ---- */

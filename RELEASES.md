@@ -1,5 +1,12 @@
 # Releases
 
+## 1.35.0 — 2026-10-12
+- A1/B1: Übungsmodus is on by default, EN and Lösung off. In Übungsmodus each solution is covered until tapped; Lösung on opens all solutions at once
+- A1/B1: a round ? at the start of the tool row explains every button as it looks (Karten, EN, Lösung, Übungsmodus, Mehrere Wörter, Test, ▶, Englisch zeigen, tap a word, [Platzhalter], the Prüfungsteile, ⋯) in German with English; it pulses until opened once
+- Übungsmodus button readable when on in dark mode
+- A1/B1: the Hören / Lesen / Schreiben / Sprechen nav shows German only, smaller, as rounded squares
+- Full screen removed. New Feedback in the ⋯ row: Feedback / Fehler / Idee, the message (draft kept), optional technical info (version, section, device), sent by e-mail or as a GitHub issue
+
 ## 1.34.0 — 2026-10-12
 - Modelltests keep their progress per test: do only Hören today and Lesen, Schreiben or Sprechen later, in any order – several tests can be in progress at once. Every test card shows Noch nicht begonnen / In Arbeit / Fertig and ✓ fertig · ● pausiert · ○ noch offen per Prüfungsteil with its mark, plus Weitermachen, Auswertung bisher and Neu beginnen
 - Results show the pass mark of every Prüfungsteil done (A1: 60 % of its points; B1/DTZ: B1/A2 thresholds) and the combined line once two or more are done (A1: Zusammen …, at the end Gesamt; DTZ: Hören + Lesen zusammen, B1 ab 33 / A2 ab 20 of 45). Looking at the result no longer ends the test
