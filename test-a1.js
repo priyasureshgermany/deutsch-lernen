@@ -1,11 +1,2657 @@
-/* Modelltests A1 for test.js: seven whole exams, each question with its
+/* Modelltests A1 for test.js: nine whole exams, each question with its
    answer key (a = index into o / list, -1 = x; rf: true = richtig) and why.
-   Test 1 is built from the practice tasks of the A1 page; Tests 2–7 are
-   their own texts. tools/check-tests.mjs checks sizes and keys. */
+   level: leicht / mittel / schwer – three each, in that order (measured: text
+   length, sentence length, paraphrase and traps in Hören and Lesen).
+   tools/check-tests.mjs checks sizes and keys. */
 window.TESTS_A1 = [
  {
-  "id": "a1-1",
+  "id": "a1-6",
   "title": "Modelltest 1",
+  "level": "leicht",
+  "sub": "Wetter, Sport, Wohnung · Einladung zum Grillen",
+  "sections": [
+   {
+    "id": "hoeren",
+    "de": "Hören",
+    "en": "Listening",
+    "time": 20,
+    "parts": [
+     {
+      "t": "Teil 1 – Kurze Gespräche",
+      "tab": "Teil 1",
+      "intro": "Sie hören sechs kurze Gespräche. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
+      "type": "mc",
+      "per": 1,
+      "plays": 2,
+      "items": [
+       {
+        "q": "Wann treffen sich die beiden?",
+        "o": [
+         "um halb sieben",
+         "um halb acht",
+         "um sieben"
+        ],
+        "a": 1,
+        "why": "„halb acht“",
+        "audio": "Mann: Treffen wir uns um sieben?\nFrau: Das ist zu früh. Lieber um halb acht.\nMann: Gut, halb acht."
+       },
+       {
+        "q": "Was kostet das T-Shirt?",
+        "o": [
+         "12 €",
+         "18 €",
+         "8 €"
+        ],
+        "a": 0,
+        "why": "statt 18 jetzt 12 Euro",
+        "audio": "Frau: Was kostet das T-Shirt?\nVerkäufer: Normal 18 Euro, heute nur 12 Euro."
+       },
+       {
+        "q": "Wo ist die Toilette?",
+        "o": [
+         "oben",
+         "rechts",
+         "unten"
+        ],
+        "a": 2,
+        "why": "die Treppe hinunter",
+        "audio": "Mann: Entschuldigung, wo ist die Toilette?\nKellnerin: Unten, die Treppe hinunter und dann links."
+       },
+       {
+        "q": "Welche Zimmernummer hat die Frau?",
+        "o": [
+         "412",
+         "241",
+         "214"
+        ],
+        "a": 2,
+        "why": "„zweihundertvierzehn“",
+        "audio": "Rezeption: Ihr Zimmer ist Nummer zweihundertvierzehn, im zweiten Stock.\nFrau: Danke schön."
+       },
+       {
+        "q": "Was macht der Mann heute Abend?",
+        "o": [
+         "Er geht zum Sport.",
+         "Er geht ins Kino.",
+         "Er bleibt zu Hause."
+        ],
+        "a": 0,
+        "audio": "Frau: Kommst du mit ins Kino?\nMann: Heute nicht, ich gehe zum Fußballtraining. Vielleicht morgen?"
+       },
+       {
+        "q": "Wie kommt die Frau zur Arbeit?",
+        "o": [
+         "zu Fuß",
+         "mit dem Fahrrad",
+         "mit dem Bus"
+        ],
+        "a": 1,
+        "audio": "Mann: Fährst du mit dem Bus zur Arbeit?\nFrau: Nein, mit dem Fahrrad. Das geht schneller."
+       }
+      ],
+      "time": 8
+     },
+     {
+      "t": "Teil 2 – Durchsagen",
+      "tab": "Teil 2",
+      "intro": "Sie hören vier Ansagen. Sie hören jeden Text einmal. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "plays": 1,
+      "items": [
+       {
+        "q": "Das Schwimmbad schließt heute früher.",
+        "a": true,
+        "why": "um 18 Uhr",
+        "audio": "Liebe Badegäste, heute schließt das Schwimmbad schon um 18 Uhr. Wir bitten um Verständnis."
+       },
+       {
+        "q": "Der Zug nach München fährt von Gleis 5.",
+        "a": false,
+        "why": "Gleis 3",
+        "audio": "Bitte beachten Sie: Der Regionalzug nach München fährt heute von Gleis 3."
+       },
+       {
+        "q": "Im Supermarkt sind Bananen heute billiger.",
+        "a": true,
+        "audio": "Liebe Kunden, heute im Angebot: ein Kilo Bananen für nur 99 Cent."
+       },
+       {
+        "q": "Herr Meier soll zur Information kommen.",
+        "a": true,
+        "audio": "Herr Thomas Meier, bitte kommen Sie zur Information im Erdgeschoss. Ihre Frau wartet dort."
+       }
+      ],
+      "time": 4
+     },
+     {
+      "t": "Teil 3 – Telefonansagen",
+      "tab": "Teil 3",
+      "intro": "Sie hören fünf Ansagen am Telefon. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
+      "type": "mc",
+      "per": 1,
+      "plays": 2,
+      "items": [
+       {
+        "q": "Was soll Frau Kaya mitbringen?",
+        "o": [
+         "die Versichertenkarte",
+         "ihren Pass",
+         "ein Foto"
+        ],
+        "a": 0,
+        "audio": "Guten Tag, Frau Kaya, hier ist die Praxis Doktor Engel. Bitte bringen Sie morgen Ihre Versichertenkarte mit. Danke!"
+       },
+       {
+        "q": "Wann kommt der Techniker?",
+        "o": [
+         "am Donnerstag",
+         "am Montag",
+         "am Dienstag"
+        ],
+        "a": 2,
+        "why": "nicht Montag – Dienstag",
+        "audio": "Guten Tag, hier ist die Firma Netz-Plus. Unser Techniker kann leider nicht am Montag kommen. Er kommt am Dienstag zwischen 8 und 12 Uhr."
+       },
+       {
+        "q": "Was möchte Carla machen?",
+        "o": [
+         "einkaufen gehen",
+         "schwimmen gehen",
+         "Tennis spielen"
+        ],
+        "a": 1,
+        "audio": "Hallo Jana, hier ist Carla. Das Wetter ist so schön! Wollen wir heute Nachmittag schwimmen gehen? Ruf mich an!"
+       },
+       {
+        "q": "Wo ist das Handy von Herrn Brandt?",
+        "o": [
+         "im Hotel",
+         "im Taxi",
+         "im Restaurant"
+        ],
+        "a": 2,
+        "audio": "Guten Abend, Herr Brandt, hier ist das Restaurant Adria. Sie haben Ihr Handy bei uns vergessen. Sie können es morgen ab 11 Uhr abholen."
+       },
+       {
+        "q": "Wie viel kostet der Kurs?",
+        "o": [
+         "60 €",
+         "80 €",
+         "40 €"
+        ],
+        "a": 1,
+        "why": "„achtzig Euro“",
+        "audio": "Hier ist die Volkshochschule. Der Kochkurs hat noch freie Plätze. Er dauert vier Abende und kostet achtzig Euro."
+       }
+      ],
+      "time": 8
+     }
+    ]
+   },
+   {
+    "id": "lesen",
+    "de": "Lesen",
+    "en": "Reading",
+    "time": 25,
+    "parts": [
+     {
+      "t": "Teil 1 – Kurze Mitteilungen",
+      "tab": "Teil 1",
+      "intro": "Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "items": [
+       {
+        "q": "Text 1: Lukas hat eine neue Wohnung.",
+        "a": true
+       },
+       {
+        "q": "Text 1: Die Wohnung hat zwei Zimmer.",
+        "a": false,
+        "why": "drei Zimmer"
+       },
+       {
+        "q": "Text 1: Lukas feiert am Freitag.",
+        "a": false,
+        "why": "am Samstag"
+       },
+       {
+        "q": "Text 2: Der Kurs am Montag fällt aus.",
+        "a": true
+       },
+       {
+        "q": "Text 2: Die Teilnehmer sollen am Mittwoch kommen.",
+        "a": true
+       }
+      ],
+      "text": "Text 1: Hallo Tina, ich habe endlich eine neue Wohnung! Sie hat drei Zimmer und einen Balkon. Am Samstag mache ich eine kleine Party. Kommst du? Bring bitte etwas zu trinken mit.\nLiebe Grüße\nLukas\nText 2: Liebe Kursteilnehmer, am Montag ist unsere Lehrerin krank. Der Kurs fällt aus. Wir machen den Unterricht am Mittwoch um 18 Uhr. Ihre Sprachschule",
+      "time": 8
+     },
+     {
+      "t": "Teil 2 – Anzeigen",
+      "tab": "Teil 2",
+      "intro": "Lesen Sie die Aufgaben und die Anzeigen. Welche Anzeige passt: a oder b?",
+      "type": "mc",
+      "per": 1,
+      "items": [
+       {
+        "q": "Sie möchten am Wochenende ein Auto mieten.",
+        "o": [
+         "Autovermietung Mobil: Autos ab 29 € pro Tag, auch am Wochenende.",
+         "Autohaus Weber: Neuwagen und Gebrauchtwagen kaufen."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Sie möchten Gitarre spielen lernen.",
+        "o": [
+         "Musikgeschäft: Gitarren ab 99 Euro kaufen.",
+         "Musikschule Klang: Gitarrenkurse für Anfänger."
+        ],
+        "a": 1
+       },
+       {
+        "q": "Sie suchen ein Zimmer für eine Nacht.",
+        "o": [
+         "Wohnung zu vermieten: 2 Zimmer, ab 1. Mai, 650 Euro im Monat.",
+         "Hotel am Park: Zimmer ab 59 Euro pro Nacht."
+        ],
+        "a": 1
+       },
+       {
+        "q": "Sie möchten günstig essen gehen.",
+        "o": [
+         "Mensa der Universität: Mittagessen ab 3,50 €, für alle.",
+         "Restaurant Royal: Menü mit 5 Gängen, 89 Euro."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Ihr Kind (6) möchte schwimmen lernen.",
+        "o": [
+         "Schwimmkurs für Kinder ab 5 Jahren, samstags.",
+         "Aqua-Fitness für Senioren, dienstags."
+        ],
+        "a": 0
+       }
+      ],
+      "time": 8
+     },
+     {
+      "t": "Teil 3 – Schilder und Aushänge",
+      "tab": "Teil 3",
+      "intro": "Lesen Sie die Schilder. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "items": [
+       {
+        "q": "Sie können heute den Aufzug benutzen.",
+        "a": false,
+        "text": "Aufzug außer Betrieb. Bitte benutzen Sie die Treppe."
+       },
+       {
+        "q": "Kunden dürfen hier eine Stunde parken.",
+        "a": true,
+        "text": "Parken nur für Kunden – maximal 1 Stunde."
+       },
+       {
+        "q": "Im August können Sie zu Dr. Kühn gehen.",
+        "a": true,
+        "text": "Arztpraxis: Wir machen Urlaub vom 1. bis 14. August. Vertretung: Dr. Kühn, Marktstraße 5."
+       },
+       {
+        "q": "Hier dürfen Sie rauchen.",
+        "a": false,
+        "text": "Bitte nicht rauchen!"
+       },
+       {
+        "q": "Am Sonntagnachmittag können Sie hier Brot kaufen.",
+        "a": false,
+        "why": "nur bis 11 Uhr",
+        "text": "Bäckerei: Sonntag 8–11 Uhr geöffnet."
+       }
+      ],
+      "time": 9
+     }
+    ]
+   },
+   {
+    "id": "schreiben",
+    "de": "Schreiben",
+    "en": "Writing",
+    "time": 20,
+    "parts": [
+     {
+      "t": "Teil 1 – Formular ausfüllen",
+      "tab": "Teil 1",
+      "intro": "Ihre Kollegin möchte einen Deutschkurs machen. Sie helfen ihr beim Formular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
+      "type": "form",
+      "per": 1,
+      "items": [
+       {
+        "q": "Herkunftsland",
+        "a": [
+         "Brasilien"
+        ],
+        "why": ""
+       },
+       {
+        "q": "Wohnort",
+        "a": [
+         "Darmstadt"
+        ],
+        "why": ""
+       },
+       {
+        "q": "Muttersprache",
+        "a": [
+         "Portugiesisch"
+        ],
+        "why": ""
+       },
+       {
+        "q": "Kurszeit",
+        "o": [
+         "vormittags",
+         "abends"
+        ],
+        "a": 1,
+        "why": "Sie arbeitet tagsüber."
+       },
+       {
+        "q": "Kinder",
+        "a": [
+         "2",
+         "zwei"
+        ],
+        "why": "zwei Söhne"
+       }
+      ],
+      "text": "Meine Kollegin Ana Souza kommt aus Brasilien. Ihre Muttersprache ist Portugiesisch. Sie wohnt in Darmstadt und hat zwei Söhne. Ana möchte einen Deutschkurs A1 machen. Tagsüber arbeitet sie, deshalb möchte sie abends lernen.",
+      "time": 5
+     },
+     {
+      "t": "Teil 2 – Kurze Mitteilung",
+      "tab": "Teil 2",
+      "intro": "Schreiben Sie etwa 30 Wörter. Schreiben Sie zu allen drei Punkten. Vergessen Sie Anrede und Gruß nicht.",
+      "type": "write",
+      "crit": "a1",
+      "words": 30,
+      "task": "Ihre Nachbarn haben Sie zum Grillen am Samstag eingeladen. Schreiben Sie eine E-Mail:\n– Danken Sie für die Einladung.\n– Sagen Sie, dass Sie kommen.\n– Fragen Sie, was Sie mitbringen sollen.",
+      "points": [
+       "Danken Sie für die Einladung.",
+       "Sagen Sie, dass Sie kommen.",
+       "Fragen Sie, was Sie mitbringen sollen."
+      ],
+      "model": "Liebe Familie Wagner,\nvielen Dank für die Einladung zum Grillen! Ich komme am Samstag sehr gern. Soll ich einen Salat oder Getränke mitbringen?\nViele Grüße\nSuresh",
+      "time": 15
+     }
+    ]
+   },
+   {
+    "id": "sprechen",
+    "de": "Sprechen",
+    "en": "Speaking",
+    "time": 15,
+    "oral": true,
+    "parts": [
+     {
+      "t": "Teil 1 – Sich vorstellen",
+      "tab": "Teil 1",
+      "intro": "Stellen Sie sich vor. Dann buchstabieren Sie und sagen eine Nummer oder Adresse.",
+      "type": "speak",
+      "max": 3,
+      "time": 4,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Guten Tag! Bitte stellen Sie sich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf und Hobby."
+       },
+       {
+        "you": "Stell dich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby.",
+        "min": 20,
+        "key": [
+         [
+          "heiße|name ist|ich bin [A-ZÄÖÜ]",
+          "Name"
+         ],
+         [
+          "jahre",
+          "Alter"
+         ],
+         [
+          "komme aus",
+          "Land"
+         ],
+         [
+          "wohne",
+          "Wohnort"
+         ],
+         [
+          "spreche",
+          "Sprachen"
+         ],
+         [
+          "arbeite|beruf|bin .*(ingenieur|lehrer|student|entwickler|krankenschwester|koch|verkäufer)",
+          "Beruf"
+         ],
+         [
+          "hobby|gern|spiele|lese|koche|tanze|schwimme",
+          "Hobby"
+         ]
+        ],
+        "model": "Ich heiße Suresh. Ich bin [Alter] Jahre alt und komme aus Indien. Ich wohne in Frankfurt. Ich spreche Englisch und ein bisschen Deutsch. Ich arbeite als Ingenieur. Mein Hobby ist Kochen."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Danke. Buchstabieren Sie bitte Ihren Vornamen."
+       },
+       {
+        "you": "Buchstabiere deinen Vornamen.",
+        "min": 3,
+        "key": [],
+        "model": "S – U – R – E – S – H."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Und wie ist Ihre Adresse?"
+       },
+       {
+        "you": "Sag deine Adresse: Straße, Hausnummer, Postleitzahl, Stadt.",
+        "min": 4,
+        "key": [
+         [
+          "\\d|null|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|straße",
+          "Zahlen / Adresse"
+         ]
+        ],
+        "model": "Meine Adresse ist [Straße] [Hausnummer], [Postleitzahl] Frankfurt."
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Um Informationen bitten und geben",
+      "tab": "Teil 2",
+      "intro": "Thema: Einkaufen. Ihr Partner fragt Sie, Sie antworten. Dann fragen Sie mit Ihrer Karte, Ihr Partner antwortet.",
+      "type": "speak",
+      "max": 6,
+      "time": 6,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil 2. Das Thema ist: Einkaufen. Tom, bitte fragen Sie zuerst."
+       },
+       {
+        "who": "Tom",
+        "say": "Wo kaufst du Lebensmittel?"
+       },
+       {
+        "you": "Antworte Tom in einem ganzen Satz.",
+        "min": 4,
+        "key": [
+         [
+          "\\bich\\b",
+          "ganzer Satz mit ich"
+         ]
+        ],
+        "model": "Ich kaufe im Supermarkt in meiner Straße ein."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Jetzt Sie. Ihre Karte: Brot."
+       },
+       {
+        "you": "Frag Tom etwas zum Wort „Brot“.",
+        "min": 3,
+        "key": [
+         [
+          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
+          "Frageform"
+         ],
+         [
+          "brot",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Wo kaufst du dein Brot?"
+       },
+       {
+        "who": "Tom",
+        "say": "In der Bäckerei am Markt."
+       },
+       {
+        "who": "Lea",
+        "say": "Kaufst du gern Kleidung?"
+       },
+       {
+        "you": "Antworte Lea in einem ganzen Satz.",
+        "min": 4,
+        "key": [
+         [
+          "\\bich\\b",
+          "ganzer Satz mit ich"
+         ]
+        ],
+        "model": "Nein, ich kaufe nicht so gern Kleidung."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Ihre zweite Karte: Markt."
+       },
+       {
+        "you": "Frag Lea etwas zum Wort „Markt“.",
+        "min": 3,
+        "key": [
+         [
+          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
+          "Frageform"
+         ],
+         [
+          "markt",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Gehst du am Samstag auf den Markt?"
+       },
+       {
+        "who": "Lea",
+        "say": "Ja, fast jeden Samstag."
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Bitten formulieren und darauf reagieren",
+      "tab": "Teil 3",
+      "intro": "Ihr Partner bittet Sie um etwas, Sie reagieren. Dann bitten Sie mit Ihrer Bildkarte, Ihr Partner reagiert.",
+      "type": "speak",
+      "max": 6,
+      "time": 5,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil 3. Bitten und reagieren. Lea, bitte beginnen Sie."
+       },
+       {
+        "who": "Lea",
+        "say": "Kannst du mir bitte zehn Euro leihen?"
+       },
+       {
+        "you": "Reagiere auf Leas Bitte.",
+        "min": 2,
+        "key": [
+         [
+          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
+          "Reaktion"
+         ]
+        ],
+        "model": "Ja, natürlich. Hier, bitte."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Jetzt Sie. Ihre Karte: 🛒 Einkaufstasche."
+       },
+       {
+        "you": "Bitte Tom um etwas – Karte: 🛒 Einkaufstasche.",
+        "min": 3,
+        "key": [
+         [
+          "bitte",
+          "bitte"
+         ],
+         [
+          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
+          "Bitte-Form"
+         ],
+         [
+          "tasche|einkauf",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Kannst du mir bitte die Einkaufstasche geben?"
+       },
+       {
+        "who": "Tom",
+        "say": "Ja, hier ist sie."
+       },
+       {
+        "who": "Tom",
+        "say": "Kaufst du bitte Milch für mich?"
+       },
+       {
+        "you": "Reagiere auf Toms Bitte.",
+        "min": 2,
+        "key": [
+         [
+          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
+          "Reaktion"
+         ]
+        ],
+        "model": "Ja, gern. Wie viel?"
+       },
+       {
+        "who": "Prüferin",
+        "say": "Ihre zweite Karte: 🧾 Kasse."
+       },
+       {
+        "you": "Bitte Lea um etwas – Karte: 🧾 Kasse.",
+        "min": 3,
+        "key": [
+         [
+          "bitte",
+          "bitte"
+         ],
+         [
+          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
+          "Bitte-Form"
+         ],
+         [
+          "kasse|bezahl",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Kannst du bitte an der Kasse bezahlen?"
+       },
+       {
+        "who": "Lea",
+        "say": "Ja, kein Problem."
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "a1-5",
+  "title": "Modelltest 2",
+  "level": "leicht",
+  "sub": "Familie, Freizeit, Termine · Termin beim Arzt absagen",
+  "sections": [
+   {
+    "id": "hoeren",
+    "de": "Hören",
+    "en": "Listening",
+    "time": 20,
+    "parts": [
+     {
+      "t": "Teil 1 – Kurze Gespräche",
+      "tab": "Teil 1",
+      "intro": "Sie hören sechs kurze Gespräche. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
+      "type": "mc",
+      "per": 1,
+      "plays": 2,
+      "items": [
+       {
+        "q": "Wo ist der Schlüssel?",
+        "o": [
+         "auf dem Tisch",
+         "in der Tasche",
+         "in der Jacke"
+        ],
+        "a": 2,
+        "audio": "Frau: Wo ist mein Schlüssel? Nicht auf dem Tisch.\nMann: Schau mal in deiner Jacke.\nFrau: Ah ja, hier ist er. Danke!"
+       },
+       {
+        "q": "Für wie viele Personen ist der Tisch?",
+        "o": [
+         "für zwei",
+         "für drei",
+         "für vier"
+        ],
+        "a": 2,
+        "why": "Die Eltern kommen auch.",
+        "audio": "Kellner: Ein Tisch für zwei?\nMann: Nein, für vier Personen. Meine Eltern kommen auch."
+       },
+       {
+        "q": "Wann fährt der Zug nach Köln?",
+        "o": [
+         "um 7:15 Uhr",
+         "um 7:50 Uhr",
+         "um 8:15 Uhr"
+        ],
+        "a": 1,
+        "why": "„sieben Uhr fünfzig“",
+        "audio": "Frau: Wann fährt der Zug nach Köln?\nMann: Um sieben Uhr fünfzig, von Gleis zwei."
+       },
+       {
+        "q": "Was macht Paul in der Freizeit?",
+        "o": [
+         "Fußball",
+         "Schwimmen",
+         "Musik"
+        ],
+        "a": 1,
+        "audio": "Frau: Spielst du Fußball, Paul?\nPaul: Nein, Fußball mag ich nicht. Ich gehe zweimal pro Woche schwimmen."
+       },
+       {
+        "q": "Wie ist das Wetter?",
+        "o": [
+         "Es regnet.",
+         "Es ist sonnig.",
+         "Es schneit."
+        ],
+        "a": 0,
+        "audio": "Mann: Nimmst du einen Regenschirm mit?\nFrau: Ja, es regnet schon den ganzen Morgen."
+       },
+       {
+        "q": "Wie viel kostet die Fahrkarte?",
+        "o": [
+         "4,50 €",
+         "5,40 €",
+         "14,50 €"
+        ],
+        "a": 0,
+        "why": "„vier Euro fünfzig“",
+        "audio": "Frau: Eine Fahrkarte nach Darmstadt, bitte.\nMann: Das macht vier Euro fünfzig."
+       }
+      ],
+      "time": 8
+     },
+     {
+      "t": "Teil 2 – Durchsagen",
+      "tab": "Teil 2",
+      "intro": "Sie hören vier Ansagen. Sie hören jeden Text einmal. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "plays": 1,
+      "items": [
+       {
+        "q": "Das Museum ist heute bis 20 Uhr geöffnet.",
+        "a": false,
+        "why": "heute bis 24 Uhr",
+        "audio": "Liebe Besucher, heute ist Museumsnacht. Unser Museum ist bis 24 Uhr geöffnet."
+       },
+       {
+        "q": "Die Passagiere nach Rom sollen zu Gate A 7 gehen.",
+        "a": true,
+        "audio": "Passagiere des Fluges nach Rom, bitte kommen Sie zu Gate A 7. Das Boarding beginnt."
+       },
+       {
+        "q": "Kaffee ist heute im Angebot.",
+        "a": true,
+        "audio": "Heute im Angebot: Kaffee, 500 Gramm, nur 3 Euro 99. Nur heute!"
+       },
+       {
+        "q": "Die U2 fährt heute nur bis zum Bahnhof.",
+        "a": false,
+        "why": "nur bis zum Rathaus",
+        "audio": "Achtung: Wegen Bauarbeiten fährt die U2 heute nur bis zum Rathaus. Weiter geht es mit dem Bus."
+       }
+      ],
+      "time": 4
+     },
+     {
+      "t": "Teil 3 – Telefonansagen",
+      "tab": "Teil 3",
+      "intro": "Sie hören fünf Ansagen am Telefon. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
+      "type": "mc",
+      "per": 1,
+      "plays": 2,
+      "items": [
+       {
+        "q": "Wann ist der neue Termin?",
+        "o": [
+         "am Montag",
+         "am Mittwoch",
+         "am Freitag"
+        ],
+        "a": 2,
+        "why": "Mittwoch geht nicht – Freitag um 14 Uhr.",
+        "audio": "Guten Tag, hier ist der Friseursalon Schön. Ihr Termin am Mittwoch geht leider nicht. Können Sie am Freitag um 14 Uhr kommen?"
+       },
+       {
+        "q": "Was hat Anna gekauft?",
+        "o": [
+         "Kuchen",
+         "Blumen",
+         "ein Buch"
+        ],
+        "a": 1,
+        "why": "Den Kuchen soll die Mutter kaufen.",
+        "audio": "Hallo Mama, hier ist Anna. Für Omas Geburtstag habe ich schon Blumen gekauft. Kaufst du bitte den Kuchen? Danke!"
+       },
+       {
+        "q": "Wo wartet Peter?",
+        "o": [
+         "vor dem Kino",
+         "am Bahnhof",
+         "im Restaurant"
+        ],
+        "a": 0,
+        "audio": "Hi Lisa, hier ist Peter. Ich bin schon da und warte vor dem Kino. Der Film beginnt in zehn Minuten. Beeil dich!"
+       },
+       {
+        "q": "Was soll Herr Klein tun?",
+        "o": [
+         "zurückrufen",
+         "eine E-Mail schreiben",
+         "vorbeikommen"
+        ],
+        "a": 0,
+        "why": "„Bitte rufen Sie uns zurück.“",
+        "audio": "Guten Tag, Herr Klein, hier ist die Bank. Wir haben eine Frage zu Ihrem Konto. Bitte rufen Sie uns zurück unter 069 98 76 54."
+       },
+       {
+        "q": "Wann ist die Party?",
+        "o": [
+         "am Freitag",
+         "am Samstag",
+         "am Sonntag"
+        ],
+        "a": 1,
+        "why": "„nicht am Freitag, sondern am Samstag“",
+        "audio": "Hallo, hier ist Ben. Meine Party ist nicht am Freitag, sondern am Samstag um acht. Kommst du?"
+       }
+      ],
+      "time": 8
+     }
+    ]
+   },
+   {
+    "id": "lesen",
+    "de": "Lesen",
+    "en": "Reading",
+    "time": 25,
+    "parts": [
+     {
+      "t": "Teil 1 – Kurze Mitteilungen",
+      "tab": "Teil 1",
+      "intro": "Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "items": [
+       {
+        "q": "Text 1: Sofia macht einen Sprachkurs in Berlin.",
+        "a": true
+       },
+       {
+        "q": "Text 1: Der Kurs ist am Nachmittag.",
+        "a": false,
+        "why": "von 9 bis 13 Uhr"
+       },
+       {
+        "q": "Text 1: Sofia wohnt in einem Hotel.",
+        "a": false,
+        "why": "bei einer Familie"
+       },
+       {
+        "q": "Text 2: Das Sofa kommt am Donnerstag.",
+        "a": true
+       },
+       {
+        "q": "Text 2: Herr Lang muss nicht zu Hause sein.",
+        "a": false,
+        "why": "„Bitte sind Sie zu Hause.“"
+       }
+      ],
+      "text": "Text 1: Hallo Max, ich bin jetzt in Berlin und mache einen Sprachkurs. Der Kurs ist jeden Tag von 9 bis 13 Uhr. Am Nachmittag besuche ich die Stadt. Ich wohne bei einer netten Familie. Sie haben zwei Kinder und einen Hund. Bis bald, Sofia\nText 2: Sehr geehrter Herr Lang, Ihr neues Sofa kommt am Donnerstag zwischen 10 und 14 Uhr. Bitte sind Sie zu Hause. Wenn der Termin nicht passt, rufen Sie uns bitte an. Möbelhaus Wohnwelt",
+      "time": 8
+     },
+     {
+      "t": "Teil 2 – Anzeigen",
+      "tab": "Teil 2",
+      "intro": "Lesen Sie die Aufgaben und die Anzeigen. Welche Anzeige passt: a oder b?",
+      "type": "mc",
+      "per": 1,
+      "items": [
+       {
+        "q": "Sie möchten Deutsch online lernen.",
+        "o": [
+         "Sprachschule Plus: Kurse im Klassenraum, Montag bis Freitag.",
+         "Deutsch-App „Lingo“: Lernen am Handy, wann Sie möchten."
+        ],
+        "a": 1
+       },
+       {
+        "q": "Sie suchen einen Babysitter für Samstagabend.",
+        "o": [
+         "Studentin sucht Babysitter-Job, abends und am Wochenende.",
+         "Kita Regenbogen: Montag bis Freitag 7–17 Uhr."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Sie möchten einen gebrauchten Kühlschrank kaufen.",
+        "o": [
+         "Verkaufe Kühlschrank, 2 Jahre alt, 80 Euro.",
+         "Elektro-Markt: neue Kühlschränke ab 399 Euro."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Sie möchten am Wochenende wandern.",
+        "o": [
+         "Wanderverein: Touren jeden Sonntag, Treffpunkt Bahnhof 9 Uhr.",
+         "Fitnessstudio: Laufband und Kurse, Montag bis Freitag."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Sie brauchen schnell einen Arzttermin am Abend.",
+        "o": [
+         "Praxis Dr. Sommer: Sprechstunde Montag bis Freitag 8–12 Uhr.",
+         "Ärztehaus City: Abendsprechstunde bis 20 Uhr, ohne Termin."
+        ],
+        "a": 1
+       }
+      ],
+      "time": 8
+     },
+     {
+      "t": "Teil 3 – Schilder und Aushänge",
+      "tab": "Teil 3",
+      "intro": "Lesen Sie die Schilder. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "items": [
+       {
+        "q": "Am Abend können Sie hier frischen Fisch kaufen.",
+        "a": false,
+        "why": "nur bis 14 Uhr",
+        "text": "Heute frischer Fisch! Nur bis 14 Uhr."
+       },
+       {
+        "q": "Es gibt einen anderen Eingang für Rollstuhlfahrer.",
+        "a": true,
+        "text": "Eingang für Rollstuhlfahrer: bitte links um das Haus gehen."
+       },
+       {
+        "q": "Sie dürfen hier mit Schuhen hineingehen.",
+        "a": false,
+        "text": "Bitte Schuhe ausziehen!"
+       },
+       {
+        "q": "Sie können die Lehrerin am Donnerstagnachmittag sprechen.",
+        "a": true,
+        "text": "Sprechstunde der Lehrerin: donnerstags 15–16 Uhr."
+       },
+       {
+        "q": "Das Passwort bekommen Sie an der Theke.",
+        "a": true,
+        "text": "Kostenloses WLAN für Gäste. Passwort an der Theke."
+       }
+      ],
+      "time": 9
+     }
+    ]
+   },
+   {
+    "id": "schreiben",
+    "de": "Schreiben",
+    "en": "Writing",
+    "time": 20,
+    "parts": [
+     {
+      "t": "Teil 1 – Formular ausfüllen",
+      "tab": "Teil 1",
+      "intro": "Ihre Nachbarin möchte einen Leseausweis für die Bibliothek. Sie helfen ihr beim Formular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
+      "type": "form",
+      "per": 1,
+      "items": [
+       {
+        "q": "Herkunftsland",
+        "a": [
+         "Rumänien"
+        ],
+        "why": "„kommt aus Rumänien“"
+       },
+       {
+        "q": "Wohnort",
+        "a": [
+         "Offenbach"
+        ],
+        "why": ""
+       },
+       {
+        "q": "Alter",
+        "a": [
+         "42",
+         "zweiundvierzig",
+         "42 Jahre"
+        ],
+        "why": ""
+       },
+       {
+        "q": "Familienstand",
+        "a": [
+         "verheiratet"
+        ],
+        "why": ""
+       },
+       {
+        "q": "Zahlungsart",
+        "o": [
+         "bar",
+         "Überweisung"
+        ],
+        "a": 0,
+        "why": "„bezahlt sie bar“"
+       }
+      ],
+      "text": "Meine Nachbarin Elena Popescu kommt aus Rumänien. Sie wohnt in Offenbach, Ringstraße 20. Sie ist 42 Jahre alt und verheiratet. Elena möchte in der Stadtbibliothek einen Leseausweis. Sie liest gern Bücher auf Deutsch und Rumänisch. Den Ausweis bezahlt sie bar.",
+      "time": 5
+     },
+     {
+      "t": "Teil 2 – Kurze Mitteilung",
+      "intro": "Schreiben Sie etwa 30 Wörter. Schreiben Sie zu allen drei Punkten. Vergessen Sie Anrede und Gruß nicht.",
+      "type": "write",
+      "crit": "a1",
+      "words": 30,
+      "task": "Sie können am Dienstag nicht zum Arzt kommen. Schreiben Sie an die Praxis:",
+      "points": [
+       "Termin",
+       "Warum nicht?",
+       "Neuer Termin?"
+      ],
+      "model": "Sehr geehrte Damen und Herren,\nich habe am Dienstag um 10 Uhr einen Termin bei Dr. Weber. Leider muss ich an diesem Tag arbeiten. Kann ich am Donnerstag kommen?\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "tab": "Teil 2",
+      "time": 15
+     }
+    ]
+   },
+   {
+    "id": "sprechen",
+    "de": "Sprechen",
+    "en": "Speaking",
+    "time": 15,
+    "oral": true,
+    "parts": [
+     {
+      "t": "Teil 1 – Sich vorstellen",
+      "tab": "Teil 1",
+      "intro": "Stellen Sie sich vor. Dann buchstabieren Sie und sagen eine Nummer oder Adresse.",
+      "type": "speak",
+      "max": 3,
+      "time": 4,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Guten Tag! Bitte stellen Sie sich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf und Hobby."
+       },
+       {
+        "you": "Stell dich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby.",
+        "min": 20,
+        "key": [
+         [
+          "heiße|name ist|ich bin [A-ZÄÖÜ]",
+          "Name"
+         ],
+         [
+          "jahre",
+          "Alter"
+         ],
+         [
+          "komme aus",
+          "Land"
+         ],
+         [
+          "wohne",
+          "Wohnort"
+         ],
+         [
+          "spreche",
+          "Sprachen"
+         ],
+         [
+          "arbeite|beruf|bin .*(ingenieur|lehrer|student|entwickler|krankenschwester|koch|verkäufer)",
+          "Beruf"
+         ],
+         [
+          "hobby|gern|spiele|lese|koche|tanze|schwimme",
+          "Hobby"
+         ]
+        ],
+        "model": "Ich heiße Suresh. Ich bin [Alter] Jahre alt und komme aus Indien. Ich wohne in Frankfurt. Ich spreche Englisch und ein bisschen Deutsch. Ich arbeite als Ingenieur. Mein Hobby ist Kochen."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Danke. Buchstabieren Sie bitte Ihren Vornamen."
+       },
+       {
+        "you": "Buchstabiere deinen Vornamen.",
+        "min": 3,
+        "key": [],
+        "model": "S – U – R – E – S – H."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Und wie ist Ihre Telefonnummer?"
+       },
+       {
+        "you": "Sag deine Telefonnummer, Zahl für Zahl.",
+        "min": 4,
+        "key": [
+         [
+          "\\d|null|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|straße",
+          "Zahlen / Adresse"
+         ]
+        ],
+        "model": "Null – eins – sieben – sechs – zwei – drei – vier – fünf – sechs – sieben."
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Um Informationen bitten und geben",
+      "tab": "Teil 2",
+      "intro": "Thema: Reisen. Ihr Partner fragt Sie, Sie antworten. Dann fragen Sie mit Ihrer Karte, Ihr Partner antwortet.",
+      "type": "speak",
+      "max": 6,
+      "time": 6,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil 2. Das Thema ist: Reisen. Tom, bitte fragen Sie zuerst."
+       },
+       {
+        "who": "Tom",
+        "say": "Wohin fährst du im Urlaub?"
+       },
+       {
+        "you": "Antworte Tom in einem ganzen Satz.",
+        "min": 4,
+        "key": [
+         [
+          "\\bich\\b",
+          "ganzer Satz mit ich"
+         ]
+        ],
+        "model": "Ich fahre im Sommer nach Italien."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Jetzt Sie. Ihre Karte: Zug."
+       },
+       {
+        "you": "Frag Tom etwas zum Wort „Zug“.",
+        "min": 3,
+        "key": [
+         [
+          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
+          "Frageform"
+         ],
+         [
+          "zug",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Fährst du gern mit dem Zug?"
+       },
+       {
+        "who": "Tom",
+        "say": "Ja, Zug fahren ist bequem."
+       },
+       {
+        "who": "Lea",
+        "say": "Fliegst du gern?"
+       },
+       {
+        "you": "Antworte Lea in einem ganzen Satz.",
+        "min": 4,
+        "key": [
+         [
+          "\\bich\\b",
+          "ganzer Satz mit ich"
+         ]
+        ],
+        "model": "Nein, ich fliege nicht gern."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Ihre zweite Karte: Hotel."
+       },
+       {
+        "you": "Frag Lea etwas zum Wort „Hotel“.",
+        "min": 3,
+        "key": [
+         [
+          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
+          "Frageform"
+         ],
+         [
+          "hotel",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Wohnst du im Urlaub im Hotel?"
+       },
+       {
+        "who": "Lea",
+        "say": "Nein, in einer Ferienwohnung."
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Bitten formulieren und darauf reagieren",
+      "tab": "Teil 3",
+      "intro": "Ihr Partner bittet Sie um etwas, Sie reagieren. Dann bitten Sie mit Ihrer Bildkarte, Ihr Partner reagiert.",
+      "type": "speak",
+      "max": 6,
+      "time": 5,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil 3. Bitten und reagieren. Lea, bitte beginnen Sie."
+       },
+       {
+        "who": "Lea",
+        "say": "Kannst du bitte ein Foto von mir machen?"
+       },
+       {
+        "you": "Reagiere auf Leas Bitte.",
+        "min": 2,
+        "key": [
+         [
+          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
+          "Reaktion"
+         ]
+        ],
+        "model": "Ja, gern. Lächeln!"
+       },
+       {
+        "who": "Prüferin",
+        "say": "Jetzt Sie. Ihre Karte: 🗺️ Stadtplan."
+       },
+       {
+        "you": "Bitte Tom um etwas – Karte: 🗺️ Stadtplan.",
+        "min": 3,
+        "key": [
+         [
+          "bitte",
+          "bitte"
+         ],
+         [
+          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
+          "Bitte-Form"
+         ],
+         [
+          "stadtplan|plan|karte",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Kannst du mir bitte den Stadtplan zeigen?"
+       },
+       {
+        "who": "Tom",
+        "say": "Ja, hier ist er."
+       },
+       {
+        "who": "Tom",
+        "say": "Wartest du bitte kurz auf mich?"
+       },
+       {
+        "you": "Reagiere auf Toms Bitte.",
+        "min": 2,
+        "key": [
+         [
+          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
+          "Reaktion"
+         ]
+        ],
+        "model": "Ja, kein Problem."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Ihre zweite Karte: 🎫 Fahrkarte."
+       },
+       {
+        "you": "Bitte Lea um etwas – Karte: 🎫 Fahrkarte.",
+        "min": 3,
+        "key": [
+         [
+          "bitte",
+          "bitte"
+         ],
+         [
+          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
+          "Bitte-Form"
+         ],
+         [
+          "fahrkarte|ticket",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Kannst du mir bitte eine Fahrkarte kaufen?"
+       },
+       {
+        "who": "Lea",
+        "say": "Ja, mache ich."
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "a1-7",
+  "title": "Modelltest 3",
+  "level": "leicht",
+  "sub": "Arzt, Behörde, Feiertage · Nachricht an die Lehrerin",
+  "sections": [
+   {
+    "id": "hoeren",
+    "de": "Hören",
+    "en": "Listening",
+    "time": 20,
+    "parts": [
+     {
+      "t": "Teil 1 – Kurze Gespräche",
+      "tab": "Teil 1",
+      "intro": "Sie hören sechs kurze Gespräche. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
+      "type": "mc",
+      "per": 1,
+      "plays": 2,
+      "items": [
+       {
+        "q": "Was hat die Frau?",
+        "o": [
+         "Bauchschmerzen",
+         "Fieber",
+         "Kopfschmerzen"
+        ],
+        "a": 0,
+        "audio": "Arzt: Was fehlt Ihnen?\nFrau: Ich habe seit gestern Bauchschmerzen. Fieber habe ich nicht."
+       },
+       {
+        "q": "In welchem Stock ist das Bürgerbüro?",
+        "o": [
+         "im ersten",
+         "im dritten",
+         "im zweiten"
+        ],
+        "a": 1,
+        "audio": "Mann: Wo ist das Bürgerbüro, bitte?\nFrau: Im dritten Stock. Der Aufzug ist dort rechts."
+       },
+       {
+        "q": "Wie lange dauert der Film?",
+        "o": [
+         "zwei Stunden",
+         "zweieinhalb Stunden",
+         "90 Minuten"
+        ],
+        "a": 0,
+        "audio": "Frau: Wie lange dauert der Film?\nMann: Genau zwei Stunden. Er ist um zehn Uhr zu Ende."
+       },
+       {
+        "q": "Was isst der Mann?",
+        "o": [
+         "Pizza",
+         "Fisch",
+         "Salat"
+        ],
+        "a": 1,
+        "audio": "Kellnerin: Möchten Sie die Pizza?\nMann: Nein, heute nehme ich den Fisch mit Kartoffeln."
+       },
+       {
+        "q": "Wann hat der Junge Geburtstag?",
+        "o": [
+         "am 30. März",
+         "am 13. März",
+         "am 3. März"
+        ],
+        "a": 1,
+        "why": "„am dreizehnten“",
+        "audio": "Frau: Wann hast du Geburtstag, Leon?\nLeon: Am dreizehnten März. Dann werde ich acht!"
+       },
+       {
+        "q": "Wohin fährt die Familie im Urlaub?",
+        "o": [
+         "in die Berge",
+         "nach Spanien",
+         "an die Ostsee"
+        ],
+        "a": 2,
+        "audio": "Mann: Fahrt ihr wieder nach Spanien?\nFrau: Nein, dieses Jahr fahren wir an die Ostsee. Das ist nicht so weit."
+       }
+      ],
+      "time": 8
+     },
+     {
+      "t": "Teil 2 – Durchsagen",
+      "tab": "Teil 2",
+      "intro": "Sie hören vier Ansagen. Sie hören jeden Text einmal. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "plays": 1,
+      "items": [
+       {
+        "q": "Am Montag ist das Rathaus geschlossen.",
+        "a": true,
+        "why": "Feiertag",
+        "audio": "Liebe Bürgerinnen und Bürger, am Montag ist Feiertag. Das Rathaus ist geschlossen."
+       },
+       {
+        "q": "Die Straßenbahn fährt heute normal.",
+        "a": false,
+        "why": "Umleitung",
+        "audio": "Achtung: Die Straßenbahn Linie 12 fährt heute wegen einer Baustelle eine Umleitung."
+       },
+       {
+        "q": "Der Flug nach Wien hat Verspätung.",
+        "a": false,
+        "why": "Er ist pünktlich – Gate geändert.",
+        "audio": "Passagiere nach Wien: Ihr Flug ist pünktlich, aber er startet heute von Gate B 12."
+       },
+       {
+        "q": "Im Kaufhaus gibt es heute Kaffee gratis.",
+        "a": true,
+        "audio": "Liebe Kunden, in unserem Café im vierten Stock gibt es heute für alle eine Tasse Kaffee gratis!"
+       }
+      ],
+      "time": 4
+     },
+     {
+      "t": "Teil 3 – Telefonansagen",
+      "tab": "Teil 3",
+      "intro": "Sie hören fünf Ansagen am Telefon. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
+      "type": "mc",
+      "per": 1,
+      "plays": 2,
+      "items": [
+       {
+        "q": "Wann soll Herr Novak kommen?",
+        "o": [
+         "um 9 Uhr",
+         "um 8 Uhr",
+         "um 10 Uhr"
+        ],
+        "a": 1,
+        "audio": "Guten Tag, Herr Novak, hier ist das Bürgerbüro. Ihr Pass ist fertig. Bitte kommen Sie morgen um acht Uhr."
+       },
+       {
+        "q": "Was ist kaputt?",
+        "o": [
+         "das Fenster",
+         "die Heizung",
+         "die Waschmaschine"
+        ],
+        "a": 0,
+        "audio": "Hallo, hier ist Frau Berg aus dem zweiten Stock. Das Fenster in meiner Küche ist kaputt. Können Sie heute kommen?"
+       },
+       {
+        "q": "Was machen Max und Ole am Sonntag?",
+        "o": [
+         "Sie fahren Fahrrad.",
+         "Sie gehen ins Museum.",
+         "Sie spielen Fußball."
+        ],
+        "a": 0,
+        "audio": "Hallo Ole, hier ist Max. Am Sonntag soll es schön werden. Wollen wir eine Fahrradtour machen? Ruf mich an!"
+       },
+       {
+        "q": "Wann ist die Sprechstunde?",
+        "o": [
+         "mittwochs",
+         "dienstags",
+         "freitags"
+        ],
+        "a": 0,
+        "audio": "Hier ist die Schule am See. Die Sprechstunde von Frau Lehmann ist jetzt immer mittwochs von 14 bis 15 Uhr."
+       },
+       {
+        "q": "Wo treffen sich die beiden?",
+        "o": [
+         "vor der Bank",
+         "am Marktplatz",
+         "am Bahnhof"
+        ],
+        "a": 1,
+        "why": "nicht Bahnhof – Marktplatz",
+        "audio": "Hi, hier ist Nora. Wir treffen uns nicht am Bahnhof, sondern am Marktplatz, vor dem Café. Bis gleich!"
+       }
+      ],
+      "time": 8
+     }
+    ]
+   },
+   {
+    "id": "lesen",
+    "de": "Lesen",
+    "en": "Reading",
+    "time": 25,
+    "parts": [
+     {
+      "t": "Teil 1 – Kurze Mitteilungen",
+      "tab": "Teil 1",
+      "intro": "Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "items": [
+       {
+        "q": "Text 1: Petra ist krank.",
+        "a": true
+       },
+       {
+        "q": "Text 1: Petra kommt am Dienstag zur Arbeit.",
+        "a": false,
+        "why": "erst am Donnerstag"
+       },
+       {
+        "q": "Text 1: Michael soll die Kunden anrufen.",
+        "a": true
+       },
+       {
+        "q": "Text 2: Der Ausflug ist am Sonntag.",
+        "a": false,
+        "why": "am Samstag"
+       },
+       {
+        "q": "Text 2: Die Kinder brauchen Geld für den Eintritt.",
+        "a": false,
+        "why": "Der Eintritt ist frei."
+       }
+      ],
+      "text": "Text 1: Hallo Michael, ich bin leider krank und bleibe bis Mittwoch zu Hause. Am Donnerstag bin ich wieder im Büro. Kannst du bitte die Kunden anrufen? Die Nummern liegen auf meinem Tisch. Danke, Petra\nText 2: Liebe Eltern, am Samstag machen wir einen Ausflug in den Zoo. Wir treffen uns um 9 Uhr vor der Schule. Bitte geben Sie Ihrem Kind etwas zu essen mit. Der Eintritt ist frei. Ihre Klassenlehrerin",
+      "time": 8
+     },
+     {
+      "t": "Teil 2 – Anzeigen",
+      "tab": "Teil 2",
+      "intro": "Lesen Sie die Aufgaben und die Anzeigen. Welche Anzeige passt: a oder b?",
+      "type": "mc",
+      "per": 1,
+      "items": [
+       {
+        "q": "Sie suchen eine Arbeit am Wochenende.",
+        "o": [
+         "Bank sucht Mitarbeiter, Montag bis Freitag.",
+         "Café Sonne sucht Kellner für Samstag und Sonntag."
+        ],
+        "a": 1
+       },
+       {
+        "q": "Sie möchten Möbel verkaufen.",
+        "o": [
+         "Möbelhaus: neue Sofas im Angebot.",
+         "Flohmarkt: Stand mieten für 10 Euro, jeden Sonntag."
+        ],
+        "a": 1
+       },
+       {
+        "q": "Sie möchten Ihre Haare schneiden lassen.",
+        "o": [
+         "Friseur Schnitt: ohne Termin, ab 15 Euro.",
+         "Kosmetik-Studio: Massage und Nagelpflege."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Sie brauchen Hilfe bei Ihrer Steuererklärung.",
+        "o": [
+         "Steuerbüro Klar: Hilfe bei der Steuererklärung, auch auf Englisch.",
+         "Computerkurs für Senioren."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Sie möchten mit dem Zug nach Berlin fahren.",
+        "o": [
+         "Bahn-Sparpreis: Frankfurt–Berlin mit dem ICE ab 29 Euro.",
+         "Fernbus: Frankfurt–Berlin ab 19 Euro."
+        ],
+        "a": 0
+       }
+      ],
+      "time": 8
+     },
+     {
+      "t": "Teil 3 – Schilder und Aushänge",
+      "tab": "Teil 3",
+      "intro": "Lesen Sie die Schilder. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "items": [
+       {
+        "q": "Sie müssen eine Nummer ziehen.",
+        "a": true,
+        "text": "Bürgerbüro: Bitte ziehen Sie eine Nummer und warten Sie."
+       },
+       {
+        "q": "Das Restaurant ist heute geöffnet.",
+        "a": false,
+        "text": "Heute Ruhetag."
+       },
+       {
+        "q": "Gefundene Sachen können Sie an der Information abgeben.",
+        "a": true,
+        "text": "Fundsachen bitte an der Information abgeben."
+       },
+       {
+        "q": "Ein Kind mit 4 Jahren muss bezahlen.",
+        "a": false,
+        "text": "Kinder unter 6 Jahren: Eintritt frei."
+       },
+       {
+        "q": "Ab September können Sie sich für neue Kurse anmelden.",
+        "a": true,
+        "text": "Sprachschule: Anmeldung für neue Kurse ab 1. September."
+       }
+      ],
+      "time": 9
+     }
+    ]
+   },
+   {
+    "id": "schreiben",
+    "de": "Schreiben",
+    "en": "Writing",
+    "time": 20,
+    "parts": [
+     {
+      "t": "Teil 1 – Formular ausfüllen",
+      "tab": "Teil 1",
+      "intro": "Ihr Freund möchte in einem Sportverein Mitglied werden. Sie helfen ihm beim Formular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
+      "type": "form",
+      "per": 1,
+      "items": [
+       {
+        "q": "Geburtsjahr",
+        "a": [
+         "1995"
+        ],
+        "why": ""
+       },
+       {
+        "q": "Wohnort",
+        "a": [
+         "Wiesbaden"
+        ],
+        "why": ""
+       },
+       {
+        "q": "Sportart",
+        "a": [
+         "Basketball"
+        ],
+        "why": ""
+       },
+       {
+        "q": "Familienstand",
+        "o": [
+         "ledig",
+         "verheiratet"
+        ],
+        "a": 0,
+        "why": "nicht verheiratet"
+       },
+       {
+        "q": "Zahlung",
+        "o": [
+         "monatlich",
+         "jährlich"
+        ],
+        "a": 1,
+        "why": "einmal im Jahr"
+       }
+      ],
+      "text": "Mein Freund Omar Haddad ist 1995 geboren und wohnt in Wiesbaden. Er ist nicht verheiratet. Omar spielt gern Basketball und möchte im Sportverein TV Wiesbaden spielen. Den Beitrag bezahlt er einmal im Jahr.",
+      "time": 5
+     },
+     {
+      "t": "Teil 2 – Kurze Mitteilung",
+      "tab": "Teil 2",
+      "intro": "Schreiben Sie etwa 30 Wörter. Schreiben Sie zu allen drei Punkten. Vergessen Sie Anrede und Gruß nicht.",
+      "type": "write",
+      "crit": "a1",
+      "words": 30,
+      "task": "Sie können morgen nicht zum Deutschkurs kommen. Schreiben Sie Ihrer Lehrerin, Frau Klein:\n– Warum kommen Sie nicht?\n– Fragen Sie nach den Hausaufgaben.\n– Wann kommen Sie wieder?",
+      "points": [
+       "Warum kommen Sie nicht?",
+       "Fragen Sie nach den Hausaufgaben.",
+       "Wann kommen Sie wieder?"
+      ],
+      "model": "Liebe Frau Klein,\nich kann morgen leider nicht zum Kurs kommen, denn ich habe einen Termin beim Arzt. Welche Hausaufgaben haben wir? Am Donnerstag bin ich wieder da.\nViele Grüße\nSuresh",
+      "time": 15
+     }
+    ]
+   },
+   {
+    "id": "sprechen",
+    "de": "Sprechen",
+    "en": "Speaking",
+    "time": 15,
+    "oral": true,
+    "parts": [
+     {
+      "t": "Teil 1 – Sich vorstellen",
+      "tab": "Teil 1",
+      "intro": "Stellen Sie sich vor. Dann buchstabieren Sie und sagen eine Nummer oder Adresse.",
+      "type": "speak",
+      "max": 3,
+      "time": 4,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Guten Tag! Bitte stellen Sie sich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf und Hobby."
+       },
+       {
+        "you": "Stell dich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby.",
+        "min": 20,
+        "key": [
+         [
+          "heiße|name ist|ich bin [A-ZÄÖÜ]",
+          "Name"
+         ],
+         [
+          "jahre",
+          "Alter"
+         ],
+         [
+          "komme aus",
+          "Land"
+         ],
+         [
+          "wohne",
+          "Wohnort"
+         ],
+         [
+          "spreche",
+          "Sprachen"
+         ],
+         [
+          "arbeite|beruf|bin .*(ingenieur|lehrer|student|entwickler|krankenschwester|koch|verkäufer)",
+          "Beruf"
+         ],
+         [
+          "hobby|gern|spiele|lese|koche|tanze|schwimme",
+          "Hobby"
+         ]
+        ],
+        "model": "Ich heiße Suresh. Ich bin [Alter] Jahre alt und komme aus Indien. Ich wohne in Frankfurt. Ich spreche Englisch und ein bisschen Deutsch. Ich arbeite als Ingenieur. Mein Hobby ist Kochen."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Danke. Buchstabieren Sie bitte Ihren Vornamen."
+       },
+       {
+        "you": "Buchstabiere deinen Vornamen.",
+        "min": 3,
+        "key": [],
+        "model": "S – U – R – E – S – H."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Und wie ist Ihre Telefonnummer?"
+       },
+       {
+        "you": "Sag deine Telefonnummer, Zahl für Zahl.",
+        "min": 4,
+        "key": [
+         [
+          "\\d|null|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|straße",
+          "Zahlen / Adresse"
+         ]
+        ],
+        "model": "Null – eins – sieben – sechs – zwei – drei – vier – fünf – sechs – sieben."
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Um Informationen bitten und geben",
+      "tab": "Teil 2",
+      "intro": "Thema: Familie. Ihr Partner fragt Sie, Sie antworten. Dann fragen Sie mit Ihrer Karte, Ihr Partner antwortet.",
+      "type": "speak",
+      "max": 6,
+      "time": 6,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil 2. Das Thema ist: Familie. Tom, bitte fragen Sie zuerst."
+       },
+       {
+        "who": "Tom",
+        "say": "Hast du Geschwister?"
+       },
+       {
+        "you": "Antworte Tom in einem ganzen Satz.",
+        "min": 4,
+        "key": [
+         [
+          "\\bich\\b",
+          "ganzer Satz mit ich"
+         ]
+        ],
+        "model": "Ja, ich habe eine Schwester und einen Bruder."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Jetzt Sie. Ihre Karte: Kinder."
+       },
+       {
+        "you": "Frag Tom etwas zum Wort „Kinder“.",
+        "min": 3,
+        "key": [
+         [
+          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
+          "Frageform"
+         ],
+         [
+          "kinde",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Hast du Kinder?"
+       },
+       {
+        "who": "Tom",
+        "say": "Ja, eine Tochter. Sie ist fünf."
+       },
+       {
+        "who": "Lea",
+        "say": "Wo wohnen deine Eltern?"
+       },
+       {
+        "you": "Antworte Lea in einem ganzen Satz.",
+        "min": 4,
+        "key": [
+         [
+          "\\bich\\b",
+          "ganzer Satz mit ich"
+         ]
+        ],
+        "model": "Meine Eltern wohnen in Indien."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Ihre zweite Karte: Geburtstag."
+       },
+       {
+        "you": "Frag Lea etwas zum Wort „Geburtstag“.",
+        "min": 3,
+        "key": [
+         [
+          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
+          "Frageform"
+         ],
+         [
+          "gebur",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Wann hast du Geburtstag?"
+       },
+       {
+        "who": "Lea",
+        "say": "Im Mai, am zwölften."
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Bitten formulieren und darauf reagieren",
+      "tab": "Teil 3",
+      "intro": "Ihr Partner bittet Sie um etwas, Sie reagieren. Dann bitten Sie mit Ihrer Bildkarte, Ihr Partner reagiert.",
+      "type": "speak",
+      "max": 6,
+      "time": 5,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil 3. Bitten und reagieren. Lea, bitte beginnen Sie."
+       },
+       {
+        "who": "Lea",
+        "say": "Kannst du bitte auf meine Tochter aufpassen?"
+       },
+       {
+        "you": "Reagiere auf Leas Bitte.",
+        "min": 2,
+        "key": [
+         [
+          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
+          "Reaktion"
+         ]
+        ],
+        "model": "Ja, gern. Wie lange?"
+       },
+       {
+        "who": "Prüferin",
+        "say": "Jetzt Sie. Ihre Karte: 📷 Foto."
+       },
+       {
+        "you": "Bitte Tom um etwas – Karte: 📷 Foto.",
+        "min": 3,
+        "key": [
+         [
+          "bitte",
+          "bitte"
+         ],
+         [
+          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
+          "Bitte-Form"
+         ],
+         [
+          "foto",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Kannst du bitte ein Foto von uns machen?"
+       },
+       {
+        "who": "Tom",
+        "say": "Ja, natürlich. Lächeln!"
+       },
+       {
+        "who": "Tom",
+        "say": "Rufst du bitte deine Mutter an?"
+       },
+       {
+        "you": "Reagiere auf Toms Bitte.",
+        "min": 2,
+        "key": [
+         [
+          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
+          "Reaktion"
+         ]
+        ],
+        "model": "Ja, ich rufe sie heute Abend an."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Ihre zweite Karte: 🎂 Kuchen."
+       },
+       {
+        "you": "Bitte Lea um etwas – Karte: 🎂 Kuchen.",
+        "min": 3,
+        "key": [
+         [
+          "bitte",
+          "bitte"
+         ],
+         [
+          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
+          "Bitte-Form"
+         ],
+         [
+          "kuchen",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Kannst du bitte einen Kuchen backen?"
+       },
+       {
+        "who": "Lea",
+        "say": "Ja, gern, einen Schokoladenkuchen."
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "a1-3",
+  "title": "Modelltest 4",
+  "level": "mittel",
+  "sub": "Kino, Post, Ämter · Nachricht an den Vermieter",
+  "sections": [
+   {
+    "id": "hoeren",
+    "de": "Hören",
+    "en": "Listening",
+    "time": 20,
+    "parts": [
+     {
+      "t": "Teil 1 – Kurze Gespräche",
+      "tab": "Teil 1",
+      "intro": "Sie hören sechs kurze Gespräche. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
+      "type": "mc",
+      "per": 1,
+      "plays": 2,
+      "items": [
+       {
+        "q": "Wann sehen die Frau und ihr Mann den Film?",
+        "o": [
+         "um 19 Uhr",
+         "um 19:30 Uhr",
+         "um 20 Uhr"
+        ],
+        "a": 2,
+        "why": "Um 19 Uhr ist ausverkauft.",
+        "audio": "Frau: Zwei Karten für „Sommer in Rom“, bitte.\nMann: Für die Vorstellung um neunzehn Uhr? Die ist leider ausverkauft.\nFrau: Und später?\nMann: Um zwanzig Uhr gibt es noch Plätze.\nFrau: Gut, dann um zwanzig Uhr."
+       },
+       {
+        "q": "Was bestellt der Mann?",
+        "o": [
+         "eine Pizza",
+         "einen Salat",
+         "eine Suppe"
+        ],
+        "a": 2,
+        "why": "Er ändert die Bestellung: die Tomatensuppe.",
+        "audio": "Kellnerin: Was möchten Sie essen?\nMann: Ich nehme eine Pizza. Nein, warten Sie – die Tomatensuppe, bitte. Ich habe nicht so viel Hunger.\nKellnerin: Gern."
+       },
+       {
+        "q": "In welchem Stock ist die Wohnung?",
+        "o": [
+         "im Erdgeschoss",
+         "im dritten Stock",
+         "im vierten Stock"
+        ],
+        "a": 1,
+        "audio": "Frau: Ist die Wohnung im Erdgeschoss?\nMann: Nein, im dritten Stock. Aber es gibt einen Aufzug.\nFrau: Ah, sehr gut."
+       },
+       {
+        "q": "Wie ist das Wetter morgen?",
+        "o": [
+         "sonnig",
+         "es regnet",
+         "es schneit"
+        ],
+        "a": 1,
+        "why": "„es regnet den ganzen Tag“",
+        "audio": "Mann: Wollen wir morgen grillen?\nFrau: Morgen? Im Radio haben sie gesagt, es regnet den ganzen Tag.\nMann: Schade. Dann grillen wir am Sonntag."
+       },
+       {
+        "q": "Wie viel kostet die Fahrkarte?",
+        "o": [
+         "2,80 €",
+         "3,80 €",
+         "8,30 €"
+        ],
+        "a": 1,
+        "why": "„drei Euro achtzig“",
+        "audio": "Mann: Eine Fahrkarte zum Flughafen, bitte.\nFrau: Einfach? Das macht drei Euro achtzig.\nMann: Hier, bitte."
+       },
+       {
+        "q": "Wo ist die Post?",
+        "o": [
+         "neben der Bank",
+         "gegenüber vom Bahnhof",
+         "hinter dem Supermarkt"
+        ],
+        "a": 1,
+        "audio": "Frau: Entschuldigung, gibt es hier eine Post?\nMann: Ja, gehen Sie geradeaus bis zum Bahnhof. Die Post ist gegenüber vom Bahnhof, neben einem Café.\nFrau: Vielen Dank."
+       }
+      ],
+      "time": 8
+     },
+     {
+      "t": "Teil 2 – Durchsagen",
+      "tab": "Teil 2",
+      "intro": "Sie hören vier Ansagen. Sie hören jeden Text einmal. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "plays": 1,
+      "items": [
+       {
+        "q": "Die U-Bahn-Linie 4 fährt heute nicht.",
+        "a": true,
+        "why": "wegen Bauarbeiten",
+        "audio": "Achtung, eine Information für unsere Fahrgäste: Wegen Bauarbeiten fährt die U-Bahn-Linie 4 heute nicht. Bitte benutzen Sie die Busse der Linie 34."
+       },
+       {
+        "q": "Im Kaufhaus sind heute Schuhe billiger.",
+        "a": false,
+        "why": "Jacken und Mäntel sind billiger, nicht Schuhe.",
+        "audio": "Liebe Kunden, heute im zweiten Stock: alle Jacken und Mäntel 20 Prozent günstiger. Nur heute!"
+       },
+       {
+        "q": "Der kleine Paul wartet an der Kasse.",
+        "a": false,
+        "why": "Er wartet an der Information im Erdgeschoss.",
+        "audio": "Der kleine Paul sucht seine Mutter. Paul wartet an der Information im Erdgeschoss."
+       },
+       {
+        "q": "Der Zug nach Hamburg fährt von Gleis 9.",
+        "a": true,
+        "audio": "An Gleis 9: Der ICE nach Hamburg, Abfahrt 11 Uhr 50. Bitte einsteigen und Vorsicht an der Bahnsteigkante."
+       }
+      ],
+      "time": 4
+     },
+     {
+      "t": "Teil 3 – Telefonansagen",
+      "tab": "Teil 3",
+      "intro": "Sie hören fünf Ansagen am Telefon. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
+      "type": "mc",
+      "per": 1,
+      "plays": 2,
+      "items": [
+       {
+        "q": "Wann soll Frau Koch anrufen?",
+        "o": [
+         "heute bis 17 Uhr",
+         "morgen früh",
+         "morgen ab 17 Uhr"
+        ],
+        "a": 0,
+        "why": "„heute noch bis 17 Uhr“",
+        "audio": "Guten Tag, Frau Koch, hier ist das Bürgeramt. Ihr Personalausweis ist fertig. Bitte rufen Sie uns heute noch bis 17 Uhr an, dann bekommen Sie einen Termin zum Abholen."
+       },
+       {
+        "q": "Was hat Tim vergessen?",
+        "o": [
+         "sein Handy",
+         "seine Jacke",
+         "seinen Schlüssel"
+        ],
+        "a": 1,
+        "audio": "Hallo Tim, hier ist Julia. Du hast gestern bei uns deine Jacke vergessen. Ich bringe sie morgen zur Arbeit mit. Tschüss!"
+       },
+       {
+        "q": "Wann beginnt der Kurs?",
+        "o": [
+         "am 3. September",
+         "am 13. September",
+         "am 30. September"
+        ],
+        "a": 1,
+        "why": "„nicht am dritten, sondern am dreizehnten September“",
+        "audio": "Hier ist die Volkshochschule. Der Deutschkurs A2 beginnt nicht am dritten September, sondern am dreizehnten September. Die Uhrzeit bleibt gleich."
+       },
+       {
+        "q": "Wo treffen sich Anna und Leo?",
+        "o": [
+         "vor dem Museum",
+         "im Café",
+         "an der Haltestelle"
+        ],
+        "a": 2,
+        "why": "Das Museum ist geschlossen – Treffpunkt: die Haltestelle am Park.",
+        "audio": "Hi Anna, hier ist Leo. Das Museum ist heute leider geschlossen. Wollen wir in den Park gehen? Ich warte um drei an der Haltestelle am Park. Bis dann!"
+       },
+       {
+        "q": "Was soll Herr Ito mitbringen?",
+        "o": [
+         "ein Foto",
+         "seinen Pass",
+         "den Mietvertrag"
+        ],
+        "a": 0,
+        "why": "Pass und Mietvertrag hat die Behörde schon.",
+        "audio": "Guten Morgen, Herr Ito, hier ist die Ausländerbehörde. Für Ihren Termin am Freitag brauchen wir noch ein aktuelles Foto. Ihren Pass und den Mietvertrag haben wir schon. Danke."
+       }
+      ],
+      "time": 8
+     }
+    ]
+   },
+   {
+    "id": "lesen",
+    "de": "Lesen",
+    "en": "Reading",
+    "time": 25,
+    "parts": [
+     {
+      "t": "Teil 1 – Kurze Mitteilungen",
+      "tab": "Teil 1",
+      "intro": "Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "text": "Text 1: Hallo Tom, am Samstag mache ich eine Fahrradtour an den Rhein. Kommst du mit? Wir fahren um 9 Uhr am Bahnhof los. Die Tour ist 40 Kilometer lang. Am Abend essen wir zusammen in einem Restaurant. Bitte schreib mir bis Donnerstag.\nGrüße\nNina\nText 2: Sehr geehrte Frau Schulz, Ihr Paket konnten wir heute nicht abgeben. Sie waren nicht zu Hause. Sie können es ab morgen in der Post in der Hauptstraße abholen. Bitte bringen Sie Ihren Ausweis mit. Ihr Paketdienst",
+      "items": [
+       {
+        "q": "Text 1: Die Fahrradtour ist am Samstag.",
+        "a": true
+       },
+       {
+        "q": "Text 1: Nina und ihre Freunde treffen sich am Rhein.",
+        "a": false,
+        "why": "Sie fahren am Bahnhof los."
+       },
+       {
+        "q": "Text 1: Tom soll bis Donnerstag antworten.",
+        "a": true
+       },
+       {
+        "q": "Text 2: Frau Schulz hat ihr Paket schon bekommen.",
+        "a": false,
+        "why": "Sie war nicht zu Hause."
+       },
+       {
+        "q": "Text 2: Frau Schulz braucht für das Paket ihren Ausweis.",
+        "a": true
+       }
+      ],
+      "time": 8
+     },
+     {
+      "t": "Teil 2 – Anzeigen",
+      "tab": "Teil 2",
+      "intro": "Lesen Sie die Aufgaben und die Anzeigen. Welche Anzeige passt: a oder b?",
+      "type": "mc",
+      "per": 1,
+      "items": [
+       {
+        "q": "Sie möchten am Samstag einen Englischkurs machen.",
+        "o": [
+         "Sprachschule Lingua: Englisch für Anfänger, samstags 10 bis 13 Uhr.",
+         "Volkshochschule: Englisch, montags und mittwochs 18 Uhr."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Sie möchten Ihr altes Handy verkaufen.",
+        "o": [
+         "Handyshop Plus: neue Smartphones günstig!",
+         "Wir kaufen gebrauchte Handys – sofort Geld! Handy-Ankauf, Bahnhofstraße."
+        ],
+        "a": 1,
+        "why": "„Ankauf“ = sie kaufen Ihr Handy."
+       },
+       {
+        "q": "Sie suchen eine Wohnung mit Garten.",
+        "o": [
+         "Erdgeschosswohnung, 3 Zimmer, mit kleinem Garten, 950 Euro warm.",
+         "Dachwohnung, 2 Zimmer, mit großem Balkon, 780 Euro warm."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Sie möchten am Montag ins Museum gehen.",
+        "o": [
+         "Kunstmuseum: Dienstag bis Sonntag 10 bis 18 Uhr.",
+         "Naturkundemuseum: täglich 9 bis 17 Uhr geöffnet."
+        ],
+        "a": 1,
+        "why": "„täglich“ = jeden Tag, also auch montags."
+       },
+       {
+        "q": "Ihr Kind ist 4 Jahre alt und braucht einen Platz im Kindergarten.",
+        "o": [
+         "Kita Sonnenschein: freie Plätze für Kinder von 1 bis 6 Jahren.",
+         "Schule am Park: Anmeldung für die 1. Klasse."
+        ],
+        "a": 0
+       }
+      ],
+      "time": 8
+     },
+     {
+      "t": "Teil 3 – Schilder und Aushänge",
+      "tab": "Teil 3",
+      "intro": "Lesen Sie die Schilder. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "items": [
+       {
+        "q": "Am Dienstagnachmittag gibt es wieder Wasser.",
+        "a": true,
+        "why": "Kein Wasser nur von 8 bis 12 Uhr.",
+        "text": "Liebe Mieter, am Dienstag von 8 bis 12 Uhr gibt es kein Wasser. Ihre Hausverwaltung"
+       },
+       {
+        "q": "Sie gehen zuerst ins Wartezimmer.",
+        "a": false,
+        "why": "Zuerst zur Anmeldung.",
+        "text": "Zahnarztpraxis: Bitte melden Sie sich an der Anmeldung. Nicht direkt ins Wartezimmer gehen!"
+       },
+       {
+        "q": "Auf dem Balkon dürfen Sie rauchen.",
+        "a": false,
+        "why": "„Auch auf dem Balkon“ ist Rauchen verboten.",
+        "text": "Rauchen verboten! Auch auf dem Balkon."
+       },
+       {
+        "q": "Am Sonntag können Sie im Supermarkt Brot kaufen.",
+        "a": true,
+        "why": "Sonntags hat die Bäckerei geöffnet.",
+        "text": "Supermarkt Frisch: Wir haben jetzt auch sonntags von 8 bis 12 Uhr geöffnet – nur die Bäckerei."
+       },
+       {
+        "q": "Hier kann jeder den ganzen Tag parken.",
+        "a": false,
+        "why": "Nur Kunden, höchstens 2 Stunden.",
+        "text": "Parken nur für Kunden. Maximal 2 Stunden."
+       }
+      ],
+      "time": 9
+     }
+    ]
+   },
+   {
+    "id": "schreiben",
+    "de": "Schreiben",
+    "en": "Writing",
+    "time": 20,
+    "parts": [
+     {
+      "t": "Teil 1 – Formular ausfüllen",
+      "tab": "Teil 1",
+      "intro": "Ihre Nachbarin möchte ihre Tochter für einen Schwimmkurs anmelden. Sie helfen ihr beim Formular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
+      "type": "form",
+      "per": 1,
+      "text": "Ich heiße Fatima Rahimi. Ich komme aus Afghanistan und wohne seit einem Jahr in Hamburg. Ich bin 31 Jahre alt und habe zwei Töchter. Ich möchte meine Tochter Sara für den Schwimmkurs anmelden. Sara ist sieben Jahre alt. Der Kurs soll am Samstag sein, weil ich unter der Woche arbeite.",
+      "items": [
+       {
+        "q": "Vorname des Kindes",
+        "a": [
+         "Sara"
+        ],
+        "why": "„meine Tochter Sara“"
+       },
+       {
+        "q": "Alter des Kindes",
+        "a": [
+         "7",
+         "sieben",
+         "7 Jahre",
+         "sieben Jahre"
+        ],
+        "why": "„Sara ist sieben Jahre alt.“"
+       },
+       {
+        "q": "Wohnort",
+        "a": [
+         "Hamburg"
+        ],
+        "why": "„wohne seit einem Jahr in Hamburg“"
+       },
+       {
+        "q": "Herkunftsland der Mutter",
+        "a": [
+         "Afghanistan"
+        ],
+        "why": "„Ich komme aus Afghanistan.“"
+       },
+       {
+        "q": "Kurstag",
+        "o": [
+         "unter der Woche",
+         "Samstag"
+        ],
+        "a": 1,
+        "why": "Sie arbeitet unter der Woche, deshalb Samstag."
+       }
+      ],
+      "time": 5
+     },
+     {
+      "t": "Teil 2 – Kurze Mitteilung",
+      "intro": "Schreiben Sie etwa 30 Wörter. Schreiben Sie zu allen drei Punkten. Vergessen Sie Anrede und Gruß nicht.",
+      "type": "write",
+      "crit": "a1",
+      "words": 30,
+      "task": "Ihre Heizung ist kaputt. Schreiben Sie an Ihren Vermieter, Herrn Braun:",
+      "points": [
+       "Problem",
+       "Seit wann?",
+       "Bitte: Handwerker"
+      ],
+      "model": "Sehr geehrter Herr Braun,\nin meiner Wohnung ist die Heizung kaputt. Sie funktioniert seit Montag nicht mehr, und es ist sehr kalt. Können Sie bitte schnell einen Handwerker schicken?\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "tab": "Teil 2",
+      "time": 15
+     }
+    ]
+   },
+   {
+    "id": "sprechen",
+    "de": "Sprechen",
+    "en": "Speaking",
+    "time": 15,
+    "oral": true,
+    "parts": [
+     {
+      "t": "Teil 1 – Sich vorstellen",
+      "tab": "Teil 1",
+      "intro": "Stellen Sie sich vor. Dann buchstabieren Sie und sagen eine Nummer oder Adresse.",
+      "type": "speak",
+      "max": 3,
+      "time": 4,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Guten Tag! Bitte stellen Sie sich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf und Hobby."
+       },
+       {
+        "you": "Stell dich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby.",
+        "min": 20,
+        "key": [
+         [
+          "heiße|name ist|ich bin [A-ZÄÖÜ]",
+          "Name"
+         ],
+         [
+          "jahre",
+          "Alter"
+         ],
+         [
+          "komme aus",
+          "Land"
+         ],
+         [
+          "wohne",
+          "Wohnort"
+         ],
+         [
+          "spreche",
+          "Sprachen"
+         ],
+         [
+          "arbeite|beruf|bin .*(ingenieur|lehrer|student|entwickler|krankenschwester|koch|verkäufer)",
+          "Beruf"
+         ],
+         [
+          "hobby|gern|spiele|lese|koche|tanze|schwimme",
+          "Hobby"
+         ]
+        ],
+        "model": "Ich heiße Suresh. Ich bin [Alter] Jahre alt und komme aus Indien. Ich wohne in Frankfurt. Ich spreche Englisch und ein bisschen Deutsch. Ich arbeite als Ingenieur. Mein Hobby ist Kochen."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Danke. Buchstabieren Sie bitte Ihren Vornamen."
+       },
+       {
+        "you": "Buchstabiere deinen Vornamen.",
+        "min": 3,
+        "key": [],
+        "model": "S – U – R – E – S – H."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Und wie ist Ihre Telefonnummer?"
+       },
+       {
+        "you": "Sag deine Telefonnummer, Zahl für Zahl.",
+        "min": 4,
+        "key": [
+         [
+          "\\d|null|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|straße",
+          "Zahlen / Adresse"
+         ]
+        ],
+        "model": "Null – eins – sieben – sechs – zwei – drei – vier – fünf – sechs – sieben."
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Um Informationen bitten und geben",
+      "tab": "Teil 2",
+      "intro": "Thema: Wohnen. Ihr Partner fragt Sie, Sie antworten. Dann fragen Sie mit Ihrer Karte, Ihr Partner antwortet.",
+      "type": "speak",
+      "max": 6,
+      "time": 6,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil 2. Das Thema ist: Wohnen. Tom, bitte fragen Sie zuerst."
+       },
+       {
+        "who": "Tom",
+        "say": "Wie groß ist deine Wohnung?"
+       },
+       {
+        "you": "Antworte Tom in einem ganzen Satz.",
+        "min": 4,
+        "key": [
+         [
+          "\\bich\\b",
+          "ganzer Satz mit ich"
+         ]
+        ],
+        "model": "Meine Wohnung hat drei Zimmer."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Jetzt Sie. Ihre Karte: Balkon."
+       },
+       {
+        "you": "Frag Tom etwas zum Wort „Balkon“.",
+        "min": 3,
+        "key": [
+         [
+          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
+          "Frageform"
+         ],
+         [
+          "balko",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Hast du einen Balkon?"
+       },
+       {
+        "who": "Tom",
+        "say": "Ja, einen kleinen Balkon."
+       },
+       {
+        "who": "Lea",
+        "say": "Wohnst du in der Stadt?"
+       },
+       {
+        "you": "Antworte Lea in einem ganzen Satz.",
+        "min": 4,
+        "key": [
+         [
+          "\\bich\\b",
+          "ganzer Satz mit ich"
+         ]
+        ],
+        "model": "Ja, ich wohne im Zentrum."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Ihre zweite Karte: Miete."
+       },
+       {
+        "you": "Frag Lea etwas zum Wort „Miete“.",
+        "min": 3,
+        "key": [
+         [
+          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
+          "Frageform"
+         ],
+         [
+          "miete",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Wie hoch ist deine Miete?"
+       },
+       {
+        "who": "Lea",
+        "say": "Sie kostet 800 Euro."
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Bitten formulieren und darauf reagieren",
+      "tab": "Teil 3",
+      "intro": "Ihr Partner bittet Sie um etwas, Sie reagieren. Dann bitten Sie mit Ihrer Bildkarte, Ihr Partner reagiert.",
+      "type": "speak",
+      "max": 6,
+      "time": 5,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil 3. Bitten und reagieren. Lea, bitte beginnen Sie."
+       },
+       {
+        "who": "Lea",
+        "say": "Machst du bitte das Licht an?"
+       },
+       {
+        "you": "Reagiere auf Leas Bitte.",
+        "min": 2,
+        "key": [
+         [
+          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
+          "Reaktion"
+         ]
+        ],
+        "model": "Ja, natürlich."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Jetzt Sie. Ihre Karte: 📱 Handy."
+       },
+       {
+        "you": "Bitte Tom um etwas – Karte: 📱 Handy.",
+        "min": 3,
+        "key": [
+         [
+          "bitte",
+          "bitte"
+         ],
+         [
+          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
+          "Bitte-Form"
+         ],
+         [
+          "handy",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Kannst du mir bitte dein Handy geben?"
+       },
+       {
+        "who": "Tom",
+        "say": "Ja, hier bitte."
+       },
+       {
+        "who": "Tom",
+        "say": "Kannst du mir bitte beim Kochen helfen?"
+       },
+       {
+        "you": "Reagiere auf Toms Bitte.",
+        "min": 2,
+        "key": [
+         [
+          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
+          "Reaktion"
+         ]
+        ],
+        "model": "Ja, gern. Was soll ich machen?"
+       },
+       {
+        "who": "Prüferin",
+        "say": "Ihre zweite Karte: 💧 Wasser."
+       },
+       {
+        "you": "Bitte Lea um etwas – Karte: 💧 Wasser.",
+        "min": 3,
+        "key": [
+         [
+          "bitte",
+          "bitte"
+         ],
+         [
+          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
+          "Bitte-Form"
+         ],
+         [
+          "wasser",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Kannst du mir bitte ein Glas Wasser geben?"
+       },
+       {
+        "who": "Lea",
+        "say": "Ja, gern."
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "a1-1",
+  "title": "Modelltest 5",
+  "level": "mittel",
   "sub": "Bäckerei, Arztpraxis, Bahnhof · Mitteilung: krank beim Deutschkurs",
   "sections": [
    {
@@ -691,8 +3337,677 @@ window.TESTS_A1 = [
   ]
  },
  {
+  "id": "a1-4",
+  "title": "Modelltest 6",
+  "level": "mittel",
+  "sub": "Markt, Kita, Urlaub · Anfrage an eine Sprachschule",
+  "sections": [
+   {
+    "id": "hoeren",
+    "de": "Hören",
+    "en": "Listening",
+    "time": 20,
+    "parts": [
+     {
+      "t": "Teil 1 – Kurze Gespräche",
+      "tab": "Teil 1",
+      "intro": "Sie hören sechs kurze Gespräche. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
+      "type": "mc",
+      "per": 1,
+      "plays": 2,
+      "items": [
+       {
+        "q": "Wie viel kostet ein Kilo Äpfel?",
+        "o": [
+         "1,99 €",
+         "2,99 €",
+         "3,99 €"
+        ],
+        "a": 1,
+        "why": "„zwei Euro neunundneunzig“",
+        "audio": "Mann: Was kosten die Äpfel?\nVerkäuferin: Ein Kilo kostet zwei Euro neunundneunzig.\nMann: Gut, ein Kilo, bitte."
+       },
+       {
+        "q": "Wann beginnt der Yogakurs heute?",
+        "o": [
+         "um 9 Uhr",
+         "um 10 Uhr",
+         "um 11 Uhr"
+        ],
+        "a": 2,
+        "why": "Heute erst um elf.",
+        "audio": "Frau: Beginnt der Yogakurs um zehn Uhr?\nMann: Nein, heute erst um elf. Die Lehrerin kommt später."
+       },
+       {
+        "q": "Wohin geht die Frau?",
+        "o": [
+         "zur Apotheke",
+         "zur Post",
+         "zur Bank"
+        ],
+        "a": 0,
+        "audio": "Mann: Wohin gehst du?\nFrau: Zur Apotheke. Ich brauche Tabletten gegen Kopfschmerzen. Dann gehe ich nach Hause."
+       },
+       {
+        "q": "Was möchte das Kind trinken?",
+        "o": [
+         "Saft",
+         "Milch",
+         "Wasser"
+        ],
+        "a": 2,
+        "why": "Keinen Saft, keine Milch.",
+        "audio": "Mutter: Möchtest du Saft oder Milch?\nKind: Keinen Saft. Und keine Milch. Ich möchte Wasser, bitte."
+       },
+       {
+        "q": "Welcher Tag ist heute?",
+        "o": [
+         "Montag",
+         "Dienstag",
+         "Mittwoch"
+        ],
+        "a": 1,
+        "why": "Montag war gestern.",
+        "audio": "Frau: Ist heute Montag?\nMann: Nein, Montag war gestern. Heute ist Dienstag."
+       },
+       {
+        "q": "Wie heißt die neue Kollegin?",
+        "o": [
+         "Anna Behrens",
+         "Anna Berends",
+         "Hanna Behrens"
+        ],
+        "a": 0,
+        "why": "B-E-H-R-E-N-S",
+        "audio": "Mann: Wie heißt die neue Kollegin?\nFrau: Anna Behrens. Behrens mit B, E, H, R, E, N, S."
+       }
+      ],
+      "time": 8
+     },
+     {
+      "t": "Teil 2 – Durchsagen",
+      "tab": "Teil 2",
+      "intro": "Sie hören vier Ansagen. Sie hören jeden Text einmal. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "plays": 1,
+      "items": [
+       {
+        "q": "Der Bus nach Hanau fährt heute nicht.",
+        "a": true,
+        "why": "Er fällt aus.",
+        "audio": "Achtung: Der Bus der Linie 30 nach Hanau fällt heute leider aus. Bitte nehmen Sie die S-Bahn."
+       },
+       {
+        "q": "Im zweiten Stock sind heute Schuhe billiger.",
+        "a": false,
+        "why": "Kinderjacken, nicht Schuhe.",
+        "audio": "Liebe Kunden, im zweiten Stock sind heute alle Kinderjacken 30 Prozent billiger."
+       },
+       {
+        "q": "Die Bibliothek schließt in zehn Minuten.",
+        "a": true,
+        "audio": "Liebe Besucher, die Bibliothek schließt in zehn Minuten. Bitte bringen Sie Ihre Bücher zur Ausleihe."
+       },
+       {
+        "q": "Der ICE nach Berlin kommt pünktlich.",
+        "a": false,
+        "why": "etwa 15 Minuten Verspätung",
+        "audio": "Information zu Gleis 4: Der ICE nach Berlin hat heute etwa 15 Minuten Verspätung."
+       }
+      ],
+      "time": 4
+     },
+     {
+      "t": "Teil 3 – Telefonansagen",
+      "tab": "Teil 3",
+      "intro": "Sie hören fünf Ansagen am Telefon. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
+      "type": "mc",
+      "per": 1,
+      "plays": 2,
+      "items": [
+       {
+        "q": "Wann kann Frau Weber kommen?",
+        "o": [
+         "heute Nachmittag",
+         "morgen Vormittag",
+         "morgen Nachmittag"
+        ],
+        "a": 1,
+        "why": "morgen Vormittag um halb zehn",
+        "audio": "Guten Tag, Frau Weber, hier ist die Praxis Doktor Roth. Heute ist leider kein Termin mehr frei. Sie können aber morgen Vormittag kommen, um halb zehn."
+       },
+       {
+        "q": "Was soll Mark mitbringen?",
+        "o": [
+         "Brot",
+         "Käse",
+         "Wein"
+        ],
+        "a": 0,
+        "why": "Käse und Wein hat Jana.",
+        "audio": "Hallo Mark, hier ist Jana. Heute Abend essen wir bei mir. Käse und Wein habe ich. Bring bitte Brot mit. Bis später!"
+       },
+       {
+        "q": "Wo ist das Sommerfest?",
+        "o": [
+         "im Park",
+         "in der Schule",
+         "im Garten"
+        ],
+        "a": 2,
+        "why": "„nicht im Park, sondern in unserem Garten“",
+        "audio": "Hallo, hier ist Familie Schmidt. Unser Sommerfest ist am Samstag. Es ist nicht im Park, sondern in unserem Garten. Wir freuen uns auf euch!"
+       },
+       {
+        "q": "Warum kommt Tim später?",
+        "o": [
+         "Das Auto ist kaputt.",
+         "Der Zug hat Verspätung.",
+         "Tim ist krank."
+        ],
+        "a": 1,
+        "audio": "Hi Sarah, hier ist Tim. Ich komme später, mein Zug hat eine halbe Stunde Verspätung. Wartet bitte nicht mit dem Essen."
+       },
+       {
+        "q": "Wann ist das Büro geöffnet?",
+        "o": [
+         "nur vormittags",
+         "den ganzen Tag",
+         "nur nachmittags"
+        ],
+        "a": 0,
+        "why": "8 bis 12 Uhr, nachmittags geschlossen",
+        "audio": "Sie sind verbunden mit dem Büro der Sprachschule. Wir sind montags bis freitags von 8 bis 12 Uhr für Sie da. Nachmittags ist das Büro geschlossen."
+       }
+      ],
+      "time": 8
+     }
+    ]
+   },
+   {
+    "id": "lesen",
+    "de": "Lesen",
+    "en": "Reading",
+    "time": 25,
+    "parts": [
+     {
+      "t": "Teil 1 – Kurze Mitteilungen",
+      "tab": "Teil 1",
+      "intro": "Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "items": [
+       {
+        "q": "Text 1: Nina ist mit ihrer Familie in den Bergen.",
+        "a": false,
+        "why": "Sie sind am Meer."
+       },
+       {
+        "q": "Text 1: Das Wetter ist sehr warm.",
+        "a": true,
+        "why": "30 Grad"
+       },
+       {
+        "q": "Text 1: Die Familie fliegt am Sonntag zurück.",
+        "a": false,
+        "why": "am Samstag"
+       },
+       {
+        "q": "Text 2: Die Kita ist am Freitag geschlossen.",
+        "a": true
+       },
+       {
+        "q": "Text 2: Am Montag öffnet die Kita um 8 Uhr.",
+        "a": false,
+        "why": "ab 7 Uhr"
+       }
+      ],
+      "text": "Text 1: Liebe Oma, wir sind jetzt in Spanien am Meer. Das Wetter ist super, jeden Tag 30 Grad. Die Kinder schwimmen den ganzen Tag. Unser Hotel ist direkt am Strand. Nächsten Samstag fliegen wir zurück.\nViele Grüße\nNina\nText 2: Liebe Eltern, die Kita ist am Freitag geschlossen. Unsere Erzieherinnen haben eine Fortbildung. Am Montag sind wir wieder ab 7 Uhr für Sie da. Ihr Kita-Team",
+      "time": 8
+     },
+     {
+      "t": "Teil 2 – Anzeigen",
+      "tab": "Teil 2",
+      "intro": "Lesen Sie die Aufgaben und die Anzeigen. Welche Anzeige passt: a oder b?",
+      "type": "mc",
+      "per": 1,
+      "items": [
+       {
+        "q": "Sie möchten Ihr Fahrrad reparieren lassen.",
+        "o": [
+         "Fahrradladen Pedal: Reparaturen in 2 Tagen.",
+         "Autowerkstatt Müller: Reparatur aller Automarken."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Sie suchen eine Wohnung für Ihre Familie mit drei Kindern.",
+        "o": [
+         "1-Zimmer-Apartment, 30 m², nur für Studenten.",
+         "5-Zimmer-Wohnung, 120 m², ruhig, mit Garten."
+        ],
+        "a": 1
+       },
+       {
+        "q": "Sie möchten am Abend tanzen lernen.",
+        "o": [
+         "Tanzschule Takt: Kurse dienstags 19–21 Uhr.",
+         "Ballettschule: Kinderkurse mittwochs 15 Uhr."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Sie möchten billig Kleidung kaufen.",
+        "o": [
+         "Boutique Elegance: Mode aus Paris.",
+         "Second-Hand-Markt: Kleidung ab 2 Euro, jeden Samstag."
+        ],
+        "a": 1
+       },
+       {
+        "q": "Sie brauchen am Sonntag eine Apotheke.",
+        "o": [
+         "Apotheke am Markt: Montag bis Samstag 8–19 Uhr.",
+         "Notdienst: Löwen-Apotheke, heute (Sonntag) 9–21 Uhr."
+        ],
+        "a": 1
+       }
+      ],
+      "time": 8
+     },
+     {
+      "t": "Teil 3 – Schilder und Aushänge",
+      "tab": "Teil 3",
+      "intro": "Lesen Sie die Schilder. Kreuzen Sie an: Richtig oder Falsch.",
+      "type": "rf",
+      "per": 1,
+      "items": [
+       {
+        "q": "Sie können in der Bahnhofstraße einkaufen.",
+        "a": true,
+        "text": "Wegen Umbau geschlossen. Unsere Filiale in der Bahnhofstraße ist geöffnet."
+       },
+       {
+        "q": "Sie können Ihren Hund mit ins Geschäft nehmen.",
+        "a": false,
+        "text": "Hunde bitte draußen lassen!"
+       },
+       {
+        "q": "Der Kurs ist heute in Raum 8.",
+        "a": false,
+        "why": "heute in Raum 12",
+        "text": "Deutschkurs A1: heute in Raum 12 statt Raum 8."
+       },
+       {
+        "q": "Sie können eine Fahrkarte im Bus kaufen.",
+        "a": true,
+        "text": "Fahrkarten gibt es auch im Bus beim Fahrer."
+       },
+       {
+        "q": "Um halb eins ist das Büro geschlossen.",
+        "a": true,
+        "why": "12:30 Uhr ist in der Mittagspause.",
+        "text": "Mittagspause von 12 bis 13 Uhr. Bitte kommen Sie später wieder."
+       }
+      ],
+      "time": 9
+     }
+    ]
+   },
+   {
+    "id": "schreiben",
+    "de": "Schreiben",
+    "en": "Writing",
+    "time": 20,
+    "parts": [
+     {
+      "t": "Teil 1 – Formular ausfüllen",
+      "tab": "Teil 1",
+      "intro": "Ihr Freund möchte sich im Fitnessstudio anmelden. Sie helfen ihm beim Formular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
+      "type": "form",
+      "per": 1,
+      "items": [
+       {
+        "q": "Wohnort",
+        "a": [
+         "Mainz"
+        ],
+        "why": "„wohnt in Mainz“"
+       },
+       {
+        "q": "Beruf",
+        "a": [
+         "Koch"
+        ],
+        "why": "„Er ist Koch von Beruf.“"
+       },
+       {
+        "q": "Alter",
+        "a": [
+         "29",
+         "neunundzwanzig",
+         "29 Jahre"
+        ],
+        "why": "29 Jahre alt"
+       },
+       {
+        "q": "Trainingszeit",
+        "o": [
+         "morgens",
+         "abends"
+        ],
+        "a": 0,
+        "why": "Er arbeitet abends, deshalb morgens."
+       },
+       {
+        "q": "Zahlungsart",
+        "o": [
+         "bar",
+         "Lastschrift"
+        ],
+        "a": 1,
+        "why": "per Lastschrift"
+       }
+      ],
+      "text": "Mein Freund Jonas Becker möchte Mitglied im Fitnessstudio werden. Er ist 29 Jahre alt und wohnt in Mainz, Gartenstraße 3. Er ist Koch von Beruf und arbeitet abends. Deshalb möchte er morgens trainieren. Er bezahlt jeden Monat per Lastschrift.",
+      "time": 5
+     },
+     {
+      "t": "Teil 2 – Kurze Mitteilung",
+      "intro": "Schreiben Sie etwa 30 Wörter. Schreiben Sie zu allen drei Punkten. Vergessen Sie Anrede und Gruß nicht.",
+      "type": "write",
+      "crit": "a1",
+      "words": 30,
+      "task": "Schreiben Sie an eine Sprachschule. Sie möchten einen Deutschkurs machen:",
+      "points": [
+       "Kurszeiten?",
+       "Preis?",
+       "Anmeldung?"
+      ],
+      "model": "Sehr geehrte Damen und Herren,\nich möchte einen Deutschkurs A2 machen. Wann beginnen die Abendkurse? Was kostet der Kurs? Wie kann ich mich anmelden?\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "tab": "Teil 2",
+      "time": 15
+     }
+    ]
+   },
+   {
+    "id": "sprechen",
+    "de": "Sprechen",
+    "en": "Speaking",
+    "time": 15,
+    "oral": true,
+    "parts": [
+     {
+      "t": "Teil 1 – Sich vorstellen",
+      "tab": "Teil 1",
+      "intro": "Stellen Sie sich vor. Dann buchstabieren Sie und sagen eine Nummer oder Adresse.",
+      "type": "speak",
+      "max": 3,
+      "time": 4,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Guten Tag! Bitte stellen Sie sich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf und Hobby."
+       },
+       {
+        "you": "Stell dich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby.",
+        "min": 20,
+        "key": [
+         [
+          "heiße|name ist|ich bin [A-ZÄÖÜ]",
+          "Name"
+         ],
+         [
+          "jahre",
+          "Alter"
+         ],
+         [
+          "komme aus",
+          "Land"
+         ],
+         [
+          "wohne",
+          "Wohnort"
+         ],
+         [
+          "spreche",
+          "Sprachen"
+         ],
+         [
+          "arbeite|beruf|bin .*(ingenieur|lehrer|student|entwickler|krankenschwester|koch|verkäufer)",
+          "Beruf"
+         ],
+         [
+          "hobby|gern|spiele|lese|koche|tanze|schwimme",
+          "Hobby"
+         ]
+        ],
+        "model": "Ich heiße Suresh. Ich bin [Alter] Jahre alt und komme aus Indien. Ich wohne in Frankfurt. Ich spreche Englisch und ein bisschen Deutsch. Ich arbeite als Ingenieur. Mein Hobby ist Kochen."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Danke. Buchstabieren Sie bitte Ihren Vornamen."
+       },
+       {
+        "you": "Buchstabiere deinen Vornamen.",
+        "min": 3,
+        "key": [],
+        "model": "S – U – R – E – S – H."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Und wie ist Ihre Adresse?"
+       },
+       {
+        "you": "Sag deine Adresse: Straße, Hausnummer, Postleitzahl, Stadt.",
+        "min": 4,
+        "key": [
+         [
+          "\\d|null|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|straße",
+          "Zahlen / Adresse"
+         ]
+        ],
+        "model": "Meine Adresse ist [Straße] [Hausnummer], [Postleitzahl] Frankfurt."
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Um Informationen bitten und geben",
+      "tab": "Teil 2",
+      "intro": "Thema: Arbeit. Ihr Partner fragt Sie, Sie antworten. Dann fragen Sie mit Ihrer Karte, Ihr Partner antwortet.",
+      "type": "speak",
+      "max": 6,
+      "time": 6,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil 2. Das Thema ist: Arbeit. Tom, bitte fragen Sie zuerst."
+       },
+       {
+        "who": "Tom",
+        "say": "Wo arbeitest du?"
+       },
+       {
+        "you": "Antworte Tom in einem ganzen Satz.",
+        "min": 4,
+        "key": [
+         [
+          "\\bich\\b",
+          "ganzer Satz mit ich"
+         ]
+        ],
+        "model": "Ich arbeite in einem Büro in Frankfurt."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Jetzt Sie. Ihre Karte: Kollegen."
+       },
+       {
+        "you": "Frag Tom etwas zum Wort „Kollegen“.",
+        "min": 3,
+        "key": [
+         [
+          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
+          "Frageform"
+         ],
+         [
+          "kolle",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Sind deine Kollegen nett?"
+       },
+       {
+        "who": "Tom",
+        "say": "Ja, sehr nett."
+       },
+       {
+        "who": "Lea",
+        "say": "Wann beginnst du morgens?"
+       },
+       {
+        "you": "Antworte Lea in einem ganzen Satz.",
+        "min": 4,
+        "key": [
+         [
+          "\\bich\\b",
+          "ganzer Satz mit ich"
+         ]
+        ],
+        "model": "Ich beginne um acht Uhr."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Ihre zweite Karte: Pause."
+       },
+       {
+        "you": "Frag Lea etwas zum Wort „Pause“.",
+        "min": 3,
+        "key": [
+         [
+          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
+          "Frageform"
+         ],
+         [
+          "pause",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Wann machst du Pause?"
+       },
+       {
+        "who": "Lea",
+        "say": "Um zwölf Uhr."
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Bitten formulieren und darauf reagieren",
+      "tab": "Teil 3",
+      "intro": "Ihr Partner bittet Sie um etwas, Sie reagieren. Dann bitten Sie mit Ihrer Bildkarte, Ihr Partner reagiert.",
+      "type": "speak",
+      "max": 6,
+      "time": 5,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil 3. Bitten und reagieren. Lea, bitte beginnen Sie."
+       },
+       {
+        "who": "Lea",
+        "say": "Kannst du bitte langsamer sprechen?"
+       },
+       {
+        "you": "Reagiere auf Leas Bitte.",
+        "min": 2,
+        "key": [
+         [
+          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
+          "Reaktion"
+         ]
+        ],
+        "model": "Ja, natürlich. Entschuldigung."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Jetzt Sie. Ihre Karte: 🍎 Apfel."
+       },
+       {
+        "you": "Bitte Tom um etwas – Karte: 🍎 Apfel.",
+        "min": 3,
+        "key": [
+         [
+          "bitte",
+          "bitte"
+         ],
+         [
+          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
+          "Bitte-Form"
+         ],
+         [
+          "apfel",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Gibst du mir bitte einen Apfel?"
+       },
+       {
+        "who": "Tom",
+        "say": "Ja, hier, bitte."
+       },
+       {
+        "who": "Tom",
+        "say": "Kannst du mir bitte deine Telefonnummer geben?"
+       },
+       {
+        "you": "Reagiere auf Toms Bitte.",
+        "min": 2,
+        "key": [
+         [
+          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
+          "Reaktion"
+         ]
+        ],
+        "model": "Ja, gern. Sie ist …"
+       },
+       {
+        "who": "Prüferin",
+        "say": "Ihre zweite Karte: 🚲 Fahrrad."
+       },
+       {
+        "you": "Bitte Lea um etwas – Karte: 🚲 Fahrrad.",
+        "min": 3,
+        "key": [
+         [
+          "bitte",
+          "bitte"
+         ],
+         [
+          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
+          "Bitte-Form"
+         ],
+         [
+          "fahrrad",
+          "Wort der Karte"
+         ]
+        ],
+        "model": "Kannst du mir bitte dein Fahrrad leihen?"
+       },
+       {
+        "who": "Lea",
+        "say": "Ja, aber nur bis morgen."
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
   "id": "a1-2",
-  "title": "Modelltest 2",
+  "title": "Modelltest 7",
+  "level": "schwer",
   "sub": "Einkaufen, Hotel, Ausflug · Einladung zum Geburtstag",
   "sections": [
    {
@@ -1367,9 +4682,10 @@ window.TESTS_A1 = [
   ]
  },
  {
-  "id": "a1-3",
-  "title": "Modelltest 3",
-  "sub": "Kino, Post, Ämter · Nachricht an den Vermieter",
+  "id": "a1-8",
+  "title": "Modelltest 8",
+  "level": "schwer",
+  "sub": "Treffen, Einkaufen, Musikschule · Absage an eine Freundin",
   "sections": [
    {
     "id": "hoeren",
@@ -1386,68 +4702,70 @@ window.TESTS_A1 = [
       "plays": 2,
       "items": [
        {
-        "q": "Wann sehen die Frau und ihr Mann den Film?",
+        "q": "Wann treffen sich Anna und Tim?",
         "o": [
          "um 19 Uhr",
-         "um 19:30 Uhr",
-         "um 20 Uhr"
+         "um 18 Uhr",
+         "um 18:30 Uhr"
         ],
-        "a": 2,
-        "why": "Um 19 Uhr ist ausverkauft.",
-        "audio": "Frau: Zwei Karten für „Sommer in Rom“, bitte.\nMann: Für die Vorstellung um neunzehn Uhr? Die ist leider ausverkauft.\nFrau: Und später?\nMann: Um zwanzig Uhr gibt es noch Plätze.\nFrau: Gut, dann um zwanzig Uhr."
+        "a": 0,
+        "why": "Um sechs geht nicht, Anna arbeitet bis halb sieben – sie treffen sich um sieben.",
+        "audio": "Tim: Anna, treffen wir uns um sechs vor dem Kino?\nAnna: Um sechs kann ich nicht, ich arbeite bis halb sieben.\nTim: Und um sieben?\nAnna: Ja, sieben Uhr ist gut. Bis dann!"
        },
        {
-        "q": "Was bestellt der Mann?",
+        "q": "Wie viel bezahlt der Mann?",
         "o": [
-         "eine Pizza",
-         "einen Salat",
-         "eine Suppe"
+         "3,50 €",
+         "5,50 €",
+         "7,50 €"
         ],
-        "a": 2,
-        "why": "Er ändert die Bestellung: die Tomatensuppe.",
-        "audio": "Kellnerin: Was möchten Sie essen?\nMann: Ich nehme eine Pizza. Nein, warten Sie – die Tomatensuppe, bitte. Ich habe nicht so viel Hunger.\nKellnerin: Gern."
+        "a": 1,
+        "why": "Am Ende nur ein Kaffee (2 €) und ein Kuchen (3,50 €) = 5,50 €.",
+        "audio": "Mann: Zwei Kaffee und ein Stück Kuchen, bitte.\nVerkäuferin: Gern. Ein Kaffee kostet zwei Euro, der Kuchen drei Euro fünfzig.\nMann: Ach, nur ein Kaffee, bitte. Meine Frau trinkt heute keinen.\nVerkäuferin: Gut, dann ein Kaffee und ein Kuchen."
        },
        {
-        "q": "In welchem Stock ist die Wohnung?",
+        "q": "Wo ist die Brille?",
         "o": [
-         "im Erdgeschoss",
+         "in der Tasche",
+         "auf dem Tisch",
+         "im Auto"
+        ],
+        "a": 2,
+        "why": "Nicht in der Tasche, nicht auf dem Tisch – sie liegt im Auto.",
+        "audio": "Frau: Hast du meine Brille gesehen? In meiner Tasche ist sie nicht.\nMann: Liegt sie nicht auf dem Tisch in der Küche?\nFrau: Nein, da habe ich schon geschaut.\nMann: Du bist doch heute Morgen Auto gefahren.\nFrau: Stimmt! Ja, sie liegt im Auto. Danke!"
+       },
+       {
+        "q": "In welchem Stock wohnt Herr Kaya jetzt?",
+        "o": [
+         "im ersten Stock",
          "im dritten Stock",
          "im vierten Stock"
         ],
         "a": 1,
-        "audio": "Frau: Ist die Wohnung im Erdgeschoss?\nMann: Nein, im dritten Stock. Aber es gibt einen Aufzug.\nFrau: Ah, sehr gut."
+        "why": "Früher im vierten Stock, jetzt im dritten.",
+        "audio": "Frau: Entschuldigung, wohnt hier Herr Kaya?\nMann: Ja. Früher hat er im vierten Stock gewohnt, aber jetzt wohnt er im dritten.\nFrau: Gibt es einen Aufzug?\nMann: Der ist leider kaputt. Sie müssen die Treppe nehmen."
        },
        {
-        "q": "Wie ist das Wetter morgen?",
+        "q": "Was kauft die Frau?",
         "o": [
-         "sonnig",
-         "es regnet",
-         "es schneit"
+         "eine Bluse",
+         "einen Rock",
+         "eine Hose"
         ],
-        "a": 1,
-        "why": "„es regnet den ganzen Tag“",
-        "audio": "Mann: Wollen wir morgen grillen?\nFrau: Morgen? Im Radio haben sie gesagt, es regnet den ganzen Tag.\nMann: Schade. Dann grillen wir am Sonntag."
+        "a": 2,
+        "why": "Röcke in 38 gibt es nicht mehr – sie nimmt die Hose. Die Bluse hat sie schon.",
+        "audio": "Verkäufer: Kann ich Ihnen helfen?\nFrau: Ja, ich suche einen Rock für die Arbeit, Größe 38.\nVerkäufer: Röcke in 38 haben wir leider nicht mehr. Aber diese Hose hier ist sehr schön.\nFrau: Hm, die passt gut zu meiner neuen Bluse. Gut, die nehme ich."
        },
        {
-        "q": "Wie viel kostet die Fahrkarte?",
+        "q": "Wann hat Max Geburtstag?",
         "o": [
-         "2,80 €",
-         "3,80 €",
-         "8,30 €"
+         "am 30. Mai",
+         "am 13. Mai",
+         "am 3. Mai"
         ],
         "a": 1,
-        "why": "„drei Euro achtzig“",
-        "audio": "Mann: Eine Fahrkarte zum Flughafen, bitte.\nFrau: Einfach? Das macht drei Euro achtzig.\nMann: Hier, bitte."
-       },
-       {
-        "q": "Wo ist die Post?",
-        "o": [
-         "neben der Bank",
-         "gegenüber vom Bahnhof",
-         "hinter dem Supermarkt"
-        ],
-        "a": 1,
-        "audio": "Frau: Entschuldigung, gibt es hier eine Post?\nMann: Ja, gehen Sie geradeaus bis zum Bahnhof. Die Post ist gegenüber vom Bahnhof, neben einem Café.\nFrau: Vielen Dank."
+        "why": "„Nein, am dreizehnten!“",
+        "audio": "Frau: Wann hast du Geburtstag, Max?\nJunge: Am dreizehnten Mai.\nFrau: Am dreißigsten?\nJunge: Nein, am dreizehnten! Dann werde ich acht."
        }
       ],
       "time": 8
@@ -1461,27 +4779,28 @@ window.TESTS_A1 = [
       "plays": 1,
       "items": [
        {
-        "q": "Die U-Bahn-Linie 4 fährt heute nicht.",
-        "a": true,
-        "why": "wegen Bauarbeiten",
-        "audio": "Achtung, eine Information für unsere Fahrgäste: Wegen Bauarbeiten fährt die U-Bahn-Linie 4 heute nicht. Bitte benutzen Sie die Busse der Linie 34."
-       },
-       {
-        "q": "Im Kaufhaus sind heute Schuhe billiger.",
+        "q": "Die Reisenden nach Mainz müssen in Darmstadt umsteigen.",
         "a": false,
-        "why": "Jacken und Mäntel sind billiger, nicht Schuhe.",
-        "audio": "Liebe Kunden, heute im zweiten Stock: alle Jacken und Mäntel 20 Prozent günstiger. Nur heute!"
+        "why": "Die S-Bahn nach Mainz fährt über den Flughafen; nur die Reisenden nach Darmstadt nehmen den Bus.",
+        "audio": "Achtung an Gleis 4: Die S-Bahn nach Mainz fährt heute nicht über Darmstadt, sondern über Frankfurt Flughafen. Reisende nach Darmstadt nehmen bitte den Bus vor dem Bahnhof."
        },
        {
-        "q": "Der kleine Paul wartet an der Kasse.",
-        "a": false,
-        "why": "Er wartet an der Information im Erdgeschoss.",
-        "audio": "Der kleine Paul sucht seine Mutter. Paul wartet an der Information im Erdgeschoss."
-       },
-       {
-        "q": "Der Zug nach Hamburg fährt von Gleis 9.",
+        "q": "Der Supermarkt schließt heute früher als sonst.",
         "a": true,
-        "audio": "An Gleis 9: Der ICE nach Hamburg, Abfahrt 11 Uhr 50. Bitte einsteigen und Vorsicht an der Bahnsteigkante."
+        "why": "heute um 18 Uhr, sonst um 20 Uhr",
+        "audio": "Liebe Kundinnen und Kunden, wegen einer Betriebsfeier schließen wir heute schon um 18 Uhr und nicht wie immer um 20 Uhr. Morgen sind wir wieder ab 8 Uhr für Sie da."
+       },
+       {
+        "q": "Die Ärztin ist heute erst ab 11 Uhr in der Praxis.",
+        "a": true,
+        "why": "„kommt erst um elf Uhr in die Praxis“",
+        "audio": "Liebe Patientinnen und Patienten, Frau Doktor Brandt hat einen Notfall und kommt erst um elf Uhr in die Praxis. Wenn Sie nicht warten können, machen Sie bitte an der Anmeldung einen neuen Termin."
+       },
+       {
+        "q": "Kinder unter sechs Jahren müssen im Museum bezahlen.",
+        "a": false,
+        "why": "Kinder unter sechs Jahren sind frei.",
+        "audio": "Willkommen im Stadtmuseum. Der Eintritt kostet für Erwachsene acht Euro, für Schüler vier Euro. Kinder unter sechs Jahren sind frei. Am Sonntag ist der Eintritt für alle frei."
        }
       ],
       "time": 4
@@ -1495,58 +4814,59 @@ window.TESTS_A1 = [
       "plays": 2,
       "items": [
        {
-        "q": "Wann soll Frau Koch anrufen?",
+        "q": "Was soll Frau Lenz mitbringen?",
         "o": [
-         "heute bis 17 Uhr",
-         "morgen früh",
-         "morgen ab 17 Uhr"
+         "die Versichertenkarte",
+         "ein Foto",
+         "ihren Pass"
         ],
         "a": 0,
-        "why": "„heute noch bis 17 Uhr“",
-        "audio": "Guten Tag, Frau Koch, hier ist das Bürgeramt. Ihr Personalausweis ist fertig. Bitte rufen Sie uns heute noch bis 17 Uhr an, dann bekommen Sie einen Termin zum Abholen."
+        "why": "Das Foto haben sie schon – nur die Versichertenkarte.",
+        "audio": "Guten Tag, Frau Lenz, hier ist die Praxis Doktor Roth. Ihr Termin ist am Freitag um neun Uhr. Bitte bringen Sie Ihre Versichertenkarte mit. Ein Foto brauchen wir nicht mehr, das haben wir schon."
        },
        {
-        "q": "Was hat Tim vergessen?",
+        "q": "Wo treffen sich Paul und Jonas?",
         "o": [
-         "sein Handy",
-         "seine Jacke",
-         "seinen Schlüssel"
-        ],
-        "a": 1,
-        "audio": "Hallo Tim, hier ist Julia. Du hast gestern bei uns deine Jacke vergessen. Ich bringe sie morgen zur Arbeit mit. Tschüss!"
-       },
-       {
-        "q": "Wann beginnt der Kurs?",
-        "o": [
-         "am 3. September",
-         "am 13. September",
-         "am 30. September"
-        ],
-        "a": 1,
-        "why": "„nicht am dritten, sondern am dreizehnten September“",
-        "audio": "Hier ist die Volkshochschule. Der Deutschkurs A2 beginnt nicht am dritten September, sondern am dreizehnten September. Die Uhrzeit bleibt gleich."
-       },
-       {
-        "q": "Wo treffen sich Anna und Leo?",
-        "o": [
-         "vor dem Museum",
+         "vor dem Kino",
          "im Café",
-         "an der Haltestelle"
+         "am Bahnhof"
+        ],
+        "a": 1,
+        "why": "Wegen des Regens nicht am Bahnhof, sondern im Café Mozart neben dem Kino.",
+        "audio": "Hallo Jonas, hier ist Paul. Wir wollten uns um acht am Bahnhof treffen, aber es regnet so stark. Lass uns lieber gleich im Café Mozart treffen, das ist neben dem Kino. Bis später!"
+       },
+       {
+        "q": "Wie viel kostet der Kochkurs?",
+        "o": [
+         "40 Euro",
+         "80 Euro",
+         "60 Euro"
         ],
         "a": 2,
-        "why": "Das Museum ist geschlossen – Treffpunkt: die Haltestelle am Park.",
-        "audio": "Hi Anna, hier ist Leo. Das Museum ist heute leider geschlossen. Wollen wir in den Park gehen? Ich warte um drei an der Haltestelle am Park. Bis dann!"
+        "why": "Nicht 80 Euro wie im Programm, sondern nur 60 Euro.",
+        "audio": "Hier ist die Volkshochschule. Sie haben sich für den Kochkurs angemeldet. Der Kurs kostet nicht 80 Euro, wie im Programm steht, sondern nur 60 Euro, weil er nur sechs Mal ist. Bitte bezahlen Sie bis zum ersten März."
        },
        {
-        "q": "Was soll Herr Ito mitbringen?",
+        "q": "Wann kann Herr Ito die Waschmaschine abholen?",
         "o": [
-         "ein Foto",
-         "seinen Pass",
-         "den Mietvertrag"
+         "heute",
+         "am Samstag",
+         "morgen Vormittag"
         ],
-        "a": 0,
-        "why": "Pass und Mietvertrag hat die Behörde schon.",
-        "audio": "Guten Morgen, Herr Ito, hier ist die Ausländerbehörde. Für Ihren Termin am Freitag brauchen wir noch ein aktuelles Foto. Ihren Pass und den Mietvertrag haben wir schon. Danke."
+        "a": 1,
+        "why": "Das Teil kommt erst übermorgen – abholen am Samstag ab 10 Uhr.",
+        "audio": "Guten Tag, Herr Ito, hier ist Elektro Becker. Ihre Waschmaschine ist leider noch nicht fertig. Wir brauchen ein neues Teil, und das kommt erst übermorgen. Sie können die Maschine am Samstag ab zehn Uhr abholen."
+       },
+       {
+        "q": "Was macht Lisa am Wochenende?",
+        "o": [
+         "Sie arbeitet.",
+         "Sie besucht ihre Eltern.",
+         "Sie fährt ans Meer."
+        ],
+        "a": 1,
+        "why": "Sie muss nicht arbeiten – sie fährt zu ihren Eltern nach Hamburg.",
+        "audio": "Hi Mia, hier ist Lisa. Leider kann ich am Wochenende nicht mit ans Meer fahren. Ich muss nicht arbeiten, aber meine Eltern haben Hochzeitstag, und ich fahre zu ihnen nach Hamburg. Viel Spaß euch!"
        }
       ],
       "time": 8
@@ -1565,29 +4885,32 @@ window.TESTS_A1 = [
       "intro": "Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
       "type": "rf",
       "per": 1,
-      "text": "Text 1: Hallo Tom, am Samstag mache ich eine Fahrradtour an den Rhein. Kommst du mit? Wir fahren um 9 Uhr am Bahnhof los. Die Tour ist 40 Kilometer lang. Am Abend essen wir zusammen in einem Restaurant. Bitte schreib mir bis Donnerstag.\nGrüße\nNina\nText 2: Sehr geehrte Frau Schulz, Ihr Paket konnten wir heute nicht abgeben. Sie waren nicht zu Hause. Sie können es ab morgen in der Post in der Hauptstraße abholen. Bitte bringen Sie Ihren Ausweis mit. Ihr Paketdienst",
+      "text": "Text 1: Liebe Frau Weber, vielen Dank für Ihre E-Mail. Leider kann ich am Montag nicht zum Elternabend kommen, weil ich bis 20 Uhr arbeiten muss. Mein Mann ist diese Woche auf einer Geschäftsreise. Können Sie mir bitte die Informationen über die Klassenfahrt schicken? Ich möchte auch gern wissen, was die Fahrt kostet. Am Mittwochnachmittag habe ich frei, dann kann ich Sie auch anrufen.\nViele Grüße\nAysel Demir\nText 2: Hallo zusammen, unsere Nachbarin Frau Huber hat am Samstag ihren 80. Geburtstag. Wir möchten ihr zusammen Blumen und einen Kuchen schenken. Jeder gibt bitte fünf Euro. Das Geld könnt ihr bis Freitag in den Briefkasten von Wohnung 4 werfen. Am Samstag um 15 Uhr klingeln wir zusammen bei ihr. Wer nicht kommen kann, schreibt bitte eine Karte!\nViele Grüße\nFamilie Novak",
       "items": [
        {
-        "q": "Text 1: Die Fahrradtour ist am Samstag.",
-        "a": true
+        "q": "Text 1: Frau Demir kann am Montag nicht zum Elternabend kommen.",
+        "a": true,
+        "why": "„weil ich bis 20 Uhr arbeiten muss“"
        },
        {
-        "q": "Text 1: Nina und ihre Freunde treffen sich am Rhein.",
+        "q": "Text 1: Ihr Mann geht für sie zum Elternabend.",
         "a": false,
-        "why": "Sie fahren am Bahnhof los."
+        "why": "Er ist diese Woche auf einer Geschäftsreise."
        },
        {
-        "q": "Text 1: Tom soll bis Donnerstag antworten.",
-        "a": true
+        "q": "Text 1: Frau Demir möchte wissen, wie teuer die Klassenfahrt ist.",
+        "a": true,
+        "why": "„was die Fahrt kostet“"
        },
        {
-        "q": "Text 2: Frau Schulz hat ihr Paket schon bekommen.",
+        "q": "Text 2: Die Nachbarn sollen das Geld am Samstag mitbringen.",
         "a": false,
-        "why": "Sie war nicht zu Hause."
+        "why": "Bis Freitag in den Briefkasten von Wohnung 4."
        },
        {
-        "q": "Text 2: Frau Schulz braucht für das Paket ihren Ausweis.",
-        "a": true
+        "q": "Text 2: Wer am Samstag keine Zeit hat, kann eine Karte schreiben.",
+        "a": true,
+        "why": "„Wer nicht kommen kann, schreibt bitte eine Karte!“"
        }
       ],
       "time": 8
@@ -1600,46 +4923,48 @@ window.TESTS_A1 = [
       "per": 1,
       "items": [
        {
-        "q": "Sie möchten am Samstag einen Englischkurs machen.",
+        "q": "Sie möchten am Sonntagabend essen gehen.",
         "o": [
-         "Sprachschule Lingua: Englisch für Anfänger, samstags 10 bis 13 Uhr.",
-         "Volkshochschule: Englisch, montags und mittwochs 18 Uhr."
+         "Pizzeria Roma: täglich 12–15 und 18–23 Uhr, Montag Ruhetag.",
+         "Gasthaus Linde: Montag bis Samstag 11–22 Uhr, sonntags geschlossen."
         ],
-        "a": 0
+        "a": 0,
+        "why": "Die Pizzeria hat nur montags zu."
        },
        {
-        "q": "Sie möchten Ihr altes Handy verkaufen.",
+        "q": "Sie arbeiten tagsüber und suchen einen Deutschkurs.",
         "o": [
-         "Handyshop Plus: neue Smartphones günstig!",
-         "Wir kaufen gebrauchte Handys – sofort Geld! Handy-Ankauf, Bahnhofstraße."
+         "Deutsch für Berufstätige: zweimal pro Woche 18:30–20:45 Uhr.",
+         "Deutschkurs A1: Montag bis Donnerstag 9–12 Uhr, Volkshochschule."
+        ],
+        "a": 0,
+        "why": "Am Abend – nach der Arbeit."
+       },
+       {
+        "q": "Sie möchten für Ihren Sohn (8 Jahre) ein gebrauchtes Fahrrad.",
+        "o": [
+         "Neue Kinderfahrräder bei Rad & Tat – jetzt 10 % billiger!",
+         "Verkaufe Kinderfahrrad, 2 Jahre alt, für Kinder von 7 bis 10 Jahren, 45 Euro."
         ],
         "a": 1,
-        "why": "„Ankauf“ = sie kaufen Ihr Handy."
+        "why": "gebraucht = nicht neu"
        },
        {
-        "q": "Sie suchen eine Wohnung mit Garten.",
+        "q": "Ihre Waschmaschine ist kaputt. Sie brauchen schnell Hilfe.",
         "o": [
-         "Erdgeschosswohnung, 3 Zimmer, mit kleinem Garten, 950 Euro warm.",
-         "Dachwohnung, 2 Zimmer, mit großem Balkon, 780 Euro warm."
+         "Hausgeräte-Service: Reparatur noch am selben Tag, Tel. 069 123456.",
+         "Waschsalon Blitz: Waschen und Trocknen, täglich 7–22 Uhr."
         ],
-        "a": 0
+        "a": 0,
+        "why": "Reparatur – der Waschsalon repariert nichts."
        },
        {
-        "q": "Sie möchten am Montag ins Museum gehen.",
+        "q": "Sie möchten am Wochenende mit der Familie schwimmen.",
         "o": [
-         "Kunstmuseum: Dienstag bis Sonntag 10 bis 18 Uhr.",
-         "Naturkundemuseum: täglich 9 bis 17 Uhr geöffnet."
+         "Sauna-Paradies: nur für Erwachsene, täglich 10–23 Uhr.",
+         "Hallenbad Nord: Sa und So 8–20 Uhr, Familienkarte 15 Euro."
         ],
-        "a": 1,
-        "why": "„täglich“ = jeden Tag, also auch montags."
-       },
-       {
-        "q": "Ihr Kind ist 4 Jahre alt und braucht einen Platz im Kindergarten.",
-        "o": [
-         "Kita Sonnenschein: freie Plätze für Kinder von 1 bis 6 Jahren.",
-         "Schule am Park: Anmeldung für die 1. Klasse."
-        ],
-        "a": 0
+        "a": 1
        }
       ],
       "time": 8
@@ -1652,34 +4977,34 @@ window.TESTS_A1 = [
       "per": 1,
       "items": [
        {
-        "q": "Am Dienstagnachmittag gibt es wieder Wasser.",
+        "q": "Am 3. Januar können Sie in diesem Geschäft einkaufen.",
         "a": true,
-        "why": "Kein Wasser nur von 8 bis 12 Uhr.",
-        "text": "Liebe Mieter, am Dienstag von 8 bis 12 Uhr gibt es kein Wasser. Ihre Hausverwaltung"
+        "why": "Geschlossen ist nur am 2. Januar.",
+        "text": "Liebe Kunden! Wegen Inventur ist unser Geschäft am 2. Januar geschlossen. Ab 3. Januar sind wir wieder für Sie da."
        },
        {
-        "q": "Sie gehen zuerst ins Wartezimmer.",
+        "q": "Wenn Sie drei Stunden parken, bezahlen Sie 6 Euro.",
         "a": false,
-        "why": "Zuerst zur Anmeldung.",
-        "text": "Zahnarztpraxis: Bitte melden Sie sich an der Anmeldung. Nicht direkt ins Wartezimmer gehen!"
+        "why": "Die erste Stunde ist kostenlos: 2 × 2 Euro = 4 Euro.",
+        "text": "Parkhaus Zentrum: erste Stunde kostenlos, jede weitere Stunde 2 Euro."
        },
        {
-        "q": "Auf dem Balkon dürfen Sie rauchen.",
+        "q": "Am Mittwochnachmittag ist die Praxis offen.",
         "a": false,
-        "why": "„Auch auf dem Balkon“ ist Rauchen verboten.",
-        "text": "Rauchen verboten! Auch auf dem Balkon."
+        "why": "Mittwoch und Freitag nur vormittags.",
+        "text": "Praxis Dr. Klein – Sprechstunde: Mo, Di, Do 8–12 und 15–18 Uhr, Mi und Fr nur vormittags."
        },
        {
-        "q": "Am Sonntag können Sie im Supermarkt Brot kaufen.",
+        "q": "Vor der Eingangstür dürfen Sie rauchen.",
+        "a": false,
+        "why": "Rauchen nur im Hof.",
+        "text": "Rauchen nur im Hof erlaubt. Bitte nicht vor der Eingangstür!"
+       },
+       {
+        "q": "Für das Fundbüro brauchen Sie einen Ausweis.",
         "a": true,
-        "why": "Sonntags hat die Bäckerei geöffnet.",
-        "text": "Supermarkt Frisch: Wir haben jetzt auch sonntags von 8 bis 12 Uhr geöffnet – nur die Bäckerei."
-       },
-       {
-        "q": "Hier kann jeder den ganzen Tag parken.",
-        "a": false,
-        "why": "Nur Kunden, höchstens 2 Stunden.",
-        "text": "Parken nur für Kunden. Maximal 2 Stunden."
+        "why": "„Kommen Sie mit Ausweis“",
+        "text": "Fundbüro: Haben Sie etwas verloren? Kommen Sie mit Ausweis, Zimmer 12, Mo–Fr 9–13 Uhr."
        }
       ],
       "time": 9
@@ -1695,719 +5020,56 @@ window.TESTS_A1 = [
      {
       "t": "Teil 1 – Formular ausfüllen",
       "tab": "Teil 1",
-      "intro": "Ihre Nachbarin möchte ihre Tochter für einen Schwimmkurs anmelden. Sie helfen ihr beim Formular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
+      "intro": "Ihre Kollegin Frau Wang möchte ihren Sohn in der Musikschule anmelden. Sie helfen ihr beim Formular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
       "type": "form",
       "per": 1,
-      "text": "Ich heiße Fatima Rahimi. Ich komme aus Afghanistan und wohne seit einem Jahr in Hamburg. Ich bin 31 Jahre alt und habe zwei Töchter. Ich möchte meine Tochter Sara für den Schwimmkurs anmelden. Sara ist sieben Jahre alt. Der Kurs soll am Samstag sein, weil ich unter der Woche arbeite.",
+      "text": "Ihre Kollegin Mei Lin Wang möchte ihren Sohn Leo in der Musikschule anmelden. Leo ist am 4. April 2016 geboren. Er möchte Gitarre lernen, aber Klavier findet er auch interessant. Leo hat montags und mittwochs Fußball, deshalb hat er nur dienstags Zeit. Frau Wang bezahlt per Überweisung.",
       "items": [
        {
         "q": "Vorname des Kindes",
         "a": [
-         "Sara"
+         "Leo"
         ],
-        "why": "„meine Tochter Sara“"
+        "why": "„ihren Sohn Leo“"
        },
        {
-        "q": "Alter des Kindes",
+        "q": "Geburtsdatum",
         "a": [
-         "7",
-         "sieben",
-         "7 Jahre",
-         "sieben Jahre"
+         "4. April 2016",
+         "04.04.2016",
+         "4.4.2016",
+         "4. 4. 2016",
+         "04. April 2016"
         ],
-        "why": "„Sara ist sieben Jahre alt.“"
+        "why": "„am 4. April 2016 geboren“"
        },
        {
-        "q": "Wohnort",
+        "q": "Instrument",
         "a": [
-         "Hamburg"
+         "Gitarre"
         ],
-        "why": "„wohne seit einem Jahr in Hamburg“"
+        "why": "Er möchte Gitarre lernen – Klavier findet er nur interessant."
        },
        {
-        "q": "Herkunftsland der Mutter",
-        "a": [
-         "Afghanistan"
-        ],
-        "why": "„Ich komme aus Afghanistan.“"
-       },
-       {
-        "q": "Kurstag",
-        "o": [
-         "unter der Woche",
-         "Samstag"
-        ],
-        "a": 1,
-        "why": "Sie arbeitet unter der Woche, deshalb Samstag."
-       }
-      ],
-      "time": 5
-     },
-     {
-      "t": "Teil 2 – Kurze Mitteilung",
-      "intro": "Schreiben Sie etwa 30 Wörter. Schreiben Sie zu allen drei Punkten. Vergessen Sie Anrede und Gruß nicht.",
-      "type": "write",
-      "crit": "a1",
-      "words": 30,
-      "task": "Ihre Heizung ist kaputt. Schreiben Sie an Ihren Vermieter, Herrn Braun:",
-      "points": [
-       "Problem",
-       "Seit wann?",
-       "Bitte: Handwerker"
-      ],
-      "model": "Sehr geehrter Herr Braun,\nin meiner Wohnung ist die Heizung kaputt. Sie funktioniert seit Montag nicht mehr, und es ist sehr kalt. Können Sie bitte schnell einen Handwerker schicken?\nMit freundlichen Grüßen\nSuresh [Nachname]",
-      "tab": "Teil 2",
-      "time": 15
-     }
-    ]
-   },
-   {
-    "id": "sprechen",
-    "de": "Sprechen",
-    "en": "Speaking",
-    "time": 15,
-    "oral": true,
-    "parts": [
-     {
-      "t": "Teil 1 – Sich vorstellen",
-      "tab": "Teil 1",
-      "intro": "Stellen Sie sich vor. Dann buchstabieren Sie und sagen eine Nummer oder Adresse.",
-      "type": "speak",
-      "max": 3,
-      "time": 4,
-      "turns": [
-       {
-        "who": "Prüferin",
-        "say": "Guten Tag! Bitte stellen Sie sich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf und Hobby."
-       },
-       {
-        "you": "Stell dich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby.",
-        "min": 20,
-        "key": [
-         [
-          "heiße|name ist|ich bin [A-ZÄÖÜ]",
-          "Name"
-         ],
-         [
-          "jahre",
-          "Alter"
-         ],
-         [
-          "komme aus",
-          "Land"
-         ],
-         [
-          "wohne",
-          "Wohnort"
-         ],
-         [
-          "spreche",
-          "Sprachen"
-         ],
-         [
-          "arbeite|beruf|bin .*(ingenieur|lehrer|student|entwickler|krankenschwester|koch|verkäufer)",
-          "Beruf"
-         ],
-         [
-          "hobby|gern|spiele|lese|koche|tanze|schwimme",
-          "Hobby"
-         ]
-        ],
-        "model": "Ich heiße Suresh. Ich bin [Alter] Jahre alt und komme aus Indien. Ich wohne in Frankfurt. Ich spreche Englisch und ein bisschen Deutsch. Ich arbeite als Ingenieur. Mein Hobby ist Kochen."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Danke. Buchstabieren Sie bitte Ihren Vornamen."
-       },
-       {
-        "you": "Buchstabiere deinen Vornamen.",
-        "min": 3,
-        "key": [],
-        "model": "S – U – R – E – S – H."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Und wie ist Ihre Telefonnummer?"
-       },
-       {
-        "you": "Sag deine Telefonnummer, Zahl für Zahl.",
-        "min": 4,
-        "key": [
-         [
-          "\\d|null|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|straße",
-          "Zahlen / Adresse"
-         ]
-        ],
-        "model": "Null – eins – sieben – sechs – zwei – drei – vier – fünf – sechs – sieben."
-       }
-      ]
-     },
-     {
-      "t": "Teil 2 – Um Informationen bitten und geben",
-      "tab": "Teil 2",
-      "intro": "Thema: Wohnen. Ihr Partner fragt Sie, Sie antworten. Dann fragen Sie mit Ihrer Karte, Ihr Partner antwortet.",
-      "type": "speak",
-      "max": 6,
-      "time": 6,
-      "turns": [
-       {
-        "who": "Prüferin",
-        "say": "Teil 2. Das Thema ist: Wohnen. Tom, bitte fragen Sie zuerst."
-       },
-       {
-        "who": "Tom",
-        "say": "Wie groß ist deine Wohnung?"
-       },
-       {
-        "you": "Antworte Tom in einem ganzen Satz.",
-        "min": 4,
-        "key": [
-         [
-          "\\bich\\b",
-          "ganzer Satz mit ich"
-         ]
-        ],
-        "model": "Meine Wohnung hat drei Zimmer."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Jetzt Sie. Ihre Karte: Balkon."
-       },
-       {
-        "you": "Frag Tom etwas zum Wort „Balkon“.",
-        "min": 3,
-        "key": [
-         [
-          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
-          "Frageform"
-         ],
-         [
-          "balko",
-          "Wort der Karte"
-         ]
-        ],
-        "model": "Hast du einen Balkon?"
-       },
-       {
-        "who": "Tom",
-        "say": "Ja, einen kleinen Balkon."
-       },
-       {
-        "who": "Lea",
-        "say": "Wohnst du in der Stadt?"
-       },
-       {
-        "you": "Antworte Lea in einem ganzen Satz.",
-        "min": 4,
-        "key": [
-         [
-          "\\bich\\b",
-          "ganzer Satz mit ich"
-         ]
-        ],
-        "model": "Ja, ich wohne im Zentrum."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Ihre zweite Karte: Miete."
-       },
-       {
-        "you": "Frag Lea etwas zum Wort „Miete“.",
-        "min": 3,
-        "key": [
-         [
-          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
-          "Frageform"
-         ],
-         [
-          "miete",
-          "Wort der Karte"
-         ]
-        ],
-        "model": "Wie hoch ist deine Miete?"
-       },
-       {
-        "who": "Lea",
-        "say": "Sie kostet 800 Euro."
-       }
-      ]
-     },
-     {
-      "t": "Teil 3 – Bitten formulieren und darauf reagieren",
-      "tab": "Teil 3",
-      "intro": "Ihr Partner bittet Sie um etwas, Sie reagieren. Dann bitten Sie mit Ihrer Bildkarte, Ihr Partner reagiert.",
-      "type": "speak",
-      "max": 6,
-      "time": 5,
-      "turns": [
-       {
-        "who": "Prüferin",
-        "say": "Teil 3. Bitten und reagieren. Lea, bitte beginnen Sie."
-       },
-       {
-        "who": "Lea",
-        "say": "Machst du bitte das Licht an?"
-       },
-       {
-        "you": "Reagiere auf Leas Bitte.",
-        "min": 2,
-        "key": [
-         [
-          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
-          "Reaktion"
-         ]
-        ],
-        "model": "Ja, natürlich."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Jetzt Sie. Ihre Karte: 📱 Handy."
-       },
-       {
-        "you": "Bitte Tom um etwas – Karte: 📱 Handy.",
-        "min": 3,
-        "key": [
-         [
-          "bitte",
-          "bitte"
-         ],
-         [
-          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
-          "Bitte-Form"
-         ],
-         [
-          "handy",
-          "Wort der Karte"
-         ]
-        ],
-        "model": "Kannst du mir bitte dein Handy geben?"
-       },
-       {
-        "who": "Tom",
-        "say": "Ja, hier bitte."
-       },
-       {
-        "who": "Tom",
-        "say": "Kannst du mir bitte beim Kochen helfen?"
-       },
-       {
-        "you": "Reagiere auf Toms Bitte.",
-        "min": 2,
-        "key": [
-         [
-          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
-          "Reaktion"
-         ]
-        ],
-        "model": "Ja, gern. Was soll ich machen?"
-       },
-       {
-        "who": "Prüferin",
-        "say": "Ihre zweite Karte: 💧 Wasser."
-       },
-       {
-        "you": "Bitte Lea um etwas – Karte: 💧 Wasser.",
-        "min": 3,
-        "key": [
-         [
-          "bitte",
-          "bitte"
-         ],
-         [
-          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
-          "Bitte-Form"
-         ],
-         [
-          "wasser",
-          "Wort der Karte"
-         ]
-        ],
-        "model": "Kannst du mir bitte ein Glas Wasser geben?"
-       },
-       {
-        "who": "Lea",
-        "say": "Ja, gern."
-       }
-      ]
-     }
-    ]
-   }
-  ]
- },
- {
-  "id": "a1-4",
-  "title": "Modelltest 4",
-  "sub": "Markt, Kita, Urlaub · Anfrage an eine Sprachschule",
-  "sections": [
-   {
-    "id": "hoeren",
-    "de": "Hören",
-    "en": "Listening",
-    "time": 20,
-    "parts": [
-     {
-      "t": "Teil 1 – Kurze Gespräche",
-      "tab": "Teil 1",
-      "intro": "Sie hören sechs kurze Gespräche. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
-      "type": "mc",
-      "per": 1,
-      "plays": 2,
-      "items": [
-       {
-        "q": "Wie viel kostet ein Kilo Äpfel?",
-        "o": [
-         "1,99 €",
-         "2,99 €",
-         "3,99 €"
-        ],
-        "a": 1,
-        "why": "„zwei Euro neunundneunzig“",
-        "audio": "Mann: Was kosten die Äpfel?\nVerkäuferin: Ein Kilo kostet zwei Euro neunundneunzig.\nMann: Gut, ein Kilo, bitte."
-       },
-       {
-        "q": "Wann beginnt der Yogakurs heute?",
-        "o": [
-         "um 9 Uhr",
-         "um 10 Uhr",
-         "um 11 Uhr"
-        ],
-        "a": 2,
-        "why": "Heute erst um elf.",
-        "audio": "Frau: Beginnt der Yogakurs um zehn Uhr?\nMann: Nein, heute erst um elf. Die Lehrerin kommt später."
-       },
-       {
-        "q": "Wohin geht die Frau?",
-        "o": [
-         "zur Apotheke",
-         "zur Post",
-         "zur Bank"
-        ],
-        "a": 0,
-        "audio": "Mann: Wohin gehst du?\nFrau: Zur Apotheke. Ich brauche Tabletten gegen Kopfschmerzen. Dann gehe ich nach Hause."
-       },
-       {
-        "q": "Was möchte das Kind trinken?",
-        "o": [
-         "Saft",
-         "Milch",
-         "Wasser"
-        ],
-        "a": 2,
-        "why": "Keinen Saft, keine Milch.",
-        "audio": "Mutter: Möchtest du Saft oder Milch?\nKind: Keinen Saft. Und keine Milch. Ich möchte Wasser, bitte."
-       },
-       {
-        "q": "Welcher Tag ist heute?",
+        "q": "Unterricht am",
         "o": [
          "Montag",
          "Dienstag",
          "Mittwoch"
         ],
         "a": 1,
-        "why": "Montag war gestern.",
-        "audio": "Frau: Ist heute Montag?\nMann: Nein, Montag war gestern. Heute ist Dienstag."
+        "why": "Montag und Mittwoch hat er Fußball."
        },
        {
-        "q": "Wie heißt die neue Kollegin?",
-        "o": [
-         "Anna Behrens",
-         "Anna Berends",
-         "Hanna Behrens"
-        ],
-        "a": 0,
-        "why": "B-E-H-R-E-N-S",
-        "audio": "Mann: Wie heißt die neue Kollegin?\nFrau: Anna Behrens. Behrens mit B, E, H, R, E, N, S."
-       }
-      ],
-      "time": 8
-     },
-     {
-      "t": "Teil 2 – Durchsagen",
-      "tab": "Teil 2",
-      "intro": "Sie hören vier Ansagen. Sie hören jeden Text einmal. Kreuzen Sie an: Richtig oder Falsch.",
-      "type": "rf",
-      "per": 1,
-      "plays": 1,
-      "items": [
-       {
-        "q": "Der Bus nach Hanau fährt heute nicht.",
-        "a": true,
-        "why": "Er fällt aus.",
-        "audio": "Achtung: Der Bus der Linie 30 nach Hanau fällt heute leider aus. Bitte nehmen Sie die S-Bahn."
-       },
-       {
-        "q": "Im zweiten Stock sind heute Schuhe billiger.",
-        "a": false,
-        "why": "Kinderjacken, nicht Schuhe.",
-        "audio": "Liebe Kunden, im zweiten Stock sind heute alle Kinderjacken 30 Prozent billiger."
-       },
-       {
-        "q": "Die Bibliothek schließt in zehn Minuten.",
-        "a": true,
-        "audio": "Liebe Besucher, die Bibliothek schließt in zehn Minuten. Bitte bringen Sie Ihre Bücher zur Ausleihe."
-       },
-       {
-        "q": "Der ICE nach Berlin kommt pünktlich.",
-        "a": false,
-        "why": "etwa 15 Minuten Verspätung",
-        "audio": "Information zu Gleis 4: Der ICE nach Berlin hat heute etwa 15 Minuten Verspätung."
-       }
-      ],
-      "time": 4
-     },
-     {
-      "t": "Teil 3 – Telefonansagen",
-      "tab": "Teil 3",
-      "intro": "Sie hören fünf Ansagen am Telefon. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
-      "type": "mc",
-      "per": 1,
-      "plays": 2,
-      "items": [
-       {
-        "q": "Wann kann Frau Weber kommen?",
-        "o": [
-         "heute Nachmittag",
-         "morgen Vormittag",
-         "morgen Nachmittag"
-        ],
-        "a": 1,
-        "why": "morgen Vormittag um halb zehn",
-        "audio": "Guten Tag, Frau Weber, hier ist die Praxis Doktor Roth. Heute ist leider kein Termin mehr frei. Sie können aber morgen Vormittag kommen, um halb zehn."
-       },
-       {
-        "q": "Was soll Mark mitbringen?",
-        "o": [
-         "Brot",
-         "Käse",
-         "Wein"
-        ],
-        "a": 0,
-        "why": "Käse und Wein hat Jana.",
-        "audio": "Hallo Mark, hier ist Jana. Heute Abend essen wir bei mir. Käse und Wein habe ich. Bring bitte Brot mit. Bis später!"
-       },
-       {
-        "q": "Wo ist das Sommerfest?",
-        "o": [
-         "im Park",
-         "in der Schule",
-         "im Garten"
-        ],
-        "a": 2,
-        "why": "„nicht im Park, sondern in unserem Garten“",
-        "audio": "Hallo, hier ist Familie Schmidt. Unser Sommerfest ist am Samstag. Es ist nicht im Park, sondern in unserem Garten. Wir freuen uns auf euch!"
-       },
-       {
-        "q": "Warum kommt Tim später?",
-        "o": [
-         "Das Auto ist kaputt.",
-         "Der Zug hat Verspätung.",
-         "Tim ist krank."
-        ],
-        "a": 1,
-        "audio": "Hi Sarah, hier ist Tim. Ich komme später, mein Zug hat eine halbe Stunde Verspätung. Wartet bitte nicht mit dem Essen."
-       },
-       {
-        "q": "Wann ist das Büro geöffnet?",
-        "o": [
-         "nur vormittags",
-         "den ganzen Tag",
-         "nur nachmittags"
-        ],
-        "a": 0,
-        "why": "8 bis 12 Uhr, nachmittags geschlossen",
-        "audio": "Sie sind verbunden mit dem Büro der Sprachschule. Wir sind montags bis freitags von 8 bis 12 Uhr für Sie da. Nachmittags ist das Büro geschlossen."
-       }
-      ],
-      "time": 8
-     }
-    ]
-   },
-   {
-    "id": "lesen",
-    "de": "Lesen",
-    "en": "Reading",
-    "time": 25,
-    "parts": [
-     {
-      "t": "Teil 1 – Kurze Mitteilungen",
-      "tab": "Teil 1",
-      "intro": "Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
-      "type": "rf",
-      "per": 1,
-      "items": [
-       {
-        "q": "Text 1: Nina ist mit ihrer Familie in den Bergen.",
-        "a": false,
-        "why": "Sie sind am Meer."
-       },
-       {
-        "q": "Text 1: Das Wetter ist sehr warm.",
-        "a": true,
-        "why": "30 Grad"
-       },
-       {
-        "q": "Text 1: Die Familie fliegt am Sonntag zurück.",
-        "a": false,
-        "why": "am Samstag"
-       },
-       {
-        "q": "Text 2: Die Kita ist am Freitag geschlossen.",
-        "a": true
-       },
-       {
-        "q": "Text 2: Am Montag öffnet die Kita um 8 Uhr.",
-        "a": false,
-        "why": "ab 7 Uhr"
-       }
-      ],
-      "text": "Text 1: Liebe Oma, wir sind jetzt in Spanien am Meer. Das Wetter ist super, jeden Tag 30 Grad. Die Kinder schwimmen den ganzen Tag. Unser Hotel ist direkt am Strand. Nächsten Samstag fliegen wir zurück.\nViele Grüße\nNina\nText 2: Liebe Eltern, die Kita ist am Freitag geschlossen. Unsere Erzieherinnen haben eine Fortbildung. Am Montag sind wir wieder ab 7 Uhr für Sie da. Ihr Kita-Team",
-      "time": 8
-     },
-     {
-      "t": "Teil 2 – Anzeigen",
-      "tab": "Teil 2",
-      "intro": "Lesen Sie die Aufgaben und die Anzeigen. Welche Anzeige passt: a oder b?",
-      "type": "mc",
-      "per": 1,
-      "items": [
-       {
-        "q": "Sie möchten Ihr Fahrrad reparieren lassen.",
-        "o": [
-         "Fahrradladen Pedal: Reparaturen in 2 Tagen.",
-         "Autowerkstatt Müller: Reparatur aller Automarken."
-        ],
-        "a": 0
-       },
-       {
-        "q": "Sie suchen eine Wohnung für Ihre Familie mit drei Kindern.",
-        "o": [
-         "1-Zimmer-Apartment, 30 m², nur für Studenten.",
-         "5-Zimmer-Wohnung, 120 m², ruhig, mit Garten."
-        ],
-        "a": 1
-       },
-       {
-        "q": "Sie möchten am Abend tanzen lernen.",
-        "o": [
-         "Tanzschule Takt: Kurse dienstags 19–21 Uhr.",
-         "Ballettschule: Kinderkurse mittwochs 15 Uhr."
-        ],
-        "a": 0
-       },
-       {
-        "q": "Sie möchten billig Kleidung kaufen.",
-        "o": [
-         "Boutique Elegance: Mode aus Paris.",
-         "Second-Hand-Markt: Kleidung ab 2 Euro, jeden Samstag."
-        ],
-        "a": 1
-       },
-       {
-        "q": "Sie brauchen am Sonntag eine Apotheke.",
-        "o": [
-         "Apotheke am Markt: Montag bis Samstag 8–19 Uhr.",
-         "Notdienst: Löwen-Apotheke, heute (Sonntag) 9–21 Uhr."
-        ],
-        "a": 1
-       }
-      ],
-      "time": 8
-     },
-     {
-      "t": "Teil 3 – Schilder und Aushänge",
-      "tab": "Teil 3",
-      "intro": "Lesen Sie die Schilder. Kreuzen Sie an: Richtig oder Falsch.",
-      "type": "rf",
-      "per": 1,
-      "items": [
-       {
-        "q": "Sie können in der Bahnhofstraße einkaufen.",
-        "a": true,
-        "text": "Wegen Umbau geschlossen. Unsere Filiale in der Bahnhofstraße ist geöffnet."
-       },
-       {
-        "q": "Sie können Ihren Hund mit ins Geschäft nehmen.",
-        "a": false,
-        "text": "Hunde bitte draußen lassen!"
-       },
-       {
-        "q": "Der Kurs ist heute in Raum 8.",
-        "a": false,
-        "why": "heute in Raum 12",
-        "text": "Deutschkurs A1: heute in Raum 12 statt Raum 8."
-       },
-       {
-        "q": "Sie können eine Fahrkarte im Bus kaufen.",
-        "a": true,
-        "text": "Fahrkarten gibt es auch im Bus beim Fahrer."
-       },
-       {
-        "q": "Um halb eins ist das Büro geschlossen.",
-        "a": true,
-        "why": "12:30 Uhr ist in der Mittagspause.",
-        "text": "Mittagspause von 12 bis 13 Uhr. Bitte kommen Sie später wieder."
-       }
-      ],
-      "time": 9
-     }
-    ]
-   },
-   {
-    "id": "schreiben",
-    "de": "Schreiben",
-    "en": "Writing",
-    "time": 20,
-    "parts": [
-     {
-      "t": "Teil 1 – Formular ausfüllen",
-      "tab": "Teil 1",
-      "intro": "Ihr Freund möchte sich im Fitnessstudio anmelden. Sie helfen ihm beim Formular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
-      "type": "form",
-      "per": 1,
-      "items": [
-       {
-        "q": "Wohnort",
-        "a": [
-         "Mainz"
-        ],
-        "why": "„wohnt in Mainz“"
-       },
-       {
-        "q": "Beruf",
-        "a": [
-         "Koch"
-        ],
-        "why": "„Er ist Koch von Beruf.“"
-       },
-       {
-        "q": "Alter",
-        "a": [
-         "29",
-         "neunundzwanzig",
-         "29 Jahre"
-        ],
-        "why": "29 Jahre alt"
-       },
-       {
-        "q": "Trainingszeit",
-        "o": [
-         "morgens",
-         "abends"
-        ],
-        "a": 0,
-        "why": "Er arbeitet abends, deshalb morgens."
-       },
-       {
-        "q": "Zahlungsart",
+        "q": "Zahlung",
         "o": [
          "bar",
-         "Lastschrift"
+         "Überweisung"
         ],
         "a": 1,
-        "why": "per Lastschrift"
+        "why": "„per Überweisung“"
        }
       ],
-      "text": "Mein Freund Jonas Becker möchte Mitglied im Fitnessstudio werden. Er ist 29 Jahre alt und wohnt in Mainz, Gartenstraße 3. Er ist Koch von Beruf und arbeitet abends. Deshalb möchte er morgens trainieren. Er bezahlt jeden Monat per Lastschrift.",
       "time": 5
      },
      {
@@ -2416,13 +5078,13 @@ window.TESTS_A1 = [
       "type": "write",
       "crit": "a1",
       "words": 30,
-      "task": "Schreiben Sie an eine Sprachschule. Sie möchten einen Deutschkurs machen:",
+      "task": "Ihre Freundin Julia hat Sie am Samstag zum Essen eingeladen. Sie können nicht kommen. Schreiben Sie Julia:",
       "points": [
-       "Kurszeiten?",
-       "Preis?",
-       "Anmeldung?"
+       "Warum können Sie nicht kommen?",
+       "Schlagen Sie einen anderen Tag vor.",
+       "Was bringen Sie dann mit?"
       ],
-      "model": "Sehr geehrte Damen und Herren,\nich möchte einen Deutschkurs A2 machen. Wann beginnen die Abendkurse? Was kostet der Kurs? Wie kann ich mich anmelden?\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "model": "Liebe Julia,\nvielen Dank für deine Einladung! Leider kann ich am Samstag nicht kommen, denn meine Eltern besuchen mich. Hast du am Sonntag Zeit? Dann komme ich gern zu dir und bringe einen Nachtisch mit.\nViele Grüße\nSuresh",
       "tab": "Teil 2",
       "time": 15
      }
@@ -2534,7 +5196,7 @@ window.TESTS_A1 = [
           "ganzer Satz mit ich"
          ]
         ],
-        "model": "Ich arbeite in einem Büro in Frankfurt."
+        "model": "Ich arbeite in einer Firma in der Stadt."
        },
        {
         "who": "Prüferin",
@@ -2549,19 +5211,19 @@ window.TESTS_A1 = [
           "Frageform"
          ],
          [
-          "kolle",
+          "kolleg",
           "Wort der Karte"
          ]
         ],
-        "model": "Sind deine Kollegen nett?"
+        "model": "Hast du nette Kollegen?"
        },
        {
         "who": "Tom",
-        "say": "Ja, sehr nett."
+        "say": "Ja, meine Kollegen sind sehr nett."
        },
        {
         "who": "Lea",
-        "say": "Wann beginnst du morgens?"
+        "say": "Wie lange arbeitest du am Tag?"
        },
        {
         "you": "Antworte Lea in einem ganzen Satz.",
@@ -2572,7 +5234,7 @@ window.TESTS_A1 = [
           "ganzer Satz mit ich"
          ]
         ],
-        "model": "Ich beginne um acht Uhr."
+        "model": "Ich arbeite acht Stunden am Tag."
        },
        {
         "who": "Prüferin",
@@ -2595,7 +5257,7 @@ window.TESTS_A1 = [
        },
        {
         "who": "Lea",
-        "say": "Um zwölf Uhr."
+        "say": "Um zwölf Uhr. Dann esse ich in der Kantine."
        }
       ]
      },
@@ -2613,7 +5275,7 @@ window.TESTS_A1 = [
        },
        {
         "who": "Lea",
-        "say": "Kannst du bitte langsamer sprechen?"
+        "say": "Kannst du mir bitte helfen? Mein Koffer ist so schwer."
        },
        {
         "you": "Reagiere auf Leas Bitte.",
@@ -2624,14 +5286,14 @@ window.TESTS_A1 = [
           "Reaktion"
          ]
         ],
-        "model": "Ja, natürlich. Entschuldigung."
+        "model": "Ja, natürlich. Ich trage ihn."
        },
        {
         "who": "Prüferin",
-        "say": "Jetzt Sie. Ihre Karte: 🍎 Apfel."
+        "say": "Jetzt Sie. Ihre Karte: ☂️ Regenschirm."
        },
        {
-        "you": "Bitte Tom um etwas – Karte: 🍎 Apfel.",
+        "you": "Bitte Tom um etwas – Karte: ☂️ Regenschirm.",
         "min": 3,
         "key": [
          [
@@ -2643,19 +5305,19 @@ window.TESTS_A1 = [
           "Bitte-Form"
          ],
          [
-          "apfel",
+          "regenschirm|schirm",
           "Wort der Karte"
          ]
         ],
-        "model": "Gibst du mir bitte einen Apfel?"
+        "model": "Kannst du mir bitte deinen Regenschirm geben?"
        },
        {
         "who": "Tom",
-        "say": "Ja, hier, bitte."
+        "say": "Ja, hier ist er. Es regnet stark!"
        },
        {
         "who": "Tom",
-        "say": "Kannst du mir bitte deine Telefonnummer geben?"
+        "say": "Kannst du bitte langsamer sprechen?"
        },
        {
         "you": "Reagiere auf Toms Bitte.",
@@ -2666,14 +5328,14 @@ window.TESTS_A1 = [
           "Reaktion"
          ]
         ],
-        "model": "Ja, gern. Sie ist …"
+        "model": "Ja, gern. Entschuldigung."
        },
        {
         "who": "Prüferin",
-        "say": "Ihre zweite Karte: 🚲 Fahrrad."
+        "say": "Ihre zweite Karte: 🕒 Uhr."
        },
        {
-        "you": "Bitte Lea um etwas – Karte: 🚲 Fahrrad.",
+        "you": "Bitte Lea um etwas – Karte: 🕒 Uhr.",
         "min": 3,
         "key": [
          [
@@ -2685,15 +5347,15 @@ window.TESTS_A1 = [
           "Bitte-Form"
          ],
          [
-          "fahrrad",
+          "uhr|spät",
           "Wort der Karte"
          ]
         ],
-        "model": "Kannst du mir bitte dein Fahrrad leihen?"
+        "model": "Kannst du mir bitte sagen, wie spät es ist?"
        },
        {
         "who": "Lea",
-        "say": "Ja, aber nur bis morgen."
+        "say": "Es ist zehn nach drei."
        }
       ]
      }
@@ -2702,9 +5364,10 @@ window.TESTS_A1 = [
   ]
  },
  {
-  "id": "a1-5",
-  "title": "Modelltest 5",
-  "sub": "Familie, Freizeit, Termine · Termin beim Arzt absagen",
+  "id": "a1-9",
+  "title": "Modelltest 9",
+  "level": "schwer",
+  "sub": "Reise, Gesundheit, Behörde · Nachricht an den Nachbarn",
   "sections": [
    {
     "id": "hoeren",
@@ -2721,67 +5384,70 @@ window.TESTS_A1 = [
       "plays": 2,
       "items": [
        {
-        "q": "Wo ist der Schlüssel?",
+        "q": "Wo fährt der Zug nach Bonn heute ab?",
         "o": [
-         "auf dem Tisch",
-         "in der Tasche",
-         "in der Jacke"
-        ],
-        "a": 2,
-        "audio": "Frau: Wo ist mein Schlüssel? Nicht auf dem Tisch.\nMann: Schau mal in deiner Jacke.\nFrau: Ah ja, hier ist er. Danke!"
-       },
-       {
-        "q": "Für wie viele Personen ist der Tisch?",
-        "o": [
-         "für zwei",
-         "für drei",
-         "für vier"
-        ],
-        "a": 2,
-        "why": "Die Eltern kommen auch.",
-        "audio": "Kellner: Ein Tisch für zwei?\nMann: Nein, für vier Personen. Meine Eltern kommen auch."
-       },
-       {
-        "q": "Wann fährt der Zug nach Köln?",
-        "o": [
-         "um 7:15 Uhr",
-         "um 7:50 Uhr",
-         "um 8:15 Uhr"
+         "auf Gleis 2",
+         "auf Gleis 5",
+         "auf Gleis 7"
         ],
         "a": 1,
-        "why": "„sieben Uhr fünfzig“",
-        "audio": "Frau: Wann fährt der Zug nach Köln?\nMann: Um sieben Uhr fünfzig, von Gleis zwei."
+        "why": "Gleis 7 = Köln; nach Bonn heute Gleis 5, nicht wie immer Gleis 2.",
+        "audio": "Mann: Entschuldigung, fährt der Zug nach Bonn auf Gleis sieben?\nFrau: Nein, auf Gleis sieben fährt der Zug nach Köln. Der Zug nach Bonn fährt heute auf Gleis fünf, nicht wie immer auf Gleis zwei.\nMann: Vielen Dank!"
        },
        {
-        "q": "Was macht Paul in der Freizeit?",
+        "q": "Was hat das Kind?",
         "o": [
-         "Fußball",
-         "Schwimmen",
-         "Musik"
+         "Halsschmerzen",
+         "Ohrenschmerzen",
+         "Bauchschmerzen"
         ],
         "a": 1,
-        "audio": "Frau: Spielst du Fußball, Paul?\nPaul: Nein, Fußball mag ich nicht. Ich gehe zweimal pro Woche schwimmen."
+        "why": "„das Ohr tut weh“ – der Hals ist okay, Bauchschmerzen hat sie nicht.",
+        "audio": "Ärztin: Was hat Ihre Tochter denn?\nMutter: Sie hat seit zwei Tagen Fieber und sagt, das Ohr tut weh.\nÄrztin: Und der Hals?\nMutter: Der Hals ist okay. Und Bauchschmerzen hat sie auch nicht."
        },
        {
-        "q": "Wie ist das Wetter?",
+        "q": "Wie kommt die Frau zum Rathaus?",
         "o": [
-         "Es regnet.",
-         "Es ist sonnig.",
-         "Es schneit."
+         "mit dem Bus",
+         "mit der U-Bahn",
+         "zu Fuß"
         ],
-        "a": 0,
-        "audio": "Mann: Nimmst du einen Regenschirm mit?\nFrau: Ja, es regnet schon den ganzen Morgen."
+        "a": 2,
+        "why": "Der Bus kommt erst in 20 Minuten – sie geht zu Fuß.",
+        "audio": "Frau: Entschuldigung, wie komme ich zum Rathaus? Mit dem Bus?\nMann: Der Bus fährt erst in zwanzig Minuten. Zu Fuß sind es nur zehn Minuten – immer geradeaus und dann links.\nFrau: Gut, dann gehe ich zu Fuß. Danke!"
        },
        {
-        "q": "Wie viel kostet die Fahrkarte?",
+        "q": "Wie viele Personen kommen am Samstag zum Essen?",
         "o": [
-         "4,50 €",
-         "5,40 €",
-         "14,50 €"
+         "sechs",
+         "fünf",
+         "vier"
         ],
-        "a": 0,
-        "why": "„vier Euro fünfzig“",
-        "audio": "Frau: Eine Fahrkarte nach Darmstadt, bitte.\nMann: Das macht vier Euro fünfzig."
+        "a": 1,
+        "why": "Oma kommt nicht – also fünf.",
+        "audio": "Mann: Wir sind am Samstag sechs Personen, oder?\nFrau: Nein, Oma kommt nicht, sie ist krank. Also fünf.\nMann: Okay, dann kaufe ich für fünf ein."
+       },
+       {
+        "q": "Was trinkt der Mann?",
+        "o": [
+         "Kaffee",
+         "Tee",
+         "Wasser"
+        ],
+        "a": 1,
+        "why": "Am Abend keinen Kaffee – er nimmt einen grünen Tee.",
+        "audio": "Kellnerin: Möchten Sie einen Kaffee?\nMann: Nein danke, Kaffee trinke ich am Abend nicht. Haben Sie Tee?\nKellnerin: Ja, schwarzen und grünen.\nMann: Dann einen grünen Tee, bitte."
+       },
+       {
+        "q": "Wann ist das Bürgerbüro morgen geöffnet?",
+        "o": [
+         "von 8 bis 16 Uhr",
+         "von 12 bis 16 Uhr",
+         "von 8 bis 12 Uhr"
+        ],
+        "a": 2,
+        "why": "Morgen ist Freitag: von acht bis zwölf.",
+        "audio": "Frau: Hat das Bürgerbüro morgen bis vier Uhr offen?\nMann: Normalerweise ja, aber morgen ist Freitag. Freitags schließen wir schon um zwölf. Wir öffnen um acht.\nFrau: Dann komme ich gleich um acht."
        }
       ],
       "time": 8
@@ -2795,26 +5461,28 @@ window.TESTS_A1 = [
       "plays": 1,
       "items": [
        {
-        "q": "Das Museum ist heute bis 20 Uhr geöffnet.",
-        "a": false,
-        "why": "heute bis 24 Uhr",
-        "audio": "Liebe Besucher, heute ist Museumsnacht. Unser Museum ist bis 24 Uhr geöffnet."
-       },
-       {
-        "q": "Die Passagiere nach Rom sollen zu Gate A 7 gehen.",
+        "q": "Der Flug nach Wien startet später.",
         "a": true,
-        "audio": "Passagiere des Fluges nach Rom, bitte kommen Sie zu Gate A 7. Das Boarding beginnt."
+        "why": "„verschiebt sich um etwa 40 Minuten“",
+        "audio": "Information für die Passagiere des Fluges OS 128 nach Wien: Der Abflug verschiebt sich wegen schlechten Wetters um etwa 40 Minuten. Bitte bleiben Sie in der Nähe von Gate B 12."
        },
        {
-        "q": "Kaffee ist heute im Angebot.",
-        "a": true,
-        "audio": "Heute im Angebot: Kaffee, 500 Gramm, nur 3 Euro 99. Nur heute!"
-       },
-       {
-        "q": "Die U2 fährt heute nur bis zum Bahnhof.",
+        "q": "Im Kaufhaus gibt es heute Schuhe billiger.",
         "a": false,
-        "why": "nur bis zum Rathaus",
-        "audio": "Achtung: Wegen Bauarbeiten fährt die U2 heute nur bis zum Rathaus. Weiter geht es mit dem Bus."
+        "why": "Billiger sind Jacken und Mäntel – die Schuhe sind nur neu.",
+        "audio": "Liebe Kunden, heute im zweiten Stock: alle Jacken und Mäntel 30 Prozent billiger. Die Schuhabteilung im ersten Stock hat neue Frühlingsmodelle für Sie."
+       },
+       {
+        "q": "Am Wochenende fährt die U-Bahn nicht bis zum Zoo.",
+        "a": true,
+        "why": "Die U4 fährt nur bis zum Hauptbahnhof, zum Zoo fahren Busse.",
+        "audio": "Wegen Bauarbeiten fährt die U4 am Samstag und Sonntag nur bis zum Hauptbahnhof. Zum Zoo fahren Busse als Ersatz."
+       },
+       {
+        "q": "Die Bibliothek ist morgen den ganzen Tag geschlossen.",
+        "a": false,
+        "why": "Sie öffnet morgen erst um 13 Uhr.",
+        "audio": "Liebe Besucherinnen und Besucher, morgen öffnet die Stadtbibliothek erst um 13 Uhr, weil wir eine Mitarbeiterversammlung haben. Am Nachmittag sind wir wie immer bis 19 Uhr für Sie da."
        }
       ],
       "time": 4
@@ -2828,58 +5496,59 @@ window.TESTS_A1 = [
       "plays": 2,
       "items": [
        {
-        "q": "Wann ist der neue Termin?",
-        "o": [
-         "am Montag",
-         "am Mittwoch",
-         "am Freitag"
-        ],
-        "a": 2,
-        "why": "Mittwoch geht nicht – Freitag um 14 Uhr.",
-        "audio": "Guten Tag, hier ist der Friseursalon Schön. Ihr Termin am Mittwoch geht leider nicht. Können Sie am Freitag um 14 Uhr kommen?"
-       },
-       {
-        "q": "Was hat Anna gekauft?",
-        "o": [
-         "Kuchen",
-         "Blumen",
-         "ein Buch"
-        ],
-        "a": 1,
-        "why": "Den Kuchen soll die Mutter kaufen.",
-        "audio": "Hallo Mama, hier ist Anna. Für Omas Geburtstag habe ich schon Blumen gekauft. Kaufst du bitte den Kuchen? Danke!"
-       },
-       {
-        "q": "Wo wartet Peter?",
-        "o": [
-         "vor dem Kino",
-         "am Bahnhof",
-         "im Restaurant"
-        ],
-        "a": 0,
-        "audio": "Hi Lisa, hier ist Peter. Ich bin schon da und warte vor dem Kino. Der Film beginnt in zehn Minuten. Beeil dich!"
-       },
-       {
-        "q": "Was soll Herr Klein tun?",
+        "q": "Was soll Herr Schmidt machen?",
         "o": [
          "zurückrufen",
          "eine E-Mail schreiben",
          "vorbeikommen"
         ],
-        "a": 0,
-        "why": "„Bitte rufen Sie uns zurück.“",
-        "audio": "Guten Tag, Herr Klein, hier ist die Bank. Wir haben eine Frage zu Ihrem Konto. Bitte rufen Sie uns zurück unter 069 98 76 54."
+        "a": 1,
+        "why": "Er muss nicht vorbeikommen – die Kopie per E-Mail schicken.",
+        "audio": "Guten Tag, Herr Schmidt, hier ist Frau Graf vom Ausländeramt. Für Ihren Antrag fehlt noch eine Kopie Ihres Arbeitsvertrags. Sie müssen nicht vorbeikommen – schicken Sie die Kopie bitte einfach per E-Mail. Danke!"
        },
        {
         "q": "Wann ist die Party?",
         "o": [
-         "am Freitag",
          "am Samstag",
+         "am Freitag",
          "am Sonntag"
         ],
+        "a": 2,
+        "why": "Nicht am Samstag – jetzt am Sonntag ab drei Uhr.",
+        "audio": "Hallo Ana, hier ist Ben. Die Party ist doch nicht am Samstag – da arbeitet meine Schwester. Wir feiern jetzt am Sonntag ab drei Uhr. Kommst du? Ruf mich an!"
+       },
+       {
+        "q": "Was ist kaputt?",
+        "o": [
+         "die Tür",
+         "die Heizung",
+         "das Fenster"
+        ],
+        "a": 2,
+        "why": "Das Küchenfenster ist kaputt; die Heizung läuft nur.",
+        "audio": "Hallo, hier ist Ihre Nachbarin Frau Roth aus dem dritten Stock. Bei Ihnen in der Küche ist ein Fenster kaputt, es ist offen und es regnet hinein. Die Heizung läuft auch noch. Können Sie bitte schnell nach Hause kommen?"
+       },
+       {
+        "q": "Wie viel kostet die Reparatur?",
+        "o": [
+         "150 Euro",
+         "120 Euro",
+         "90 Euro"
+        ],
         "a": 1,
-        "why": "„nicht am Freitag, sondern am Samstag“",
-        "audio": "Hallo, hier ist Ben. Meine Party ist nicht am Freitag, sondern am Samstag um acht. Kommst du?"
+        "why": "Nicht 150 Euro – es war weniger Arbeit: 120 Euro.",
+        "audio": "Autowerkstatt Kraus, guten Tag. Ihr Auto ist fertig. Wir haben gesagt, die Reparatur kostet 150 Euro, aber es war weniger Arbeit. Sie bezahlen nur 120 Euro. Sie können das Auto heute bis 18 Uhr abholen."
+       },
+       {
+        "q": "Wo ist der Kurs nächste Woche?",
+        "o": [
+         "in Raum 21",
+         "in der Bibliothek",
+         "in Raum 12"
+        ],
+        "a": 1,
+        "why": "In Raum 12 wird gemalt – nächste Woche in der Bibliothek.",
+        "audio": "Liebe Kursteilnehmer, hier ist Frau Haas. Nächste Woche ist unser Kurs nicht in Raum zwölf, denn dort wird gemalt. Wir treffen uns in der Bibliothek im Erdgeschoss. Ab dem fünfzehnten sind wir wieder in Raum zwölf."
        }
       ],
       "time": 8
@@ -2898,32 +5567,34 @@ window.TESTS_A1 = [
       "intro": "Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
       "type": "rf",
       "per": 1,
+      "text": "Text 1: Hallo Mehmet, danke für deine Nachricht! Natürlich helfe ich dir beim Umzug. Am Samstagvormittag muss ich aber noch arbeiten, ich komme erst um 14 Uhr. Mein Bruder hat ein großes Auto, er kann uns bestimmt helfen. Soll ich ihn fragen? Brauchst du auch Kartons? Ich habe noch zehn Stück im Keller.\nBis Samstag!\nSven\nText 2: Liebe Mieterinnen und Mieter, am Dienstag, 12. März, kommt der Techniker und prüft die Heizungen in allen Wohnungen. Er kommt zwischen 8 und 12 Uhr. Bitte seien Sie zu Hause. Wenn Sie keine Zeit haben, geben Sie Ihren Schlüssel bitte bis Montag beim Hausmeister ab.\nIhre Hausverwaltung",
       "items": [
        {
-        "q": "Text 1: Sofia macht einen Sprachkurs in Berlin.",
-        "a": true
-       },
-       {
-        "q": "Text 1: Der Kurs ist am Nachmittag.",
+        "q": "Text 1: Sven kann am Samstag schon am Vormittag helfen.",
         "a": false,
-        "why": "von 9 bis 13 Uhr"
+        "why": "Er arbeitet am Vormittag und kommt erst um 14 Uhr."
        },
        {
-        "q": "Text 1: Sofia wohnt in einem Hotel.",
+        "q": "Text 1: Svens Bruder hat ein Auto.",
+        "a": true,
+        "why": "„Mein Bruder hat ein großes Auto“"
+       },
+       {
+        "q": "Text 1: Mehmet muss Kartons kaufen.",
         "a": false,
-        "why": "bei einer Familie"
+        "why": "Sven hat noch zehn Kartons im Keller."
        },
        {
-        "q": "Text 2: Das Sofa kommt am Donnerstag.",
-        "a": true
+        "q": "Text 2: Der Techniker kommt am Vormittag.",
+        "a": true,
+        "why": "„zwischen 8 und 12 Uhr“"
        },
        {
-        "q": "Text 2: Herr Lang muss nicht zu Hause sein.",
+        "q": "Text 2: Wer am Dienstag nicht da ist, muss einen neuen Termin machen.",
         "a": false,
-        "why": "„Bitte sind Sie zu Hause.“"
+        "why": "Er gibt seinen Schlüssel beim Hausmeister ab."
        }
       ],
-      "text": "Text 1: Hallo Max, ich bin jetzt in Berlin und mache einen Sprachkurs. Der Kurs ist jeden Tag von 9 bis 13 Uhr. Am Nachmittag besuche ich die Stadt. Ich wohne bei einer netten Familie. Sie haben zwei Kinder und einen Hund. Bis bald, Sofia\nText 2: Sehr geehrter Herr Lang, Ihr neues Sofa kommt am Donnerstag zwischen 10 und 14 Uhr. Bitte sind Sie zu Hause. Wenn der Termin nicht passt, rufen Sie uns bitte an. Möbelhaus Wohnwelt",
       "time": 8
      },
      {
@@ -2934,42 +5605,44 @@ window.TESTS_A1 = [
       "per": 1,
       "items": [
        {
-        "q": "Sie möchten Deutsch online lernen.",
+        "q": "Sie möchten Ihre Wohnung streichen lassen.",
         "o": [
-         "Sprachschule Plus: Kurse im Klassenraum, Montag bis Freitag.",
-         "Deutsch-App „Lingo“: Lernen am Handy, wann Sie möchten."
+         "Baumarkt Hammer: Farben und Pinsel – alles 20 % billiger!",
+         "Malermeister Bunt: Wände und Decken, schnell und sauber, kostenloses Angebot."
+        ],
+        "a": 1,
+        "why": "„streichen lassen“ = jemand anders macht es."
+       },
+       {
+        "q": "Sie möchten am Wochenende eine Stadtführung auf Englisch.",
+        "o": [
+         "Stadtführung jeden Samstag um 11 Uhr, auf Deutsch und Englisch, 12 Euro.",
+         "Altstadt-Tour für Schulklassen, Montag bis Freitag, nur auf Deutsch."
+        ],
+        "a": 0
+       },
+       {
+        "q": "Ihr Kind (5 Jahre) möchte schwimmen lernen.",
+        "o": [
+         "Schwimmkurs für Erwachsene, Anfänger, dienstags 19 Uhr.",
+         "Seepferdchen-Kurs: Schwimmen lernen für Kinder ab 4 Jahren."
         ],
         "a": 1
        },
        {
-        "q": "Sie suchen einen Babysitter für Samstagabend.",
+        "q": "Sie brauchen am Sonntag Medikamente.",
         "o": [
-         "Studentin sucht Babysitter-Job, abends und am Wochenende.",
-         "Kita Regenbogen: Montag bis Freitag 7–17 Uhr."
+         "Notdienst-Apotheken: Telefon 0800 0022833 – auch sonntags.",
+         "Apotheke am Rathaus: Mo–Fr 8–19 Uhr, Sa 8–14 Uhr."
         ],
-        "a": 0
+        "a": 0,
+        "why": "Die Apotheke am Rathaus hat sonntags zu."
        },
        {
         "q": "Sie möchten einen gebrauchten Kühlschrank kaufen.",
         "o": [
-         "Verkaufe Kühlschrank, 2 Jahre alt, 80 Euro.",
-         "Elektro-Markt: neue Kühlschränke ab 399 Euro."
-        ],
-        "a": 0
-       },
-       {
-        "q": "Sie möchten am Wochenende wandern.",
-        "o": [
-         "Wanderverein: Touren jeden Sonntag, Treffpunkt Bahnhof 9 Uhr.",
-         "Fitnessstudio: Laufband und Kurse, Montag bis Freitag."
-        ],
-        "a": 0
-       },
-       {
-        "q": "Sie brauchen schnell einen Arzttermin am Abend.",
-        "o": [
-         "Praxis Dr. Sommer: Sprechstunde Montag bis Freitag 8–12 Uhr.",
-         "Ärztehaus City: Abendsprechstunde bis 20 Uhr, ohne Termin."
+         "Elektro-Markt: neue Kühlschränke ab 299 Euro, Lieferung kostenlos.",
+         "Verkaufe Kühlschrank, 3 Jahre alt, sehr gut, 80 Euro, nur Abholung."
         ],
         "a": 1
        }
@@ -2984,30 +5657,34 @@ window.TESTS_A1 = [
       "per": 1,
       "items": [
        {
-        "q": "Am Abend können Sie hier frischen Fisch kaufen.",
+        "q": "Am Sonntag können Sie um 10:30 Uhr noch frühstücken.",
+        "a": true,
+        "why": "Sa/So bis 11 Uhr",
+        "text": "Hotel Sonne – Frühstück: Mo–Fr 6:30–10 Uhr, Sa/So 7:30–11 Uhr."
+       },
+       {
+        "q": "Plastikflaschen gehören ab Juli in den Restmüll.",
         "a": false,
-        "why": "nur bis 14 Uhr",
-        "text": "Heute frischer Fisch! Nur bis 14 Uhr."
+        "why": "Sie gehören zurück in den Supermarkt.",
+        "text": "Achtung! Ab 1. Juli: Plastikflaschen bitte nicht in den Restmüll, sondern zurück in den Supermarkt bringen."
        },
        {
-        "q": "Es gibt einen anderen Eingang für Rollstuhlfahrer.",
-        "a": true,
-        "text": "Eingang für Rollstuhlfahrer: bitte links um das Haus gehen."
-       },
-       {
-        "q": "Sie dürfen hier mit Schuhen hineingehen.",
+        "q": "Ein Kind mit 8 Jahren darf allein schwimmen gehen.",
         "a": false,
-        "text": "Bitte Schuhe ausziehen!"
+        "why": "Kinder unter 10 Jahren nur mit Erwachsenen.",
+        "text": "Schwimmbad: Kinder unter 10 Jahren nur mit Erwachsenen."
        },
        {
-        "q": "Sie können die Lehrerin am Donnerstagnachmittag sprechen.",
+        "q": "Im August hilft eine andere Praxis.",
         "a": true,
-        "text": "Sprechstunde der Lehrerin: donnerstags 15–16 Uhr."
+        "why": "Vertretung: Tierarztpraxis am Park",
+        "text": "Tierarzt Dr. Lang – Urlaub vom 5. bis 19. August. Vertretung: Tierarztpraxis am Park, Lindenweg 3."
        },
        {
-        "q": "Das Passwort bekommen Sie an der Theke.",
+        "q": "Der Bus hält heute bei der Post.",
         "a": true,
-        "text": "Kostenloses WLAN für Gäste. Passwort an der Theke."
+        "why": "Haltestelle „Marktplatz“ geht nicht – bitte „Post“.",
+        "text": "Bus 34: Wegen Bauarbeiten Haltestelle „Marktplatz“ nicht in Betrieb. Bitte nutzen Sie die Haltestelle „Post“ (200 m)."
        }
       ],
       "time": 9
@@ -3023,51 +5700,57 @@ window.TESTS_A1 = [
      {
       "t": "Teil 1 – Formular ausfüllen",
       "tab": "Teil 1",
-      "intro": "Ihre Nachbarin möchte einen Leseausweis für die Bibliothek. Sie helfen ihr beim Formular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
+      "intro": "Herr Santos möchte im Fitnessstudio Mitglied werden. Sie helfen ihm beim Formular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
       "type": "form",
       "per": 1,
+      "text": "Herr Ricardo Santos möchte im Fitnessstudio „Aktiv“ Mitglied werden. Er ist 41 Jahre alt und arbeitet als Busfahrer. Weil er im Schichtdienst arbeitet, möchte er manchmal früh am Morgen und manchmal spät am Abend trainieren. Er möchte keinen Vertrag für zwei Jahre, sondern nur für sechs Monate. Er bezahlt jeden Monat.",
       "items": [
-       {
-        "q": "Herkunftsland",
-        "a": [
-         "Rumänien"
-        ],
-        "why": "„kommt aus Rumänien“"
-       },
-       {
-        "q": "Wohnort",
-        "a": [
-         "Offenbach"
-        ],
-        "why": ""
-       },
        {
         "q": "Alter",
         "a": [
-         "42",
-         "zweiundvierzig",
-         "42 Jahre"
+         "41",
+         "einundvierzig",
+         "41 Jahre"
         ],
-        "why": ""
+        "why": "„Er ist 41 Jahre alt“"
        },
        {
-        "q": "Familienstand",
+        "q": "Beruf",
         "a": [
-         "verheiratet"
+         "Busfahrer"
         ],
-        "why": ""
+        "why": "„arbeitet als Busfahrer“"
        },
        {
-        "q": "Zahlungsart",
+        "q": "Trainingszeit",
         "o": [
-         "bar",
-         "Überweisung"
+         "nur vormittags",
+         "nur abends",
+         "morgens und abends"
+        ],
+        "a": 2,
+        "why": "manchmal früh am Morgen, manchmal spät am Abend"
+       },
+       {
+        "q": "Vertrag",
+        "o": [
+         "6 Monate",
+         "12 Monate",
+         "24 Monate"
         ],
         "a": 0,
-        "why": "„bezahlt sie bar“"
+        "why": "nicht zwei Jahre, sondern sechs Monate"
+       },
+       {
+        "q": "Zahlung",
+        "o": [
+         "monatlich",
+         "jährlich"
+        ],
+        "a": 0,
+        "why": "„jeden Monat“"
        }
       ],
-      "text": "Meine Nachbarin Elena Popescu kommt aus Rumänien. Sie wohnt in Offenbach, Ringstraße 20. Sie ist 42 Jahre alt und verheiratet. Elena möchte in der Stadtbibliothek einen Leseausweis. Sie liest gern Bücher auf Deutsch und Rumänisch. Den Ausweis bezahlt sie bar.",
       "time": 5
      },
      {
@@ -3076,671 +5759,14 @@ window.TESTS_A1 = [
       "type": "write",
       "crit": "a1",
       "words": 30,
-      "task": "Sie können am Dienstag nicht zum Arzt kommen. Schreiben Sie an die Praxis:",
+      "task": "Sie fahren eine Woche in Urlaub. Schreiben Sie Ihrem Nachbarn, Herrn Fischer:",
       "points": [
-       "Termin",
-       "Warum nicht?",
-       "Neuer Termin?"
+       "Wann sind Sie weg?",
+       "Worum bitten Sie ihn? (Blumen, Post)",
+       "Wann bringen Sie ihm den Schlüssel?"
       ],
-      "model": "Sehr geehrte Damen und Herren,\nich habe am Dienstag um 10 Uhr einen Termin bei Dr. Weber. Leider muss ich an diesem Tag arbeiten. Kann ich am Donnerstag kommen?\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "model": "Lieber Herr Fischer,\nich fahre vom 3. bis 10. Juni in Urlaub. Können Sie bitte meine Blumen gießen und die Post aus dem Briefkasten nehmen? Den Schlüssel bringe ich Ihnen am Freitagabend. Vielen Dank!\nViele Grüße\nSuresh",
       "tab": "Teil 2",
-      "time": 15
-     }
-    ]
-   },
-   {
-    "id": "sprechen",
-    "de": "Sprechen",
-    "en": "Speaking",
-    "time": 15,
-    "oral": true,
-    "parts": [
-     {
-      "t": "Teil 1 – Sich vorstellen",
-      "tab": "Teil 1",
-      "intro": "Stellen Sie sich vor. Dann buchstabieren Sie und sagen eine Nummer oder Adresse.",
-      "type": "speak",
-      "max": 3,
-      "time": 4,
-      "turns": [
-       {
-        "who": "Prüferin",
-        "say": "Guten Tag! Bitte stellen Sie sich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf und Hobby."
-       },
-       {
-        "you": "Stell dich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby.",
-        "min": 20,
-        "key": [
-         [
-          "heiße|name ist|ich bin [A-ZÄÖÜ]",
-          "Name"
-         ],
-         [
-          "jahre",
-          "Alter"
-         ],
-         [
-          "komme aus",
-          "Land"
-         ],
-         [
-          "wohne",
-          "Wohnort"
-         ],
-         [
-          "spreche",
-          "Sprachen"
-         ],
-         [
-          "arbeite|beruf|bin .*(ingenieur|lehrer|student|entwickler|krankenschwester|koch|verkäufer)",
-          "Beruf"
-         ],
-         [
-          "hobby|gern|spiele|lese|koche|tanze|schwimme",
-          "Hobby"
-         ]
-        ],
-        "model": "Ich heiße Suresh. Ich bin [Alter] Jahre alt und komme aus Indien. Ich wohne in Frankfurt. Ich spreche Englisch und ein bisschen Deutsch. Ich arbeite als Ingenieur. Mein Hobby ist Kochen."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Danke. Buchstabieren Sie bitte Ihren Vornamen."
-       },
-       {
-        "you": "Buchstabiere deinen Vornamen.",
-        "min": 3,
-        "key": [],
-        "model": "S – U – R – E – S – H."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Und wie ist Ihre Telefonnummer?"
-       },
-       {
-        "you": "Sag deine Telefonnummer, Zahl für Zahl.",
-        "min": 4,
-        "key": [
-         [
-          "\\d|null|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|straße",
-          "Zahlen / Adresse"
-         ]
-        ],
-        "model": "Null – eins – sieben – sechs – zwei – drei – vier – fünf – sechs – sieben."
-       }
-      ]
-     },
-     {
-      "t": "Teil 2 – Um Informationen bitten und geben",
-      "tab": "Teil 2",
-      "intro": "Thema: Reisen. Ihr Partner fragt Sie, Sie antworten. Dann fragen Sie mit Ihrer Karte, Ihr Partner antwortet.",
-      "type": "speak",
-      "max": 6,
-      "time": 6,
-      "turns": [
-       {
-        "who": "Prüferin",
-        "say": "Teil 2. Das Thema ist: Reisen. Tom, bitte fragen Sie zuerst."
-       },
-       {
-        "who": "Tom",
-        "say": "Wohin fährst du im Urlaub?"
-       },
-       {
-        "you": "Antworte Tom in einem ganzen Satz.",
-        "min": 4,
-        "key": [
-         [
-          "\\bich\\b",
-          "ganzer Satz mit ich"
-         ]
-        ],
-        "model": "Ich fahre im Sommer nach Italien."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Jetzt Sie. Ihre Karte: Zug."
-       },
-       {
-        "you": "Frag Tom etwas zum Wort „Zug“.",
-        "min": 3,
-        "key": [
-         [
-          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
-          "Frageform"
-         ],
-         [
-          "zug",
-          "Wort der Karte"
-         ]
-        ],
-        "model": "Fährst du gern mit dem Zug?"
-       },
-       {
-        "who": "Tom",
-        "say": "Ja, Zug fahren ist bequem."
-       },
-       {
-        "who": "Lea",
-        "say": "Fliegst du gern?"
-       },
-       {
-        "you": "Antworte Lea in einem ganzen Satz.",
-        "min": 4,
-        "key": [
-         [
-          "\\bich\\b",
-          "ganzer Satz mit ich"
-         ]
-        ],
-        "model": "Nein, ich fliege nicht gern."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Ihre zweite Karte: Hotel."
-       },
-       {
-        "you": "Frag Lea etwas zum Wort „Hotel“.",
-        "min": 3,
-        "key": [
-         [
-          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
-          "Frageform"
-         ],
-         [
-          "hotel",
-          "Wort der Karte"
-         ]
-        ],
-        "model": "Wohnst du im Urlaub im Hotel?"
-       },
-       {
-        "who": "Lea",
-        "say": "Nein, in einer Ferienwohnung."
-       }
-      ]
-     },
-     {
-      "t": "Teil 3 – Bitten formulieren und darauf reagieren",
-      "tab": "Teil 3",
-      "intro": "Ihr Partner bittet Sie um etwas, Sie reagieren. Dann bitten Sie mit Ihrer Bildkarte, Ihr Partner reagiert.",
-      "type": "speak",
-      "max": 6,
-      "time": 5,
-      "turns": [
-       {
-        "who": "Prüferin",
-        "say": "Teil 3. Bitten und reagieren. Lea, bitte beginnen Sie."
-       },
-       {
-        "who": "Lea",
-        "say": "Kannst du bitte ein Foto von mir machen?"
-       },
-       {
-        "you": "Reagiere auf Leas Bitte.",
-        "min": 2,
-        "key": [
-         [
-          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
-          "Reaktion"
-         ]
-        ],
-        "model": "Ja, gern. Lächeln!"
-       },
-       {
-        "who": "Prüferin",
-        "say": "Jetzt Sie. Ihre Karte: 🗺️ Stadtplan."
-       },
-       {
-        "you": "Bitte Tom um etwas – Karte: 🗺️ Stadtplan.",
-        "min": 3,
-        "key": [
-         [
-          "bitte",
-          "bitte"
-         ],
-         [
-          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
-          "Bitte-Form"
-         ],
-         [
-          "stadtplan|plan|karte",
-          "Wort der Karte"
-         ]
-        ],
-        "model": "Kannst du mir bitte den Stadtplan zeigen?"
-       },
-       {
-        "who": "Tom",
-        "say": "Ja, hier ist er."
-       },
-       {
-        "who": "Tom",
-        "say": "Wartest du bitte kurz auf mich?"
-       },
-       {
-        "you": "Reagiere auf Toms Bitte.",
-        "min": 2,
-        "key": [
-         [
-          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
-          "Reaktion"
-         ]
-        ],
-        "model": "Ja, kein Problem."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Ihre zweite Karte: 🎫 Fahrkarte."
-       },
-       {
-        "you": "Bitte Lea um etwas – Karte: 🎫 Fahrkarte.",
-        "min": 3,
-        "key": [
-         [
-          "bitte",
-          "bitte"
-         ],
-         [
-          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
-          "Bitte-Form"
-         ],
-         [
-          "fahrkarte|ticket",
-          "Wort der Karte"
-         ]
-        ],
-        "model": "Kannst du mir bitte eine Fahrkarte kaufen?"
-       },
-       {
-        "who": "Lea",
-        "say": "Ja, mache ich."
-       }
-      ]
-     }
-    ]
-   }
-  ]
- },
- {
-  "id": "a1-6",
-  "title": "Modelltest 6",
-  "sub": "Wetter, Sport, Wohnung · Einladung zum Grillen",
-  "sections": [
-   {
-    "id": "hoeren",
-    "de": "Hören",
-    "en": "Listening",
-    "time": 20,
-    "parts": [
-     {
-      "t": "Teil 1 – Kurze Gespräche",
-      "tab": "Teil 1",
-      "intro": "Sie hören sechs kurze Gespräche. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
-      "type": "mc",
-      "per": 1,
-      "plays": 2,
-      "items": [
-       {
-        "q": "Wann treffen sich die beiden?",
-        "o": [
-         "um halb sieben",
-         "um halb acht",
-         "um sieben"
-        ],
-        "a": 1,
-        "why": "„halb acht“",
-        "audio": "Mann: Treffen wir uns um sieben?\nFrau: Das ist zu früh. Lieber um halb acht.\nMann: Gut, halb acht."
-       },
-       {
-        "q": "Was kostet das T-Shirt?",
-        "o": [
-         "12 €",
-         "18 €",
-         "8 €"
-        ],
-        "a": 0,
-        "why": "statt 18 jetzt 12 Euro",
-        "audio": "Frau: Was kostet das T-Shirt?\nVerkäufer: Normal 18 Euro, heute nur 12 Euro."
-       },
-       {
-        "q": "Wo ist die Toilette?",
-        "o": [
-         "oben",
-         "rechts",
-         "unten"
-        ],
-        "a": 2,
-        "why": "die Treppe hinunter",
-        "audio": "Mann: Entschuldigung, wo ist die Toilette?\nKellnerin: Unten, die Treppe hinunter und dann links."
-       },
-       {
-        "q": "Welche Zimmernummer hat die Frau?",
-        "o": [
-         "412",
-         "241",
-         "214"
-        ],
-        "a": 2,
-        "why": "„zweihundertvierzehn“",
-        "audio": "Rezeption: Ihr Zimmer ist Nummer zweihundertvierzehn, im zweiten Stock.\nFrau: Danke schön."
-       },
-       {
-        "q": "Was macht der Mann heute Abend?",
-        "o": [
-         "Er geht zum Sport.",
-         "Er geht ins Kino.",
-         "Er bleibt zu Hause."
-        ],
-        "a": 0,
-        "audio": "Frau: Kommst du mit ins Kino?\nMann: Heute nicht, ich gehe zum Fußballtraining. Vielleicht morgen?"
-       },
-       {
-        "q": "Wie kommt die Frau zur Arbeit?",
-        "o": [
-         "zu Fuß",
-         "mit dem Fahrrad",
-         "mit dem Bus"
-        ],
-        "a": 1,
-        "audio": "Mann: Fährst du mit dem Bus zur Arbeit?\nFrau: Nein, mit dem Fahrrad. Das geht schneller."
-       }
-      ],
-      "time": 8
-     },
-     {
-      "t": "Teil 2 – Durchsagen",
-      "tab": "Teil 2",
-      "intro": "Sie hören vier Ansagen. Sie hören jeden Text einmal. Kreuzen Sie an: Richtig oder Falsch.",
-      "type": "rf",
-      "per": 1,
-      "plays": 1,
-      "items": [
-       {
-        "q": "Das Schwimmbad schließt heute früher.",
-        "a": true,
-        "why": "um 18 Uhr",
-        "audio": "Liebe Badegäste, heute schließt das Schwimmbad schon um 18 Uhr. Wir bitten um Verständnis."
-       },
-       {
-        "q": "Der Zug nach München fährt von Gleis 5.",
-        "a": false,
-        "why": "Gleis 3",
-        "audio": "Bitte beachten Sie: Der Regionalzug nach München fährt heute von Gleis 3."
-       },
-       {
-        "q": "Im Supermarkt sind Bananen heute billiger.",
-        "a": true,
-        "audio": "Liebe Kunden, heute im Angebot: ein Kilo Bananen für nur 99 Cent."
-       },
-       {
-        "q": "Herr Meier soll zur Information kommen.",
-        "a": true,
-        "audio": "Herr Thomas Meier, bitte kommen Sie zur Information im Erdgeschoss. Ihre Frau wartet dort."
-       }
-      ],
-      "time": 4
-     },
-     {
-      "t": "Teil 3 – Telefonansagen",
-      "tab": "Teil 3",
-      "intro": "Sie hören fünf Ansagen am Telefon. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
-      "type": "mc",
-      "per": 1,
-      "plays": 2,
-      "items": [
-       {
-        "q": "Was soll Frau Kaya mitbringen?",
-        "o": [
-         "die Versichertenkarte",
-         "ihren Pass",
-         "ein Foto"
-        ],
-        "a": 0,
-        "audio": "Guten Tag, Frau Kaya, hier ist die Praxis Doktor Engel. Bitte bringen Sie morgen Ihre Versichertenkarte mit. Danke!"
-       },
-       {
-        "q": "Wann kommt der Techniker?",
-        "o": [
-         "am Donnerstag",
-         "am Montag",
-         "am Dienstag"
-        ],
-        "a": 2,
-        "why": "nicht Montag – Dienstag",
-        "audio": "Guten Tag, hier ist die Firma Netz-Plus. Unser Techniker kann leider nicht am Montag kommen. Er kommt am Dienstag zwischen 8 und 12 Uhr."
-       },
-       {
-        "q": "Was möchte Carla machen?",
-        "o": [
-         "einkaufen gehen",
-         "schwimmen gehen",
-         "Tennis spielen"
-        ],
-        "a": 1,
-        "audio": "Hallo Jana, hier ist Carla. Das Wetter ist so schön! Wollen wir heute Nachmittag schwimmen gehen? Ruf mich an!"
-       },
-       {
-        "q": "Wo ist das Handy von Herrn Brandt?",
-        "o": [
-         "im Hotel",
-         "im Taxi",
-         "im Restaurant"
-        ],
-        "a": 2,
-        "audio": "Guten Abend, Herr Brandt, hier ist das Restaurant Adria. Sie haben Ihr Handy bei uns vergessen. Sie können es morgen ab 11 Uhr abholen."
-       },
-       {
-        "q": "Wie viel kostet der Kurs?",
-        "o": [
-         "60 €",
-         "80 €",
-         "40 €"
-        ],
-        "a": 1,
-        "why": "„achtzig Euro“",
-        "audio": "Hier ist die Volkshochschule. Der Kochkurs hat noch freie Plätze. Er dauert vier Abende und kostet achtzig Euro."
-       }
-      ],
-      "time": 8
-     }
-    ]
-   },
-   {
-    "id": "lesen",
-    "de": "Lesen",
-    "en": "Reading",
-    "time": 25,
-    "parts": [
-     {
-      "t": "Teil 1 – Kurze Mitteilungen",
-      "tab": "Teil 1",
-      "intro": "Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
-      "type": "rf",
-      "per": 1,
-      "items": [
-       {
-        "q": "Text 1: Lukas hat eine neue Wohnung.",
-        "a": true
-       },
-       {
-        "q": "Text 1: Die Wohnung hat zwei Zimmer.",
-        "a": false,
-        "why": "drei Zimmer"
-       },
-       {
-        "q": "Text 1: Lukas feiert am Freitag.",
-        "a": false,
-        "why": "am Samstag"
-       },
-       {
-        "q": "Text 2: Der Kurs am Montag fällt aus.",
-        "a": true
-       },
-       {
-        "q": "Text 2: Die Teilnehmer sollen am Mittwoch kommen.",
-        "a": true
-       }
-      ],
-      "text": "Text 1: Hallo Tina, ich habe endlich eine neue Wohnung! Sie hat drei Zimmer und einen Balkon. Am Samstag mache ich eine kleine Party. Kommst du? Bring bitte etwas zu trinken mit.\nLiebe Grüße\nLukas\nText 2: Liebe Kursteilnehmer, am Montag ist unsere Lehrerin krank. Der Kurs fällt aus. Wir machen den Unterricht am Mittwoch um 18 Uhr. Ihre Sprachschule",
-      "time": 8
-     },
-     {
-      "t": "Teil 2 – Anzeigen",
-      "tab": "Teil 2",
-      "intro": "Lesen Sie die Aufgaben und die Anzeigen. Welche Anzeige passt: a oder b?",
-      "type": "mc",
-      "per": 1,
-      "items": [
-       {
-        "q": "Sie möchten am Wochenende ein Auto mieten.",
-        "o": [
-         "Autovermietung Mobil: Autos ab 29 € pro Tag, auch am Wochenende.",
-         "Autohaus Weber: Neuwagen und Gebrauchtwagen kaufen."
-        ],
-        "a": 0
-       },
-       {
-        "q": "Sie möchten Gitarre spielen lernen.",
-        "o": [
-         "Musikgeschäft: Gitarren ab 99 Euro kaufen.",
-         "Musikschule Klang: Gitarrenkurse für Anfänger."
-        ],
-        "a": 1
-       },
-       {
-        "q": "Sie suchen ein Zimmer für eine Nacht.",
-        "o": [
-         "Wohnung zu vermieten: 2 Zimmer, ab 1. Mai, 650 Euro im Monat.",
-         "Hotel am Park: Zimmer ab 59 Euro pro Nacht."
-        ],
-        "a": 1
-       },
-       {
-        "q": "Sie möchten günstig essen gehen.",
-        "o": [
-         "Mensa der Universität: Mittagessen ab 3,50 €, für alle.",
-         "Restaurant Royal: Menü mit 5 Gängen, 89 Euro."
-        ],
-        "a": 0
-       },
-       {
-        "q": "Ihr Kind (6) möchte schwimmen lernen.",
-        "o": [
-         "Schwimmkurs für Kinder ab 5 Jahren, samstags.",
-         "Aqua-Fitness für Senioren, dienstags."
-        ],
-        "a": 0
-       }
-      ],
-      "time": 8
-     },
-     {
-      "t": "Teil 3 – Schilder und Aushänge",
-      "tab": "Teil 3",
-      "intro": "Lesen Sie die Schilder. Kreuzen Sie an: Richtig oder Falsch.",
-      "type": "rf",
-      "per": 1,
-      "items": [
-       {
-        "q": "Sie können heute den Aufzug benutzen.",
-        "a": false,
-        "text": "Aufzug außer Betrieb. Bitte benutzen Sie die Treppe."
-       },
-       {
-        "q": "Kunden dürfen hier eine Stunde parken.",
-        "a": true,
-        "text": "Parken nur für Kunden – maximal 1 Stunde."
-       },
-       {
-        "q": "Im August können Sie zu Dr. Kühn gehen.",
-        "a": true,
-        "text": "Arztpraxis: Wir machen Urlaub vom 1. bis 14. August. Vertretung: Dr. Kühn, Marktstraße 5."
-       },
-       {
-        "q": "Hier dürfen Sie rauchen.",
-        "a": false,
-        "text": "Bitte nicht rauchen!"
-       },
-       {
-        "q": "Am Sonntagnachmittag können Sie hier Brot kaufen.",
-        "a": false,
-        "why": "nur bis 11 Uhr",
-        "text": "Bäckerei: Sonntag 8–11 Uhr geöffnet."
-       }
-      ],
-      "time": 9
-     }
-    ]
-   },
-   {
-    "id": "schreiben",
-    "de": "Schreiben",
-    "en": "Writing",
-    "time": 20,
-    "parts": [
-     {
-      "t": "Teil 1 – Formular ausfüllen",
-      "tab": "Teil 1",
-      "intro": "Ihre Kollegin möchte einen Deutschkurs machen. Sie helfen ihr beim Formular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
-      "type": "form",
-      "per": 1,
-      "items": [
-       {
-        "q": "Herkunftsland",
-        "a": [
-         "Brasilien"
-        ],
-        "why": ""
-       },
-       {
-        "q": "Wohnort",
-        "a": [
-         "Darmstadt"
-        ],
-        "why": ""
-       },
-       {
-        "q": "Muttersprache",
-        "a": [
-         "Portugiesisch"
-        ],
-        "why": ""
-       },
-       {
-        "q": "Kurszeit",
-        "o": [
-         "vormittags",
-         "abends"
-        ],
-        "a": 1,
-        "why": "Sie arbeitet tagsüber."
-       },
-       {
-        "q": "Kinder",
-        "a": [
-         "2",
-         "zwei"
-        ],
-        "why": "zwei Söhne"
-       }
-      ],
-      "text": "Meine Kollegin Ana Souza kommt aus Brasilien. Ihre Muttersprache ist Portugiesisch. Sie wohnt in Darmstadt und hat zwei Söhne. Ana möchte einen Deutschkurs A1 machen. Tagsüber arbeitet sie, deshalb möchte sie abends lernen.",
-      "time": 5
-     },
-     {
-      "t": "Teil 2 – Kurze Mitteilung",
-      "tab": "Teil 2",
-      "intro": "Schreiben Sie etwa 30 Wörter. Schreiben Sie zu allen drei Punkten. Vergessen Sie Anrede und Gruß nicht.",
-      "type": "write",
-      "crit": "a1",
-      "words": 30,
-      "task": "Ihre Nachbarn haben Sie zum Grillen am Samstag eingeladen. Schreiben Sie eine E-Mail:\n– Danken Sie für die Einladung.\n– Sagen Sie, dass Sie kommen.\n– Fragen Sie, was Sie mitbringen sollen.",
-      "points": [
-       "Danken Sie für die Einladung.",
-       "Sagen Sie, dass Sie kommen.",
-       "Fragen Sie, was Sie mitbringen sollen."
-      ],
-      "model": "Liebe Familie Wagner,\nvielen Dank für die Einladung zum Grillen! Ich komme am Samstag sehr gern. Soll ich einen Salat oder Getränke mitbringen?\nViele Grüße\nSuresh",
       "time": 15
      }
     ]
@@ -3829,18 +5855,18 @@ window.TESTS_A1 = [
      {
       "t": "Teil 2 – Um Informationen bitten und geben",
       "tab": "Teil 2",
-      "intro": "Thema: Einkaufen. Ihr Partner fragt Sie, Sie antworten. Dann fragen Sie mit Ihrer Karte, Ihr Partner antwortet.",
+      "intro": "Thema: Gesundheit. Ihr Partner fragt Sie, Sie antworten. Dann fragen Sie mit Ihrer Karte, Ihr Partner antwortet.",
       "type": "speak",
       "max": 6,
       "time": 6,
       "turns": [
        {
         "who": "Prüferin",
-        "say": "Teil 2. Das Thema ist: Einkaufen. Tom, bitte fragen Sie zuerst."
+        "say": "Teil 2. Das Thema ist: Gesundheit. Tom, bitte fragen Sie zuerst."
        },
        {
         "who": "Tom",
-        "say": "Wo kaufst du Lebensmittel?"
+        "say": "Was machst du, wenn du krank bist?"
        },
        {
         "you": "Antworte Tom in einem ganzen Satz.",
@@ -3851,14 +5877,14 @@ window.TESTS_A1 = [
           "ganzer Satz mit ich"
          ]
         ],
-        "model": "Ich kaufe im Supermarkt in meiner Straße ein."
+        "model": "Ich bleibe im Bett und trinke viel Tee."
        },
        {
         "who": "Prüferin",
-        "say": "Jetzt Sie. Ihre Karte: Brot."
+        "say": "Jetzt Sie. Ihre Karte: Arzt."
        },
        {
-        "you": "Frag Tom etwas zum Wort „Brot“.",
+        "you": "Frag Tom etwas zum Wort „Arzt“.",
         "min": 3,
         "key": [
          [
@@ -3866,19 +5892,19 @@ window.TESTS_A1 = [
           "Frageform"
          ],
          [
-          "brot",
+          "arzt",
           "Wort der Karte"
          ]
         ],
-        "model": "Wo kaufst du dein Brot?"
+        "model": "Wann gehst du zum Arzt?"
        },
        {
         "who": "Tom",
-        "say": "In der Bäckerei am Markt."
+        "say": "Wenn ich Fieber habe."
        },
        {
         "who": "Lea",
-        "say": "Kaufst du gern Kleidung?"
+        "say": "Treibst du Sport?"
        },
        {
         "you": "Antworte Lea in einem ganzen Satz.",
@@ -3889,14 +5915,14 @@ window.TESTS_A1 = [
           "ganzer Satz mit ich"
          ]
         ],
-        "model": "Nein, ich kaufe nicht so gern Kleidung."
+        "model": "Ja, ich gehe zweimal pro Woche schwimmen."
        },
        {
         "who": "Prüferin",
-        "say": "Ihre zweite Karte: Markt."
+        "say": "Ihre zweite Karte: Apotheke."
        },
        {
-        "you": "Frag Lea etwas zum Wort „Markt“.",
+        "you": "Frag Lea etwas zum Wort „Apotheke“.",
         "min": 3,
         "key": [
          [
@@ -3904,15 +5930,15 @@ window.TESTS_A1 = [
           "Frageform"
          ],
          [
-          "markt",
+          "apotheke",
           "Wort der Karte"
          ]
         ],
-        "model": "Gehst du am Samstag auf den Markt?"
+        "model": "Wo ist hier eine Apotheke?"
        },
        {
         "who": "Lea",
-        "say": "Ja, fast jeden Samstag."
+        "say": "Gleich neben dem Bahnhof."
        }
       ]
      },
@@ -3930,7 +5956,7 @@ window.TESTS_A1 = [
        },
        {
         "who": "Lea",
-        "say": "Kannst du mir bitte zehn Euro leihen?"
+        "say": "Kannst du bitte das Fenster aufmachen?"
        },
        {
         "you": "Reagiere auf Leas Bitte.",
@@ -3941,14 +5967,14 @@ window.TESTS_A1 = [
           "Reaktion"
          ]
         ],
-        "model": "Ja, natürlich. Hier, bitte."
+        "model": "Ja, gern. Ist dir warm?"
        },
        {
         "who": "Prüferin",
-        "say": "Jetzt Sie. Ihre Karte: 🛒 Einkaufstasche."
+        "say": "Jetzt Sie. Ihre Karte: 💊 Tabletten."
        },
        {
-        "you": "Bitte Tom um etwas – Karte: 🛒 Einkaufstasche.",
+        "you": "Bitte Tom um etwas – Karte: 💊 Tabletten.",
         "min": 3,
         "key": [
          [
@@ -3960,19 +5986,19 @@ window.TESTS_A1 = [
           "Bitte-Form"
          ],
          [
-          "tasche|einkauf",
+          "tablette",
           "Wort der Karte"
          ]
         ],
-        "model": "Kannst du mir bitte die Einkaufstasche geben?"
+        "model": "Kannst du mir bitte eine Tablette geben?"
        },
        {
         "who": "Tom",
-        "say": "Ja, hier ist sie."
+        "say": "Ja, hier. Hast du Kopfschmerzen?"
        },
        {
         "who": "Tom",
-        "say": "Kaufst du bitte Milch für mich?"
+        "say": "Kannst du mich morgen zum Arzt fahren?"
        },
        {
         "you": "Reagiere auf Toms Bitte.",
@@ -3983,14 +6009,14 @@ window.TESTS_A1 = [
           "Reaktion"
          ]
         ],
-        "model": "Ja, gern. Wie viel?"
+        "model": "Ja, kein Problem. Um wie viel Uhr?"
        },
        {
         "who": "Prüferin",
-        "say": "Ihre zweite Karte: 🧾 Kasse."
+        "say": "Ihre zweite Karte: ☕ Tee."
        },
        {
-        "you": "Bitte Lea um etwas – Karte: 🧾 Kasse.",
+        "you": "Bitte Lea um etwas – Karte: ☕ Tee.",
         "min": 3,
         "key": [
          [
@@ -4002,670 +6028,15 @@ window.TESTS_A1 = [
           "Bitte-Form"
          ],
          [
-          "kasse|bezahl",
+          "tee",
           "Wort der Karte"
          ]
         ],
-        "model": "Kannst du bitte an der Kasse bezahlen?"
+        "model": "Kannst du mir bitte einen Tee machen?"
        },
        {
         "who": "Lea",
-        "say": "Ja, kein Problem."
-       }
-      ]
-     }
-    ]
-   }
-  ]
- },
- {
-  "id": "a1-7",
-  "title": "Modelltest 7",
-  "sub": "Arzt, Behörde, Feiertage · Nachricht an die Lehrerin",
-  "sections": [
-   {
-    "id": "hoeren",
-    "de": "Hören",
-    "en": "Listening",
-    "time": 20,
-    "parts": [
-     {
-      "t": "Teil 1 – Kurze Gespräche",
-      "tab": "Teil 1",
-      "intro": "Sie hören sechs kurze Gespräche. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
-      "type": "mc",
-      "per": 1,
-      "plays": 2,
-      "items": [
-       {
-        "q": "Was hat die Frau?",
-        "o": [
-         "Bauchschmerzen",
-         "Fieber",
-         "Kopfschmerzen"
-        ],
-        "a": 0,
-        "audio": "Arzt: Was fehlt Ihnen?\nFrau: Ich habe seit gestern Bauchschmerzen. Fieber habe ich nicht."
-       },
-       {
-        "q": "In welchem Stock ist das Bürgerbüro?",
-        "o": [
-         "im ersten",
-         "im dritten",
-         "im zweiten"
-        ],
-        "a": 1,
-        "audio": "Mann: Wo ist das Bürgerbüro, bitte?\nFrau: Im dritten Stock. Der Aufzug ist dort rechts."
-       },
-       {
-        "q": "Wie lange dauert der Film?",
-        "o": [
-         "zwei Stunden",
-         "zweieinhalb Stunden",
-         "90 Minuten"
-        ],
-        "a": 0,
-        "audio": "Frau: Wie lange dauert der Film?\nMann: Genau zwei Stunden. Er ist um zehn Uhr zu Ende."
-       },
-       {
-        "q": "Was isst der Mann?",
-        "o": [
-         "Pizza",
-         "Fisch",
-         "Salat"
-        ],
-        "a": 1,
-        "audio": "Kellnerin: Möchten Sie die Pizza?\nMann: Nein, heute nehme ich den Fisch mit Kartoffeln."
-       },
-       {
-        "q": "Wann hat der Junge Geburtstag?",
-        "o": [
-         "am 30. März",
-         "am 13. März",
-         "am 3. März"
-        ],
-        "a": 1,
-        "why": "„am dreizehnten“",
-        "audio": "Frau: Wann hast du Geburtstag, Leon?\nLeon: Am dreizehnten März. Dann werde ich acht!"
-       },
-       {
-        "q": "Wohin fährt die Familie im Urlaub?",
-        "o": [
-         "in die Berge",
-         "nach Spanien",
-         "an die Ostsee"
-        ],
-        "a": 2,
-        "audio": "Mann: Fahrt ihr wieder nach Spanien?\nFrau: Nein, dieses Jahr fahren wir an die Ostsee. Das ist nicht so weit."
-       }
-      ],
-      "time": 8
-     },
-     {
-      "t": "Teil 2 – Durchsagen",
-      "tab": "Teil 2",
-      "intro": "Sie hören vier Ansagen. Sie hören jeden Text einmal. Kreuzen Sie an: Richtig oder Falsch.",
-      "type": "rf",
-      "per": 1,
-      "plays": 1,
-      "items": [
-       {
-        "q": "Am Montag ist das Rathaus geschlossen.",
-        "a": true,
-        "why": "Feiertag",
-        "audio": "Liebe Bürgerinnen und Bürger, am Montag ist Feiertag. Das Rathaus ist geschlossen."
-       },
-       {
-        "q": "Die Straßenbahn fährt heute normal.",
-        "a": false,
-        "why": "Umleitung",
-        "audio": "Achtung: Die Straßenbahn Linie 12 fährt heute wegen einer Baustelle eine Umleitung."
-       },
-       {
-        "q": "Der Flug nach Wien hat Verspätung.",
-        "a": false,
-        "why": "Er ist pünktlich – Gate geändert.",
-        "audio": "Passagiere nach Wien: Ihr Flug ist pünktlich, aber er startet heute von Gate B 12."
-       },
-       {
-        "q": "Im Kaufhaus gibt es heute Kaffee gratis.",
-        "a": true,
-        "audio": "Liebe Kunden, in unserem Café im vierten Stock gibt es heute für alle eine Tasse Kaffee gratis!"
-       }
-      ],
-      "time": 4
-     },
-     {
-      "t": "Teil 3 – Telefonansagen",
-      "tab": "Teil 3",
-      "intro": "Sie hören fünf Ansagen am Telefon. Sie hören jeden Text zweimal. Kreuzen Sie an: a, b oder c.",
-      "type": "mc",
-      "per": 1,
-      "plays": 2,
-      "items": [
-       {
-        "q": "Wann soll Herr Novak kommen?",
-        "o": [
-         "um 9 Uhr",
-         "um 8 Uhr",
-         "um 10 Uhr"
-        ],
-        "a": 1,
-        "audio": "Guten Tag, Herr Novak, hier ist das Bürgerbüro. Ihr Pass ist fertig. Bitte kommen Sie morgen um acht Uhr."
-       },
-       {
-        "q": "Was ist kaputt?",
-        "o": [
-         "das Fenster",
-         "die Heizung",
-         "die Waschmaschine"
-        ],
-        "a": 0,
-        "audio": "Hallo, hier ist Frau Berg aus dem zweiten Stock. Das Fenster in meiner Küche ist kaputt. Können Sie heute kommen?"
-       },
-       {
-        "q": "Was machen Max und Ole am Sonntag?",
-        "o": [
-         "Sie fahren Fahrrad.",
-         "Sie gehen ins Museum.",
-         "Sie spielen Fußball."
-        ],
-        "a": 0,
-        "audio": "Hallo Ole, hier ist Max. Am Sonntag soll es schön werden. Wollen wir eine Fahrradtour machen? Ruf mich an!"
-       },
-       {
-        "q": "Wann ist die Sprechstunde?",
-        "o": [
-         "mittwochs",
-         "dienstags",
-         "freitags"
-        ],
-        "a": 0,
-        "audio": "Hier ist die Schule am See. Die Sprechstunde von Frau Lehmann ist jetzt immer mittwochs von 14 bis 15 Uhr."
-       },
-       {
-        "q": "Wo treffen sich die beiden?",
-        "o": [
-         "vor der Bank",
-         "am Marktplatz",
-         "am Bahnhof"
-        ],
-        "a": 1,
-        "why": "nicht Bahnhof – Marktplatz",
-        "audio": "Hi, hier ist Nora. Wir treffen uns nicht am Bahnhof, sondern am Marktplatz, vor dem Café. Bis gleich!"
-       }
-      ],
-      "time": 8
-     }
-    ]
-   },
-   {
-    "id": "lesen",
-    "de": "Lesen",
-    "en": "Reading",
-    "time": 25,
-    "parts": [
-     {
-      "t": "Teil 1 – Kurze Mitteilungen",
-      "tab": "Teil 1",
-      "intro": "Lesen Sie die zwei Texte. Kreuzen Sie an: Richtig oder Falsch.",
-      "type": "rf",
-      "per": 1,
-      "items": [
-       {
-        "q": "Text 1: Petra ist krank.",
-        "a": true
-       },
-       {
-        "q": "Text 1: Petra kommt am Dienstag zur Arbeit.",
-        "a": false,
-        "why": "erst am Donnerstag"
-       },
-       {
-        "q": "Text 1: Michael soll die Kunden anrufen.",
-        "a": true
-       },
-       {
-        "q": "Text 2: Der Ausflug ist am Sonntag.",
-        "a": false,
-        "why": "am Samstag"
-       },
-       {
-        "q": "Text 2: Die Kinder brauchen Geld für den Eintritt.",
-        "a": false,
-        "why": "Der Eintritt ist frei."
-       }
-      ],
-      "text": "Text 1: Hallo Michael, ich bin leider krank und bleibe bis Mittwoch zu Hause. Am Donnerstag bin ich wieder im Büro. Kannst du bitte die Kunden anrufen? Die Nummern liegen auf meinem Tisch. Danke, Petra\nText 2: Liebe Eltern, am Samstag machen wir einen Ausflug in den Zoo. Wir treffen uns um 9 Uhr vor der Schule. Bitte geben Sie Ihrem Kind etwas zu essen mit. Der Eintritt ist frei. Ihre Klassenlehrerin",
-      "time": 8
-     },
-     {
-      "t": "Teil 2 – Anzeigen",
-      "tab": "Teil 2",
-      "intro": "Lesen Sie die Aufgaben und die Anzeigen. Welche Anzeige passt: a oder b?",
-      "type": "mc",
-      "per": 1,
-      "items": [
-       {
-        "q": "Sie suchen eine Arbeit am Wochenende.",
-        "o": [
-         "Bank sucht Mitarbeiter, Montag bis Freitag.",
-         "Café Sonne sucht Kellner für Samstag und Sonntag."
-        ],
-        "a": 1
-       },
-       {
-        "q": "Sie möchten Möbel verkaufen.",
-        "o": [
-         "Möbelhaus: neue Sofas im Angebot.",
-         "Flohmarkt: Stand mieten für 10 Euro, jeden Sonntag."
-        ],
-        "a": 1
-       },
-       {
-        "q": "Sie möchten Ihre Haare schneiden lassen.",
-        "o": [
-         "Friseur Schnitt: ohne Termin, ab 15 Euro.",
-         "Kosmetik-Studio: Massage und Nagelpflege."
-        ],
-        "a": 0
-       },
-       {
-        "q": "Sie brauchen Hilfe bei Ihrer Steuererklärung.",
-        "o": [
-         "Steuerbüro Klar: Hilfe bei der Steuererklärung, auch auf Englisch.",
-         "Computerkurs für Senioren."
-        ],
-        "a": 0
-       },
-       {
-        "q": "Sie möchten mit dem Zug nach Berlin fahren.",
-        "o": [
-         "Bahn-Sparpreis: Frankfurt–Berlin mit dem ICE ab 29 Euro.",
-         "Fernbus: Frankfurt–Berlin ab 19 Euro."
-        ],
-        "a": 0
-       }
-      ],
-      "time": 8
-     },
-     {
-      "t": "Teil 3 – Schilder und Aushänge",
-      "tab": "Teil 3",
-      "intro": "Lesen Sie die Schilder. Kreuzen Sie an: Richtig oder Falsch.",
-      "type": "rf",
-      "per": 1,
-      "items": [
-       {
-        "q": "Sie müssen eine Nummer ziehen.",
-        "a": true,
-        "text": "Bürgerbüro: Bitte ziehen Sie eine Nummer und warten Sie."
-       },
-       {
-        "q": "Das Restaurant ist heute geöffnet.",
-        "a": false,
-        "text": "Heute Ruhetag."
-       },
-       {
-        "q": "Gefundene Sachen können Sie an der Information abgeben.",
-        "a": true,
-        "text": "Fundsachen bitte an der Information abgeben."
-       },
-       {
-        "q": "Ein Kind mit 4 Jahren muss bezahlen.",
-        "a": false,
-        "text": "Kinder unter 6 Jahren: Eintritt frei."
-       },
-       {
-        "q": "Ab September können Sie sich für neue Kurse anmelden.",
-        "a": true,
-        "text": "Sprachschule: Anmeldung für neue Kurse ab 1. September."
-       }
-      ],
-      "time": 9
-     }
-    ]
-   },
-   {
-    "id": "schreiben",
-    "de": "Schreiben",
-    "en": "Writing",
-    "time": 20,
-    "parts": [
-     {
-      "t": "Teil 1 – Formular ausfüllen",
-      "tab": "Teil 1",
-      "intro": "Ihr Freund möchte in einem Sportverein Mitglied werden. Sie helfen ihm beim Formular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
-      "type": "form",
-      "per": 1,
-      "items": [
-       {
-        "q": "Geburtsjahr",
-        "a": [
-         "1995"
-        ],
-        "why": ""
-       },
-       {
-        "q": "Wohnort",
-        "a": [
-         "Wiesbaden"
-        ],
-        "why": ""
-       },
-       {
-        "q": "Sportart",
-        "a": [
-         "Basketball"
-        ],
-        "why": ""
-       },
-       {
-        "q": "Familienstand",
-        "o": [
-         "ledig",
-         "verheiratet"
-        ],
-        "a": 0,
-        "why": "nicht verheiratet"
-       },
-       {
-        "q": "Zahlung",
-        "o": [
-         "monatlich",
-         "jährlich"
-        ],
-        "a": 1,
-        "why": "einmal im Jahr"
-       }
-      ],
-      "text": "Mein Freund Omar Haddad ist 1995 geboren und wohnt in Wiesbaden. Er ist nicht verheiratet. Omar spielt gern Basketball und möchte im Sportverein TV Wiesbaden spielen. Den Beitrag bezahlt er einmal im Jahr.",
-      "time": 5
-     },
-     {
-      "t": "Teil 2 – Kurze Mitteilung",
-      "tab": "Teil 2",
-      "intro": "Schreiben Sie etwa 30 Wörter. Schreiben Sie zu allen drei Punkten. Vergessen Sie Anrede und Gruß nicht.",
-      "type": "write",
-      "crit": "a1",
-      "words": 30,
-      "task": "Sie können morgen nicht zum Deutschkurs kommen. Schreiben Sie Ihrer Lehrerin, Frau Klein:\n– Warum kommen Sie nicht?\n– Fragen Sie nach den Hausaufgaben.\n– Wann kommen Sie wieder?",
-      "points": [
-       "Warum kommen Sie nicht?",
-       "Fragen Sie nach den Hausaufgaben.",
-       "Wann kommen Sie wieder?"
-      ],
-      "model": "Liebe Frau Klein,\nich kann morgen leider nicht zum Kurs kommen, denn ich habe einen Termin beim Arzt. Welche Hausaufgaben haben wir? Am Donnerstag bin ich wieder da.\nViele Grüße\nSuresh",
-      "time": 15
-     }
-    ]
-   },
-   {
-    "id": "sprechen",
-    "de": "Sprechen",
-    "en": "Speaking",
-    "time": 15,
-    "oral": true,
-    "parts": [
-     {
-      "t": "Teil 1 – Sich vorstellen",
-      "tab": "Teil 1",
-      "intro": "Stellen Sie sich vor. Dann buchstabieren Sie und sagen eine Nummer oder Adresse.",
-      "type": "speak",
-      "max": 3,
-      "time": 4,
-      "turns": [
-       {
-        "who": "Prüferin",
-        "say": "Guten Tag! Bitte stellen Sie sich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf und Hobby."
-       },
-       {
-        "you": "Stell dich vor: Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby.",
-        "min": 20,
-        "key": [
-         [
-          "heiße|name ist|ich bin [A-ZÄÖÜ]",
-          "Name"
-         ],
-         [
-          "jahre",
-          "Alter"
-         ],
-         [
-          "komme aus",
-          "Land"
-         ],
-         [
-          "wohne",
-          "Wohnort"
-         ],
-         [
-          "spreche",
-          "Sprachen"
-         ],
-         [
-          "arbeite|beruf|bin .*(ingenieur|lehrer|student|entwickler|krankenschwester|koch|verkäufer)",
-          "Beruf"
-         ],
-         [
-          "hobby|gern|spiele|lese|koche|tanze|schwimme",
-          "Hobby"
-         ]
-        ],
-        "model": "Ich heiße Suresh. Ich bin [Alter] Jahre alt und komme aus Indien. Ich wohne in Frankfurt. Ich spreche Englisch und ein bisschen Deutsch. Ich arbeite als Ingenieur. Mein Hobby ist Kochen."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Danke. Buchstabieren Sie bitte Ihren Vornamen."
-       },
-       {
-        "you": "Buchstabiere deinen Vornamen.",
-        "min": 3,
-        "key": [],
-        "model": "S – U – R – E – S – H."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Und wie ist Ihre Telefonnummer?"
-       },
-       {
-        "you": "Sag deine Telefonnummer, Zahl für Zahl.",
-        "min": 4,
-        "key": [
-         [
-          "\\d|null|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|straße",
-          "Zahlen / Adresse"
-         ]
-        ],
-        "model": "Null – eins – sieben – sechs – zwei – drei – vier – fünf – sechs – sieben."
-       }
-      ]
-     },
-     {
-      "t": "Teil 2 – Um Informationen bitten und geben",
-      "tab": "Teil 2",
-      "intro": "Thema: Familie. Ihr Partner fragt Sie, Sie antworten. Dann fragen Sie mit Ihrer Karte, Ihr Partner antwortet.",
-      "type": "speak",
-      "max": 6,
-      "time": 6,
-      "turns": [
-       {
-        "who": "Prüferin",
-        "say": "Teil 2. Das Thema ist: Familie. Tom, bitte fragen Sie zuerst."
-       },
-       {
-        "who": "Tom",
-        "say": "Hast du Geschwister?"
-       },
-       {
-        "you": "Antworte Tom in einem ganzen Satz.",
-        "min": 4,
-        "key": [
-         [
-          "\\bich\\b",
-          "ganzer Satz mit ich"
-         ]
-        ],
-        "model": "Ja, ich habe eine Schwester und einen Bruder."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Jetzt Sie. Ihre Karte: Kinder."
-       },
-       {
-        "you": "Frag Tom etwas zum Wort „Kinder“.",
-        "min": 3,
-        "key": [
-         [
-          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
-          "Frageform"
-         ],
-         [
-          "kinde",
-          "Wort der Karte"
-         ]
-        ],
-        "model": "Hast du Kinder?"
-       },
-       {
-        "who": "Tom",
-        "say": "Ja, eine Tochter. Sie ist fünf."
-       },
-       {
-        "who": "Lea",
-        "say": "Wo wohnen deine Eltern?"
-       },
-       {
-        "you": "Antworte Lea in einem ganzen Satz.",
-        "min": 4,
-        "key": [
-         [
-          "\\bich\\b",
-          "ganzer Satz mit ich"
-         ]
-        ],
-        "model": "Meine Eltern wohnen in Indien."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Ihre zweite Karte: Geburtstag."
-       },
-       {
-        "you": "Frag Lea etwas zum Wort „Geburtstag“.",
-        "min": 3,
-        "key": [
-         [
-          "^\\s*(w\\w+|hast|bist|kannst|magst|isst|kaufst|gehst|machst|fährst|trinkst|spielst|liest|siehst|arbeitest|wohnst|hörst|kochst|möchtest|gibt|fliegst|beginnst|reist|schläfst|treibst|nimmst|brauchst|findest|hättest|würdest|bleibst)\\b",
-          "Frageform"
-         ],
-         [
-          "gebur",
-          "Wort der Karte"
-         ]
-        ],
-        "model": "Wann hast du Geburtstag?"
-       },
-       {
-        "who": "Lea",
-        "say": "Im Mai, am zwölften."
-       }
-      ]
-     },
-     {
-      "t": "Teil 3 – Bitten formulieren und darauf reagieren",
-      "tab": "Teil 3",
-      "intro": "Ihr Partner bittet Sie um etwas, Sie reagieren. Dann bitten Sie mit Ihrer Bildkarte, Ihr Partner reagiert.",
-      "type": "speak",
-      "max": 6,
-      "time": 5,
-      "turns": [
-       {
-        "who": "Prüferin",
-        "say": "Teil 3. Bitten und reagieren. Lea, bitte beginnen Sie."
-       },
-       {
-        "who": "Lea",
-        "say": "Kannst du bitte auf meine Tochter aufpassen?"
-       },
-       {
-        "you": "Reagiere auf Leas Bitte.",
-        "min": 2,
-        "key": [
-         [
-          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
-          "Reaktion"
-         ]
-        ],
-        "model": "Ja, gern. Wie lange?"
-       },
-       {
-        "who": "Prüferin",
-        "say": "Jetzt Sie. Ihre Karte: 📷 Foto."
-       },
-       {
-        "you": "Bitte Tom um etwas – Karte: 📷 Foto.",
-        "min": 3,
-        "key": [
-         [
-          "bitte",
-          "bitte"
-         ],
-         [
-          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
-          "Bitte-Form"
-         ],
-         [
-          "foto",
-          "Wort der Karte"
-         ]
-        ],
-        "model": "Kannst du bitte ein Foto von uns machen?"
-       },
-       {
-        "who": "Tom",
-        "say": "Ja, natürlich. Lächeln!"
-       },
-       {
-        "who": "Tom",
-        "say": "Rufst du bitte deine Mutter an?"
-       },
-       {
-        "you": "Reagiere auf Toms Bitte.",
-        "min": 2,
-        "key": [
-         [
-          "\\b(ja|gern|gerne|natürlich|klar|sicher|kein problem|leider|nein|bitte|moment|okay|ok)\\b",
-          "Reaktion"
-         ]
-        ],
-        "model": "Ja, ich rufe sie heute Abend an."
-       },
-       {
-        "who": "Prüferin",
-        "say": "Ihre zweite Karte: 🎂 Kuchen."
-       },
-       {
-        "you": "Bitte Lea um etwas – Karte: 🎂 Kuchen.",
-        "min": 3,
-        "key": [
-         [
-          "bitte",
-          "bitte"
-         ],
-         [
-          "\\b(kannst|können|könntest|könnten|würdest|würden|gib|mach|hilf|bring|zeig)\\b",
-          "Bitte-Form"
-         ],
-         [
-          "kuchen",
-          "Wort der Karte"
-         ]
-        ],
-        "model": "Kannst du bitte einen Kuchen backen?"
-       },
-       {
-        "who": "Lea",
-        "say": "Ja, gern, einen Schokoladenkuchen."
+        "say": "Klar, einen Moment."
        }
       ]
      }

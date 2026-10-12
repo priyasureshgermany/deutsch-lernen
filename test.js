@@ -142,20 +142,27 @@ function Pruefung(o){
   o.tests.forEach(t=>{const r=runOf(t.id);if(r&&r.secDone&&Object.values(r.secDone).some(Boolean)&&!lastOf(t.id)){run=load(t.id);record()}});run=null;
   body.innerHTML=`<div class="tz-pad"><p class="tz-lead">Eine ganze Prüfung wie im echten Test. <b>Jeder Teil hat seine eigene Zeit</b> – die Uhr läuft nur für den Teil, den du gerade bearbeitest; ist sie um, wird der Teil abgegeben. Mit <b>❚❚</b> pausierst du jederzeit. <b>Du musst nicht alles auf einmal machen:</b> mach z. B. nur Hören und die anderen Teile später – jeder Test merkt sich, was du schon gemacht hast.</p>
    <div class="tz-legend"><span>✓ fertig</span><span>● pausiert</span><span>○ noch offen</span></div>
-   ${o.tests.map(t=>{const S=stateOf(t);let s=null;
+   ${LEVELS.map(([lv,name,desc])=>{const ts=o.tests.filter(t=>(t.level||"mittel")===lv);if(!ts.length)return "";
+    return `<h3 class="tz-lvh lv-${lv}"><span class="tz-lv-b">${name}</span><small>${desc}</small></h3>`+ts.map(card).join("")}).join("")}
+   <p class="tz-note">${esc(o.scale.note)}</p></div>`;body.scrollTop=0}
+ /* Leicht → Mittel → Schwer: the order to work through the tests */
+ const LEVELS=[["leicht","Leicht","zum Einstieg – kürzere Texte, die Antwort steht meist direkt im Text"],
+  ["mittel","Mittel","wie in der echten Prüfung"],
+  ["schwer","Schwer","längere Texte, Antworten mit anderen Worten, Fallen – wenn du sicher sein willst"]];
+ const lvName=t=>(LEVELS.find(l=>l[0]===(t.level||"mittel"))||LEVELS[1])[1];
+ function card(t){const S=stateOf(t);let s=null;
     if(S.last)try{s=score(S.last)}catch(e){}   /* scored again from the saved answers, so a changed scale shows right */
     const cls=S.all?"fin":S.begun?"wip":"";
     const status=S.all?"Fertig":S.run&&S.run.si!=null?`In Arbeit – pausiert in ${esc(short(t.sections[S.run.si]))}`:S.begun?`In Arbeit – ${S.n} von ${t.sections.length} Prüfungsteilen fertig`:"Noch nicht begonnen";
     const total=S.all&&s?(s.dtz?`Gesamtergebnis: <b>${s.lvl?esc(s.lvl):"noch offen"}</b>`:`<b>${num(s.pts)} / ${num(o.scale.max)}</b> Punkte · ${s.pass?"bestanden":s.pending?"noch offen":"nicht bestanden"}`):"";
-    return `<div class="tz-card tz-test ${cls}"><div class="tz-h"><b>${esc(t.title)}</b><span class="tz-stat">${status}</span></div><div class="tz-sub">${esc(t.sub||"")}</div>
+    return `<div class="tz-card tz-test lv-${t.level||"mittel"} ${cls}"><div class="tz-h"><b>${esc(t.title)} <span class="tz-lv-b sm">${lvName(t)}</span></b><span class="tz-stat">${status}</span></div><div class="tz-sub">${esc(t.sub||"")}</div>
      <div class="tz-secs">${t.sections.map((x,i)=>{const st=S.st[i],m=st==="done"?chipMark(s,i):"";
       return `<span class="sk-${skOf(x)} ${st}">${st==="done"?"✓":st==="now"?"●":"○"} ${esc(short(x))}${m?` <small>${esc(m)}</small>`:""}</span>`}).join("")}</div>
      ${total?`<div class="tz-last ${s.pass?"ok":s.pending?"":"no"}">${total}${S.last&&S.last.date?" · "+esc(S.last.date):""}</div>`:""}
      <div class="tz-row">${S.all?`<button type="button" class="tz-btn" data-review="${t.id}">Auswertung ansehen</button>`
       :S.begun?`<button type="button" class="tz-btn" data-resume="${t.id}">Weitermachen</button>${S.n?`<button type="button" class="tz-btn ghost" data-review="${t.id}">Auswertung bisher</button>`:""}`
       :`<button type="button" class="tz-btn" data-start="${t.id}">Test starten</button>`}
-      ${S.begun?`<button type="button" class="tz-link" data-restart="${t.id}">Neu beginnen</button>`:""}</div></div>`}).join("")}
-   <p class="tz-note">${esc(o.scale.note)}</p></div>`;body.scrollTop=0}
+      ${S.begun?`<button type="button" class="tz-link" data-restart="${t.id}">Neu beginnen</button>`:""}</div></div>`}
  function start(id){run={tid:id,secDone:{},sp:{},si:null,cur:0,left:{},done:{},t0:null,paused:false,ans:{},plays:{},sa:{},begun:new Date().toISOString()};save();label();choose()}
  /* All Prüfungsteile at a glance, each in its colour: ✓ done, ● running, ○ to do. */
  function strip(){const t=test(run.tid);return `<div class="tz-strip">${t.sections.map((x,i)=>{const st=run.secDone[i]?"done":run.si===i||(run.si==null&&view==="intro"&&run.pick===i)?"now":"";
@@ -390,7 +397,7 @@ function Pruefung(o){
    const more=rest.length&&runOf(tid)?`<div class="tz-row"><button type="button" class="tz-btn" data-resume="${tid}">Weitermachen – noch offen: ${esc(rest.join(", "))}</button></div>`:"";
    /* what range is good: the exam's grade bands */
    const bands=o.scale.grades?`<div class="tz-bands">${o.scale.grades.map(([lo,hi,n])=>`<span${!s.partial&&!s.pending&&s.pts>=lo&&s.pts<=hi?' class="on"':""}><b>${esc(n)}</b> ${num(lo)}–${num(hi)}</span>`).join("")}<span><b>nicht bestanden</b> unter ${num(o.scale.pass)}</span></div>`:"";
-   let h=`<div class="tz-pad"><div class="tz-card big result ${s.partial?"":s.pass?"ok":s.pending?"":"no"}"><div class="tz-step">${esc(t.title)} · ${esc(r.date)}</div>
+   let h=`<div class="tz-pad"><div class="tz-card big result ${s.partial?"":s.pass?"ok":s.pending?"":"no"}"><div class="tz-step">${esc(t.title)} · ${lvName(t)} · ${esc(r.date)}</div>
     ${head}${s.partial?"":bands}
     ${s.pending?`<div class="tz-warn">${Object.values(LT).includes("busy")?"Schreiben: Rechtschreibung und Grammatik werden gerade geprüft …":"Bewerte unten noch die offenen Punkte beim Schreiben – erst dann ist die Punktzahl vollständig."}</div>`:""}
     ${more}
