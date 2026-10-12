@@ -157,6 +157,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
 <script src="translate.js"></script>
 <script src="karten.js"></script>
 <script src="me.js"></script>
+<script src="hilfe.js"></script>
 <script>
 const T=[];
 T.push({de:"Wohnraum",en:"Housing",q:[
@@ -828,6 +829,18 @@ const K=Karten({mount:main,
   {id:"pr",icon:"practice",label:"Übungsmodus",color:"var(--ink)",pressed:()=>document.body.classList.contains("practice"),click:()=>pr.click()},
   {id:"mw",icon:"multi",label:"Mehrere Wörter",color:"var(--a2)",pressed:()=>multi,click:()=>mw.click()}]});
 document.querySelector(".toggles").prepend(K.button);
+/* press and hold a button to see what it does; a short tour on the first visit (hilfe.js) */
+if(window.Hilfe)Hilfe.setup({tab:"themen",tours:[{id:"page",steps:[
+ {sel:".fc-open",t:"Karten",de:"Eine Aufgabe pro Bildschirm – gut fürs Handy. ‹ › blättern, zweimal schnell tippen = erste bzw. letzte.",en:"Cards: one per screen; ‹ › to move."},
+ {sel:'.tg[data-k="en"]',t:"EN",de:"Die englische Frage ein- oder ausblenden.",en:"Show or hide the English question."},
+ {sel:'.tg[data-k="b1"]',t:"B1 · A2 · A1",de:"Die Frage in drei Niveaus: B1-Original, leichter (A2) und ganz einfach (A1) – jede Spalte ein- oder ausblenden.",en:"The question at three levels; show or hide each."},
+ {sel:'.tg[data-k="a2"]',t:"A2",de:"Die leichtere A2-Fassung der Frage ein- oder ausblenden.",en:"Easier A2 version.",tour:false},
+ {sel:'.tg[data-k="a1"]',t:"A1",de:"Die ganz einfache A1-Fassung ein- oder ausblenden.",en:"Simplest A1 version.",tour:false},
+ {sel:".tg.ans",t:"Antwort",de:"Die Beispielantwort auf B1-Niveau ein- oder ausblenden.",en:"Show or hide the sample answer."},
+ {sel:"#pr",t:"Übungsmodus",de:"Die Beispielantwort ist verdeckt: zuerst selbst laut antworten, dann tippen zum Aufdecken.",en:"Answer aloud first, then uncover."},
+ {sel:"#mw",t:"Mehrere Wörter",de:"Mehrere Wörter in einem Satz antippen, dann „Übersetzen“ – für Ausdrücke.",en:"Tap several words, then translate – for phrases."},
+ {sel:"#nav a",t:"Themen",de:"Springt zu einem Thema.",en:"Jump to a topic.",hold:false},
+ {sel:"button.say",t:"▶ Vorlesen",de:"Liest den Text vor; noch einmal tippen = Stopp. Langsamer: ⋯ oben → Tempo.",en:"Read aloud; tap again to stop. Speed: ⋯ → Tempo."},{sel:".w",t:"Wort antippen",de:"Tippe ein Wort an: Übersetzung, bei Nomen mit Artikel und Plural.",en:"Tap a word for its translation.",hold:false},{sel:".ph",t:"[Platzhalter]",de:"Hier gehören deine Angaben hin – einmal unter ⋯ → Meine Angaben eintragen, dann stehen sie überall.",en:"Placeholders: enter your details under ⋯ → Meine Angaben.",hold:false}]}]});
 document.getElementById("px").addEventListener("click",K.sync);
 const q=document.getElementById("q"),empty=document.getElementById("empty");
 q.oninput=()=>{const v=q.value.trim().toLowerCase();let any=false;

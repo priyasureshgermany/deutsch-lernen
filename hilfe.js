@@ -1,81 +1,116 @@
-/* Hilfe: a round "?" at the start of the A1/B1 tool row. It opens a short
-   explanation of every button, each shown as it looks on the page, in German
-   with English below. Until it has been opened once, the "?" pulses gently.
+/* Hilfe – how the buttons are explained, without any extra button on the page:
 
-     Hilfe({level, row, cards, test})
-       row    the tool row (.toggles) – the "?" goes first
-       cards  the Karten button, test the Modelltest pill (shown as they look) */
+   1. Press and hold a button (or rest the mouse on it): a small bubble says what
+      it does. Letting go does not press the button.
+   2. A short tour the first time a tab is opened: it points at each button in
+      turn (Weiter / Überspringen) and is never shown by itself again. The ⋯ menu
+      of the app replays it ({dlTour:true} from index.html).
+
+     Hilfe.setup({tab, tours:[{id, steps:[step…], need?}]})
+       step  {sel, t, de, en, hold?=true, tour?=true}
+             sel  CSS selector – the first visible match is shown in the tour;
+                  every match gets the hold bubble (unless hold:false)
+       need  a selector: this tour waits until it is on screen (e.g. the
+             controls of an opened situation) – checked after taps */
 (function(){
-const SEEN="dl:helpSeen";
+const CSS=`
+.hlp-bub{position:fixed;z-index:9998;max-width:min(280px,calc(100vw - 24px));padding:9px 12px;border-radius:12px;background:var(--ink);color:var(--paper);
+ font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;box-shadow:0 10px 28px rgba(0,0,0,.3);pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .15s,transform .15s}
+.hlp-bub.on{opacity:1;transform:none}
+.hlp-bub b{font-weight:800}
+.hlp-tour{position:fixed;inset:0;z-index:9999;touch-action:none}
+.hlp-hole{position:fixed;border-radius:12px;box-shadow:0 0 0 9999px rgba(8,12,20,.68);outline:3px solid #fff;outline-offset:2px;transition:all .25s ease;pointer-events:none}
+.hlp-hole.none{box-shadow:0 0 0 9999px rgba(8,12,20,.68);outline:none;width:0!important;height:0!important}
+.hlp-card{position:fixed;width:min(330px,calc(100vw - 24px));padding:13px 15px 12px;border-radius:16px;background:var(--paper);color:var(--ink);border:1px solid var(--line);
+ box-shadow:0 18px 40px rgba(0,0,0,.35);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;transition:top .25s ease,left .25s ease}
+.hlp-card .tt{font-weight:800;font-size:16px;margin-bottom:3px}
+.hlp-card .en{display:block;color:var(--muted);font-size:13px;font-style:italic;margin-top:4px}
+.hlp-card .row{display:flex;align-items:center;gap:8px;margin-top:12px}
+.hlp-card .n{font-size:12px;color:var(--muted);margin-right:auto}
+.hlp-card button{touch-action:manipulation;font:inherit;font-size:14px;font-weight:800;border-radius:999px;padding:8px 14px;cursor:pointer;border:1.5px solid var(--line);background:transparent;color:var(--ink)}
+.hlp-card button.go{background:var(--b1);border-color:var(--b1);color:#fff}
+@media (prefers-reduced-motion:reduce){.hlp-hole,.hlp-card,.hlp-bub{transition:none}}`;
 const get=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
 const set=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
-const CSS=`
-.hlp-q{touch-action:manipulation;font:inherit;font-size:16px;font-weight:900;width:34px;height:34px;flex:none;border-radius:50%;border:2px solid var(--b1);background:var(--b1);color:#fff;cursor:pointer;line-height:1;padding:0}
-.hlp-q.new{animation:hlpPulse 1.8s ease-in-out infinite}
-@keyframes hlpPulse{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--b1) 55%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
-@media (prefers-reduced-motion:reduce){.hlp-q.new{animation:none}}
-dialog.hlp{width:min(560px,calc(100vw - 20px));max-height:calc(100dvh - 24px);margin:12px auto auto;padding:0;border:1px solid var(--line);border-radius:16px;background:var(--paper);color:var(--ink);overflow:hidden}
-dialog.hlp[open]{display:flex;flex-direction:column}
-dialog.hlp::backdrop{background:rgba(10,14,24,.45)}
-.hlp-h{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)}
-.hlp-h b{flex:1;font-size:17px}
-.hlp-x{touch-action:manipulation;font:inherit;font-size:17px;width:34px;height:34px;border-radius:50%;border:none;background:var(--surface);color:var(--ink);cursor:pointer}
-.hlp-b{overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:6px 14px 16px}
-.hlp-g{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:14px 0 4px}
-.hlp-r{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:start;padding:9px 0;border-bottom:1px dashed var(--line)}
-.hlp-r:last-child{border-bottom:none}
-.hlp-k{display:flex;flex-wrap:wrap;gap:4px;align-items:center;justify-content:flex-start;pointer-events:none}
-.hlp-k>*{margin:0!important;animation:none!important}
-.hlp-k .tg{font-size:13px;padding:4px 9px}
-.hlp-k .tg .sm{display:none}.hlp-k .tg .lg{display:inline}
-.hlp-t{font-size:15px;line-height:1.4}
-.hlp-t i{display:block;color:var(--muted);font-size:13px;margin-top:2px}
-.hlp-word{font-weight:700;border-bottom:2px dotted var(--b1)}
-.hlp-chip{display:inline-block;font-size:12px;font-weight:700;padding:2px 7px;border-radius:7px;border:2px solid var(--sk,var(--b1));color:var(--sk,var(--b1))}
-.hlp-chip.on{background:var(--sk,var(--b1));color:#fff}
-.hlp-ph{background:color-mix(in srgb,var(--a2) 22%,transparent);border-radius:4px;padding:0 3px;font-weight:700}
-.hlp-dots{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);font-weight:900;color:var(--muted)}
-.hlp-tip{margin:12px 0 0;padding:10px 12px;border-radius:12px;background:var(--surface);font-size:14px}
-@media (max-width:420px){.hlp-r{grid-template-columns:78px 1fr}}`;
+const vis=el=>{if(!el||!el.isConnected)return false;const r=el.getBoundingClientRect();if(!r.width||!r.height)return false;
+ for(let n=el;n&&n!==document.body;n=n.parentElement){const s=getComputedStyle(n);if(s.display==="none"||s.visibility==="hidden")return false;if(n.hidden)return false}return true};
+const first=sel=>[...document.querySelectorAll(sel)].find(vis)||null;
+/* something else covers the page (a test, cards): no tour then */
+const busy=()=>document.body.classList.contains("testing")||!!document.querySelector(".fc:not([hidden]),.fc-ov:not([hidden]),.tz:not([hidden]),dialog[open]");
 
-function Hilfe(o){
- if(!o||!o.row)return;
- const st=document.createElement("style");st.textContent=CSS;document.head.appendChild(st);
- const q=document.createElement("button");q.type="button";q.className="hlp-q"+(get(SEEN)?"":" new");q.textContent="?";
- q.title="Was machen die Knöpfe?";q.setAttribute("aria-label","Hilfe: Was machen die Knöpfe?");q.setAttribute("aria-haspopup","dialog");
- o.row.prepend(q);
- const d=document.createElement("dialog");d.className="hlp";d.setAttribute("aria-labelledby","hlpH");
- /* the buttons as they look on the page (copies, not clickable) */
- const look=el=>{if(!el)return "";const c=el.cloneNode(true);c.removeAttribute("id");c.setAttribute("tabindex","-1");c.setAttribute("aria-hidden","true");return c.outerHTML};
- const tg=(cls,pressed,label)=>`<span class="tg ${cls}" aria-pressed="${pressed}" aria-hidden="true">${label}</span>`;
- const say=document.querySelector("button.say");
- const row=(k,de,en)=>`<div class="hlp-r"><div class="hlp-k">${k}</div><div class="hlp-t">${de}<i>${en}</i></div></div>`;
- const B=o.level==="B1";
- d.innerHTML=`<div class="hlp-h"><b id="hlpH">So funktionieren die Knöpfe</b><button type="button" class="hlp-x" aria-label="Schließen">✕</button></div>
- <div class="hlp-b">
-  <div class="hlp-g">Oben in der Leiste</div>
-  ${row(look(o.cards),"<b>Karten</b>: eine Aufgabe pro Bildschirm – gut fürs Handy. Mit ‹ › blättern; zweimal schnell tippen = erste bzw. letzte Karte.","Cards: one task per screen. ‹ › to move; double-tap = first / last card.")}
-  ${row(tg("en","true","EN"),"<b>Englisch</b> für alle Aufgaben ein- oder ausblenden. Standard: aus – jeder Satz hat trotzdem seinen eigenen EN-Knopf.","Show or hide English for everything. Off by default – every sentence still has its own EN button.")}
-  ${row(tg("ans","true","Lösung"),"<b>Lösung</b> an: alle Lösungen sofort offen. Aus (Standard): Im Übungsmodus deckst du jede Lösung selbst auf.","Solutions on: all answers open. Off (default): in practice mode you uncover each one yourself.")}
-  ${row(tg("practice","true",'<span class="lg">Übungsmodus</span>'),"<b>Übungsmodus</b> (Standard: an): Hörtexte und Lösungen sind verdeckt. ▶ hören, Antwort überlegen, dann auf „Tippen zum Aufdecken“ tippen.","Practice mode (on by default): texts and answers are covered. Listen, answer, then tap to uncover.")}
-  ${row(tg("multi","true",'<span class="lg">Mehrere Wörter</span>'),"<b>Mehrere Wörter</b>: tippe mehrere Wörter in einem Satz an, dann „Übersetzen“ – für Ausdrücke wie „sich freuen auf“.","Several words: tap words in a sentence, then “Übersetzen” – for phrases.")}
-  ${row(look(o.test),`<b>Test</b>: ${B?"ganze DTZ-Prüfung":"ganze Prüfung"} mit Zeit und Punkten. Du kannst Teile einzeln machen und später weitermachen; die Auswertung zeigt, ab wann du bestehst.`,"Mock exam with time and marks. Do parts one by one and continue later; the result shows the pass marks.")}
-  <div class="hlp-g">In den Aufgaben</div>
-  ${row(say?look(say):"▶","<b>Vorlesen</b>: liest den Text vor. Noch einmal tippen = Stopp. Langsamer oder schneller: ⋯ oben → Tempo.","Read aloud. Tap again to stop. Speed: ⋯ at the top → Tempo.")}
-  ${row('<span class="trb" aria-hidden="true">Englisch zeigen</span>',"<b>Englisch zeigen</b>: Übersetzung nur für diesen einen Satz.","English for this one sentence only.")}
-  ${row('<span class="hlp-word">Wort</span>',"<b>Ein Wort antippen</b>: Übersetzung, bei Nomen mit Artikel und Plural.","Tap any word: translation; nouns with article and plural.")}
-  ${row('<span class="hlp-ph">[Name]</span>',"<b>[Platzhalter]</b>: hier gehören deine Angaben hin. Einmal unter ⋯ → Meine Angaben eintragen – dann stehen sie überall (nur auf deinem Handy gespeichert).","Placeholders: enter your details once under ⋯ → Meine Angaben (kept on your phone only).")}
-  ${row('<span class="hlp-chip sk-hoeren on">Hören</span><span class="hlp-chip sk-lesen">Lesen</span>',"<b>Hören · Lesen · Schreiben · Sprechen</b>: springt zum Prüfungsteil. Jeder hat seine Farbe; der Teil, den du gerade liest, ist ausgefüllt.","Jump to a part. Each has its colour; the part you are reading is filled.")}
-  <div class="hlp-g">Ganz oben in der App</div>
-  ${row('<span class="hlp-dots">⋯</span>',"<b>Mehr</b>: Tempo (normal / langsam), Darstellung (hell / dunkel), Meine Angaben, Übersetzen (Deutsch ⇄ Englisch), App teilen und <b>Feedback</b> – Fehler melden oder Ideen schicken.","More: speed, light/dark, your details, translator, share, and feedback / report a bug.")}
-  <p class="hlp-tip">Tipp: Übe zuerst mit dem Übungsmodus Teil für Teil – dann mach einen Modelltest mit Zeit. <i style="display:block;color:var(--muted);font-size:13px">Tip: practise part by part first, then take a timed mock exam.</i></p>
- </div>`;
- document.body.appendChild(d);
- const close=()=>{try{d.close()}catch(e){d.removeAttribute("open")}};
- q.onclick=()=>{set(SEEN,"1");q.classList.remove("new");try{d.showModal()}catch(e){d.setAttribute("open","")}d.querySelector(".hlp-b").scrollTop=0};
- d.querySelector(".hlp-x").onclick=close;
- d.addEventListener("click",e=>{if(e.target!==d)return;const r=d.getBoundingClientRect();
-  if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close()});
- return {button:q,dialog:d}}
-window.Hilfe=Hilfe;
+function setup(o){
+ if(!o||!o.tab||!o.tours)return;
+ const st=document.createElement("style");
+ const all=o.tours.flatMap(t=>t.steps),holds=all.filter(s=>s.hold!==false);
+ const holdSel=holds.map(s=>s.sel).join(",");
+ st.textContent=CSS+(holdSel?`\n:is(${holdSel}){-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}`:"");
+ document.head.appendChild(st);
+ const KEY=id=>"dl:tour:"+o.tab+":"+id;
+
+ /* ---- 1. press and hold ---- */
+ const bub=document.createElement("div");bub.className="hlp-bub";bub.setAttribute("role","tooltip");document.body.appendChild(bub);
+ let tHold=0,from=null,held=null,hideT=0;
+ const stepOf=el=>{for(const s of holds){const m=el.closest(s.sel);if(m)return [m,s]}return null};
+ function place(box,r,gap){const w=box.offsetWidth,h=box.offsetHeight;
+  let top=r.top-h-gap;if(top<8)top=r.bottom+gap;if(top+h>innerHeight-8)top=Math.max(8,innerHeight-h-8);
+  const left=Math.min(Math.max(8,r.left+r.width/2-w/2),innerWidth-w-8);box.style.top=top+"px";box.style.left=left+"px"}
+ function showBub(el,s){clearTimeout(hideT);bub.innerHTML=`<b>${s.t}</b>${s.de?" – "+s.de:""}`;bub.classList.add("on");place(bub,el.getBoundingClientRect(),10)}
+ function hideBub(ms){clearTimeout(hideT);hideT=setTimeout(()=>bub.classList.remove("on"),ms||0)}
+ document.addEventListener("pointerdown",e=>{if(tour||e.pointerType==="mouse")return;hideBub();const f=stepOf(e.target);if(!f)return;
+  from=[e.clientX,e.clientY];clearTimeout(tHold);tHold=setTimeout(()=>{held=f[0];showBub(f[0],f[1]);if(navigator.vibrate)try{navigator.vibrate(12)}catch(x){}},450)},true);
+ document.addEventListener("pointermove",e=>{if(from&&Math.hypot(e.clientX-from[0],e.clientY-from[1])>10){clearTimeout(tHold);from=null}},true);
+ const up=()=>{clearTimeout(tHold);from=null;if(held)hideBub(2600)};
+ document.addEventListener("pointerup",up,true);document.addEventListener("pointercancel",up,true);
+ /* the tap that ends a long press is not a press of the button */
+ document.addEventListener("click",e=>{if(held&&(e.target===held||held.contains(e.target))){e.preventDefault();e.stopImmediatePropagation()}held=null},true);
+ document.addEventListener("contextmenu",e=>{if(held||stepOf(e.target)&&from)e.preventDefault()},true);
+ addEventListener("scroll",()=>hideBub(),{passive:true,capture:true});
+ /* laptop: rest the mouse on a button */
+ if(matchMedia("(hover:hover)").matches){let tHover=0,over=null;
+  document.addEventListener("mouseover",e=>{if(tour)return;const f=stepOf(e.target);if(!f||f[0]===over)return;over=f[0];clearTimeout(tHover);
+   tHover=setTimeout(()=>{if(over===f[0])showBub(f[0],f[1])},650)});
+  document.addEventListener("mouseout",e=>{if(!over||over.contains(e.relatedTarget))return;over=null;clearTimeout(tHover);hideBub()})}
+
+ /* ---- 2. the tour ---- */
+ let tour=null;
+ function end(){if(!tour)return;tour.el.remove();removeEventListener("resize",tour.re);document.removeEventListener("keydown",tour.key,true);tour=null}
+ function start(list,ids,intro){if(tour||busy())return;
+  const steps=list.filter(s=>s.tour!==false&&first(s.sel));if(!steps.length)return;
+  ids.forEach(id=>set(KEY(id),"1"));
+  const el=document.createElement("div");el.className="hlp-tour";el.setAttribute("role","dialog");el.setAttribute("aria-label","Tour");
+  el.innerHTML=`<div class="hlp-hole"></div><div class="hlp-card" aria-live="polite"></div>`;document.body.appendChild(el);
+  const hole=el.querySelector(".hlp-hole"),card=el.querySelector(".hlp-card");
+  const seq=(intro?[{intro:true}]:[]).concat(steps);let i=0;
+  function draw(){const s=seq[i],last=i===seq.length-1,n=intro?i:i+1,tot=intro?seq.length-1:seq.length;
+   if(s.intro){hole.className="hlp-hole none";hole.style.cssText=`top:50%;left:50%`;
+    card.innerHTML=`<div class="tt">Kurze Tour</div>So funktionieren die Knöpfe auf dieser Seite – ${tot} kurze Schritte.<span class="en">A short tour of the buttons on this page.</span>
+     <div style="margin-top:8px;font-size:14px">💡 Später: <b>Knopf gedrückt halten</b> – dann erklärt er sich selbst.<span class="en">Later: press and hold any button to see what it does.</span></div>
+     <div class="row"><span class="n"></span><button type="button" data-x>Überspringen</button><button type="button" class="go" data-n>Los ›</button></div>`;
+    card.style.top=Math.max(12,innerHeight/2-card.offsetHeight/2)+"px";card.style.left=Math.max(12,innerWidth/2-card.offsetWidth/2)+"px";return}
+   const t=first(s.sel);if(!t){i++;if(i<seq.length)draw();else end();return}
+   t.scrollIntoView({block:"center",inline:"nearest"});
+   requestAnimationFrame(()=>{const r=t.getBoundingClientRect(),p=6;hole.className="hlp-hole";
+    hole.style.cssText=`top:${r.top-p}px;left:${r.left-p}px;width:${r.width+2*p}px;height:${r.height+2*p}px`;
+    card.innerHTML=`<div class="tt">${s.t}</div>${s.de}${s.en?`<span class="en">${s.en}</span>`:""}
+     <div class="row"><span class="n">${n} / ${tot}</span>${last?"":`<button type="button" data-x>Überspringen</button>`}<button type="button" class="go" data-n>${last?"Fertig ✓":"Weiter ›"}</button></div>`;
+    if(last)card.insertAdjacentHTML("beforeend",`<div class="en" style="margin-top:8px">Noch einmal ansehen: ⋯ oben → Tour.</div>`);
+    const h=card.offsetHeight,w=card.offsetWidth;let top=r.bottom+p+14;if(top+h>innerHeight-10)top=r.top-p-14-h;if(top<10)top=Math.max(10,innerHeight-h-10);
+    card.style.top=top+"px";card.style.left=Math.min(Math.max(12,r.left+r.width/2-w/2),innerWidth-w-12)+"px"})}
+  el.addEventListener("click",e=>{const b=e.target.closest("button");e.stopPropagation();if(!b)return;
+   if(b.hasAttribute("data-x")){end();return}if(b.hasAttribute("data-n")){i++;if(i>=seq.length)end();else draw()}});
+  const re=()=>draw(),key=e=>{if(e.key==="Escape"){end();e.stopPropagation()}else if(e.key==="ArrowRight"||e.key==="Enter"){i++;if(i>=seq.length)end();else draw();e.preventDefault()}};
+  addEventListener("resize",re);document.addEventListener("keydown",key,true);
+  tour={el,re,key};draw()}
+ /* first visit: the page tour (with the cards' tours that are on screen too);
+    a tour that waits for something (need) starts when it appears */
+ function check(auto){if(tour||busy())return;
+  const due=o.tours.filter(t=>!get(KEY(t.id))&&(!t.need||first(t.need)));if(!due.length)return;
+  start(due.flatMap(t=>t.steps),due.map(t=>t.id),due.some(t=>!t.need))}
+ setTimeout(()=>{if(document.visibilityState==="visible")check()},900);
+ document.addEventListener("click",()=>setTimeout(check,500),true);
+ /* ⋯ → Tour: everything on screen now */
+ addEventListener("message",e=>{if(e.origin!==location.origin||!e.data||!e.data.dlTour)return;end();
+  const now=o.tours.filter(t=>!t.need||first(t.need));start(now.flatMap(t=>t.steps),now.map(t=>t.id),true)});
+ return {start:()=>{const now=o.tours.filter(t=>!t.need||first(t.need));start(now.flatMap(t=>t.steps),now.map(t=>t.id),true)}}}
+window.Hilfe={setup};
 })();
