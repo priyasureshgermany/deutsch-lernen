@@ -1,5 +1,9 @@
 # Releases
 
+## 1.38.0 — 2026-10-12
+- Modelltests by difficulty: nine per level – 3 Leicht, 3 Mittel, 3 Schwer – grouped on the overview with a short explanation, a badge on every card and on the result page. The existing tests were measured (text length, sentence length, subordinate clauses, paraphrased answers, wrong options that appear in the text) and sorted; tests are renumbered 1–9 from easy to hard (ids unchanged, saved results stay)
+- New: two hard A1 tests and two hard B1 (DTZ) tests – answers that change mid-conversation, traps, small calculations, paraphrased questions, longer texts; B1 with falls/obwohl/Relativsätze/Konjunktiv II in the gap text. Writing keys for the new A1 tasks; all new model letters pass the app’s own checks
+
 ## 1.37.1 — 2026-10-12
 - A1/B1: Lösung off means no solution at all – also in Übungsmodus (it showed blurred). Lösung on + Übungsmodus: covered, tap to uncover; Lösung on alone: open. Tour and hold texts say so
 

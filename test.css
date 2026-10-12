@@ -251,3 +251,11 @@ table.tz-tab{display:table;width:100%}.tz-tab tbody{display:table-row-group}.tz-
 .tz-tab td{display:table-cell;width:auto;border-left:none;border-right:none;background:none}
 /* Übungsmodus is drawn in the text colour: when on, its label takes the page colour (readable in dark mode too) */
 .tg.practice[aria-pressed="true"]{color:var(--paper)}
+/* Modelltests grouped by difficulty: Leicht → Mittel → Schwer */
+.tz-lvh{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin:22px 0 10px;font-size:15px}
+.tz-lvh small{font-size:13px;font-weight:400;color:var(--muted)}
+.tz-lv-b{display:inline-block;font-size:13px;font-weight:800;padding:3px 11px;border-radius:999px;color:#fff;background:var(--lvc)}
+.tz-lv-b.sm{font-size:11px;padding:2px 8px;vertical-align:2px;margin-left:4px}
+.lv-leicht{--lvc:#1a8f4c}.lv-mittel{--lvc:#c77d00}.lv-schwer{--lvc:#b3261e}
+.tz-card.tz-test.lv-leicht,.tz-card.tz-test.lv-mittel,.tz-card.tz-test.lv-schwer{border-left:5px solid var(--lvc)}
+.tz-card.tz-test.wip{border-left-width:5px}
