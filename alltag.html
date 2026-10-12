@@ -200,6 +200,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 <script src="briefe-data.js"></script>
 <script src="hoeren-data.js"></script>
 <script src="translate.js"></script>
+<script src="speak.js"></script>
 <script>
 /* One page, two tabs: ?t=dialog (Gespräche) or ?t=brief (Briefe). */
 const MODE=({brief:"brief",hoeren:"hoeren"})[new URLSearchParams(location.search).get("t")]||"dialog";
@@ -345,10 +346,11 @@ function cast(gIn){
  if(out.A.voice===out.B.voice&&g.A===g.B){
   const base=out.A.pitch;out.A.pitch=base*(g.A==="m"?1.05:0.95);out.B.pitch=base*(g.A==="m"?0.88:1.12)}
  return out}
-function utter(text,v){const u=new SpeechSynthesisUtterance(text);u.lang="de-DE";u.rate=rate;
- if(v==="A"||v==="B"){const c=cast()[v];if(c.voice)u.voice=c.voice;u.pitch=c.pitch}
- else{const vo=voices()[0];if(vo)u.voice=vo}
- return u}
+/* one line to speak (for speak.js): the speaker's voice and pitch */
+function piece(text,v){const o={text,lang:"de-DE",rate};
+ if(v==="A"||v==="B"){const c=cast()[v];if(c.voice)o.voice=c.voice;o.pitch=c.pitch}
+ else{const vo=voices()[0];if(vo)o.voice=vo}
+ return o}
 /* 🔊 Stimmen: every German voice this device has, to hear and to assign. */
 function voiceBox(box){
  const vs=voices(),sym=v=>({f:"weiblich",m:"männlich",u:"unbekannt"})[genderOf(v)]+(/premium|enhanced|natural|neural|verbessert/i.test(v.name)?" · beste Qualität":"")+(v.localService===false?" · online, kann stocken":"");
@@ -358,16 +360,9 @@ function voiceBox(box){
   vs.map(v=>`<div class="vr"><span>${esc(v.name)} <small>${sym(v)}</small></span><button class="say" type="button" data-test="${esc(v.name)}" aria-label="Probe hören"></button></div>`).join("")+
   `<div class="pick">${PICKS.map(([k,l])=>`<label>${l}</label>${opt(k)}`).join("")}</div>`+
   `<div class="hint">${vs.length<2?"Dein Gerät hat nur eine deutsche Stimme – die Personen werden deshalb nur durch die Tonhöhe unterschieden. ":""}Klarer klingen Stimmen mit „Premium“, „Erweitert“ oder „Natural“ im Namen. Mehr Stimmen: iPhone → Einstellungen › Bedienungshilfen › Gesprochene Inhalte › Stimmen › Deutsch (z. B. Markus, Yannick, Anna, Helena laden). Android → Einstellungen › Sprachausgabe › Google-Sprachausgabe › Sprachdaten installieren › Deutsch.</div>`}
-function testVoice(btn){if(!synth)return;if(playing===btn){stopAll();return}stopAll();
- const v=voices().find(x=>x.name===btn.dataset.test);const u=new SpeechSynthesisUtterance("Hallo, so klingt diese Stimme.");u.lang="de-DE";u.rate=rate;if(v)u.voice=v;
- u.onend=u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};playing=btn;btn.classList.add("on");say(u)}
-/* Phone speech engines stutter when a new sentence starts the moment the
-   old one is cancelled, so speaking waits a moment after a stop. */
-const AFTER_STOP=120;let stoppedAt=0;
-function say(u){const wait=Math.max(0,AFTER_STOP-(Date.now()-stoppedAt));if(synth.paused)synth.resume();
- /* Safari only starts speech inside the tap itself, so speak at once when
-    nothing had to be stopped first. */
- if(wait===0)synth.speak(u);else setTimeout(()=>synth.speak(u),wait)}
+function testVoice(btn){if(!synth||!window.Speak)return;if(playing===btn){stopAll();return}stopAll();stopScene();
+ const v=voices().find(x=>x.name===btn.dataset.test);playing=btn;btn.classList.add("on");
+ Speak.run([{text:"Hallo, so klingt diese Stimme.",lang:"de-DE",rate,voice:v||null}],{onend:()=>{if(playing===btn){btn.classList.remove("on");playing=null}}})}
 /* Reading along: the sentence turns light blue as far as it has been
    spoken, like a progress bar through the text. Most voices report
    where they are (a "boundary" at each word); where a voice stays silent
@@ -375,7 +370,7 @@ function say(u){const wait=Math.max(0,AFTER_STOP-(Date.now()-stoppedAt));if(synt
    reports – close, though not exact. */
 const WORDRE=/[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g;
 function textOf(btn){const h=btn.closest(".body,.part,.phr,.box");return h?h.querySelector(".s"):null}
-function follow(u,box,text){
+function follow(u,box,text,off,last){off=off||0;if(last===undefined)last=true;
  if(!box)return;const spans=[...box.querySelectorAll(".w")];if(!spans.length)return;
  const starts=[];let m;WORDRE.lastIndex=0;while((m=WORDRE.exec(text)))starts.push(m.index);
  let cur=-1,heard=false,timer=null;
@@ -383,25 +378,27 @@ function follow(u,box,text){
  const wordAt=ci=>{let k=0;for(let j=0;j<starts.length;j++){if(starts[j]<=ci)k=j;else break}return k};
  /* when the sentence ends it goes back to normal, so only the sentence
     being spoken shows its progress */
- const done=()=>{clearInterval(timer);spans.forEach(s=>s.classList.remove("read"));cur=-1};
- u.addEventListener("boundary",e=>{if(e.name&&e.name!=="word")return;heard=true;clearInterval(timer);show(wordAt(e.charIndex))});
+ const done=()=>{clearInterval(timer);if(last){spans.forEach(s=>s.classList.remove("read"));cur=-1}};
+ u.addEventListener("boundary",e=>{if(e.name&&e.name!=="word")return;heard=true;clearInterval(timer);show(wordAt(off+e.charIndex))});
  u.addEventListener("start",()=>{const t0=performance.now(),cps=13*(u.rate||1);
-  timer=setInterval(()=>{if(heard){clearInterval(timer);return}show(wordAt((performance.now()-t0)/1000*cps))},110)});
+  timer=setInterval(()=>{if(heard){clearInterval(timer);return}show(wordAt(off+(performance.now()-t0)/1000*cps))},110)});
  u.addEventListener("end",done);u.addEventListener("error",done)}
-function stopAll(){if(synth&&(synth.speaking||synth.pending)){synth.cancel();stoppedAt=Date.now()}if(playing)playing.classList.remove("on");playing=null;
+function stopAll(){if((playing||queue)&&window.Speak)Speak.stop();if(playing)playing.classList.remove("on");playing=null;
  if(queue){queue.btn.classList.remove("on");document.querySelectorAll(".ln.now").forEach(x=>x.classList.remove("now"));queue=null}}
-function speak(btn){if(!synth)return;if(playing===btn){stopAll();return}stopAll();
- const u=utter(btn.dataset.say,btn.dataset.v);follow(u,textOf(btn),btn.dataset.say);
- u.onend=u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
- playing=btn;btn.classList.add("on");say(u)}
-function playAll(btn){if(!synth)return;if(queue&&queue.btn===btn){stopAll();return}stopAll();
+function speak(btn){if(!synth||!window.Speak)return;if(playing===btn){stopAll();return}stopAll();stopScene();
+ const box=textOf(btn);playing=btn;btn.classList.add("on");
+ Speak.run([piece(btn.dataset.say,btn.dataset.v)],{onutter:(u,x)=>follow(u,box,x.full,x.off,x.last),
+  onend:()=>{if(playing===btn){btn.classList.remove("on");playing=null}}})}
+function playAll(btn){if(!synth||!window.Speak)return;if(queue&&queue.btn===btn){stopAll();return}stopAll();stopScene();
  const card=btn.closest(".dcard"),items=[...card.querySelectorAll(".lines .say, .sheet .say")];
  queue={btn,i:0};btn.classList.add("on");
  const next=()=>{if(!queue||queue.btn!==btn)return;
   card.querySelectorAll(".ln.now").forEach(x=>x.classList.remove("now"));
   if(queue.i>=items.length){stopAll();return}
   const s=items[queue.i++],ln=s.closest(".ln");if(ln){ln.classList.add("now");ln.scrollIntoView({block:"nearest",behavior:"smooth"})}
-  const u=utter(s.dataset.say,s.dataset.v);follow(u,textOf(s),s.dataset.say);u.onend=()=>setTimeout(next,350);u.onerror=e=>{if(e&&e.error==="interrupted")return;stopAll()};say(u)};
+  const box=textOf(s);
+  Speak.run([piece(s.dataset.say,s.dataset.v)],{onutter:(u,x)=>follow(u,box,x.full,x.off,x.last),
+   onend:ok=>{if(!queue||queue.btn!==btn)return;if(ok)setTimeout(next,350);else stopAll()}})};
  next()}
 /* Tempo is set by the button at the top of the app (index.html). */
 addEventListener("message",e=>{if(e.origin===location.origin&&e.data&&e.data.dlRate)rate=e.data.dlRate});
@@ -456,7 +453,7 @@ function beep(){const c=ac();if(!c)return 0;tone(c,c.destination,1000,c.currentT
    tone or a spoken line – and, with "2× hören", everything again after
    a short pause, as in the exam. */
 let scene=null;
-function stopScene(){if(!scene)return;scene.stop=true;clearTimeout(scene.t);if(scene.end)scene.end();if(synth)synth.cancel();
+function stopScene(){if(!scene)return;scene.stop=true;clearTimeout(scene.t);if(scene.end)scene.end();if(window.Speak)Speak.stop();
  scene.btn.classList.remove("on");scene.btn.textContent="▶ Abspielen";scene.card.querySelectorAll(".now").forEach(x=>x.classList.remove("now"));scene=null}
 function playScene(btn){if(scene&&scene.btn===btn){stopScene();return}stopScene();stopAll();
  const card=btn.closest(".dcard"),d=DATA[+open];if(!d)return;
@@ -474,9 +471,9 @@ function playScene(btn){if(scene&&scene.btn===btn){stopScene();return}stopScene(
   if(i>=d.parts.length){if(twice&&round===1){round=2;i=0;S.t=setTimeout(next,3000);return}S.t=setTimeout(stopScene,1200);return}
   const p=d.parts[i],k=i++;mark(k);
   if(typeof p==="string"){const ms=p==="chime"?chime():p==="ring"?ring():beep();S.t=setTimeout(next,ms+300);return}
-  const u=new SpeechSynthesisUtterance(p[1].replace(/[\[\]]/g,""));u.lang="de-DE";const v=voice[p[0]]||voice.A;if(v.voice)u.voice=v.voice;u.pitch=v.pitch;
-  u.rate=rate*(d.kind==="Durchsage"||d.kind==="Ansage"?0.95:1);follow(u,card.querySelector(`[data-i="${k}"] .s`),u.text);u.onend=()=>{if(!S.stop)S.t=setTimeout(next,550)};u.onerror=e=>{if(e&&e.error==="interrupted")return;if(!S.stop)S.t=setTimeout(next,300)};
-  synth.speak(u)};
+  const v=voice[p[0]]||voice.A,box=card.querySelector(`[data-i="${k}"] .s`);
+  Speak.run([{text:p[1].replace(/[\[\]]/g,""),lang:"de-DE",voice:v.voice||null,pitch:v.pitch,rate:rate*(d.kind==="Durchsage"||d.kind==="Ansage"?0.95:1)}],
+   {onutter:(u,x)=>follow(u,box,x.full,x.off,x.last),onend:ok=>{if(!S.stop)S.t=setTimeout(next,ok?550:300)}})};
  S.t=setTimeout(next,bg?1300:200)}
 function answer(b){const hq=b.closest(".hq"),card=b.closest(".dcard"),d=DATA[+open],q=d.q[+hq.dataset.q];if(hq.dataset.done)return;
  const right=q[0]==="rf"?String(q[2]):String(q[3]);hq.dataset.done=b.dataset.a===right?"ok":"no";
