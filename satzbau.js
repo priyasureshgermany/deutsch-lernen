@@ -11,7 +11,10 @@
    (not while the result is read, not while the game is closed). Leaderboard
    (Bestenliste) per level: points first, then time – kept on this device,
    with player names so several people can compete on one phone.
-   Satzbau.card() is the start card for a page; Satzbau.open(level) starts. */
+   Satzbau.card() is the start card for a page; Satzbau.open(level) starts.
+   Topic tests (satzbau-themen.js, SBT): Satzbau.topic(id, title) – 5 sentences
+   of a grammar topic not seen recently; saved and resumed per topic, best
+   score per topic; Satzbau.topicButton(id, title) is the button for the page. */
 (function(){
 const LV={A1:["A1","einfache Sätze, Fragen, Modalverben"],A2:["A2","Perfekt, weil / dass / wenn, Dativ und Akkusativ"],B1:["B1","Relativsätze, zu + Infinitiv, Passiv, Konjunktiv II"]};
 const N=10,st=k=>{try{return JSON.parse(localStorage.getItem("dl:sb:"+k))}catch(e){return null}},sv=(k,v)=>{try{localStorage.setItem("dl:sb:"+k,JSON.stringify(v))}catch(e){}};
@@ -21,16 +24,19 @@ const key=s=>s.replace(/^,\s*/,"").toLowerCase();
 const shell=on=>{try{if(parent!==window)parent.postMessage({dlCards:on},location.origin)}catch(e){}};
 
 /* one sentence: its blocks, end mark, every correct order */
-function parse(row){const [s,en,rule,alt]=row,end=(s.match(/[.?!]$/)||["."])[0];
- const blocks=s.replace(/[.?!]$/,"").split("|");
- const sols=[blocks].concat((alt||[]).map(a=>a.replace(/[.?!]$/,"").split("|")));
+function parse(row){const [s0,en,rule,alt]=row,end=(s0.match(/[.?!]$/)||["."])[0];
+ const raw=s0.replace(/[.?!]$/,"").split("|"),blocks=raw.map(b=>b.replace(/^\^/,""));
+ /* "^": this block may also stand first – then verb, subject, the rest */
+ const front=raw.map((b,i)=>b[0]==="^"&&i>1?[blocks[i],blocks[1],blocks[0]].concat(blocks.filter((_,j)=>j>1&&j!==i)):null).filter(Boolean);
+ const sols=[blocks].concat(front,(alt||[]).map(a=>a.replace(/[.?!]$/,"").split("|")));
  return {blocks,end,en,rule,sols:sols.map(b=>b.map(key)),show:sols.map(b=>sentence(b,end))}}
 function sentence(b,end){const t=b.map((x,i)=>i&&!/^,/.test(x)?" "+x:x).join("");return t[0].toUpperCase()+t.slice(1)+end}
 
 /* ---- the game ---- */
 let G=null,ov=null;
 const SETS=10,runGet=()=>st("run"),setBest=(lv,k)=>st("set:"+lv+":"+k);
-const itemsOf=(lv,set,order)=>order.map(i=>parse(SB[lv][set][i]));
+const itemsOf=(lv,set,order,topic)=>order.map(i=>parse(topic?SBT[topic][i]:SB[lv][set][i]));
+const runKey=g=>g&&g.topic?"trun:"+g.topic:"run";
 const tilesOf=S=>S.blocks.map((t,id)=>({id,t:t.replace(/^,\s*/,""),k:key(t)}));
 /* the running game after every move – without what can be rebuilt from the data */
 /* ---- stopwatch: ms = time already counted, t0 = running since ---- */
@@ -46,7 +52,7 @@ const rank=(a,b)=>b.s-a.s||a.ms-b.ms;
 function lbAdd(e){const L=(st("lb:"+e.lv)||[]).concat([e]).sort(rank);const at=L.indexOf(e);sv("lb:"+e.lv,L.slice(0,20));return {place:at+1,of:Math.min(L.length,20),list:L.slice(0,20),id:e.id}}
 function lbTable(lv,mark,n){const L=(st("lb:"+lv)||[]).slice(0,n||10);if(!L.length)return `<p class="sb-note">Noch keine Einträge – spiel ein Set, dann stehst du hier.</p>`;
  return `<ol class="sb-lb">${L.map((e,i)=>`<li class="${e.id===mark?"me":""}"><span class="sb-rk">${["🥇","🥈","🥉"][i]||i+1}</span><b>${esc(e.name)}</b><span class="sb-lbs">${num(e.s)}/10</span><span class="sb-lbt">⏱ ${fmt(e.ms)}</span><small>Set ${e.set+1} · ${esc(e.date)}</small></li>`).join("")}</ol>`}
-function save(){if(!G||G.menu)return;const {items,tiles,t0,...rest}=G;rest.ms=el();sv("run",rest)}
+function save(){if(!G||G.menu)return;const {items,tiles,t0,...rest}=G;rest.ms=el();sv(runKey(G),rest)}
 function deal(){const S=G.items[G.i];G.tiles=tilesOf(S);G.sStart=el();
  let order;do{order=G.tiles.map(t=>t.id);for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}}
  while(order.length>2&&S.sols.some(s=>s.join("|")===order.map(id=>G.tiles[id].k).join("|")));
@@ -61,10 +67,23 @@ function newGame(lv,k){const R=runGet();
  sv("run",null);startSet(lv,k==null?fresh(lv):k)}
 function resume(){const R=runGet();if(!R)return;G=Object.assign({},R,{items:itemsOf(R.lv,R.set,R.order)});
  if(!G.items[G.i]){sv("run",null);open(R.lv);return}G.tiles=tilesOf(G.items[G.i]);G.t0=null;G.ms=G.ms||0;G.times=G.times||[];if(G.sStart==null)G.sStart=G.ms;show();draw()}
+/* ---- topic tests: 5 sentences of one grammar topic ---- */
+const TN=5;
+function startTopic(id,title){const all=(SBT[id]||[]).map((_,i)=>i),seen=st("tseen:"+id)||[];
+ let pool=all.filter(i=>!seen.includes(i));if(pool.length<TN)pool=all.filter(i=>!seen.slice(-TN).includes(i));if(pool.length<TN)pool=all.slice();
+ for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
+ const order=pool.slice(0,TN);sv("tseen:"+id,seen.concat(order).slice(-(all.length-TN)));
+ G={topic:id,title,lv:"",set:0,order,items:itemsOf("",0,order,id),i:0,score:0,res:[],streak:0,bestStreak:0,ms:0,t0:null,times:[]};deal();show();draw()}
+function topic(id,title){const R=st("trun:"+id);if(R&&R.order){G=Object.assign({},R,{items:itemsOf("",0,R.order,id)});
+  if(G.items[G.i]){G.tiles=tilesOf(G.items[G.i]);G.t0=null;G.ms=G.ms||0;G.times=G.times||[];if(G.sStart==null)G.sStart=G.ms;show();draw();return}}
+ startTopic(id,title)}
+function topicButton(id,title){if(!window.SBT||!SBT[id])return"";const R=st("trun:"+id),b=st("tbest:"+id);
+ return `<button type="button" class="sb-tbtn" data-sbtopic="${esc(id)}" data-sbtitle="${esc(title)}"><span class="sb-tico">🧩</span><span><b>${R?"▶ Test fortsetzen":"Satzbau-Test"}</b><small>${R?`Satz ${R.i+1} von ${R.order.length} · ${num(R.score)} Punkte`:`5 Sätze zu „${esc(title)}“ bauen${b!=null?` · Bestes: ${num(b)} / ${TN}`:""}`}</small></span></button>`}
+function refreshButtons(){document.querySelectorAll("[data-sbtopic]").forEach(b=>{b.outerHTML=topicButton(b.dataset.sbtopic,b.dataset.sbtitle)})}
 function show(){mount();shell(true);document.body.classList.add("sb-on")}
 function open(lv){lv=lv||st("lv")||"A1";sv("lv",lv);G={menu:true,lv};show();drawMenu()}
 function close(){halt();save();if(ov)ov.hidden=true;shell(false);document.body.classList.remove("sb-on");try{speechSynthesis.cancel()}catch(e){}G=null;
- const c=document.querySelector(".sb-card");if(c)c.outerHTML=card()}
+ const c=document.querySelector(".sb-card");if(c)c.outerHTML=card();refreshButtons()}
 function mount(){if(ov){ov.hidden=false;return}ov=document.createElement("div");ov.className="sb-ov";ov.setAttribute("role","dialog");ov.setAttribute("aria-label","Satzbau-Spiel");document.body.appendChild(ov);
  ov.addEventListener("click",onClick);ov.addEventListener("pointerdown",onDown)}
 
@@ -90,7 +109,7 @@ function stars(s){return s>=10?3:s>=7?2:s>=5?1:0}
 function dots(){return `<div class="sb-dots">${G.items.map((_,i)=>{const r=G.res[i];return `<i class="${r==null?(i===G.i?"now":""):r===1?"ok":r?"half":"no"}"></i>`}).join("")}</div>`}
 function draw(){if(G.i>=G.items.length){drawEnd();return}const S=cur(),T=id=>G.tiles[id];if(G.done)halt();else run();save();
  const tile=(id,where,j)=>{const m=G.marks?G.marks[j]:null;return `<button type="button" class="sb-tile${where==="ans"&&m!=null?(m?" right":" wrong"):""}" data-id="${id}" data-where="${where}">${esc(T(id).t)}</button>`};
- ov.innerHTML=`<div class="sb-top"><button type="button" class="sb-x" data-go="menu" aria-label="Übersicht" title="Übersicht – das Spiel bleibt gespeichert">☰</button><b>${G.lv} · Set ${G.set+1}</b><span class="sb-clock" title="Zeit – läuft nur, während du einen Satz baust">⏱ <b>${fmt(el())}</b></span><span class="sb-sc">${num(G.score)} Punkte${G.streak>1?` · <span class="sb-fire">🔥 ${G.streak}</span>`:""}</span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
+ ov.innerHTML=`<div class="sb-top">${G.topic?"":`<button type="button" class="sb-x" data-go="menu" aria-label="Übersicht" title="Übersicht – das Spiel bleibt gespeichert">☰</button>`}<b>${G.topic?"🧩 "+esc(G.title):`${G.lv} · Set ${G.set+1}`}</b><span class="sb-clock" title="Zeit – läuft nur, während du einen Satz baust">⏱ <b>${fmt(el())}</b></span><span class="sb-sc">${num(G.score)} Punkte${G.streak>1?` · <span class="sb-fire">🔥 ${G.streak}</span>`:""}</span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
  <div class="sb-body">${dots()}
   <div class="sb-n">Satz ${G.i+1} von ${G.items.length}</div>
   <div class="sb-en">„${esc(S.en)}“</div>
@@ -110,14 +129,15 @@ function check(){const S=cur(),a=G.ans.map(id=>G.tiles[id].k).join("|"),ok=S.sol
  const b=best();G.marks=G.ans.map((id,j)=>G.tiles[id].k===S.sols[b][j]);
  if(G.tries<2){G.msg=`<div class="sb-bad">Fast! ${G.marks.filter(Boolean).length} von ${G.ans.length} Blöcken stehen richtig (grün). Tippe die roten an und versuch es noch einmal.</div>`;draw();return}
  finishOne(0,false)}
-function finishOne(p,ok){halt();const S=cur(),R=SBR[S.rule]||["",""];G.score+=p;G.res[G.i]=p;G.done=true;G.times=G.times||[];G.times[G.i]=el()-(G.sStart||0);
+const ruleOf=S=>SBR[S.rule]||[S.rule||"",""];
+function finishOne(p,ok){halt();const S=cur(),R=ruleOf(S);G.score+=p;G.res[G.i]=p;G.done=true;G.times=G.times||[];G.times[G.i]=el()-(G.sStart||0);
  G.streak=p===1?G.streak+1:0;G.bestStreak=Math.max(G.bestStreak,G.streak);
  if(!ok){const b=best(),used=new Set();G.ans=S.sols[b].map(k=>{const t=G.tiles.find(t=>t.k===k&&!used.has(t.id));used.add(t.id);return t.id});G.pool=[];G.marks=null}
  const praise=["Super!","Richtig!","Genau!","Perfekt!","Sehr gut!"][Math.floor(Math.random()*5)];
  G.msg=`<div class="${p===1?"sb-good":p?"sb-half":"sb-bad"}"><b>${p===1?praise+" +1":p?"Richtig – +½":"Leider nicht – 0 Punkte"}</b>${G.streak>=3?` <span class="sb-fire">🔥 ${G.streak} in Folge!</span>`:""}
   ${ok?`<div class="sb-sol">✓ <b>${esc(built())}</b></div>`:""}${ok?"":`<div class="sb-sol">So ist es richtig: <b>${esc(S.show[0])}</b>${S.show.length>1?`<br><small>Auch richtig: ${S.show.slice(1).map(esc).join(" · ")}</small>`:""}</div>`}
   ${ok&&S.show.length>1?`<div class="sb-sol"><small>Auch richtig: ${S.show.filter(x=>x!==built()).map(esc).join(" · ")}</small></div>`:""}
-  <div class="sb-rule">📏 ${esc(R[0])}<span>${esc(R[1])}</span></div></div>`;
+  <div class="sb-rule">📏 ${esc(R[0])}${R[1]?`<span>${esc(R[1])}</span>`:""}</div></div>`;
  draw();if(ok)say(built())}
 function built(){const S=cur(),a=G.ans.map(id=>G.tiles[id].k).join("|"),i=S.sols.findIndex(x=>x.join("|")===a);return i>=0?S.show[i]:sentence(G.ans.map(id=>G.tiles[id].t),S.end)}
 function say(t){try{const sy=window.speechSynthesis;if(!sy)return;sy.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="de-DE";u.rate=(window.rate||1)*.9;
@@ -126,7 +146,21 @@ function hint(){const S=cur(),s=S.sols[best()];let n=0;while(n<G.ans.length&&G.t
  G.pool=G.pool.concat(G.ans.splice(n));const next=G.pool.find(id=>G.tiles[id].k===s[n]);
  G.pool=G.pool.filter(id=>id!==next);G.ans.push(next);G.hint=true;G.marks=null;G.msg=`<div class="sb-tip">💡 Die ersten ${n+1} ${n?"Blöcke stehen":"Block steht"} jetzt richtig.</div>`;draw()}
 
-function drawEnd(){const s=G.score,k=stars(s),bestOld=st("best:"+G.lv),isBest=bestOld==null||s>bestOld;if(isBest)sv("best:"+G.lv,s);
+function drawTopicEnd(){halt();const s=G.score,n=G.items.length,ms=el(),r=s/n,k=r>=1?3:r>=.7?2:r>=.5?1:0,old=st("tbest:"+G.topic),isBest=old==null||s>old;
+ if(isBest)sv("tbest:"+G.topic,s);sv(runKey(G),null);
+ const msg=r>=1?"Perfekt! Dieses Thema sitzt.":r>=.8?"Sehr gut! Fast alles richtig.":r>=.6?"Gut gemacht! Lies dir die Regeln bei den Fehlern noch einmal durch.":"Übe das Thema noch einmal – dann klappt es beim nächsten Test besser.";
+ ov.innerHTML=`<div class="sb-top"><b>🧩 ${esc(G.title)} · Test geschafft</b><span></span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
+ <div class="sb-body sb-endb">${r>=1?`<div class="sb-confetti" aria-hidden="true">${[..."🎉✨🎊⭐".repeat(6)].map((c,i)=>`<i style="left:${(i*37)%100}%;animation-delay:${(i%8)*.12}s">${c}</i>`).join("")}</div>`:""}
+  <div class="sb-stars">${"★".repeat(k)}<i>${"★".repeat(3-k)}</i></div>
+  <div class="sb-big"><b>${num(s)}</b> / ${n}</div>
+  <div class="sb-time">⏱ ${fmt(ms)}</div>
+  <p class="sb-lead">${msg}</p>
+  <p class="sb-sub">${isBest&&old!=null?"🏆 Neue Bestleistung! ":""}Bestes Ergebnis bei „${esc(G.title)}“: ${num(Math.max(s,old||0))} / ${n}</p>
+  ${dots()}
+  <ol class="sb-list">${G.items.map((S,i)=>{const q=G.res[i];return `<li class="${q===1?"ok":q?"half":"no"}"><span>${q===1?"✓":q?"½":"✗"}</span><div><b>${esc(S.show[0])}</b><small>${esc(S.en)}${G.times&&G.times[i]!=null?` · ⏱ ${Math.max(1,Math.round(G.times[i]/1000))} s`:""}</small><em>📏 ${esc(ruleOf(S)[0])}</em></div></li>`}).join("")}</ol>
+  <div class="sb-row"><button type="button" class="sb-btn main" data-go="tnew">✨ 5 neue Sätze</button><button type="button" class="sb-btn" data-go="close">Fertig</button></div>
+ </div>`}
+function drawEnd(){if(G.topic){drawTopicEnd();return}const s=G.score,k=stars(s),bestOld=st("best:"+G.lv),isBest=bestOld==null||s>bestOld;if(isBest)sv("best:"+G.lv,s);
  const setOld=setBest(G.lv,G.set);if(setOld==null||s>setOld)sv("set:"+G.lv+":"+G.set,s);sv("last:"+G.lv,G.set);sv("run",null);
  const played=SB[G.lv].filter((_,x)=>setBest(G.lv,x)!=null).length;
  halt();const ms=el(),tOld=st("settime:"+G.lv+":"+G.set),better=setOld==null||s>setOld||(s===setOld&&(tOld==null||ms<tOld));if(better)sv("settime:"+G.lv+":"+G.set,ms);
@@ -158,6 +192,7 @@ function onClick(e){if(moved){moved=false;return}const b=e.target.closest("butto
  if(g==="close"){close();return}
  if(g==="menu"){halt();save();const lv=G.lv;G={menu:true,lv};drawMenu();return}
  if(g==="new"){newGame(G.lv);return}
+ if(g==="tnew"){startTopic(G.topic,G.title);return}
  if(g==="name"){const n=prompt("Dein Name für die Bestenliste:",player());if(n&&n.trim()){sv("name",n.trim().slice(0,20));drawMenu()}return}
  if(g==="resume"){resume();return}
  if(G.menu)return;
@@ -191,7 +226,8 @@ function card(){const R=runGet(),n=l=>SB[l].filter((_,k)=>setBest(l,k)!=null).le
  return `<section class="sb-card"><div class="sb-ch"><span class="sb-ico">🧩</span><div><b>Satzbau-Spiel</b><small>Bring die Blöcke in die richtige Reihenfolge – je Level 10 Sets mit 10 Sätzen, 1 Punkt pro Satz. So lernst du die deutsche Wortstellung.</small></div></div>
   ${R?`<button type="button" class="sb-go" data-sbresume="1">▶ Weiterspielen <small>${R.lv} · Set ${R.set+1} · Satz ${R.i+1} von ${R.order.length}</small></button>`:""}
   <div class="sb-lvls">${Object.keys(LV).map(l=>`<button type="button" class="sb-lv" data-sblv="${l}"><b>${LV[l][0]}</b><span>${LV[l][1]}</span><small>${n(l)} von ${SETS} Sets</small></button>`).join("")}</div></section>`}
-document.addEventListener("click",e=>{const b=e.target.closest("[data-sblv]");if(b)open(b.dataset.sblv);if(e.target.closest("[data-sbresume]"))resume()});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-sblv]");if(b)open(b.dataset.sblv);if(e.target.closest("[data-sbresume]"))resume();
+ const t=e.target.closest("[data-sbtopic]");if(t)topic(t.dataset.sbtopic,t.dataset.sbtitle)});
 addEventListener("keydown",e=>{if(e.key==="Escape"&&G)close()});
 
 const css=document.createElement("style");css.textContent=`
@@ -202,6 +238,8 @@ const css=document.createElement("style");css.textContent=`
 .sb-lv b{display:block;font-size:18px;color:var(--b1)}.sb-lv span{display:block;font-size:13px;line-height:1.3}.sb-lv small{display:block;margin-top:4px;font-size:12px;color:var(--muted)}
 @media (max-width:560px){.sb-lv span{display:none}.sb-lv{text-align:center;padding:8px 6px}.sb-ch small{font-size:13px}.sb-ico{font-size:28px}}
 body.sb-on{overflow:hidden}
+.sb-tbtn{display:flex;gap:10px;align-items:center;margin-top:10px;font:inherit;text-align:left;padding:9px 14px;border-radius:14px;border:1.5px solid color-mix(in srgb,var(--b1) 45%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,var(--b1) 14%,var(--paper)),color-mix(in srgb,var(--a1) 14%,var(--paper)));color:var(--ink);cursor:pointer;max-width:100%}
+.sb-tbtn .sb-tico{font-size:26px}.sb-tbtn b{display:block;color:var(--b1)}.sb-tbtn small{display:block;color:var(--muted);font-size:13px}
 .sb-go{display:block;width:100%;margin-top:12px;font:inherit;font-weight:800;font-size:17px;padding:11px 14px;border:none;border-radius:12px;background:var(--b1);color:#fff;cursor:pointer;text-align:left}
 .sb-go small{display:block;font-weight:400;font-size:13px;opacity:.9}
 .sb-tabs{display:flex;gap:6px;justify-content:center}.sb-tabs button{font:inherit;font-weight:800;font-size:17px;padding:7px 20px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
@@ -263,5 +301,5 @@ body.sb-on{overflow:hidden}
 @keyframes sbfall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
 @media (prefers-reduced-motion:reduce){.sb-confetti{display:none}}`;
 document.head.appendChild(css);
-window.Satzbau={open,close,card};
+window.Satzbau={open,close,card,topic,topicButton};
 })();
