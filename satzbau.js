@@ -69,10 +69,11 @@ function resume(){const R=runGet();if(!R)return;G=Object.assign({},R,{items:item
  if(!G.items[G.i]){sv("run",null);open(R.lv);return}G.tiles=tilesOf(G.items[G.i]);G.t0=null;G.ms=G.ms||0;G.times=G.times||[];if(G.sStart==null)G.sStart=G.ms;show();draw()}
 /* ---- topic tests: 5 sentences of one grammar topic ---- */
 const TN=5;
-function startTopic(id,title){const all=(SBT[id]||[]).map((_,i)=>i),seen=st("tseen:"+id)||[];
- let pool=all.filter(i=>!seen.includes(i));if(pool.length<TN)pool=all.filter(i=>!seen.slice(-TN).includes(i));if(pool.length<TN)pool=all.slice();
+function startTopic(id,title){const all=(SBT[id]||[]).map((_,i)=>i);let seen=st("tseen:"+id)||[];
+ /* all sentences once, then new mixes – never the five of the test before */
+ let pool=all.filter(i=>!seen.includes(i));if(pool.length<TN){const recent=seen.slice(-TN);pool=all.filter(i=>!recent.includes(i));seen=recent}if(pool.length<TN)pool=all.slice();
  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
- const order=pool.slice(0,TN);sv("tseen:"+id,seen.concat(order).slice(-(all.length-TN)));
+ const order=pool.slice(0,TN);sv("tseen:"+id,seen.concat(order).slice(-all.length));
  G={topic:id,title,lv:"",set:0,order,items:itemsOf("",0,order,id),i:0,score:0,res:[],streak:0,bestStreak:0,ms:0,t0:null,times:[]};deal();show();draw()}
 function topic(id,title){const R=st("trun:"+id);if(R&&R.order){G=Object.assign({},R,{items:itemsOf("",0,R.order,id)});
   if(G.items[G.i]){G.tiles=tilesOf(G.items[G.i]);G.t0=null;G.ms=G.ms||0;G.times=G.times||[];if(G.sStart==null)G.sStart=G.ms;show();draw();return}}
