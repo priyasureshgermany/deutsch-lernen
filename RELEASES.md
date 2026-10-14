@@ -1,5 +1,10 @@
 # Releases
 
+## 1.40.0 — 2026-10-14
+- Satzbau-Spiel: 10 sets of 10 sentences per level – 300 sentences (was 90). „Neues Spiel“ always takes a set you haven’t played yet (after all ten: your weakest one), so a new game is never a repeat
+- A game you leave in the middle is saved after every move: „▶ Weiterspielen“ on the card and in the overview continues exactly where you stopped
+- New overview per level: every set with its stars and best score, the running set marked; after a set: „Neues Set“, „Set nochmal“ or the overview
+
 ## 1.39.0 — 2026-10-14
 - New: Satzbau-Spiel – build German sentences from scrambled blocks (tap or drag them into place). 10 sentences per round, A1 / A2 / B1 (90 sentences): 1 point when right at once, ½ with a hint or on the second try; wrong blocks turn red, then the right order and the word-order rule (Verb auf Position 2, Satzklammer, Nebensatz …) – with a streak 🔥, stars, best score per level and the sentence read aloud. On the Sätze page and under Grammatik → Wortstellung
 - Three new grammar topics: Verben im Präsens (endings, sein / haben / werden / wissen), Zahlen (numbers, ordinals, prices, fractions) and dieser · jener · welcher – each with examples and tips
