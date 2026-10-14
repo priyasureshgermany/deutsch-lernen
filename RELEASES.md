@@ -1,5 +1,8 @@
 # Releases
 
+## 1.43.0 — 2026-10-14
+- Grammatik Satzbau-Tests: 20 sentences for every topic (380 new, 760 in all) – four completely fresh tests per topic; after that the sentences come in new mixes, and two tests in a row never share a sentence
+
 ## 1.42.0 — 2026-10-14
 - Grammatik: every topic has a 🧩 Satzbau-Test – build 5 sentences that use that topic’s grammar (Präpositionen, Relativsätze, Passiv, Zahlen …), with timer, hint, second try and the grammar point explained after each sentence; score out of 5 and your best result per topic on the button
 - 380 new sentences (10 per topic): the next test takes the five you haven’t had; a test you leave halfway shows „▶ Test fortsetzen“
