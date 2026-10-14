@@ -1,5 +1,9 @@
 # Releases
 
+## 1.41.0 — 2026-10-14
+- Satzbau-Spiel: a stopwatch per set ⏱ – it runs only while you build a sentence (not while you read the result, not while the game is closed), continues on „Weiterspielen“; every sentence shows its time in the result, every set its best time
+- Bestenliste per level 🏆: ranked by points, then time, with 🥇🥈🥉, name, set and date; after each set you see your place. Kept on this device – everyone who plays on it can enter their name (✎ Name ändern) and compete
+
 ## 1.40.0 — 2026-10-14
 - Satzbau-Spiel: 10 sets of 10 sentences per level – 300 sentences (was 90). „Neues Spiel“ always takes a set you haven’t played yet (after all ten: your weakest one), so a new game is never a repeat
 - A game you leave in the middle is saved after every move: „▶ Weiterspielen“ on the card and in the overview continues exactly where you stopped

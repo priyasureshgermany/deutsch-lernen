@@ -7,6 +7,10 @@
    place. Points per sentence: right at once 1 · with a hint or on the second
    try ½ · otherwise 0 – the result shows the right order and the rule.
    Best score per set and level and the running game stay on this device.
+   Timer: a stopwatch per set that runs only while a sentence is being solved
+   (not while the result is read, not while the game is closed). Leaderboard
+   (Bestenliste) per level: points first, then time – kept on this device,
+   with player names so several people can compete on one phone.
    Satzbau.card() is the start card for a page; Satzbau.open(level) starts. */
 (function(){
 const LV={A1:["A1","einfache Sätze, Fragen, Modalverben"],A2:["A2","Perfekt, weil / dass / wenn, Dativ und Akkusativ"],B1:["B1","Relativsätze, zu + Infinitiv, Passiv, Konjunktiv II"]};
@@ -29,8 +33,21 @@ const SETS=10,runGet=()=>st("run"),setBest=(lv,k)=>st("set:"+lv+":"+k);
 const itemsOf=(lv,set,order)=>order.map(i=>parse(SB[lv][set][i]));
 const tilesOf=S=>S.blocks.map((t,id)=>({id,t:t.replace(/^,\s*/,""),k:key(t)}));
 /* the running game after every move – without what can be rebuilt from the data */
-function save(){if(!G||G.menu)return;const {items,tiles,...rest}=G;sv("run",rest)}
-function deal(){const S=G.items[G.i];G.tiles=tilesOf(S);
+/* ---- stopwatch: ms = time already counted, t0 = running since ---- */
+const fmt=ms=>{const t=Math.round((ms||0)/1000);return Math.floor(t/60)+":"+String(t%60).padStart(2,"0")};
+const el=()=>G?(G.ms||0)+(G.t0?Date.now()-G.t0:0):0;
+let tick=null;
+function run(){if(!G||G.menu||G.t0)return;G.t0=Date.now();clearInterval(tick);tick=setInterval(()=>{const c=ov&&ov.querySelector(".sb-clock b");if(c&&G&&!G.menu)c.textContent=fmt(el())},500)}
+function halt(){clearInterval(tick);if(G&&G.t0){G.ms=(G.ms||0)+Date.now()-G.t0;G.t0=null}}
+document.addEventListener("visibilitychange",()=>{if(!G||G.menu)return;if(document.hidden){halt();save()}else if(!G.done&&G.i<G.items.length&&ov&&!ov.hidden)run()});
+/* ---- leaderboard: per level, the best 20 games ---- */
+const player=()=>st("name")||"Ich";
+const rank=(a,b)=>b.s-a.s||a.ms-b.ms;
+function lbAdd(e){const L=(st("lb:"+e.lv)||[]).concat([e]).sort(rank);const at=L.indexOf(e);sv("lb:"+e.lv,L.slice(0,20));return {place:at+1,of:Math.min(L.length,20),list:L.slice(0,20),id:e.id}}
+function lbTable(lv,mark,n){const L=(st("lb:"+lv)||[]).slice(0,n||10);if(!L.length)return `<p class="sb-note">Noch keine Einträge – spiel ein Set, dann stehst du hier.</p>`;
+ return `<ol class="sb-lb">${L.map((e,i)=>`<li class="${e.id===mark?"me":""}"><span class="sb-rk">${["🥇","🥈","🥉"][i]||i+1}</span><b>${esc(e.name)}</b><span class="sb-lbs">${num(e.s)}/10</span><span class="sb-lbt">⏱ ${fmt(e.ms)}</span><small>Set ${e.set+1} · ${esc(e.date)}</small></li>`).join("")}</ol>`}
+function save(){if(!G||G.menu)return;const {items,tiles,t0,...rest}=G;rest.ms=el();sv("run",rest)}
+function deal(){const S=G.items[G.i];G.tiles=tilesOf(S);G.sStart=el();
  let order;do{order=G.tiles.map(t=>t.id);for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}}
  while(order.length>2&&S.sols.some(s=>s.join("|")===order.map(id=>G.tiles[id].k).join("|")));
  Object.assign(G,{ans:[],pool:order,tries:0,hint:false,done:false,marks:null,msg:""})}
@@ -38,15 +55,15 @@ function deal(){const S=G.items[G.i];G.tiles=tilesOf(S);
 function fresh(lv){const sc=SB[lv].map((_,k)=>setBest(lv,k)),nk=sc.findIndex(x=>x==null);if(nk>=0)return nk;
  const last=st("last:"+lv);let bi=0,bv=99;sc.forEach((v,k)=>{if(k!==last&&v<bv){bv=v;bi=k}});return bi}
 function startSet(lv,k){const order=SB[lv][k].map((_,i)=>i);for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}
- sv("lv",lv);G={lv,set:k,order,items:itemsOf(lv,k,order),i:0,score:0,res:[],streak:0,bestStreak:0};deal();show();draw()}
+ sv("lv",lv);G={lv,set:k,order,items:itemsOf(lv,k,order),i:0,score:0,res:[],streak:0,bestStreak:0,ms:0,t0:null,times:[]};deal();show();draw()}
 function newGame(lv,k){const R=runGet();
  if(R&&!(R.lv===lv&&R.set===k)&&!confirm(`Dein laufendes Spiel (${R.lv} · Set ${R.set+1} · Satz ${R.i+1}) wird beendet. Neues Spiel starten?`))return;
  sv("run",null);startSet(lv,k==null?fresh(lv):k)}
 function resume(){const R=runGet();if(!R)return;G=Object.assign({},R,{items:itemsOf(R.lv,R.set,R.order)});
- if(!G.items[G.i]){sv("run",null);open(R.lv);return}G.tiles=tilesOf(G.items[G.i]);show();draw()}
+ if(!G.items[G.i]){sv("run",null);open(R.lv);return}G.tiles=tilesOf(G.items[G.i]);G.t0=null;G.ms=G.ms||0;G.times=G.times||[];if(G.sStart==null)G.sStart=G.ms;show();draw()}
 function show(){mount();shell(true);document.body.classList.add("sb-on")}
 function open(lv){lv=lv||st("lv")||"A1";sv("lv",lv);G={menu:true,lv};show();drawMenu()}
-function close(){save();if(ov)ov.hidden=true;shell(false);document.body.classList.remove("sb-on");try{speechSynthesis.cancel()}catch(e){}G=null;
+function close(){halt();save();if(ov)ov.hidden=true;shell(false);document.body.classList.remove("sb-on");try{speechSynthesis.cancel()}catch(e){}G=null;
  const c=document.querySelector(".sb-card");if(c)c.outerHTML=card()}
 function mount(){if(ov){ov.hidden=false;return}ov=document.createElement("div");ov.className="sb-ov";ov.setAttribute("role","dialog");ov.setAttribute("aria-label","Satzbau-Spiel");document.body.appendChild(ov);
  ov.addEventListener("click",onClick);ov.addEventListener("pointerdown",onDown)}
@@ -57,19 +74,23 @@ function drawMenu(){const lv=G.lv,R=runGet(),played=SB[lv].filter((_,k)=>setBest
  <div class="sb-body">
   <div class="sb-tabs">${Object.keys(LV).map(l=>`<button type="button" data-menu="${l}" aria-pressed="${l===lv}">${l}</button>`).join("")}</div>
   <p class="sb-lead2">${esc(LV[lv][1])}</p>
+  <div class="sb-player">Spieler: <b>${esc(player())}</b> <button type="button" class="sb-link" data-go="name">✎ Name ändern</button></div>
   ${R?`<div class="sb-resume"><div><b>Laufendes Spiel</b><small>${R.lv} · Set ${R.set+1} · Satz ${R.i+1} von ${R.order.length} · ${num(R.score)} Punkte</small></div><button type="button" class="sb-btn main" data-go="resume">▶ Weiterspielen</button></div>`:""}
   <div class="sb-row"><button type="button" class="sb-btn${R?"":" main"}" data-go="new">✨ Neues Spiel · ${lv}</button></div>
   <p class="sb-note">Ein neues Spiel nimmt immer ein Set, das du noch nicht gespielt hast. ${played} von ${SETS} Sets gespielt${played===SETS?" – jetzt kommt das Set mit deinem schwächsten Ergebnis.":"."}</p>
   <div class="sb-sets">${SB[lv].map((_,k)=>{const b=setBest(lv,k),run=R&&R.lv===lv&&R.set===k;
-   return `<button type="button" class="sb-set${b!=null?" done":""}${run?" run":""}" data-set="${k}"><b>Set ${k+1}</b><span>${run?"▶ läuft":b==null?"neu":`<i>${"★".repeat(stars(b))}${"☆".repeat(3-stars(b))}</i> ${num(b)}/10`}</span></button>`}).join("")}</div>
+   return `<button type="button" class="sb-set${b!=null?" done":""}${run?" run":""}" data-set="${k}"><b>Set ${k+1}</b><span>${run?"▶ läuft":b==null?"neu":`<i>${"★".repeat(stars(b))}${"☆".repeat(3-stars(b))}</i> ${num(b)}/10${st("settime:"+lv+":"+k)!=null?` · ${fmt(st("settime:"+lv+":"+k))}`:""}`}</span></button>`}).join("")}</div>
+  <h3 class="sb-h">🏆 Bestenliste ${lv}</h3>
+  <p class="sb-note">Erst die Punkte, bei Gleichstand die schnellere Zeit. Gespeichert auf diesem Gerät – jeder, der hier spielt, kann seinen Namen eintragen.</p>
+  ${lbTable(lv,null,10)}
  </div>`}
 
 const cur=()=>G.items[G.i];
 function stars(s){return s>=10?3:s>=7?2:s>=5?1:0}
 function dots(){return `<div class="sb-dots">${G.items.map((_,i)=>{const r=G.res[i];return `<i class="${r==null?(i===G.i?"now":""):r===1?"ok":r?"half":"no"}"></i>`}).join("")}</div>`}
-function draw(){if(G.i>=G.items.length){drawEnd();return}const S=cur(),T=id=>G.tiles[id];save();
+function draw(){if(G.i>=G.items.length){drawEnd();return}const S=cur(),T=id=>G.tiles[id];if(G.done)halt();else run();save();
  const tile=(id,where,j)=>{const m=G.marks?G.marks[j]:null;return `<button type="button" class="sb-tile${where==="ans"&&m!=null?(m?" right":" wrong"):""}" data-id="${id}" data-where="${where}">${esc(T(id).t)}</button>`};
- ov.innerHTML=`<div class="sb-top"><button type="button" class="sb-x" data-go="menu" aria-label="Übersicht" title="Übersicht – das Spiel bleibt gespeichert">☰</button><b>${G.lv} · Set ${G.set+1}</b><span class="sb-sc">${num(G.score)} Punkte${G.streak>1?` · <span class="sb-fire">🔥 ${G.streak}</span>`:""}</span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
+ ov.innerHTML=`<div class="sb-top"><button type="button" class="sb-x" data-go="menu" aria-label="Übersicht" title="Übersicht – das Spiel bleibt gespeichert">☰</button><b>${G.lv} · Set ${G.set+1}</b><span class="sb-clock" title="Zeit – läuft nur, während du einen Satz baust">⏱ <b>${fmt(el())}</b></span><span class="sb-sc">${num(G.score)} Punkte${G.streak>1?` · <span class="sb-fire">🔥 ${G.streak}</span>`:""}</span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
  <div class="sb-body">${dots()}
   <div class="sb-n">Satz ${G.i+1} von ${G.items.length}</div>
   <div class="sb-en">„${esc(S.en)}“</div>
@@ -89,7 +110,7 @@ function check(){const S=cur(),a=G.ans.map(id=>G.tiles[id].k).join("|"),ok=S.sol
  const b=best();G.marks=G.ans.map((id,j)=>G.tiles[id].k===S.sols[b][j]);
  if(G.tries<2){G.msg=`<div class="sb-bad">Fast! ${G.marks.filter(Boolean).length} von ${G.ans.length} Blöcken stehen richtig (grün). Tippe die roten an und versuch es noch einmal.</div>`;draw();return}
  finishOne(0,false)}
-function finishOne(p,ok){const S=cur(),R=SBR[S.rule]||["",""];G.score+=p;G.res[G.i]=p;G.done=true;
+function finishOne(p,ok){halt();const S=cur(),R=SBR[S.rule]||["",""];G.score+=p;G.res[G.i]=p;G.done=true;G.times=G.times||[];G.times[G.i]=el()-(G.sStart||0);
  G.streak=p===1?G.streak+1:0;G.bestStreak=Math.max(G.bestStreak,G.streak);
  if(!ok){const b=best(),used=new Set();G.ans=S.sols[b].map(k=>{const t=G.tiles.find(t=>t.k===k&&!used.has(t.id));used.add(t.id);return t.id});G.pool=[];G.marks=null}
  const praise=["Super!","Richtig!","Genau!","Perfekt!","Sehr gut!"][Math.floor(Math.random()*5)];
@@ -108,6 +129,8 @@ function hint(){const S=cur(),s=S.sols[best()];let n=0;while(n<G.ans.length&&G.t
 function drawEnd(){const s=G.score,k=stars(s),bestOld=st("best:"+G.lv),isBest=bestOld==null||s>bestOld;if(isBest)sv("best:"+G.lv,s);
  const setOld=setBest(G.lv,G.set);if(setOld==null||s>setOld)sv("set:"+G.lv+":"+G.set,s);sv("last:"+G.lv,G.set);sv("run",null);
  const played=SB[G.lv].filter((_,x)=>setBest(G.lv,x)!=null).length;
+ halt();const ms=el(),tOld=st("settime:"+G.lv+":"+G.set),better=setOld==null||s>setOld||(s===setOld&&(tOld==null||ms<tOld));if(better)sv("settime:"+G.lv+":"+G.set,ms);
+ const LB=lbAdd({id:Date.now()+"-"+Math.random().toString(36).slice(2,6),lv:G.lv,name:player(),s,ms,set:G.set,date:new Date().toLocaleDateString("de-DE")});
  const games=(st("games:"+G.lv)||0)+1;sv("games:"+G.lv,games);
  const msg=s>=10?"Perfekt! Alle Sätze richtig – du hast die Wortstellung im Griff.":s>=8?"Sehr gut! Nur noch kleine Lücken.":s>=6?"Gut gemacht! Schau dir die Regeln bei den Fehlern noch einmal an.":s>=4?"Ein guter Anfang – übe die Regeln unten und spiel noch eine Runde.":"Nicht aufgeben! Lies die Regeln unten und versuch es gleich noch einmal.";
  const nextLv={A1:"A2",A2:"B1"}[G.lv];
@@ -115,10 +138,13 @@ function drawEnd(){const s=G.score,k=stars(s),bestOld=st("best:"+G.lv),isBest=be
  <div class="sb-body sb-endb">${s>=10?`<div class="sb-confetti" aria-hidden="true">${[..."🎉✨🎊⭐".repeat(6)].map((c,i)=>`<i style="left:${(i*37)%100}%;animation-delay:${(i%8)*.12}s">${c}</i>`).join("")}</div>`:""}
   <div class="sb-stars">${"★".repeat(k)}<i>${"★".repeat(3-k)}</i></div>
   <div class="sb-big"><b>${num(s)}</b> / ${N}</div>
+  <div class="sb-time">⏱ ${fmt(ms)}${tOld!=null&&s>=setOld&&ms<tOld?` · <b>schneller als dein bestes Set ${G.set+1} (${fmt(tOld)})</b>`:""}</div>
+  <div class="sb-place">🏆 Platz <b>${LB.place}</b> von ${LB.of} in der Bestenliste ${G.lv}${LB.place===1?" – Spitze!":""}</div>
   <p class="sb-lead">${msg}</p>
   <p class="sb-sub">${isBest&&bestOld!=null?"🏆 Neue Bestleistung! ":""}Bestleistung ${G.lv}: ${num(Math.max(s,bestOld||0))} / ${N}${G.bestStreak>=3?` · 🔥 ${G.bestStreak} richtig in Folge`:""} · ${played} von ${SETS} Sets gespielt${setOld!=null&&s>setOld?` · Set ${G.set+1}: besser als vorher (${num(setOld)})`:""}</p>
   ${dots()}
-  <ol class="sb-list">${G.items.map((S,i)=>{const r=G.res[i];return `<li class="${r===1?"ok":r?"half":"no"}"><span>${r===1?"✓":r?"½":"✗"}</span><div><b>${esc(S.show[0])}</b><small>${esc(S.en)}</small>${r===1?"":`<em>📏 ${esc((SBR[S.rule]||[""])[0])}</em>`}</div></li>`}).join("")}</ol>
+  <details class="sb-lbbox" open><summary>🏆 Bestenliste ${G.lv} · Top 5</summary>${lbTable(G.lv,LB.id,5)}</details>
+  <ol class="sb-list">${G.items.map((S,i)=>{const r=G.res[i];return `<li class="${r===1?"ok":r?"half":"no"}"><span>${r===1?"✓":r?"½":"✗"}</span><div><b>${esc(S.show[0])}</b><small>${esc(S.en)}${G.times&&G.times[i]!=null?` · ⏱ ${Math.max(1,Math.round(G.times[i]/1000))} s`:""}</small>${r===1?"":`<em>📏 ${esc((SBR[S.rule]||[""])[0])}</em>`}</div></li>`}).join("")}</ol>
   <div class="sb-row"><button type="button" class="sb-btn main" data-go="new">✨ Neues Set ›</button><button type="button" class="sb-btn" data-set="${G.set}">↻ Set ${G.set+1} nochmal</button>${nextLv&&s>=7?`<button type="button" class="sb-btn" data-lv="${nextLv}">Weiter zu ${nextLv} ›</button>`:""}<button type="button" class="sb-btn" data-go="menu">☰ Übersicht</button></div>
  </div>`}
 
@@ -130,8 +156,9 @@ function onClick(e){if(moved){moved=false;return}const b=e.target.closest("butto
  if(b.dataset.set!=null){const k=+b.dataset.set,R=runGet(),lv=G.lv;if(R&&R.lv===lv&&R.set===k){resume();return}newGame(lv,k);return}
  const g=b.dataset.go;
  if(g==="close"){close();return}
- if(g==="menu"){save();const lv=G.lv;G={menu:true,lv};drawMenu();return}
+ if(g==="menu"){halt();save();const lv=G.lv;G={menu:true,lv};drawMenu();return}
  if(g==="new"){newGame(G.lv);return}
+ if(g==="name"){const n=prompt("Dein Name für die Bestenliste:",player());if(n&&n.trim()){sv("name",n.trim().slice(0,20));drawMenu()}return}
  if(g==="resume"){resume();return}
  if(G.menu)return;
  if(g==="next"){G.i++;G.msg="";if(G.i<G.items.length)deal();draw();return}
@@ -190,7 +217,18 @@ body.sb-on{overflow:hidden}
 @media (max-width:560px){.sb-sets{grid-template-columns:repeat(2,1fr)}}
 .sb-ov{position:fixed;inset:0;z-index:60;background:var(--paper);color:var(--ink);display:flex;flex-direction:column}
 .sb-top{display:flex;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 10px) 14px 10px;border-bottom:1px solid var(--line)}
-.sb-top b{font-family:"Bricolage Grotesque",sans-serif}.sb-sc{margin-left:auto;font-weight:700;color:var(--b1)}
+.sb-top b{font-family:"Bricolage Grotesque",sans-serif}.sb-sc{font-weight:700;color:var(--b1)}
+.sb-clock{margin-left:auto;font-variant-numeric:tabular-nums;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--surface)}
+.sb-time{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:2px}.sb-time b{color:#1b8a4c;font-size:15px}
+.sb-place{margin:6px 0;font-size:16px}.sb-place b{color:var(--b1);font-size:20px}
+.sb-player{text-align:center;margin:0 0 10px}.sb-link{font:inherit;border:none;background:none;color:var(--b1);cursor:pointer;text-decoration:underline}
+.sb-h{margin:18px 0 4px;font-size:18px}
+.sb-lb{list-style:none;padding:0;margin:6px 0;text-align:left}
+.sb-lb li{display:grid;grid-template-columns:34px 1fr auto auto;gap:4px 10px;align-items:center;padding:7px 8px;border-bottom:1px solid var(--line);border-radius:8px}
+.sb-lb li.me{background:color-mix(in srgb,var(--b1) 12%,var(--paper));border-color:transparent}
+.sb-rk{font-size:20px;text-align:center;font-weight:800}.sb-lbs{font-weight:800;color:var(--b1)}.sb-lbt{font-variant-numeric:tabular-nums}
+.sb-lb small{grid-column:2/-1;color:var(--muted);font-size:12px;margin-top:-4px}
+.sb-lbbox{margin:10px 0;text-align:left;border:1.5px solid var(--line);border-radius:12px;padding:6px 10px}.sb-lbbox summary{cursor:pointer;font-weight:700}
 .sb-x{font:inherit;font-size:18px;border:none;background:var(--surface);color:var(--ink);border-radius:50%;width:36px;height:36px;cursor:pointer}
 .sb-body{flex:1;overflow:auto;padding:14px 16px 30px;max-width:760px;width:100%;margin:0 auto;position:relative}
 .sb-dots{display:flex;gap:5px;justify-content:center;margin:2px 0 10px}.sb-dots i{width:22px;height:8px;border-radius:4px;background:var(--line)}
