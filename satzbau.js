@@ -1,9 +1,12 @@
 /* Satzbau-Spiel: build German sentences from scrambled blocks.
-   10 sentences per round from satzbau-data.js (A1, A2, B1). Tap a block to
+   Per level 10 sets of 10 sentences (satzbau-data.js); one set is one round.
+   "Neues Spiel" always takes a set not played yet (after all ten: the one
+   with the lowest score); a game left in the middle is saved after every
+   move and offered again as "Weiterspielen". Tap a block to
    move it into the sentence (tap it again to send it back) or drag it to any
    place. Points per sentence: right at once 1 · with a hint or on the second
    try ½ · otherwise 0 – the result shows the right order and the rule.
-   Best score per level and the sentences seen last stay on this device.
+   Best score per set and level and the running game stay on this device.
    Satzbau.card() is the start card for a page; Satzbau.open(level) starts. */
 (function(){
 const LV={A1:["A1","einfache Sätze, Fragen, Modalverben"],A2:["A2","Perfekt, weil / dass / wenn, Dativ und Akkusativ"],B1:["B1","Relativsätze, zu + Infinitiv, Passiv, Konjunktiv II"]};
@@ -22,36 +25,59 @@ function sentence(b,end){const t=b.map((x,i)=>i&&!/^,/.test(x)?" "+x:x).join("")
 
 /* ---- the game ---- */
 let G=null,ov=null;
-function pick(lv){const all=SB[lv].map((r,i)=>i),seen=st("seen:"+lv)||[];
- let pool=all.filter(i=>!seen.includes(i));if(pool.length<N)pool=all.slice();
- for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
- const take=pool.slice(0,N);sv("seen:"+lv,seen.concat(take).slice(-Math.max(0,all.length-N)));return take}
-function deal(){const S=G.items[G.i];G.tiles=S.blocks.map((t,id)=>({id,t:t.replace(/^,\s*/,""),k:key(t)}));
+const SETS=10,runGet=()=>st("run"),setBest=(lv,k)=>st("set:"+lv+":"+k);
+const itemsOf=(lv,set,order)=>order.map(i=>parse(SB[lv][set][i]));
+const tilesOf=S=>S.blocks.map((t,id)=>({id,t:t.replace(/^,\s*/,""),k:key(t)}));
+/* the running game after every move – without what can be rebuilt from the data */
+function save(){if(!G||G.menu)return;const {items,tiles,...rest}=G;sv("run",rest)}
+function deal(){const S=G.items[G.i];G.tiles=tilesOf(S);
  let order;do{order=G.tiles.map(t=>t.id);for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}}
  while(order.length>2&&S.sols.some(s=>s.join("|")===order.map(id=>G.tiles[id].k).join("|")));
- Object.assign(G,{ans:[],pool:order,tries:0,hint:false,done:false,marks:null})}
-function open(lv){lv=lv||st("lv")||"A1";sv("lv",lv);
- G={lv,items:pick(lv).map(i=>parse(SB[lv][i])),i:0,score:0,res:[],streak:0,bestStreak:0};deal();
- mount();shell(true);document.body.classList.add("sb-on");draw()}
-function close(){if(ov)ov.hidden=true;shell(false);document.body.classList.remove("sb-on");if(speechSynthesis)speechSynthesis.cancel();G=null;
+ Object.assign(G,{ans:[],pool:order,tries:0,hint:false,done:false,marks:null,msg:""})}
+/* a set not played yet; after all ten the one with the lowest score (not the one just played) */
+function fresh(lv){const sc=SB[lv].map((_,k)=>setBest(lv,k)),nk=sc.findIndex(x=>x==null);if(nk>=0)return nk;
+ const last=st("last:"+lv);let bi=0,bv=99;sc.forEach((v,k)=>{if(k!==last&&v<bv){bv=v;bi=k}});return bi}
+function startSet(lv,k){const order=SB[lv][k].map((_,i)=>i);for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}
+ sv("lv",lv);G={lv,set:k,order,items:itemsOf(lv,k,order),i:0,score:0,res:[],streak:0,bestStreak:0};deal();show();draw()}
+function newGame(lv,k){const R=runGet();
+ if(R&&!(R.lv===lv&&R.set===k)&&!confirm(`Dein laufendes Spiel (${R.lv} · Set ${R.set+1} · Satz ${R.i+1}) wird beendet. Neues Spiel starten?`))return;
+ sv("run",null);startSet(lv,k==null?fresh(lv):k)}
+function resume(){const R=runGet();if(!R)return;G=Object.assign({},R,{items:itemsOf(R.lv,R.set,R.order)});
+ if(!G.items[G.i]){sv("run",null);open(R.lv);return}G.tiles=tilesOf(G.items[G.i]);show();draw()}
+function show(){mount();shell(true);document.body.classList.add("sb-on")}
+function open(lv){lv=lv||st("lv")||"A1";sv("lv",lv);G={menu:true,lv};show();drawMenu()}
+function close(){save();if(ov)ov.hidden=true;shell(false);document.body.classList.remove("sb-on");try{speechSynthesis.cancel()}catch(e){}G=null;
  const c=document.querySelector(".sb-card");if(c)c.outerHTML=card()}
 function mount(){if(ov){ov.hidden=false;return}ov=document.createElement("div");ov.className="sb-ov";ov.setAttribute("role","dialog");ov.setAttribute("aria-label","Satzbau-Spiel");document.body.appendChild(ov);
  ov.addEventListener("click",onClick);ov.addEventListener("pointerdown",onDown)}
 
+/* ---- the overview: levels, the running game, a new game, the ten sets ---- */
+function drawMenu(){const lv=G.lv,R=runGet(),played=SB[lv].filter((_,k)=>setBest(lv,k)!=null).length;
+ ov.innerHTML=`<div class="sb-top"><b>🧩 Satzbau-Spiel</b><span></span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
+ <div class="sb-body">
+  <div class="sb-tabs">${Object.keys(LV).map(l=>`<button type="button" data-menu="${l}" aria-pressed="${l===lv}">${l}</button>`).join("")}</div>
+  <p class="sb-lead2">${esc(LV[lv][1])}</p>
+  ${R?`<div class="sb-resume"><div><b>Laufendes Spiel</b><small>${R.lv} · Set ${R.set+1} · Satz ${R.i+1} von ${R.order.length} · ${num(R.score)} Punkte</small></div><button type="button" class="sb-btn main" data-go="resume">▶ Weiterspielen</button></div>`:""}
+  <div class="sb-row"><button type="button" class="sb-btn${R?"":" main"}" data-go="new">✨ Neues Spiel · ${lv}</button></div>
+  <p class="sb-note">Ein neues Spiel nimmt immer ein Set, das du noch nicht gespielt hast. ${played} von ${SETS} Sets gespielt${played===SETS?" – jetzt kommt das Set mit deinem schwächsten Ergebnis.":"."}</p>
+  <div class="sb-sets">${SB[lv].map((_,k)=>{const b=setBest(lv,k),run=R&&R.lv===lv&&R.set===k;
+   return `<button type="button" class="sb-set${b!=null?" done":""}${run?" run":""}" data-set="${k}"><b>Set ${k+1}</b><span>${run?"▶ läuft":b==null?"neu":`<i>${"★".repeat(stars(b))}${"☆".repeat(3-stars(b))}</i> ${num(b)}/10`}</span></button>`}).join("")}</div>
+ </div>`}
+
 const cur=()=>G.items[G.i];
 function stars(s){return s>=10?3:s>=7?2:s>=5?1:0}
 function dots(){return `<div class="sb-dots">${G.items.map((_,i)=>{const r=G.res[i];return `<i class="${r==null?(i===G.i?"now":""):r===1?"ok":r?"half":"no"}"></i>`}).join("")}</div>`}
-function draw(){if(G.i>=N){drawEnd();return}const S=cur(),T=id=>G.tiles[id];
+function draw(){if(G.i>=G.items.length){drawEnd();return}const S=cur(),T=id=>G.tiles[id];save();
  const tile=(id,where,j)=>{const m=G.marks?G.marks[j]:null;return `<button type="button" class="sb-tile${where==="ans"&&m!=null?(m?" right":" wrong"):""}" data-id="${id}" data-where="${where}">${esc(T(id).t)}</button>`};
- ov.innerHTML=`<div class="sb-top"><b>🧩 Satzbau · ${G.lv}</b><span class="sb-sc">${num(G.score)} Punkte${G.streak>1?` · <span class="sb-fire">🔥 ${G.streak}</span>`:""}</span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
+ ov.innerHTML=`<div class="sb-top"><button type="button" class="sb-x" data-go="menu" aria-label="Übersicht" title="Übersicht – das Spiel bleibt gespeichert">☰</button><b>${G.lv} · Set ${G.set+1}</b><span class="sb-sc">${num(G.score)} Punkte${G.streak>1?` · <span class="sb-fire">🔥 ${G.streak}</span>`:""}</span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
  <div class="sb-body">${dots()}
-  <div class="sb-n">Satz ${G.i+1} von ${N}</div>
+  <div class="sb-n">Satz ${G.i+1} von ${G.items.length}</div>
   <div class="sb-en">„${esc(S.en)}“</div>
   <div class="sb-lab">Dein Satz</div>
   <div class="sb-ans${G.done?" done":""}" data-zone="ans">${G.ans.map((id,j)=>tile(id,"ans",j)).join("")}${G.ans.length?"":`<span class="sb-ph">Tippe die Blöcke unten in der richtigen Reihenfolge an – oder zieh sie hierher.</span>`}${G.ans.length?`<span class="sb-end">${S.end}</span>`:""}</div>
   ${G.done?"":`<div class="sb-lab">Blöcke</div><div class="sb-pool" data-zone="pool">${G.pool.map(id=>tile(id,"pool")).join("")||`<span class="sb-ph">Alle Blöcke sind im Satz – jetzt prüfen!</span>`}</div>`}
   <div class="sb-msg">${G.msg||""}</div>
-  <div class="sb-row">${G.done?`<button type="button" class="sb-btn" data-go="say">▶ Anhören</button><button type="button" class="sb-btn main" data-go="next">${G.i+1<N?"Weiter ›":"Ergebnis ›"}</button>`
+  <div class="sb-row">${G.done?`<button type="button" class="sb-btn" data-go="say">▶ Anhören</button><button type="button" class="sb-btn main" data-go="next">${G.i+1<G.items.length?"Weiter ›":"Ergebnis ›"}</button>`
    :`<button type="button" class="sb-btn" data-go="hint"${G.pool.length&&!G.hint?"":" disabled"}>💡 Tipp</button><button type="button" class="sb-btn" data-go="reset"${G.ans.length?"":" disabled"}>↺ Neu</button><button type="button" class="sb-btn main" data-go="check"${G.pool.length?" disabled":""}>Prüfen</button>`}</div>
   ${G.hint&&!G.done?`<p class="sb-note">Mit Tipp gibt es höchstens ½ Punkt.</p>`:G.tries===1&&!G.done?`<p class="sb-note">Zweiter Versuch: ½ Punkt möglich.</p>`:""}
  </div>`}
@@ -80,28 +106,35 @@ function hint(){const S=cur(),s=S.sols[best()];let n=0;while(n<G.ans.length&&G.t
  G.pool=G.pool.filter(id=>id!==next);G.ans.push(next);G.hint=true;G.marks=null;G.msg=`<div class="sb-tip">💡 Die ersten ${n+1} ${n?"Blöcke stehen":"Block steht"} jetzt richtig.</div>`;draw()}
 
 function drawEnd(){const s=G.score,k=stars(s),bestOld=st("best:"+G.lv),isBest=bestOld==null||s>bestOld;if(isBest)sv("best:"+G.lv,s);
+ const setOld=setBest(G.lv,G.set);if(setOld==null||s>setOld)sv("set:"+G.lv+":"+G.set,s);sv("last:"+G.lv,G.set);sv("run",null);
+ const played=SB[G.lv].filter((_,x)=>setBest(G.lv,x)!=null).length;
  const games=(st("games:"+G.lv)||0)+1;sv("games:"+G.lv,games);
  const msg=s>=10?"Perfekt! Alle Sätze richtig – du hast die Wortstellung im Griff.":s>=8?"Sehr gut! Nur noch kleine Lücken.":s>=6?"Gut gemacht! Schau dir die Regeln bei den Fehlern noch einmal an.":s>=4?"Ein guter Anfang – übe die Regeln unten und spiel noch eine Runde.":"Nicht aufgeben! Lies die Regeln unten und versuch es gleich noch einmal.";
  const nextLv={A1:"A2",A2:"B1"}[G.lv];
- ov.innerHTML=`<div class="sb-top"><b>🧩 Satzbau · ${G.lv}</b><span></span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
- <div class="sb-body sb-endb">${s>=10?`<div class="sb-confetti" aria-hidden="true">${"🎉✨🎊⭐".repeat(6).split("").map((c,i)=>`<i style="left:${(i*37)%100}%;animation-delay:${(i%8)*.12}s">${c}</i>`).join("")}</div>`:""}
+ ov.innerHTML=`<div class="sb-top"><b>🧩 ${G.lv} · Set ${G.set+1} geschafft</b><span></span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
+ <div class="sb-body sb-endb">${s>=10?`<div class="sb-confetti" aria-hidden="true">${[..."🎉✨🎊⭐".repeat(6)].map((c,i)=>`<i style="left:${(i*37)%100}%;animation-delay:${(i%8)*.12}s">${c}</i>`).join("")}</div>`:""}
   <div class="sb-stars">${"★".repeat(k)}<i>${"★".repeat(3-k)}</i></div>
   <div class="sb-big"><b>${num(s)}</b> / ${N}</div>
   <p class="sb-lead">${msg}</p>
-  <p class="sb-sub">${isBest&&bestOld!=null?"🏆 Neue Bestleistung! ":""}Bestleistung ${G.lv}: ${num(Math.max(s,bestOld||0))} / ${N}${G.bestStreak>=3?` · 🔥 ${G.bestStreak} richtig in Folge`:""} · Runde ${games}</p>
+  <p class="sb-sub">${isBest&&bestOld!=null?"🏆 Neue Bestleistung! ":""}Bestleistung ${G.lv}: ${num(Math.max(s,bestOld||0))} / ${N}${G.bestStreak>=3?` · 🔥 ${G.bestStreak} richtig in Folge`:""} · ${played} von ${SETS} Sets gespielt${setOld!=null&&s>setOld?` · Set ${G.set+1}: besser als vorher (${num(setOld)})`:""}</p>
   ${dots()}
   <ol class="sb-list">${G.items.map((S,i)=>{const r=G.res[i];return `<li class="${r===1?"ok":r?"half":"no"}"><span>${r===1?"✓":r?"½":"✗"}</span><div><b>${esc(S.show[0])}</b><small>${esc(S.en)}</small>${r===1?"":`<em>📏 ${esc((SBR[S.rule]||[""])[0])}</em>`}</div></li>`}).join("")}</ol>
-  <div class="sb-row"><button type="button" class="sb-btn" data-go="again">↻ Noch eine Runde</button>${nextLv&&s>=7?`<button type="button" class="sb-btn main" data-lv="${nextLv}">Weiter zu ${nextLv} ›</button>`:""}<button type="button" class="sb-btn" data-go="close">Fertig</button></div>
+  <div class="sb-row"><button type="button" class="sb-btn main" data-go="new">✨ Neues Set ›</button><button type="button" class="sb-btn" data-set="${G.set}">↻ Set ${G.set+1} nochmal</button>${nextLv&&s>=7?`<button type="button" class="sb-btn" data-lv="${nextLv}">Weiter zu ${nextLv} ›</button>`:""}<button type="button" class="sb-btn" data-go="menu">☰ Übersicht</button></div>
  </div>`}
 
 /* ---- tap and drag ---- */
 let drag=null,moved=false;
 function onClick(e){if(moved){moved=false;return}const b=e.target.closest("button");if(!b||!G)return;
- if(b.dataset.lv){open(b.dataset.lv);return}
+ if(b.dataset.lv){newGame(b.dataset.lv);return}
+ if(b.dataset.menu){G={menu:true,lv:b.dataset.menu};sv("lv",G.lv);drawMenu();return}
+ if(b.dataset.set!=null){const k=+b.dataset.set,R=runGet(),lv=G.lv;if(R&&R.lv===lv&&R.set===k){resume();return}newGame(lv,k);return}
  const g=b.dataset.go;
  if(g==="close"){close();return}
- if(g==="again"){open(G.lv);return}
- if(g==="next"){G.i++;G.msg="";if(G.i<N)deal();draw();return}
+ if(g==="menu"){save();const lv=G.lv;G={menu:true,lv};drawMenu();return}
+ if(g==="new"){newGame(G.lv);return}
+ if(g==="resume"){resume();return}
+ if(G.menu)return;
+ if(g==="next"){G.i++;G.msg="";if(G.i<G.items.length)deal();draw();return}
  if(g==="say"){say(built());return}
  if(g==="check"){check();return}
  if(g==="hint"){hint();return}
@@ -109,7 +142,7 @@ function onClick(e){if(moved){moved=false;return}const b=e.target.closest("butto
  if(b.classList.contains("sb-tile")&&!G.done){const id=+b.dataset.id;
   if(b.dataset.where==="pool"){G.pool=G.pool.filter(x=>x!==id);G.ans.push(id)}else{G.ans=G.ans.filter(x=>x!==id);G.pool.push(id)}
   G.marks=null;if(!(G.tries===1))G.msg="";draw()}}
-function onDown(e){const b=e.target.closest(".sb-tile");if(!b||!G||G.done)return;
+function onDown(e){const b=e.target.closest(".sb-tile");if(!b||!G||G.menu||G.done)return;
  drag={id:+b.dataset.id,x:e.clientX,y:e.clientY,el:b,ghost:null};moved=false;
  document.addEventListener("pointermove",onMove);document.addEventListener("pointerup",onUp,{once:true})}
 function onMove(e){if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;
@@ -127,10 +160,11 @@ function onUp(e){document.removeEventListener("pointermove",onMove);const d=drag
  G.marks=null;draw()}
 
 /* ---- the start card on a page ---- */
-function card(){const b=l=>{const x=st("best:"+l);return x==null?"noch nicht gespielt":"Bestleistung "+num(x)+" / "+N};
- return `<section class="sb-card"><div class="sb-ch"><span class="sb-ico">🧩</span><div><b>Satzbau-Spiel</b><small>Bring die Blöcke in die richtige Reihenfolge – 10 Sätze, 1 Punkt pro Satz. So lernst du die deutsche Wortstellung.</small></div></div>
-  <div class="sb-lvls">${Object.keys(LV).map(l=>`<button type="button" class="sb-lv" data-sblv="${l}"><b>${LV[l][0]}</b><span>${LV[l][1]}</span><small>${b(l)}</small></button>`).join("")}</div></section>`}
-document.addEventListener("click",e=>{const b=e.target.closest("[data-sblv]");if(b)open(b.dataset.sblv)});
+function card(){const R=runGet(),n=l=>SB[l].filter((_,k)=>setBest(l,k)!=null).length;
+ return `<section class="sb-card"><div class="sb-ch"><span class="sb-ico">🧩</span><div><b>Satzbau-Spiel</b><small>Bring die Blöcke in die richtige Reihenfolge – je Level 10 Sets mit 10 Sätzen, 1 Punkt pro Satz. So lernst du die deutsche Wortstellung.</small></div></div>
+  ${R?`<button type="button" class="sb-go" data-sbresume="1">▶ Weiterspielen <small>${R.lv} · Set ${R.set+1} · Satz ${R.i+1} von ${R.order.length}</small></button>`:""}
+  <div class="sb-lvls">${Object.keys(LV).map(l=>`<button type="button" class="sb-lv" data-sblv="${l}"><b>${LV[l][0]}</b><span>${LV[l][1]}</span><small>${n(l)} von ${SETS} Sets</small></button>`).join("")}</div></section>`}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-sblv]");if(b)open(b.dataset.sblv);if(e.target.closest("[data-sbresume]"))resume()});
 addEventListener("keydown",e=>{if(e.key==="Escape"&&G)close()});
 
 const css=document.createElement("style");css.textContent=`
@@ -141,6 +175,19 @@ const css=document.createElement("style");css.textContent=`
 .sb-lv b{display:block;font-size:18px;color:var(--b1)}.sb-lv span{display:block;font-size:13px;line-height:1.3}.sb-lv small{display:block;margin-top:4px;font-size:12px;color:var(--muted)}
 @media (max-width:560px){.sb-lv span{display:none}.sb-lv{text-align:center;padding:8px 6px}.sb-ch small{font-size:13px}.sb-ico{font-size:28px}}
 body.sb-on{overflow:hidden}
+.sb-go{display:block;width:100%;margin-top:12px;font:inherit;font-weight:800;font-size:17px;padding:11px 14px;border:none;border-radius:12px;background:var(--b1);color:#fff;cursor:pointer;text-align:left}
+.sb-go small{display:block;font-weight:400;font-size:13px;opacity:.9}
+.sb-tabs{display:flex;gap:6px;justify-content:center}.sb-tabs button{font:inherit;font-weight:800;font-size:17px;padding:7px 20px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.sb-tabs button[aria-pressed="true"]{background:var(--b1);border-color:var(--b1);color:#fff}
+.sb-lead2{text-align:center;color:var(--muted);margin:8px 0 12px}
+.sb-resume{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:14px;border:2px solid var(--b1);background:color-mix(in srgb,var(--b1) 8%,var(--paper));margin-bottom:6px}
+.sb-resume small{display:block;color:var(--muted)}
+.sb-sets{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}
+.sb-set{font:inherit;padding:10px 4px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;text-align:center}
+.sb-set b{display:block}.sb-set span{display:block;font-size:12px;color:var(--muted)}.sb-set i{font-style:normal;color:#f5b301;letter-spacing:1px}
+.sb-set.done{background:color-mix(in srgb,#1b8a4c 8%,var(--paper));border-color:color-mix(in srgb,#1b8a4c 40%,var(--line))}
+.sb-set.run{border:2px solid var(--b1)}.sb-set.run span{color:var(--b1);font-weight:700}
+@media (max-width:560px){.sb-sets{grid-template-columns:repeat(2,1fr)}}
 .sb-ov{position:fixed;inset:0;z-index:60;background:var(--paper);color:var(--ink);display:flex;flex-direction:column}
 .sb-top{display:flex;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 10px) 14px 10px;border-bottom:1px solid var(--line)}
 .sb-top b{font-family:"Bricolage Grotesque",sans-serif}.sb-sc{margin-left:auto;font-weight:700;color:var(--b1)}
