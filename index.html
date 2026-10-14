@@ -216,7 +216,7 @@ nav .i{display:none}
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.43.0";
+const APP_VERSION = "1.43.1";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren", saetze: "grammatik.html?t=saetze" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -237,6 +237,10 @@ function show(m){
     f.addEventListener("load", () => sendRate(f));
   }
   for(const k in frames) frames[k].hidden = k !== m;
+  /* a page in full screen (game, test, cards) must not keep the bars away on another tab;
+     every page learns whether it is shown and steps aside or comes back itself */
+  document.body.classList.remove("cards");
+  for(const k in frames){ try{ frames[k].contentWindow.postMessage({ dlShown: k === m }, location.origin === "null" ? "*" : location.origin); }catch(e){} }
   tabs.forEach(t => t.setAttribute("aria-selected", String(t.dataset.m === m)));
   store("dl:tab", m);
   if(location.hash !== "#" + m) history.replaceState(null, "", "#" + m);

@@ -104,6 +104,7 @@ function Karten(o){
   body.scrollTop=0;sync();fit()}
  function redraw(){show(i)}
  const toShell=on=>{try{if(parent!==window)parent.postMessage({dlCards:on},location.origin)}catch(e){}};
+ addEventListener("message",e=>{if(e.origin===location.origin&&e.data&&e.data.dlShown&&!fc.hidden)toShell(true)});
  function open(){
   D=o.deck();if(!D.length)return;
   const seen={};sel.innerHTML=D.map((d,n)=>{if(seen[d.key])return"";seen[d.key]=1;return`<option value="${n}">${escA(d.part)}</option>`}).join("");

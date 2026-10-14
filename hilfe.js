@@ -36,7 +36,7 @@ const vis=el=>{if(!el||!el.isConnected)return false;const r=el.getBoundingClient
  for(let n=el;n&&n!==document.body;n=n.parentElement){const s=getComputedStyle(n);if(s.display==="none"||s.visibility==="hidden")return false;if(n.hidden)return false}return true};
 const first=sel=>[...document.querySelectorAll(sel)].find(vis)||null;
 /* something else covers the page (a test, cards): no tour then */
-const busy=()=>document.body.classList.contains("testing")||!!document.querySelector(".fc:not([hidden]),.fc-ov:not([hidden]),.tz:not([hidden]),dialog[open]");
+const busy=()=>document.body.classList.contains("testing")||!!document.querySelector(".fc:not([hidden]),.fc-ov:not([hidden]),.tz:not([hidden]),.sb-ov:not([hidden]),dialog[open]");
 
 function setup(o){
  if(!o||!o.tab||!o.tours)return;
@@ -111,6 +111,8 @@ function setup(o){
  /* ⋯ → Tour: everything on screen now */
  addEventListener("message",e=>{if(e.origin!==location.origin||!e.data||!e.data.dlTour)return;end();
   const now=o.tours.filter(t=>!t.need||first(t.need));start(now.flatMap(t=>t.steps),now.map(t=>t.id),true)});
+ /* a full-screen game (Satzbau) ends a running tour */
+ window.Hilfe.end=end;
  return {start:()=>{const now=o.tours.filter(t=>!t.need||first(t.need));start(now.flatMap(t=>t.steps),now.map(t=>t.id),true)}}}
 window.Hilfe={setup};
 })();
