@@ -1,5 +1,10 @@
 # Releases
 
+## 1.43.1 — 2026-10-15
+- Fix: the Satzbau game and the grammar tests no longer freeze. Closing (✕ or Fertig) really closes them – before, the game stayed on screen and blocked every tap; a finished test no longer comes back as „Test fortsetzen“
+- Switching tabs or using the back button during a game, a grammar test, a Modelltest or the cards gives the app its bars back; coming back reopens the game exactly where you were
+- The first-visit help tour no longer appears on top of the game
+
 ## 1.43.0 — 2026-10-14
 - Grammatik Satzbau-Tests: 20 sentences for every topic (380 new, 760 in all) – four completely fresh tests per topic; after that the sentences come in new mixes, and two tests in a row never share a sentence
 

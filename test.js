@@ -94,6 +94,9 @@ function Pruefung(o){
   const st=t.sections.map((_,i)=>r?(r.secDone&&r.secDone[i]?"done":r.si===i?"now":""):l&&(!l.taken||l.taken.includes(i))?"done":"");
   return {run:r,last:l,st,n:st.filter(x=>x==="done").length,all:st.every(x=>x==="done"),begun:!!r||!!l}}
  const toShell=on=>{try{if(parent!==window)parent.postMessage({dlCards:on},location.origin)}catch(e){}};
+ /* the app switched tabs: away → pause the clock; back and still open → full screen again */
+ addEventListener("message",e=>{if(e.origin!==location.origin||!e.data||!("dlShown" in e.data))return;
+  if(!e.data.dlShown){if(!ov.hidden&&view==="section")pause(true)}else if(!ov.hidden)toShell(true)});
  const ans=(si,p,i)=>run.ans[si+"."+p+"."+i];
 
  /* ---- speech: a recording plays a set number of times ---- */

@@ -52,7 +52,7 @@ const rank=(a,b)=>b.s-a.s||a.ms-b.ms;
 function lbAdd(e){const L=(st("lb:"+e.lv)||[]).concat([e]).sort(rank);const at=L.indexOf(e);sv("lb:"+e.lv,L.slice(0,20));return {place:at+1,of:Math.min(L.length,20),list:L.slice(0,20),id:e.id}}
 function lbTable(lv,mark,n){const L=(st("lb:"+lv)||[]).slice(0,n||10);if(!L.length)return `<p class="sb-note">Noch keine Einträge – spiel ein Set, dann stehst du hier.</p>`;
  return `<ol class="sb-lb">${L.map((e,i)=>`<li class="${e.id===mark?"me":""}"><span class="sb-rk">${["🥇","🥈","🥉"][i]||i+1}</span><b>${esc(e.name)}</b><span class="sb-lbs">${num(e.s)}/10</span><span class="sb-lbt">⏱ ${fmt(e.ms)}</span><small>Set ${e.set+1} · ${esc(e.date)}</small></li>`).join("")}</ol>`}
-function save(){if(!G||G.menu)return;const {items,tiles,t0,...rest}=G;rest.ms=el();sv(runKey(G),rest)}
+function save(){if(!G||G.menu||G.over||!G.items||G.i>=G.items.length)return;const {items,tiles,t0,...rest}=G;rest.ms=el();sv(runKey(G),rest)}
 function deal(){const S=G.items[G.i];G.tiles=tilesOf(S);G.sStart=el();
  let order;do{order=G.tiles.map(t=>t.id);for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}}
  while(order.length>2&&S.sols.some(s=>s.join("|")===order.map(id=>G.tiles[id].k).join("|")));
@@ -81,9 +81,9 @@ function topic(id,title){const R=st("trun:"+id);if(R&&R.order){G=Object.assign({
 function topicButton(id,title){if(!window.SBT||!SBT[id])return"";const R=st("trun:"+id),b=st("tbest:"+id);
  return `<button type="button" class="sb-tbtn" data-sbtopic="${esc(id)}" data-sbtitle="${esc(title)}"><span class="sb-tico">🧩</span><span><b>${R?"▶ Test fortsetzen":"Satzbau-Test"}</b><small>${R?`Satz ${R.i+1} von ${R.order.length} · ${num(R.score)} Punkte`:`5 Sätze zu „${esc(title)}“ bauen${b!=null?` · Bestes: ${num(b)} / ${TN}`:""}`}</small></span></button>`}
 function refreshButtons(){document.querySelectorAll("[data-sbtopic]").forEach(b=>{b.outerHTML=topicButton(b.dataset.sbtopic,b.dataset.sbtitle)})}
-function show(){mount();shell(true);document.body.classList.add("sb-on")}
+function show(){try{window.Hilfe&&Hilfe.end&&Hilfe.end()}catch(e){}mount();shell(true);document.body.classList.add("sb-on")}
 function open(lv){lv=lv||st("lv")||"A1";sv("lv",lv);G={menu:true,lv};show();drawMenu()}
-function close(){halt();save();if(ov)ov.hidden=true;shell(false);document.body.classList.remove("sb-on");try{speechSynthesis.cancel()}catch(e){}G=null;
+function close(){halt();save();if(drag&&drag.ghost)drag.ghost.remove();drag=null;if(ov)ov.hidden=true;shell(false);document.body.classList.remove("sb-on");try{speechSynthesis.cancel()}catch(e){}G=null;
  const c=document.querySelector(".sb-card");if(c)c.outerHTML=card();refreshButtons()}
 function mount(){if(ov){ov.hidden=false;return}ov=document.createElement("div");ov.className="sb-ov";ov.setAttribute("role","dialog");ov.setAttribute("aria-label","Satzbau-Spiel");document.body.appendChild(ov);
  ov.addEventListener("click",onClick);ov.addEventListener("pointerdown",onDown)}
@@ -147,7 +147,7 @@ function hint(){const S=cur(),s=S.sols[best()];let n=0;while(n<G.ans.length&&G.t
  G.pool=G.pool.concat(G.ans.splice(n));const next=G.pool.find(id=>G.tiles[id].k===s[n]);
  G.pool=G.pool.filter(id=>id!==next);G.ans.push(next);G.hint=true;G.marks=null;G.msg=`<div class="sb-tip">💡 Die ersten ${n+1} ${n?"Blöcke stehen":"Block steht"} jetzt richtig.</div>`;draw()}
 
-function drawTopicEnd(){halt();const s=G.score,n=G.items.length,ms=el(),r=s/n,k=r>=1?3:r>=.7?2:r>=.5?1:0,old=st("tbest:"+G.topic),isBest=old==null||s>old;
+function drawTopicEnd(){halt();G.over=true;const s=G.score,n=G.items.length,ms=el(),r=s/n,k=r>=1?3:r>=.7?2:r>=.5?1:0,old=st("tbest:"+G.topic),isBest=old==null||s>old;
  if(isBest)sv("tbest:"+G.topic,s);sv(runKey(G),null);
  const msg=r>=1?"Perfekt! Dieses Thema sitzt.":r>=.8?"Sehr gut! Fast alles richtig.":r>=.6?"Gut gemacht! Lies dir die Regeln bei den Fehlern noch einmal durch.":"Übe das Thema noch einmal – dann klappt es beim nächsten Test besser.";
  ov.innerHTML=`<div class="sb-top"><b>🧩 ${esc(G.title)} · Test geschafft</b><span></span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
@@ -161,7 +161,7 @@ function drawTopicEnd(){halt();const s=G.score,n=G.items.length,ms=el(),r=s/n,k=
   <ol class="sb-list">${G.items.map((S,i)=>{const q=G.res[i];return `<li class="${q===1?"ok":q?"half":"no"}"><span>${q===1?"✓":q?"½":"✗"}</span><div><b>${esc(S.show[0])}</b><small>${esc(S.en)}${G.times&&G.times[i]!=null?` · ⏱ ${Math.max(1,Math.round(G.times[i]/1000))} s`:""}</small><em>📏 ${esc(ruleOf(S)[0])}</em></div></li>`}).join("")}</ol>
   <div class="sb-row"><button type="button" class="sb-btn main" data-go="tnew">✨ 5 neue Sätze</button><button type="button" class="sb-btn" data-go="close">Fertig</button></div>
  </div>`}
-function drawEnd(){if(G.topic){drawTopicEnd();return}const s=G.score,k=stars(s),bestOld=st("best:"+G.lv),isBest=bestOld==null||s>bestOld;if(isBest)sv("best:"+G.lv,s);
+function drawEnd(){if(G.topic){drawTopicEnd();return}G.over=true;const s=G.score,k=stars(s),bestOld=st("best:"+G.lv),isBest=bestOld==null||s>bestOld;if(isBest)sv("best:"+G.lv,s);
  const setOld=setBest(G.lv,G.set);if(setOld==null||s>setOld)sv("set:"+G.lv+":"+G.set,s);sv("last:"+G.lv,G.set);sv("run",null);
  const played=SB[G.lv].filter((_,x)=>setBest(G.lv,x)!=null).length;
  halt();const ms=el(),tOld=st("settime:"+G.lv+":"+G.set),better=setOld==null||s>setOld||(s===setOld&&(tOld==null||ms<tOld));if(better)sv("settime:"+G.lv+":"+G.set,ms);
@@ -230,6 +230,10 @@ function card(){const R=runGet(),n=l=>SB[l].filter((_,k)=>setBest(l,k)!=null).le
 document.addEventListener("click",e=>{const b=e.target.closest("[data-sblv]");if(b)open(b.dataset.sblv);if(e.target.closest("[data-sbresume]"))resume();
  const t=e.target.closest("[data-sbtopic]");if(t)topic(t.dataset.sbtopic,t.dataset.sbtitle)});
 addEventListener("keydown",e=>{if(e.key==="Escape"&&G)close()});
+let away=null;
+addEventListener("message",e=>{if(e.origin!==location.origin||!e.data||!("dlShown" in e.data))return;
+ if(!e.data.dlShown){if(G&&ov&&!ov.hidden){away=G.over?null:G.menu?{menu:G.lv}:G.topic?{topic:G.topic,title:G.title}:{game:1};close()}return}
+ if(away){const a=away;away=null;if(a.menu)open(a.menu);else if(a.topic)topic(a.topic,a.title);else resume()}});
 
 const css=document.createElement("style");css.textContent=`
 .sb-card{margin:14px 0;padding:14px 16px;border-radius:16px;border:1.5px solid var(--line);background:linear-gradient(135deg,color-mix(in srgb,var(--b1) 12%,var(--paper)),color-mix(in srgb,var(--a1) 12%,var(--paper)))}
@@ -255,6 +259,7 @@ body.sb-on{overflow:hidden}
 .sb-set.run{border:2px solid var(--b1)}.sb-set.run span{color:var(--b1);font-weight:700}
 @media (max-width:560px){.sb-sets{grid-template-columns:repeat(2,1fr)}}
 .sb-ov{position:fixed;inset:0;z-index:60;background:var(--paper);color:var(--ink);display:flex;flex-direction:column}
+.sb-ov[hidden]{display:none}
 .sb-top{display:flex;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 10px) 14px 10px;border-bottom:1px solid var(--line)}
 .sb-top b{font-family:"Bricolage Grotesque",sans-serif}.sb-sc{font-weight:700;color:var(--b1)}
 .sb-clock{margin-left:auto;font-variant-numeric:tabular-nums;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--surface)}
