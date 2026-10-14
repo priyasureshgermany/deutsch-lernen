@@ -161,5 +161,20 @@ plural:[
 poss:[
  ["sein = von ihm (er, es) · ihr = von ihr (sie) oder von ihnen (Plural).","sein = his/its · ihr = her/their.","Maria besucht seine Mutter.","Maria besucht ihre Mutter."],
  ["Die Endung passt zum Nomen danach, nicht zur Person: Er besucht seine Tochter.","The ending matches the following noun.","Er besucht sein Tochter.","Er besucht seine Tochter."],
- ["euer verliert das e, wenn eine Endung kommt: eure, euren, eurem.","euer drops the e before an ending.","euere Wohnung","eure Wohnung"]]
+ ["euer verliert das e, wenn eine Endung kommt: eure, euren, eurem.","euer drops the e before an ending.","euere Wohnung","eure Wohnung"]],
+praesens:[
+ ["Bei du kommt immer -st – auch wenn es komisch klingt: du arbeitest, du findest.","du always takes -st: du arbeitest.","Du arbeitst viel.","Du arbeitest viel."],
+ ["haben verliert das b bei du und er: du hast, er hat.","haben loses its b: du hast, er hat.","Er habt ein Auto.","Er hat ein Auto."],
+ ["Bei -s, -ß, -z am Stamm kommt bei du nur -t: du heißt, du tanzt.","After -s/-ß/-z just -t for du.","Wie heißst du?","Wie heißt du?"],
+ ["wir und Sie haben dieselbe Form wie der Infinitiv – das ist die einfachste Regel!","wir and Sie look like the infinitive.","Wir lernt Deutsch.","Wir lernen Deutsch."]],
+zahlen:[
+ ["Ab 21 kommt die Einerzahl zuerst – genau umgekehrt wie im Englischen.","From 21 the units come first.","zwanzigeins","einundzwanzig"],
+ ["Ordnungszahlen brauchen eine Adjektivendung: am ersten, im dritten Stock.","Ordinals take adjective endings.","am erste Mai","am ersten Mai"],
+ ["Die Ausnahmen: erste, dritte, siebte, achte – alle anderen regelmäßig.","Exceptions: erste, dritte, siebte, achte.","der dreite","der dritte"],
+ ["Euro und Cent haben keinen Plural: zehn Euro, fünfzig Cent.","No plural for Euro and Cent.","zehn Euros","zehn Euro"]],
+demo:[
+ ["dieser hat dieselben Endungen wie der, die, das: dies-er, dies-e, dies-es, dies-en, dies-em.","dieser follows der / die / das.","Ich kaufe dieser Tisch.","Ich kaufe diesen Tisch."],
+ ["Bei Zeitangaben ohne Präposition: diese Woche, dieses Jahr – im Akkusativ.","Time phrases without a preposition.","In diese Woche habe ich frei.","Diese Woche habe ich frei."],
+ ["Gesprochen sagt man selten jener – lieber der da oder der dort.","In speech use der da instead of jener.","~Ich nehme jenen Kuchen.","Ich nehme den da."],
+ ["dasselbe = genau dieses eine Ding · das Gleiche = ein gleiches Ding (im Alltag oft gleich benutzt).","dasselbe vs das Gleiche."]]
 };

@@ -2089,5 +2089,117 @@ window.GD = [
    ["Namen: -s ohne Apostroph", "Das ist [[Annas]] Fahrrad.", "That's Anna's bike."],
    ["feminin: -er", "Die Wohnung [[meiner]] Eltern ist sehr groß.", "My parents' flat is very big."]]}
  ]}
+]},
+{id:"praesens", de:"Verben im Präsens", en:"Verbs in the present tense",
+ intro:"Im Präsens hängt die Endung an den Verbstamm (mach-en → mach-): ich -e, du -st, er/sie/es -t, wir -en, ihr -t, sie/Sie -en. Bei Stämmen auf -t/-d kommt ein e dazu (du arbeitest), bei -s/-ß/-z fällt das s weg (du heißt). sein, haben und werden sind unregelmäßig – sie musst du auswendig lernen.",
+ groups:[
+ {g:"Regelmäßige Verben", gen:"regular verbs", items:[
+  {w:"ich mache – du machst – er macht", en:"the endings", tag:"-e · -st · -t · -en · -t · -en", ex:[
+   ["ich: -e","[[Ich koche]] heute Abend für die Familie.","I'm cooking for the family tonight."],
+   ["du: -st","[[Wohnst]] du schon lange in Frankfurt?","Have you lived in Frankfurt long?"],
+   ["er / sie / es: -t","Meine Tochter [[spielt]] jeden Montag Fußball.","My daughter plays football every Monday."],
+   ["wir und sie / Sie: -en (wie der Infinitiv)","[[Wir lernen]] zusammen für die Prüfung.","We're studying for the exam together."],
+   ["ihr: -t","[[Kommt ihr]] am Samstag zu unserer Party?","Are you coming to our party on Saturday?"]]},
+  {w:"du arbeitest – er arbeitet", en:"stems ending in -t / -d", tag:"-t / -d: +e", ex:[
+   ["Stamm auf -t: du -est","Du [[arbeitest]] zu viel.","You work too much."],
+   ["Stamm auf -t: er -et","Der Kurs [[kostet]] 200 Euro.","The course costs 200 euros."],
+   ["Stamm auf -d: du -est","[[Findest]] du die Wohnung schön?","Do you like the flat?"],
+   ["Stamm auf -d: ihr -et","Ihr [[redet]] immer so schnell.","You always talk so fast."]]},
+  {w:"du heißt – du tanzt", en:"stems ending in -s / -ß / -z", tag:"-s / -ß / -z: nur -t", ex:[
+   ["-ß: du heißt (nicht heißst)","Wie [[heißt]] du?","What's your name?"],
+   ["-z: du tanzt","Du [[tanzt]] wirklich gut!","You dance really well!"],
+   ["-s: du reist","[[Reist]] du im Sommer nach Indien?","Are you travelling to India in summer?"],
+   ["-x: du mixt","Du [[mixt]] die besten Cocktails.","You mix the best cocktails."]]}
+ ]},
+ {g:"Wichtige unregelmäßige Verben", gen:"key irregular verbs", items:[
+  {w:"sein", en:"to be", tag:"bin · bist · ist · sind · seid · sind", ex:[
+   ["ich bin","[[Ich bin]] seit zwei Jahren in Deutschland.","I've been in Germany for two years."],
+   ["du bist","[[Bist]] du heute im Büro?","Are you in the office today?"],
+   ["er / sie / es ist","Die Apotheke [[ist]] gleich um die Ecke.","The pharmacy is just around the corner."],
+   ["wir / sie / Sie sind","[[Sind]] Sie Frau Kaya?","Are you Ms Kaya?"],
+   ["ihr seid","[[Seid]] ihr schon fertig?","Are you already finished?"]]},
+  {w:"haben", en:"to have", tag:"habe · hast · hat · haben · habt · haben", ex:[
+   ["ich habe","[[Ich habe]] morgen einen Termin beim Arzt.","I have a doctor's appointment tomorrow."],
+   ["du hast (ohne b)","[[Hast]] du kurz Zeit?","Have you got a moment?"],
+   ["er / sie / es hat (ohne b)","Unser Sohn [[hat]] heute Geburtstag.","It's our son's birthday today."],
+   ["ihr habt","[[Habt]] ihr schon gegessen?","Have you eaten yet?"]]},
+  {w:"werden · wissen", en:"to become · to know", tag:"wirst / wird · weiß / weißt", ex:[
+   ["werden: du wirst, er wird","Es [[wird]] langsam kalt.","It's slowly getting cold."],
+   ["werden: ich werde (Beruf)","[[Ich werde]] nächstes Jahr Erzieherin.","I'm going to become a nursery teacher next year."],
+   ["wissen: ich weiß, er weiß (ohne -t)","[[Ich weiß]] es leider nicht.","Unfortunately I don't know."],
+   ["wissen: du weißt","[[Weißt]] du, wann der Bus kommt?","Do you know when the bus is coming?"]]}
+ ]}
+]},
+{id:"zahlen", de:"Zahlen", en:"Numbers",
+ intro:"Ab 21 sagt man die Einer zuerst: einundzwanzig (1 + 20). Zahlen bis eine Million schreibt man zusammen. Ordnungszahlen bekommen -te (bis 19) oder -ste (ab 20) und eine Adjektivendung: der erste, am dritten Mai. Ausnahmen: eins → erste, drei → dritte, sieben → siebte, acht → achte.",
+ groups:[
+ {g:"Grundzahlen", gen:"cardinal numbers", items:[
+  {w:"0–20", en:"zero to twenty", tag:"null · eins · zwölf · sechzehn", ex:[
+   ["eins – aber: ein Uhr, eine Stunde","Es ist [[ein]] Uhr, der Bus kommt in [[einer]] Stunde.","It's one o'clock, the bus comes in an hour."],
+   ["zwölf, elf: eigene Wörter","Wir sind [[zwölf]] Leute im Kurs.","There are twelve of us in the course."],
+   ["sechzehn, siebzehn: ohne -s / -en","Mein Sohn ist [[siebzehn]] Jahre alt.","My son is seventeen years old."],
+   ["zwei oder zwo am Telefon","Meine Hausnummer ist [[zwo]], nicht drei.","My house number is two, not three."]]},
+  {w:"21–99", en:"twenty-one to ninety-nine", tag:"einundzwanzig: Einer + und + Zehner", ex:[
+   ["Einer zuerst: 24 = vier-und-zwanzig","Der Kurs hat [[vierundzwanzig]] Termine.","The course has twenty-four sessions."],
+   ["dreißig mit ß","Ich wohne hier seit [[dreißig]] Jahren.","I've lived here for thirty years."],
+   ["sechzig, siebzig: ohne -s / -en","Meine Mutter wird [[siebzig]].","My mother is turning seventy."],
+   ["Telefon: oft in Paaren gelesen","Meine Nummer ist null eins sieben, [[achtundvierzig]], [[dreiundzwanzig]].","My number is zero one seven, forty-eight, twenty-three."]]},
+  {w:"100, 1000, Million", en:"hundreds and thousands", tag:"hundert · tausend · eine Million", ex:[
+   ["hundert / einhundert","Das Fahrrad kostet [[hundertzwanzig]] Euro.","The bike costs a hundred and twenty euros."],
+   ["Jahreszahl: neunzehnhundert…","Meine Eltern haben [[neunzehnhundertneunzig]] geheiratet.","My parents got married in 1990."],
+   ["ab 2000: zweitausend…","Ich bin [[zweitausendzweiundzwanzig]] nach Deutschland gekommen.","I came to Germany in 2022."],
+   ["Million: eigenes Wort, mit Leerzeichen","Frankfurt hat fast [[eine Million]] Einwohner.","Frankfurt has almost a million inhabitants."]]}
+ ]},
+ {g:"Im Alltag", gen:"in everyday life", items:[
+  {w:"der erste, der zweite …", en:"ordinal numbers", tag:"-te bis 19 · -ste ab 20", ex:[
+   ["Ausnahme: der erste","Das ist mein [[erster]] Deutschkurs.","This is my first German course."],
+   ["Ausnahme: der dritte","Wir wohnen im [[dritten]] Stock.","We live on the third floor."],
+   ["ab 20: -ste","Am [[zwanzigsten]] Juni habe ich Geburtstag.","My birthday is on the twentieth of June."],
+   ["Datum geschrieben: Punkt nach der Zahl","Heute ist der [[3.]] Mai.","Today is the 3rd of May."]]},
+  {w:"Preise und Geld", en:"prices and money", tag:"Euro und Cent", ex:[
+   ["2,50 € = zwei Euro fünfzig","Ein Kaffee kostet [[zwei Euro fünfzig]].","A coffee costs two euros fifty."],
+   ["nur Cent","Die Tüte kostet [[zwanzig Cent]].","The bag costs twenty cents."],
+   ["ungefähr: etwa, rund","Die Reparatur kostet [[etwa hundert]] Euro.","The repair costs about a hundred euros."],
+   ["Euro bleibt im Plural Euro","Das macht [[zehn Euro]], bitte.","That's ten euros, please."]]},
+  {w:"halb, Viertel, doppelt", en:"fractions and amounts", tag:"Brüche und Mengen", ex:[
+   ["ein halber / eine halbe","Ich nehme [[ein halbes]] Kilo Tomaten.","I'll take half a kilo of tomatoes."],
+   ["eineinhalb / anderthalb","Die Fahrt dauert [[eineinhalb]] Stunden.","The journey takes an hour and a half."],
+   ["ein Viertel, ein Drittel","[[Ein Drittel]] der Klasse war krank.","A third of the class was ill."],
+   ["doppelt / zweimal so viel","Die Miete ist hier [[doppelt]] so hoch wie bei uns.","The rent here is twice as high as where we live."]]}
+ ]}
+]},
+{id:"demo", de:"dieser · jener · welcher", en:"this · that · which",
+ intro:"dieser zeigt auf etwas Bestimmtes (this) und hat die Endungen wie der/die/das: dieser Mann, diese Frau, dieses Kind, diese Leute. welcher fragt danach, jener (that) ist eher schriftlich – gesprochen sagt man der da oder der hier. solcher / so ein heißt such a.",
+ groups:[
+ {g:"Demonstrativartikel", gen:"demonstratives", items:[
+  {w:"dieser / diese / dieses", en:"this, these", tag:"Endungen wie der / die / das", ex:[
+   ["Nominativ maskulin: dieser","[[Dieser]] Bus fährt zum Bahnhof.","This bus goes to the station."],
+   ["Akkusativ maskulin: diesen","Ich nehme [[diesen]] Pullover.","I'll take this jumper."],
+   ["Dativ: diesem / dieser","In [[dieser]] Straße gibt es viele Cafés.","There are many cafés in this street."],
+   ["Plural: diese","[[Diese]] Schuhe sind mir zu klein.","These shoes are too small for me."],
+   ["Zeit: diese Woche, dieses Jahr (ohne Präposition)","[[Dieses]] Jahr fahren wir nicht in den Urlaub.","We're not going on holiday this year."]]},
+  {w:"jener · derselbe", en:"that · the same", tag:"jener (schriftlich), derselbe", ex:[
+   ["jener: schriftlich, Gegensatz zu dieser","Dieses Angebot ist günstiger als [[jenes]].","This offer is cheaper than that one."],
+   ["derselbe: genau der gleiche","Wir arbeiten in [[derselben]] Firma.","We work in the same company."],
+   ["dasselbe / das Gleiche","Ich möchte bitte [[dasselbe]] wie gestern.","I'd like the same as yesterday, please."],
+   ["zu jener Zeit (Erzählung)","Zu [[jener]] Zeit wohnte ich noch in Chennai.","At that time I was still living in Chennai."]]},
+  {w:"solcher · so ein", en:"such a", tag:"so ein (gesprochen), solch-", ex:[
+   ["so ein + Nomen (gesprochen)","[[So ein]] schönes Wetter!","Such lovely weather!"],
+   ["solche + Plural","[[Solche]] Probleme haben viele Mieter.","Many tenants have problems like that."],
+   ["so etwas","[[So etwas]] habe ich noch nie gesehen.","I've never seen anything like that."],
+   ["ein solcher (schriftlich)","Ein [[solcher]] Fehler darf nicht noch einmal passieren.","A mistake like that mustn't happen again."]]}
+ ]},
+ {g:"Fragen und zeigen", gen:"asking and pointing", items:[
+  {w:"welcher? – dieser", en:"which? – this one", tag:"Frage und Antwort", ex:[
+   ["welcher / welche / welches: fragt nach Auswahl","[[Welche]] Jacke gefällt dir besser?","Which jacket do you like better?"],
+   ["Antwort mit dieser","[[Diese]] hier, die blaue.","This one here, the blue one."],
+   ["welchen: Akkusativ maskulin","[[Welchen]] Kurs möchten Sie besuchen?","Which course would you like to take?"],
+   ["mit Präposition: in welchem","In [[welchem]] Stock wohnen Sie?","Which floor do you live on?"]]},
+  {w:"der hier · der da", en:"this one · that one", tag:"gesprochen statt dieser / jener", ex:[
+   ["der hier = dieser","Ich nehme [[den hier]].","I'll take this one."],
+   ["die da = jene","Ist das Ihre Tasche? – Nein, meine ist [[die da]].","Is that your bag? – No, mine is that one there."],
+   ["das da drüben","Siehst du [[das Haus da drüben]]? Da wohne ich.","Do you see that house over there? That's where I live."],
+   ["betont: der statt er","Kennst du Herrn Weber? – [[Den]] kenne ich gut.","Do you know Mr Weber? – Him I know well."]]}
+ ]}
 ]}
 ];

@@ -1,5 +1,9 @@
 # Releases
 
+## 1.39.0 — 2026-10-14
+- New: Satzbau-Spiel – build German sentences from scrambled blocks (tap or drag them into place). 10 sentences per round, A1 / A2 / B1 (90 sentences): 1 point when right at once, ½ with a hint or on the second try; wrong blocks turn red, then the right order and the word-order rule (Verb auf Position 2, Satzklammer, Nebensatz …) – with a streak 🔥, stars, best score per level and the sentence read aloud. On the Sätze page and under Grammatik → Wortstellung
+- Three new grammar topics: Verben im Präsens (endings, sein / haben / werden / wissen), Zahlen (numbers, ordinals, prices, fractions) and dieser · jener · welcher – each with examples and tips
+
 ## 1.38.0 — 2026-10-12
 - Modelltests by difficulty: nine per level – 3 Leicht, 3 Mittel, 3 Schwer – grouped on the overview with a short explanation, a badge on every card and on the result page. The existing tests were measured (text length, sentence length, subordinate clauses, paraphrased answers, wrong options that appear in the text) and sorted; tests are renumbered 1–9 from easy to hard (ids unchanged, saved results stay)
 - New: two hard A1 tests and two hard B1 (DTZ) tests – answers that change mid-conversation, traps, small calculations, paraphrased questions, longer texts; B1 with falls/obwohl/Relativsätze/Konjunktiv II in the gap text. Writing keys for the new A1 tasks; all new model letters pass the app’s own checks

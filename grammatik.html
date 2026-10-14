@@ -173,6 +173,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
  <input type="hidden" id="q" value="">
 </div>
 <main>
+ <div id="sbcard"></div>
  <div class="intro" id="intro"></div>
  <div id="tips"></div>
  <div id="sheet"></div>
@@ -191,6 +192,8 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 <script src="artikel.js"></script>
 <script src="translate.js"></script>
 <script src="hilfe.js"></script>
+<script src="satzbau-data.js"></script>
+<script src="satzbau.js"></script>
 <script>
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const W=s=>s.replace(/[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g,m=>`<span class="w">${m}</span>`);
@@ -218,7 +221,9 @@ function drawTopic(){
  introEl.innerHTML=`<b>${esc(topic.de)}</b> · <span class="muted">${esc(topic.en)}</span><br>${esc(topic.intro)}`;
  listEl.innerHTML=topic.groups.map((g,gi)=>`<h3>${esc(g.g)}${g.gen?` <span class="gen">· ${esc(g.gen)}</span>`:""}</h3>`+g.items.map((it,ii)=>`<button type="button" class="it" data-k="${gi}-${ii}" aria-expanded="false"><span class="itl"><b>${esc(it.w)}</b><small>${esc(it.tag)}</small></span>${it.en?`<i class="ien" lang="en">${esc(it.en)}</i>`:""}</button><div class="inl" data-for="${gi}-${ii}" hidden></div>`).join("")).join("");
  detailEl.innerHTML=`<div class="ph">${SAETZE?"Wähle links eine Gruppe – dann erscheinen hier die Sätze.":"Wähle links ein Wort – dann erscheinen hier die Beispielsätze."}</div>`;
- drawTips();drawSheet();filter()}
+ drawTips();drawSheet();filter();
+ /* the Satzbau game: on the Saetze page always, in Grammatik under Wortstellung */
+ document.getElementById("sbcard").innerHTML=window.Satzbau&&(SAETZE||topic.id==="satz")?Satzbau.card():""}
 
 /* ---- Tipps & typische Fehler (grammatik-tipps.js): a box under the intro ---- */
 const tipsEl=document.getElementById("tips");
