@@ -1,5 +1,9 @@
 # Releases
 
+## 1.42.0 — 2026-10-14
+- Grammatik: every topic has a 🧩 Satzbau-Test – build 5 sentences that use that topic’s grammar (Präpositionen, Relativsätze, Passiv, Zahlen …), with timer, hint, second try and the grammar point explained after each sentence; score out of 5 and your best result per topic on the button
+- 380 new sentences (10 per topic): the next test takes the five you haven’t had; a test you leave halfway shows „▶ Test fortsetzen“
+
 ## 1.41.0 — 2026-10-14
 - Satzbau-Spiel: a stopwatch per set ⏱ – it runs only while you build a sentence (not while you read the result, not while the game is closed), continues on „Weiterspielen“; every sentence shows its time in the result, every set its best time
 - Bestenliste per level 🏆: ranked by points, then time, with 🥇🥈🥉, name, set and date; after each set you see your place. Kept on this device – everyone who plays on it can enter their name (✎ Name ändern) and compete
