@@ -1,5 +1,10 @@
 # Releases
 
+## 1.46.0 — 2026-10-15
+- Satzbau-Spiel: three new levels with long sentences – A1+, A2+ and B1+, 10 sets each (300 sentences, 9–15 words, mostly two clauses with und / aber / denn / weil / dass / wenn / obwohl / Relativsatz)
+- A2+ and B1+: every sentence stands in a short paragraph – build the missing sentence from its blocks; once it is right, it appears in its place in the text
+- Grammatik Satzbau-Tests: 10 paragraph tasks per topic (380 new long sentences); every test now has 2 long sentences in a paragraph and 3 short ones
+
 ## 1.45.2 — 2026-10-15
 - Fix: the Satzbau game no longer freezes after switching to another app. If the phone cancelled a touch (app switch, home gesture, a call) while a finger was on a block, a ghost block stayed on screen and the next tap – often on ✕ – was swallowed; now a cancelled touch simply ends the drag, and every tap works right away
 
