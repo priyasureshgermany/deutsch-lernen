@@ -1,5 +1,8 @@
 # Releases
 
+## 1.45.0 — 2026-10-15
+- Grammatik Satzbau-Tests: 30 sentences for every topic (380 new, 1140 in all) – six completely fresh tests per topic before a sentence comes back
+
 ## 1.44.0 — 2026-10-15
 - Satzbau-Spiel: 20 sets per level instead of 10 – 300 new sentences (600 in all), so „Neues Spiel“ gives fresh sets for much longer; a round stays 10 sentences
 - Grammatik: the Satzbau-Test is now a small 🧩 icon next to the topic name – the badge shows ▶ while a test is running or your best score; press and hold (or rest the mouse on it) to see what it does
