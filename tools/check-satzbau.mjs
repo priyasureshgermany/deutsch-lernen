@@ -2,7 +2,8 @@
 // Every sentence has an end mark, English and a rule; every other correct
 // order uses exactly the same blocks; each level has 20 sets of 10 (the long
 // levels A1+, A2+, B1+: 10; A2+ and B1+ with a paragraph per sentence), every
-// grammar topic 10 sentences (a test takes 5); no sentence appears twice.
+// grammar topic 10 sentences (a test takes 5); no sentence appears twice;
+// every sentence has its level's minimum words (A1 7, A2 10, B1 13).
 import { readFileSync } from "node:fs";
 const window = {};
 for (const f of ["../satzbau-data.js", "../satzbau-themen.js", "../grammatik-data.js"])
@@ -10,6 +11,8 @@ for (const f of ["../satzbau-data.js", "../satzbau-themen.js", "../grammatik-dat
 let bad = 0;
 const fail = (w, m) => { bad++; console.log("✗ " + w + ": " + m); };
 const ctxOk = c => Array.isArray(c) && c.length === 2 && c.every(x => typeof x === "string" && /[.!?]$/.test(x.trim()));
+const MIN = { A1: 7, A2: 10, B1: 13, "A1+": 7, "A2+": 10, "B1+": 13 };
+const words = s => s.replace(/[.?!]$/, "").replace(/[|^,]/g, " ").trim().split(/\s+/).length;
 const blocks = s => s.replace(/[.?!]$/, "").split("|").map(b => b.replace(/^\^/, "").replace(/^,\s*/, "").toLowerCase());
 function rows(name, list, ruleOk) {
   const seen = new Set();
@@ -29,6 +32,7 @@ for (const [lv, sets] of Object.entries(window.SB)) {
   if (sets.length !== want) fail(lv, "needs " + want + " sets, has " + sets.length);
   if (lv === "A2+" || lv === "B1+") sets.flat().forEach((r, i) => { if (!ctxOk(r[4])) fail(lv + " #" + (i + 1), "needs a paragraph [before, after]"); });
   sets.forEach((set, k) => { if (set.length !== 10) fail(lv + " set " + (k + 1), "needs 10 sentences, has " + set.length); });
+  sets.flat().forEach((r, i) => { if (words(r[0]) < MIN[lv]) fail(lv + " #" + (i + 1) + " " + r[0], "needs at least " + MIN[lv] + " words, has " + words(r[0])); });
   rows(lv, sets.flat(), r => !!window.SBR[r]);
   console.log(`  ${lv}: ${sets.flat().length} sentences`);
 }
