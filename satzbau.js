@@ -78,11 +78,11 @@ function startTopic(id,title){const all=(SBT[id]||[]).map((_,i)=>i);let seen=st(
 function topic(id,title){const R=st("trun:"+id);if(R&&R.order){G=Object.assign({},R,{items:itemsOf("",0,R.order,id)});
   if(G.items[G.i]){G.tiles=tilesOf(G.items[G.i]);G.t0=null;G.ms=G.ms||0;G.times=G.times||[];if(G.sStart==null)G.sStart=G.ms;show();draw();return}}
  startTopic(id,title)}
-/* a small icon next to the topic name; the badge: ▶ = a test is running, a number = the best result.
+/* a small icon next to the topic name; an orange dot = a test is running, the green badge = the best result.
     Long press / hover explains it (hilfe.js, the page's help steps) */
 function topicButton(id,title){if(!window.SBT||!SBT[id])return"";const R=st("trun:"+id),b=st("tbest:"+id);
  const say=R?`Satzbau-Test fortsetzen – Satz ${R.i+1} von ${R.order.length}, ${num(R.score)} Punkte`:`Satzbau-Test: 5 Sätze zu „${title}“ bauen${b!=null?` – bestes Ergebnis ${num(b)} von ${TN}`:""}`;
- return `<button type="button" class="sb-ticon${R?" run":""}" data-sbtopic="${esc(id)}" data-sbtitle="${esc(title)}" aria-label="${esc(say)}">🧩${R?`<i class="sb-tbadge">▶</i>`:b!=null?`<i class="sb-tbadge">${num(b)}/${TN}</i>`:""}</button>`}
+ return `<button type="button" class="sb-ticon${R?" run":""}" data-sbtopic="${esc(id)}" data-sbtitle="${esc(title)}" aria-label="${esc(say)}">🧩${R?`<i class="sb-tdot" aria-hidden="true"></i>`:b!=null?`<i class="sb-tbadge">${num(b)}/${TN}</i>`:""}</button>`}
 function refreshButtons(){document.querySelectorAll("[data-sbtopic]").forEach(b=>{b.outerHTML=topicButton(b.dataset.sbtopic,b.dataset.sbtitle)})}
 function show(){try{window.Hilfe&&Hilfe.end&&Hilfe.end()}catch(e){}mount();shell(true);document.body.classList.add("sb-on")}
 function open(lv){lv=lv||st("lv")||"A1";sv("lv",lv);G={menu:true,lv};show();drawMenu()}
@@ -247,8 +247,10 @@ const css=document.createElement("style");css.textContent=`
 @media (max-width:560px){.sb-lv span{display:none}.sb-lv{text-align:center;padding:8px 6px}.sb-ch small{font-size:13px}.sb-ico{font-size:28px}}
 body.sb-on{overflow:hidden}
 .sb-ticon{position:relative;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;margin-left:6px;vertical-align:middle;font-size:18px;line-height:1;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--b1) 45%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,var(--b1) 16%,var(--paper)),color-mix(in srgb,var(--a1) 16%,var(--paper)));cursor:pointer;padding:0;-webkit-touch-callout:none;user-select:none}
-.sb-ticon.run{border-color:var(--b1);box-shadow:0 0 0 2px color-mix(in srgb,var(--b1) 30%,transparent)}
-.sb-tbadge{position:absolute;right:-8px;bottom:-6px;font-style:normal;font-size:10px;font-weight:800;padding:1px 4px;border-radius:999px;background:var(--b1);color:#fff;white-space:nowrap}
+.sb-ticon.run{border-color:#e8590c}
+.sb-tbadge{position:absolute;right:-9px;bottom:-5px;font-style:normal;font-size:9.5px;line-height:1.35;font-weight:800;padding:0 4px;border-radius:999px;background:#1b8a4c;color:#fff;white-space:nowrap;border:1.5px solid var(--paper)}
+/* a test is running: a small orange dot, like a notification */
+.sb-tdot{position:absolute;top:-2px;right:-2px;width:11px;height:11px;border-radius:50%;background:#e8590c;border:2px solid var(--paper)}
 .sb-go{display:block;width:100%;margin-top:12px;font:inherit;font-weight:800;font-size:17px;padding:11px 14px;border:none;border-radius:12px;background:var(--b1);color:#fff;cursor:pointer;text-align:left}
 .sb-go small{display:block;font-weight:400;font-size:13px;opacity:.9}
 .sb-tabs{display:flex;gap:6px;justify-content:center}.sb-tabs button{font:inherit;font-weight:800;font-size:17px;padding:7px 20px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}

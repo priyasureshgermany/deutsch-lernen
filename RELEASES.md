@@ -1,5 +1,8 @@
 # Releases
 
+## 1.45.1 — 2026-10-15
+- Grammatik: the 🧩 test icon no longer shows a ▶ – a running test is a small orange dot, your best score a small green badge; the icon now always sits at the right end of the topic’s title line (it used to drop onto its own line for long topic names)
+
 ## 1.45.0 — 2026-10-15
 - Grammatik Satzbau-Tests: 30 sentences for every topic (380 new, 1140 in all) – six completely fresh tests per topic before a sentence comes back
 
