@@ -16,7 +16,8 @@
    of a grammar topic not seen recently; saved and resumed per topic, best
    score per topic; Satzbau.topicButton(id, title) is the button for the page. */
 (function(){
-const LV={A1:["A1","einfache Sätze, Fragen, Modalverben"],A2:["A2","Perfekt, weil / dass / wenn, Dativ und Akkusativ"],B1:["B1","Relativsätze, zu + Infinitiv, Passiv, Konjunktiv II"]};
+const LV={A1:["A1","einfache Sätze, Fragen, Modalverben"],A2:["A2","Perfekt, weil / dass / wenn, Dativ und Akkusativ"],B1:["B1","Relativsätze, zu + Infinitiv, Passiv, Konjunktiv II"],
+ "A1+":["A1+","lange Sätze: und / aber / denn, Zeit + Ort + Objekt"],"A2+":["A2+","lange Sätze im Text: Perfekt, weil / dass / wenn, deshalb"],"B1+":["B1+","lange Sätze im Text: Relativsatz, zu + Infinitiv, Passiv, Konjunktiv II"]};
 const N=10,st=k=>{try{return JSON.parse(localStorage.getItem("dl:sb:"+k))}catch(e){return null}},sv=(k,v)=>{try{localStorage.setItem("dl:sb:"+k,JSON.stringify(v))}catch(e){}};
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const num=x=>String(x).replace(".",",");
@@ -24,12 +25,12 @@ const key=s=>s.replace(/^,\s*/,"").toLowerCase();
 const shell=on=>{try{if(parent!==window)parent.postMessage({dlCards:on},location.origin)}catch(e){}};
 
 /* one sentence: its blocks, end mark, every correct order */
-function parse(row){const [s0,en,rule,alt]=row,end=(s0.match(/[.?!]$/)||["."])[0];
+function parse(row){const [s0,en,rule,alt,ctx]=row,end=(s0.match(/[.?!]$/)||["."])[0];
  const raw=s0.replace(/[.?!]$/,"").split("|"),blocks=raw.map(b=>b.replace(/^\^/,""));
  /* "^": this block may also stand first – then verb, subject, the rest */
  const front=raw.map((b,i)=>b[0]==="^"&&i>1?[blocks[i],blocks[1],blocks[0]].concat(blocks.filter((_,j)=>j>1&&j!==i)):null).filter(Boolean);
  const sols=[blocks].concat(front,(alt||[]).map(a=>a.replace(/[.?!]$/,"").split("|")));
- return {blocks,end,en,rule,sols:sols.map(b=>b.map(key)),show:sols.map(b=>sentence(b,end))}}
+ return {blocks,end,en,rule,ctx:ctx||null,sols:sols.map(b=>b.map(key)),show:sols.map(b=>sentence(b,end))}}
 function sentence(b,end){const t=b.map((x,i)=>i&&!/^,/.test(x)?" "+x:x).join("");return t[0].toUpperCase()+t.slice(1)+end}
 
 /* ---- the game ---- */
@@ -69,11 +70,15 @@ function resume(){const R=runGet();if(!R)return;G=Object.assign({},R,{items:item
  if(!G.items[G.i]){sv("run",null);open(R.lv);return}G.tiles=tilesOf(G.items[G.i]);G.t0=null;G.ms=G.ms||0;G.times=G.times||[];if(G.sStart==null)G.sStart=G.ms;show();draw()}
 /* ---- topic tests: 5 sentences of one grammar topic ---- */
 const TN=5;
-function startTopic(id,title){const all=(SBT[id]||[]).map((_,i)=>i);let seen=st("tseen:"+id)||[];
- /* all sentences once, then new mixes – never the five of the test before */
- let pool=all.filter(i=>!seen.includes(i));if(pool.length<TN){const recent=seen.slice(-TN);pool=all.filter(i=>!recent.includes(i));seen=recent}if(pool.length<TN)pool=all.slice();
+/* n sentences of one group: all once, then new mixes – never those of the test before */
+function pickGroup(id,key,idx,n){if(!idx.length||!n)return[];let seen=st(key)||[];
+ let pool=idx.filter(i=>!seen.includes(i));if(pool.length<n){const recent=seen.slice(-n);pool=idx.filter(i=>!recent.includes(i));seen=recent}if(pool.length<n)pool=idx.slice();
  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
- const order=pool.slice(0,TN);sv("tseen:"+id,seen.concat(order).slice(-all.length));
+ const take=pool.slice(0,n);sv(key,seen.concat(take).slice(-idx.length));return take}
+function startTopic(id,title){const rows=SBT[id]||[],longI=rows.map((r,i)=>r[4]?i:-1).filter(i=>i>=0),shortI=rows.map((r,i)=>r[4]?-1:i).filter(i=>i>=0);
+ /* a test: 2 long sentences in a paragraph, 3 short ones – in mixed order */
+ const nl=Math.min(2,longI.length),order=pickGroup(id,"tseen:"+id+":lang",longI,nl).concat(pickGroup(id,"tseen:"+id,shortI,TN-nl));
+ for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}
  G={topic:id,title,lv:"",set:0,order,items:itemsOf("",0,order,id),i:0,score:0,res:[],streak:0,bestStreak:0,ms:0,t0:null,times:[]};deal();show();draw()}
 function topic(id,title){const R=st("trun:"+id);if(R&&R.order){G=Object.assign({},R,{items:itemsOf("",0,R.order,id)});
   if(G.items[G.i]){G.tiles=tilesOf(G.items[G.i]);G.t0=null;G.ms=G.ms||0;G.times=G.times||[];if(G.sStart==null)G.sStart=G.ms;show();draw();return}}
@@ -116,6 +121,7 @@ function draw(){if(G.i>=G.items.length){drawEnd();return}const S=cur(),T=id=>G.t
  ov.innerHTML=`<div class="sb-top">${G.topic?"":`<button type="button" class="sb-x" data-go="menu" aria-label="Übersicht" title="Übersicht – das Spiel bleibt gespeichert">☰</button>`}<b>${G.topic?"🧩 "+esc(G.title):`${G.lv} · Set ${G.set+1}`}</b><span class="sb-clock" title="Zeit – läuft nur, während du einen Satz baust">⏱ <b>${fmt(el())}</b></span><span class="sb-sc">${num(G.score)} Punkte${G.streak>1?` · <span class="sb-fire">🔥 ${G.streak}</span>`:""}</span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
  <div class="sb-body">${dots()}
   <div class="sb-n">Satz ${G.i+1} von ${G.items.length}</div>
+  ${S.ctx?`<div class="sb-lab">Ergänze den fehlenden Satz im Text</div><div class="sb-para">${esc(S.ctx[0])} <span class="sb-gap${G.done?" filled":""}">${G.done?esc(built()):"_____ ? _____"}</span> ${esc(S.ctx[1])}</div>`:""}
   <div class="sb-en">„${esc(S.en)}“</div>
   <div class="sb-lab">Dein Satz</div>
   <div class="sb-ans${G.done?" done":""}" data-zone="ans">${G.ans.map((id,j)=>tile(id,"ans",j)).join("")}${G.ans.length?"":`<span class="sb-ph">Tippe die Blöcke unten in der richtigen Reihenfolge an – oder zieh sie hierher.</span>`}${G.ans.length?`<span class="sb-end">${S.end}</span>`:""}</div>
@@ -171,7 +177,7 @@ function drawEnd(){if(G.topic){drawTopicEnd();return}G.over=true;const s=G.score
  const LB=lbAdd({id:Date.now()+"-"+Math.random().toString(36).slice(2,6),lv:G.lv,name:player(),s,ms,set:G.set,date:new Date().toLocaleDateString("de-DE")});
  const games=(st("games:"+G.lv)||0)+1;sv("games:"+G.lv,games);
  const msg=s>=10?"Perfekt! Alle Sätze richtig – du hast die Wortstellung im Griff.":s>=8?"Sehr gut! Nur noch kleine Lücken.":s>=6?"Gut gemacht! Schau dir die Regeln bei den Fehlern noch einmal an.":s>=4?"Ein guter Anfang – übe die Regeln unten und spiel noch eine Runde.":"Nicht aufgeben! Lies die Regeln unten und versuch es gleich noch einmal.";
- const nextLv={A1:"A2",A2:"B1"}[G.lv];
+ const nextLv={A1:"A2",A2:"B1","A1+":"A2+","A2+":"B1+"}[G.lv];
  ov.innerHTML=`<div class="sb-top"><b>🧩 ${G.lv} · Set ${G.set+1} geschafft</b><span></span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
  <div class="sb-body sb-endb">${s>=10?`<div class="sb-confetti" aria-hidden="true">${[..."🎉✨🎊⭐".repeat(6)].map((c,i)=>`<i style="left:${(i*37)%100}%;animation-delay:${(i%8)*.12}s">${c}</i>`).join("")}</div>`:""}
   <div class="sb-stars">${"★".repeat(k)}<i>${"★".repeat(3-k)}</i></div>
@@ -291,7 +297,10 @@ body.sb-on{overflow:hidden}
 .sb-body{flex:1;overflow:auto;padding:14px 16px 30px;max-width:760px;width:100%;margin:0 auto;position:relative}
 .sb-dots{display:flex;gap:5px;justify-content:center;margin:2px 0 10px}.sb-dots i{width:22px;height:8px;border-radius:4px;background:var(--line)}
 .sb-dots i.now{background:var(--b1)}.sb-dots i.ok{background:#1b8a4c}.sb-dots i.half{background:#d99a00}.sb-dots i.no{background:#c62f45}
-.sb-n{font-size:13px;color:var(--muted);text-align:center}.sb-en{font-size:18px;text-align:center;margin:4px 0 14px;font-style:italic}
+.sb-n{font-size:13px;color:var(--muted);text-align:center}
+.sb-para{font-size:16.5px;line-height:1.6;padding:12px 14px;border-radius:12px;background:var(--surface);border-left:4px solid var(--b1);margin-bottom:6px}
+.sb-gap{display:inline;padding:1px 6px;border-radius:6px;background:color-mix(in srgb,var(--b1) 16%,var(--paper));color:var(--b1);font-weight:700;letter-spacing:.05em}
+.sb-gap.filled{letter-spacing:normal;background:color-mix(in srgb,#1b8a4c 16%,var(--paper));color:var(--ink)}.sb-en{font-size:18px;text-align:center;margin:4px 0 14px;font-style:italic}
 .sb-lab{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:10px 0 4px}
 .sb-ans,.sb-pool{display:flex;flex-wrap:wrap;gap:8px;align-items:center;min-height:62px;padding:10px;border-radius:14px}
 .sb-ans{border:2px dashed var(--b1);background:color-mix(in srgb,var(--b1) 6%,var(--paper))}.sb-ans.done{border-style:solid}

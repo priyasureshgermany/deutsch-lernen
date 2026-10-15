@@ -1,6 +1,7 @@
 // Checks satzbau-data.js and satzbau-themen.js:  node tools/check-satzbau.mjs
 // Every sentence has an end mark, English and a rule; every other correct
-// order uses exactly the same blocks; each level has 20 sets of 10, every
+// order uses exactly the same blocks; each level has 20 sets of 10 (the long
+// levels A1+, A2+, B1+: 10; A2+ and B1+ with a paragraph per sentence), every
 // grammar topic 10 sentences (a test takes 5); no sentence appears twice.
 import { readFileSync } from "node:fs";
 const window = {};
@@ -8,6 +9,7 @@ for (const f of ["../satzbau-data.js", "../satzbau-themen.js", "../grammatik-dat
   new Function("window", readFileSync(new URL(f, import.meta.url), "utf8"))(window);
 let bad = 0;
 const fail = (w, m) => { bad++; console.log("✗ " + w + ": " + m); };
+const ctxOk = c => Array.isArray(c) && c.length === 2 && c.every(x => typeof x === "string" && /[.!?]$/.test(x.trim()));
 const blocks = s => s.replace(/[.?!]$/, "").split("|").map(b => b.replace(/^\^/, "").replace(/^,\s*/, "").toLowerCase());
 function rows(name, list, ruleOk) {
   const seen = new Set();
@@ -23,7 +25,9 @@ function rows(name, list, ruleOk) {
   });
 }
 for (const [lv, sets] of Object.entries(window.SB)) {
-  if (sets.length !== 20) fail(lv, "needs 20 sets, has " + sets.length);
+  const want = lv.endsWith("+") ? 10 : 20;
+  if (sets.length !== want) fail(lv, "needs " + want + " sets, has " + sets.length);
+  if (lv === "A2+" || lv === "B1+") sets.flat().forEach((r, i) => { if (!ctxOk(r[4])) fail(lv + " #" + (i + 1), "needs a paragraph [before, after]"); });
   sets.forEach((set, k) => { if (set.length !== 10) fail(lv + " set " + (k + 1), "needs 10 sentences, has " + set.length); });
   rows(lv, sets.flat(), r => !!window.SBR[r]);
   console.log(`  ${lv}: ${sets.flat().length} sentences`);
@@ -33,6 +37,9 @@ for (const t of window.GD) {
   const list = window.SBT[t.id];
   if (!list) { fail(t.de, "no Satzbau-Test sentences"); continue; }
   if (list.length < 10) fail(t.de, "needs 10 sentences for two tests, has " + list.length);
+  const long = list.filter(r => r[4]);
+  if (long.length < 10) fail(t.de, "needs 10 paragraph tasks, has " + long.length);
+  long.forEach(r => { if (!ctxOk(r[4])) fail(t.de + " / " + r[0], "paragraph needs [before, after] sentences"); });
   rows("Test " + t.id, list, r => typeof r === "string" && r.length > 3); n += list.length;
 }
 for (const id in window.SBT) if (!window.GD.some(t => t.id === id)) fail("Tests", "no grammar topic " + id);
