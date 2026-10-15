@@ -1,6 +1,6 @@
 // Checks satzbau-data.js and satzbau-themen.js:  node tools/check-satzbau.mjs
 // Every sentence has an end mark, English and a rule; every other correct
-// order uses exactly the same blocks; each level has 10 sets of 10, every
+// order uses exactly the same blocks; each level has 20 sets of 10, every
 // grammar topic 10 sentences (a test takes 5); no sentence appears twice.
 import { readFileSync } from "node:fs";
 const window = {};
@@ -23,7 +23,7 @@ function rows(name, list, ruleOk) {
   });
 }
 for (const [lv, sets] of Object.entries(window.SB)) {
-  if (sets.length !== 10) fail(lv, "needs 10 sets, has " + sets.length);
+  if (sets.length !== 20) fail(lv, "needs 20 sets, has " + sets.length);
   sets.forEach((set, k) => { if (set.length !== 10) fail(lv + " set " + (k + 1), "needs 10 sentences, has " + set.length); });
   rows(lv, sets.flat(), r => !!window.SBR[r]);
   console.log(`  ${lv}: ${sets.flat().length} sentences`);
