@@ -1,5 +1,8 @@
 # Releases
 
+## 1.45.2 — 2026-10-15
+- Fix: the Satzbau game no longer freezes after switching to another app. If the phone cancelled a touch (app switch, home gesture, a call) while a finger was on a block, a ghost block stayed on screen and the next tap – often on ✕ – was swallowed; now a cancelled touch simply ends the drag, and every tap works right away
+
 ## 1.45.1 — 2026-10-15
 - Grammatik: the 🧩 test icon no longer shows a ▶ – a running test is a small orange dot, your best score a small green badge; the icon now always sits at the right end of the topic’s title line (it used to drop onto its own line for long topic names)
 
