@@ -86,7 +86,7 @@ function topicButton(id,title){if(!window.SBT||!SBT[id])return"";const R=st("tru
 function refreshButtons(){document.querySelectorAll("[data-sbtopic]").forEach(b=>{b.outerHTML=topicButton(b.dataset.sbtopic,b.dataset.sbtitle)})}
 function show(){try{window.Hilfe&&Hilfe.end&&Hilfe.end()}catch(e){}mount();shell(true);document.body.classList.add("sb-on")}
 function open(lv){lv=lv||st("lv")||"A1";sv("lv",lv);G={menu:true,lv};show();drawMenu()}
-function close(){halt();save();if(drag&&drag.ghost)drag.ghost.remove();drag=null;if(ov)ov.hidden=true;shell(false);document.body.classList.remove("sb-on");try{speechSynthesis.cancel()}catch(e){}G=null;
+function close(){halt();save();endDrag();if(ov)ov.hidden=true;shell(false);document.body.classList.remove("sb-on");try{speechSynthesis.cancel()}catch(e){}G=null;
  const c=document.querySelector(".sb-card");if(c)c.outerHTML=card();refreshButtons()}
 function mount(){if(ov){ov.hidden=false;return}ov=document.createElement("div");ov.className="sb-ov";ov.setAttribute("role","dialog");ov.setAttribute("aria-label","Satzbau-Spiel");document.body.appendChild(ov);
  ov.addEventListener("click",onClick);ov.addEventListener("pointerdown",onDown)}
@@ -187,8 +187,16 @@ function drawEnd(){if(G.topic){drawTopicEnd();return}G.over=true;const s=G.score
  </div>`}
 
 /* ---- tap and drag ---- */
-let drag=null,moved=false;
-function onClick(e){if(moved){moved=false;return}const b=e.target.closest("button");if(!b||!G)return;
+/* drag: one block on the move. A touch the phone cancels (switching apps, the home
+   gesture, a call) ends it without moving anything – otherwise the next tap would
+   be taken as the end of that old drag and swallowed (✕ "did nothing"). */
+let drag=null,moved=false,movedAt=0;
+function endDrag(){document.removeEventListener("pointermove",onMove);document.removeEventListener("pointerup",onUp);document.removeEventListener("pointercancel",endDrag);
+ if(drag){if(drag.ghost)drag.ghost.remove();if(drag.el)drag.el.classList.remove("sb-lift")}
+ if(ov)ov.querySelectorAll("[data-zone].over").forEach(x=>x.classList.remove("over"));drag=null}
+addEventListener("blur",endDrag);addEventListener("pagehide",endDrag);
+document.addEventListener("visibilitychange",()=>{if(document.hidden)endDrag()});
+function onClick(e){if(moved){moved=false;if(Date.now()-movedAt<400)return}const b=e.target.closest("button");if(!b||!G)return;
  if(b.dataset.lv){newGame(b.dataset.lv);return}
  if(b.dataset.menu){G={menu:true,lv:b.dataset.menu};sv("lv",G.lv);drawMenu();return}
  if(b.dataset.set!=null){const k=+b.dataset.set,R=runGet(),lv=G.lv;if(R&&R.lv===lv&&R.set===k){resume();return}newGame(lv,k);return}
@@ -208,17 +216,17 @@ function onClick(e){if(moved){moved=false;return}const b=e.target.closest("butto
  if(b.classList.contains("sb-tile")&&!G.done){const id=+b.dataset.id;
   if(b.dataset.where==="pool"){G.pool=G.pool.filter(x=>x!==id);G.ans.push(id)}else{G.ans=G.ans.filter(x=>x!==id);G.pool.push(id)}
   G.marks=null;if(!(G.tries===1))G.msg="";draw()}}
-function onDown(e){const b=e.target.closest(".sb-tile");if(!b||!G||G.menu||G.done)return;
- drag={id:+b.dataset.id,x:e.clientX,y:e.clientY,el:b,ghost:null};moved=false;
- document.addEventListener("pointermove",onMove);document.addEventListener("pointerup",onUp,{once:true})}
-function onMove(e){if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;
+function onDown(e){if(drag)endDrag();const b=e.target.closest(".sb-tile");if(!b||!G||G.menu||G.done)return;
+ drag={id:+b.dataset.id,pid:e.pointerId,x:e.clientX,y:e.clientY,el:b,ghost:null};moved=false;
+ document.addEventListener("pointermove",onMove);document.addEventListener("pointerup",onUp);document.addEventListener("pointercancel",endDrag)}
+function onMove(e){if(!drag||e.pointerId!==drag.pid)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;
  if(!drag.ghost){if(Math.hypot(dx,dy)<8)return;const r=drag.el.getBoundingClientRect();drag.ghost=drag.el.cloneNode(true);drag.ghost.classList.add("sb-ghost");
   Object.assign(drag.ghost.style,{width:r.width+"px",left:r.left+"px",top:r.top+"px"});drag.ox=e.clientX-r.left;drag.oy=e.clientY-r.top;document.body.appendChild(drag.ghost);drag.el.classList.add("sb-lift")}
  e.preventDefault();drag.ghost.style.left=(e.clientX-drag.ox)+"px";drag.ghost.style.top=(e.clientY-drag.oy)+"px";
  const z=zoneAt(e.clientX,e.clientY);ov.querySelectorAll("[data-zone]").forEach(x=>x.classList.toggle("over",x===z))}
 function zoneAt(x,y){const el=document.elementFromPoint(x,y);return el&&el.closest?el.closest("[data-zone]"):null}
-function onUp(e){document.removeEventListener("pointermove",onMove);const d=drag;drag=null;if(!d||!d.ghost)return;
- moved=true;setTimeout(()=>{moved=false},50);d.ghost.remove();
+function onUp(e){const d=drag;if(!d||e.pointerId!==d.pid)return;const had=!!d.ghost;endDrag();if(!had||!G||G.done)return;
+ moved=true;movedAt=Date.now();setTimeout(()=>{moved=false},50);
  const z=zoneAt(e.clientX,e.clientY),id=d.id;G.ans=G.ans.filter(x=>x!==id);G.pool=G.pool.filter(x=>x!==id);
  if(z&&z.dataset.zone==="ans"){const tiles=[...z.querySelectorAll(".sb-tile")].filter(t=>+t.dataset.id!==id);let at=tiles.length;
   for(let i=0;i<tiles.length;i++){const r=tiles[i].getBoundingClientRect();if(e.clientY<r.top||(e.clientY<=r.bottom&&e.clientX<r.left+r.width/2)){at=i;break}}
