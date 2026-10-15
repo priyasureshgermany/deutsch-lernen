@@ -1,5 +1,11 @@
 # Releases
 
+## 1.48.0 — 2026-10-16
+- Satzbau-Spiel: ‹ › buttons (and the dots, and the arrow keys) move between the sentences of a round – a finished sentence shows its result and explanation again, an unfinished one can be skipped and built later; „Weiter“ goes to the next open sentence, the result comes when all ten are done
+- After two wrong tries your answer stays in the box (green = right place, red = wrong place) and the right solution is shown below it as blocks
+- Every sentence now gets its own explanation „Warum diese Reihenfolge?“ – clause by clause: position 1, the verb, the end of the sentence (Satzklammer), subordinate and relative clauses, nicht, the middle field – plus a 💡 tip for the rule (German with English); the tip also appears after the first wrong try and with 💡 Tipp
+- Works the same in the Grammatik topic tests
+
 ## 1.47.0 — 2026-10-15
 - Satzbau-Spiel: longer sentences in every level – A1 at least 7 words, A2 at least 10, B1 at least 13 (all 600 sentences of the 20 sets per level rewritten); A2+ and B1+ follow the same minimums
 - Same grammar rules and the same mix per set as before; sentences still accept their other correct word orders, and the long-level sentences still fit their paragraph
