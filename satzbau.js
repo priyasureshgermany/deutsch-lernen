@@ -34,7 +34,7 @@ function sentence(b,end){const t=b.map((x,i)=>i&&!/^,/.test(x)?" "+x:x).join("")
 
 /* ---- the game ---- */
 let G=null,ov=null;
-const SETS=10,runGet=()=>st("run"),setBest=(lv,k)=>st("set:"+lv+":"+k);
+const runGet=()=>st("run"),setBest=(lv,k)=>st("set:"+lv+":"+k);
 const itemsOf=(lv,set,order,topic)=>order.map(i=>parse(topic?SBT[topic][i]:SB[lv][set][i]));
 const runKey=g=>g&&g.topic?"trun:"+g.topic:"run";
 const tilesOf=S=>S.blocks.map((t,id)=>({id,t:t.replace(/^,\s*/,""),k:key(t)}));
@@ -78,8 +78,11 @@ function startTopic(id,title){const all=(SBT[id]||[]).map((_,i)=>i);let seen=st(
 function topic(id,title){const R=st("trun:"+id);if(R&&R.order){G=Object.assign({},R,{items:itemsOf("",0,R.order,id)});
   if(G.items[G.i]){G.tiles=tilesOf(G.items[G.i]);G.t0=null;G.ms=G.ms||0;G.times=G.times||[];if(G.sStart==null)G.sStart=G.ms;show();draw();return}}
  startTopic(id,title)}
+/* a small icon next to the topic name; the badge: ▶ = a test is running, a number = the best result.
+    Long press / hover explains it (hilfe.js, the page's help steps) */
 function topicButton(id,title){if(!window.SBT||!SBT[id])return"";const R=st("trun:"+id),b=st("tbest:"+id);
- return `<button type="button" class="sb-tbtn" data-sbtopic="${esc(id)}" data-sbtitle="${esc(title)}"><span class="sb-tico">🧩</span><span><b>${R?"▶ Test fortsetzen":"Satzbau-Test"}</b><small>${R?`Satz ${R.i+1} von ${R.order.length} · ${num(R.score)} Punkte`:`5 Sätze zu „${esc(title)}“ bauen${b!=null?` · Bestes: ${num(b)} / ${TN}`:""}`}</small></span></button>`}
+ const say=R?`Satzbau-Test fortsetzen – Satz ${R.i+1} von ${R.order.length}, ${num(R.score)} Punkte`:`Satzbau-Test: 5 Sätze zu „${title}“ bauen${b!=null?` – bestes Ergebnis ${num(b)} von ${TN}`:""}`;
+ return `<button type="button" class="sb-ticon${R?" run":""}" data-sbtopic="${esc(id)}" data-sbtitle="${esc(title)}" aria-label="${esc(say)}">🧩${R?`<i class="sb-tbadge">▶</i>`:b!=null?`<i class="sb-tbadge">${num(b)}/${TN}</i>`:""}</button>`}
 function refreshButtons(){document.querySelectorAll("[data-sbtopic]").forEach(b=>{b.outerHTML=topicButton(b.dataset.sbtopic,b.dataset.sbtitle)})}
 function show(){try{window.Hilfe&&Hilfe.end&&Hilfe.end()}catch(e){}mount();shell(true);document.body.classList.add("sb-on")}
 function open(lv){lv=lv||st("lv")||"A1";sv("lv",lv);G={menu:true,lv};show();drawMenu()}
@@ -97,7 +100,7 @@ function drawMenu(){const lv=G.lv,R=runGet(),played=SB[lv].filter((_,k)=>setBest
   <div class="sb-player">Spieler: <b>${esc(player())}</b> <button type="button" class="sb-link" data-go="name">✎ Name ändern</button></div>
   ${R?`<div class="sb-resume"><div><b>Laufendes Spiel</b><small>${R.lv} · Set ${R.set+1} · Satz ${R.i+1} von ${R.order.length} · ${num(R.score)} Punkte</small></div><button type="button" class="sb-btn main" data-go="resume">▶ Weiterspielen</button></div>`:""}
   <div class="sb-row"><button type="button" class="sb-btn${R?"":" main"}" data-go="new">✨ Neues Spiel · ${lv}</button></div>
-  <p class="sb-note">Ein neues Spiel nimmt immer ein Set, das du noch nicht gespielt hast. ${played} von ${SETS} Sets gespielt${played===SETS?" – jetzt kommt das Set mit deinem schwächsten Ergebnis.":"."}</p>
+  <p class="sb-note">Ein neues Spiel nimmt immer ein Set, das du noch nicht gespielt hast. ${played} von ${SB[lv].length} Sets gespielt${played===SB[lv].length?" – jetzt kommt das Set mit deinem schwächsten Ergebnis.":"."}</p>
   <div class="sb-sets">${SB[lv].map((_,k)=>{const b=setBest(lv,k),run=R&&R.lv===lv&&R.set===k;
    return `<button type="button" class="sb-set${b!=null?" done":""}${run?" run":""}" data-set="${k}"><b>Set ${k+1}</b><span>${run?"▶ läuft":b==null?"neu":`<i>${"★".repeat(stars(b))}${"☆".repeat(3-stars(b))}</i> ${num(b)}/10${st("settime:"+lv+":"+k)!=null?` · ${fmt(st("settime:"+lv+":"+k))}`:""}`}</span></button>`}).join("")}</div>
   <h3 class="sb-h">🏆 Bestenliste ${lv}</h3>
@@ -176,7 +179,7 @@ function drawEnd(){if(G.topic){drawTopicEnd();return}G.over=true;const s=G.score
   <div class="sb-time">⏱ ${fmt(ms)}${tOld!=null&&s>=setOld&&ms<tOld?` · <b>schneller als dein bestes Set ${G.set+1} (${fmt(tOld)})</b>`:""}</div>
   <div class="sb-place">🏆 Platz <b>${LB.place}</b> von ${LB.of} in der Bestenliste ${G.lv}${LB.place===1?" – Spitze!":""}</div>
   <p class="sb-lead">${msg}</p>
-  <p class="sb-sub">${isBest&&bestOld!=null?"🏆 Neue Bestleistung! ":""}Bestleistung ${G.lv}: ${num(Math.max(s,bestOld||0))} / ${N}${G.bestStreak>=3?` · 🔥 ${G.bestStreak} richtig in Folge`:""} · ${played} von ${SETS} Sets gespielt${setOld!=null&&s>setOld?` · Set ${G.set+1}: besser als vorher (${num(setOld)})`:""}</p>
+  <p class="sb-sub">${isBest&&bestOld!=null?"🏆 Neue Bestleistung! ":""}Bestleistung ${G.lv}: ${num(Math.max(s,bestOld||0))} / ${N}${G.bestStreak>=3?` · 🔥 ${G.bestStreak} richtig in Folge`:""} · ${played} von ${SB[G.lv].length} Sets gespielt${setOld!=null&&s>setOld?` · Set ${G.set+1}: besser als vorher (${num(setOld)})`:""}</p>
   ${dots()}
   <details class="sb-lbbox" open><summary>🏆 Bestenliste ${G.lv} · Top 5</summary>${lbTable(G.lv,LB.id,5)}</details>
   <ol class="sb-list">${G.items.map((S,i)=>{const r=G.res[i];return `<li class="${r===1?"ok":r?"half":"no"}"><span>${r===1?"✓":r?"½":"✗"}</span><div><b>${esc(S.show[0])}</b><small>${esc(S.en)}${G.times&&G.times[i]!=null?` · ⏱ ${Math.max(1,Math.round(G.times[i]/1000))} s`:""}</small>${r===1?"":`<em>📏 ${esc((SBR[S.rule]||[""])[0])}</em>`}</div></li>`}).join("")}</ol>
@@ -224,9 +227,9 @@ function onUp(e){document.removeEventListener("pointermove",onMove);const d=drag
 
 /* ---- the start card on a page ---- */
 function card(){const R=runGet(),n=l=>SB[l].filter((_,k)=>setBest(l,k)!=null).length;
- return `<section class="sb-card"><div class="sb-ch"><span class="sb-ico">🧩</span><div><b>Satzbau-Spiel</b><small>Bring die Blöcke in die richtige Reihenfolge – je Level 10 Sets mit 10 Sätzen, 1 Punkt pro Satz. So lernst du die deutsche Wortstellung.</small></div></div>
+ return `<section class="sb-card"><div class="sb-ch"><span class="sb-ico">🧩</span><div><b>Satzbau-Spiel</b><small>Bring die Blöcke in die richtige Reihenfolge – je Level 20 Sets mit 10 Sätzen, 1 Punkt pro Satz. So lernst du die deutsche Wortstellung.</small></div></div>
   ${R?`<button type="button" class="sb-go" data-sbresume="1">▶ Weiterspielen <small>${R.lv} · Set ${R.set+1} · Satz ${R.i+1} von ${R.order.length}</small></button>`:""}
-  <div class="sb-lvls">${Object.keys(LV).map(l=>`<button type="button" class="sb-lv" data-sblv="${l}"><b>${LV[l][0]}</b><span>${LV[l][1]}</span><small>${n(l)} von ${SETS} Sets</small></button>`).join("")}</div></section>`}
+  <div class="sb-lvls">${Object.keys(LV).map(l=>`<button type="button" class="sb-lv" data-sblv="${l}"><b>${LV[l][0]}</b><span>${LV[l][1]}</span><small>${n(l)} von ${SB[l].length} Sets</small></button>`).join("")}</div></section>`}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-sblv]");if(b)open(b.dataset.sblv);if(e.target.closest("[data-sbresume]"))resume();
  const t=e.target.closest("[data-sbtopic]");if(t)topic(t.dataset.sbtopic,t.dataset.sbtitle)});
 addEventListener("keydown",e=>{if(e.key==="Escape"&&G)close()});
@@ -243,8 +246,9 @@ const css=document.createElement("style");css.textContent=`
 .sb-lv b{display:block;font-size:18px;color:var(--b1)}.sb-lv span{display:block;font-size:13px;line-height:1.3}.sb-lv small{display:block;margin-top:4px;font-size:12px;color:var(--muted)}
 @media (max-width:560px){.sb-lv span{display:none}.sb-lv{text-align:center;padding:8px 6px}.sb-ch small{font-size:13px}.sb-ico{font-size:28px}}
 body.sb-on{overflow:hidden}
-.sb-tbtn{display:flex;gap:10px;align-items:center;margin-top:10px;font:inherit;text-align:left;padding:9px 14px;border-radius:14px;border:1.5px solid color-mix(in srgb,var(--b1) 45%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,var(--b1) 14%,var(--paper)),color-mix(in srgb,var(--a1) 14%,var(--paper)));color:var(--ink);cursor:pointer;max-width:100%}
-.sb-tbtn .sb-tico{font-size:26px}.sb-tbtn b{display:block;color:var(--b1)}.sb-tbtn small{display:block;color:var(--muted);font-size:13px}
+.sb-ticon{position:relative;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;margin-left:6px;vertical-align:middle;font-size:18px;line-height:1;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--b1) 45%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,var(--b1) 16%,var(--paper)),color-mix(in srgb,var(--a1) 16%,var(--paper)));cursor:pointer;padding:0;-webkit-touch-callout:none;user-select:none}
+.sb-ticon.run{border-color:var(--b1);box-shadow:0 0 0 2px color-mix(in srgb,var(--b1) 30%,transparent)}
+.sb-tbadge{position:absolute;right:-8px;bottom:-6px;font-style:normal;font-size:10px;font-weight:800;padding:1px 4px;border-radius:999px;background:var(--b1);color:#fff;white-space:nowrap}
 .sb-go{display:block;width:100%;margin-top:12px;font:inherit;font-weight:800;font-size:17px;padding:11px 14px;border:none;border-radius:12px;background:var(--b1);color:#fff;cursor:pointer;text-align:left}
 .sb-go small{display:block;font-weight:400;font-size:13px;opacity:.9}
 .sb-tabs{display:flex;gap:6px;justify-content:center}.sb-tabs button{font:inherit;font-weight:800;font-size:17px;padding:7px 20px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}

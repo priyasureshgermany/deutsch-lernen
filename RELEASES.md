@@ -1,5 +1,9 @@
 # Releases
 
+## 1.44.0 — 2026-10-15
+- Satzbau-Spiel: 20 sets per level instead of 10 – 300 new sentences (600 in all), so „Neues Spiel“ gives fresh sets for much longer; a round stays 10 sentences
+- Grammatik: the Satzbau-Test is now a small 🧩 icon next to the topic name – the badge shows ▶ while a test is running or your best score; press and hold (or rest the mouse on it) to see what it does
+
 ## 1.43.1 — 2026-10-15
 - Fix: the Satzbau game and the grammar tests no longer freeze. Closing (✕ or Fertig) really closes them – before, the game stayed on screen and blocked every tap; a finished test no longer comes back as „Test fortsetzen“
 - Switching tabs or using the back button during a game, a grammar test, a Modelltest or the cards gives the app its bars back; coming back reopens the game exactly where you were

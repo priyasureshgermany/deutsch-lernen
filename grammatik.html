@@ -219,7 +219,7 @@ topicsEl.onclick=e=>{const b=e.target.closest("[data-t]");if(!b)return;topic=GD.
 
 function drawTopic(){
  open=null;closePop();stopSay();
- introEl.innerHTML=`<b>${esc(topic.de)}</b> · <span class="muted">${esc(topic.en)}</span><br>${esc(topic.intro)}`+(!SAETZE&&window.Satzbau?`<div>${Satzbau.topicButton(topic.id,topic.de)}</div>`:"");
+ introEl.innerHTML=`<b>${esc(topic.de)}</b> · <span class="muted">${esc(topic.en)}</span>${!SAETZE&&window.Satzbau?Satzbau.topicButton(topic.id,topic.de):""}<br>${esc(topic.intro)}`;
  listEl.innerHTML=topic.groups.map((g,gi)=>`<h3>${esc(g.g)}${g.gen?` <span class="gen">· ${esc(g.gen)}</span>`:""}</h3>`+g.items.map((it,ii)=>`<button type="button" class="it" data-k="${gi}-${ii}" aria-expanded="false"><span class="itl"><b>${esc(it.w)}</b><small>${esc(it.tag)}</small></span>${it.en?`<i class="ien" lang="en">${esc(it.en)}</i>`:""}</button><div class="inl" data-for="${gi}-${ii}" hidden></div>`).join("")).join("");
  detailEl.innerHTML=`<div class="ph">${SAETZE?"Wähle links eine Gruppe – dann erscheinen hier die Sätze.":"Wähle links ein Wort – dann erscheinen hier die Beispielsätze."}</div>`;
  drawTips();drawSheet();filter();
@@ -376,6 +376,7 @@ document.querySelector(".bar").prepend(K.button);
 if(window.Hilfe)Hilfe.setup({tab:SAETZE?"saetze":"grammatik",tours:[{id:"page",steps:[
  {sel:".fc-open",t:"Karten",de:"Eine Aufgabe pro Bildschirm – gut fürs Handy. ‹ › blättern, zweimal schnell tippen = erste bzw. letzte.",en:"Cards: one per screen; ‹ › to move."},
  {sel:"#topics button",t:SAETZE?"Situationen":"Themen",de:SAETZE?"Begrüßen, Danken, Einkaufen, Arbeit … – tippe eine an.":"Zeitformen, Fälle, Präpositionen, der/die/das … – tippe eins an.",en:"Tap one."},
+ {sel:".sb-ticon",t:"🧩 Satzbau-Test",de:"Bau 5 Sätze zu diesem Thema – mit Zeit, Tipp und Punkten. ▶ am Symbol = dein Test läuft noch, eine Zahl = dein bestes Ergebnis.",en:"Build 5 sentences on this topic. ▶ = test in progress, a number = your best score."},
  {sel:".gtip>summary",t:"Tipps & typische Fehler",de:"Kurze Regeln mit falsch → richtig; tippen zum Auf- und Zuklappen.",en:"Tips and typical mistakes."},
  {sel:"#list .it",t:SAETZE?"Gruppe wählen":"Wort oder Regel wählen",de:SAETZE?"Tippe eine Gruppe – rechts erscheinen die Sätze dazu.":"Tippe es an – rechts erscheinen 4–5 Beispielsätze, jeder mit einer anderen Verwendung.",en:"Tap it to see the examples.",hold:false},
  ]},{id:"card",need:".ex",steps:[
