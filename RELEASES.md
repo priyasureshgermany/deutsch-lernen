@@ -1,5 +1,9 @@
 # Releases
 
+## 1.47.0 — 2026-10-15
+- Satzbau-Spiel: longer sentences in every level – A1 at least 7 words, A2 at least 10, B1 at least 13 (all 600 sentences of the 20 sets per level rewritten); A2+ and B1+ follow the same minimums
+- Same grammar rules and the same mix per set as before; sentences still accept their other correct word orders, and the long-level sentences still fit their paragraph
+
 ## 1.46.0 — 2026-10-15
 - Satzbau-Spiel: three new levels with long sentences – A1+, A2+ and B1+, 10 sets each (300 sentences, 9–15 words, mostly two clauses with und / aber / denn / weil / dass / wenn / obwohl / Relativsatz)
 - A2+ and B1+: every sentence stands in a short paragraph – build the missing sentence from its blocks; once it is right, it appears in its place in the text
