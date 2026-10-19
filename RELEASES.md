@@ -1,5 +1,11 @@
 # Releases
 
+## 1.48.2 — 2026-10-19
+- Fix: recording in Sprechen (A1 and B1 Modelltests), above all on phones. Phones give the microphone to one user at a time – the sound recorder and the speech recognition ran together, so one of them stayed empty. On iPhone and Android the speech recognition now listens alone (your words appear live); on a computer both still work together
+- iPhone: one listening session until ■ Stopp, the last words are waited for; if Safari blocks the speech recognition (Diktierfunktion off, or the app opened from the home screen) the sound is recorded instead, with a clear hint how to switch it on – and the answer is rated by you instead of counting 0 points
+- Android: listening goes on after a pause, and repeated words („ich heiße ich heiße …“) are merged away
+- The pages in the app frame may now use the microphone (needed on iPhone)
+
 ## 1.48.1 — 2026-10-19
 - Fix: Hören in the Modelltests on phones. Android often never reports that speech has started; the app then cut the recording off after the first line (often just the question), started it again, and gave the play back („Kein Ton – nochmal tippen“) – so recordings sounded wrong and could be played without limit. Now a recording that the phone is speaking is never cut off or restarted, the whole conversation plays once per tap, and a play is given back at most once per recording (only when the device really stayed silent)
 - The same fix helps everywhere texts are read aloud with ▶ (A1/B1 practice, Alltag)

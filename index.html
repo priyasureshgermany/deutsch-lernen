@@ -216,7 +216,7 @@ nav .i{display:none}
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.48.1";
+const APP_VERSION = "1.48.2";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren", saetze: "grammatik.html?t=saetze" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -230,6 +230,8 @@ function show(m){
   if(!MODULES[m]) m = "a1";
   if(!frames[m]){
     const f = document.createElement("iframe");
+    /* the pages may use the microphone (Sprechen) – iPhones ask for it only when the frame allows it */
+    f.allow = "microphone; autoplay";
     f.src = MODULES[m];
     f.title = tabs.find(t => t.dataset.m === m).querySelector(".l").textContent;
     stage.appendChild(f);
