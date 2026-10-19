@@ -1,5 +1,9 @@
 # Releases
 
+## 1.48.1 — 2026-10-19
+- Fix: Hören in the Modelltests on phones. Android often never reports that speech has started; the app then cut the recording off after the first line (often just the question), started it again, and gave the play back („Kein Ton – nochmal tippen“) – so recordings sounded wrong and could be played without limit. Now a recording that the phone is speaking is never cut off or restarted, the whole conversation plays once per tap, and a play is given back at most once per recording (only when the device really stayed silent)
+- The same fix helps everywhere texts are read aloud with ▶ (A1/B1 practice, Alltag)
+
 ## 1.48.0 — 2026-10-16
 - Satzbau-Spiel: ‹ › buttons (and the dots, and the arrow keys) move between the sentences of a round – a finished sentence shows its result and explanation again, an unfinished one can be skipped and built later; „Weiter“ goes to the next open sentence, the result comes when all ten are done
 - After two wrong tries your answer stays in the box (green = right place, red = wrong place) and the right solution is shown below it as blocks

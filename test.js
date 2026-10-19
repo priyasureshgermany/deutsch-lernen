@@ -522,8 +522,8 @@ const EDIT=new Set();
    const plays=part.plays||1;if((run.plays[k]||0)>=plays)return;run.plays[k]=(run.plays[k]||0)+1;save();
    const txt=k.split(".").length===3?part.items[+k.split(".")[2]].audio:part.audio;
    const left=plays-run.plays[k];b.querySelector("small").textContent=left?`noch ${left}×`:"letztes Mal";if(!left)b.disabled=true;
-   /* the device did not speak at all: this play does not count */
-   play(b,txt,ok=>{if(ok||!run||!(run.plays[k]>0))return;run.plays[k]--;save();const l=plays-run.plays[k];
+   /* the device did not speak at all: this play does not count – once per recording, so the limit cannot be played around */
+   play(b,txt,ok=>{if(ok||!run||!(run.plays[k]>0))return;run.refund=run.refund||{};if(run.refund[k])return;run.refund[k]=1;run.plays[k]--;save();const l=plays-run.plays[k];
     b.disabled=false;b.querySelector("small").textContent=`Kein Ton – noch ${l}× · nochmal tippen`});return}
   if(b.dataset.sa){review.onSa(b.dataset.sa,b.dataset.id,b.dataset.v==="auto"?"auto":+b.dataset.v);return}
   if(b.dataset.rec){b.dataset.rec==="stop"?stopRec():startRec(b.dataset.rec);return}

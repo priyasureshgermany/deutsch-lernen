@@ -13,9 +13,12 @@
      are split at sentence ends, because Chrome cuts off long utterances silently.
    - Every utterance is kept referenced until it ends (Chrome otherwise collects
      it and its end event never arrives – the ▶ button would stay "playing").
-   - A sentence that does not start within 2.5 s is tried once more (Safari
-     sometimes drops a speak() right after cancel()); if it still does not start,
-     onend(false) – nothing was heard.
+   - A sentence that does not start within 2.5 s (the first one: 4.5 s – phone
+     engines wake up slowly) is tried once more (Safari sometimes drops a
+     speak() right after cancel()); if it still does not start, onend(false) –
+     nothing was heard. But if the engine reports speechSynthesis.speaking, it
+     is playing even without a "start" event (Android Chrome often sends none)
+     – then it is never cut off or restarted.
    - A sentence that started but never reports its end is given up after its
      expected time plus a margin (with an "end" event of its own, so whoever
      listens to it finishes too), and reading goes on.
@@ -46,9 +49,11 @@ function run(pieces,o){o=o||{};stop();const my=gen;
   const p=list[i],u=new SpeechSynthesisUtterance(p.text);u.lang=p.lang||"de-DE";u.rate=p.rate||1;if(p.pitch)u.pitch=p.pitch;if(p.voice)u.voice=p.voice;
   let started=false,ended=false;
   const end=()=>{if(ended||my!==gen)return;ended=true;i++;tries=0;next()};
-  u.onstart=()=>{if(my!==gen)return;started=heard=true;clearTimeout(timer);
-   /* about 13 characters a second at rate 1; allow double plus 4 s */
-   timer=setTimeout(()=>{cancel();if(!ended){try{u.dispatchEvent(new Event("end"))}catch(e){}}end()},(p.text.length/(13*(p.rate||1))*2+4)*1000)};
+  /* about 13 characters a second at rate 1; allow double plus 4 s – and longer while the engine still says it is talking */
+  const guard=()=>{const ms=(p.text.length/(13*(p.rate||1))*2+4)*1000;let ext=0;
+   const check=()=>{if(my!==gen||ended)return;if(synth.speaking&&ext++<3){timer=setTimeout(check,ms/2);return}
+    cancel();try{u.dispatchEvent(new Event("end"))}catch(e){}end()};timer=setTimeout(check,ms)};
+  u.onstart=()=>{if(my!==gen||started)return;started=heard=true;clearTimeout(timer);guard()};
   u.onend=end;
   u.onerror=e=>{if(my!==gen||ended)return;if(e&&(e.error==="interrupted"||e.error==="canceled"))return;end()};
   held.push(u);
@@ -57,8 +62,10 @@ function run(pieces,o){o=o||{};stop();const my=gen;
   const wait=Math.max(0,AFTER_STOP-(Date.now()-stoppedAt));
   if(wait)setTimeout(go,wait);else go();
   timer=setTimeout(()=>{if(started||ended||my!==gen)return;
+   /* no start event, but the engine is speaking (Android often never sends it): it is playing */
+   if(synth.speaking){started=heard=true;guard();return}
    if(tries++<1){ended=true;cancel();try{u.dispatchEvent(new Event("end"))}catch(e){}setTimeout(()=>{if(my===gen)next()},250);return}
-   ended=true;try{u.dispatchEvent(new Event("end"))}catch(e){}if(!heard){done(false);return}i++;tries=0;next()},2500+wait)}
+   ended=true;try{u.dispatchEvent(new Event("end"))}catch(e){}if(!heard){done(false);return}i++;tries=0;next()},(heard?2500:4500)+wait)}
  next()}
 window.Speak={run,stop,split};
 })();
