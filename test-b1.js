@@ -543,7 +543,7 @@ window.TESTS_B1 = [
       "model": "Sehr geehrte Damen und Herren,\nam 3. Mai habe ich bei Ihnen einen Staubsauger bestellt (Bestellnummer 45 87 12). Leider muss ich mich beschweren.\nDer Staubsauger ist gestern angekommen, aber er funktioniert nicht. Das Kabel ist kaputt, und am Gerät fehlt ein Teil.\nIch möchte gern einen neuen Staubsauger bekommen. Wenn das nicht möglich ist, möchte ich mein Geld zurück.\nBitte schicken Sie mir einen Paketschein für die Rücksendung. Ich bin auch telefonisch unter 0176 12 34 56 erreichbar.\nMit freundlichen Grüßen\nSuresh [Nachname]",
       "keys": [
        [
-        "bestellt|beschwer|schreibe|problem|reklam|bestellnummer",
+        "bestellt|gekauft|kauf|geliefert|beschwer|schreibe|problem|reklam|bestellnummer",
         "Ich habe bei Ihnen einen Staubsauger bestellt und muss mich beschweren."
        ],
        [
@@ -1396,7 +1396,7 @@ window.TESTS_B1 = [
        "Wie lange?",
        "Frage nach den Hausaufgaben"
       ],
-      "model": "Liebe Frau Meier,\nich schreibe Ihnen, weil meine Tochter Priya am Montag und Dienstag nicht in der Schule war.\nSie hatte hohes Fieber und starke Halsschmerzen. Wir waren beim Kinderarzt, und er hat gesagt, sie soll zu Hause bleiben.\nSie war zwei Tage krank. Jetzt geht es ihr besser, und ab Mittwoch kommt sie wieder in die Schule.\nKönnen Sie mir bitte sagen, welche Hausaufgaben sie nachholen muss? Dann kann sie heute Nachmittag schon anfangen.\nViele Grüße\nSuresh [Nachname]",
+      "model": "Liebe Frau Meier,\nich schreibe Ihnen, weil meine Tochter Priya am Montag und Dienstag nicht in der Schule war.\nSie hatte hohes Fieber und starke Halsschmerzen. Deshalb waren wir beim Kinderarzt, und er hat gesagt, dass sie zu Hause bleiben soll.\nSie war zwei Tage krank. Jetzt geht es ihr besser, und ab Mittwoch kommt sie wieder in die Schule.\nKönnen Sie mir bitte sagen, welche Hausaufgaben sie nachholen muss? Dann kann sie heute Nachmittag schon anfangen.\nVielen Dank für Ihr Verständnis.\nViele Grüße\nSuresh [Nachname]",
       "keys": [
        [
         "schreibe|entschuldig|nicht in der schule|gefehlt|nicht kommen",
@@ -1423,7 +1423,7 @@ window.TESTS_B1 = [
         "Fragen zu Training und Kosten",
         "Probetraining"
        ],
-       "model": "Sehr geehrte Damen und Herren,\nich habe Ihre Internetseite gesehen und möchte gern Mitglied in Ihrem Verein werden.\nIch interessiere mich für Badminton. Ich habe früher in Indien viel gespielt, aber hier in Deutschland habe ich noch keinen Verein gefunden.\nKönnen Sie mir bitte sagen, wann das Training für Erwachsene stattfindet? Und wie viel kostet die Mitgliedschaft im Monat?\nIch würde gern zuerst ein Probetraining machen. Ist das möglich, vielleicht schon nächste Woche?\nMit freundlichen Grüßen\nSuresh [Nachname]",
+       "model": "Sehr geehrte Damen und Herren,\nich habe Ihre Internetseite gesehen und möchte gern Mitglied in Ihrem Verein werden.\nIch interessiere mich für Badminton, weil ich es schon in Indien oft gespielt habe. Ich habe früher in Indien viel gespielt, aber hier in Deutschland habe ich noch keinen Verein gefunden.\nKönnen Sie mir bitte sagen, wann das Training für Erwachsene stattfindet? Und wie viel kostet die Mitgliedschaft im Monat?\nIch würde gern zuerst ein Probetraining machen. Ist das möglich, vielleicht schon nächste Woche?\nIch freue mich auf Ihre Antwort.\nMit freundlichen Grüßen\nSuresh [Nachname]",
        "keys": [
         [
          "mitglied|verein|anmelden|schreibe|interess",
@@ -3109,7 +3109,7 @@ window.TESTS_B1 = [
        "Folgen für Sie",
        "Was erwarten Sie?"
       ],
-      "model": "Sehr geehrte Damen und Herren,\nich schreibe Ihnen, weil ich mit der Buslinie 34 sehr unzufrieden bin.\nIn den letzten drei Wochen ist der Bus um 7.15 Uhr an der Haltestelle Rosenplatz fast jeden Tag 15 bis 20 Minuten zu spät gekommen.\nDeshalb bin ich mehrmals zu spät zur Arbeit gekommen. Mein Chef war sehr unzufrieden, und ich musste länger bleiben.\nIch erwarte, dass der Bus wieder pünktlich fährt. Außerdem möchte ich wissen, ob ich einen Teil meiner Monatskarte zurückbekommen kann.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "model": "Sehr geehrte Damen und Herren,\nich schreibe Ihnen, weil ich mit der Buslinie 34 sehr unzufrieden bin.\nIn den letzten drei Wochen ist der Bus um 7.15 Uhr an der Haltestelle Rosenplatz fast jeden Tag 15 bis 20 Minuten zu spät gekommen.\nDeshalb bin ich mehrmals zu spät zur Arbeit gekommen. Mein Chef war sehr unzufrieden, und ich musste länger bleiben.\nIch erwarte, dass der Bus wieder pünktlich fährt. Außerdem möchte ich wissen, ob ich einen Teil meiner Monatskarte zurückbekommen kann.\nIch freue mich auf Ihre Antwort.\nMit freundlichen Grüßen\nSuresh [Nachname]",
       "keys": [
        [
         "schreibe|beschwer|unzufrieden|ärger|problem|verspät|zu spät",
@@ -3136,7 +3136,7 @@ window.TESTS_B1 = [
         "Fragen zu Kosten und Kursen",
         "Wann haben Sie Zeit?"
        ],
-       "model": "Sehr geehrte Damen und Herren,\nich möchte bei Ihnen den Führerschein Klasse B machen und bitte um Informationen.\nIch habe in Indien schon einen Führerschein gemacht und bin dort fünf Jahre Auto gefahren. Mein Führerschein gilt in Deutschland aber nicht mehr.\nWie viel kostet der Führerschein ungefähr bei Ihnen? Und kann ich die Theorie auch auf Englisch lernen?\nIch arbeite bis 17 Uhr. Deshalb habe ich nur abends und am Samstag Zeit für Fahrstunden.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+       "model": "Sehr geehrte Damen und Herren,\nich möchte bei Ihnen den Führerschein Klasse B machen und bitte um Informationen.\nIch habe in Indien schon einen Führerschein gemacht und bin dort fünf Jahre Auto gefahren. Mein Führerschein gilt in Deutschland aber nicht mehr.\nWie viel kostet der Führerschein ungefähr bei Ihnen? Und kann ich die Theorie auch auf Englisch lernen?\nIch arbeite bis 17 Uhr. Deshalb habe ich nur abends und am Samstag Zeit für Fahrstunden.\nIch freue mich auf Ihre Antwort.\nMit freundlichen Grüßen\nSuresh [Nachname]",
        "keys": [
         [
          "führerschein|fahrschule|anmelden|informationen|schreibe",
@@ -4823,7 +4823,7 @@ window.TESTS_B1 = [
        "Wie lange fehlen Sie?",
        "Wer übernimmt Ihre Arbeit?"
       ],
-      "model": "Sehr geehrte Frau Berger,\nleider muss ich Ihnen mitteilen, dass ich heute und morgen nicht zur Arbeit kommen kann.\nIch habe seit gestern Abend hohes Fieber und starke Kopfschmerzen. Heute Morgen war ich beim Arzt, und er hat mich für zwei Tage krankgeschrieben.\nAm Donnerstag bin ich wahrscheinlich wieder im Büro. Die Krankmeldung schickt der Arzt an die Krankenkasse.\nMein Kollege Herr Klein kann bitte das Treffen mit dem Kunden am Mittwoch übernehmen. Die Unterlagen liegen auf meinem Schreibtisch.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "model": "Sehr geehrte Frau Berger,\nleider muss ich Ihnen mitteilen, dass ich heute und morgen nicht zur Arbeit kommen kann.\nIch habe seit gestern Abend hohes Fieber und starke Kopfschmerzen. Heute Morgen war ich beim Arzt, und er hat mich für zwei Tage krankgeschrieben.\nAm Donnerstag bin ich wahrscheinlich wieder im Büro. Die Krankmeldung schickt der Arzt an die Krankenkasse.\nMein Kollege Herr Klein kann bitte das Treffen mit dem Kunden am Mittwoch übernehmen. Die Unterlagen liegen auf meinem Schreibtisch, deshalb kann er sie leicht finden.\nVielen Dank für Ihr Verständnis.\nMit freundlichen Grüßen\nSuresh [Nachname]",
       "keys": [
        [
         "mitteilen|schreibe|nicht (zur|zu der) arbeit|nicht kommen|kann nicht|krank",
@@ -5711,7 +5711,7 @@ window.TESTS_B1 = [
         "Wie lange?",
         "Frage zum Sommerfest"
        ],
-       "model": "Liebe Frau Brandt,\nich möchte Ihnen mitteilen, dass mein Sohn Arjun nächste Woche nicht in die Kita kommen kann.\nWir fliegen zu meinen Eltern nach Indien, weil mein Vater operiert wird und Hilfe braucht.\nWir sind zehn Tage weg. Am Montag, den 20. Mai, ist Arjun wieder in der Kita.\nIch habe noch eine Frage zum Sommerfest: Kann ich auch nach unserer Rückkehr noch beim Kuchenverkauf helfen? Ich backe gern einen Kuchen.\nViele Grüße\nSuresh [Nachname]",
+       "model": "Liebe Frau Brandt,\nich möchte Ihnen mitteilen, dass mein Sohn Arjun nächste Woche nicht in die Kita kommen kann.\nWir fliegen zu meinen Eltern nach Indien, weil mein Vater operiert wird und Hilfe braucht.\nWir sind zehn Tage weg. Am Montag, den 20. Mai, ist Arjun wieder in der Kita.\nIch habe noch eine Frage zum Sommerfest: Kann ich auch nach unserer Rückkehr noch beim Kuchenverkauf helfen? Ich backe gern einen Kuchen, wenn Sie noch Hilfe brauchen.\nVielen Dank für Ihre Hilfe.\nViele Grüße\nSuresh [Nachname]",
        "keys": [
         [
          "mitteilen|schreibe|nicht (in die|zur) kita|nicht kommen|kann nicht",
@@ -6548,7 +6548,7 @@ window.TESTS_B1 = [
        "Wie geht es Ihrer Tochter?",
        "Bitte um ein Gespräch"
       ],
-      "model": "Sehr geehrte Frau Vogel,\nich schreibe Ihnen, weil ich mir Sorgen um meine Tochter Priya mache.\nSeit ein paar Wochen ärgern zwei Kinder aus der Klasse sie in der Pause. Sie nehmen ihr das Pausenbrot weg und lachen über ihre Aussprache. Letzten Freitag ist sie weinend nach Hause gekommen.\nPriya möchte morgens nicht mehr gern in die Schule gehen. Sie schläft schlecht und hat oft Bauchschmerzen, obwohl sie früher sehr gern zur Schule gegangen ist.\nIch würde gern mit Ihnen über die Situation sprechen. Hätten Sie nächste Woche Zeit für ein Gespräch? Nachmittags ab 16 Uhr kann ich immer kommen.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "model": "Sehr geehrte Frau Vogel,\nich schreibe Ihnen, weil ich mir Sorgen um meine Tochter Priya mache.\nSeit ein paar Wochen ärgern zwei Kinder aus der Klasse sie in der Pause. Sie nehmen ihr das Pausenbrot weg und lachen über ihre Aussprache. Letzten Freitag ist sie weinend nach Hause gekommen.\nPriya möchte morgens nicht mehr gern in die Schule gehen. Sie schläft schlecht und hat oft Bauchschmerzen, obwohl sie früher sehr gern zur Schule gegangen ist.\nIch würde gern mit Ihnen über die Situation sprechen. Hätten Sie nächste Woche Zeit für ein Gespräch? Ich arbeite bis 15 Uhr, deshalb kann ich nachmittags ab 16 Uhr immer kommen.\nIch freue mich auf Ihre Antwort.\nMit freundlichen Grüßen\nSuresh [Nachname]",
       "keys": [
        [
         "schreibe|sorgen|problem|tochter",
@@ -6575,7 +6575,7 @@ window.TESTS_B1 = [
         "Neuer Terminvorschlag",
         "Wer kann sonst die Tür öffnen?"
        ],
-       "model": "Sehr geehrte Frau Hartmann,\nvielen Dank für Ihren Brief. Sie möchten am Donnerstag, den 14. März, einen Techniker in meine Wohnung schicken.\nLeider passt mir dieser Termin nicht, weil ich an diesem Tag eine Fortbildung in Köln habe und erst spät am Abend zurückkomme.\nKönnte der Techniker vielleicht am Freitag oder am Montag kommen? An beiden Tagen bin ich ab 14 Uhr zu Hause.\nFalls es nur am Donnerstag geht, kann meine Nachbarin, Frau Lehmann aus dem zweiten Stock, die Tür öffnen. Sie hat einen Schlüssel für meine Wohnung.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+       "model": "Sehr geehrte Frau Hartmann,\nvielen Dank für Ihren Brief. Sie möchten am Donnerstag, den 14. März, einen Techniker in meine Wohnung schicken.\nLeider passt mir dieser Termin nicht, weil ich an diesem Tag eine Fortbildung in Köln habe und erst spät am Abend zurückkomme.\nKönnte der Techniker vielleicht am Freitag oder am Montag kommen? An beiden Tagen bin ich ab 14 Uhr zu Hause.\nFalls es nur am Donnerstag geht, kann meine Nachbarin, Frau Lehmann aus dem zweiten Stock, die Tür öffnen. Sie hat einen Schlüssel für meine Wohnung.\nVielen Dank im Voraus.\nMit freundlichen Grüßen\nSuresh [Nachname]",
        "keys": [
         [
          "schreibe|brief|termin|techniker|donnerstag",
