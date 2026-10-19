@@ -350,7 +350,8 @@ window.TESTS_B1 = [
        },
        {
         "q": "Ihre Kinder sind aus vielen Sachen herausgewachsen. Sie möchten sie verkaufen.",
-        "a": 1
+        "a": 1,
+        "why": "„gebrauchte Kinderkleidung und Spielzeug, Annahme dienstags“ – dort kann man Sachen abgeben und verkaufen"
        },
        {
         "q": "Sie haben ein altes Sofa und möchten es verschenken.",
@@ -386,7 +387,8 @@ window.TESTS_B1 = [
          "einen Ausweis."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Bitte bringen Sie den Kassenbon mit.“"
        },
        {
         "q": "Das Geschäft hört für immer auf.",
@@ -402,7 +404,8 @@ window.TESTS_B1 = [
          "gibt es neue Öffnungszeiten."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Zur Eröffnung gibt es … 20 Prozent Rabatt auf alles.“"
        },
        {
         "q": "Man kann sich noch am Tag des Basars als Verkäufer anmelden.",
@@ -418,7 +421,8 @@ window.TESTS_B1 = [
          "muss Kuchen mitbringen."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Ein Tisch kostet 5 Euro.“"
        }
       ]
      },
@@ -494,7 +498,8 @@ window.TESTS_B1 = [
          "wer",
          "was"
         ],
-        "a": 2
+        "a": 2,
+        "why": "„was es ist“ – indirekte Frage nach einer Sache"
        },
        {
         "n": 5,
@@ -1207,7 +1212,8 @@ window.TESTS_B1 = [
        },
        {
         "q": "Sie haben große Angst vor dem Zahnarzt.",
-        "a": 2
+        "a": 2,
+        "why": "„Angstpatienten willkommen, Behandlung mit viel Zeit“"
        },
        {
         "q": "Sie möchten Ihre Augen testen lassen.",
@@ -1260,7 +1266,8 @@ window.TESTS_B1 = [
          "um 14 Uhr abgeholt werden."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„5 Euro für den Eintritt mit“"
        },
        {
         "q": "Die App kostet Geld.",
@@ -1276,7 +1283,8 @@ window.TESTS_B1 = [
          "einen Arzttermin buchen."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Krankmeldungen, Rechnungen und Anträge … fotografieren und an uns schicken“"
        }
       ]
      },
@@ -1296,7 +1304,8 @@ window.TESTS_B1 = [
        },
        {
         "q": "Wenn der Husten nach einer Woche nicht besser ist, soll man zum Arzt gehen.",
-        "a": true
+        "a": true,
+        "why": "„Wenn der Husten nach sieben Tagen nicht besser ist …, gehen Sie bitte zum Arzt.“"
        },
        {
         "q": "Eine offene Flasche kann man ein Jahr benutzen.",
@@ -1351,7 +1360,8 @@ window.TESTS_B1 = [
          "dringend",
          "langsam"
         ],
-        "a": 1
+        "a": 1,
+        "why": "„einen wichtigen Termin beim Arzt. Deshalb brauche ich die Karte dringend“"
        },
        {
         "n": 5,
@@ -1370,7 +1380,8 @@ window.TESTS_B1 = [
          "tagsüber",
          "früher"
         ],
-        "a": 1
+        "a": 1,
+        "why": "„tagsüber“ = während des Tages – passt zu „erreichen Sie mich … unter der Nummer“"
        }
       ]
      }
@@ -2118,7 +2129,8 @@ window.TESTS_B1 = [
          "schickt man per Post zurück."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Die Schlüssel liegen … in einem Kasten neben der Haustür“"
        },
        {
         "q": "Lena und David wünschen sich Geld für ihre Reise.",
@@ -2134,7 +2146,8 @@ window.TESTS_B1 = [
          "ein Geschenk mitbringen."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Bitte sagt uns bis 15. August Bescheid“"
        }
       ]
      },
@@ -2886,7 +2899,8 @@ window.TESTS_B1 = [
          "Untergeschoss",
          "Erdgeschoss"
         ],
-        "a": 1
+        "a": 1,
+        "why": "„Untergeschoss: S-Bahn · U-Bahn“"
        }
       ]
      },
@@ -2922,11 +2936,13 @@ window.TESTS_B1 = [
        },
        {
         "q": "Ihre Freundin hat nie Fahrrad fahren gelernt.",
-        "a": 7
+        "a": 7,
+        "why": "„Fahrradfahren lernen in kleinen Gruppen“"
        },
        {
         "q": "Sie möchten den Führerschein machen, die Theorie aber lieber auf Englisch lernen.",
-        "a": 0
+        "a": 0,
+        "why": "„Theorie auch auf Englisch“"
        },
        {
         "q": "Sie möchten Ihr Motorrad verkaufen.",
@@ -2957,7 +2973,8 @@ window.TESTS_B1 = [
          "nimmt der Busfahrer nicht mehr an."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„in unseren Bussen nicht mehr mit Bargeld bezahlen“"
        },
        {
         "q": "Man kann einen Termin auch telefonisch machen.",
@@ -2973,7 +2990,8 @@ window.TESTS_B1 = [
          "man kein Internet hat."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„nur noch in Notfällen …, zum Beispiel wenn Ihr Ausweis gestohlen wurde“"
        },
        {
         "q": "Das Parkhaus ist am Wochenende geschlossen.",
@@ -2989,7 +3007,8 @@ window.TESTS_B1 = [
          "rund um die Uhr Hilfe bekommen."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Dort können Sie auch Fahrräder leihen.“"
        }
       ]
      },
@@ -3065,7 +3084,8 @@ window.TESTS_B1 = [
          "bitte",
          "selten"
         ],
-        "a": 1
+        "a": 1,
+        "why": "„klingeln Sie bitte einfach bei mir“ – höfliche Bitte"
        },
        {
         "n": 5,
@@ -3074,7 +3094,8 @@ window.TESTS_B1 = [
          "nur",
          "auch"
         ],
-        "a": 2
+        "a": 2,
+        "why": "„Natürlich sind Sie auch herzlich eingeladen!“ – nicht nur informiert, auch eingeladen"
        },
        {
         "n": 6,
@@ -3083,7 +3104,8 @@ window.TESTS_B1 = [
          "persönlich",
          "telefonisch"
         ],
-        "a": 1
+        "a": 1,
+        "why": "„Sie persönlich kennenzulernen“ – von Angesicht zu Angesicht"
        }
       ]
      }
@@ -3811,7 +3833,8 @@ window.TESTS_B1 = [
          "bekommt man per Post."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Den Schlüssel bekommen Sie beim Hausmeister.“"
        },
        {
         "q": "Die Biotonne kostet extra Geld.",
@@ -3827,12 +3850,14 @@ window.TESTS_B1 = [
          "Glas werfen."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Hinein gehören … Kaffeefilter“ – Plastiktüten sind nicht erlaubt"
        },
        {
         "q": "Nach 22 Uhr soll man nicht mehr Wäsche waschen.",
         "a": true,
-        "text": "Ruhe, bitte!\nIn letzter Zeit gab es Beschwerden über Lärm am späten Abend. Bitte denken Sie daran: Ab 22 Uhr ist Nachtruhe. Auch Waschmaschinen sollen dann nicht mehr laufen. Wenn Sie eine Feier planen, informieren Sie bitte vorher Ihre Nachbarn mit einem Zettel im Treppenhaus."
+        "text": "Ruhe, bitte!\nIn letzter Zeit gab es Beschwerden über Lärm am späten Abend. Bitte denken Sie daran: Ab 22 Uhr ist Nachtruhe. Auch Waschmaschinen sollen dann nicht mehr laufen. Wenn Sie eine Feier planen, informieren Sie bitte vorher Ihre Nachbarn mit einem Zettel im Treppenhaus.",
+        "why": "„Ab 22 Uhr ist Nachtruhe. Auch Waschmaschinen sollen dann nicht mehr laufen.“"
        },
        {
         "q": "Vor einer Feier soll man …",
@@ -3842,7 +3867,8 @@ window.TESTS_B1 = [
          "die Polizei fragen."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„informieren Sie bitte vorher Ihre Nachbarn“"
        }
       ]
      },
@@ -3898,7 +3924,8 @@ window.TESTS_B1 = [
          "jetzt",
          "früher"
         ],
-        "a": 1
+        "a": 1,
+        "why": "„es kommen jetzt auch Ratten“ – das Problem ist aktuell"
        },
        {
         "n": 3,
@@ -4669,7 +4696,8 @@ window.TESTS_B1 = [
          "zur Krankenkasse gehen."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„am ersten Krankheitstag vor Arbeitsbeginn telefonisch Ihre Vorgesetzte oder Ihren Vorgesetzten“"
        },
        {
         "q": "Man braucht Erfahrung als Verkäufer.",
@@ -4702,7 +4730,8 @@ window.TESTS_B1 = [
          "nach dem Kurs."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„mindestens sechs Wochen vorher bei Ihrem Arbeitgeber“"
        }
       ]
      },
@@ -4717,7 +4746,8 @@ window.TESTS_B1 = [
       "items": [
        {
         "q": "Den Schichtplan bekommt man zwei Wochen vorher.",
-        "a": true
+        "a": true,
+        "why": "„nach dem Schichtplan, der zwei Wochen im Voraus bekannt gegeben wird“"
        },
        {
         "q": "In der Probezeit kann man nicht kündigen.",
@@ -4767,7 +4797,8 @@ window.TESTS_B1 = [
          "kaum",
          "nie"
         ],
-        "a": 0
+        "a": 0,
+        "why": "„kann auch im Schichtdienst arbeiten“ – noch eine Fähigkeit dazu"
        },
        {
         "n": 4,
@@ -5531,7 +5562,8 @@ window.TESTS_B1 = [
          "den Hausmeister anrufen."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Bitte füllen Sie sich vorher etwas Wasser ab.“"
        },
        {
         "q": "Am Sonntag kann man Bücher zurückbringen.",
@@ -5547,7 +5579,8 @@ window.TESTS_B1 = [
          "gibt es Filme für Kinder."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Ausleihen ist am Sonntag weiterhin nicht möglich.“"
        },
        {
         "q": "Das Geld vom Fest ist für neue Spielgeräte.",
@@ -5563,7 +5596,8 @@ window.TESTS_B1 = [
          "Die Kita anrufen."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Bitte tragen Sie sich bis Freitag in die Liste an der Tür ein.“"
        }
       ]
      },
@@ -5583,11 +5617,13 @@ window.TESTS_B1 = [
        },
        {
         "q": "Auf dem Balkon darf man mit einem Elektrogrill grillen.",
-        "a": true
+        "a": true,
+        "why": "„Auf den Balkonen ist Grillen nur mit Elektrogrills erlaubt.“"
        },
        {
         "q": "Wer eine Katze haben möchte, muss die Hausverwaltung fragen.",
-        "a": true
+        "a": true,
+        "why": "„Für Hunde und Katzen brauchen Sie die Zustimmung der Hausverwaltung.“"
        }
       ]
      },
@@ -6393,7 +6429,8 @@ window.TESTS_B1 = [
          "die Bücher selbst kaufen."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„bitte geben Sie dafür eine Kopie des Bescheids im Sekretariat ab“"
        },
        {
         "q": "Die Straße ist im Juli ganz gesperrt.",
@@ -6409,7 +6446,8 @@ window.TESTS_B1 = [
          "Die Busse fahren nicht."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Die Bushaltestelle … wird um 100 Meter … verlegt.“"
        },
        {
         "q": "Die Nachbarn möchten ein Fest im Hof feiern.",
@@ -6425,7 +6463,8 @@ window.TESTS_B1 = [
          "spricht mit Familie Akın."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„meldet sich bitte bei Familie Akın“"
        }
       ]
      },
@@ -7257,7 +7296,8 @@ window.TESTS_B1 = [
          "kann am 18. August anrufen."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Rezepte für Dauermedikamente können Sie noch bis zum 1. August bei uns abholen.“"
        },
        {
         "q": "Für den Kurs muss man schon gut Deutsch sprechen.",
@@ -7273,7 +7313,8 @@ window.TESTS_B1 = [
          "60 Euro."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Für Arbeitsuchende ist der Kurs kostenlos“"
        },
        {
         "q": "Die Mieter dürfen die Waschküche ab sofort nur noch am Wochenende benutzen.",
@@ -7289,7 +7330,8 @@ window.TESTS_B1 = [
          "Die Wäsche hing zu lange."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„Streit, weil Wäsche tagelang im Trockenraum hing“"
        }
       ]
      },
