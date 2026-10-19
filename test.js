@@ -317,7 +317,7 @@ function Pruefung(o){
    st.cur=fin;st.im=im;st.view=joinTx(st.tx,joinTx(fin,im));const el=body.querySelector("#tzLive");if(el)el.textContent=st.view||"Sprich jetzt …"};
   r.onerror=e=>{const c=e&&e.error;
    if(c==="not-allowed"||c==="service-not-allowed"||c==="audio-capture"){st.dead=true;
-    if(st.restarts||st.view){return}   /* a restart after a pause was refused: keep the words, ■ Stopp saves them */
+    if(st.restarts||st.view){st.paused=true;setTimeout(()=>{if(rec===st){const el=body.querySelector("#tzLive");if(el)el.textContent=joinTx(st.tx,joinTx(st.cur,st.im))+" – ⏸ Das Handy hört nicht mehr zu. Tippe ■ Stopp – dein Text bis hier ist gespeichert."}},200);return}   /* a restart after a pause was refused: keep the words, say so – ■ Stopp saves them */
     st.srFailed=true;st.err=c==="audio-capture"?"Kein Mikrofon gefunden.":IOS
      ?"Die Spracherkennung ist hier nicht verfügbar (am iPhone: Einstellungen › Allgemein › Tastatur › „Diktierfunktion“ einschalten, und die Seite in Safari öffnen). Deine Aufnahme wird trotzdem gespeichert – du bewertest sie am Ende selbst."
      :"Die Spracherkennung ist nicht erlaubt – deine Aufnahme wird trotzdem gespeichert, du bewertest sie am Ende selbst.";liveText(st);soundOnly(st)}};
@@ -325,7 +325,7 @@ function Pruefung(o){
    /* a pause ended it (Android) – listen on until ■ Stopp */
    if(rec===st&&!st.stopping&&!st.dead&&(st.restarts=(st.restarts||0)+1)<60){setTimeout(()=>{if(rec===st&&!st.stopping)srStart(st)},150);return}
    if(st.onSrEnd)st.onSrEnd()};
-  try{r.start()}catch(e){st.srDone=true;if(!st.restarts){st.srFailed=true;soundOnly(st)}}}
+  try{r.start()}catch(e){st.srDone=true;if(!st.restarts){st.srFailed=true;soundOnly(st)}else{st.dead=true;const el=body.querySelector("#tzLive");if(el)el.textContent=joinTx(st.tx,joinTx(st.cur,st.im))+" – ⏸ Das Handy hört nicht mehr zu. Tippe ■ Stopp – dein Text bis hier ist gespeichert."}}}
  /* no speech recognition after all: record the sound, rated by yourself at the end */
  async function soundOnly(st){if(st.mr||!MIC||!window.MediaRecorder||rec!==st)return;
   try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});if(rec!==st||st.stopping){stream.getTracks().forEach(t=>t.stop());return}st.stream=stream;
