@@ -1,5 +1,9 @@
 # Releases
 
+## 1.48.3 — 2026-10-19
+- Sprechen (B1 and A1): if the phone stops listening during a long answer and does not allow listening again, the live text now says so („⏸ Das Handy hört nicht mehr zu – tippe ■ Stopp“) instead of silently ignoring what you say next; your text up to there is kept
+- Checked: all B1 Sprechen parts use the fixed recording from 1.48.2; a long B1 answer is saved completely even when Safari ends its listening session in the middle
+
 ## 1.48.2 — 2026-10-19
 - Fix: recording in Sprechen (A1 and B1 Modelltests), above all on phones. Phones give the microphone to one user at a time – the sound recorder and the speech recognition ran together, so one of them stayed empty. On iPhone and Android the speech recognition now listens alone (your words appear live); on a computer both still work together
 - iPhone: one listening session until ■ Stopp, the last words are waited for; if Safari blocks the speech recognition (Diktierfunktion off, or the app opened from the home screen) the sound is recorded instead, with a clear hint how to switch it on – and the answer is rated by you instead of counting 0 points
