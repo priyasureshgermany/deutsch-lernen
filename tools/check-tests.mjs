@@ -40,6 +40,8 @@ for (const [lv, tests] of [["A1", window.TESTS_A1], ["B1", window.TESTS_B1]]) {
         const used = new Set();
         p.items.forEach((it, i) => {
           const q = `${w} #${i + 1}`;
+          /* Lesen: every answer is explained on the result page */
+          if (/les/i.test(s.id + s.de) && !it.why) fail(q, "Lesen question needs a why");
           if (p.type === "rf" && typeof it.a !== "boolean") fail(q, "rf needs true/false");
           if (p.type === "mix" && typeof it.a !== "boolean" && !(Array.isArray(it.o) && it.a >= 0 && it.a < it.o.length)) fail(q, "mix item needs true/false or a valid option");
           if (p.type === "mc" || p.type === "gapmc" || (p.type === "form" && it.o)) { if (!Array.isArray(it.o) || it.o.length < 2) fail(q, "options missing"); else if (!(it.a >= 0 && it.a < it.o.length)) fail(q, "key out of range"); }

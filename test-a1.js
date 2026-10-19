@@ -204,7 +204,8 @@ window.TESTS_A1 = [
       "items": [
        {
         "q": "Text 1: Lukas hat eine neue Wohnung.",
-        "a": true
+        "a": true,
+        "why": "„ich habe endlich eine neue Wohnung!“"
        },
        {
         "q": "Text 1: Die Wohnung hat zwei Zimmer.",
@@ -218,11 +219,13 @@ window.TESTS_A1 = [
        },
        {
         "q": "Text 2: Der Kurs am Montag fällt aus.",
-        "a": true
+        "a": true,
+        "why": "„am Montag ist unsere Lehrerin krank. Der Kurs fällt aus.“"
        },
        {
         "q": "Text 2: Die Teilnehmer sollen am Mittwoch kommen.",
-        "a": true
+        "a": true,
+        "why": "„Wir machen den Unterricht am Mittwoch um 18 Uhr.“"
        }
       ],
       "text": "Text 1: Hallo Tina, ich habe endlich eine neue Wohnung! Sie hat drei Zimmer und einen Balkon. Am Samstag mache ich eine kleine Party. Kommst du? Bring bitte etwas zu trinken mit.\nLiebe Grüße\nLukas\nText 2: Liebe Kursteilnehmer, am Montag ist unsere Lehrerin krank. Der Kurs fällt aus. Wir machen den Unterricht am Mittwoch um 18 Uhr. Ihre Sprachschule",
@@ -241,7 +244,8 @@ window.TESTS_A1 = [
          "Autovermietung Mobil: Autos ab 29 € pro Tag, auch am Wochenende.",
          "Autohaus Weber: Neuwagen und Gebrauchtwagen kaufen."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„auch am Wochenende“ – mieten, nicht kaufen"
        },
        {
         "q": "Sie möchten Gitarre spielen lernen.",
@@ -249,7 +253,8 @@ window.TESTS_A1 = [
          "Musikgeschäft: Gitarren ab 99 Euro kaufen.",
          "Musikschule Klang: Gitarrenkurse für Anfänger."
         ],
-        "a": 1
+        "a": 1,
+        "why": "„Gitarrenkurse für Anfänger“ – lernen, nicht kaufen"
        },
        {
         "q": "Sie suchen ein Zimmer für eine Nacht.",
@@ -257,7 +262,8 @@ window.TESTS_A1 = [
          "Wohnung zu vermieten: 2 Zimmer, ab 1. Mai, 650 Euro im Monat.",
          "Hotel am Park: Zimmer ab 59 Euro pro Nacht."
         ],
-        "a": 1
+        "a": 1,
+        "why": "„Zimmer ab 59 Euro pro Nacht“ – die Wohnung ist für Monate"
        },
        {
         "q": "Sie möchten günstig essen gehen.",
@@ -265,7 +271,8 @@ window.TESTS_A1 = [
          "Mensa der Universität: Mittagessen ab 3,50 €, für alle.",
          "Restaurant Royal: Menü mit 5 Gängen, 89 Euro."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„Mittagessen ab 3,50 €“ – das Menü kostet 89 Euro"
        },
        {
         "q": "Ihr Kind (6) möchte schwimmen lernen.",
@@ -273,7 +280,8 @@ window.TESTS_A1 = [
          "Schwimmkurs für Kinder ab 5 Jahren, samstags.",
          "Aqua-Fitness für Senioren, dienstags."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„für Kinder ab 5 Jahren“ – Aqua-Fitness ist für Senioren"
        }
       ],
       "time": 8
@@ -288,22 +296,26 @@ window.TESTS_A1 = [
        {
         "q": "Sie können heute den Aufzug benutzen.",
         "a": false,
-        "text": "Aufzug außer Betrieb. Bitte benutzen Sie die Treppe."
+        "text": "Aufzug außer Betrieb. Bitte benutzen Sie die Treppe.",
+        "why": "„Aufzug außer Betrieb“"
        },
        {
         "q": "Kunden dürfen hier eine Stunde parken.",
         "a": true,
-        "text": "Parken nur für Kunden – maximal 1 Stunde."
+        "text": "Parken nur für Kunden – maximal 1 Stunde.",
+        "why": "„maximal 1 Stunde“"
        },
        {
         "q": "Im August können Sie zu Dr. Kühn gehen.",
         "a": true,
-        "text": "Arztpraxis: Wir machen Urlaub vom 1. bis 14. August. Vertretung: Dr. Kühn, Marktstraße 5."
+        "text": "Arztpraxis: Wir machen Urlaub vom 1. bis 14. August. Vertretung: Dr. Kühn, Marktstraße 5.",
+        "why": "„Vertretung: Dr. Kühn“ – die Praxis macht im August Urlaub"
        },
        {
         "q": "Hier dürfen Sie rauchen.",
         "a": false,
-        "text": "Bitte nicht rauchen!"
+        "text": "Bitte nicht rauchen!",
+        "why": "„Bitte nicht rauchen!“"
        },
        {
         "q": "Am Sonntagnachmittag können Sie hier Brot kaufen.",
@@ -863,7 +875,8 @@ window.TESTS_A1 = [
       "items": [
        {
         "q": "Text 1: Sofia macht einen Sprachkurs in Berlin.",
-        "a": true
+        "a": true,
+        "why": "„ich bin jetzt in Berlin und mache einen Sprachkurs“"
        },
        {
         "q": "Text 1: Der Kurs ist am Nachmittag.",
@@ -877,7 +890,8 @@ window.TESTS_A1 = [
        },
        {
         "q": "Text 2: Das Sofa kommt am Donnerstag.",
-        "a": true
+        "a": true,
+        "why": "„Ihr neues Sofa kommt am Donnerstag“"
        },
        {
         "q": "Text 2: Herr Lang muss nicht zu Hause sein.",
@@ -901,7 +915,8 @@ window.TESTS_A1 = [
          "Sprachschule Plus: Kurse im Klassenraum, Montag bis Freitag.",
          "Deutsch-App „Lingo“: Lernen am Handy, wann Sie möchten."
         ],
-        "a": 1
+        "a": 1,
+        "why": "„Lernen am Handy, wann Sie möchten“ – die Sprachschule hat Kurse im Klassenraum"
        },
        {
         "q": "Sie suchen einen Babysitter für Samstagabend.",
@@ -909,7 +924,8 @@ window.TESTS_A1 = [
          "Studentin sucht Babysitter-Job, abends und am Wochenende.",
          "Kita Regenbogen: Montag bis Freitag 7–17 Uhr."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„abends und am Wochenende“ – die Kita hat am Samstag zu"
        },
        {
         "q": "Sie möchten einen gebrauchten Kühlschrank kaufen.",
@@ -917,7 +933,8 @@ window.TESTS_A1 = [
          "Verkaufe Kühlschrank, 2 Jahre alt, 80 Euro.",
          "Elektro-Markt: neue Kühlschränke ab 399 Euro."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„2 Jahre alt, 80 Euro“ – gebraucht; der Elektro-Markt verkauft neue"
        },
        {
         "q": "Sie möchten am Wochenende wandern.",
@@ -925,7 +942,8 @@ window.TESTS_A1 = [
          "Wanderverein: Touren jeden Sonntag, Treffpunkt Bahnhof 9 Uhr.",
          "Fitnessstudio: Laufband und Kurse, Montag bis Freitag."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„Touren jeden Sonntag“"
        },
        {
         "q": "Sie brauchen schnell einen Arzttermin am Abend.",
@@ -933,7 +951,8 @@ window.TESTS_A1 = [
          "Praxis Dr. Sommer: Sprechstunde Montag bis Freitag 8–12 Uhr.",
          "Ärztehaus City: Abendsprechstunde bis 20 Uhr, ohne Termin."
         ],
-        "a": 1
+        "a": 1,
+        "why": "„Abendsprechstunde bis 20 Uhr, ohne Termin“"
        }
       ],
       "time": 8
@@ -954,22 +973,26 @@ window.TESTS_A1 = [
        {
         "q": "Es gibt einen anderen Eingang für Rollstuhlfahrer.",
         "a": true,
-        "text": "Eingang für Rollstuhlfahrer: bitte links um das Haus gehen."
+        "text": "Eingang für Rollstuhlfahrer: bitte links um das Haus gehen.",
+        "why": "„Eingang für Rollstuhlfahrer: bitte links um das Haus gehen“"
        },
        {
         "q": "Sie dürfen hier mit Schuhen hineingehen.",
         "a": false,
-        "text": "Bitte Schuhe ausziehen!"
+        "text": "Bitte Schuhe ausziehen!",
+        "why": "„Bitte Schuhe ausziehen!“"
        },
        {
         "q": "Sie können die Lehrerin am Donnerstagnachmittag sprechen.",
         "a": true,
-        "text": "Sprechstunde der Lehrerin: donnerstags 15–16 Uhr."
+        "text": "Sprechstunde der Lehrerin: donnerstags 15–16 Uhr.",
+        "why": "„donnerstags 15–16 Uhr“ = am Nachmittag"
        },
        {
         "q": "Das Passwort bekommen Sie an der Theke.",
         "a": true,
-        "text": "Kostenloses WLAN für Gäste. Passwort an der Theke."
+        "text": "Kostenloses WLAN für Gäste. Passwort an der Theke.",
+        "why": "„Passwort an der Theke“"
        }
       ],
       "time": 9
@@ -1520,7 +1543,8 @@ window.TESTS_A1 = [
       "items": [
        {
         "q": "Text 1: Petra ist krank.",
-        "a": true
+        "a": true,
+        "why": "„ich bin leider krank“"
        },
        {
         "q": "Text 1: Petra kommt am Dienstag zur Arbeit.",
@@ -1529,7 +1553,8 @@ window.TESTS_A1 = [
        },
        {
         "q": "Text 1: Michael soll die Kunden anrufen.",
-        "a": true
+        "a": true,
+        "why": "„Kannst du bitte die Kunden anrufen?“"
        },
        {
         "q": "Text 2: Der Ausflug ist am Sonntag.",
@@ -1558,7 +1583,8 @@ window.TESTS_A1 = [
          "Bank sucht Mitarbeiter, Montag bis Freitag.",
          "Café Sonne sucht Kellner für Samstag und Sonntag."
         ],
-        "a": 1
+        "a": 1,
+        "why": "„für Samstag und Sonntag“ – die Bank nur Montag bis Freitag"
        },
        {
         "q": "Sie möchten Möbel verkaufen.",
@@ -1566,7 +1592,8 @@ window.TESTS_A1 = [
          "Möbelhaus: neue Sofas im Angebot.",
          "Flohmarkt: Stand mieten für 10 Euro, jeden Sonntag."
         ],
-        "a": 1
+        "a": 1,
+        "why": "„Stand mieten“ auf dem Flohmarkt – dort verkaufen Sie selbst"
        },
        {
         "q": "Sie möchten Ihre Haare schneiden lassen.",
@@ -1574,7 +1601,8 @@ window.TESTS_A1 = [
          "Friseur Schnitt: ohne Termin, ab 15 Euro.",
          "Kosmetik-Studio: Massage und Nagelpflege."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„Friseur“ – Kosmetik ist Massage und Nägel"
        },
        {
         "q": "Sie brauchen Hilfe bei Ihrer Steuererklärung.",
@@ -1582,7 +1610,8 @@ window.TESTS_A1 = [
          "Steuerbüro Klar: Hilfe bei der Steuererklärung, auch auf Englisch.",
          "Computerkurs für Senioren."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„Hilfe bei der Steuererklärung“"
        },
        {
         "q": "Sie möchten mit dem Zug nach Berlin fahren.",
@@ -1590,7 +1619,8 @@ window.TESTS_A1 = [
          "Bahn-Sparpreis: Frankfurt–Berlin mit dem ICE ab 29 Euro.",
          "Fernbus: Frankfurt–Berlin ab 19 Euro."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„mit dem ICE“ – der Fernbus ist kein Zug"
        }
       ],
       "time": 8
@@ -1605,27 +1635,32 @@ window.TESTS_A1 = [
        {
         "q": "Sie müssen eine Nummer ziehen.",
         "a": true,
-        "text": "Bürgerbüro: Bitte ziehen Sie eine Nummer und warten Sie."
+        "text": "Bürgerbüro: Bitte ziehen Sie eine Nummer und warten Sie.",
+        "why": "„Bitte ziehen Sie eine Nummer“"
        },
        {
         "q": "Das Restaurant ist heute geöffnet.",
         "a": false,
-        "text": "Heute Ruhetag."
+        "text": "Heute Ruhetag.",
+        "why": "„Heute Ruhetag“ = heute geschlossen"
        },
        {
         "q": "Gefundene Sachen können Sie an der Information abgeben.",
         "a": true,
-        "text": "Fundsachen bitte an der Information abgeben."
+        "text": "Fundsachen bitte an der Information abgeben.",
+        "why": "„Fundsachen bitte an der Information abgeben“"
        },
        {
         "q": "Ein Kind mit 4 Jahren muss bezahlen.",
         "a": false,
-        "text": "Kinder unter 6 Jahren: Eintritt frei."
+        "text": "Kinder unter 6 Jahren: Eintritt frei.",
+        "why": "„Kinder unter 6 Jahren: Eintritt frei“"
        },
        {
         "q": "Ab September können Sie sich für neue Kurse anmelden.",
         "a": true,
-        "text": "Sprachschule: Anmeldung für neue Kurse ab 1. September."
+        "text": "Sprachschule: Anmeldung für neue Kurse ab 1. September.",
+        "why": "„Anmeldung für neue Kurse ab 1. September“"
        }
       ],
       "time": 9
@@ -2183,7 +2218,8 @@ window.TESTS_A1 = [
       "items": [
        {
         "q": "Text 1: Die Fahrradtour ist am Samstag.",
-        "a": true
+        "a": true,
+        "why": "„am Samstag mache ich eine Fahrradtour“"
        },
        {
         "q": "Text 1: Nina und ihre Freunde treffen sich am Rhein.",
@@ -2192,7 +2228,8 @@ window.TESTS_A1 = [
        },
        {
         "q": "Text 1: Tom soll bis Donnerstag antworten.",
-        "a": true
+        "a": true,
+        "why": "„Bitte schreib mir bis Donnerstag.“"
        },
        {
         "q": "Text 2: Frau Schulz hat ihr Paket schon bekommen.",
@@ -2201,7 +2238,8 @@ window.TESTS_A1 = [
        },
        {
         "q": "Text 2: Frau Schulz braucht für das Paket ihren Ausweis.",
-        "a": true
+        "a": true,
+        "why": "„Bitte bringen Sie Ihren Ausweis mit.“"
        }
       ],
       "time": 8
@@ -2219,7 +2257,8 @@ window.TESTS_A1 = [
          "Sprachschule Lingua: Englisch für Anfänger, samstags 10 bis 13 Uhr.",
          "Volkshochschule: Englisch, montags und mittwochs 18 Uhr."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„samstags 10 bis 13 Uhr“ – die Volkshochschule nur montags und mittwochs"
        },
        {
         "q": "Sie möchten Ihr altes Handy verkaufen.",
@@ -2236,7 +2275,8 @@ window.TESTS_A1 = [
          "Erdgeschosswohnung, 3 Zimmer, mit kleinem Garten, 950 Euro warm.",
          "Dachwohnung, 2 Zimmer, mit großem Balkon, 780 Euro warm."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„mit kleinem Garten“ – die Dachwohnung hat nur einen Balkon"
        },
        {
         "q": "Sie möchten am Montag ins Museum gehen.",
@@ -2253,7 +2293,8 @@ window.TESTS_A1 = [
          "Kita Sonnenschein: freie Plätze für Kinder von 1 bis 6 Jahren.",
          "Schule am Park: Anmeldung für die 1. Klasse."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„für Kinder von 1 bis 6 Jahren“ – die Schule ist für die 1. Klasse"
        }
       ],
       "time": 8
@@ -2867,7 +2908,7 @@ window.TESTS_A1 = [
        {
         "q": "Text 1: Jonas fährt morgen mit dem Schiff.",
         "a": true,
-        "why": ""
+        "why": "„Morgen fahre ich mit dem Schiff auf der Elbe.“"
        },
        {
         "q": "Text 2: Herr Nowak hat am Donnerstag einen Termin mit Frau Berger.",
@@ -3555,7 +3596,8 @@ window.TESTS_A1 = [
        },
        {
         "q": "Text 2: Die Kita ist am Freitag geschlossen.",
-        "a": true
+        "a": true,
+        "why": "„die Kita ist am Freitag geschlossen“"
        },
        {
         "q": "Text 2: Am Montag öffnet die Kita um 8 Uhr.",
@@ -3579,7 +3621,8 @@ window.TESTS_A1 = [
          "Fahrradladen Pedal: Reparaturen in 2 Tagen.",
          "Autowerkstatt Müller: Reparatur aller Automarken."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„Fahrradladen: Reparaturen“ – die Werkstatt ist für Autos"
        },
        {
         "q": "Sie suchen eine Wohnung für Ihre Familie mit drei Kindern.",
@@ -3587,7 +3630,8 @@ window.TESTS_A1 = [
          "1-Zimmer-Apartment, 30 m², nur für Studenten.",
          "5-Zimmer-Wohnung, 120 m², ruhig, mit Garten."
         ],
-        "a": 1
+        "a": 1,
+        "why": "„5-Zimmer-Wohnung, 120 m²“ – das Apartment ist nur für Studenten"
        },
        {
         "q": "Sie möchten am Abend tanzen lernen.",
@@ -3595,7 +3639,8 @@ window.TESTS_A1 = [
          "Tanzschule Takt: Kurse dienstags 19–21 Uhr.",
          "Ballettschule: Kinderkurse mittwochs 15 Uhr."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„dienstags 19–21 Uhr“ = am Abend"
        },
        {
         "q": "Sie möchten billig Kleidung kaufen.",
@@ -3603,7 +3648,8 @@ window.TESTS_A1 = [
          "Boutique Elegance: Mode aus Paris.",
          "Second-Hand-Markt: Kleidung ab 2 Euro, jeden Samstag."
         ],
-        "a": 1
+        "a": 1,
+        "why": "„Kleidung ab 2 Euro“"
        },
        {
         "q": "Sie brauchen am Sonntag eine Apotheke.",
@@ -3611,7 +3657,8 @@ window.TESTS_A1 = [
          "Apotheke am Markt: Montag bis Samstag 8–19 Uhr.",
          "Notdienst: Löwen-Apotheke, heute (Sonntag) 9–21 Uhr."
         ],
-        "a": 1
+        "a": 1,
+        "why": "„Notdienst … heute (Sonntag)“ – die andere Apotheke nur bis Samstag"
        }
       ],
       "time": 8
@@ -3626,12 +3673,14 @@ window.TESTS_A1 = [
        {
         "q": "Sie können in der Bahnhofstraße einkaufen.",
         "a": true,
-        "text": "Wegen Umbau geschlossen. Unsere Filiale in der Bahnhofstraße ist geöffnet."
+        "text": "Wegen Umbau geschlossen. Unsere Filiale in der Bahnhofstraße ist geöffnet.",
+        "why": "„Unsere Filiale in der Bahnhofstraße ist geöffnet.“"
        },
        {
         "q": "Sie können Ihren Hund mit ins Geschäft nehmen.",
         "a": false,
-        "text": "Hunde bitte draußen lassen!"
+        "text": "Hunde bitte draußen lassen!",
+        "why": "„Hunde bitte draußen lassen!“"
        },
        {
         "q": "Der Kurs ist heute in Raum 8.",
@@ -3642,7 +3691,8 @@ window.TESTS_A1 = [
        {
         "q": "Sie können eine Fahrkarte im Bus kaufen.",
         "a": true,
-        "text": "Fahrkarten gibt es auch im Bus beim Fahrer."
+        "text": "Fahrkarten gibt es auch im Bus beim Fahrer.",
+        "why": "„Fahrkarten gibt es auch im Bus beim Fahrer.“"
        },
        {
         "q": "Um halb eins ist das Büro geschlossen.",
@@ -4215,7 +4265,8 @@ window.TESTS_A1 = [
        },
        {
         "q": "Text 1: Ben arbeitet meistens am Nachmittag.",
-        "a": true
+        "a": true,
+        "why": "„meistens am Nachmittag“"
        },
        {
         "q": "Text 1: Ben muss am Wochenende arbeiten.",
@@ -4224,7 +4275,8 @@ window.TESTS_A1 = [
        },
        {
         "q": "Text 2: Die Klasse fährt am Freitag in den Zoo.",
-        "a": true
+        "a": true,
+        "why": "„am Freitag machen wir einen Ausflug in den Zoo“"
        },
        {
         "q": "Text 2: Die Kinder bekommen im Zoo ein Mittagessen.",
@@ -4256,7 +4308,8 @@ window.TESTS_A1 = [
          "Café Sonne sucht Kellner/in für Samstag und Sonntag.",
          "Büro sucht Sekretärin, Montag bis Freitag, 40 Stunden."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„für Samstag und Sonntag“ – das Büro nur Montag bis Freitag"
        },
        {
         "q": "Sie möchten mit Ihren Kindern Fußball spielen.",
@@ -4264,7 +4317,8 @@ window.TESTS_A1 = [
          "Sportverein TSV: Fußball für Kinder von 6 bis 12 Jahren, mittwochs 16 Uhr.",
          "Fitnessstudio Power: Kurse nur für Erwachsene ab 18 Jahren."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„Fußball für Kinder“ – das Fitnessstudio nur ab 18 Jahren"
        },
        {
         "q": "Sie möchten billig nach Hamburg fahren.",
@@ -4964,7 +5018,8 @@ window.TESTS_A1 = [
          "Sauna-Paradies: nur für Erwachsene, täglich 10–23 Uhr.",
          "Hallenbad Nord: Sa und So 8–20 Uhr, Familienkarte 15 Euro."
         ],
-        "a": 1
+        "a": 1,
+        "why": "„Sa und So … Familienkarte“ – die Sauna nur für Erwachsene"
        }
       ],
       "time": 8
@@ -5619,7 +5674,8 @@ window.TESTS_A1 = [
          "Stadtführung jeden Samstag um 11 Uhr, auf Deutsch und Englisch, 12 Euro.",
          "Altstadt-Tour für Schulklassen, Montag bis Freitag, nur auf Deutsch."
         ],
-        "a": 0
+        "a": 0,
+        "why": "„jeden Samstag … auf Deutsch und Englisch“"
        },
        {
         "q": "Ihr Kind (5 Jahre) möchte schwimmen lernen.",
@@ -5627,7 +5683,8 @@ window.TESTS_A1 = [
          "Schwimmkurs für Erwachsene, Anfänger, dienstags 19 Uhr.",
          "Seepferdchen-Kurs: Schwimmen lernen für Kinder ab 4 Jahren."
         ],
-        "a": 1
+        "a": 1,
+        "why": "„für Kinder ab 4 Jahren“ – der andere Kurs ist für Erwachsene"
        },
        {
         "q": "Sie brauchen am Sonntag Medikamente.",
@@ -5644,7 +5701,8 @@ window.TESTS_A1 = [
          "Elektro-Markt: neue Kühlschränke ab 299 Euro, Lieferung kostenlos.",
          "Verkaufe Kühlschrank, 3 Jahre alt, sehr gut, 80 Euro, nur Abholung."
         ],
-        "a": 1
+        "a": 1,
+        "why": "„3 Jahre alt … 80 Euro“ – gebraucht; der Elektro-Markt verkauft neue"
        }
       ],
       "time": 8

@@ -1,5 +1,10 @@
 # Releases
 
+## 1.48.5 — 2026-10-19
+- Lesen (A1 and B1 Modelltests) checked: all 18 tests, every answer key verified against its text – all correct
+- 101 Lesen questions had no explanation on the result page; now every Lesen answer shows why, with the sentence from the text („Kinder unter 6 Jahren: Eintritt frei“ …)
+- tools/check-tests.mjs: a Lesen question without an explanation is now an error
+
 ## 1.48.4 — 2026-10-19
 - Schreiben B1 – fairer automatic marking (Kommunikative Gestaltung): even the model letters lost 5–10 of 15 points. Fixed: a date like „am 3. Mai“ or „z. B.“ no longer splits a sentence; usual closings count („Bitte sagen Sie uns Bescheid“, „Ich bin erreichbar …“, or a final question / request); „Liebe Frau Meier“ with Sie is correct formal style; 3 different linking words are enough for about 80 words (2 = half)
 - Model letters improved where they lacked a closing sentence or linking words – all 27 model letters (A1 and B1, Aufgabe A and B) now reach full marks, so they show what a full-mark letter looks like
