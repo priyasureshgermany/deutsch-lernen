@@ -1,5 +1,10 @@
 # Releases
 
+## 1.48.4 — 2026-10-19
+- Schreiben B1 – fairer automatic marking (Kommunikative Gestaltung): even the model letters lost 5–10 of 15 points. Fixed: a date like „am 3. Mai“ or „z. B.“ no longer splits a sentence; usual closings count („Bitte sagen Sie uns Bescheid“, „Ich bin erreichbar …“, or a final question / request); „Liebe Frau Meier“ with Sie is correct formal style; 3 different linking words are enough for about 80 words (2 = half)
+- Model letters improved where they lacked a closing sentence or linking words – all 27 model letters (A1 and B1, Aufgabe A and B) now reach full marks, so they show what a full-mark letter looks like
+- Schreiben A1 Teil 1 (form): fair like an examiner – „in Darmstadt“, „zwei Kinder“, „42 Jahre alt“ or „Rumaenien“ (typed without ä) count as right
+
 ## 1.48.3 — 2026-10-19
 - Sprechen (B1 and A1): if the phone stops listening during a long answer and does not allow listening again, the live text now says so („⏸ Das Handy hört nicht mehr zu – tippe ■ Stopp“) instead of silently ignoring what you say next; your text up to there is kept
 - Checked: all B1 Sprechen parts use the fixed recording from 1.48.2; a long B1 answer is saved completely even when Safari ends its listening session in the middle

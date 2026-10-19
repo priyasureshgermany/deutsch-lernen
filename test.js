@@ -356,12 +356,14 @@ function Pruefung(o){
   return f>=.6&&w>=min?1:(f>=.25||w>=min)?.5:0}
  /* ---- marking ---- */
  const norm=s=>String(s||"").toLowerCase().replace(/[.,!?;:()"„“]/g," ").replace(/\s+/g," ").trim();
+ /* form answers: like a fair examiner – "in Darmstadt", "zwei Kinder", "Rumaenien" (no umlaut key) count as right */
+ const formNorm=s=>norm(s).replace(/ae/g,"ä").replace(/oe/g,"ö").replace(/ue/g,"ü").replace(/^(in|aus|nach|am|um|ich bin|er ist|sie ist) /,"").replace(/ (kinder|kind|jahre|jahr|jahre alt|personen|person|nächte|nacht|stück)$/,"").replace(/^(ein|eins|eine)$/,"1").replace(/^zwei$/,"2").replace(/^drei$/,"3").trim();
  /* a "mix" part (DTZ Teil 3): each item is richtig/falsch (a true/false) or a/b/c */
  const one=(p,it)=>Object.assign({},p,{type:typeof it.a==="boolean"?"rf":"mc"});
  function correct(p,it,v){if(p.type==="mix")p=one(p,it);
   if(v==null||v==="")return false;
   if(p.type==="rf")return (v===0)===!!it.a;
-  if(p.type==="form"&&!it.o)return it.a.some(x=>norm(x)===norm(v));
+  if(p.type==="form"&&!it.o){const f=formNorm(v);return !!f&&it.a.some(x=>formNorm(x)===f)}
   return v===it.a}
  function show(p,it){if(p.type==="mix")p=one(p,it);if(p.type==="rf")return it.a?"Richtig":"Falsch";
   if(p.type==="form")return it.o?it.o[it.a]:it.a[0];

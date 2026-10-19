@@ -71,9 +71,9 @@ const KEYS={
 
 const ANREDE=/^\s*(sehr geehrte[rs]?|liebe[rs]?|hallo|guten tag|hi)[\s,]/i;
 const GRUSS=/(grüße|grüßen|gruß|grüsse|grüse|gruse|grusse|(liebe|viele|herzliche|beste) gro(ß|ss)e|bis bald|tschüss|alles liebe)/i;
-const INTRO=/(schreibe|vielen dank|danke für|herzlichen dank|wie geht|hiermit|gelesen|gesehen|gekauft|gebucht|bekommen|erhalten|teilgenommen|mitglied|ich möchte|interessiere|mit diesem brief|wende mich|leider|beschwer|anfrage)/i;
-const CLOSE=/(ich freue mich|ich hoffe|ich warte|im voraus|über eine (baldige |schnelle )?antwort|antworten sie|melden sie sich|melde dich|schreib(e)? mir|bis bald|bis dann|wir sehen uns|würde mich freuen|wünsche|alles gute|für ihre (hilfe|mühe)|vielen dank für ihre|ich bitte um)/i;
-const LINK=["weil","dass","denn","deshalb","deswegen","darum","aber","wenn","obwohl","außerdem","trotzdem","damit","sondern","dann","danach","zuerst","später","ob","als","während","bis","leider","zum beispiel","also","oder","und dann"];
+const INTRO=/(schreibe|vielen dank|danke für|herzlichen dank|wie geht|hiermit|gelesen|gesehen|gekauft|gebucht|bestellt|bekommen|erhalten|teilgenommen|mitglied|ich möchte|wir möchten|interessiere|mein name|ich heiße|ich bin neu|wir sind neu|lade|einladen|mit diesem brief|wende mich|leider|beschwer|anfrage)/i;
+const CLOSE=/(freue mich|freuen uns|freu mich|ich hoffe|wir hoffen|ich warte|im voraus|antwort|antworten sie|melden sie sich|melde dich|schreib(e)? mir|bis bald|bis dann|wir sehen uns|würde mich freuen|würden uns freuen|wünsche|alles gute|hilfe|mühe|vielen dank|danke|ich bitte|bescheid|erreichbar|rufen sie|ruf mich|könnten sie|können sie mir|kannst du mir|bitte (sagen|schicken|antworten|melden|informieren|geben|helfen|rufen|teilen|schreiben)|gib mir|sag mir)/i;
+const LINK=["weil","dass","denn","deshalb","deswegen","darum","aber","wenn","obwohl","außerdem","trotzdem","damit","sondern","dann","danach","zuerst","später","ob","als","während","bis","leider","zum beispiel","also","oder","und dann","falls","sonst","nämlich","jedoch","zum schluss","am ende","erstens","zweitens","dafür","dabei","seitdem","nachdem","bevor","sobald"];
 const MINOR=["PUNCTUATION","CORRESPONDENCE"];   /* shown, but no points lost */
 const SKIP_CAT=["TYPOGRAPHY","STYLE","REDUNDANCY","COLLOQUIALISMS","EMPFOHLENE_RECHTSCHREIBUNG","GENDER_NEUTRALITY","WIKIPEDIA"];
 const KIND={TYPOS:["Rechtschreibung","spelling"],CASING:["Groß- und Kleinschreibung","capital letters"],GRAMMAR:["Grammatik","grammar"],CONFUSED_WORDS:["Wortwahl","word choice"],COMPOUNDING:["Zusammen-/Getrenntschreibung","compound words"],PUNCTUATION:["Zeichensetzung","punctuation"],CORRESPONDENCE:["Briefform","letter form"]};
@@ -118,9 +118,13 @@ function own(t){const out=[];RULES.forEach(R=>{const re=new RegExp(R.rx,"gd");le
 const wc=s=>(String(s).match(/[A-Za-zÄÖÜäöüß0-9]+/g)||[]).length;
 
 /* the text in sentences, with their place in the text */
-function segments(t){const out=[],re=/[^.!?\n]+[.!?]*/g;let m;
+const ABBR=/(^|[^A-Za-zÄÖÜäöüß])(\d{1,4}|[zZ]|[bB]|d\.h|u\.a|Dr|Nr|Str|ca|bzw|usw|evtl|ggf|inkl|vgl|Tel|Hr|Fr)$/;
+function segments(t){const out=[],re=/[^.!?\n]+[.!?]*/g;let m,cur=null;
  while((m=re.exec(t))){let s=m.index,x=m[0];const lead=x.length-x.replace(/^\s+/,"").length;s+=lead;x=x.trim();
-  if(/[A-Za-zÄÖÜäöüß]/.test(x))out.push({s,e:s+x.length,txt:x})}
+  if(!x)continue;
+  /* the piece before ended with "3." or "z." – this one goes on the same sentence (unless a new line starts) */
+  if(cur&&!/\n/.test(t.slice(cur.e,s))&&/\.$/.test(cur.txt)&&ABBR.test(cur.txt.slice(0,-1))&&/^[\wÄÖÜäöüß(„"]/.test(x)){cur.e=s+x.length;cur.txt=t.slice(cur.s,cur.e);continue}
+  if(/[A-Za-zÄÖÜäöüß]/.test(x)){cur={s,e:s+x.length,txt:x};out.push(cur)}}
  return out}
 
 function analyse(p,tid,text,lt,fill){
@@ -129,7 +133,7 @@ function analyse(p,tid,text,lt,fill){
  const an={text:t,b1,words,need,segs,points:[],checks:[],tips:[],auto:{},errs:null};
  /* Anrede: the first line; Gruß: near the end; the name after it is the signature */
  const first=segs[0],anr=first&&ANREDE.test(first.txt)?first:null;
- const formal=/^\s*(sehr geehrte|guten tag)/i.test(p.model||"");
+ const formal=/^\s*(sehr geehrte|guten tag)/i.test(p.model||"")||/[^.!?\n\s]\s+(Sie|Ihnen|Ihre?[mnrs]?)(?=[^A-Za-zÄÖÜäöüß]|$)/.test(p.model||"");
  let gi=-1;segs.forEach((g,i)=>{if(i>=segs.length-3&&GRUSS.test(g.txt))gi=i});
  segs.forEach((g,i)=>{g.pts=[];g.role=i===gi?"gruss":gi>=0&&i>gi?"sign":g===anr&&wc(g.txt.replace(/^[^,]*,/,""))<2?"anrede":"";
   g.body=g===anr?g.txt.replace(/^[^,\n]*,\s*/,""):g.txt});
@@ -153,7 +157,8 @@ function analyse(p,tid,text,lt,fill){
  /* the letter's frame */
  const anrOk=!!anr,grOk=gi>=0;
  const informal=anr&&/^\s*(liebe|hallo|hi)/i.test(anr.txt);
- const regOk=!anr||(formal?!informal:informal);
+ /* formal: "Sehr geehrte …", but also "Liebe Frau Meier" or "Liebe Nachbarn" – only "Hallo/Hi" is too casual; informal: not "Sehr geehrte" */
+ const regOk=!anr||(formal?!/^\s*(hallo|hi)\b/i.test(anr.txt):!/^\s*sehr geehrte/i.test(anr.txt));
  let mixed="";
  if(formal){const m=t.match(/(^|[^A-Za-zÄÖÜäöüß])(du|dich|dir|dein\w*|euch|euer)(?=[^A-Za-zÄÖÜäöüß]|$)/i);if(m)mixed=m[2]}
  else{const m=t.match(/[^.!?\n\s]\s+(Sie|Ihnen|Ihre?[mnrs]?)(?=[^A-Za-zÄÖÜäöüß]|$)/);if(m)mixed=m[1]}
@@ -163,7 +168,8 @@ function analyse(p,tid,text,lt,fill){
  if(!b1){an.auto.ag=anrOk&&grOk?1:0}
  else{
   const c1=body.slice(0,2).some(g=>INTRO.test(g.body));
-  const tail=body.slice(-3).some(g=>CLOSE.test(g.body));
+  /* a closing: a closing phrase near the end – or the letter ends with a question or a request before the sign-off */
+  const lastB=body.length?body[body.length-1].body:"",tail=body.slice(-3).some(g=>CLOSE.test(g.body))||/\?\s*$/.test(lastB)||/(^|[^a-zäöüß])bitte([^a-zäöüß]|$)/i.test(lastB);
   const tok=" "+body.map(g=>g.body).join(" ").toLowerCase().replace(/[^a-zäöüß]+/g," ")+" ",used=LINK.filter(w=>tok.includes(" "+w+" "));
   const lenOk=!need||words>=need*.65;   /* telc asks "etwa"; the model letters run 100–130 */
   add(grOk,"Gruß am Ende","sign-off at the end",[`Schließe mit „${formal?"Mit freundlichen Grüßen":"Viele Grüße / Liebe Grüße"}“ und deinem Namen`,"End with a sign-off and your name"]);
@@ -171,8 +177,8 @@ function analyse(p,tid,text,lt,fill){
   add(tail,"Schluss vor dem Gruß","a closing sentence before the sign-off",[`Schreib vor dem Gruß einen Schlusssatz, z. B. „${formal?"Ich freue mich auf Ihre Antwort.":"Ich freue mich auf deine Antwort!"}“`,"Add a closing sentence before the sign-off"]);
   add(regOk&&!mixed,formal?"Sie-Form (formell) – passend zu dieser Aufgabe":"du-Form (informell) – passend zu dieser Aufgabe",formal?"formal “Sie” – right for this task":"informal “du” – right for this task",
    [!regOk?`Diese Aufgabe verlangt ${formal?"„Sehr geehrte …“ und die Sie-Form":"„Liebe/Lieber …“ und die du-Form"}`:`Bleib bei einer Form: „${mixed}“ passt nicht zur ${formal?"Sie":"du"}-Form`,!regOk?"Use the register this task needs":"Don’t mix du and Sie"]);
-  add(used.length>=4,`Sätze verbunden: ${used.length?used.slice(0,8).join(", "):"keine Verbindungswörter"}`,`sentences linked: ${used.length} linking words`,
-   ["Verbinde Sätze mit weil, dass, wenn, deshalb, obwohl, trotzdem …","Link your sentences with weil, dass, wenn, deshalb …"],used.length>=2);
+  add(used.length>=3,`Sätze verbunden: ${used.length?used.slice(0,8).join(", "):"keine Verbindungswörter"}`,`sentences linked: ${used.length} linking words`,
+   ["Verbinde Sätze mit weil, dass, wenn, deshalb, obwohl, trotzdem …","Link your sentences with weil, dass, wenn, deshalb …"],used.length===2);
   add(lenOk,`Länge: ${words} Wörter${need?` (verlangt etwa ${need}, mindestens ${Math.round(need*.65)})`:""}`,`length: ${words} words${need?` (about ${need} asked)`:""}`,[`Schreib etwa ${need} Wörter – zu jedem Leitpunkt 2–3 Sätze`,`Write about ${need} words – 2–3 sentences per point`]);
   /* misses: 0 → A, up to 1 → B, up to 3 → C, more → D (a half-kept check is half a miss) */
   const miss=an.checks.reduce((n,c)=>n+(c.ok?0:c.half?.5:1),0);
