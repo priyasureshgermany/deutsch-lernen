@@ -272,7 +272,7 @@ function Pruefung(o){
     else if(rec&&rec.key===key)h+=`<div class="tz-tx live" id="tzLive">${esc((rec.tx||"")+(rec.im||""))||"Sprich jetzt …"}</div><div class="tz-row"><button type="button" class="tz-btn rec on" data-rec="stop">■ Stopp</button></div>`;
     else h+=`${tx?`<div class="tz-tx">${esc(tx)}</div>`:""}${AUD[key]?`<audio controls src="${AUD[key]}"></audio>`:""}
      <div class="tz-row"><button type="button" class="tz-btn rec" data-rec="${key}">${tx||AUD[key]?"↺ Neu aufnehmen":"🎙 Aufnehmen"}</button>${tx||AUD[key]?`<button type="button" class="tz-btn" data-turn="${k}">Weiter ›</button>`:`<button type="button" class="tz-btn ghost" data-turn="${k}">Überspringen</button>`}</div>
-     ${!SR?`<div class="tz-sub">Dieses Gerät erkennt keine Sprache – deine Aufnahme bewertest du am Ende selbst.</div>`:""}`;
+     ${!SR?`<div class="tz-sub">Dieses Gerät erkennt keine Sprache – deine Aufnahme bewertest du am Ende selbst.</div>`:PHONE?`<div class="tz-sub">Sprich nach dem Tippen auf 🎙 – dein Text erscheint sofort. Auf dem Handy wird der Text erkannt, eine Tonaufnahme zum Anhören gibt es nur am Computer.</div>`:""}`;
     h+=`</div>`}});
   if(at>=p.turns.length)h+=`<div class="tz-sub done">Teil fertig – du kannst ihn abgeben.</div>`;
   else if(p.turns[at].say)h+=`<div class="tz-row"><button type="button" class="tz-btn ghost" data-turn="${k}">Weiter ›</button></div>`;
@@ -292,18 +292,63 @@ function Pruefung(o){
    words+=tn.say.split(/\s+/).length;if(i===end-1){u.onend=go;u.onerror=go}synth.speak(u)}
   /* some phones never report the end of speech: go on after a generous time */
   setTimeout(go,(words*600/(TALK*(o.rate?o.rate():1)))+5000)}
- async function startRec(key){if(rec)return;stopAudio();const st={key,chunks:[],tx:"",im:""};rec=st;drawPart();
-  if(MIC&&window.MediaRecorder){try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});st.stream=stream;
-   const mr=new MediaRecorder(stream);st.mr=mr;mr.ondataavailable=e=>{if(e.data&&e.data.size)st.chunks.push(e.data)};mr.start()}catch(e){st.noMic=true}}
-  if(SR){try{const r=new SR();r.lang="de-DE";r.continuous=true;r.interimResults=true;
-   r.onresult=e=>{let f="",im="";for(const x of e.results){if(x.isFinal)f+=x[0].transcript+" ";else im+=x[0].transcript}st.tx=f;st.im=im;const el=body.querySelector("#tzLive");if(el)el.textContent=(f+im)||"Sprich jetzt …"};
-   r.onerror=()=>{};r.onend=()=>{st.srDone=true};r.start();st.sr=r}catch(e){st.srDone=true}}else st.srDone=true}
- function stopRec(){const st=rec;if(!st)return;try{st.sr&&st.sr.stop()}catch(e){}
-  const done=()=>{if(st.fin)return;st.fin=true;rec=null;
+ /* Recording an answer – the same on every device:
+    - Phones (Android, iPhone) give the microphone to ONE user at a time. Running the
+      audio recorder and the speech recognition together left one of them empty
+      (no text, or a silent recording). On a phone the speech recognition alone
+      listens; the audio recorder runs only where there is no recognition, or on a
+      computer, where both work together.
+    - Android ends the recognition after a short pause and repeats earlier words in
+      every new result ("ich ich heiße ich heiße Suresh"). The recognition is
+      restarted until ■ Stopp, and the pieces are merged without repeats.
+    - ■ Stopp waits for the last words (the recognition's end, at most 2 s).
+    - A blocked microphone is said clearly instead of a silent empty answer. */
+ const IOS=/iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Macintosh/.test(navigator.userAgent)),PHONE=IOS||/Android/i.test(navigator.userAgent);
+ /* join recognised pieces: a piece that repeats what is already there replaces it, a repeated tail is dropped */
+ function joinTx(a,b){a=(a||"").trim();b=(b||"").trim();if(!a)return b;if(!b)return a;const la=a.toLowerCase(),lb=b.toLowerCase();
+  if(lb.startsWith(la)||lb.includes(la))return b;if(la.endsWith(lb)||la.includes(lb))return a;
+  const wa=a.split(/\s+/),wb=b.split(/\s+/);for(let n=Math.min(wa.length,wb.length);n>0;n--)if(wa.slice(-n).join(" ").toLowerCase()===wb.slice(0,n).join(" ").toLowerCase())return wa.concat(wb.slice(n)).join(" ");
+  return a+" "+b}
+ function liveText(st){const t=joinTx(st.tx,st.im);const el=body.querySelector("#tzLive");if(el)el.textContent=st.err||t||"Sprich jetzt …"}
+ function srStart(st){if(!SR||st.stopping)return;let r;try{r=new SR()}catch(e){st.srDone=true;return}
+  r.lang="de-DE";r.continuous=!/Android/i.test(navigator.userAgent);r.interimResults=true;r.maxAlternatives=1;st.sr=r;st.srDone=false;
+  let fin="";
+  r.onresult=e=>{let im="";for(let i=e.resultIndex;i<e.results.length;i++){const x=e.results[i],t=(x[0]&&x[0].transcript)||"";if(x.isFinal)fin=joinTx(fin,t);else im=joinTx(im,t)}
+   st.cur=fin;st.im=im;st.view=joinTx(st.tx,joinTx(fin,im));const el=body.querySelector("#tzLive");if(el)el.textContent=st.view||"Sprich jetzt …"};
+  r.onerror=e=>{const c=e&&e.error;
+   if(c==="not-allowed"||c==="service-not-allowed"||c==="audio-capture"){st.dead=true;
+    if(st.restarts||st.view){return}   /* a restart after a pause was refused: keep the words, ■ Stopp saves them */
+    st.srFailed=true;st.err=c==="audio-capture"?"Kein Mikrofon gefunden.":IOS
+     ?"Die Spracherkennung ist hier nicht verfügbar (am iPhone: Einstellungen › Allgemein › Tastatur › „Diktierfunktion“ einschalten, und die Seite in Safari öffnen). Deine Aufnahme wird trotzdem gespeichert – du bewertest sie am Ende selbst."
+     :"Die Spracherkennung ist nicht erlaubt – deine Aufnahme wird trotzdem gespeichert, du bewertest sie am Ende selbst.";liveText(st);soundOnly(st)}};
+  r.onend=()=>{st.tx=joinTx(st.tx,joinTx(st.cur,st.im));st.cur="";st.im="";st.srDone=true;
+   /* a pause ended it (Android) – listen on until ■ Stopp */
+   if(rec===st&&!st.stopping&&!st.dead&&(st.restarts=(st.restarts||0)+1)<60){setTimeout(()=>{if(rec===st&&!st.stopping)srStart(st)},150);return}
+   if(st.onSrEnd)st.onSrEnd()};
+  try{r.start()}catch(e){st.srDone=true;if(!st.restarts){st.srFailed=true;soundOnly(st)}}}
+ /* no speech recognition after all: record the sound, rated by yourself at the end */
+ async function soundOnly(st){if(st.mr||!MIC||!window.MediaRecorder||rec!==st)return;
+  try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});if(rec!==st||st.stopping){stream.getTracks().forEach(t=>t.stop());return}st.stream=stream;
+   const mr=new MediaRecorder(stream);st.mr=mr;mr.ondataavailable=e=>{if(e.data&&e.data.size)st.chunks.push(e.data)};mr.start(1000)}
+  catch(e){st.err=e&&e.name==="NotAllowedError"?"Das Mikrofon ist nicht erlaubt – erlaube es in den Einstellungen (iPhone: Einstellungen › Safari › Mikrofon).":"Kein Mikrofon gefunden.";liveText(st)}}
+ async function startRec(key){if(rec)return;stopAudio();const st={key,chunks:[],tx:"",im:"",cur:""};rec=st;drawPart();
+  const useRec=MIC&&window.MediaRecorder&&(!SR||!PHONE);
+  if(useRec){try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});if(rec!==st){stream.getTracks().forEach(t=>t.stop());return}st.stream=stream;
+   const mr=new MediaRecorder(stream);st.mr=mr;mr.ondataavailable=e=>{if(e.data&&e.data.size)st.chunks.push(e.data)};mr.start(1000)}
+   catch(e){st.noMic=true;if(!SR){st.err=e&&e.name==="NotAllowedError"?"Das Mikrofon ist nicht erlaubt – erlaube es in den Browser-Einstellungen für diese Seite.":"Kein Mikrofon gefunden.";liveText(st)}}}
+  if(rec!==st)return;
+  if(SR)srStart(st);else st.srDone=true}
+ function stopRec(){const st=rec;if(!st||st.stopping)return;st.stopping=true;
+  let waiting=0;const done=()=>{if(st.fin||--waiting>0)return;st.fin=true;clearTimeout(st.cap);rec=null;
    if(st.chunks.length){if(AUD[st.key])URL.revokeObjectURL(AUD[st.key]);AUD[st.key]=URL.createObjectURL(new Blob(st.chunks,{type:st.mr&&st.mr.mimeType||"audio/webm"}))}
    if(st.stream)st.stream.getTracks().forEach(t=>t.stop());
-   const tx=((st.tx||"")+(st.im||"")).trim();if(tx||!run.ans[st.key])run.ans[st.key]=tx;save();drawPart()};
-  if(st.mr&&st.mr.state!=="inactive"){st.mr.onstop=()=>setTimeout(done,st.srDone?0:700);st.mr.stop()}else setTimeout(done,st.sr?700:0)}
+   const tx=joinTx(st.tx,joinTx(st.cur,st.im)).trim();if(tx||!run.ans[st.key])run.ans[st.key]=tx;
+   run.self=run.self||{};if(st.srFailed&&!tx)run.self[st.key]=1;else delete run.self[st.key];save();drawPart()};
+  if(st.mr&&st.mr.state!=="inactive"){waiting++;st.mr.onstop=done;try{st.mr.stop()}catch(e){done()}}
+  if(st.sr&&!st.srDone){waiting++;st.onSrEnd=done;try{st.sr.stop()}catch(e){done()}}
+  if(!waiting){waiting=1;done();return}
+  /* never hang: at most 2 s for the last words */
+  st.cap=setTimeout(()=>{waiting=1;done()},2000)}
  /* Rating of one answer from its transcript: 1 gut, 0,5 teilweise, 0 fehlt. */
  function rate(tn,tx){if(!tx||!tx.trim())return SR?0:null;   /* nothing said = 0; without speech recognition you rate yourself */
  const w=(tx.match(/\S+/g)||[]).length,keys=tn.key||[];
@@ -370,7 +415,7 @@ function Pruefung(o){
  function record(){const t=test(run.tid),old=lastOf(run.tid)||{},auto=Object.assign({},old.auto||{});
   const taken=t.sections.map((_,i)=>i).filter(i=>run.secDone[i]);
   taken.forEach(si=>t.sections[si].parts.forEach((p,j)=>{if(p.type!=="speak")return;const k=si+"."+j;if(auto[k])return;auto[k]={};
-   p.turns.forEach((tn,i)=>{if(tn.you){const v=rate(tn,run.ans[k+"."+i]);if(v!=null)auto[k][i]=v}})}));
+   p.turns.forEach((tn,i)=>{if(tn.you){const kk=k+"."+i,v=(run.self||{})[kk]?null:rate(tn,run.ans[kk]);if(v!=null)auto[k][i]=v}})}));
   const r=Object.assign(old,{tid:run.tid,ans:Object.assign({},run.ans),sa:old.sa||{},auto,taken,date:new Date().toLocaleDateString("de-DE")});
   keep(r);return r}
  function finish(){clearInterval(timer);setTimeout(label);const r=record();
