@@ -1,5 +1,10 @@
 # Releases
 
+## 1.50.0 — 2026-10-31
+- New practice part in A1 and B1 Hören, „Aus dem Alltag – Durchsagen und Ansagen“: 10 more each, read aloud like the exam texts, not counted as an exam part
+- A1: train delay to work out, U-Bahn exit side, gate change „nicht A 12, sondern A 22“, supermarket closing, doctor's holiday voicemail, hotline menu, parcel service, Kita calling, offer, weather
+- B1 (DTZ): ICE Wagenreihung, Bürgeramt waiting numbers, health-insurance hold message, property manager changing the day, traffic news, Jobcenter, product recall, Kinderarzt recording, power cut, a pharmacy dialogue in two voices
+
 ## 1.49.0 — 2026-10-31
 - Lesen with real-life ads and notices: every ad and notice is drawn as a pinned sheet of paper, one sheet per ad
 - A1 Teil 2 and 3 rewritten with the wording of real ads and signs: VB, WG-Zimmer vs. 2-Zi.-Whg., EBK, KM + NK, (m/w/d), Minijob, Ruhetag, „gültig bis … solange der Vorrat reicht“, Parkscheibe, Ersatzhaltestelle
