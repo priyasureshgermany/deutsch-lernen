@@ -112,6 +112,18 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
 h3{font-family:"Bricolage Grotesque",sans-serif;font-size:20px;font-weight:800;margin:26px 0 2px}
 h3 .en{font-family:"Atkinson Hyperlegible",sans-serif;font-weight:400;font-size:15px;color:var(--muted);margin-left:8px}
 .ln{display:block}
+/* Ads and notices look like what hangs on a real notice board: a sheet of
+   paper with a pin, the headline in bold. One sheet per ad (a), b) … start
+   a new one). */
+:root{--nt-bg:#fffbea;--nt-line:#e8dfbd;--nt-pin:#d6453d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--nt-bg:#29261a;--nt-line:#4a4430;--nt-pin:#e0625a}}
+:root[data-theme="dark"]{--nt-bg:#29261a;--nt-line:#4a4430;--nt-pin:#e0625a}
+.nc{display:block;position:relative;background:var(--nt-bg);border:1px solid var(--nt-line);border-radius:3px;
+ padding:.6em .8em .65em;margin:.55em 0 .6em;box-shadow:0 1px 2px rgba(0,0,0,.08),0 4px 10px rgba(0,0,0,.06)}
+.nc::before{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;
+ background:var(--nt-pin);box-shadow:0 1px 2px rgba(0,0,0,.35)}
+.nc > .ln:first-child{font-weight:700}
+
 td.c-tx{border-left:3px solid var(--a2)}
 th.c-tx,td.c-tx::before{color:var(--a2)}
 td.c-de{border-left:3px solid var(--b1)}
@@ -252,52 +264,35 @@ const S=[
 ["Jonas is taking a boat tomorrow.","Text 1: Jonas fährt morgen mit dem Schiff.","","","Richtig","True"],
 ["Mr Nowak has an appointment with Ms Berger on Thursday.","Text 2: Herr Nowak hat am Donnerstag einen Termin mit Frau Berger.","","","Falsch – der Termin ist nicht möglich.","False – the appointment isn't possible."],
 ["Mr Nowak should call Ms Roth.","Text 2: Herr Nowak soll Frau Roth anrufen.","","","Richtig – „Bitte rufen Sie mich an.“","True – “Please call me.”"]]},
-{t:"Teil 2 – Anzeigen",te:"Part 2 – Adverts",
+{t:"Teil 2 – Anzeigen",te:"Part 2 – Adverts",look:"notice",
  intro:"Lesen Sie die Aufgaben und die Anzeigen. Welche Anzeige passt: a oder b?",
  introEn:"Read the tasks and the adverts. Which advert fits: a or b?",rows:[
-["You want to learn German in the evening.","Sie möchten abends Deutsch lernen.",
- "a) Sprachschule Europa: Deutschkurse A1 bis B2, Montag bis Freitag, 9 bis 12 Uhr.\nb) Volkshochschule: Deutsch für Berufstätige, dienstags und donnerstags, 18:30 bis 21 Uhr.",
- "a) Europa language school: German courses A1 to B2, Monday to Friday, 9 to 12. / b) Adult education centre: German for working people, Tuesdays and Thursdays, 6:30 to 9 pm.",
- "b) – der Kurs ist am Abend.","b) – the course is in the evening."],
-["You need a cheap used bike.","Sie brauchen ein billiges, gebrauchtes Fahrrad.",
- "a) Verkaufe Damenrad, drei Jahre alt, sehr gut, nur 80 Euro.\nb) Fahrradladen Speiche: neue E-Bikes ab 1899 Euro.",
- "a) Selling women's bike, three years old, very good, only 80 euros. / b) Speiche bike shop: new e-bikes from 1899 euros.",
- "a) – gebraucht und billig.","a) – used and cheap."],
-["You want to eat out on Sunday evening.","Sie möchten am Sonntagabend essen gehen.",
- "a) Restaurant Da Mario: Montag bis Samstag 12 bis 23 Uhr, Sonntag Ruhetag.\nb) Gasthaus Zum Löwen: täglich 11 bis 22 Uhr, auch sonntags.",
- "a) Da Mario restaurant: Monday to Saturday 12 to 11 pm, closed Sunday. / b) Zum Löwen inn: daily 11 to 10 pm, Sundays too.",
- "b) – auch sonntags geöffnet.","b) – also open on Sundays."],
-["You're looking for a 2-room apartment in Frankfurt.","Sie suchen eine Zwei-Zimmer-Wohnung in Frankfurt.",
- "a) Frankfurt-Bornheim: 2-Zimmer-Wohnung, 55 m², Balkon, ab 1. November frei.\nb) Offenbach: 3-Zimmer-Wohnung, 80 m², Garten.",
- "a) Frankfurt-Bornheim: 2-room flat, 55 m², balcony, available from 1 November. / b) Offenbach: 3-room flat, 80 m², garden.",
- "a) – zwei Zimmer, in Frankfurt.","a) – two rooms, in Frankfurt."],
-["You want to swim in the morning before work.","Sie möchten morgens vor der Arbeit schwimmen.",
- "a) Hallenbad Mitte: Montag bis Freitag 6:30 bis 22 Uhr.\nb) Freibad am See: nur im Sommer, täglich 10 bis 19 Uhr.",
- "a) Mitte indoor pool: Monday to Friday 6:30 am to 10 pm. / b) Lakeside outdoor pool: summer only, daily 10 am to 7 pm.",
- "a) – öffnet schon um 6:30 Uhr.","a) – opens at 6:30 am."]]},
-{t:"Teil 3 – Schilder und Aushänge",te:"Part 3 – Signs and notices",
+["You work until 5 pm and want to learn German after work.","Sie arbeiten bis 17 Uhr und möchten nach der Arbeit Deutsch lernen.","a) Sprachschule LinguaPlus\nDeutsch A1 am Abend\nDi + Do 18:30–20:45 Uhr\nmax. 10 Teilnehmer · Probestunde gratis!\nb) Volkshochschule\nDeutsch A1 – Intensivkurs\nMo–Fr 8:30–12:45 Uhr\n4 Wochen · 290 €","a) LinguaPlus language school / German A1 in the evening / Tue + Thu 6:30–8:45 pm / max. 10 participants · free trial lesson! / b) Adult education centre / German A1 – intensive course / Mon–Fri 8:30 am–12:45 pm / 4 weeks · 290 €","a) – der Kurs ist abends, nach 17 Uhr.","a) – the course is in the evening, after 5 pm."],
+["You're looking for a cheap used bike.","Sie suchen ein billiges, gebrauchtes Fahrrad.","a) Fahrrad Meier\nNeue Citybikes ab 499 €\nJetzt 10 % Rabatt auf alle E-Bikes!\nMo–Sa 10–19 Uhr\nb) Verkaufe Damenrad\n28 Zoll, 7 Gänge, guter Zustand\n85 € VB · nur Abholung\nTel. 0176 4471220 (ab 18 Uhr)","a) Meier bikes / New city bikes from 499 € / Now 10 % off all e-bikes! / Mon–Sat 10 am–7 pm / b) For sale: women's bike / 28 inch, 7 gears, good condition / 85 € or nearest offer · collection only / Tel. 0176 4471220 (from 6 pm)","b) – gebraucht und nur 85 €. VB = Verhandlungsbasis: Der Preis ist nicht fest.","b) – used and only 85 €. VB = or nearest offer: the price isn't fixed."],
+["You want to eat out on Sunday evening.","Sie möchten am Sonntagabend essen gehen.","a) Pizzeria Bella Napoli\nMo Ruhetag\nDi–So 12–14:30 und 17:30–23 Uhr\nMittagstisch Di–Fr ab 7,90 €\nb) Restaurant Sonne\nMo–Sa 11:30–22 Uhr\nSonn- und Feiertage geschlossen","a) Bella Napoli pizzeria / closed Mondays / Tue–Sun 12–2:30 pm and 5:30–11 pm / lunch menu Tue–Fri from 7.90 € / b) Restaurant Sonne / Mon–Sat 11:30 am–10 pm / closed on Sundays and public holidays","a) – sonntags 17:30 bis 23 Uhr geöffnet. Ruhetag ist Montag.","a) – open on Sundays 5:30–11 pm. The closing day is Monday."],
+["You're looking for your own 2-room flat in Frankfurt.","Sie suchen eine eigene Zwei-Zimmer-Wohnung in Frankfurt.","a) WG-Zimmer frei!\n16 m² in 3er-WG, Frankfurt-Bockenheim\n520 € warm · ab sofort\nb) 2-Zi.-Whg. in Frankfurt-Bornheim\n54 m², EBK, Balkon, 3. OG\nKM 780 € + NK 190 €\nfrei ab 1.12.","a) Room free in a flatshare! / 16 m² in a flatshare for 3, Frankfurt-Bockenheim / 520 € incl. bills · available now / b) 2-room flat in Frankfurt-Bornheim / 54 m², fitted kitchen, balcony, 3rd floor / basic rent 780 € + service charges 190 € / free from 1 Dec.","b) – 2-Zi.-Whg. = Zwei-Zimmer-Wohnung. Ein WG-Zimmer ist nur ein Zimmer in einer Wohnung mit anderen Leuten.","b) – 2-Zi.-Whg. = two-room flat. A WG room is only one room in a flat shared with other people."],
+["You want a job only at the weekend.","Sie möchten nur am Wochenende arbeiten.","a) Bäckerei Kraus sucht\nAushilfe (m/w/d)\nSa + So 6–12 Uhr · Minijob\nBewerbung bitte direkt im Laden\nb) Verkäufer (m/w/d) in Vollzeit\nMo–Fr · 40 Std./Woche\nErfahrung im Verkauf nötig","a) Kraus bakery is looking for / a temp (m/f/d) / Sat + Sun 6 am–12 pm · mini-job / please apply in the shop / b) Full-time sales assistant (m/f/d) / Mon–Fri · 40 hrs/week / sales experience required","a) – Samstag und Sonntag. (m/w/d) heißt: für Männer, Frauen und Diverse.","a) – Saturday and Sunday. (m/f/d) means: for men, women and diverse."]]},
+{t:"Teil 3 – Schilder und Aushänge",te:"Part 3 – Signs and notices",look:"notice",
  intro:"Lesen Sie die Schilder. Kreuzen Sie an: Richtig oder Falsch.",
  introEn:"Read the signs. Choose true or false.",rows:[
-["In August (1st–14th) you can go to Dr Lang.","Vom 1. bis 14. August können Sie zu Dr. Lang gehen.",
- "Praxis Dr. Klein: Wir sind vom 1. bis 14. August im Urlaub. Vertretung: Dr. Lang, Goethestraße 5.",
- "Dr Klein's practice: We are on holiday from 1 to 14 August. Cover: Dr Lang, Goethestraße 5.",
- "Richtig – Dr. Lang ist die Vertretung.","True – Dr Lang is covering."],
-["The bakery is open today.","Die Bäckerei ist heute geöffnet.",
- "Bäckerei Schmidt: Heute wegen Krankheit geschlossen. Morgen sind wir wieder für Sie da.",
- "Schmidt bakery: Closed today due to illness. We're back for you tomorrow.",
- "Falsch – heute geschlossen.","False – closed today."],
-["A 10-year-old child doesn't have to pay.","Ein zehnjähriges Kind muss nicht bezahlen.",
- "Stadtmuseum – Eintritt: Erwachsene 8 Euro, Kinder unter 12 Jahren frei.",
- "City museum – Admission: adults 8 euros, children under 12 free.",
- "Richtig – unter 12 Jahren ist es frei.","True – free under 12."],
-["You can buy a ticket at the counter today.","Sie können heute am Schalter eine Fahrkarte kaufen.",
- "Fahrkarten gibt es am Automaten. Der Schalter ist heute geschlossen.",
- "Tickets are available at the machine. The counter is closed today.",
- "Falsch – nur am Automaten.","False – only at the machine."],
-["You have to walk to the second floor.","Sie müssen zu Fuß in den zweiten Stock gehen.",
- "Deutschkurs: Raum 204, 2. Stock. Der Aufzug ist kaputt. Bitte benutzen Sie die Treppe.",
- "German course: room 204, 2nd floor. The lift is broken. Please use the stairs.",
- "Richtig – der Aufzug ist kaputt.","True – the lift is broken."]]}]},
+["On Tuesday morning there's no water in the building.","Am Dienstagvormittag gibt es im Haus kein Wasser.","Liebe Mieterinnen und Mieter,\nam Dienstag, 4.11., wird von 8 bis 14 Uhr das Wasser abgestellt (Reparatur).\nBitte füllen Sie vorher Wasser ab.\nIhre Hausverwaltung","Dear tenants, / on Tuesday, 4 Nov., the water will be turned off from 8 am to 2 pm (repairs). / Please fill up some water beforehand. / Your property management","Richtig – von 8 bis 14 Uhr ist das Wasser abgestellt.","True – the water is off from 8 am to 2 pm."],
+["You can go to the doctor on Wednesday afternoon.","Sie können am Mittwochnachmittag zum Arzt gehen.","Praxis Dr. med. A. Klein · Allgemeinmedizin\nSprechzeiten:\nMo, Di, Do 8–12 und 15–18 Uhr\nMi, Fr 8–12 Uhr\nTermine nur nach telefonischer Vereinbarung","Dr A. Klein's practice · general medicine / Surgery hours: / Mon, Tue, Thu 8–12 and 3–6 pm / Wed, Fri 8–12 / Appointments by phone only","Falsch – mittwochs nur von 8 bis 12 Uhr.","False – on Wednesdays only from 8 to 12."],
+["The bananas cost 0.99 € next week too.","Die Bananen kosten auch nächste Woche 0,99 €.","AKTION!\nBananen, 1 kg – nur 0,99 €\ngültig bis Samstag, 8.11.\nsolange der Vorrat reicht","SPECIAL OFFER! / Bananas, 1 kg – only 0.99 € / valid until Saturday, 8 Nov. / while stocks last","Falsch – das Angebot gilt nur bis Samstag.","False – the offer is only valid until Saturday."],
+["You must put a parking disc in your car.","Sie müssen eine Parkscheibe ins Auto legen.","Kundenparkplatz\nParken nur für Kunden – max. 1 Std.\nParkscheibe nicht vergessen!\nFalschparker werden kostenpflichtig abgeschleppt.","Customer car park / Parking for customers only – max. 1 hr / Don't forget your parking disc! / Wrongly parked cars will be towed away at the owner's expense.","Richtig – „Parkscheibe nicht vergessen!“","True – “Don't forget your parking disc!”"],
+["On 15 November the bus stops at Marktplatz.","Am 15. November hält der Bus am Marktplatz.","Achtung, Fahrgäste!\nWegen Bauarbeiten hält die Linie 34 vom 10. bis 21. November nicht an der Haltestelle Marktplatz.\nBitte benutzen Sie die Ersatzhaltestelle in der Bahnhofstraße.","Attention, passengers! / Because of roadworks, line 34 does not stop at the Marktplatz stop from 10 to 21 November. / Please use the replacement stop in Bahnhofstraße.","Falsch – vom 10. bis 21. November hält er nicht am Marktplatz.","False – from 10 to 21 November it doesn't stop at Marktplatz."]]},
+{t:"Aus dem Alltag – Anzeigen und Aushänge",te:"Everyday life – adverts and notices",look:"notice",
+ intro:"Solche Texte sehen Sie jeden Tag: im Haus, beim Arzt, im Supermarkt, an der Haltestelle. Lesen Sie: Richtig oder Falsch?",
+ introEn:"You see texts like these every day: in your building, at the doctor's, in the supermarket, at the bus stop. Read: true or false?",rows:[
+["From January the organic waste bin is emptied every week.","Ab Januar wird die Biotonne jede Woche geleert.","Hinweis zur Müllabfuhr\nAb Januar wird die Biotonne nur noch alle zwei Wochen geleert.\nDie Termine finden Sie im Abfallkalender.","Note on rubbish collection / From January the organic waste bin will only be emptied every two weeks. / You'll find the dates in the waste calendar.","Falsch – nur noch alle zwei Wochen.","False – only every two weeks."],
+["Tonight you can buy medicine at the Stern pharmacy.","Heute Nacht können Sie in der Stern-Apotheke Medikamente kaufen.","Notdienst heute:\nStern-Apotheke, Hauptstraße 12\nvon 8:30 Uhr bis morgen 8:30 Uhr","Emergency service today: / Stern pharmacy, Hauptstraße 12 / from 8:30 am until 8:30 am tomorrow","Richtig – sie hat Notdienst bis morgen früh.","True – it's on emergency duty until tomorrow morning."],
+["You pay 9.90 € a month for the whole year.","Sie zahlen das ganze Jahr 9,90 € im Monat.","FitPoint – Neueröffnung!\nDie ersten 3 Monate nur 9,90 €/Monat,\ndanach 29,90 €/Monat.\nMindestlaufzeit 12 Monate","FitPoint – grand opening! / The first 3 months only 9.90 €/month, / after that 29.90 €/month. / Minimum term 12 months","Falsch – nur 3 Monate, danach 29,90 €.","False – only for 3 months, then 29.90 €."],
+["On Friday there is childcare in another nursery.","Am Freitag gibt es eine Betreuung in einer anderen Kita.","Liebe Eltern,\nam Freitag, 14.11., ist unsere Kita wegen eines Teamtages geschlossen.\nDie Notbetreuung ist in der Kita Sonnenschein.\nBitte melden Sie Ihr Kind bis Mittwoch an.","Dear parents, / on Friday, 14 Nov., our nursery is closed for a team day. / Emergency childcare is at the Sonnenschein nursery. / Please register your child by Wednesday.","Richtig – die Notbetreuung ist in der Kita Sonnenschein.","True – emergency childcare is at the Sonnenschein nursery."],
+["You can go to the citizens' office without an appointment.","Sie können ohne Termin zum Bürgeramt gehen.","Bürgeramt\nBedienung nur mit Termin!\nTermine: online oder unter Tel. 115","Citizens' office / Service by appointment only! / Appointments: online or call 115","Falsch – nur mit Termin.","False – by appointment only."],
+["The family pays money if you find the cat.","Die Familie zahlt Geld, wenn man die Katze findet.","Katze entlaufen!\nGrau, ca. 2 Jahre, hört auf „Mimi“.\nZuletzt gesehen am 2.11. in der Lindenstraße.\nFinderlohn! Tel. 0151 2233445","Cat missing! / Grey, about 2 years old, answers to “Mimi”. / Last seen on 2 Nov. in Lindenstraße. / Reward! Tel. 0151 2233445","Richtig – „Finderlohn“ ist Geld für die Person, die die Katze findet.","True – a “Finderlohn” is a reward for the person who finds the cat."],
+["The drink is included in the 9.50 €.","Das Getränk ist in den 9,50 € dabei.","Heute: Mittagsmenü 9,50 €\nSuppe + Hauptgericht\nGetränke nicht inklusive\nnur Mo–Fr 11:30–14 Uhr","Today: lunch menu 9.50 € / soup + main course / drinks not included / Mon–Fri 11:30 am–2 pm only","Falsch – Getränke sind nicht inklusive.","False – drinks are not included."],
+["You may do your washing on Sunday.","Sie dürfen am Sonntag Wäsche waschen.","Waschküche\nWaschen nur Mo–Sa 7–20 Uhr.\nSonntags ist Ruhe!\nBitte die Maschine nach dem Waschen sauber machen.","Laundry room / Washing only Mon–Sat 7 am–8 pm. / Sundays are quiet! / Please clean the machine after use.","Falsch – sonntags nicht.","False – not on Sundays."],
+["People who sell things also bring a cake.","Die Verkäufer bringen auch einen Kuchen mit.","Kinderflohmarkt in der Turnhalle\nSamstag, 15.11., 10–14 Uhr\nVerkauf nur von privat\nStandgebühr: 5 € + 1 Kuchen","Children's flea market in the gym / Saturday, 15 Nov., 10 am–2 pm / private sellers only / stall fee: 5 € + 1 cake","Richtig – die Standgebühr ist 5 € und ein Kuchen.","True – the stall fee is 5 € and a cake."],
+["Today you travel by bus instead of by train.","Heute fahren Sie mit dem Bus und nicht mit dem Zug.","Ihr Zug RB 15 fällt heute aus.\nBitte nutzen Sie den Schienenersatzverkehr (Busse) ab Bahnhofsvorplatz.","Your train RB 15 is cancelled today. / Please use the rail replacement service (buses) from the station forecourt.","Richtig – Schienenersatzverkehr heißt: Busse statt Züge.","True – rail replacement service means buses instead of trains."]]}]},
 {de:"Schreiben",en:"Writing",info:"2 Teile · ca. 20 Minuten · 15 Punkte: Formular 5 + Mitteilung 10",infoEn:"2 parts · about 20 minutes · 15 points: form 5 + message 10",parts:[
 {t:"Teil 1 – Formular ausfüllen",te:"Part 1 – Fill in a form",
  intro:"Ihre Freundin möchte einen Deutschkurs machen. Sie helfen ihr beim Anmeldeformular. Lesen Sie den Text und ergänzen Sie fünf Informationen.",
@@ -378,7 +373,7 @@ const EXAM={rows:[
  ["Gut ist","ab 48 Punkten (80 %) – ab 54 sehr gut; pro Prüfungsteil heißt das etwa 12 von 15"]],
  skills:[
  {time:"ca. 20 Minuten",pts:"15 Punkte",parts:[{n:6,per:1,play:"2× hören"},{n:4,per:1,play:"1× hören"},{n:5,per:1,play:"2× hören"}]},
- {time:"25 Minuten",pts:"15 Punkte",parts:[{n:5,per:1},{n:5,per:1},{n:5,per:1}]},
+ {time:"25 Minuten",pts:"15 Punkte",parts:[{n:5,per:1},{n:5,per:1},{n:5,per:1},{none:true,note:"zusätzliche Übung mit echten Anzeigen und Aushängen – kein Prüfungsteil"}]},
  {time:"20 Minuten",pts:"15 Punkte",parts:[{n:5,per:1},{whole:10,each:"10 Punkte für die Mitteilung",note:"in der Prüfung eine Mitteilung, ca. 30 Wörter, zu allen 3 Punkten"}]},
  {time:"ca. 15 Minuten",pts:"15 Punkte",parts:[{whole:3},{whole:6,note:"Fragen stellen und antworten zu zwei Themen"},{whole:6,note:"Bitten formulieren und darauf reagieren"}]}]};
 /* Meine Angaben (me.js): the learner's own details in place of the [Platzhalter]. */
@@ -388,13 +383,17 @@ S.forEach(sk=>sk.parts.forEach(p=>{const P=(o,a,b)=>{[o[a],o[b]]=Me.pair(o[a],o[
 function FB(t,single){const e=encodeURIComponent(t);const a=(u,l)=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`;
  return `<div class="fb">Nachschlagen: ${a("https://translate.google.com/?sl=de&tl=en&op=translate&text="+e,"Google Übersetzer")} · ${a("https://www.deepl.com/translator#de/en/"+e,"DeepL")}${single?" · "+a("https://www.dict.cc/?s="+e,"dict.cc"):""}</div>`}
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-const W=s=>s.replace(/[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g,m=>`<span class="w">${m}</span>`);
+const W=s=>s.replace(/&(?:amp|lt|gt|quot|#\d+);|[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g,m=>m[0]==="&"?m:`<span class="w">${m}</span>`);
 const PH=s=>Me.mark(s.replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>'));
 const SAY='<button class="say" type="button" aria-label="Vorlesen"></button>';
 const TRB='<button class="trb" type="button">Englisch zeigen</button>';
 function de(s){return s.split("\n").map(l=>`<span class="ln">${PH(W(esc(l)))}</span>`).join("")}
 function en(s){return PH(esc(s))}
-function block(deTxt,enTxt){return `<span class="s" lang="de">${de(deTxt)}</span>${SAY}${enTxt?TRB+`<span class="tr"><span class="s" lang="en">${en(enTxt)}</span>${SAY}</span>`:""}`}
+/* An ad or a notice drawn as a sheet of paper; a) b) … each start a sheet of their own. */
+function notes(s){const L=s.split("\n"),G=[];const many=L.some(l=>/^[a-h]\) /.test(l));
+ L.forEach(l=>{if(!G.length||(many&&/^[a-h]\) /.test(l)))G.push([]);G[G.length-1].push(l)});
+ return G.map(g=>`<span class="nc">${de(g.join("\n"))}</span>`).join("")}
+function block(deTxt,enTxt,look){return `<span class="s" lang="de">${look?notes(deTxt):de(deTxt)}</span>${SAY}${enTxt?TRB+`<span class="tr"><span class="s" lang="en">${en(enTxt)}</span>${SAY}</span>`:""}`}
 let h="",n="";const D=[];/* D: every question in order, for the cards */
 S.forEach((sk,si)=>{const id="s"+si;
  n+=`<a href="#${id}" title="${esc(sk.en)}">${esc(sk.de)}</a>`;
@@ -404,11 +403,11 @@ S.forEach((sk,si)=>{const id="s"+si;
   h+=`<div class="part"><h3>${esc(p.t)}<span class="en">${esc(p.te)}</span></h3>`;
   h+=`<div class="intro"><div class="blk"><span class="s" lang="de">${de(p.intro)}</span>${SAY}</div><div class="en-line c-en">${esc(p.introEn)}</div></div>`;
   h+=Exam.line(EXAM.skills[si].parts[pi]);
-  if(p.text)h+=`<div class="ttext"><div class="lab">Text</div><div class="blk">${block(p.text,p.textEn)}</div></div>`;
+  if(p.text)h+=`<div class="ttext"><div class="lab">Text</div><div class="blk">${block(p.text,p.textEn,p.look)}</div></div>`;
   h+=`<div class="wrap"><table><thead><tr><th>#</th><th class="c-en">English</th><th class="c-de">Aufgabe</th>${hasTx?`<th class="c-tx">${p.hear?"Hörtext":"Text"}</th>`:""}<th class="c-ans">Lösung</th></tr></thead><tbody>`;
   p.rows.forEach((r,j)=>{
    h+=`<tr data-i="${D.length}" data-s="${esc((r.join(" ")).toLowerCase())}"><td class="num">${j+1}</td><td class="c-en" data-l="English"><span class="s" lang="en">${en(r[0])}</span>${SAY}</td><td class="c-de" data-l="Aufgabe">${block(r[1],"")}${p.write?`<div class="wbox"><textarea class="mywrite" data-wk="${si}.${pi}.${j}" rows="9" lang="de" spellcheck="false" autocapitalize="sentences" placeholder="Schreiben Sie hier Ihren Text …"></textarea><div class="wcount"><span>0</span> Wörter · verlangt: etwa ${p.write}</div></div>`:""}</td>`;
-   if(hasTx)h+=`<td class="c-tx${p.hear?" rv hear":""}" data-l="${p.hear?"Hörtext":"Text"}">${r[2]?block(r[2],r[3]):"—"}</td>`;
+   if(hasTx)h+=`<td class="c-tx${p.hear?" rv hear":""}" data-l="${p.hear?"Hörtext":"Text"}">${r[2]?block(r[2],r[3],p.look):"—"}</td>`;
    h+=`<td class="c-ans rv" data-l="Lösung">${block(r[4],r[5])}</td></tr>`;D.push({si,pi,j});
 });
   h+=`</tbody></table></div></div>`});
@@ -509,9 +508,9 @@ main.addEventListener("click",tap);
 function examCard(d){const p=S[d.si].parts[d.pi],r=p.rows[d.j];
  return `<div class="fc-q"><div class="fc-de">${block(r[1],"")}</div>
   <div class="fc-en c-en"><span class="s" lang="en">${en(r[0])}</span>${SAY}</div>
-  ${p.text?`<details data-keep="text"><summary>${p.hear?"Hörtext":"Text"}</summary><div class="fc-box${p.hear?" tx rv hear":""}">${block(p.text,p.textEn)}</div></details>`:""}
+  ${p.text?`<details data-keep="text"><summary>${p.hear?"Hörtext":"Text"}</summary><div class="fc-box${p.hear?" tx rv hear":""}">${block(p.text,p.textEn,p.look)}</div></details>`:""}
  </div><div class="fc-a">
-  ${r[2]?`<div class="fc-box tx${p.hear?" rv hear":""}"><div class="lab">${p.hear?"Hörtext":"Text"}</div>${block(r[2],r[3])}</div>`:""}
+  ${r[2]?`<div class="fc-box tx${p.hear?" rv hear":""}"><div class="lab">${p.hear?"Hörtext":"Text"}</div>${block(r[2],r[3],p.look)}</div>`:""}
   <div class="fc-box ans c-ans rv"><div class="lab">Lösung</div>${block(r[4],r[5])}</div>
  </div>`}
 const K=Karten({mount:main,
