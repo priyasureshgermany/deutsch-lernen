@@ -1,5 +1,12 @@
 # Releases
 
+## 1.49.0 — 2026-10-31
+- Lesen with real-life ads and notices: every ad and notice is drawn as a pinned sheet of paper, one sheet per ad
+- A1 Teil 2 and 3 rewritten with the wording of real ads and signs: VB, WG-Zimmer vs. 2-Zi.-Whg., EBK, KM + NK, (m/w/d), Minijob, Ruhetag, „gültig bis … solange der Vorrat reicht“, Parkscheibe, Ersatzhaltestelle
+- B1 (DTZ) Teil 2 ads a–h and Teil 3 notices rewritten the same way
+- New practice part in A1 and B1 Lesen, „Aus dem Alltag – Anzeigen und Aushänge“: 10 more each (A1 richtig/falsch, B1 a/b/c), not counted as an exam part – flat ads with KM/NK/Kaution/WBS, small print on a phone contract, job ads, product recall, Hausordnung, gym cancellation, Schienenersatzverkehr, Kita letter, meter reading, „zu verschenken“
+- Fix: „&“ showed as „&amp;“ in texts (e.g. „Beruf & Computer“ in B1 Lesen Teil 1)
+
 ## 1.48.5 — 2026-10-19
 - Lesen (A1 and B1 Modelltests) checked: all 18 tests, every answer key verified against its text – all correct
 - 101 Lesen questions had no explanation on the result page; now every Lesen answer shows why, with the sentence from the text („Kinder unter 6 Jahren: Eintritt frei“ …)

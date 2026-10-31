@@ -213,7 +213,7 @@ if(MODE!=="hoeren")DATA.forEach(d=>{const P=(o,a,b)=>{[o[a],o[b]]=Me.pair(o[a],o
  if(d.task)P(d,"task","taskEn");if(d.sit)P(d,"sit","sitEn");if(d.points)d.points=d.points.map(x=>Me.plain(Me.fill(x)))});
 Me.about("");
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-const W=s=>s.replace(/[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g,m=>`<span class="w">${m}</span>`);
+const W=s=>s.replace(/&(?:amp|lt|gt|quot|#\d+);|[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*/g,m=>m[0]==="&"?m:`<span class="w">${m}</span>`);
 const PH=s=>Me.mark(s.replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>'));
 const de=s=>s.split("\n").map(l=>PH(W(esc(l)))).join("\n");
 const spoken=s=>s.replace(/[\[\]⟦⟧]/g,"");
