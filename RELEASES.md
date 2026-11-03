@@ -1,5 +1,9 @@
 # Releases
 
+## 1.51.0 — 2026-11-03
+- Satzbau: every sentence shows its level – a small A1 / A2 / B1 badge next to „Satz 3 von 10“ and in the list at the end of a round; the long levels count as their level (A1+ = A1 …)
+- Grammatik Satzbau-Tests: each sentence gets the level of the hardest grammar in it (A1 Präsens, Modalverben, Fragen · A2 Perfekt, weil/dass/wenn, Dativ, reflexiv · B1 Passiv, Konjunktiv II, Relativsatz, Plusquamperfekt, obwohl/nachdem …); the end of a test shows the mix („A1 ×1 A2 ×1 B1 ×3“), and the 🧩 icon says the topic’s range („Niveau A1–B1“)
+
 ## 1.50.0 — 2026-10-31
 - New practice part in A1 and B1 Hören, „Aus dem Alltag – Durchsagen und Ansagen“: 10 more each, read aloud like the exam texts, not counted as an exam part
 - A1: train delay to work out, U-Bahn exit side, gate change „nicht A 12, sondern A 22“, supermarket closing, doctor's holiday voicemail, hotline menu, parcel service, Kita calling, offer, weather
