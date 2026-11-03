@@ -57,6 +57,14 @@ nav button[aria-selected="true"]{background:var(--c);color:#fff}
 @media (prefers-reduced-motion:reduce){#plan.pop{animation:none}}
 #pld{width:min(460px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow-y:auto;margin:max(12px,6vh) auto auto;padding:14px 16px 14px;border:1px solid var(--line);border-radius:16px;background:var(--paper);color:var(--ink);box-shadow:0 12px 40px rgba(0,0,0,.35)}
 #pld::backdrop{background:rgba(10,14,24,.45)}
+.plrem{margin-top:10px;padding:10px 12px;border-radius:14px;border:1px solid var(--line)}
+.plrem b{font-size:15px}
+.plrem p{margin:4px 0 8px;font-size:13px;line-height:1.45;color:var(--muted)}
+.plrem .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.plrem select{font:inherit;font-size:16px;font-weight:700;padding:5px 8px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)}
+.plrem a.plgo{text-decoration:none;display:inline-block}
+.plrem .ok{display:block;margin-top:8px;font-size:13px;color:var(--a1);font-weight:700}
+.plrem .ok[hidden]{display:none}
 .plst{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:14px;background:var(--surface);margin-bottom:6px}
 .plst .f{font-size:28px;line-height:1}
 .plst b{font-size:22px;font-family:"Bricolage Grotesque",system-ui,sans-serif}
@@ -283,12 +291,18 @@ nav .i{display:none}
 <dialog id="pld" aria-labelledby="plh">
  <div class="trhead"><b id="plh">Mein Tagesplan</b><button id="plx" class="fsb" type="button" aria-label="Schließen">✕</button></div>
  <div id="plbody"></div>
+ <div class="plrem">
+  <b>⏰ Tägliche Erinnerung</b>
+  <p>Dein Kalender erinnert dich jeden Tag zur gewählten Zeit – auch wenn die App geschlossen ist. Tippe auf „Zum Kalender“ und dann auf <b>„Alle hinzufügen“</b> (iPhone) bzw. „Speichern“.</p>
+  <div class="row"><select id="plremt" aria-label="Uhrzeit der Erinnerung"></select><a id="plremgo" class="plgo" target="_blank" rel="noopener">📅 Zum Kalender</a></div>
+  <span class="ok" id="plremok" hidden></span>
+ </div>
  <p class="plnote">Die Blöcke haken sich von selbst ab, wenn du in der App übst. Was du woanders gemacht hast (Kurs, Tandem, Video …), hakst du mit dem Kreis ab. Schon ein Block hält deine Serie, alle vier sind ein voller Tag. Alles bleibt nur auf diesem Gerät.</p>
 </dialog>
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.55.0";
+const APP_VERSION = "1.56.0";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren", saetze: "grammatik.html?t=saetze" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -553,6 +567,24 @@ pld.addEventListener("click", e => { const r = pld.getBoundingClientRect();
 document.addEventListener("visibilitychange", () => { if(!document.hidden) drawPlan(); });
 setInterval(drawPlan, 60000);
 drawPlan();
+
+/* Daily reminder: a calendar event with an alarm (reminder/HH-MM.ics, made by
+   tools/make-reminders.mjs). A static site cannot send push messages, but the
+   phone's calendar rings every day even when the app is closed. */
+const remT = document.getElementById("plremt"), remGo = document.getElementById("plremgo"), remOk = document.getElementById("plremok");
+for(let h = 6; h <= 22; h++) for(const m of ["00", "30"]){ const t = String(h).padStart(2, "0") + ":" + m; remT.add(new Option(t + " Uhr", t)); }
+const remSet = json("dl:remind", null);
+remT.value = remSet && remSet.t || "19:00";
+function remDraw(){
+  remGo.href = "reminder/" + remT.value.replace(":", "-") + ".ics";
+  const r = json("dl:remind", null);
+  remOk.hidden = !r;
+  if(r) remOk.textContent = "✓ Im Kalender: jeden Tag um " + r.t + " Uhr." + (r.old ? " Die alte Erinnerung um " + r.old + " Uhr bitte im Kalender löschen (Termin antippen → „Termin löschen“ → „Alle zukünftigen Termine“)." : "");
+}
+remT.onchange = remDraw;
+remGo.addEventListener("click", () => { const prev = json("dl:remind", null);
+  store("dl:remind", JSON.stringify({ t: remT.value, old: prev && prev.t !== remT.value ? prev.t : prev && prev.old || "" })); setTimeout(remDraw, 300); });
+remDraw();
 
 /* Tempo for every section's read-aloud: one button at the top instead of one
    in each section. A speedometer for normal, a snail for slow; the sections
