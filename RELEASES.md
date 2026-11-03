@@ -1,5 +1,8 @@
 # Releases
 
+## 1.56.1 — 2026-11-03
+- Tagesplan: catching up and working ahead only within the current week (Monday to Sunday) – ‹ › stop at Monday and Sunday, and the week row always shows this week
+
 ## 1.56.0 — 2026-11-03
 - Tagesplan: ⏰ daily reminder – pick a time (06:00–22:30) and tap „📅 Zum Kalender“: the phone's calendar gets a daily 30-minute „🔥 Deutsch lernen: Tagesplan“ event with an alarm, so it rings every day even when the app is closed (a static site has no server for push messages)
 - reminder/HH-MM.ics made by tools/make-reminders.mjs (daily repeat, local time, alarm at the start, link to the app); the plan remembers the chosen time and, after a change, says to delete the old one in the calendar
