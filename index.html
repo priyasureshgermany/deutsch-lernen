@@ -81,6 +81,20 @@ nav button[aria-selected="true"]{background:var(--c);color:#fff}
 .pltip{margin:10px 0 0;font-size:13.5px;line-height:1.45;color:var(--muted);background:var(--surface);border-radius:12px;padding:9px 12px}
 .pltip b{color:var(--ink)}
 .plnote{font-size:12px;color:var(--muted);margin:8px 0 0}
+#plan.kept{color:var(--fire);border-color:var(--fire);background:rgba(232,89,12,.14)}
+.plwk span.kept{border:2px solid var(--fire);color:var(--fire)}
+.pltopic{margin:8px 2px 2px;font-size:14px}
+.pltopic b{color:var(--b1)}
+.plm{font-size:11.5px;font-weight:700;color:var(--muted);margin-left:4px}
+.plmine{margin-top:4px;padding:10px 12px;border-radius:14px;background:var(--surface)}
+.plmine .q{font-size:14px;font-weight:700;margin:0 0 6px}
+.plmine textarea{width:100%;font:inherit;font-size:16px;line-height:1.4;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--paper);color:var(--ink);resize:vertical}
+.plmine .row{display:flex;align-items:center;gap:8px;margin-top:6px}
+.plmine .row small{color:var(--muted);font-size:12.5px;flex:1}
+.pldiary{margin-top:10px}
+.pldiary summary{cursor:pointer;font-weight:700;font-size:14px}
+.pldiary p{font-size:13.5px;line-height:1.45;margin:8px 0 0}
+.pldiary p b{color:var(--muted);font-size:12px;display:block}
 #off svg{width:13px;height:13px}
 .offnote{position:absolute;right:12px;top:calc(100% + 6px);max-width:min(340px,calc(100vw - 24px));padding:10px 14px;border-radius:14px;background:var(--paper);border:1px solid var(--a2);box-shadow:0 14px 34px rgba(0,0,0,.28);font-size:14px;line-height:1.45}
 .offnote[hidden]{display:none}
@@ -260,12 +274,12 @@ nav .i{display:none}
 <dialog id="pld" aria-labelledby="plh">
  <div class="trhead"><b id="plh">Mein Tagesplan</b><button id="plx" class="fsb" type="button" aria-label="Schließen">✕</button></div>
  <div id="plbody"></div>
- <p class="plnote">Die Aufgaben haken sich von selbst ab, wenn du in der App übst. Was du woanders gemacht hast (Kurs, Tandem …), hakst du mit dem Kreis ab. Alles bleibt nur auf diesem Gerät.</p>
+ <p class="plnote">Die Blöcke haken sich von selbst ab, wenn du in der App übst. Was du woanders gemacht hast (Kurs, Tandem, Video …), hakst du mit dem Kreis ab. Schon ein Block hält deine Serie, alle vier sind ein voller Tag. Alles bleibt nur auf diesem Gerät.</p>
 </dialog>
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.53.0";
+const APP_VERSION = "1.54.0";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren", saetze: "grammatik.html?t=saetze" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -294,7 +308,6 @@ function show(m){
   for(const k in frames){ try{ frames[k].contentWindow.postMessage({ dlShown: k === m }, location.origin === "null" ? "*" : location.origin); }catch(e){} }
   tabs.forEach(t => t.setAttribute("aria-selected", String(t.dataset.m === m)));
   store("dl:tab", m);
-  if(m === "a1" || m === "b1") store("dl:exam", m);
   if(location.hash !== "#" + m) history.replaceState(null, "", "#" + m);
 }
 tabs.forEach(t => t.onclick = () => show(t.dataset.m));
@@ -341,94 +354,156 @@ window.addEventListener("offline", net);
 window.addEventListener("online", () => { net(); checkLive(); });
 if(!net()) checkLive();
 
-/* Tagesplan: four short tasks a day, after the learning plan – words,
-   listening and repeating aloud, building sentences, writing or speaking.
-   The sections report what was practised ({dlDo} messages: a new card, a
-   sentence heard, a Satzbau sentence finished, a letter or a spoken answer
-   in a Modelltest); a task done elsewhere is ticked by hand. A day with all
-   four counts for the streak; once a week a whole Modelltest. Kept on this
-   device only (dl:plan today, dl:days the days done, dl:week). */
+/* Tagesplan: 30 minutes a day in four blocks – review (recall before you
+   look), listening and repeating aloud, grammar in use, your own German –
+   with a topic for each weekday and a light Sunday (review only). Any one
+   block keeps the streak (the minimum for a bad day), all four make a full
+   day. The sections report what was practised ({dlDo}: a new card, a
+   sentence heard, a Satzbau sentence); "Dein Deutsch" is written or dictated
+   here and kept as a diary. A block done elsewhere is ticked by hand.
+   Device only: dl:plan today, dl:days streak days, dl:full full days,
+   dl:diary {date: text}. */
 const PLAN = [
-  { k: "karte", n: 20, i: "🃏", t: "Wörter wiederholen", u: n => n + " / 20 Karten", go: "woerter" },
-  { k: "hoeren", n: 15, i: "🎧", t: "Hören und laut nachsprechen", u: n => n + " / 15 Sätze gehört", go: "hoeren" },
-  { k: "satz", n: 10, i: "🧩", t: "Sätze bauen", u: n => n + " / 10 Sätze im Satzbau-Spiel", go: "saetze" },
-  { k: "aktiv", n: 3, i: "✍️", t: "Schreiben oder Sprechen", u: n => "1 Brief im Modelltest oder 3 Sprechantworten · " + Math.min(n, 3) + " / 3", go: "exam" }
+  { k: "karte", n: 20, min: 8, i: "🃏", t: "Wiederholen", u: n => n + " / 20 Karten · erst laut antworten, dann umdrehen", go: "woerter" },
+  { k: "hoeren", n: 15, min: 10, i: "🎧", t: "Hören und nachsprechen", u: n => n + " / 15 Sätze · hören, Pause, laut nachsagen", go: "gespraeche" },
+  { k: "satz", n: 10, min: 7, i: "🧩", t: "Grammatik anwenden", u: n => n + " / 10 Sätze im Satzbau-Spiel", go: "saetze" },
+  { k: "mein", n: 3, min: 5, i: "🗣️", t: "Dein Deutsch", u: n => Math.min(n, 3) + " / 3 eigene Sätze über deinen Tag", go: "mein" }
+];
+/* by getDay(): 0 = Sonntag */
+const WEEK = [
+  { de: "Sonntag", th: "Ruhetag", sub: "nur 10 Minuten Wiederholen – das ist heute ein voller Tag", q: "Wie war deine Woche?", light: true },
+  { de: "Montag", th: "Alltag", sub: "Einkaufen, Arzt, Behörden", q: "Was hast du heute eingekauft oder erledigt?" },
+  { de: "Dienstag", th: "Arbeit", sub: "Aufgaben und Kollegen", q: "Was hast du heute bei der Arbeit gemacht?" },
+  { de: "Mittwoch", th: "Familie und Freizeit", sub: "", q: "Was machst du gern mit deiner Familie oder in deiner Freizeit?" },
+  { de: "Donnerstag", th: "Wohnen und Nachbarn", sub: "", q: "Wie wohnst du? Was gefällt dir, was nicht?" },
+  { de: "Freitag", th: "Meinung sagen", sub: "was dir gefällt – und warum", q: "Was gefällt dir – und warum? (Ich finde …, weil …)" },
+  { de: "Samstag", th: "Freie Wahl", sub: "ein deutsches Video, ein Podcast, ein Lied oder eine Serie", q: "Was hast du heute gesehen oder gehört?", free: true }
 ];
 const TIPS = [
+  "<b>Fester Auslöser:</b> „Nach meinem Morgenkaffee mache ich meine 30 Minuten.“ So wird es eine Gewohnheit.",
+  "<b>Nie zweimal hintereinander auslassen.</b> Ein Tag Pause ist normal – der Tag danach ist der wichtigste.",
+  "<b>Schlechter Tag?</b> 5 Minuten Karten reichen, dann hält deine Serie.",
+  "<b>Erst erinnern, dann nachschauen:</b> Sag die Antwort laut, bevor du die Karte umdrehst.",
   "<b>Laut nachsprechen:</b> Satz hören, Pause, genauso nachsagen – mit derselben Melodie.",
   "<b>Ganze Sätze lernen</b>, nicht nur Wörter: „Ich hätte gern einen Termin“ statt nur „Termin“.",
-  "<b>Erst erinnern, dann nachschauen:</b> Versuch die Antwort zu wissen, bevor du die Karte umdrehst.",
-  "<b>Sprich mit dir selbst</b> auf Deutsch: „Jetzt koche ich Reis, dann rufe ich meine Schwester an.“",
+  "<b>Sprich mit dir selbst</b> auf Deutsch, beim Kochen oder Spazierengehen: „Jetzt schneide ich die Zwiebeln …“",
   "<b>Fehler sind gut:</b> Was korrigiert wird, bleibt im Kopf.",
   "<b>Stell dein Handy auf Deutsch</b> – so lernst du jeden Tag nebenbei Wörter.",
-  "<b>Hören in der Prüfung:</b> Lies zuerst die Fragen, dann weißt du, worauf du achten musst.",
-  "<b>Schreiben:</b> alle 4 Punkte, 2–3 Verbindungswörter (weil, deshalb, außerdem), richtige Anrede und Gruß.",
-  "<b>Lieber jeden Tag 30 Minuten</b> als einmal pro Woche 4 Stunden.",
-  "<b>Achte auf Fallen</b> beim Hören und Lesen: „nicht“, „erst morgen“, „doch“."
+  "<b>Einmal im Monat:</b> Lies deine alten Tagebuch-Einträge – du siehst, wie viel besser du geworden bist.",
+  "<b>Einmal pro Woche mit echten Menschen sprechen:</b> Tandem, Nachbarn, beim Bäcker auf Deutsch bestellen."
 ];
 const planB = document.getElementById("plan"), pld = document.getElementById("pld"), plbody = document.getElementById("plbody");
 const day = (d = new Date()) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
 const back = (s, n) => { const [y, m, d] = s.split("-").map(Number); return day(new Date(y, m - 1, d - n)); };
+const wday = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d).getDay(); };
 const monday = () => back(day(), (new Date().getDay() + 6) % 7);
 function json(k, def){ try{ return JSON.parse(store(k) || "null") || def; }catch(e){ return def; } }
+/* until 1.53: dl:days held only full days – they stay full days */
+if(store("dl:full") === null) store("dl:full", store("dl:days") || "[]");
 function planGet(){ const p = json("dl:plan", null), d = day(); return p && p.d === d ? Object.assign({ c: {}, m: {} }, p) : { d, c: {}, m: {} }; }
-function weekGet(){ const w = json("dl:week", null), m = monday(); return w && w.w === m ? w : { w: m, n: 0 }; }
-const daysGet = () => json("dl:days", []);
 const taskDone = (p, T) => !!p.m[T.k] || (p.c[T.k] || 0) >= T.n;
-const dayDone = p => PLAN.every(T => taskDone(p, T));
+const needed = p => WEEK[wday(p.d)].light ? PLAN.slice(0, 1) : PLAN;
+const isFull = p => needed(p).every(T => taskDone(p, T));
+const isKept = p => PLAN.some(T => taskDone(p, T));
 function streak(days){ const s = new Set(days); let d = day(); if(!s.has(d)) d = back(d, 1); let n = 0; while(s.has(d)){ n++; d = back(d, 1); } return n; }
 function bestRun(days){ let best = 0, run = 0, prev = ""; for(const d of [...new Set(days)].sort()){ run = prev && back(d, 1) === prev ? run + 1 : 1; best = Math.max(best, run); prev = d; } return best; }
-/* saves today; true when this made the day complete */
+function mark(k, d, on){ let a = json(k, []); const had = a.includes(d); if(on && !had) a.push(d); if(!on && had) a = a.filter(x => x !== d); store(k, JSON.stringify(a.slice(-800))); return on && !had; }
+/* saves today; true when this kept the streak or made the day full just now */
 function planSave(p){
   store("dl:plan", JSON.stringify(p));
-  let days = daysGet(); const had = days.includes(p.d), now = dayDone(p);
-  if(now && !had) days.push(p.d);
-  if(!now && had) days = days.filter(x => x !== p.d);
-  store("dl:days", JSON.stringify(days.slice(-400)));
-  return now && !had;
+  const kept = mark("dl:days", p.d, isKept(p)), full = mark("dl:full", p.d, isFull(p));
+  return kept || full;
 }
+/* "Dein Deutsch": sentences of three words or more */
+const sentences = t => String(t).split(/[.!?]+/).filter(x => x.trim().split(/\s+/).filter(Boolean).length >= 3).length;
 const vorname = () => { try{ return String(JSON.parse(store("dl:me") || "{}").vorname || "").trim(); }catch(e){ return ""; } };
-const examTab = () => store("dl:exam") || "a1";
-function drawPlan(){
-  const p = planGet(), days = daysGet(), s = streak(days), k = PLAN.filter(T => taskDone(p, T)).length, ok = k === PLAN.length;
-  planB.classList.toggle("done", ok);
-  planB.classList.toggle("on", !ok && s > 0);
-  planB.innerHTML = '<span aria-hidden="true">🔥</span>' + s + "<small>" + (ok ? "✓" : k + "/" + PLAN.length) + "</small>";
-  planB.title = "Tagesplan: " + k + " von " + PLAN.length + " erledigt · " + s + (s === 1 ? " Tag" : " Tage") + " in Folge";
-  planB.setAttribute("aria-label", planB.title);
-  if(!pld.open) return;
-  const today = day(), mo = monday(), set = new Set(days), w = weekGet(), name = vorname();
-  const wk = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"].map((l, i) => { const d = back(mo, -i); return '<span class="' + (set.has(d) ? "on " : "") + (d === today ? "now" : d > today ? "later" : "") + '" title="' + d + '">' + l + "</span>"; }).join("");
-  const msg = ok ? '<p class="plmsg yay">🎉 Super' + (name ? ", " + esc(name) : "") + "! Heute ist geschafft – bis morgen.</p>"
-    : s ? '<p class="plmsg">Noch ' + (PLAN.length - k) + (PLAN.length - k === 1 ? " Aufgabe" : " Aufgaben") + " – dann sind es " + (set.has(today) ? s : s + 1) + " Tage in Folge.</p>"
-    : '<p class="plmsg">Schaff heute alle vier Aufgaben – so beginnt deine Serie. Etwa 40 Minuten.</p>';
-  const row = (T, done, sub, pct, manual) => '<div class="pltask"><button type="button" class="plchk' + (done ? " on" : "") + '" data-tick="' + T.k + '" aria-pressed="' + done + '"' + (done && !manual ? ' aria-disabled="true"' : "") + ' aria-label="' + T.t + (done ? ": erledigt" : ": von Hand abhaken") + '">✓</button>'
-    + "<div><b>" + T.i + " " + T.t + "</b><small>" + sub + '</small><div class="plbar"><i style="width:' + pct + '%"></i></div></div>'
-    + '<button type="button" class="plgo' + (done ? " again" : "") + '" data-go="' + T.go + '">' + (done ? "Mehr" : "Los") + "</button></div>";
-  plbody.innerHTML = '<div class="plst"><span class="f" aria-hidden="true">🔥</span><div><b>' + s + "</b> " + (s === 1 ? "Tag" : "Tage") + " in Folge<small>Rekord: " + bestRun(days) + (bestRun(days) === 1 ? " Tag" : " Tage") + '</small></div><div class="plwk" aria-label="Diese Woche">' + wk + "</div></div>"
-    + msg
-    + PLAN.map(T => { const n = p.c[T.k] || 0; return row(T, taskDone(p, T), T.u(n) + (p.m[T.k] && n < T.n ? " · von Hand abgehakt" : ""), taskDone(p, T) ? 100 : Math.round(n / T.n * 100), !!p.m[T.k]); }).join("")
-    + row({ k: "test", t: "Diese Woche: ein ganzer Modelltest", i: "📝", go: "exam" }, w.n > 0, w.n ? w.n + (w.n === 1 ? " Test" : " Tests") + " fertig – danach das schwächste Teil üben" : "Unter Prüfungszeit, danach den schwächsten Teil üben", w.n ? 100 : 0, false)
-    + '<p class="pltip">💡 ' + TIPS[Math.floor(Date.parse(today) / 864e5) % TIPS.length] + "</p>";
-}
 const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+function drawChip(){
+  const p = planGet(), s = streak(json("dl:days", [])), need = needed(p), k = need.filter(T => taskDone(p, T)).length, full = isFull(p), kept = isKept(p);
+  planB.classList.toggle("done", full);
+  planB.classList.toggle("kept", kept && !full);
+  planB.classList.toggle("on", !kept && s > 0);
+  planB.innerHTML = '<span aria-hidden="true">🔥</span>' + s + "<small>" + (full ? "✓" : k + "/" + need.length) + "</small>";
+  planB.title = "Tagesplan: " + k + " von " + need.length + " Blöcken · " + s + (s === 1 ? " Tag" : " Tage") + " in Folge";
+  planB.setAttribute("aria-label", planB.title);
+}
+/* the line under the topic: how today stands */
+function planMsg(p){
+  const W = WEEK[wday(p.d)], days = json("dl:days", []), set = new Set(days), s = streak(days), today = p.d,
+    left = needed(p).filter(T => !taskDone(p, T)).length, name = vorname();
+  return isFull(p) ? '<p class="plmsg yay">🎉 ' + (W.light ? "Ruhetag geschafft" : "Voller Tag") + (name ? ", " + esc(name) : "") + "! Bis morgen.</p>"
+    : isKept(p) ? '<p class="plmsg">✓ Deine Serie ist für heute sicher. Noch ' + left + (left === 1 ? " Block" : " Blöcke") + " für einen vollen Tag.</p>"
+    : s ? '<p class="plmsg">Heute noch nichts – schon 5 Minuten Karten halten deine Serie (dann ' + (s + 1) + " Tage).</p>"
+    : set.has(back(today, 2)) ? '<p class="plmsg">Gestern ausgefallen? Kein Problem – nur nie zweimal hintereinander. Heute zählt!</p>'
+    : '<p class="plmsg">Fang heute an: 30 Minuten – und an schlechten Tagen wenigstens 5. Jeder Block hält die Serie.</p>';
+}
+let diaryOpen = false;
+function drawPlan(){
+  drawChip();
+  if(!pld.open) return;
+  /* typing in "Dein Deutsch": leave the box alone */
+  if(document.activeElement && document.activeElement.id === "plmein") return;
+  const p = planGet(), today = p.d, W = WEEK[wday(today)], days = json("dl:days", []), set = new Set(days), fullSet = new Set(json("dl:full", [])),
+    s = streak(days), need = needed(p), full = isFull(p), kept = isKept(p), left = need.filter(T => !taskDone(p, T)).length, name = vorname(), mo = monday();
+  const wk = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"].map((l, i) => { const d = back(mo, -i);
+    return '<span class="' + (fullSet.has(d) ? "on " : set.has(d) ? "kept " : "") + (d === today ? "now" : d > today ? "later" : "") + '" title="' + d + (fullSet.has(d) ? " · voller Tag" : set.has(d) ? " · Serie gehalten" : "") + '">' + l + "</span>"; }).join("");
+  const msg = planMsg(p);
+  const row = T => { const n = p.c[T.k] || 0, done = taskDone(p, T), manual = !!p.m[T.k], off = W.light && T.k !== "karte";
+    const sub = (off ? "Heute frei – wenn du magst: " : "") + (W.free && T.k === "hoeren" ? "Freie Wahl: Video, Podcast oder Lied – danach hier abhaken · " : "") + T.u(n) + (manual && n < T.n ? " · von Hand abgehakt" : "");
+    return '<div class="pltask"><button type="button" class="plchk' + (done ? " on" : "") + '" data-tick="' + T.k + '" aria-pressed="' + done + '"' + (done && !manual ? ' aria-disabled="true"' : "") + ' aria-label="' + T.t + (done ? ": erledigt" : ": von Hand abhaken") + '">✓</button>'
+      + "<div><b>" + T.i + " " + T.t + '<span class="plm">' + (T.k === "karte" && W.light ? 10 : T.min) + " Min</span></b><small>" + sub + '</small><div class="plbar"><i style="width:' + (done ? 100 : Math.round(Math.min(n, T.n) / T.n * 100)) + '%"></i></div></div>'
+      + '<button type="button" class="plgo' + (done ? " again" : "") + '" data-go="' + T.go + '">' + (T.k === "mein" ? (done ? "Mehr" : "Schreiben") : done ? "Mehr" : "Los") + "</button></div>"; };
+  const diary = json("dl:diary", {}), past = Object.keys(diary).filter(d => d !== today && diary[d].trim()).sort().reverse();
+  const nice = d => { const [y, m, dd] = d.split("-").map(Number); return WEEK[wday(d)].de + ", " + dd + "." + m + "." + y; };
+  plbody.innerHTML = '<div class="plst"><span class="f" aria-hidden="true">🔥</span><div><b>' + s + "</b> " + (s === 1 ? "Tag" : "Tage") + " in Folge<small>Rekord: " + bestRun(days) + (bestRun(days) === 1 ? " Tag" : " Tage") + '</small></div><div class="plwk" aria-label="Diese Woche">' + wk + "</div></div>"
+    + '<p class="pltopic">📅 ' + W.de + " · Thema: <b>" + W.th + "</b>" + (W.sub ? " – " + W.sub : "") + "</p>"
+    + msg + PLAN.map(row).join("")
+    + '<div class="plmine"><p class="q">💬 ' + W.q + '</p><textarea id="plmein" lang="de" rows="4" placeholder="Heute habe ich … Morgen will ich … Ich finde …, weil …" aria-label="Dein Deutsch: Sätze über deinen Tag">' + esc(diary[today] || "") + "</textarea>"
+    + '<div class="row"><small id="plcount"></small><button type="button" class="chipb" id="plsay">▶ Vorlesen</button></div></div>'
+    + (past.length ? '<details class="pldiary"' + (diaryOpen ? " open" : "") + "><summary>📔 Mein Tagebuch · " + past.length + (past.length === 1 ? " Eintrag" : " Einträge") + "</summary>" + past.slice(0, 60).map(d => "<p><b>" + nice(d) + "</b>" + esc(diary[d]) + "</p>").join("") + "</details>" : "")
+    + '<p class="pltip">💡 ' + TIPS[Math.floor(Date.parse(today) / 864e5) % TIPS.length] + "</p>";
+  countMine();
+}
+function countMine(){
+  const el = document.getElementById("plcount"), ta = document.getElementById("plmein"); if(!el || !ta) return;
+  const n = sentences(ta.value);
+  el.textContent = n >= 3 ? "✓ " + n + " Sätze – super!" : n + " / 3 Sätze · Tipp: Mikrofon der Tastatur antippen und sprechen";
+}
 function cheer(){ planB.classList.remove("pop"); void planB.offsetWidth; planB.classList.add("pop"); }
 addEventListener("message", e => {
   if(e.origin !== location.origin || !e.data || !e.data.dlDo) return;
   const k = e.data.dlDo;
-  if(k === "test"){ const w = weekGet(); w.n++; store("dl:week", JSON.stringify(w)); drawPlan(); return; }
-  const key = k === "schreiben" || k === "sprechen" ? "aktiv" : k;
-  if(!PLAN.some(T => T.k === key)) return;
+  if(!PLAN.some(T => T.k === k) || k === "mein") return;
   const p = planGet();
-  p.c[key] = (p.c[key] || 0) + (k === "schreiben" ? 3 : Math.max(1, +e.data.n || 1));
+  p.c[k] = (p.c[k] || 0) + Math.max(1, +e.data.n || 1);
   if(planSave(p)) cheer();
   drawPlan();
 });
+plbody.addEventListener("input", e => {
+  if(e.target.id !== "plmein") return;
+  const p = planGet(), diary = json("dl:diary", {});
+  diary[p.d] = e.target.value; store("dl:diary", JSON.stringify(diary));
+  p.c.mein = sentences(e.target.value);
+  if(planSave(p)) cheer();
+  drawChip(); countMine();
+  /* the row's bar and count follow as you type */
+  const r = plbody.querySelector('[data-tick="mein"]').parentNode, T = PLAN[3], done = taskDone(p, T);
+  r.querySelector(".plchk").classList.toggle("on", done);
+  r.querySelector("small").textContent = T.u(p.c.mein);
+  const m = plbody.querySelector(".plmsg"); if(m) m.outerHTML = planMsg(p);
+  const gb = r.querySelector('[data-go="mein"]'); if(gb) gb.textContent = done ? "Mehr" : "Schreiben";
+  r.querySelector(".plbar i").style.width = (done ? 100 : Math.round(Math.min(p.c.mein, 3) / 3 * 100)) + "%";
+});
+plbody.addEventListener("focusout", e => { if(e.target.id === "plmein") setTimeout(drawPlan); });
+plbody.addEventListener("toggle", e => { if(e.target.classList && e.target.classList.contains("pldiary")) diaryOpen = e.target.open; }, true);
 plbody.addEventListener("click", e => {
+  if(e.target.id === "plsay"){ const t = document.getElementById("plmein").value.trim(); if(!t || !window.speechSynthesis) return;
+    speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t); u.lang = "de-DE"; u.rate = rate; speechSynthesis.speak(u); return; }
   const g = e.target.closest("[data-go]");
-  if(g){ pld.close(); show(g.dataset.go === "exam" ? examTab() : g.dataset.go); return; }
+  if(g){ if(g.dataset.go === "mein"){ const ta = document.getElementById("plmein"); ta.scrollIntoView({ block: "center" }); ta.focus(); return; }
+    pld.close(); show(g.dataset.go); return; }
   const t = e.target.closest("[data-tick]");
-  if(!t || t.getAttribute("aria-disabled") === "true" || t.dataset.tick === "test") return;
+  if(!t || t.getAttribute("aria-disabled") === "true") return;
   const p = planGet(); p.m[t.dataset.tick] = !p.m[t.dataset.tick];
   if(planSave(p)) cheer();
   drawPlan();

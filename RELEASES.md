@@ -1,5 +1,12 @@
 # Releases
 
+## 1.54.0 — 2026-11-03
+- Tagesplan is now a 30-minute routine for everyday German, no Modelltests: 🃏 Wiederholen (8 min, 20 Karten) · 🎧 Hören und nachsprechen (10 min, 15 Sätze) · 🧩 Grammatik anwenden (7 min, 10 Satzbau-Sätze) · 🗣️ Dein Deutsch (5 min, 3 eigene Sätze)
+- 🗣️ Dein Deutsch: write – or dictate with the keyboard microphone – three sentences about your day, right in the plan; a question for each day's topic, ▶ Vorlesen, and every day's text kept as a diary („📔 Mein Tagebuch“) to see your progress
+- A topic for each weekday (Mo Alltag · Di Arbeit · Mi Familie und Freizeit · Do Wohnen und Nachbarn · Fr Meinung sagen · Sa Freie Wahl · So Ruhetag – only 10 minutes of review make a full day)
+- Streak with a minimum: any one block keeps it (a bad day still counts), all four make a full day – the week shows full days filled and kept days as a ring; after a missed day: „nur nie zweimal hintereinander“
+- The Modelltests no longer feed the plan; the weekly test goal is gone
+
 ## 1.53.0 — 2026-11-03
 - Tagesplan with a streak: a 🔥 chip in the top bar shows the days in a row and today's progress (2/4); a tap opens the plan – four short tasks a day (about 40 minutes): 🃏 20 Karten, 🎧 15 Sätze hören und laut nachsprechen, 🧩 10 Sätze im Satzbau-Spiel, ✍️ ein Brief im Modelltest oder 3 Sprechantworten – plus once a week a whole Modelltest
 - The tasks tick themselves: the sections report each new card, every sentence read aloud, every finished Satzbau sentence, a written letter (20+ words), a spoken answer and a finished Modelltest; what was done elsewhere (course, Tandem) is ticked by hand with the circle

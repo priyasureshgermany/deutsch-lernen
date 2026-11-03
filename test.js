@@ -94,8 +94,6 @@ function Pruefung(o){
   const st=t.sections.map((_,i)=>r?(r.secDone&&r.secDone[i]?"done":r.si===i?"now":""):l&&(!l.taken||l.taken.includes(i))?"done":"");
   return {run:r,last:l,st,n:st.filter(x=>x==="done").length,all:st.every(x=>x==="done"),begun:!!r||!!l}}
  const toShell=on=>{try{if(parent!==window)parent.postMessage({dlCards:on},location.origin)}catch(e){}};
- /* the daily plan (index.html): a letter written, an answer spoken, a whole test */
- const toPlan=(k,n)=>{try{if(parent!==window)parent.postMessage({dlDo:k,n:n||1},location.origin)}catch(e){}};
  /* the app switched tabs: away → pause the clock; back and still open → full screen again */
  addEventListener("message",e=>{if(e.origin!==location.origin||!e.data||!("dlShown" in e.data))return;
   if(!e.data.dlShown){if(!ov.hidden&&view==="section")pause(true)}else if(!ov.hidden)toShell(true)});
@@ -211,8 +209,7 @@ function Pruefung(o){
   if(j<0){finishSection(msg);return}
   run.cur=j;run.t0=Date.now();save();drawPart();if(msg)note(msg)}
  function note(msg){body.insertAdjacentHTML("afterbegin",`<div class="tz-pad tz-msg"><div class="tz-card warn"><b>${esc(msg)}</b></div></div>`)}
- function finishSection(msg){stopAudio();clearInterval(timer);const sec=test(run.tid).sections[run.si];
-  if(sec.parts.some(p=>p.type==="write")&&Object.keys(run.ans).some(k=>/\.w$/.test(k)&&String(run.ans[k]||"").trim().split(/\s+/).length>=20))toPlan("schreiben");run.secDone[run.si]=true;run.si=null;run.t0=null;save();
+ function finishSection(msg){stopAudio();clearInterval(timer);const sec=test(run.tid).sections[run.si];run.secDone[run.si]=true;run.si=null;run.t0=null;save();
   const t=test(run.tid);if(t.sections.every((_,i)=>run.secDone[i])){finish();return}
   record();choose((msg?msg+" ":"")+`✓ ${short(sec)} ist fertig und gespeichert.`)}
  function switchPart(j){if(j===run.cur||run.done[pk(run.si,j)])return;tick();if(run.si==null)return;stopAudio();run.cur=j;run.t0=Date.now();save();drawPart()}
@@ -345,7 +342,7 @@ function Pruefung(o){
   let waiting=0;const done=()=>{if(st.fin||--waiting>0)return;st.fin=true;clearTimeout(st.cap);rec=null;
    if(st.chunks.length){if(AUD[st.key])URL.revokeObjectURL(AUD[st.key]);AUD[st.key]=URL.createObjectURL(new Blob(st.chunks,{type:st.mr&&st.mr.mimeType||"audio/webm"}))}
    if(st.stream)st.stream.getTracks().forEach(t=>t.stop());
-   const tx=joinTx(st.tx,joinTx(st.cur,st.im)).trim();if(tx||st.chunks.length)toPlan("sprechen");if(tx||!run.ans[st.key])run.ans[st.key]=tx;
+   const tx=joinTx(st.tx,joinTx(st.cur,st.im)).trim();if(tx||!run.ans[st.key])run.ans[st.key]=tx;
    run.self=run.self||{};if(st.srFailed&&!tx)run.self[st.key]=1;else delete run.self[st.key];save();drawPart()};
   if(st.mr&&st.mr.state!=="inactive"){waiting++;st.mr.onstop=done;try{st.mr.stop()}catch(e){done()}}
   if(st.sr&&!st.srDone){waiting++;st.onSrEnd=done;try{st.sr.stop()}catch(e){done()}}
@@ -423,7 +420,7 @@ function Pruefung(o){
    p.turns.forEach((tn,i)=>{if(tn.you){const kk=k+"."+i,v=(run.self||{})[kk]?null:rate(tn,run.ans[kk]);if(v!=null)auto[k][i]=v}})}));
   const r=Object.assign(old,{tid:run.tid,ans:Object.assign({},run.ans),sa:old.sa||{},auto,taken,date:new Date().toLocaleDateString("de-DE")});
   keep(r);return r}
- function finish(){clearInterval(timer);toPlan("test");setTimeout(label);const r=record();
+ function finish(){clearInterval(timer);setTimeout(label);const r=record();
   store.set(RUN+":"+run.tid,null);run=null;review(r.tid,true)}
  /* the exam's grade for a total (only when passed) */
  const grade=p=>{const g=(o.scale.grades||[]).find(([lo])=>p>=lo);return g?g[2]:""};
