@@ -47,7 +47,8 @@ window.TESTS_B1 = [
          "Am Freitag."
         ],
         "a": 1,
-        "audio": "Hallo Herr Moreau, hier ist Elektro Hansen. Unser Techniker kommt morgen zwischen 8 und 12 Uhr, um Ihre Waschmaschine anzuschließen. Bitte sind Sie zu Hause."
+        "audio": "Hallo Herr Moreau, hier ist Elektro Hansen. Unser Techniker kommt morgen zwischen 8 und 12 Uhr, um Ihre Waschmaschine anzuschließen. Bitte sind Sie zu Hause.",
+        "why": "„Unser Techniker kommt morgen zwischen 8 und 12 Uhr“"
        },
        {
         "q": "Was ist heute im Supermarkt billiger?",
@@ -57,7 +58,8 @@ window.TESTS_B1 = [
          "Obst und Gemüse."
         ],
         "a": 0,
-        "audio": "Liebe Kunden, heute bei uns im Angebot: alle Kaffeesorten 20 Prozent günstiger. Greifen Sie zu – nur heute!"
+        "audio": "Liebe Kunden, heute bei uns im Angebot: alle Kaffeesorten 20 Prozent günstiger. Greifen Sie zu – nur heute!",
+        "why": "„alle Kaffeesorten 20 Prozent günstiger“"
        },
        {
         "q": "Sie möchten etwas zurückgeben. Was sollen Sie tun?",
@@ -100,7 +102,8 @@ window.TESTS_B1 = [
          "Es regnet stark."
         ],
         "a": 0,
-        "audio": "Morgen Vormittag gibt es im ganzen Land dichten Nebel. Autofahrer sollten vorsichtig sein. Am Nachmittag scheint dann die Sonne."
+        "audio": "Morgen Vormittag gibt es im ganzen Land dichten Nebel. Autofahrer sollten vorsichtig sein. Am Nachmittag scheint dann die Sonne.",
+        "why": "„Morgen Vormittag gibt es im ganzen Land dichten Nebel.“ – die Sonne erst am Nachmittag"
        },
        {
         "q": "In der Innenstadt …",
@@ -132,7 +135,8 @@ window.TESTS_B1 = [
          "Eine kostenlose Führung."
         ],
         "a": 2,
-        "audio": "Zum zehnten Geburtstag des Stadtmuseums gibt es am Wochenende für alle Besucher kostenlose Führungen. Treffpunkt ist jede Stunde im Eingangsbereich."
+        "audio": "Zum zehnten Geburtstag des Stadtmuseums gibt es am Wochenende für alle Besucher kostenlose Führungen. Treffpunkt ist jede Stunde im Eingangsbereich.",
+        "why": "„für alle Besucher kostenlose Führungen“"
        }
       ]
      },
@@ -159,7 +163,8 @@ window.TESTS_B1 = [
          "Einen Gutschein."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Ein neues Paar, bitte.“ – nicht das Geld zurück"
        },
        {
         "q": "Tanja geht allein ins Schwimmbad.",
@@ -175,7 +180,8 @@ window.TESTS_B1 = [
          "Im Sportgeschäft."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Wir treffen uns um zehn am Eingang“"
        },
        {
         "q": "Die Frau sucht ein Küchengerät.",
@@ -191,7 +197,8 @@ window.TESTS_B1 = [
          "Im Erdgeschoss."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Die Küchengeräte sind im zweiten Stock“ – ein Wasserkocher ist ein Küchengerät"
        },
        {
         "q": "Der Mann kennt sich gut mit Fernsehern aus.",
@@ -207,7 +214,8 @@ window.TESTS_B1 = [
          "Das Geschäft ist ganz nah."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„die sind sehr freundlich und bringen den Fernseher auch nach Hause“ – billiger ist das Internet"
        }
       ]
      },
@@ -899,7 +907,8 @@ window.TESTS_B1 = [
          "Ihre Versichertenkarte."
         ],
         "a": 2,
-        "audio": "Guten Tag, Frau Nguyen, hier ist die Praxis Doktor Hahn. Ihr Termin ist morgen um 9 Uhr 30. Bitte denken Sie an Ihre Versichertenkarte. Bis morgen."
+        "audio": "Guten Tag, Frau Nguyen, hier ist die Praxis Doktor Hahn. Ihr Termin ist morgen um 9 Uhr 30. Bitte denken Sie an Ihre Versichertenkarte. Bis morgen.",
+        "why": "„Bitte denken Sie an Ihre Versichertenkarte.“"
        },
        {
         "q": "Wann ist die Apotheke heute geöffnet?",
@@ -953,7 +962,8 @@ window.TESTS_B1 = [
          "Über neue Medikamente."
         ],
         "a": 1,
-        "audio": "Willkommen bei „Gesund leben“. Viele Menschen schlafen schlecht. Heute erklärt Ihnen ein Arzt, was Sie selbst für einen ruhigen Schlaf tun können."
+        "audio": "Willkommen bei „Gesund leben“. Viele Menschen schlafen schlecht. Heute erklärt Ihnen ein Arzt, was Sie selbst für einen ruhigen Schlaf tun können.",
+        "why": "„Viele Menschen schlafen schlecht … für einen ruhigen Schlaf“"
        },
        {
         "q": "Wie ist das Wetter am Wochenende?",
@@ -963,7 +973,8 @@ window.TESTS_B1 = [
          "Es gibt Gewitter."
         ],
         "a": 1,
-        "audio": "Und das Wetter am Wochenende: viel Sonne bei bis zu 26 Grad. Erst am Montag kommen Wolken und etwas Regen."
+        "audio": "Und das Wetter am Wochenende: viel Sonne bei bis zu 26 Grad. Erst am Montag kommen Wolken und etwas Regen.",
+        "why": "„viel Sonne bei bis zu 26 Grad“ – Regen erst am Montag"
        },
        {
         "q": "Was ist auf der A5 los?",
@@ -984,7 +995,8 @@ window.TESTS_B1 = [
          "Einen Kita-Platz bekommen."
         ],
         "a": 1,
-        "audio": "Das Gesundheitsamt bietet im Oktober kostenlose Impfungen für Kinder an. Eltern können ohne Termin kommen, bitte bringen Sie den Impfpass mit."
+        "audio": "Das Gesundheitsamt bietet im Oktober kostenlose Impfungen für Kinder an. Eltern können ohne Termin kommen, bitte bringen Sie den Impfpass mit.",
+        "why": "„kostenlose Impfungen für Kinder“"
        },
        {
         "q": "Beim Lauf durch die Stadt …",
@@ -1011,7 +1023,8 @@ window.TESTS_B1 = [
        {
         "q": "Der Mann hat seit drei Tagen Fieber.",
         "a": true,
-        "audio": "Frau: Praxis Doktor Lang, guten Tag.\nMann: Guten Tag, hier ist Yusuf Demir. Ich brauche einen Termin, ich habe seit drei Tagen Fieber.\nFrau: Heute ist leider alles voll. Aber Sie können in die offene Sprechstunde kommen, von 11 bis 12 Uhr.\nMann: Dann komme ich um elf. Muss ich etwas mitbringen?\nFrau: Nur Ihre Versichertenkarte."
+        "audio": "Frau: Praxis Doktor Lang, guten Tag.\nMann: Guten Tag, hier ist Yusuf Demir. Ich brauche einen Termin, ich habe seit drei Tagen Fieber.\nFrau: Heute ist leider alles voll. Aber Sie können in die offene Sprechstunde kommen, von 11 bis 12 Uhr.\nMann: Dann komme ich um elf. Muss ich etwas mitbringen?\nFrau: Nur Ihre Versichertenkarte.",
+        "why": "„ich habe seit drei Tagen Fieber“"
        },
        {
         "q": "Was macht der Mann?",
@@ -1021,7 +1034,8 @@ window.TESTS_B1 = [
          "Er bekommt morgen einen Termin."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Sie können in die offene Sprechstunde kommen“ – „Dann komme ich um elf.“"
        },
        {
         "q": "Sara und der Mann sind Lehrer.",
@@ -1037,7 +1051,8 @@ window.TESTS_B1 = [
          "Seine Mutter passt auch auf Saras Kinder auf."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„Meine Mutter passt auf unsere auf. Bring deine doch einfach zu uns!“"
        },
        {
         "q": "Die Frau spricht mit ihrem Arzt.",
@@ -1053,7 +1068,8 @@ window.TESTS_B1 = [
          "Nur am Abend."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Immer nach dem Essen, dreimal am Tag.“"
        },
        {
         "q": "Mia geht jeden Tag schwimmen.",
@@ -1069,7 +1085,8 @@ window.TESTS_B1 = [
          "Ein Fitnessstudio."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Das Hallenbad bietet Kurse für Erwachsene an. Komm doch mit“"
        }
       ]
      },
@@ -1783,7 +1800,8 @@ window.TESTS_B1 = [
          "Etwa 30 Minuten."
         ],
         "a": 2,
-        "audio": "Information zu Flug LH 456 nach Istanbul: Der Abflug verzögert sich um etwa 30 Minuten. Bitte bleiben Sie in der Nähe von Gate B 22."
+        "audio": "Information zu Flug LH 456 nach Istanbul: Der Abflug verzögert sich um etwa 30 Minuten. Bitte bleiben Sie in der Nähe von Gate B 22.",
+        "why": "„Der Abflug verzögert sich um etwa 30 Minuten.“"
        },
        {
         "q": "Sie möchten Ihr Hotelzimmer stornieren. Was tun Sie?",
@@ -1815,7 +1833,8 @@ window.TESTS_B1 = [
          "Um Urlaub in Deutschland."
         ],
         "a": 2,
-        "audio": "Willkommen bei „Urlaub vor der Haustür“. Heute stellen wir Ihnen schöne Ausflugsziele in Deutschland vor, die Sie gut mit der Bahn erreichen."
+        "audio": "Willkommen bei „Urlaub vor der Haustür“. Heute stellen wir Ihnen schöne Ausflugsziele in Deutschland vor, die Sie gut mit der Bahn erreichen.",
+        "why": "„schöne Ausflugsziele in Deutschland“ – „Urlaub vor der Haustür“"
        },
        {
         "q": "Wie wird das Wetter an der Küste?",
@@ -1825,7 +1844,8 @@ window.TESTS_B1 = [
          "Neblig."
         ],
         "a": 0,
-        "audio": "Das Wetter für das Wochenende: An der Nord- und Ostsee scheint die Sonne, aber es weht ein starker Wind. Im Süden gibt es Gewitter."
+        "audio": "Das Wetter für das Wochenende: An der Nord- und Ostsee scheint die Sonne, aber es weht ein starker Wind. Im Süden gibt es Gewitter.",
+        "why": "„An der Nord- und Ostsee scheint die Sonne, aber es weht ein starker Wind.“"
        },
        {
         "q": "Was ist am Flughafen los?",
@@ -1846,7 +1866,8 @@ window.TESTS_B1 = [
          "Ein Feuerwerk."
         ],
         "a": 2,
-        "audio": "Am Samstagabend ist das große Lichterfest am Mainufer. Um 22 Uhr gibt es ein Feuerwerk. Kommen Sie am besten mit Bus und Bahn."
+        "audio": "Am Samstagabend ist das große Lichterfest am Mainufer. Um 22 Uhr gibt es ein Feuerwerk. Kommen Sie am besten mit Bus und Bahn.",
+        "why": "„Um 22 Uhr gibt es ein Feuerwerk.“"
        },
        {
         "q": "Wer bekommt im Zoo Rabatt?",
@@ -1884,7 +1905,8 @@ window.TESTS_B1 = [
          "Ihr Geld zurück."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„heute Abend lade ich Sie zum Abendessen ein“ – ein anderes Zimmer erst morgen"
        },
        {
         "q": "Der Mann fährt mit dem Auto.",
@@ -1900,7 +1922,8 @@ window.TESTS_B1 = [
          "Einen Kuchen kaufen."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Kannst du uns um zwölf am Bahnhof abholen?“"
        },
        {
         "q": "Der Koffer ist verloren gegangen und nie gekommen.",
@@ -1916,7 +1939,8 @@ window.TESTS_B1 = [
          "Das Hotel."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Die Fluggesellschaft hat das aber bezahlt.“"
        },
        {
         "q": "Der Mann ist in einer Touristeninformation.",
@@ -1932,7 +1956,8 @@ window.TESTS_B1 = [
          "Nur mit dem Auto."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Es gibt einen Bus direkt vom Bahnhof.“"
        }
       ]
      },
@@ -2646,7 +2671,8 @@ window.TESTS_B1 = [
          "Er fährt von Gleis 7."
         ],
         "a": 0,
-        "audio": "Achtung an Gleis 4: Der Regionalexpress nach Kassel fällt heute leider aus. Bitte nehmen Sie den nächsten Zug um 10 Uhr 15 von Gleis 6."
+        "audio": "Achtung an Gleis 4: Der Regionalexpress nach Kassel fällt heute leider aus. Bitte nehmen Sie den nächsten Zug um 10 Uhr 15 von Gleis 6.",
+        "why": "„Der Regionalexpress nach Kassel fällt heute leider aus.“"
        },
        {
         "q": "Sie haben Ihr Handy im Bus vergessen. Was sollen Sie tun?",
@@ -2678,7 +2704,8 @@ window.TESTS_B1 = [
          "Um das Leben in einer neuen Stadt."
         ],
         "a": 2,
-        "audio": "Heute in „Neu hier“: Menschen, die in den letzten Jahren in unsere Stadt gezogen sind, erzählen, wie sie sich eingelebt haben und was ihnen geholfen hat."
+        "audio": "Heute in „Neu hier“: Menschen, die in den letzten Jahren in unsere Stadt gezogen sind, erzählen, wie sie sich eingelebt haben und was ihnen geholfen hat.",
+        "why": "„Menschen, die … in unsere Stadt gezogen sind, erzählen, wie sie sich eingelebt haben“"
        },
        {
         "q": "Wie wird das Wetter heute Abend?",
@@ -2688,7 +2715,8 @@ window.TESTS_B1 = [
          "Es gibt Gewitter."
         ],
         "a": 2,
-        "audio": "Das Wetter: Heute Vormittag noch sonnig und heiß. Ab dem Abend ziehen von Westen starke Gewitter auf. Bitte bleiben Sie dann möglichst im Haus."
+        "audio": "Das Wetter: Heute Vormittag noch sonnig und heiß. Ab dem Abend ziehen von Westen starke Gewitter auf. Bitte bleiben Sie dann möglichst im Haus.",
+        "why": "„Ab dem Abend ziehen … starke Gewitter auf.“ – sonnig nur am Vormittag"
        },
        {
         "q": "Die U-Bahn-Linie 4 …",
@@ -2720,7 +2748,8 @@ window.TESTS_B1 = [
          "Kostenlos Bus fahren."
         ],
         "a": 1,
-        "audio": "Am Samstag lädt die Stadt zum Tag der offenen Tür ins Rathaus ein. Besucher können das Büro der Bürgermeisterin besichtigen und mit den Mitarbeitern sprechen."
+        "audio": "Am Samstag lädt die Stadt zum Tag der offenen Tür ins Rathaus ein. Besucher können das Büro der Bürgermeisterin besichtigen und mit den Mitarbeitern sprechen.",
+        "why": "„Besucher können das Büro der Bürgermeisterin besichtigen“"
        }
       ]
      },
@@ -2747,12 +2776,14 @@ window.TESTS_B1 = [
          "Auf der anderen Straßenseite."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„Gleich dort drüben, auf der anderen Straßenseite.“"
        },
        {
         "q": "Der Mann lebt seit acht Monaten in Deutschland.",
         "a": true,
-        "audio": "Mann: Guten Tag, ich möchte meinen Führerschein umschreiben lassen. Ich habe einen indischen Führerschein.\nFrau: Wie lange leben Sie schon in Deutschland?\nMann: Seit acht Monaten.\nFrau: Dann müssen Sie leider eine Prüfung machen. Melden Sie sich am besten bei einer Fahrschule an."
+        "audio": "Mann: Guten Tag, ich möchte meinen Führerschein umschreiben lassen. Ich habe einen indischen Führerschein.\nFrau: Wie lange leben Sie schon in Deutschland?\nMann: Seit acht Monaten.\nFrau: Dann müssen Sie leider eine Prüfung machen. Melden Sie sich am besten bei einer Fahrschule an.",
+        "why": "„Seit acht Monaten.“"
        },
        {
         "q": "Was muss der Mann tun?",
@@ -2762,7 +2793,8 @@ window.TESTS_B1 = [
          "Sich bei einer Fahrschule anmelden."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„Melden Sie sich am besten bei einer Fahrschule an.“"
        },
        {
         "q": "Ali kann nicht mit dem Auto fahren.",
@@ -2778,12 +2810,14 @@ window.TESTS_B1 = [
          "Mit der S-Bahn."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„wir können doch mit der S-Bahn fahren“ – das Auto ist in der Werkstatt"
        },
        {
         "q": "Der Mann soll 30 Euro bezahlen.",
         "a": true,
-        "audio": "Mann: Guten Tag, ich habe einen Brief von der Stadt bekommen. Ich soll 30 Euro zahlen, weil ich falsch geparkt habe.\nFrau: Zeigen Sie mal. Ja, Sie haben im Halteverbot gestanden.\nMann: Aber dort war kein Schild!\nFrau: Dann können Sie schriftlich Widerspruch einlegen. Machen Sie am besten ein Foto von der Straße."
+        "audio": "Mann: Guten Tag, ich habe einen Brief von der Stadt bekommen. Ich soll 30 Euro zahlen, weil ich falsch geparkt habe.\nFrau: Zeigen Sie mal. Ja, Sie haben im Halteverbot gestanden.\nMann: Aber dort war kein Schild!\nFrau: Dann können Sie schriftlich Widerspruch einlegen. Machen Sie am besten ein Foto von der Straße.",
+        "why": "„Ich soll 30 Euro zahlen, weil ich falsch geparkt habe.“"
        },
        {
         "q": "Was empfiehlt die Frau?",
@@ -2793,7 +2827,8 @@ window.TESTS_B1 = [
          "Schriftlich Widerspruch einlegen."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„Dann können Sie schriftlich Widerspruch einlegen.“"
        }
       ]
      },
@@ -3496,7 +3531,8 @@ window.TESTS_B1 = [
          "Am Samstag."
         ],
         "a": 0,
-        "audio": "Hallo, hier ist die Abfallberatung. Ihr Termin für die Sperrmüll-Abholung ist am Donnerstag, den 12. Bitte stellen Sie die Sachen erst am Abend vorher an die Straße."
+        "audio": "Hallo, hier ist die Abfallberatung. Ihr Termin für die Sperrmüll-Abholung ist am Donnerstag, den 12. Bitte stellen Sie die Sachen erst am Abend vorher an die Straße.",
+        "why": "„Ihr Termin für die Sperrmüll-Abholung ist am Donnerstag“"
        },
        {
         "q": "Was ist im Haus kaputt?",
@@ -3506,7 +3542,8 @@ window.TESTS_B1 = [
          "Die Heizung."
         ],
         "a": 1,
-        "audio": "Liebe Mieter, hier spricht der Hausmeister. Der Aufzug ist leider kaputt. Der Techniker kommt morgen. Bitte benutzen Sie bis dahin die Treppe."
+        "audio": "Liebe Mieter, hier spricht der Hausmeister. Der Aufzug ist leider kaputt. Der Techniker kommt morgen. Bitte benutzen Sie bis dahin die Treppe.",
+        "why": "„Der Aufzug ist leider kaputt.“"
        },
        {
         "q": "Sie möchten eine neue Mülltonne bestellen. Was tun Sie?",
@@ -3538,7 +3575,8 @@ window.TESTS_B1 = [
          "Eine Kindersendung."
         ],
         "a": 1,
-        "audio": "Hier ist „Grün leben“. Heute zeigen wir Ihnen, wie Sie zu Hause weniger Müll machen – beim Einkaufen, in der Küche und im Bad."
+        "audio": "Hier ist „Grün leben“. Heute zeigen wir Ihnen, wie Sie zu Hause weniger Müll machen – beim Einkaufen, in der Küche und im Bad.",
+        "why": "„wie Sie zu Hause weniger Müll machen“ – „Grün leben“"
        },
        {
         "q": "Wie wird das Wetter am Nachmittag?",
@@ -3548,7 +3586,8 @@ window.TESTS_B1 = [
          "Es schneit."
         ],
         "a": 1,
-        "audio": "Das Wetter: Am Vormittag noch Regen, am Nachmittag wird es trocken und die Sonne kommt heraus. Höchstwerte 18 Grad."
+        "audio": "Das Wetter: Am Vormittag noch Regen, am Nachmittag wird es trocken und die Sonne kommt heraus. Höchstwerte 18 Grad.",
+        "why": "„am Nachmittag wird es trocken und die Sonne kommt heraus“"
        },
        {
         "q": "In der Kaiserstraße …",
@@ -3569,7 +3608,8 @@ window.TESTS_B1 = [
          "Beim Aufräumen im Park helfen."
         ],
         "a": 2,
-        "audio": "Die Aktion „Saubere Stadt“ sucht Helfer: Am Samstag sammeln wir gemeinsam Müll im Stadtpark. Handschuhe und Säcke bekommen Sie vor Ort."
+        "audio": "Die Aktion „Saubere Stadt“ sucht Helfer: Am Samstag sammeln wir gemeinsam Müll im Stadtpark. Handschuhe und Säcke bekommen Sie vor Ort.",
+        "why": "„Am Samstag sammeln wir gemeinsam Müll im Stadtpark.“"
        },
        {
         "q": "Was gibt es bei den Stadtwerken?",
@@ -3579,7 +3619,8 @@ window.TESTS_B1 = [
          "Kostenlose Energieberatung."
         ],
         "a": 2,
-        "audio": "Hohe Stromrechnung? Die Stadtwerke bieten ab sofort eine kostenlose Energieberatung an. Ein Berater kommt zu Ihnen nach Hause und zeigt, wo Sie sparen können."
+        "audio": "Hohe Stromrechnung? Die Stadtwerke bieten ab sofort eine kostenlose Energieberatung an. Ein Berater kommt zu Ihnen nach Hause und zeigt, wo Sie sparen können.",
+        "why": "„eine kostenlose Energieberatung“"
        }
       ]
      },
@@ -3595,7 +3636,8 @@ window.TESTS_B1 = [
        {
         "q": "Frau Lopez und Herr Krämer sind Nachbarn.",
         "a": true,
-        "audio": "Frau: Entschuldigung, Herr Krämer, darf ich Sie kurz stören?\nMann: Natürlich, Frau Lopez.\nFrau: Ihr Hund bellt jeden Tag, wenn Sie bei der Arbeit sind. Mein Baby kann dann nicht schlafen.\nMann: Oh, das wusste ich nicht. Das tut mir leid. Ich frage meine Schwester, ob sie mittags mit ihm spazieren gehen kann."
+        "audio": "Frau: Entschuldigung, Herr Krämer, darf ich Sie kurz stören?\nMann: Natürlich, Frau Lopez.\nFrau: Ihr Hund bellt jeden Tag, wenn Sie bei der Arbeit sind. Mein Baby kann dann nicht schlafen.\nMann: Oh, das wusste ich nicht. Das tut mir leid. Ich frage meine Schwester, ob sie mittags mit ihm spazieren gehen kann.",
+        "why": "„Ihr Hund bellt jeden Tag … Mein Baby kann dann nicht schlafen.“ – sie wohnen nebeneinander"
        },
        {
         "q": "Was will Herr Krämer tun?",
@@ -3605,7 +3647,8 @@ window.TESTS_B1 = [
          "Den Hund verkaufen."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Ich frage meine Schwester, ob sie mittags mit ihm spazieren gehen kann.“"
        },
        {
         "q": "Joghurtbecher kommen in die blaue Tonne.",
@@ -3621,7 +3664,8 @@ window.TESTS_B1 = [
          "In die gelbe Tonne."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Glas bringst du zum Container an der Ecke.“"
        },
        {
         "q": "Der Mann hat ein Problem in der Küche.",
@@ -3637,7 +3681,8 @@ window.TESTS_B1 = [
          "Sie schickt nächste Woche jemanden."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„Ich schicke Ihnen nächste Woche jemanden vorbei.“"
        },
        {
         "q": "Das Fest ist am Sonntag.",
@@ -3653,7 +3698,8 @@ window.TESTS_B1 = [
          "Einen Salat."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„Dann mache ich einen Salat.“ – Getränke kaufen alle zusammen"
        }
       ]
      },
@@ -4356,7 +4402,8 @@ window.TESTS_B1 = [
          "Sie hat einen Termin beim Chef."
         ],
         "a": 0,
-        "audio": "Hallo Ben, hier ist Lisa. Ich bin krank und kann heute nicht zur Arbeit kommen. Kannst du bitte um zehn die Besprechung mit dem Kunden übernehmen? Danke dir!"
+        "audio": "Hallo Ben, hier ist Lisa. Ich bin krank und kann heute nicht zur Arbeit kommen. Kannst du bitte um zehn die Besprechung mit dem Kunden übernehmen? Danke dir!",
+        "why": "„Ich bin krank und kann heute nicht zur Arbeit kommen.“"
        },
        {
         "q": "Wann ist die Agentur für Arbeit geöffnet?",
@@ -4410,7 +4457,8 @@ window.TESTS_B1 = [
          "Heiß und sonnig."
         ],
         "a": 0,
-        "audio": "Das Wetter für Montag: viel Wind und kühle 12 Grad, zwischendurch kurze Schauer. Ab Mittwoch wird es wieder freundlicher."
+        "audio": "Das Wetter für Montag: viel Wind und kühle 12 Grad, zwischendurch kurze Schauer. Ab Mittwoch wird es wieder freundlicher.",
+        "why": "„viel Wind und kühle 12 Grad“"
        },
        {
         "q": "Auf der A3 …",
@@ -4431,7 +4479,8 @@ window.TESTS_B1 = [
          "Ein Konzert."
         ],
         "a": 1,
-        "audio": "Am Wochenende findet in der Stadthalle die große Ausbildungsmesse statt. Über 100 Firmen stellen ihre Ausbildungsplätze vor. Der Eintritt ist frei."
+        "audio": "Am Wochenende findet in der Stadthalle die große Ausbildungsmesse statt. Über 100 Firmen stellen ihre Ausbildungsplätze vor. Der Eintritt ist frei.",
+        "why": "„Über 100 Firmen stellen ihre Ausbildungsplätze vor.“"
        },
        {
         "q": "Was bietet die Volkshochschule an?",
@@ -4441,7 +4490,8 @@ window.TESTS_B1 = [
          "Kostenlose Computerkurse für Arbeitsuchende."
         ],
         "a": 2,
-        "audio": "Die Volkshochschule bietet ab Februar kostenlose Computerkurse für Arbeitsuchende an. Anmelden können Sie sich bei Ihrer Beraterin im Jobcenter."
+        "audio": "Die Volkshochschule bietet ab Februar kostenlose Computerkurse für Arbeitsuchende an. Anmelden können Sie sich bei Ihrer Beraterin im Jobcenter.",
+        "why": "„kostenlose Computerkurse für Arbeitsuchende“"
        }
       ]
      },
@@ -4468,7 +4518,8 @@ window.TESTS_B1 = [
          "Seine Schwester heiratet."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„Meine Schwester heiratet in der Türkei.“"
        },
        {
         "q": "Tom hat die Stelle schon bekommen.",
@@ -4484,7 +4535,8 @@ window.TESTS_B1 = [
          "Heute Abend."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Nächste Woche.“ – im Oktober würde er anfangen"
        },
        {
         "q": "Die Kantine ist heute geöffnet.",
@@ -4500,7 +4552,8 @@ window.TESTS_B1 = [
          "Die Bäckerei gegenüber."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„Gegenüber gibt es eine Bäckerei mit warmen Snacks.“ – die Kantine ist heute zu"
        },
        {
         "q": "Der Kurs findet am Wochenende statt.",
@@ -4516,7 +4569,8 @@ window.TESTS_B1 = [
          "Einen Test machen."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Fragen Sie am besten bei Ihrer Firma.“"
        }
       ]
      },
@@ -5285,7 +5339,8 @@ window.TESTS_B1 = [
          "ist die Straße frei."
         ],
         "a": 0,
-        "audio": "Die Verkehrsmeldungen: Auf der B3 bei Friedberg gibt es wegen einer Baustelle nur eine Spur. Rechnen Sie mit zehn Minuten Verspätung. Auf allen anderen Straßen ist der Verkehr frei."
+        "audio": "Die Verkehrsmeldungen: Auf der B3 bei Friedberg gibt es wegen einer Baustelle nur eine Spur. Rechnen Sie mit zehn Minuten Verspätung. Auf allen anderen Straßen ist der Verkehr frei.",
+        "why": "„Auf der B3 bei Friedberg gibt es wegen einer Baustelle nur eine Spur.“"
        },
        {
         "q": "Was ist neu im Bürgerbüro?",
@@ -5334,7 +5389,8 @@ window.TESTS_B1 = [
          "Ob er in Raten bezahlen kann."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„kann ich das Geld in zwei Raten bezahlen?“"
        },
        {
         "q": "Leila hat am Samstag den ganzen Tag frei.",
@@ -5350,7 +5406,8 @@ window.TESTS_B1 = [
          "Sie kommt nach der Arbeit und bringt Essen mit."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„dann komme ich nach der Arbeit. Soll ich etwas zu essen mitbringen?“"
        },
        {
         "q": "Die Frau bekommt einen Platz im Abendkurs.",
@@ -5366,7 +5423,8 @@ window.TESTS_B1 = [
          "Auf die Warteliste kommen."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„Ich kann Sie auf die Warteliste setzen.“ – „Ja, bitte.“ (der Abendkurs ist voll)"
        },
        {
         "q": "Der Mann und die Frau kennen sich schon lange.",
@@ -5382,7 +5440,8 @@ window.TESTS_B1 = [
          "Wo der Hausmeister wohnt."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Wissen Sie, wann der Müll abgeholt wird?“"
        }
       ]
      },
@@ -6201,7 +6260,8 @@ window.TESTS_B1 = [
          "Mehr Hausaufgaben."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Wir haben in der Schule eine Lerngruppe … Nein, das ist ein Angebot der Schule.“ – kostenlos"
        },
        {
         "q": "Der Mann kann das Ticket im Bus kaufen.",
@@ -6217,7 +6277,8 @@ window.TESTS_B1 = [
          "Mit der App."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„dann kaufe ich schnell eins am Automaten“ – im Bus gibt es keine Fahrkarten mehr"
        },
        {
         "q": "Die Nachbarin beschwert sich über laute Musik.",
@@ -6233,7 +6294,8 @@ window.TESTS_B1 = [
          "Er stellt die Fahrräder in den Keller."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„Ich stelle die Fahrräder ab heute in den Keller.“ – die Musik war kein Problem"
        },
        {
         "q": "Die Frau möchte ihr Paket zurückschicken.",
@@ -6249,7 +6311,8 @@ window.TESTS_B1 = [
          "Ihr Geld zurück."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„Lieber eine Nummer größer, die Schuhe gefallen mir sehr gut.“"
        }
       ]
      },
@@ -7068,7 +7131,8 @@ window.TESTS_B1 = [
          "Den Kurs zum halben Preis."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Dafür gibt es den Bildungsgutschein … dann füllen Sie bitte diesen Antrag aus.“"
        },
        {
         "q": "Die Frau möchte die Schicht tauschen.",
@@ -7084,7 +7148,8 @@ window.TESTS_B1 = [
          "Ihn zur Aufführung einzuladen."
         ],
         "a": 0,
-        "same": true
+        "same": true,
+        "why": "„Dann übernimmst du aber nächste Woche einmal meinen Samstag.“ – „Abgemacht“"
        },
        {
         "q": "Der Mann hat seine Versichertenkarte dabei.",
@@ -7100,7 +7165,8 @@ window.TESTS_B1 = [
          "Er muss einen neuen Antrag stellen."
         ],
         "a": 1,
-        "same": true
+        "same": true,
+        "why": "„sonst müssen wir Ihnen die Behandlung privat berechnen“ = selbst bezahlen"
        },
        {
         "q": "Die beiden Frauen kennen sich schon lange.",
@@ -7116,7 +7182,8 @@ window.TESTS_B1 = [
          "Sie stellt die Mülltonnen raus."
         ],
         "a": 2,
-        "same": true
+        "same": true,
+        "why": "„Dann mache ich das diese Woche gern.“ – die Mülltonnen rausstellen"
        }
       ]
      },
