@@ -1,5 +1,8 @@
 # Releases
 
+## 1.51.1 — 2026-11-03
+- Satzbau: the level badge (A1 / A2 / B1) now stands right next to the sentence („I’d rather have a tea.“ B1) instead of next to „Satz 1 von 5“
+
 ## 1.51.0 — 2026-11-03
 - Satzbau: every sentence shows its level – a small A1 / A2 / B1 badge next to „Satz 3 von 10“ and in the list at the end of a round; the long levels count as their level (A1+ = A1 …)
 - Grammatik Satzbau-Tests: each sentence gets the level of the hardest grammar in it (A1 Präsens, Modalverben, Fragen · A2 Perfekt, weil/dass/wenn, Dativ, reflexiv · B1 Passiv, Konjunktiv II, Relativsatz, Plusquamperfekt, obwohl/nachdem …); the end of a test shows the mix („A1 ×1 A2 ×1 B1 ×3“), and the 🧩 icon says the topic’s range („Niveau A1–B1“)
