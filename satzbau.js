@@ -136,9 +136,9 @@ function draw(){if(G.i>=G.items.length){drawEnd();return}const S=cur(),T=id=>G.t
  const tile=(id,where,j)=>{const m=G.marks?G.marks[j]:null;return `<button type="button" class="sb-tile${where==="ans"&&m!=null?(m?" right":" wrong"):""}" data-id="${id}" data-where="${where}">${esc(T(id).t)}</button>`};
  ov.innerHTML=`<div class="sb-top">${G.topic?"":`<button type="button" class="sb-x" data-go="menu" aria-label="Übersicht" title="Übersicht – das Spiel bleibt gespeichert">☰</button>`}<b>${G.topic?"🧩 "+esc(G.title):`${G.lv} · Set ${G.set+1}`}</b><span class="sb-clock" title="Zeit – läuft nur, während du einen Satz baust">⏱ <b>${fmt(el())}</b></span><span class="sb-sc">${num(G.score)} Punkte${G.streak>1?` · <span class="sb-fire">🔥 ${G.streak}</span>`:""}</span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
  <div class="sb-body">${dots(true)}
-  <div class="sb-nav"><button type="button" class="sb-nb" data-go="prev" aria-label="Vorheriger Satz" title="Vorheriger Satz"${G.i?"":" disabled"}>‹</button><span class="sb-n">Satz ${G.i+1} von ${G.items.length}${lvBadge(S.lv)}</span><button type="button" class="sb-nb" data-go="fwd" aria-label="Nächster Satz" title="Nächster Satz – du kannst Sätze überspringen und später bauen"${G.i<G.items.length-1?"":" disabled"}>›</button></div>
+  <div class="sb-nav"><button type="button" class="sb-nb" data-go="prev" aria-label="Vorheriger Satz" title="Vorheriger Satz"${G.i?"":" disabled"}>‹</button><span class="sb-n">Satz ${G.i+1} von ${G.items.length}</span><button type="button" class="sb-nb" data-go="fwd" aria-label="Nächster Satz" title="Nächster Satz – du kannst Sätze überspringen und später bauen"${G.i<G.items.length-1?"":" disabled"}>›</button></div>
   ${S.ctx?`<div class="sb-lab">Ergänze den fehlenden Satz im Text</div><div class="sb-para">${esc(S.ctx[0])} <span class="sb-gap${G.done?" filled":""}">${G.done?esc(built()):"_____ ? _____"}</span> ${esc(S.ctx[1])}</div>`:""}
-  <div class="sb-en">„${esc(S.en)}“</div>
+  <div class="sb-en">„${esc(S.en)}“${lvBadge(S.lv)}</div>
   <div class="sb-lab">${G.failed?"Deine Antwort":"Dein Satz"}</div>
   <div class="sb-ans${G.done?" done":""}${G.failed?" sb-wrongbox":""}" data-zone="ans">${G.ans.map((id,j)=>tile(id,"ans",j)).join("")}${G.ans.length?"":`<span class="sb-ph">Tippe die Blöcke unten in der richtigen Reihenfolge an – oder zieh sie hierher.</span>`}${G.ans.length?`<span class="sb-end">${S.end}</span>`:""}</div>
   ${G.failed?`<div class="sb-lab sb-oklab">✓ Richtige Lösung</div><div class="sb-ans done sb-fix">${fixTiles()}</div>`:""}
@@ -484,6 +484,7 @@ body.sb-on{overflow:hidden}
 .sb-n{font-size:13px;color:var(--muted);text-align:center}
 .sb-lvb{display:inline-block;font-size:11px;line-height:1.5;font-weight:800;letter-spacing:.03em;padding:0 6px;border-radius:6px;color:#fff;margin-left:6px;vertical-align:1px}
 .sb-list .sb-lvb{margin:0 4px 0 0}
+.sb-en .sb-lvb{font-style:normal;font-size:12px;margin-left:8px;vertical-align:3px}
 .sb-lvb.A1{background:var(--a1,#2f9e6e)}.sb-lvb.A2{background:var(--a2,#d97706)}.sb-lvb.B1{background:var(--b1,#4f6bd8)}
 .sb-para{font-size:16.5px;line-height:1.6;padding:12px 14px;border-radius:12px;background:var(--surface);border-left:4px solid var(--b1);margin-bottom:6px}
 .sb-gap{display:inline;padding:1px 6px;border-radius:6px;background:color-mix(in srgb,var(--b1) 16%,var(--paper));color:var(--b1);font-weight:700;letter-spacing:.05em}
