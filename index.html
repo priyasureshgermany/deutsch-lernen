@@ -302,7 +302,7 @@ nav .i{display:none}
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.56.0";
+const APP_VERSION = "1.56.1";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren", saetze: "grammatik.html?t=saetze" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -424,10 +424,11 @@ function json(k, def){ try{ return JSON.parse(store(k) || "null") || def; }catch
 /* until 1.53: dl:days held only full days – they stay full days */
 if(store("dl:full") === null) store("dl:full", store("dl:days") || "[]");
 /* The day you practise for: today – or one you catch up on or work ahead
-   for, up to a week either way. Chosen in the plan; the app starts on today. */
-const RANGE = 7;
+   for, within this week (Monday to Sunday). Chosen in the plan; the app
+   starts on today. */
+const inWeek = d => d >= monday() && d <= back(monday(), -6);
 let sel = day(), selAuto = true;
-function pickDay(){ const t = day(); if(selAuto || sel < back(t, RANGE) || sel > back(t, -RANGE)){ sel = t; selAuto = true; } return sel; }
+function pickDay(){ const t = day(); if(selAuto || !inWeek(sel)){ sel = t; selAuto = true; } return sel; }
 function choose(d){ sel = d; selAuto = d === day(); drawPlan(); }
 /* dl:plans {date: {c, m}}; until 1.54 only today, in dl:plan */
 function planOf(d){ const all = json("dl:plans", {}), old = json("dl:plan", null);
@@ -487,12 +488,12 @@ function drawPlan(){
   /* typing in "Dein Deutsch": leave the box alone */
   if(document.activeElement && document.activeElement.id === "plmein") return;
   const p = planGet(), today = p.d, now = day(), W = WEEK[wday(today)], days = json("dl:days", []), set = new Set(days), fullSet = new Set(json("dl:full", [])),
-    s = streak(days), need = needed(p), full = isFull(p), kept = isKept(p), left = need.filter(T => !taskDone(p, T)).length, name = vorname(), mo = back(today, (wday(today) + 6) % 7);
+    s = streak(days), need = needed(p), full = isFull(p), kept = isKept(p), left = need.filter(T => !taskDone(p, T)).length, name = vorname(), mo = monday();
   const wk = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"].map((l, i) => { const d = back(mo, -i);
-    const ok = d >= back(now, RANGE) && d <= back(now, -RANGE);
+    const ok = inWeek(d);
     return '<span class="' + (fullSet.has(d) ? "on " : set.has(d) ? "kept " : "") + (d === now ? "td " : "") + (d === today ? "now" : d > now && !set.has(d) ? "later" : "") + '"' + (ok ? ' data-day="' + d + '" role="button" tabindex="0"' : "") + ' title="' + nice(d) + (fullSet.has(d) ? " · voller Tag" : set.has(d) ? " · Serie gehalten" : "") + '">' + l + "</span>"; }).join("");
   const label = (rel(today) ? rel(today) + " · " : "") + nice(today);
-  const bar = '<div class="plday"><button type="button" data-shift="-1" aria-label="Tag davor"' + (today <= back(now, RANGE) ? " disabled" : "") + '>‹</button><b>' + label + '</b><button type="button" data-shift="1" aria-label="Tag danach"' + (today >= back(now, -RANGE) ? " disabled" : "") + ">›</button></div>"
+  const bar = '<div class="plday"><button type="button" data-shift="-1" aria-label="Tag davor"' + (today <= monday() ? " disabled" : "") + '>‹</button><b>' + label + '</b><button type="button" data-shift="1" aria-label="Tag danach"' + (today >= back(monday(), -6) ? " disabled" : "") + ">›</button></div>"
     + (today === now ? "" : '<p class="plaway">' + (today < now ? "⏪ Du holst <b>" + nice(today) + "</b> nach" : "⏩ Du übst schon für <b>" + nice(today) + "</b>") + ' – alles, was du jetzt übst, zählt für diesen Tag.<button type="button" class="chipb" data-day="' + now + '">Zurück zu heute</button></p>');
   const msg = planMsg(p);
   const row = T => { const n = p.c[T.k] || 0, done = taskDone(p, T), manual = !!p.m[T.k], off = W.light && T.k !== "karte";
