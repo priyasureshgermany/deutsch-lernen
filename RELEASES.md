@@ -1,5 +1,9 @@
 # Releases
 
+## 1.56.0 — 2026-11-03
+- Tagesplan: ⏰ daily reminder – pick a time (06:00–22:30) and tap „📅 Zum Kalender“: the phone's calendar gets a daily 30-minute „🔥 Deutsch lernen: Tagesplan“ event with an alarm, so it rings every day even when the app is closed (a static site has no server for push messages)
+- reminder/HH-MM.ics made by tools/make-reminders.mjs (daily repeat, local time, alarm at the start, link to the app); the plan remembers the chosen time and, after a change, says to delete the old one in the calendar
+
 ## 1.55.0 — 2026-11-03
 - Tagesplan: choose the day you practise for – ‹ › in the plan or a tap on a day of the week, up to 7 days back (catch up a missed day: the streak counts it again) and 7 days ahead (work in advance)
 - While another day is chosen, everything you practise counts for that day: a dashed note „⏪ Du holst Montag, 2.11. nach“ / „⏩ Du übst schon für …“ with „Zurück zu heute“, and the 🔥 chip shows the day („Mo 1/4“, dashed); the app always starts on today
