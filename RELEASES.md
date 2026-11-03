@@ -1,5 +1,10 @@
 # Releases
 
+## 1.55.0 — 2026-11-03
+- Tagesplan: choose the day you practise for – ‹ › in the plan or a tap on a day of the week, up to 7 days back (catch up a missed day: the streak counts it again) and 7 days ahead (work in advance)
+- While another day is chosen, everything you practise counts for that day: a dashed note „⏪ Du holst Montag, 2.11. nach“ / „⏩ Du übst schon für …“ with „Zurück zu heute“, and the 🔥 chip shows the day („Mo 1/4“, dashed); the app always starts on today
+- That day's topic, question and diary entry; days ahead count for the streak once they arrive. Each day now has its own plan (dl:plans; today's progress from before is kept)
+
 ## 1.54.0 — 2026-11-03
 - Tagesplan is now a 30-minute routine for everyday German, no Modelltests: 🃏 Wiederholen (8 min, 20 Karten) · 🎧 Hören und nachsprechen (10 min, 15 Sätze) · 🧩 Grammatik anwenden (7 min, 10 Satzbau-Sätze) · 🗣️ Dein Deutsch (5 min, 3 eigene Sätze)
 - 🗣️ Dein Deutsch: write – or dictate with the keyboard microphone – three sentences about your day, right in the plan; a question for each day's topic, ▶ Vorlesen, and every day's text kept as a diary („📔 Mein Tagebuch“) to see your progress
