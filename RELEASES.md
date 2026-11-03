@@ -1,5 +1,8 @@
 # Releases
 
+## 1.56.2 — 2026-11-03
+- Tagesplan: the daily calendar reminder is removed again (section, reminder/*.ics and tools/make-reminders.mjs) – the plan stays clean
+
 ## 1.56.1 — 2026-11-03
 - Tagesplan: catching up and working ahead only within the current week (Monday to Sunday) – ‹ › stop at Monday and Sunday, and the week row always shows this week
 
