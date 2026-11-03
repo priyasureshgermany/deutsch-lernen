@@ -756,6 +756,8 @@ function voiceFor(lang){const vs=synth.getVoices().filter(v=>v.lang&&v.lang.toLo
  return vs.find(v=>/-(de|gb|us)$/i.test(v.lang))||vs[0]}
 if(synth){synth.getVoices();synth.onvoiceschanged=()=>synth.getVoices()}
 function stopSay(){if(synth)synth.cancel();if(playing)playing.classList.remove("on");playing=null}
+/* every sentence read aloud counts for the daily plan (index.html) */
+const toPlan=(k,n)=>{try{if(parent!==window)parent.postMessage({dlDo:k,n:n||1},location.origin)}catch(e){}};
 function say(btn){if(!synth)return;
  if(playing===btn){stopSay();return}
  stopSay();
@@ -764,7 +766,7 @@ function say(btn){if(!synth)return;
  const u=new SpeechSynthesisUtterance(text);u.lang=lang==="de"?"de-DE":"en-GB";u.rate=rate;
  const v=voiceFor(lang);if(v)u.voice=v;
  u.onend=u.onerror=()=>{if(playing===btn){btn.classList.remove("on");playing=null}};
- playing=btn;btn.classList.add("on");synth.speak(u)}
+ playing=btn;btn.classList.add("on");synth.speak(u);if(lang==="de")toPlan("hoeren")}
 /* Tempo is set by the button at the top of the app (index.html). */
 addEventListener("message",e=>{if(e.origin===location.origin&&e.data&&e.data.dlRate)rate=e.data.dlRate});
 let multi=false,picked=[],pickCell=null;

@@ -26,6 +26,7 @@ const N=10,st=k=>{try{return JSON.parse(localStorage.getItem("dl:sb:"+k))}catch(
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const num=x=>String(x).replace(".",",");
 const key=s=>s.replace(/^,\s*/,"").toLowerCase();
+const toPlan=(k,n)=>{try{if(parent!==window)parent.postMessage({dlDo:k,n:n||1},location.origin)}catch(e){}};
 const shell=on=>{try{if(parent!==window)parent.postMessage({dlCards:on},location.origin)}catch(e){}};
 
 /* one sentence: its blocks, end mark, every correct order */
@@ -314,7 +315,7 @@ const lvBadge=l=>l?`<span class="sb-lvb ${l}" title="Niveau ${l}">${l}</span>`:"
 function topicLevels(id){const rows=(window.SBT&&SBT[id])||[],seen=new Set(rows.map(r=>levelOf(Object.assign(parse(r),{topic:id}))));const l=LVN.filter(x=>seen.has(x));return l.length>1?l[0]+"–"+l[l.length-1]:l[0]||""}
 const tipOf=S=>TIP[ruleKey(S)];
 const whyHtml=S=>{const L=why(S),T=tipOf(S);return `${L.length?`<div class="sb-why"><b>Warum diese Reihenfolge?</b><ul>${L.map(([de,en])=>`<li>${de}<small>${en}</small></li>`).join("")}</ul></div>`:""}<div class="sb-tip2">💡 <b>Tipp:</b> ${esc(T[0])}<small>${esc(T[1])}</small></div>`};
-function finishOne(p,ok){halt();const S=cur(),R=ruleOf(S);G.score+=p;G.res[G.i]=p;G.done=true;G.times=G.times||[];G.times[G.i]=el()-(G.sStart||0);
+function finishOne(p,ok){halt();toPlan("satz");const S=cur(),R=ruleOf(S);G.score+=p;G.res[G.i]=p;G.done=true;G.times=G.times||[];G.times[G.i]=el()-(G.sStart||0);
  G.streak=p===1?G.streak+1:0;G.bestStreak=Math.max(G.bestStreak,G.streak);
  /* two wrong tries: your sentence stays in the box (green = right place, red = wrong), the right one is shown below it */
  if(!ok){const b=best();G.failed=true;G.fixB=b;G.marks=G.ans.map((id,j)=>G.tiles[id].k===S.sols[b][j]);G.pool=[]}
