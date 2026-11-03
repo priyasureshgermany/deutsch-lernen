@@ -1,5 +1,9 @@
 # Releases
 
+## 1.51.2 — 2026-11-03
+- Hören (A1 and B1 Modelltests): all 105 questions that had no explanation now show why on the result page – the deciding sentence from the recording, and where there is a trap, why the other option is wrong („„Nein, mit dem Fahrrad.“ – nicht mit dem Bus“)
+- Every answer key checked against its recording – all correct; tools/check-tests.mjs now requires an explanation for every Hören and Lesen question
+
 ## 1.51.1 — 2026-11-03
 - Satzbau: the level badge (A1 / A2 / B1) now stands right next to the sentence („I’d rather have a tea.“ B1) instead of next to „Satz 1 von 5“
 

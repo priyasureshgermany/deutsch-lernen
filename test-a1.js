@@ -76,7 +76,8 @@ window.TESTS_A1 = [
          "Er bleibt zu Hause."
         ],
         "a": 0,
-        "audio": "Frau: Kommst du mit ins Kino?\nMann: Heute nicht, ich gehe zum Fußballtraining. Vielleicht morgen?"
+        "audio": "Frau: Kommst du mit ins Kino?\nMann: Heute nicht, ich gehe zum Fußballtraining. Vielleicht morgen?",
+        "why": "„ich gehe zum Fußballtraining“ – ins Kino geht er heute nicht"
        },
        {
         "q": "Wie kommt die Frau zur Arbeit?",
@@ -86,7 +87,8 @@ window.TESTS_A1 = [
          "mit dem Bus"
         ],
         "a": 1,
-        "audio": "Mann: Fährst du mit dem Bus zur Arbeit?\nFrau: Nein, mit dem Fahrrad. Das geht schneller."
+        "audio": "Mann: Fährst du mit dem Bus zur Arbeit?\nFrau: Nein, mit dem Fahrrad. Das geht schneller.",
+        "why": "„Nein, mit dem Fahrrad.“ – nicht mit dem Bus"
        }
       ],
       "time": 8
@@ -114,12 +116,14 @@ window.TESTS_A1 = [
        {
         "q": "Im Supermarkt sind Bananen heute billiger.",
         "a": true,
-        "audio": "Liebe Kunden, heute im Angebot: ein Kilo Bananen für nur 99 Cent."
+        "audio": "Liebe Kunden, heute im Angebot: ein Kilo Bananen für nur 99 Cent.",
+        "why": "„heute im Angebot: ein Kilo Bananen für nur 99 Cent“"
        },
        {
         "q": "Herr Meier soll zur Information kommen.",
         "a": true,
-        "audio": "Herr Thomas Meier, bitte kommen Sie zur Information im Erdgeschoss. Ihre Frau wartet dort."
+        "audio": "Herr Thomas Meier, bitte kommen Sie zur Information im Erdgeschoss. Ihre Frau wartet dort.",
+        "why": "„Herr Thomas Meier, bitte kommen Sie zur Information“"
        }
       ],
       "time": 4
@@ -140,7 +144,8 @@ window.TESTS_A1 = [
          "ein Foto"
         ],
         "a": 0,
-        "audio": "Guten Tag, Frau Kaya, hier ist die Praxis Doktor Engel. Bitte bringen Sie morgen Ihre Versichertenkarte mit. Danke!"
+        "audio": "Guten Tag, Frau Kaya, hier ist die Praxis Doktor Engel. Bitte bringen Sie morgen Ihre Versichertenkarte mit. Danke!",
+        "why": "„Bitte bringen Sie morgen Ihre Versichertenkarte mit.“"
        },
        {
         "q": "Wann kommt der Techniker?",
@@ -161,7 +166,8 @@ window.TESTS_A1 = [
          "Tennis spielen"
         ],
         "a": 1,
-        "audio": "Hallo Jana, hier ist Carla. Das Wetter ist so schön! Wollen wir heute Nachmittag schwimmen gehen? Ruf mich an!"
+        "audio": "Hallo Jana, hier ist Carla. Das Wetter ist so schön! Wollen wir heute Nachmittag schwimmen gehen? Ruf mich an!",
+        "why": "„Wollen wir heute Nachmittag schwimmen gehen?“"
        },
        {
         "q": "Wo ist das Handy von Herrn Brandt?",
@@ -171,7 +177,8 @@ window.TESTS_A1 = [
          "im Restaurant"
         ],
         "a": 2,
-        "audio": "Guten Abend, Herr Brandt, hier ist das Restaurant Adria. Sie haben Ihr Handy bei uns vergessen. Sie können es morgen ab 11 Uhr abholen."
+        "audio": "Guten Abend, Herr Brandt, hier ist das Restaurant Adria. Sie haben Ihr Handy bei uns vergessen. Sie können es morgen ab 11 Uhr abholen.",
+        "why": "„hier ist das Restaurant Adria. Sie haben Ihr Handy bei uns vergessen.“"
        },
        {
         "q": "Wie viel kostet der Kurs?",
@@ -702,7 +709,8 @@ window.TESTS_A1 = [
          "in der Jacke"
         ],
         "a": 2,
-        "audio": "Frau: Wo ist mein Schlüssel? Nicht auf dem Tisch.\nMann: Schau mal in deiner Jacke.\nFrau: Ah ja, hier ist er. Danke!"
+        "audio": "Frau: Wo ist mein Schlüssel? Nicht auf dem Tisch.\nMann: Schau mal in deiner Jacke.\nFrau: Ah ja, hier ist er. Danke!",
+        "why": "„Schau mal in deiner Jacke.“ – „Ah ja, hier ist er.“ (nicht auf dem Tisch)"
        },
        {
         "q": "Für wie viele Personen ist der Tisch?",
@@ -734,7 +742,8 @@ window.TESTS_A1 = [
          "Musik"
         ],
         "a": 1,
-        "audio": "Frau: Spielst du Fußball, Paul?\nPaul: Nein, Fußball mag ich nicht. Ich gehe zweimal pro Woche schwimmen."
+        "audio": "Frau: Spielst du Fußball, Paul?\nPaul: Nein, Fußball mag ich nicht. Ich gehe zweimal pro Woche schwimmen.",
+        "why": "„Fußball mag ich nicht. Ich gehe zweimal pro Woche schwimmen.“"
        },
        {
         "q": "Wie ist das Wetter?",
@@ -744,7 +753,8 @@ window.TESTS_A1 = [
          "Es schneit."
         ],
         "a": 0,
-        "audio": "Mann: Nimmst du einen Regenschirm mit?\nFrau: Ja, es regnet schon den ganzen Morgen."
+        "audio": "Mann: Nimmst du einen Regenschirm mit?\nFrau: Ja, es regnet schon den ganzen Morgen.",
+        "why": "„es regnet schon den ganzen Morgen“"
        },
        {
         "q": "Wie viel kostet die Fahrkarte?",
@@ -777,12 +787,14 @@ window.TESTS_A1 = [
        {
         "q": "Die Passagiere nach Rom sollen zu Gate A 7 gehen.",
         "a": true,
-        "audio": "Passagiere des Fluges nach Rom, bitte kommen Sie zu Gate A 7. Das Boarding beginnt."
+        "audio": "Passagiere des Fluges nach Rom, bitte kommen Sie zu Gate A 7. Das Boarding beginnt.",
+        "why": "„Passagiere des Fluges nach Rom, bitte kommen Sie zu Gate A 7.“"
        },
        {
         "q": "Kaffee ist heute im Angebot.",
         "a": true,
-        "audio": "Heute im Angebot: Kaffee, 500 Gramm, nur 3 Euro 99. Nur heute!"
+        "audio": "Heute im Angebot: Kaffee, 500 Gramm, nur 3 Euro 99. Nur heute!",
+        "why": "„Heute im Angebot: Kaffee … nur 3 Euro 99“"
        },
        {
         "q": "Die U2 fährt heute nur bis zum Bahnhof.",
@@ -831,7 +843,8 @@ window.TESTS_A1 = [
          "im Restaurant"
         ],
         "a": 0,
-        "audio": "Hi Lisa, hier ist Peter. Ich bin schon da und warte vor dem Kino. Der Film beginnt in zehn Minuten. Beeil dich!"
+        "audio": "Hi Lisa, hier ist Peter. Ich bin schon da und warte vor dem Kino. Der Film beginnt in zehn Minuten. Beeil dich!",
+        "why": "„Ich bin schon da und warte vor dem Kino.“"
        },
        {
         "q": "Was soll Herr Klein tun?",
@@ -1374,7 +1387,8 @@ window.TESTS_A1 = [
          "Kopfschmerzen"
         ],
         "a": 0,
-        "audio": "Arzt: Was fehlt Ihnen?\nFrau: Ich habe seit gestern Bauchschmerzen. Fieber habe ich nicht."
+        "audio": "Arzt: Was fehlt Ihnen?\nFrau: Ich habe seit gestern Bauchschmerzen. Fieber habe ich nicht.",
+        "why": "„Ich habe seit gestern Bauchschmerzen. Fieber habe ich nicht.“"
        },
        {
         "q": "In welchem Stock ist das Bürgerbüro?",
@@ -1384,7 +1398,8 @@ window.TESTS_A1 = [
          "im zweiten"
         ],
         "a": 1,
-        "audio": "Mann: Wo ist das Bürgerbüro, bitte?\nFrau: Im dritten Stock. Der Aufzug ist dort rechts."
+        "audio": "Mann: Wo ist das Bürgerbüro, bitte?\nFrau: Im dritten Stock. Der Aufzug ist dort rechts.",
+        "why": "„Im dritten Stock.“"
        },
        {
         "q": "Wie lange dauert der Film?",
@@ -1394,7 +1409,8 @@ window.TESTS_A1 = [
          "90 Minuten"
         ],
         "a": 0,
-        "audio": "Frau: Wie lange dauert der Film?\nMann: Genau zwei Stunden. Er ist um zehn Uhr zu Ende."
+        "audio": "Frau: Wie lange dauert der Film?\nMann: Genau zwei Stunden. Er ist um zehn Uhr zu Ende.",
+        "why": "„Genau zwei Stunden.“"
        },
        {
         "q": "Was isst der Mann?",
@@ -1404,7 +1420,8 @@ window.TESTS_A1 = [
          "Salat"
         ],
         "a": 1,
-        "audio": "Kellnerin: Möchten Sie die Pizza?\nMann: Nein, heute nehme ich den Fisch mit Kartoffeln."
+        "audio": "Kellnerin: Möchten Sie die Pizza?\nMann: Nein, heute nehme ich den Fisch mit Kartoffeln.",
+        "why": "„heute nehme ich den Fisch mit Kartoffeln“ – die Pizza nicht"
        },
        {
         "q": "Wann hat der Junge Geburtstag?",
@@ -1425,7 +1442,8 @@ window.TESTS_A1 = [
          "an die Ostsee"
         ],
         "a": 2,
-        "audio": "Mann: Fahrt ihr wieder nach Spanien?\nFrau: Nein, dieses Jahr fahren wir an die Ostsee. Das ist nicht so weit."
+        "audio": "Mann: Fahrt ihr wieder nach Spanien?\nFrau: Nein, dieses Jahr fahren wir an die Ostsee. Das ist nicht so weit.",
+        "why": "„dieses Jahr fahren wir an die Ostsee“ – nicht wieder nach Spanien"
        }
       ],
       "time": 8
@@ -1459,7 +1477,8 @@ window.TESTS_A1 = [
        {
         "q": "Im Kaufhaus gibt es heute Kaffee gratis.",
         "a": true,
-        "audio": "Liebe Kunden, in unserem Café im vierten Stock gibt es heute für alle eine Tasse Kaffee gratis!"
+        "audio": "Liebe Kunden, in unserem Café im vierten Stock gibt es heute für alle eine Tasse Kaffee gratis!",
+        "why": "„gibt es heute für alle eine Tasse Kaffee gratis“"
        }
       ],
       "time": 4
@@ -1480,7 +1499,8 @@ window.TESTS_A1 = [
          "um 10 Uhr"
         ],
         "a": 1,
-        "audio": "Guten Tag, Herr Novak, hier ist das Bürgerbüro. Ihr Pass ist fertig. Bitte kommen Sie morgen um acht Uhr."
+        "audio": "Guten Tag, Herr Novak, hier ist das Bürgerbüro. Ihr Pass ist fertig. Bitte kommen Sie morgen um acht Uhr.",
+        "why": "„Bitte kommen Sie morgen um acht Uhr.“"
        },
        {
         "q": "Was ist kaputt?",
@@ -1490,7 +1510,8 @@ window.TESTS_A1 = [
          "die Waschmaschine"
         ],
         "a": 0,
-        "audio": "Hallo, hier ist Frau Berg aus dem zweiten Stock. Das Fenster in meiner Küche ist kaputt. Können Sie heute kommen?"
+        "audio": "Hallo, hier ist Frau Berg aus dem zweiten Stock. Das Fenster in meiner Küche ist kaputt. Können Sie heute kommen?",
+        "why": "„Das Fenster in meiner Küche ist kaputt.“"
        },
        {
         "q": "Was machen Max und Ole am Sonntag?",
@@ -1500,7 +1521,8 @@ window.TESTS_A1 = [
          "Sie spielen Fußball."
         ],
         "a": 0,
-        "audio": "Hallo Ole, hier ist Max. Am Sonntag soll es schön werden. Wollen wir eine Fahrradtour machen? Ruf mich an!"
+        "audio": "Hallo Ole, hier ist Max. Am Sonntag soll es schön werden. Wollen wir eine Fahrradtour machen? Ruf mich an!",
+        "why": "„Wollen wir eine Fahrradtour machen?“"
        },
        {
         "q": "Wann ist die Sprechstunde?",
@@ -1510,7 +1532,8 @@ window.TESTS_A1 = [
          "freitags"
         ],
         "a": 0,
-        "audio": "Hier ist die Schule am See. Die Sprechstunde von Frau Lehmann ist jetzt immer mittwochs von 14 bis 15 Uhr."
+        "audio": "Hier ist die Schule am See. Die Sprechstunde von Frau Lehmann ist jetzt immer mittwochs von 14 bis 15 Uhr.",
+        "why": "„jetzt immer mittwochs von 14 bis 15 Uhr“"
        },
        {
         "q": "Wo treffen sich die beiden?",
@@ -2064,7 +2087,8 @@ window.TESTS_A1 = [
          "im vierten Stock"
         ],
         "a": 1,
-        "audio": "Frau: Ist die Wohnung im Erdgeschoss?\nMann: Nein, im dritten Stock. Aber es gibt einen Aufzug.\nFrau: Ah, sehr gut."
+        "audio": "Frau: Ist die Wohnung im Erdgeschoss?\nMann: Nein, im dritten Stock. Aber es gibt einen Aufzug.\nFrau: Ah, sehr gut.",
+        "why": "„Nein, im dritten Stock.“ – nicht im Erdgeschoss"
        },
        {
         "q": "Wie ist das Wetter morgen?",
@@ -2096,7 +2120,8 @@ window.TESTS_A1 = [
          "hinter dem Supermarkt"
         ],
         "a": 1,
-        "audio": "Frau: Entschuldigung, gibt es hier eine Post?\nMann: Ja, gehen Sie geradeaus bis zum Bahnhof. Die Post ist gegenüber vom Bahnhof, neben einem Café.\nFrau: Vielen Dank."
+        "audio": "Frau: Entschuldigung, gibt es hier eine Post?\nMann: Ja, gehen Sie geradeaus bis zum Bahnhof. Die Post ist gegenüber vom Bahnhof, neben einem Café.\nFrau: Vielen Dank.",
+        "why": "„Die Post ist gegenüber vom Bahnhof, neben einem Café.“"
        }
       ],
       "time": 8
@@ -2130,7 +2155,8 @@ window.TESTS_A1 = [
        {
         "q": "Der Zug nach Hamburg fährt von Gleis 9.",
         "a": true,
-        "audio": "An Gleis 9: Der ICE nach Hamburg, Abfahrt 11 Uhr 50. Bitte einsteigen und Vorsicht an der Bahnsteigkante."
+        "audio": "An Gleis 9: Der ICE nach Hamburg, Abfahrt 11 Uhr 50. Bitte einsteigen und Vorsicht an der Bahnsteigkante.",
+        "why": "„An Gleis 9: Der ICE nach Hamburg“"
        }
       ],
       "time": 4
@@ -2162,7 +2188,8 @@ window.TESTS_A1 = [
          "seinen Schlüssel"
         ],
         "a": 1,
-        "audio": "Hallo Tim, hier ist Julia. Du hast gestern bei uns deine Jacke vergessen. Ich bringe sie morgen zur Arbeit mit. Tschüss!"
+        "audio": "Hallo Tim, hier ist Julia. Du hast gestern bei uns deine Jacke vergessen. Ich bringe sie morgen zur Arbeit mit. Tschüss!",
+        "why": "„Du hast gestern bei uns deine Jacke vergessen.“"
        },
        {
         "q": "Wann beginnt der Kurs?",
@@ -2740,7 +2767,7 @@ window.TESTS_A1 = [
         ],
         "a": 1,
         "audio": "Mann: Entschuldigung, wo ist hier die Toilette?\nFrau: Nicht hier unten. Gehen Sie die Treppe hoch, in den ersten Stock, und dann links.",
-        "why": ""
+        "why": "„Gehen Sie die Treppe hoch, in den ersten Stock“ – nicht hier unten"
        },
        {
         "q": "Was trinkt die Frau?",
@@ -2762,7 +2789,7 @@ window.TESTS_A1 = [
         ],
         "a": 2,
         "audio": "Frau: Fährst du mit dem Auto zur Arbeit?\nMann: Nein, das Auto hat meine Frau. Und der Bus ist zu langsam. Ich fahre mit dem Fahrrad.",
-        "why": ""
+        "why": "„Ich fahre mit dem Fahrrad.“ – das Auto hat seine Frau, der Bus ist zu langsam"
        },
        {
         "q": "Welche Telefonnummer hat die Frau?",
@@ -2802,7 +2829,7 @@ window.TESTS_A1 = [
         "q": "Die Fluggäste nach Wien sollen zum Ausgang B12 gehen.",
         "a": true,
         "audio": "Letzter Aufruf für den Flug nach Wien. Alle Passagiere kommen bitte sofort zum Ausgang B12.",
-        "why": ""
+        "why": "„Alle Passagiere kommen bitte sofort zum Ausgang B12.“"
        },
        {
         "q": "Bananen sind heute billig.",
@@ -2830,7 +2857,7 @@ window.TESTS_A1 = [
         ],
         "a": 1,
         "audio": "Guten Tag, Herr Keller, hier ist das Autohaus Braun. Ihr Auto ist heute leider noch nicht fertig. Sie können es morgen abholen, ab 15 Uhr. Auf Wiederhören.",
-        "why": ""
+        "why": "„Sie können es morgen abholen, ab 15 Uhr.“ – heute ist es noch nicht fertig"
        },
        {
         "q": "Was soll Anna mitbringen?",
@@ -2841,7 +2868,7 @@ window.TESTS_A1 = [
         ],
         "a": 1,
         "audio": "Hallo Anna, hier ist Lisa. Am Samstag ist meine Party. Getränke und Kuchen habe ich schon. Kannst du bitte einen Salat mitbringen? Danke, bis Samstag!",
-        "why": ""
+        "why": "„Kannst du bitte einen Salat mitbringen?“ – Getränke und Kuchen hat Lisa schon"
        },
        {
         "q": "Wo treffen sie sich?",
@@ -2863,7 +2890,7 @@ window.TESTS_A1 = [
         ],
         "a": 0,
         "audio": "Sie sind verbunden mit der Praxis Doktor Schulz. Unsere Sprechzeiten sind Montag bis Freitag von 8 bis 12 Uhr. Am Wochenende ist die Praxis geschlossen.",
-        "why": ""
+        "why": "„Montag bis Freitag von 8 bis 12 Uhr. Am Wochenende ist die Praxis geschlossen.“"
        },
        {
         "q": "Was ist anders?",
@@ -3427,7 +3454,8 @@ window.TESTS_A1 = [
          "zur Bank"
         ],
         "a": 0,
-        "audio": "Mann: Wohin gehst du?\nFrau: Zur Apotheke. Ich brauche Tabletten gegen Kopfschmerzen. Dann gehe ich nach Hause."
+        "audio": "Mann: Wohin gehst du?\nFrau: Zur Apotheke. Ich brauche Tabletten gegen Kopfschmerzen. Dann gehe ich nach Hause.",
+        "why": "„Zur Apotheke. Ich brauche Tabletten“"
        },
        {
         "q": "Was möchte das Kind trinken?",
@@ -3488,7 +3516,8 @@ window.TESTS_A1 = [
        {
         "q": "Die Bibliothek schließt in zehn Minuten.",
         "a": true,
-        "audio": "Liebe Besucher, die Bibliothek schließt in zehn Minuten. Bitte bringen Sie Ihre Bücher zur Ausleihe."
+        "audio": "Liebe Besucher, die Bibliothek schließt in zehn Minuten. Bitte bringen Sie Ihre Bücher zur Ausleihe.",
+        "why": "„die Bibliothek schließt in zehn Minuten“"
        },
        {
         "q": "Der ICE nach Berlin kommt pünktlich.",
@@ -3548,7 +3577,8 @@ window.TESTS_A1 = [
          "Tim ist krank."
         ],
         "a": 1,
-        "audio": "Hi Sarah, hier ist Tim. Ich komme später, mein Zug hat eine halbe Stunde Verspätung. Wartet bitte nicht mit dem Essen."
+        "audio": "Hi Sarah, hier ist Tim. Ich komme später, mein Zug hat eine halbe Stunde Verspätung. Wartet bitte nicht mit dem Essen.",
+        "why": "„mein Zug hat eine halbe Stunde Verspätung“"
        },
        {
         "q": "Wann ist das Büro geöffnet?",
@@ -4166,7 +4196,8 @@ window.TESTS_A1 = [
        {
         "q": "Die Passagiere nach Berlin sollen zu Gate C 3 gehen.",
         "a": true,
-        "audio": "Passagiere des Fluges LH 204 nach Berlin: Bitte gehen Sie zu Gate C 3. Das Boarding beginnt jetzt."
+        "audio": "Passagiere des Fluges LH 204 nach Berlin: Bitte gehen Sie zu Gate C 3. Das Boarding beginnt jetzt.",
+        "why": "„Bitte gehen Sie zu Gate C 3.“"
        },
        {
         "q": "Das Schwimmbad ist heute bis 22 Uhr geöffnet.",
@@ -4226,7 +4257,8 @@ window.TESTS_A1 = [
          "die Heizung"
         ],
         "a": 1,
-        "audio": "Guten Tag, Herr Lange, hier ist die Hausverwaltung. Morgen um elf Uhr kommt der Techniker und repariert Ihren Kühlschrank. Bitte seien Sie zu Hause."
+        "audio": "Guten Tag, Herr Lange, hier ist die Hausverwaltung. Morgen um elf Uhr kommt der Techniker und repariert Ihren Kühlschrank. Bitte seien Sie zu Hause.",
+        "why": "„kommt der Techniker und repariert Ihren Kühlschrank“"
        },
        {
         "q": "Wann ist das Geschäft geschlossen?",
