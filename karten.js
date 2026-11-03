@@ -32,6 +32,8 @@
               in the card until tapped. Tools refit the card after a click.
    Returns { button, refit, redraw, body, fc } */
 (function(){
+/* every new card counts for the daily plan (index.html) */
+const toPlan=(k,n)=>{try{if(parent!==window)parent.postMessage({dlDo:k,n:n||1},location.origin)}catch(e){}};
 const ICON={
  play:'<path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/>',
  en:'<path d="M3 5h9M7.5 3v2M10 5c-1 4-3.5 7-6.5 8.5M5.5 8.5c1.2 2 3 3.6 5 4.5"/><path d="M12 21l4.5-10L21 21M13.6 17.5h5.8"/>',
@@ -86,11 +88,13 @@ function Karten(o){
     landed on another word. The next card starts fresh. */
  const shrink=()=>requestAnimationFrame(()=>{if(body.scrollHeight>body.clientHeight+1)fit()});
  function menuOpen(on){menu.hidden=!on;cnt.setAttribute("aria-expanded",String(on))}
+ let seen=-1;
  function show(n,dir){
   if(n<0||n>=D.length)return;
   body.querySelectorAll("details[data-keep]").forEach(d=>keep[d.dataset.keep]=d.open);
   if(D[i]&&D[n]&&D[i].key!==D[n].key)keep={};
   if(o.leave)o.leave();menuOpen(false);
+  if(n!==seen){seen=n;toPlan("karte")}
   i=n;const it=D[n],[a,b]=range(n);
   sel.value=String(D.findIndex(x=>x.key===it.key));
   cnt.textContent=`${n-a+1} / ${b-a+1}`;cnt.title=it.part;

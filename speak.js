@@ -28,6 +28,8 @@
 (function(){
 const synth=window.speechSynthesis;
 const AFTER_STOP=120;
+/* every sentence heard counts for the daily plan (index.html) */
+const toPlan=(k,n)=>{try{if(parent!==window)parent.postMessage({dlDo:k,n:n||1},location.origin)}catch(e){}};
 let gen=0,held=[],timer=0,stoppedAt=0;
 function split(t){t=String(t).replace(/\s+/g," ").trim();if(t.length<=160)return t?[t]:[];
  const out=[];let cur="";
@@ -48,7 +50,7 @@ function run(pieces,o){o=o||{};stop();const my=gen;
  function next(){if(my!==gen)return;clearTimeout(timer);if(i>=list.length){done(true);return}
   const p=list[i],u=new SpeechSynthesisUtterance(p.text);u.lang=p.lang||"de-DE";u.rate=p.rate||1;if(p.pitch)u.pitch=p.pitch;if(p.voice)u.voice=p.voice;
   let started=false,ended=false;
-  const end=()=>{if(ended||my!==gen)return;ended=true;i++;tries=0;next()};
+  const end=()=>{if(ended||my!==gen)return;ended=true;if(started)toPlan("hoeren",(p.text.match(/[.!?]+(\s|$)/g)||[0]).length);i++;tries=0;next()};
   /* about 13 characters a second at rate 1; allow double plus 4 s – and longer while the engine still says it is talking */
   const guard=()=>{const ms=(p.text.length/(13*(p.rate||1))*2+4)*1000;let ext=0;
    const check=()=>{if(my!==gen||ended)return;if(synth.speaking&&ext++<3){timer=setTimeout(check,ms/2);return}

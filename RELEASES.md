@@ -1,5 +1,10 @@
 # Releases
 
+## 1.53.0 — 2026-11-03
+- Tagesplan with a streak: a 🔥 chip in the top bar shows the days in a row and today's progress (2/4); a tap opens the plan – four short tasks a day (about 40 minutes): 🃏 20 Karten, 🎧 15 Sätze hören und laut nachsprechen, 🧩 10 Sätze im Satzbau-Spiel, ✍️ ein Brief im Modelltest oder 3 Sprechantworten – plus once a week a whole Modelltest
+- The tasks tick themselves: the sections report each new card, every sentence read aloud, every finished Satzbau sentence, a written letter (20+ words), a spoken answer and a finished Modelltest; what was done elsewhere (course, Tandem) is ticked by hand with the circle
+- A day with all four counts for the streak; the dialog shows the week (Mo–So), the record and a learning tip of the day; „Los“ opens the right section (the Modelltest last used, A1 or B1). Everything stays on the device
+
 ## 1.52.0 — 2026-11-03
 - Offline badge: when the phone has no internet, a small amber „Offline“ appears next to the version number; it goes away by itself when the connection is back (and the app then looks for a new version)
 - A tap on the badge – or on the version number while offline – says what still works (practice, games, Modelltests) and what needs internet (translating, the LanguageTool check, often speech recognition, updates)
