@@ -92,6 +92,15 @@ nav button[aria-selected="true"]{background:var(--c);color:#fff}
 .plmine .row{display:flex;align-items:center;gap:8px;margin-top:6px}
 .plmine .row small{color:var(--muted);font-size:12.5px;flex:1}
 .pldiary{margin-top:10px}
+.plday{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:10px 0 2px}
+.plday b{font-size:15px;text-align:center}
+.plday button{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:19px;line-height:1;cursor:pointer;padding:0}
+.plday button:disabled{opacity:.3;cursor:default}
+.plwk span[data-day]{cursor:pointer}
+.plwk span.td{box-shadow:inset 0 -3px 0 var(--b1)}
+.plaway{font-size:13.5px;line-height:1.45;margin:8px 0 2px;padding:8px 10px;border-radius:10px;border:1px dashed var(--fire)}
+.plaway .chipb{margin-left:6px}
+#plan.away{border-style:dashed}
 .pldiary summary{cursor:pointer;font-weight:700;font-size:14px}
 .pldiary p{font-size:13.5px;line-height:1.45;margin:8px 0 0}
 .pldiary p b{color:var(--muted);font-size:12px;display:block}
@@ -279,7 +288,7 @@ nav .i{display:none}
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.54.0";
+const APP_VERSION = "1.55.0";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren", saetze: "grammatik.html?t=saetze" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -400,17 +409,30 @@ const monday = () => back(day(), (new Date().getDay() + 6) % 7);
 function json(k, def){ try{ return JSON.parse(store(k) || "null") || def; }catch(e){ return def; } }
 /* until 1.53: dl:days held only full days – they stay full days */
 if(store("dl:full") === null) store("dl:full", store("dl:days") || "[]");
-function planGet(){ const p = json("dl:plan", null), d = day(); return p && p.d === d ? Object.assign({ c: {}, m: {} }, p) : { d, c: {}, m: {} }; }
+/* The day you practise for: today – or one you catch up on or work ahead
+   for, up to a week either way. Chosen in the plan; the app starts on today. */
+const RANGE = 7;
+let sel = day(), selAuto = true;
+function pickDay(){ const t = day(); if(selAuto || sel < back(t, RANGE) || sel > back(t, -RANGE)){ sel = t; selAuto = true; } return sel; }
+function choose(d){ sel = d; selAuto = d === day(); drawPlan(); }
+/* dl:plans {date: {c, m}}; until 1.54 only today, in dl:plan */
+function planOf(d){ const all = json("dl:plans", {}), old = json("dl:plan", null);
+  return Object.assign({ c: {}, m: {} }, !all[d] && old && old.d === d ? old : all[d] || {}, { d }); }
+const planGet = () => planOf(pickDay());
+const rel = d => ({ "-2": "Vorgestern", "-1": "Gestern", "0": "Heute", "1": "Morgen", "2": "Übermorgen" })[Math.round((Date.parse(d) - Date.parse(day())) / 864e5)] || "";
+const nice = d => { const [y, m, dd] = d.split("-").map(Number); return WEEK[wday(d)].de + ", " + dd + "." + m + "." + (y === new Date().getFullYear() ? "" : y); };
 const taskDone = (p, T) => !!p.m[T.k] || (p.c[T.k] || 0) >= T.n;
 const needed = p => WEEK[wday(p.d)].light ? PLAN.slice(0, 1) : PLAN;
 const isFull = p => needed(p).every(T => taskDone(p, T));
 const isKept = p => PLAN.some(T => taskDone(p, T));
 function streak(days){ const s = new Set(days); let d = day(); if(!s.has(d)) d = back(d, 1); let n = 0; while(s.has(d)){ n++; d = back(d, 1); } return n; }
-function bestRun(days){ let best = 0, run = 0, prev = ""; for(const d of [...new Set(days)].sort()){ run = prev && back(d, 1) === prev ? run + 1 : 1; best = Math.max(best, run); prev = d; } return best; }
+function bestRun(days){ let best = 0, run = 0, prev = ""; for(const d of [...new Set(days)].filter(x => x <= day()).sort()){ run = prev && back(d, 1) === prev ? run + 1 : 1; best = Math.max(best, run); prev = d; } return best; }
 function mark(k, d, on){ let a = json(k, []); const had = a.includes(d); if(on && !had) a.push(d); if(!on && had) a = a.filter(x => x !== d); store(k, JSON.stringify(a.slice(-800))); return on && !had; }
-/* saves today; true when this kept the streak or made the day full just now */
+/* saves the day; true when this kept the streak or made the day full just now */
 function planSave(p){
-  store("dl:plan", JSON.stringify(p));
+  const all = json("dl:plans", {}); all[p.d] = { c: p.c, m: p.m };
+  const keys = Object.keys(all).sort(); keys.slice(0, Math.max(0, keys.length - 120)).forEach(k => delete all[k]);
+  store("dl:plans", JSON.stringify(all));
   const kept = mark("dl:days", p.d, isKept(p)), full = mark("dl:full", p.d, isFull(p));
   return kept || full;
 }
@@ -423,18 +445,25 @@ function drawChip(){
   planB.classList.toggle("done", full);
   planB.classList.toggle("kept", kept && !full);
   planB.classList.toggle("on", !kept && s > 0);
-  planB.innerHTML = '<span aria-hidden="true">🔥</span>' + s + "<small>" + (full ? "✓" : k + "/" + need.length) + "</small>";
-  planB.title = "Tagesplan: " + k + " von " + need.length + " Blöcken · " + s + (s === 1 ? " Tag" : " Tage") + " in Folge";
+  const away = p.d !== day();
+  planB.classList.toggle("away", away);
+  planB.innerHTML = '<span aria-hidden="true">🔥</span>' + s + "<small>" + (away ? WEEK[wday(p.d)].de.slice(0, 2) + " " : "") + (full ? "✓" : k + "/" + need.length) + "</small>";
+  planB.title = "Tagesplan" + (away ? " für " + nice(p.d) : "") + ": " + k + " von " + need.length + " Blöcken · " + s + (s === 1 ? " Tag" : " Tage") + " in Folge";
   planB.setAttribute("aria-label", planB.title);
 }
 /* the line under the topic: how today stands */
 function planMsg(p){
   const W = WEEK[wday(p.d)], days = json("dl:days", []), set = new Set(days), s = streak(days), today = p.d,
-    left = needed(p).filter(T => !taskDone(p, T)).length, name = vorname();
+    left = needed(p).filter(T => !taskDone(p, T)).length, name = vorname(), blk = left === 1 ? " Block" : " Blöcke";
+  if(p.d < day()) return isFull(p) ? '<p class="plmsg yay">🎉 ' + W.de + " ist nachgeholt" + (name ? ", " + esc(name) : "") + "!</p>"
+    : isKept(p) ? '<p class="plmsg">✓ ' + W.de + " zählt jetzt für deine Serie. Noch " + left + blk + " für einen vollen Tag.</p>"
+    : '<p class="plmsg">Schon ein Block reicht, damit ' + W.de + " für deine Serie zählt.</p>";
+  if(p.d > day()) return isFull(p) ? '<p class="plmsg yay">🎉 ' + W.de + " ist schon geschafft" + (name ? ", " + esc(name) : "") + "!</p>"
+    : '<p class="plmsg">Vorarbeiten: noch ' + left + blk + " für " + W.de + ".</p>";
   return isFull(p) ? '<p class="plmsg yay">🎉 ' + (W.light ? "Ruhetag geschafft" : "Voller Tag") + (name ? ", " + esc(name) : "") + "! Bis morgen.</p>"
     : isKept(p) ? '<p class="plmsg">✓ Deine Serie ist für heute sicher. Noch ' + left + (left === 1 ? " Block" : " Blöcke") + " für einen vollen Tag.</p>"
     : s ? '<p class="plmsg">Heute noch nichts – schon 5 Minuten Karten halten deine Serie (dann ' + (s + 1) + " Tage).</p>"
-    : set.has(back(today, 2)) ? '<p class="plmsg">Gestern ausgefallen? Kein Problem – nur nie zweimal hintereinander. Heute zählt!</p>'
+    : set.has(back(today, 2)) ? '<p class="plmsg">Gestern ausgefallen? Kein Problem – nur nie zweimal hintereinander. Mit ‹ oben kannst du ihn nachholen.</p>'
     : '<p class="plmsg">Fang heute an: 30 Minuten – und an schlechten Tagen wenigstens 5. Jeder Block hält die Serie.</p>';
 }
 let diaryOpen = false;
@@ -443,10 +472,14 @@ function drawPlan(){
   if(!pld.open) return;
   /* typing in "Dein Deutsch": leave the box alone */
   if(document.activeElement && document.activeElement.id === "plmein") return;
-  const p = planGet(), today = p.d, W = WEEK[wday(today)], days = json("dl:days", []), set = new Set(days), fullSet = new Set(json("dl:full", [])),
-    s = streak(days), need = needed(p), full = isFull(p), kept = isKept(p), left = need.filter(T => !taskDone(p, T)).length, name = vorname(), mo = monday();
+  const p = planGet(), today = p.d, now = day(), W = WEEK[wday(today)], days = json("dl:days", []), set = new Set(days), fullSet = new Set(json("dl:full", [])),
+    s = streak(days), need = needed(p), full = isFull(p), kept = isKept(p), left = need.filter(T => !taskDone(p, T)).length, name = vorname(), mo = back(today, (wday(today) + 6) % 7);
   const wk = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"].map((l, i) => { const d = back(mo, -i);
-    return '<span class="' + (fullSet.has(d) ? "on " : set.has(d) ? "kept " : "") + (d === today ? "now" : d > today ? "later" : "") + '" title="' + d + (fullSet.has(d) ? " · voller Tag" : set.has(d) ? " · Serie gehalten" : "") + '">' + l + "</span>"; }).join("");
+    const ok = d >= back(now, RANGE) && d <= back(now, -RANGE);
+    return '<span class="' + (fullSet.has(d) ? "on " : set.has(d) ? "kept " : "") + (d === now ? "td " : "") + (d === today ? "now" : d > now && !set.has(d) ? "later" : "") + '"' + (ok ? ' data-day="' + d + '" role="button" tabindex="0"' : "") + ' title="' + nice(d) + (fullSet.has(d) ? " · voller Tag" : set.has(d) ? " · Serie gehalten" : "") + '">' + l + "</span>"; }).join("");
+  const label = (rel(today) ? rel(today) + " · " : "") + nice(today);
+  const bar = '<div class="plday"><button type="button" data-shift="-1" aria-label="Tag davor"' + (today <= back(now, RANGE) ? " disabled" : "") + '>‹</button><b>' + label + '</b><button type="button" data-shift="1" aria-label="Tag danach"' + (today >= back(now, -RANGE) ? " disabled" : "") + ">›</button></div>"
+    + (today === now ? "" : '<p class="plaway">' + (today < now ? "⏪ Du holst <b>" + nice(today) + "</b> nach" : "⏩ Du übst schon für <b>" + nice(today) + "</b>") + ' – alles, was du jetzt übst, zählt für diesen Tag.<button type="button" class="chipb" data-day="' + now + '">Zurück zu heute</button></p>');
   const msg = planMsg(p);
   const row = T => { const n = p.c[T.k] || 0, done = taskDone(p, T), manual = !!p.m[T.k], off = W.light && T.k !== "karte";
     const sub = (off ? "Heute frei – wenn du magst: " : "") + (W.free && T.k === "hoeren" ? "Freie Wahl: Video, Podcast oder Lied – danach hier abhaken · " : "") + T.u(n) + (manual && n < T.n ? " · von Hand abgehakt" : "");
@@ -454,13 +487,12 @@ function drawPlan(){
       + "<div><b>" + T.i + " " + T.t + '<span class="plm">' + (T.k === "karte" && W.light ? 10 : T.min) + " Min</span></b><small>" + sub + '</small><div class="plbar"><i style="width:' + (done ? 100 : Math.round(Math.min(n, T.n) / T.n * 100)) + '%"></i></div></div>'
       + '<button type="button" class="plgo' + (done ? " again" : "") + '" data-go="' + T.go + '">' + (T.k === "mein" ? (done ? "Mehr" : "Schreiben") : done ? "Mehr" : "Los") + "</button></div>"; };
   const diary = json("dl:diary", {}), past = Object.keys(diary).filter(d => d !== today && diary[d].trim()).sort().reverse();
-  const nice = d => { const [y, m, dd] = d.split("-").map(Number); return WEEK[wday(d)].de + ", " + dd + "." + m + "." + y; };
-  plbody.innerHTML = '<div class="plst"><span class="f" aria-hidden="true">🔥</span><div><b>' + s + "</b> " + (s === 1 ? "Tag" : "Tage") + " in Folge<small>Rekord: " + bestRun(days) + (bestRun(days) === 1 ? " Tag" : " Tage") + '</small></div><div class="plwk" aria-label="Diese Woche">' + wk + "</div></div>"
-    + '<p class="pltopic">📅 ' + W.de + " · Thema: <b>" + W.th + "</b>" + (W.sub ? " – " + W.sub : "") + "</p>"
+  plbody.innerHTML = '<div class="plst"><span class="f" aria-hidden="true">🔥</span><div><b>' + s + "</b> " + (s === 1 ? "Tag" : "Tage") + " in Folge<small>Rekord: " + bestRun(days) + (bestRun(days) === 1 ? " Tag" : " Tage") + '</small></div><div class="plwk" aria-label="Woche – Tag antippen zum Nachholen oder Vorarbeiten">' + wk + "</div></div>"
+    + bar + '<p class="pltopic">📅 Thema: <b>' + W.th + "</b>" + (W.sub ? " – " + W.sub : "") + "</p>"
     + msg + PLAN.map(row).join("")
     + '<div class="plmine"><p class="q">💬 ' + W.q + '</p><textarea id="plmein" lang="de" rows="4" placeholder="Heute habe ich … Morgen will ich … Ich finde …, weil …" aria-label="Dein Deutsch: Sätze über deinen Tag">' + esc(diary[today] || "") + "</textarea>"
     + '<div class="row"><small id="plcount"></small><button type="button" class="chipb" id="plsay">▶ Vorlesen</button></div></div>'
-    + (past.length ? '<details class="pldiary"' + (diaryOpen ? " open" : "") + "><summary>📔 Mein Tagebuch · " + past.length + (past.length === 1 ? " Eintrag" : " Einträge") + "</summary>" + past.slice(0, 60).map(d => "<p><b>" + nice(d) + "</b>" + esc(diary[d]) + "</p>").join("") + "</details>" : "")
+    + (past.length ? '<details class="pldiary"' + (diaryOpen ? " open" : "") + "><summary>📔 Mein Tagebuch · " + past.length + (past.length === 1 ? " Eintrag" : " Einträge") + "</summary>" + past.slice(0, 60).map(d => "<p><b>" + nice(d) + (rel(d) ? " · " + rel(d) : "") + "</b>" + esc(diary[d]) + "</p>").join("") + "</details>" : "")
     + '<p class="pltip">💡 ' + TIPS[Math.floor(Date.parse(today) / 864e5) % TIPS.length] + "</p>";
   countMine();
 }
@@ -494,11 +526,16 @@ plbody.addEventListener("input", e => {
   const gb = r.querySelector('[data-go="mein"]'); if(gb) gb.textContent = done ? "Mehr" : "Schreiben";
   r.querySelector(".plbar i").style.width = (done ? 100 : Math.round(Math.min(p.c.mein, 3) / 3 * 100)) + "%";
 });
+plbody.addEventListener("keydown", e => { const dy = e.target.closest && e.target.closest("span[data-day]"); if(dy && (e.key === "Enter" || e.key === " ")){ e.preventDefault(); choose(dy.dataset.day); } });
 plbody.addEventListener("focusout", e => { if(e.target.id === "plmein") setTimeout(drawPlan); });
 plbody.addEventListener("toggle", e => { if(e.target.classList && e.target.classList.contains("pldiary")) diaryOpen = e.target.open; }, true);
 plbody.addEventListener("click", e => {
   if(e.target.id === "plsay"){ const t = document.getElementById("plmein").value.trim(); if(!t || !window.speechSynthesis) return;
     speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t); u.lang = "de-DE"; u.rate = rate; speechSynthesis.speak(u); return; }
+  const sh = e.target.closest("[data-shift]");
+  if(sh){ if(!sh.disabled) choose(back(planGet().d, -sh.dataset.shift)); return; }
+  const dy = e.target.closest("[data-day]");
+  if(dy){ choose(dy.dataset.day); return; }
   const g = e.target.closest("[data-go]");
   if(g){ if(g.dataset.go === "mein"){ const ta = document.getElementById("plmein"); ta.scrollIntoView({ block: "center" }); ta.focus(); return; }
     pld.close(); show(g.dataset.go); return; }
