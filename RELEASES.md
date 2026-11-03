@@ -1,5 +1,9 @@
 # Releases
 
+## 1.52.0 — 2026-11-03
+- Offline badge: when the phone has no internet, a small amber „Offline“ appears next to the version number; it goes away by itself when the connection is back (and the app then looks for a new version)
+- A tap on the badge – or on the version number while offline – says what still works (practice, games, Modelltests) and what needs internet (translating, the LanguageTool check, often speech recognition, updates)
+
 ## 1.51.2 — 2026-11-03
 - Hören (A1 and B1 Modelltests): all 105 questions that had no explanation now show why on the result page – the deciding sentence from the recording, and where there is a trap, why the other option is wrong („„Nein, mit dem Fahrrad.“ – nicht mit dem Bus“)
 - Every answer key checked against its recording – all correct; tools/check-tests.mjs now requires an explanation for every Hören and Lesen question

@@ -44,6 +44,13 @@ nav .s{display:none}
 nav button[aria-selected="true"]{background:var(--c);color:#fff}
 #upd{font:inherit;font-size:12px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap}
 #upd.ready{border-color:var(--b1);background:var(--b1);color:#fff}
+/* shown only while the phone has no internet; a tap says what still works */
+#off{font:inherit;font-size:12px;font-weight:700;border:1px solid var(--a2);border-radius:999px;padding:4px 10px;background:transparent;color:var(--a2);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
+#off[hidden]{display:none}
+#off svg{width:13px;height:13px}
+.offnote{position:absolute;right:12px;top:calc(100% + 6px);max-width:min(340px,calc(100vw - 24px));padding:10px 14px;border-radius:14px;background:var(--paper);border:1px solid var(--a2);box-shadow:0 14px 34px rgba(0,0,0,.28);font-size:14px;line-height:1.45}
+.offnote[hidden]{display:none}
+.offnote b{color:var(--a2)}
 main{flex:1;min-height:0;position:relative}
 iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--paper)}
 iframe[hidden]{display:none}
@@ -140,6 +147,7 @@ nav .i{display:none}
 <body>
 <header><div class="top">
  <div class="brand">Deutsch <span>lernen</span></div>
+ <button id="off" type="button" hidden aria-expanded="false" aria-controls="offNote" title="Keine Internetverbindung"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M2 8.8a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16.2a5 5 0 0 1 6 0"/><path d="M12 20h.01"/><path d="M3 3l18 18"/></svg>Offline</button>
  <button id="upd" type="button" title="Nach neuer Version suchen">v–</button>
  <button id="moreB" class="fsb" type="button" aria-label="Mehr: Tempo, Darstellung, Meine Angaben, Übersetzen, Teilen, Vollbild" title="Mehr" aria-expanded="false" aria-controls="more"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="12" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="18.5" cy="12" r="1.9"/></svg></button>
  <nav role="tablist" aria-label="Bereiche">
@@ -154,6 +162,7 @@ nav .i{display:none}
   <button role="tab" data-m="saetze" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"/><path d="M9 10.5h6M9 13.5h4"/></svg></span><span class="l">Alltagssätze</span><span class="s">Sätze</span></button>
  </nav>
 </div>
+<div id="offNote" class="offnote" hidden role="status"><b>Offline.</b> Üben, Spiele und Modelltests funktionieren weiter. Internet brauchen nur: Übersetzen, die LanguageTool-Prüfung beim Schreiben, oft die Spracherkennung beim Sprechen und Updates.</div>
 <!-- ⋯ slides this down: a row of the app's tools, icons only -->
 <div id="more" class="more" role="menu" aria-label="Mehr">
  <div class="mrow" data-keep="1"><button id="tempo" class="fsb" type="button" aria-pressed="false"></button></div>
@@ -216,7 +225,7 @@ nav .i{display:none}
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.51.2";
+const APP_VERSION = "1.52.0";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren", saetze: "grammatik.html?t=saetze" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -267,14 +276,29 @@ async function checkLive(){
   upd.title = live ? "Neue Version laden" : "Aktuell – nach neuer Version suchen";
   return live;
 }
-upd.onclick = async () => {
+upd.onclick = async (e) => {
+  if(!live && net()){ e.stopPropagation(); offNoteOpen(true); return; }
   if(!live){ upd.textContent = "Suche …"; if(!(await checkLive())){ upd.textContent = "v" + APP_VERSION + " ✓"; setTimeout(() => upd.textContent = "v" + APP_VERSION, 1500); } return; }
   upd.textContent = "Lade …";
   try{ for(const k of await caches.keys()) await caches.delete(k); }catch(e){}
   try{ for(const r of await navigator.serviceWorker.getRegistrations()) await r.update(); }catch(e){}
   location.reload();
 };
-if(navigator.onLine !== false) checkLive();
+/* Offline badge: appears when the connection goes, disappears when it is
+   back; then the app looks for a new version once more. */
+const off = document.getElementById("off"), offNote = document.getElementById("offNote");
+function offNoteOpen(o){ offNote.hidden = !o; off.setAttribute("aria-expanded", o); }
+off.onclick = (e) => { e.stopPropagation(); offNoteOpen(offNote.hidden); };
+document.addEventListener("click", (e) => { if(!offNote.hidden && !offNote.contains(e.target)) offNoteOpen(false); });
+function net(){
+  const o = navigator.onLine === false;
+  off.hidden = !o;
+  if(!o) offNoteOpen(false);
+  return o;
+}
+window.addEventListener("offline", net);
+window.addEventListener("online", () => { net(); checkLive(); });
+if(!net()) checkLive();
 
 /* Tempo for every section's read-aloud: one button at the top instead of one
    in each section. A speedometer for normal, a snail for slow; the sections
