@@ -40,7 +40,7 @@ function sentence(b,end){const t=b.map((x,i)=>i&&!/^,/.test(x)?" "+x:x).join("")
 /* ---- the game ---- */
 let G=null,ov=null;
 const runGet=()=>st("run"),setBest=(lv,k)=>st("set:"+lv+":"+k);
-const itemsOf=(lv,set,order,topic)=>order.map(i=>Object.assign(parse(topic?SBT[topic][i]:SB[lv][set][i]),topic?{topic}:{}));
+const itemsOf=(lv,set,order,topic)=>order.map(i=>{const S=Object.assign(parse(topic?SBT[topic][i]:SB[lv][set][i]),topic?{topic}:{});S.lv=levelOf(S,topic?null:lv);return S});
 const runKey=g=>g&&g.topic?"trun:"+g.topic:"run";
 const tilesOf=S=>S.blocks.map((t,id)=>({id,t:t.replace(/^,\s*/,""),k:key(t)}));
 /* the running game after every move – without what can be rebuilt from the data */
@@ -100,7 +100,7 @@ function topic(id,title){const R=st("trun:"+id);if(R&&R.order){G=Object.assign({
 /* a small icon next to the topic name; an orange dot = a test is running, the green badge = the best result.
     Long press / hover explains it (hilfe.js, the page's help steps) */
 function topicButton(id,title){if(!window.SBT||!SBT[id])return"";const R=st("trun:"+id),b=st("tbest:"+id);
- const say=R?`Satzbau-Test fortsetzen – Satz ${R.i+1} von ${R.order.length}, ${num(R.score)} Punkte`:`Satzbau-Test: 5 Sätze zu „${title}“ bauen${b!=null?` – bestes Ergebnis ${num(b)} von ${TN}`:""}`;
+ const lr=topicLevels(id),say=(R?`Satzbau-Test fortsetzen – Satz ${R.i+1} von ${R.order.length}, ${num(R.score)} Punkte`:`Satzbau-Test: 5 Sätze zu „${title}“ bauen${b!=null?` – bestes Ergebnis ${num(b)} von ${TN}`:""}`)+(lr?` · Niveau ${lr}`:"");
  return `<button type="button" class="sb-ticon${R?" run":""}" data-sbtopic="${esc(id)}" data-sbtitle="${esc(title)}" aria-label="${esc(say)}">🧩${R?`<i class="sb-tdot" aria-hidden="true"></i>`:b!=null?`<i class="sb-tbadge">${num(b)}/${TN}</i>`:""}</button>`}
 function refreshButtons(){document.querySelectorAll("[data-sbtopic]").forEach(b=>{b.outerHTML=topicButton(b.dataset.sbtopic,b.dataset.sbtitle)})}
 function show(){try{window.Hilfe&&Hilfe.end&&Hilfe.end()}catch(e){}mount();shell(true);document.body.classList.add("sb-on")}
@@ -136,7 +136,7 @@ function draw(){if(G.i>=G.items.length){drawEnd();return}const S=cur(),T=id=>G.t
  const tile=(id,where,j)=>{const m=G.marks?G.marks[j]:null;return `<button type="button" class="sb-tile${where==="ans"&&m!=null?(m?" right":" wrong"):""}" data-id="${id}" data-where="${where}">${esc(T(id).t)}</button>`};
  ov.innerHTML=`<div class="sb-top">${G.topic?"":`<button type="button" class="sb-x" data-go="menu" aria-label="Übersicht" title="Übersicht – das Spiel bleibt gespeichert">☰</button>`}<b>${G.topic?"🧩 "+esc(G.title):`${G.lv} · Set ${G.set+1}`}</b><span class="sb-clock" title="Zeit – läuft nur, während du einen Satz baust">⏱ <b>${fmt(el())}</b></span><span class="sb-sc">${num(G.score)} Punkte${G.streak>1?` · <span class="sb-fire">🔥 ${G.streak}</span>`:""}</span><button type="button" class="sb-x" data-go="close" aria-label="Schließen">✕</button></div>
  <div class="sb-body">${dots(true)}
-  <div class="sb-nav"><button type="button" class="sb-nb" data-go="prev" aria-label="Vorheriger Satz" title="Vorheriger Satz"${G.i?"":" disabled"}>‹</button><span class="sb-n">Satz ${G.i+1} von ${G.items.length}</span><button type="button" class="sb-nb" data-go="fwd" aria-label="Nächster Satz" title="Nächster Satz – du kannst Sätze überspringen und später bauen"${G.i<G.items.length-1?"":" disabled"}>›</button></div>
+  <div class="sb-nav"><button type="button" class="sb-nb" data-go="prev" aria-label="Vorheriger Satz" title="Vorheriger Satz"${G.i?"":" disabled"}>‹</button><span class="sb-n">Satz ${G.i+1} von ${G.items.length}${lvBadge(S.lv)}</span><button type="button" class="sb-nb" data-go="fwd" aria-label="Nächster Satz" title="Nächster Satz – du kannst Sätze überspringen und später bauen"${G.i<G.items.length-1?"":" disabled"}>›</button></div>
   ${S.ctx?`<div class="sb-lab">Ergänze den fehlenden Satz im Text</div><div class="sb-para">${esc(S.ctx[0])} <span class="sb-gap${G.done?" filled":""}">${G.done?esc(built()):"_____ ? _____"}</span> ${esc(S.ctx[1])}</div>`:""}
   <div class="sb-en">„${esc(S.en)}“</div>
   <div class="sb-lab">${G.failed?"Deine Antwort":"Dein Satz"}</div>
@@ -267,6 +267,51 @@ const TOPICK={imp:"imp",refl:"refl",trenn:"trenn",passiv:"pass",modal:"modal",zu
 function ruleKey(S){if(TIP[S.rule])return S.rule;if(S.topic&&TOPICK[S.topic])return TOPICK[S.topic];const r=String(S.rule||"");
  const k=/Relativ/i.test(r)?"rel":/Passiv/i.test(r)?"pass":/Konjunktiv|würde|hätte|könnte/i.test(r)?"k2":/Futur/i.test(r)?"fut":/Perfekt|Partizip|Plusquam/i.test(r)?"perf":/zu \+|Infinitiv mit zu|um … zu/i.test(r)?"zu":/Modal/i.test(r)?"modal":/reflexiv/i.test(r)?"refl":/Dativ|Akkusativ/i.test(r)?"dat":/trennbar/i.test(r)?"trenn":/Imperativ/i.test(r)?"imp":/indirekt/i.test(r)?"ind":/Nebensatz|weil|dass|obwohl|wenn/i.test(r)?"neben":/nicht|kein/i.test(r)?"nicht":/TeKaMoLo/i.test(r)?"tkml":/Frage/i.test(r)?"wf":"any";
  return k}
+/* ---- the level of a sentence (A1 · A2 · B1) ----
+   Game levels have their own (A1+ = A1 …). A grammar-test sentence gets the level
+   of the hardest grammar in it – from its rule note and from the sentence itself:
+   A1 Präsens, Modalverb, trennbar, Imperativ, Fragen, nicht/kein, und/aber/oder
+   A2 Perfekt, Präteritum von sein/haben/Modalverben, weil/dass/wenn/ob/als, deshalb/trotzdem,
+      Dativ, Wechselpräpositionen, reflexiv, Komparativ, indirekte Fragen, zu + Infinitiv
+   B1 Passiv, Konjunktiv II, Relativsatz, Plusquamperfekt, Futur, Präteritum anderer Verben,
+      obwohl/während/nachdem/bevor/sobald/falls/damit, je … desto, um/ohne/statt … zu, Genitiv,
+      n-Deklination, Partizip als Adjektiv, da-/wo-Wörter, Nomen-Verb, lassen */
+/* what a grammar topic practises sets its lowest level ("das reparierte Fahrrad" = Partizip als Adjektiv) */
+const TOPIC_LV={partizip:3,rel:3,passiv:3,k2:2,zuinf:2,nvv:2,indirekt:2,refl:2};
+const RANK={A1:1,A2:2,B1:3},LVN=["","A1","A2","B1"];
+const RULE_LV=[[3,/plusquam|futur|passiv|konjunktiv|irreal|relativ|partizip (i|1|ii|2)?\s*(als|attribut)|partizip als|genitiv|n-deklination|n-dekl|nomen-verb|da-wort|wo-wort|da\(r\)|wo\(r\)|worauf|wofür|darauf|darüber|obwohl|während|nachdem|bevor|sobald|seitdem|falls|damit|je .*desto|zwar|entweder|weder|sowohl|um … zu|um \.\.\. zu|um\s*\+?\s*zu|ohne … zu|statt … zu|lassen|modalpartikel/i],
+ [2,/perfekt|präteritum|vergangenheit|weil|dass|wenn|als |ob |deshalb|deswegen|trotzdem|darum|dativ|wechselpräp|reflexiv|sich |komparativ|superlativ|indirekt|zu \+|infinitiv mit zu|nebensatz|konjunktion|adjektiv.*endung|adjektivdekl|verb am ende|seit /i]];
+const PRET_FULL=/\b(ging|gingen|kam|kamen|sah|sahen|fuhr|fuhren|gab|gaben|nahm|nahmen|las|lasen|schrieb|schrieben|blieb|blieben|lief|liefen|rief|riefen|fand|fanden|stand|standen|saß|saßen|lag|lagen|trank|tranken|aß|aßen|sprach|sprachen|traf|trafen|flog|flogen|wusste|wussten|dachte|dachten|brachte|brachten|kannte|wohnte|wohnten|arbeitete|arbeiteten|spielte|spielten|lernte|lernten|machte|machten|kaufte|kauften|sagte|sagten|fragte|fragten|lebte|lebten|erzählte|reiste|kochte|wartete|regnete|schneite)\b/;
+function levelOf(S,lv){if(lv&&RANK[String(lv).replace("+","")])return String(lv).replace("+","");
+ const plain=S.blocks.join(" ").replace(/ ,/g,",").toLowerCase(),rule=String((SBR[S.rule]||[S.rule||""])[0]);
+ let r=TOPIC_LV[S.topic]||1;const up=n=>{if(n>r)r=n};
+ for(const [n,rx] of RULE_LV)if(rx.test(rule)){up(n);break}
+ /* B1 in the sentence itself */
+ if(/\b(würde|würdest|würden|würdet|hätte|hättest|hätten|hättet|wäre|wärst|wären|wärt|müsste|müssten|dürfte|sollte|solltest|sollten)\b/.test(plain))up(/\bwürde(st)? gern\b|^(würden|könnten|hätten) (sie|du)\b/.test(plain)?2:3);
+ if(/\bkönnte(st|n|t)?\b/.test(plain))up(/^könnte(st|n)? (sie|du)\b/.test(plain)?2:3);
+ if(/\b(wurde|wurden|worden)\b/.test(plain))up(3);
+ if(/\b(wird|werden|werde|wirst|werdet)\b/.test(plain)&&/\b(ge[a-zäöüß]+(t|en)|[a-zäöüß]+iert|[a-zäöüß]{3,}en)\s*[.!?]?$/.test(plain)&&!/\b(ärzt|lehrer|krank|kalt|warm|müde|alt|groß|besser|dunkel|hell)/.test(plain.split(/\b(wird|werden|werde|wirst|werdet)\b/).pop()))up(3);
+ if(/\b(hatte|hattest|hatten|war|warst|waren)\b.*\b(ge[a-zäöüß]+(t|en)|[a-zäöüß]+iert)\b/.test(plain)&&!/\bwar(en)? .*\b(geöffnet|geschlossen|gestern|genug|gern|gesund|gut)\b/.test(plain))up(3);
+ if(S.blocks.some((b,i)=>i&&/^,\s*(((mit|in|zu|bei|von|über|an|auf|für|aus|nach|unter) )?(der|die|das|dem|den|denen|deren|dessen)$|(deren|dessen) )/i.test(b)))up(3);
+ if(/\b(obwohl|nachdem|bevor|sobald|seitdem|falls|indem|sodass|zwar|entweder|weder|sowohl)\b|\bje\b.*\bdesto\b|, damit\b|, während\b|^während [a-zäöüß]+ [a-zäöüß]/.test(plain))up(3);
+ if(/\b(um|ohne|statt|anstatt)\b.*\bzu [a-zäöüß]+n\b|\b(um|ohne|statt)\b.*\b[a-zäöüß]{2,}zu[a-zäöüß]+en\b/.test(plain))up(3);
+ if(/\b(wegen|trotz|statt|innerhalb|außerhalb) (des|der|eines|einer|meines|meiner|seines|ihres)\b/.test(plain))up(3);
+ if(/\b(lässt|lasse|lassen|ließ)\b/.test(plain))up(3);
+ if(PRET_FULL.test(plain))up(3);
+ if(/\b(worauf|wofür|worüber|womit|wovon|woran|darauf|dafür|darüber|damit|davon|daran|dazu)\b/.test(plain)&&r<3&&!/, damit\b/.test(plain))up(3);
+ /* A2 in the sentence itself */
+ if(/\b(habe|hast|hat|haben|habt|bin|bist|ist|sind|seid)\b.*\b(ge[a-zäöüß]+(t|en)|[a-zäöüß]+iert)\s*[.!?]?$/.test(plain))up(2);
+ if(/\b(war|warst|waren|hatte|hattest|hatten|musste|mussten|konnte|konnten|wollte|wollten|durfte|sollte)\b/.test(plain))up(2);
+ if(/\b(weil|dass|wenn|ob|deshalb|deswegen|trotzdem|darum|sondern|als ich|als wir|als er|als sie)\b/.test(plain))up(2);
+ if(/, (wann|wie|wo|warum|was|wer|wohin|woher|welche[rsnm]?)\b/.test(plain))up(2);
+ if(/\b(mich|dich|sich|uns|euch)\b/.test(plain))up(2);
+ if(/\b[a-zäöüß]+er als\b|\bam [a-zäöüß]+sten\b|\b(lieber|besser|mehr) als\b/.test(plain))up(2);
+ if(/\bzu [a-zäöüß]+n\s*[.!?]?$|\b[a-zäöüß]{2,}zu[a-zäöüß]+en\b/.test(plain))up(2);
+ return LVN[r]}
+/* the level as a small coloured badge */
+const lvBadge=l=>l?`<span class="sb-lvb ${l}" title="Niveau ${l}">${l}</span>`:"";
+/* the levels of a grammar topic's sentences: "A1–B1" */
+function topicLevels(id){const rows=(window.SBT&&SBT[id])||[],seen=new Set(rows.map(r=>levelOf(Object.assign(parse(r),{topic:id}))));const l=LVN.filter(x=>seen.has(x));return l.length>1?l[0]+"–"+l[l.length-1]:l[0]||""}
 const tipOf=S=>TIP[ruleKey(S)];
 const whyHtml=S=>{const L=why(S),T=tipOf(S);return `${L.length?`<div class="sb-why"><b>Warum diese Reihenfolge?</b><ul>${L.map(([de,en])=>`<li>${de}<small>${en}</small></li>`).join("")}</ul></div>`:""}<div class="sb-tip2">💡 <b>Tipp:</b> ${esc(T[0])}<small>${esc(T[1])}</small></div>`};
 function finishOne(p,ok){halt();const S=cur(),R=ruleOf(S);G.score+=p;G.res[G.i]=p;G.done=true;G.times=G.times||[];G.times[G.i]=el()-(G.sStart||0);
@@ -301,7 +346,8 @@ function drawTopicEnd(){halt();G.over=true;const s=G.score,n=G.items.length,ms=e
   <p class="sb-lead">${msg}</p>
   <p class="sb-sub">${isBest&&old!=null?"🏆 Neue Bestleistung! ":""}Bestes Ergebnis bei „${esc(G.title)}“: ${num(Math.max(s,old||0))} / ${n}</p>
   ${dots()}
-  <ol class="sb-list">${G.items.map((S,i)=>{const q=G.res[i];return `<li class="${q===1?"ok":q?"half":"no"}"><span>${q===1?"✓":q?"½":"✗"}</span><div><b>${esc(S.show[0])}</b><small>${esc(S.en)}${G.times&&G.times[i]!=null?` · ⏱ ${Math.max(1,Math.round(G.times[i]/1000))} s`:""}</small><em>📏 ${esc(ruleOf(S)[0])}</em></div></li>`}).join("")}</ol>
+  <p class="sb-note">Niveau der Sätze: ${LVN.filter(l=>G.items.some(S=>S.lv===l)).map(l=>`${lvBadge(l)} ×${G.items.filter(S=>S.lv===l).length}`).join(" ")}</p>
+  <ol class="sb-list">${G.items.map((S,i)=>{const q=G.res[i];return `<li class="${q===1?"ok":q?"half":"no"}"><span>${q===1?"✓":q?"½":"✗"}</span><div><b>${lvBadge(S.lv)} ${esc(S.show[0])}</b><small>${esc(S.en)}${G.times&&G.times[i]!=null?` · ⏱ ${Math.max(1,Math.round(G.times[i]/1000))} s`:""}</small><em>📏 ${esc(ruleOf(S)[0])}</em></div></li>`}).join("")}</ol>
   <div class="sb-row"><button type="button" class="sb-btn main" data-go="tnew">✨ 5 neue Sätze</button><button type="button" class="sb-btn" data-go="close">Fertig</button></div>
  </div>`}
 function drawEnd(){if(G.topic){drawTopicEnd();return}G.over=true;const s=G.score,k=stars(s),bestOld=st("best:"+G.lv),isBest=bestOld==null||s>bestOld;if(isBest)sv("best:"+G.lv,s);
@@ -322,7 +368,7 @@ function drawEnd(){if(G.topic){drawTopicEnd();return}G.over=true;const s=G.score
   <p class="sb-sub">${isBest&&bestOld!=null?"🏆 Neue Bestleistung! ":""}Bestleistung ${G.lv}: ${num(Math.max(s,bestOld||0))} / ${N}${G.bestStreak>=3?` · 🔥 ${G.bestStreak} richtig in Folge`:""} · ${played} von ${SB[G.lv].length} Sets gespielt${setOld!=null&&s>setOld?` · Set ${G.set+1}: besser als vorher (${num(setOld)})`:""}</p>
   ${dots()}
   <details class="sb-lbbox" open><summary>🏆 Bestenliste ${G.lv} · Top 5</summary>${lbTable(G.lv,LB.id,5)}</details>
-  <ol class="sb-list">${G.items.map((S,i)=>{const r=G.res[i];return `<li class="${r===1?"ok":r?"half":"no"}"><span>${r===1?"✓":r?"½":"✗"}</span><div><b>${esc(S.show[0])}</b><small>${esc(S.en)}${G.times&&G.times[i]!=null?` · ⏱ ${Math.max(1,Math.round(G.times[i]/1000))} s`:""}</small>${r===1?"":`<em>📏 ${esc((SBR[S.rule]||[""])[0])}</em>`}</div></li>`}).join("")}</ol>
+  <ol class="sb-list">${G.items.map((S,i)=>{const r=G.res[i];return `<li class="${r===1?"ok":r?"half":"no"}"><span>${r===1?"✓":r?"½":"✗"}</span><div><b>${lvBadge(S.lv)} ${esc(S.show[0])}</b><small>${esc(S.en)}${G.times&&G.times[i]!=null?` · ⏱ ${Math.max(1,Math.round(G.times[i]/1000))} s`:""}</small>${r===1?"":`<em>📏 ${esc((SBR[S.rule]||[""])[0])}</em>`}</div></li>`}).join("")}</ol>
   <div class="sb-row"><button type="button" class="sb-btn main" data-go="new">✨ Neues Set ›</button><button type="button" class="sb-btn" data-set="${G.set}">↻ Set ${G.set+1} nochmal</button>${nextLv&&s>=7?`<button type="button" class="sb-btn" data-lv="${nextLv}">Weiter zu ${nextLv} ›</button>`:""}<button type="button" class="sb-btn" data-go="menu">☰ Übersicht</button></div>
  </div>`}
 
@@ -436,6 +482,9 @@ body.sb-on{overflow:hidden}
 .sb-dots{display:flex;gap:5px;justify-content:center;margin:2px 0 10px}.sb-dots i{width:22px;height:8px;border-radius:4px;background:var(--line)}
 .sb-dots i.now{background:var(--b1)}.sb-dots i.ok{background:#1b8a4c}.sb-dots i.half{background:#d99a00}.sb-dots i.no{background:#c62f45}
 .sb-n{font-size:13px;color:var(--muted);text-align:center}
+.sb-lvb{display:inline-block;font-size:11px;line-height:1.5;font-weight:800;letter-spacing:.03em;padding:0 6px;border-radius:6px;color:#fff;margin-left:6px;vertical-align:1px}
+.sb-list .sb-lvb{margin:0 4px 0 0}
+.sb-lvb.A1{background:var(--a1,#2f9e6e)}.sb-lvb.A2{background:var(--a2,#d97706)}.sb-lvb.B1{background:var(--b1,#4f6bd8)}
 .sb-para{font-size:16.5px;line-height:1.6;padding:12px 14px;border-radius:12px;background:var(--surface);border-left:4px solid var(--b1);margin-bottom:6px}
 .sb-gap{display:inline;padding:1px 6px;border-radius:6px;background:color-mix(in srgb,var(--b1) 16%,var(--paper));color:var(--b1);font-weight:700;letter-spacing:.05em}
 .sb-gap.filled{letter-spacing:normal;background:color-mix(in srgb,#1b8a4c 16%,var(--paper));color:var(--ink)}.sb-en{font-size:18px;text-align:center;margin:4px 0 14px;font-style:italic}
@@ -484,5 +533,5 @@ body.sb-on{overflow:hidden}
 @keyframes sbfall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
 @media (prefers-reduced-motion:reduce){.sb-confetti{display:none}}`;
 document.head.appendChild(css);
-window.Satzbau={open,close,card,topic,topicButton,explain:(row,topic)=>{const S=Object.assign(parse(row),topic?{topic}:{});return {why:why(S),tip:tipOf(S)}}};
+window.Satzbau={open,close,card,topic,topicButton,levelOf:(row,topic,lv)=>levelOf(Object.assign(parse(row),topic?{topic}:{}),lv),topicLevels,explain:(row,topic)=>{const S=Object.assign(parse(row),topic?{topic}:{});return {why:why(S),tip:tipOf(S)}}};
 })();
