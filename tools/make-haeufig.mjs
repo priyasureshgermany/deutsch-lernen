@@ -218,27 +218,6 @@ for (const de of tato) consider(de, "", true);
 const by = new Map();           // word → its sentences, best first
 pool.forEach((s, i) => s.toks.forEach(t => { if (!by.has(t)) by.set(t, []); by.get(t).push(i); }));
 
-/* The rarest words choose first: they have the fewest to choose from. A
-   sentence someone has already taken costs nothing more to show again, so it
-   is worth a little – which keeps the file small – but three examples that
-   open the same way teach less than three that differ. */
-const used = new Map(), pick = words.map(() => []);
-for (let r = TOP - 1; r >= 0; r--) {
-  const cands = (by.get(words[r]) || []).map(i => ({ i, v: pool[i].score + (used.has(i) ? 3 : 0) }))
-    .sort((a, b) => b.v - a.v || a.i - b.i);
-  const starts = new Set();
-  for (const { i } of cands) {
-    const st = pool[i].de.split(" ").slice(0, 2).join(" ");
-    if (starts.has(st)) continue;
-    starts.add(st);
-    pick[r].push(i);
-    used.set(i, 0);
-    if (pick[r].length === PER) break;
-  }
-}
-const order = [...used.keys()].sort((a, b) => a - b);
-order.forEach((i, n) => used.set(i, n));
-
 /* One type per word, as a learner would name it; where a word is several, the
    one it most often is. Codes: N noun · V verb · J adjective · D adverb ·
    P pronoun · A article or possessive · R preposition · K conjunction ·
@@ -295,6 +274,31 @@ const info = words.map(w => {
   }
   return { form, type, lemma, gen };
 });
+
+/* The rarest words choose first: they have the fewest to choose from. A
+   sentence someone has already taken costs nothing more to show again, so it
+   is worth a little – which keeps the file small – but three examples that
+   open the same way teach less than three that differ. */
+const used = new Map(), pick = words.map(() => []);
+for (let r = TOP - 1; r >= 0; r--) {
+  /* "leben" is in every sentence with "das Leben": written as the word is –
+     or capitalised only because it opens the sentence – comes far ahead */
+  const form = info[r].form, capd = form[0].toUpperCase() + form.slice(1);
+  const fits = de => de.match(WORD).some((t, k) => t === form || (k === 0 && t === capd));
+  const cands = (by.get(words[r]) || []).map(i => ({ i, v: pool[i].score + (used.has(i) ? 3 : 0) - (fits(pool[i].de) ? 0 : 300) }))
+    .sort((a, b) => b.v - a.v || a.i - b.i);
+  const starts = new Set();
+  for (const { i } of cands) {
+    const st = pool[i].de.split(" ").slice(0, 2).join(" ");
+    if (starts.has(st)) continue;
+    starts.add(st);
+    pick[r].push(i);
+    used.set(i, 0);
+    if (pick[r].length === PER) break;
+  }
+}
+const order = [...used.keys()].sort((a, b) => a - b);
+order.forEach((i, n) => used.set(i, n));
 
 const data = {
   w: info.map(x => x.form),

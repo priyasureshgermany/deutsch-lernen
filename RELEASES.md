@@ -1,5 +1,8 @@
 # Releases
 
+## 1.58.1 — 2026-11-11
+- Wörter › Häufig: the sample sentences use the word as the list writes it – „Leben“ gets sentences with das Leben, no longer ones with the verb leben, and „essen“ ones with the verb – wherever such a sentence exists (all but 46 of the 10.000 words)
+
 ## 1.58.0 — 2026-11-11
 - Wörter › Häufig, by word type: a row of chips – Alle, Nomen, Verben, Adjektive, Adverbien, Pronomen, Artikel, Präpositionen, Konjunktionen, Zahlwörter, Partikeln – each with how many of its kind the chosen Top list holds; tap one to see only those (remembered on this phone). Every tile carries a dot in its type's colour, the colours of the texts
 - the popup names the word type and, where the dictionary knows it, the base form (fuhr → fahren, besser → gut) and a noun's article and plural (der Mann · die Kinder, Plural von das Kind · die Leute, nur Plural)
