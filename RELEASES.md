@@ -1,5 +1,9 @@
 # Releases
 
+## 1.57.0 — 2026-11-11
+- Wörter: new view „Häufig“ next to „Texte“ – the most frequent German words as Top 50 / 100 / 200 / 500 / 1.000 / 2.000 / 5.000 / 10.000, most frequent first; tap a word for up to three sample sentences on B1 level with ▶, the word marked, and its English meaning
+- haeufig-data.js made by tools/make-haeufig.mjs from FrequencyWords (OpenSubtitles, CC-BY-SA 4.0) and Tatoeba (CC-BY 2.0 FR): names and English are filtered out, sentences already in the app come first with their English, the rest translate on tap (EN); the file loads only when the view is opened
+
 ## 1.56.2 — 2026-11-03
 - Tagesplan: the daily calendar reminder is removed again (section, reminder/*.ics and tools/make-reminders.mjs) – the plan stays clean
 

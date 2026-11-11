@@ -20,6 +20,8 @@ Live: https://priyasureshgermany.github.io/deutsch-lernen/
 | `woerter.html`, `woerter-data.js` | Wörter erkennen: the page, and the hand-tagged texts (format explained at the top of the data file) |
 | `translate.js` | In-popup word translation (Google Translate + Wiktionary for article/plural) |
 | `woerter-lex.js` | Grammar for Wörter erkennen: subtypes, verb conjugations, declension tables, TeKaMoLo |
+| `haeufig-data.js` | Wörter › Häufig: the 10,000 most frequent words with sample sentences. Generated – word frequencies from [FrequencyWords](https://github.com/hermitdave/FrequencyWords) (OpenSubtitles, CC-BY-SA 4.0), sentences from the app and from [Tatoeba](https://tatoeba.org) (CC-BY 2.0 FR) |
+| `tools/make-haeufig.mjs` | `node tools/make-haeufig.mjs <de_50k.txt> <deu_sentences.tsv>` — rebuilds `haeufig-data.js` from the two downloads (not kept in the repository) |
 | `tools/list-tekamolo.mjs` | Prints every adverbial phrase with its TeKaMoLo label, for review |
 | `tools/check-woerter.mjs` | `node tools/check-woerter.mjs` — fails unless every text has every word type and all four cases |
 | `sw.js` | Offline cache; replaced only through the Update button |

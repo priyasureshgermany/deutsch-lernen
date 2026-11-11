@@ -194,6 +194,35 @@ body.show-en .fc-card .fc-en{display:block}
 .fc-pal .seg{display:inline-flex;flex-wrap:wrap;margin-bottom:6px}
 .fc-pal .legend{margin:0;flex-wrap:wrap;overflow:visible}
 .fc-pal .legend .hint{display:none}
+/* Häufig: the most frequent words, a tap away from sentences that use them.
+   The page shows either the texts or this list, never both. */
+.seg.view{order:-2}
+body.hw .bar-inner>:not(.view),body.hw .legend,body.hw .sgl,body.hw .topics,body.hw #main{display:none!important}
+body.hw header.hero .sub{display:none}
+#hw{display:none;max-width:1100px;margin:0 auto;padding:8px 20px 140px}
+body.hw #hw{display:block}
+.hw-n{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 0 6px;position:sticky;top:var(--hwtop,52px);background:var(--paper);z-index:4}
+.hw-n::-webkit-scrollbar{display:none}
+.hw-n button{flex:none;font:inherit;font-size:14px;font-weight:700;padding:5px 12px;border-radius:999px;border:2px solid var(--b1);background:transparent;color:var(--b1);cursor:pointer;font-variant-numeric:tabular-nums}
+.hw-n button[aria-pressed="true"]{background:var(--b1);color:#fff}
+.hw-note{color:var(--muted);font-size:14px;margin:8px 0 0}
+.hw-g{margin-top:22px;content-visibility:auto;contain-intrinsic-size:auto 600px}
+.hw-g h3{font:800 15px "Bricolage Grotesque",sans-serif;color:var(--muted);margin:0 0 8px}
+.hw-l{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:6px}
+.hwb{font:inherit;font-size:16px;text-align:left;display:flex;align-items:baseline;gap:7px;min-width:0;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.hwb i{font-style:normal;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;flex:none}
+.hwb span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hwb.sel{border-color:var(--b1);box-shadow:inset 0 0 0 1px var(--b1)}
+@media (hover:hover){.hwb:hover{background:var(--surface)}}
+.hws{list-style:none;margin:6px 0 0;padding:0}
+.hws li{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;align-items:start;padding:8px 0;border-top:1px dashed var(--line);font-size:16px}
+.hws li:first-child{border-top:none}
+.hws mark{background:none;color:var(--b1);font-weight:700}
+.hws .en{grid-column:2;color:var(--muted);font-style:italic;font-size:14px}
+.hws .hwt{grid-column:2;justify-self:start;font:inherit;font-size:12px;font-weight:700;padding:1px 9px;border-radius:999px;border:1.5px solid var(--muted);background:transparent;color:var(--muted);cursor:pointer}
+.hw-src{color:var(--muted);font-size:12px;margin:30px 0 0}
+.hw-src a{color:inherit}
+@media (max-width:760px){#hw{padding-left:14px;padding-right:14px}.hw-l{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))}.hwb{font-size:15px;padding:6px 8px}}
 </style>
 <link rel="stylesheet" href="karten.css">
 </head>
@@ -204,6 +233,10 @@ body.show-en .fc-card .fc-en{display:block}
  <p class="sub">Fünfzehn Themen, je ein Text auf A1- und B1-Niveau. Tippe ein Wort einmal an – es bekommt seine Farbe nach <b>Wortart</b>, <b>Unterart</b>, <b>Kasus</b>, <b>Satzglied</b> oder <b>TeKaMoLo</b>. Tippe noch einmal: Du siehst, was es genau ist, warum es diese Form hat, und alle Formen. <b>Alle färben</b> färbt alles, <b>Leeren</b> macht den Text wieder neutral. Mit <b>Satzbau</b> siehst du jeden Satz in seinen Teilen. Im <b>Übungsmodus</b> rätst du selbst.</p>
 </header>
 <div class="bar"><div class="bar-inner">
+ <div class="seg view" role="group" aria-label="Ansicht">
+  <button data-view="texte" aria-pressed="true">Texte</button>
+  <button data-view="hw" aria-pressed="false" title="Die häufigsten Wörter – mit Beispielsätzen">Häufig</button>
+ </div>
  <div class="seg" role="group" aria-label="Farben nach">
   <button data-mode="pos" aria-pressed="true">Wortart</button>
   <button data-mode="sub" aria-pressed="false">Unterart</button>
@@ -248,6 +281,12 @@ body.show-en .fc-card .fc-en{display:block}
 </div></dialog>
 <nav class="topics" id="nav" aria-label="Themen"></nav></div>
 <main id="main"></main>
+<div id="hw" aria-label="Häufige Wörter">
+ <p class="hw-note">Die <b>häufigsten deutschen Wörter</b>, das häufigste zuerst. Wähle, wie viele du sehen möchtest, und tippe ein Wort an: Du bekommst Beispielsätze auf B1-Niveau. <span lang="en">The most frequent German words – tap one for sample sentences.</span></p>
+ <div class="hw-n" id="hwN" role="group" aria-label="Wie viele Wörter"></div>
+ <div id="hwL"><p class="hw-note">Lade Wörter …</p></div>
+ <p class="hw-src">Wortliste: <a href="https://github.com/hermitdave/FrequencyWords" target="_blank" rel="noopener">FrequencyWords</a> (OpenSubtitles), CC-BY-SA 4.0 · Sätze ohne Übersetzung: <a href="https://tatoeba.org" target="_blank" rel="noopener">Tatoeba</a>, CC-BY 2.0 FR</p>
+</div>
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="ph1"><span id="pw"></span><button class="say" id="psay" type="button" aria-label="Wort vorlesen"></button><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
 <script src="woerter-data.js"></script>
 <script src="woerter-lex.js"></script>
@@ -359,9 +398,9 @@ function applyOnly(){
   el.classList.toggle("off",(mode==="case"&&!el.dataset.k)||(mode==="tm"&&!el.dataset.t)||(mode==="sub"&&el.dataset.g!==subPos))})}
 function setMode(m){mode=m;only=null;document.body.classList.remove("m-pos","m-sub","m-case","m-role","m-tm");document.body.classList.add("m-"+m);
  document.body.dataset.sp=subPos;
- document.querySelectorAll(".seg button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mode===m)));
+ document.querySelectorAll(".seg button[data-mode]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mode===m)));
  drawLegend();applyOnly();try{localStorage.setItem("wd:mode",m)}catch(e){}}
-document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
+document.querySelectorAll(".seg button[data-mode]").forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
 legend.addEventListener("click",e=>{
  const p=e.target.closest("[data-pick]");if(p){subPos=p.dataset.pick;setMode("sub");return}
  const c=e.target.closest(".chip[data-k]");if(!c)return;only=only===c.dataset.k?null:c.dataset.k;drawLegend();applyOnly()});
@@ -459,10 +498,67 @@ function openFor(el){
  if(quiz&&!el.classList.contains("done"))return askPos(k,el);
  show(k)}
 function show(k){pop.style.setProperty("--pc",colourOf(k));pb.innerHTML=head(k)+facts(k)+(quiz?nextBtn():"");wireNext();if(k.pos==="N"&&k.si.code!=="N-eigen")nounForms(k)}
-function closePop(){pop.hidden=true;if(cur)cur.el.classList.remove("sel");cur=null}
+function closePop(){pop.hidden=true;if(cur)cur.el.classList.remove("sel");cur=null;hwShut()}
 document.getElementById("px").onclick=closePop;
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closePop()});
-psay.onclick=()=>{if(cur)speak(psay,cur.k.w)};
+psay.onclick=()=>{if(hwAt)speak(psay,hwAt.w);else if(cur)speak(psay,cur.k.w)};
+
+/* ---- Häufig: the most frequent words ----
+   haeufig-data.js (tools/make-haeufig.mjs) is fetched the first time the view
+   is opened, not with the page: it is far larger than everything else here.
+   HW.w are the words, most frequent first; HW.x[i] the sentences (indexes into
+   HW.s) for word i; a sentence from the app itself has its English after a tab. */
+const HWN=[50,100,200,500,1000,2000,5000,10000],nf=n=>n.toLocaleString("de-DE");
+let hwN=50,hwAt=null,hwLoad=null;
+const hwL=document.getElementById("hwL"),hwNB=document.getElementById("hwN");
+try{const v=+localStorage.getItem("wd:hwn");if(HWN.includes(v))hwN=v}catch(e){}
+hwNB.innerHTML=HWN.map(n=>`<button type="button" data-n="${n}" aria-pressed="${n===hwN}">Top ${nf(n)}</button>`).join("");
+function hwData(){return hwLoad||(hwLoad=new Promise((ok,no)=>{if(window.HW)return ok();
+ const s=document.createElement("script");s.src="haeufig-data.js";s.onload=()=>ok();s.onerror=()=>{hwLoad=null;no()};document.head.appendChild(s)}))}
+/* drawn in the steps the buttons offer – 1–50, 51–100, 101–200 … – so a longer
+   list is the shorter one with more beneath it */
+function hwDraw(){
+ hwNB.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.n===hwN)));
+ if(!window.HW)return;
+ let out="",from=0;
+ for(const to of HWN){if(from>=hwN)break;
+  out+=`<section class="hw-g"><h3>${nf(from+1)} – ${nf(to)}</h3><div class="hw-l">`;
+  for(let i=from;i<to;i++)out+=`<button type="button" class="hwb" data-hw="${i}" lang="de"><i>${i+1}</i><span>${esc(HW.w[i])}</span></button>`;
+  out+=`</div></section>`;from=to}
+ hwL.innerHTML=out}
+function hwOpen(){hwDraw();
+ hwData().then(hwDraw,()=>{hwL.innerHTML=`<p class="hw-note">Die Wortliste konnte nicht geladen werden. Bist du offline? Tippe noch einmal auf „Häufig“.</p>`})}
+hwNB.onclick=e=>{const b=e.target.closest("[data-n]");if(!b)return;hwN=+b.dataset.n;try{localStorage.setItem("wd:hwn",hwN)}catch(e){}closePop();hwDraw()};
+function hwShut(){if(hwAt){hwAt.el.classList.remove("sel");hwAt=null}}
+const HWLET="A-Za-zÄÖÜäöüß";
+const hwMark=(de,w)=>esc(de).replace(new RegExp("(^|[^"+HWLET+"])("+w+")(?!["+HWLET+"])","gi"),"$1<mark>$2</mark>");
+function hwShow(el){
+ closePop();stopSay();
+ const i=+el.dataset.hw,w=HW.w[i];hwAt={el,w,i};el.classList.add("sel");
+ pw.textContent=w;pop.style.setProperty("--pc","var(--b1)");pop.hidden=false;pop.scrollTop=0;
+ const li=HW.x[i].map(j=>{const [de,en]=HW.s[j].split("\t");
+  return `<li><button class="say" type="button" data-hs="${j}" aria-label="Satz vorlesen"></button><span lang="de">${hwMark(de,w)}</span>${en?`<span class="en" lang="en">${esc(en)}</span>`:`<button class="hwt" type="button" data-tr="${j}">EN</button>`}</li>`}).join("");
+ pb.innerHTML=`<div class="pen" id="hwEn" lang="en">…</div><div class="pm">Platz ${nf(i+1)} der häufigsten Wörter</div><div class="box"><b>Beispielsätze · B1</b><ul class="hws">${li}</ul></div>`;
+ /* the meaning comes from the translator, so it needs a connection; the sentences do not */
+ const en=document.getElementById("hwEn");
+ if(!window.dlTranslate){en.textContent="";return}
+ dlTranslate(w,"de").then(r=>r&&r.text,()=>"").then(t=>{const e=document.getElementById("hwEn");if(e&&hwAt&&hwAt.i===i)e.textContent=t||"–"})}
+hwL.addEventListener("click",e=>{const b=e.target.closest(".hwb");if(b)hwShow(b)});
+pb.addEventListener("click",e=>{
+ const s=e.target.closest("[data-hs]");if(s){speak(s,HW.s[+s.dataset.hs].split("\t")[0]);return}
+ const t=e.target.closest("[data-tr]");if(!t||!window.dlTranslate)return;
+ t.disabled=true;t.textContent="…";
+ dlTranslate(HW.s[+t.dataset.tr].split("\t")[0],"de").then(r=>r&&r.text,()=>"").then(x=>{
+  if(!x){t.disabled=false;t.textContent="EN";return}
+  const sp=document.createElement("span");sp.className="en";sp.lang="en";sp.textContent=x;t.replaceWith(sp)})});
+/* Texte | Häufig, remembered on this phone */
+const hwTop=()=>document.documentElement.style.setProperty("--hwtop",document.querySelector(".bar").offsetHeight+"px");
+function setView(v){const hw=v==="hw";closePop();stopSay();document.body.classList.toggle("hw",hw);
+ document.querySelectorAll(".view button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.view===v)));
+ hwTop();try{localStorage.setItem("wd:view",v)}catch(e){}
+ if(hw)hwOpen()}
+document.querySelectorAll(".view button").forEach(b=>b.onclick=()=>setView(b.dataset.view));
+addEventListener("resize",()=>{if(document.body.classList.contains("hw"))hwTop()});
 
 /* ---- practice: guess the type, then the case ---- */
 let quiz=false,right=0,tries=0;
@@ -523,7 +619,7 @@ document.getElementById("clear").onclick=()=>{closePop();TKEL.forEach(el=>el.cla
    coloured in the list too. The palette icon brings the colour views and
    their legend onto the card. */
 let wPal=false;
-const segEl=document.querySelector(".seg"),segHome=[segEl.parentNode,segEl.nextSibling],legHome=[legend.parentNode,legend.nextSibling];
+const segEl=document.querySelector(".seg:not(.view)"),segHome=[segEl.parentNode,segEl.nextSibling],legHome=[legend.parentNode,legend.nextSibling];
 const sents=()=>[...main.querySelectorAll(".card .sent")].filter(x=>x.offsetParent&&!x.closest(".fc"));
 const tokOf=sent=>TOK[+sent.querySelector(".tk").dataset.i];
 const K=Karten({mount:main,
@@ -548,10 +644,12 @@ const K=Karten({mount:main,
   {id:"fill",icon:"brush",label:"Alle färben",click:k=>{if(quiz)return;k.item.el.querySelectorAll(".tk").forEach(x=>x.classList.add("on"));k.redraw()}},
   {id:"clear",icon:"eraser",label:"Leeren",click:k=>{closePop();k.item.el.querySelectorAll(".tk").forEach(x=>x.classList.remove("on","done"));k.redraw()}}]});
 document.querySelector(".bar-inner").prepend(K.button);
+try{if(localStorage.getItem("wd:view")==="hw")setView("hw")}catch(e){}
 /* press and hold a button to see what it does; a short tour on the first visit (hilfe.js) */
 if(window.Hilfe)Hilfe.setup({tab:"woerter",tours:[{id:"page",steps:[
  {sel:".fc-open",t:"Karten",de:"Eine Aufgabe pro Bildschirm – gut fürs Handy. ‹ › blättern, zweimal schnell tippen = erste bzw. letzte.",en:"Cards: one per screen; ‹ › to move."},
- {sel:".seg button",t:"Farben nach",de:"Was die Farben zeigen: Wortart, Unterart, Kasus, Satzglied oder TeKaMoLo (wann, warum, wie, wo).",en:"What the colours show."},
+ {sel:'.view button[data-view="hw"]',t:"Häufig",de:"Die häufigsten deutschen Wörter: die ersten 50 bis 10.000. Tippe ein Wort an und du siehst Beispielsätze auf B1-Niveau. „Texte“ bringt dich zurück.",en:"The most frequent words, with sample sentences."},
+ {sel:".seg button[data-mode]",t:"Farben nach",de:"Was die Farben zeigen: Wortart, Unterart, Kasus, Satzglied oder TeKaMoLo (wann, warum, wie, wo).",en:"What the colours show."},
  {sel:"#fill",t:"Alle färben",de:"Färbt den ganzen Text auf einmal.",en:"Colour the whole text."},
  {sel:"#clear",t:"Leeren",de:"Macht den Text wieder neutral.",en:"Remove the colours."},
  {sel:'.tg[data-lv="A1"]',t:"A1 · B1",de:"Texte dieses Niveaus zeigen oder ausblenden.",en:"Show or hide a level."},
