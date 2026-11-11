@@ -1,5 +1,11 @@
 # Releases
 
+## 1.58.0 — 2026-11-11
+- Wörter › Häufig, by word type: a row of chips – Alle, Nomen, Verben, Adjektive, Adverbien, Pronomen, Artikel, Präpositionen, Konjunktionen, Zahlwörter, Partikeln – each with how many of its kind the chosen Top list holds; tap one to see only those (remembered on this phone). Every tile carries a dot in its type's colour, the colours of the texts
+- the popup names the word type and, where the dictionary knows it, the base form (fuhr → fahren, besser → gut) and a noun's article and plural (der Mann · die Kinder, Plural von das Kind · die Leute, nur Plural)
+- word types, base forms and genders come from LanguageTool's German tagger dictionary (Morphy data, CC-BY-SA 4.0), read by tools/make-haeufig.mjs; it also names first names and surnames, so about a hundred more of them are gone from the list
+- Wörter › Häufig, a nicer look: a banner with a progress bar („12 von 100 angesehen“), the sizes on one rail, every step of the list as a band with its own colour and name (Die Basis, Jeden Tag … Ungefähr B1 …), word tiles with a number badge that turns into ✓ once opened (remembered on this phone), and a popup with rank, band, a frequency bar and the sentences as cards
+
 ## 1.57.0 — 2026-11-11
 - Wörter: new view „Häufig“ next to „Texte“ – the most frequent German words as Top 50 / 100 / 200 / 500 / 1.000 / 2.000 / 5.000 / 10.000, most frequent first; tap a word for up to three sample sentences on B1 level with ▶, the word marked, and its English meaning
 - haeufig-data.js made by tools/make-haeufig.mjs from FrequencyWords (OpenSubtitles, CC-BY-SA 4.0) and Tatoeba (CC-BY 2.0 FR): names and English are filtered out, sentences already in the app come first with their English, the rest translate on tap (EN); the file loads only when the view is opened

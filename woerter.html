@@ -201,28 +201,90 @@ body.hw .bar-inner>:not(.view),body.hw .legend,body.hw .sgl,body.hw .topics,body
 body.hw header.hero .sub{display:none}
 #hw{display:none;max-width:1100px;margin:0 auto;padding:8px 20px 140px}
 body.hw #hw{display:block}
-.hw-n{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 0 6px;position:sticky;top:var(--hwtop,52px);background:var(--paper);z-index:4}
+/* the banner: what this is, and how far through the chosen list you are */
+.hw-hero{position:relative;overflow:hidden;margin-top:12px;padding:18px 20px 16px;border-radius:18px;color:#fff;
+ background:linear-gradient(125deg,#2f5bd3 0%,#6a4fd0 55%,#b0479f 100%);box-shadow:0 10px 30px rgba(47,91,211,.28)}
+.hw-hero::before,.hw-hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.12);pointer-events:none}
+.hw-hero::before{width:190px;height:190px;right:-50px;top:-80px}
+.hw-hero::after{width:110px;height:110px;right:70px;bottom:-70px;background:rgba(255,255,255,.08)}
+.hw-ht{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.hw-ht b{font:800 clamp(22px,4.4vw,30px)/1.1 "Bricolage Grotesque","Atkinson Hyperlegible",sans-serif;letter-spacing:-.01em}
+.hw-ht span{font-size:14px;opacity:.85}
+.hw-hero p{margin:8px 0 0;max-width:62ch;font-size:14.5px;line-height:1.45;opacity:.95;position:relative}
+.hw-prog{display:flex;align-items:center;gap:12px;margin-top:14px;position:relative}
+.hw-bar{flex:1;height:8px;border-radius:999px;background:rgba(255,255,255,.25);overflow:hidden}
+.hw-bar i{display:block;height:100%;width:0;border-radius:999px;background:#fff;transition:width .35s ease}
+.hw-prog span{flex:none;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+/* how many: one rail of sizes, the chosen one raised */
+.hw-n{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin:14px 0 0;padding:4px;border-radius:999px;background:var(--surface);
+ position:sticky;top:calc(var(--hwtop,52px) + 8px);z-index:4;box-shadow:0 0 0 8px var(--paper)}
 .hw-n::-webkit-scrollbar{display:none}
-.hw-n button{flex:none;font:inherit;font-size:14px;font-weight:700;padding:5px 12px;border-radius:999px;border:2px solid var(--b1);background:transparent;color:var(--b1);cursor:pointer;font-variant-numeric:tabular-nums}
-.hw-n button[aria-pressed="true"]{background:var(--b1);color:#fff}
-.hw-note{color:var(--muted);font-size:14px;margin:8px 0 0}
-.hw-g{margin-top:22px;content-visibility:auto;contain-intrinsic-size:auto 600px}
-.hw-g h3{font:800 15px "Bricolage Grotesque",sans-serif;color:var(--muted);margin:0 0 8px}
-.hw-l{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:6px}
-.hwb{font:inherit;font-size:16px;text-align:left;display:flex;align-items:baseline;gap:7px;min-width:0;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
-.hwb i{font-style:normal;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;flex:none}
-.hwb span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.hwb.sel{border-color:var(--b1);box-shadow:inset 0 0 0 1px var(--b1)}
-@media (hover:hover){.hwb:hover{background:var(--surface)}}
-.hws{list-style:none;margin:6px 0 0;padding:0}
-.hws li{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;align-items:start;padding:8px 0;border-top:1px dashed var(--line);font-size:16px}
-.hws li:first-child{border-top:none}
-.hws mark{background:none;color:var(--b1);font-weight:700}
+.hw-n button{flex:1 0 auto;font:inherit;font-size:14px;font-weight:700;padding:7px 14px;border-radius:999px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-variant-numeric:tabular-nums;white-space:nowrap;transition:background .15s,color .15s,box-shadow .15s}
+.hw-n button small{font-size:11px;font-weight:700;opacity:.7;margin-right:3px;letter-spacing:.04em}
+.hw-n button[aria-pressed="true"]{background:linear-gradient(125deg,#2f5bd3,#6a4fd0);color:#fff;box-shadow:0 3px 10px rgba(47,91,211,.35)}
+@media (hover:hover){.hw-n button[aria-pressed="false"]:hover{color:var(--ink);background:var(--paper)}}
+.hw-note{color:var(--muted);font-size:14px;margin:14px 0 0}
+/* word types: one chip each, in the colours the texts use; a chip filters the list */
+.hw-c{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:12px 0 0;padding:2px 0}
+.hw-c::-webkit-scrollbar{display:none}
+.hw-c button{--tc:var(--muted);flex:none;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:13px;font-weight:700;padding:5px 11px 5px 9px;border-radius:999px;
+ border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s,color .15s}
+.hw-c button::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--tc);flex:none}
+.hw-c button b{font-weight:400;color:var(--muted);font-variant-numeric:tabular-nums}
+.hw-c button[aria-pressed="true"]{background:color-mix(in srgb,var(--tc) 16%,var(--paper));border-color:var(--tc);color:var(--tc)}
+.hw-c button[aria-pressed="true"] b{color:inherit}
+.hw-c button.all::before{background:conic-gradient(var(--c-N),var(--c-V),var(--c-J),var(--c-ADV),var(--c-P),var(--c-N))}
+.hw-c button.all[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.hw-c button:disabled{opacity:.4;cursor:default}
+/* a band of the list: its range, a name for it, and a rule in its colour */
+.hw-g{--bc:var(--b1);margin-top:28px;content-visibility:auto;contain-intrinsic-size:auto 600px}
+.hw-g h3{display:flex;align-items:center;gap:10px;margin:0 0 12px;font:800 17px "Bricolage Grotesque","Atkinson Hyperlegible",sans-serif}
+.hw-g h3::after{content:"";flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,color-mix(in srgb,var(--bc) 55%,transparent),transparent)}
+.hw-badge{flex:none;font:700 12px "Atkinson Hyperlegible",sans-serif;padding:3px 10px;border-radius:999px;color:#fff;background:var(--bc);font-variant-numeric:tabular-nums}
+:root[data-theme="dark"] .hw-badge{color:#141821}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hw-badge{color:#141821}}
+.hw-g h3 em{font:400 13px "Atkinson Hyperlegible",sans-serif;color:var(--muted)}
+.hw-l{display:grid;grid-template-columns:repeat(auto-fill,minmax(138px,1fr));gap:8px}
+.hwb{position:relative;font:inherit;font-size:16px;text-align:left;display:flex;align-items:center;gap:9px;min-width:0;padding:9px 12px 9px 9px;border-radius:12px;
+ border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;transition:transform .12s,box-shadow .12s,border-color .12s,background .12s}
+.hwb i{flex:none;min-width:30px;padding:2px 5px;border-radius:7px;font-style:normal;font-size:11px;font-weight:700;text-align:center;font-variant-numeric:tabular-nums;
+ color:var(--bc);background:color-mix(in srgb,var(--bc) 13%,transparent)}
+.hwb span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}
+/* the dot says what kind of word it is */
+.hwb u{flex:none;width:8px;height:8px;border-radius:50%;background:var(--tc,var(--muted));text-decoration:none}
+@media (hover:hover){.hwb:hover{transform:translateY(-2px);border-color:var(--bc);box-shadow:0 6px 16px color-mix(in srgb,var(--bc) 22%,transparent)}}
+.hwb:active{transform:scale(.97)}
+/* a word already opened: tinted, with a tick where its number was */
+.hwb.seen{background:color-mix(in srgb,var(--bc) 9%,var(--paper));border-color:color-mix(in srgb,var(--bc) 35%,var(--line))}
+.hwb.seen i{color:#fff;background:var(--bc);font-size:0}
+.hwb.seen i::before{content:"✓";font-size:12px}
+:root[data-theme="dark"] .hwb.seen i{color:#141821}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hwb.seen i{color:#141821}}
+.hwb.sel{border-color:var(--bc);box-shadow:0 0 0 2px var(--bc)}
+/* the popup for one word */
+.hw-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:8px}
+.hw-meta .ty{color:#fff;background:var(--tc)}
+:root[data-theme="dark"] .hw-meta .ty{color:#141821}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hw-meta .ty{color:#141821}}
+.hw-base{margin-top:8px;font-size:15px}
+.hw-base b{color:var(--pc)}
+.hw-meta span{font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;color:var(--pc);background:color-mix(in srgb,var(--pc) 14%,transparent);font-variant-numeric:tabular-nums}
+.hw-freq{margin-top:10px}
+.hw-freq div{height:6px;border-radius:999px;background:var(--surface);overflow:hidden}
+.hw-freq i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,color-mix(in srgb,var(--pc) 55%,transparent),var(--pc))}
+.hw-freq span{display:block;margin-top:4px;font-size:12px;color:var(--muted)}
+.hw-sh{margin:14px 0 2px;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.hws{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:8px}
+.hws li{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;align-items:start;padding:10px 12px;border-radius:12px;background:var(--surface);font-size:16px;border-left:3px solid color-mix(in srgb,var(--pc) 60%,transparent)}
+.hws mark{background:color-mix(in srgb,var(--pc) 18%,transparent);color:var(--pc);font-weight:700;padding:0 3px;border-radius:4px}
 .hws .en{grid-column:2;color:var(--muted);font-style:italic;font-size:14px}
 .hws .hwt{grid-column:2;justify-self:start;font:inherit;font-size:12px;font-weight:700;padding:1px 9px;border-radius:999px;border:1.5px solid var(--muted);background:transparent;color:var(--muted);cursor:pointer}
-.hw-src{color:var(--muted);font-size:12px;margin:30px 0 0}
+.hw-src{color:var(--muted);font-size:12px;margin:34px 0 0;text-align:center}
 .hw-src a{color:inherit}
-@media (max-width:760px){#hw{padding-left:14px;padding-right:14px}.hw-l{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))}.hwb{font-size:15px;padding:6px 8px}}
+@media (max-width:760px){#hw{padding-left:14px;padding-right:14px}.hw-hero{padding:16px 16px 14px;border-radius:16px}
+ .hw-l{grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:6px}.hwb{font-size:15px;padding:8px 8px 8px 7px;gap:7px}.hwb i{min-width:26px;padding:2px 3px}
+ .hw-n button{padding:7px 12px;font-size:13px}.hw-g h3 em{display:none}}
+@media (prefers-reduced-motion:reduce){.hwb:hover,.hwb:active{transform:none}}
 </style>
 <link rel="stylesheet" href="karten.css">
 </head>
@@ -282,10 +344,15 @@ body.hw #hw{display:block}
 <nav class="topics" id="nav" aria-label="Themen"></nav></div>
 <main id="main"></main>
 <div id="hw" aria-label="Häufige Wörter">
- <p class="hw-note">Die <b>häufigsten deutschen Wörter</b>, das häufigste zuerst. Wähle, wie viele du sehen möchtest, und tippe ein Wort an: Du bekommst Beispielsätze auf B1-Niveau. <span lang="en">The most frequent German words – tap one for sample sentences.</span></p>
+ <div class="hw-hero">
+  <div class="hw-ht"><b>Häufige Wörter</b><span lang="en">The most frequent German words</span></div>
+  <p>Das häufigste Wort zuerst. Wähle, wie viele du sehen möchtest, und tippe ein Wort an: Du bekommst Beispielsätze auf B1-Niveau.</p>
+  <div class="hw-prog"><div class="hw-bar"><i id="hwBar"></i></div><span id="hwCount"></span></div>
+ </div>
  <div class="hw-n" id="hwN" role="group" aria-label="Wie viele Wörter"></div>
+ <div class="hw-c" id="hwC" role="group" aria-label="Wortart"></div>
  <div id="hwL"><p class="hw-note">Lade Wörter …</p></div>
- <p class="hw-src">Wortliste: <a href="https://github.com/hermitdave/FrequencyWords" target="_blank" rel="noopener">FrequencyWords</a> (OpenSubtitles), CC-BY-SA 4.0 · Sätze ohne Übersetzung: <a href="https://tatoeba.org" target="_blank" rel="noopener">Tatoeba</a>, CC-BY 2.0 FR</p>
+ <p class="hw-src">Wortliste: <a href="https://github.com/hermitdave/FrequencyWords" target="_blank" rel="noopener">FrequencyWords</a> (OpenSubtitles), CC-BY-SA 4.0 · Sätze ohne Übersetzung: <a href="https://tatoeba.org" target="_blank" rel="noopener">Tatoeba</a>, CC-BY 2.0 FR · Wortarten: <a href="https://github.com/languagetool-org/german-pos-dict" target="_blank" rel="noopener">LanguageTool german-pos-dict</a> (Morphy), CC-BY-SA 4.0</p>
 </div>
 <div id="pop" hidden role="dialog" aria-live="polite"><div class="ph1"><span id="pw"></span><button class="say" id="psay" type="button" aria-label="Wort vorlesen"></button><button id="px" type="button" aria-label="Schließen">×</button></div><div id="pb"></div></div>
 <script src="woerter-data.js"></script>
@@ -509,36 +576,83 @@ psay.onclick=()=>{if(hwAt)speak(psay,hwAt.w);else if(cur)speak(psay,cur.k.w)};
    HW.w are the words, most frequent first; HW.x[i] the sentences (indexes into
    HW.s) for word i; a sentence from the app itself has its English after a tab. */
 const HWN=[50,100,200,500,1000,2000,5000,10000],nf=n=>n.toLocaleString("de-DE");
-let hwN=50,hwAt=null,hwLoad=null;
-const hwL=document.getElementById("hwL"),hwNB=document.getElementById("hwN");
-try{const v=+localStorage.getItem("wd:hwn");if(HWN.includes(v))hwN=v}catch(e){}
-hwNB.innerHTML=HWN.map(n=>`<button type="button" data-n="${n}" aria-pressed="${n===hwN}">Top ${nf(n)}</button>`).join("");
+/* Each step of the list is a band with a colour and a name of its own. The
+   levels are a rule of thumb – about what a learner knows by then – and say so. */
+const HWB=[[50,"Die Basis","ohne diese geht nichts","var(--s3)"],[100,"Jeden Tag","in fast jedem Satz","var(--s6)"],[200,"Grundwortschatz","die ersten Gespräche","var(--s1)"],
+ [500,"Ungefähr A1","einfache Sätze","var(--s5)"],[1000,"Ungefähr A2","der Alltag","var(--s7)"],[2000,"Ungefähr B1","über fast alles sprechen","var(--s2)"],
+ [5000,"Ungefähr B2","Zeitung und Beruf","var(--s4)"],[10000,"Fortgeschritten","Bücher und Filme","var(--a2)"]];
+const hwBand=i=>HWB.find(b=>i<b[0]);
+/* Word types (HW.c, one letter per word): the colour it has in the texts, what
+   the chip says, what the popup says. */
+const HWT={N:["N","Nomen","Nomen"],V:["V","Verben","Verb"],J:["J","Adjektive","Adjektiv"],D:["ADV","Adverbien","Adverb"],P:["P","Pronomen","Pronomen"],
+ A:["A","Artikel","Artikel / Begleiter"],R:["PR","Präpositionen","Präposition"],K:["K","Konjunktionen","Konjunktion"],Z:["Z","Zahlwörter","Zahlwort"],T:["T","Partikeln","Partikel"],X:["","Sonstige",""]};
+const hwCol=c=>HWT[c]&&HWT[c][0]?`var(--c-${HWT[c][0]})`:"var(--muted)";
+const HWART={m:"der",f:"die",n:"das"};
+let hwN=50,hwCat="",hwAt=null,hwLoad=null,hwSeen=new Set();
+const hwL=document.getElementById("hwL"),hwNB=document.getElementById("hwN"),hwCB=document.getElementById("hwC");
+try{const v=+localStorage.getItem("wd:hwn");if(HWN.includes(v))hwN=v;
+ const c=localStorage.getItem("wd:hwc");if(c&&HWT[c])hwCat=c;
+ hwSeen=new Set((JSON.parse(localStorage.getItem("wd:hwseen")||"[]")||[]).filter(Number.isInteger))}catch(e){}
+hwNB.innerHTML=HWN.map(n=>`<button type="button" data-n="${n}" aria-pressed="${n===hwN}"><small>TOP</small>${nf(n)}</button>`).join("");
 function hwData(){return hwLoad||(hwLoad=new Promise((ok,no)=>{if(window.HW)return ok();
  const s=document.createElement("script");s.src="haeufig-data.js";s.onload=()=>ok();s.onerror=()=>{hwLoad=null;no()};document.head.appendChild(s)}))}
+const hwIn=i=>!hwCat||!window.HW||HW.c[i]===hwCat;
+/* how many of the words on show have been opened */
+function hwProg(){let c=0,all=0;
+ for(let i=0;i<hwN;i++)if(hwIn(i)){all++;if(hwSeen.has(i))c++}
+ document.getElementById("hwBar").style.width=(all?c/all*100:0)+"%";
+ document.getElementById("hwCount").textContent=`${nf(c)} von ${nf(all)} angesehen`}
+/* the chips, each with how many of its kind the chosen list holds */
+function hwChips(){
+ const n={};for(let i=0;i<hwN;i++)n[HW.c[i]]=(n[HW.c[i]]||0)+1;
+ hwCB.innerHTML=`<button type="button" class="all" data-c="" aria-pressed="${!hwCat}">Alle <b>${nf(hwN)}</b></button>`+
+  Object.keys(HWT).filter(c=>n[c]||c===hwCat).map(c=>`<button type="button" data-c="${c}" style="--tc:${hwCol(c)}" aria-pressed="${c===hwCat}">${HWT[c][1]} <b>${nf(n[c]||0)}</b></button>`).join("")}
 /* drawn in the steps the buttons offer – 1–50, 51–100, 101–200 … – so a longer
    list is the shorter one with more beneath it */
 function hwDraw(){
  hwNB.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.n===hwN)));
+ const on=hwNB.querySelector('[aria-pressed="true"]');if(on&&document.body.classList.contains("hw"))on.scrollIntoView({block:"nearest",inline:"center"});
+ hwProg();
  if(!window.HW)return;
+ hwChips();
  let out="",from=0;
- for(const to of HWN){if(from>=hwN)break;
-  out+=`<section class="hw-g"><h3>${nf(from+1)} – ${nf(to)}</h3><div class="hw-l">`;
-  for(let i=from;i<to;i++)out+=`<button type="button" class="hwb" data-hw="${i}" lang="de"><i>${i+1}</i><span>${esc(HW.w[i])}</span></button>`;
-  out+=`</div></section>`;from=to}
- hwL.innerHTML=out}
+ for(const [to,name,hint,col] of HWB){if(from>=hwN)break;
+  let tiles="",k=0;
+  for(let i=from;i<to;i++){if(!hwIn(i))continue;k++;
+   tiles+=`<button type="button" class="hwb${hwSeen.has(i)?" seen":""}" data-hw="${i}" lang="de" style="--tc:${hwCol(HW.c[i])}"><i>${i+1}</i><span>${esc(HW.w[i])}</span><u></u></button>`}
+  if(k)out+=`<section class="hw-g" style="--bc:${col}"><h3><span class="hw-badge">${nf(from+1)} – ${nf(to)}</span>${esc(name)}<em>${hwCat?nf(k)+" "+esc(HWT[hwCat][1]):esc(hint)}</em></h3><div class="hw-l">${tiles}</div></section>`;
+  from=to}
+ hwL.innerHTML=out||`<p class="hw-note">Keine ${esc(HWT[hwCat][1])} unter den ersten ${nf(hwN)} Wörtern – wähle eine größere Liste.</p>`}
 function hwOpen(){hwDraw();
  hwData().then(hwDraw,()=>{hwL.innerHTML=`<p class="hw-note">Die Wortliste konnte nicht geladen werden. Bist du offline? Tippe noch einmal auf „Häufig“.</p>`})}
 hwNB.onclick=e=>{const b=e.target.closest("[data-n]");if(!b)return;hwN=+b.dataset.n;try{localStorage.setItem("wd:hwn",hwN)}catch(e){}closePop();hwDraw()};
+hwCB.onclick=e=>{const b=e.target.closest("[data-c]");if(!b)return;hwCat=b.dataset.c===hwCat?"":b.dataset.c;try{localStorage.setItem("wd:hwc",hwCat)}catch(e){}closePop();hwDraw()};
 function hwShut(){if(hwAt){hwAt.el.classList.remove("sel");hwAt=null}}
 const HWLET="A-Za-zÄÖÜäöüß";
 const hwMark=(de,w)=>esc(de).replace(new RegExp("(^|[^"+HWLET+"])("+w+")(?!["+HWLET+"])","gi"),"$1<mark>$2</mark>");
+/* what the dictionary knows beyond the type: a noun's article, and the word a form comes from */
+function hwBase(i){const c=HW.c[i],g=HW.g[i],l=HW.l[i],w=HW.w[i];
+ if(c==="N"){
+  if(g==="p")return `<b>die ${esc(w)}</b> · nur Plural`;
+  if(HWART[g])return `<b>${HWART[g]} ${esc(w)}</b>`+(l?` · von ${esc(l)}`:"");
+  const a=HWART[g.toLowerCase()];
+  if(a)return `<b>die ${esc(w)}</b> · Plural von <b>${a} ${esc(l||w)}</b>`;
+  return l?`Grundform: <b>${esc(l)}</b>`:""}
+ return l?`Grundform: <b>${esc(l)}</b>`:""}
 function hwShow(el){
  closePop();stopSay();
- const i=+el.dataset.hw,w=HW.w[i];hwAt={el,w,i};el.classList.add("sel");
- pw.textContent=w;pop.style.setProperty("--pc","var(--b1)");pop.hidden=false;pop.scrollTop=0;
+ const i=+el.dataset.hw,w=HW.w[i],band=hwBand(i),ty=HWT[HW.c[i]];hwAt={el,w,i};el.classList.add("sel","seen");
+ if(!hwSeen.has(i)){hwSeen.add(i);try{localStorage.setItem("wd:hwseen",JSON.stringify([...hwSeen]))}catch(e){}hwProg()}
+ pw.textContent=w;pop.style.setProperty("--pc",band[3]);pop.hidden=false;pop.scrollTop=0;
  const li=HW.x[i].map(j=>{const [de,en]=HW.s[j].split("\t");
   return `<li><button class="say" type="button" data-hs="${j}" aria-label="Satz vorlesen"></button><span lang="de">${hwMark(de,w)}</span>${en?`<span class="en" lang="en">${esc(en)}</span>`:`<button class="hwt" type="button" data-tr="${j}">EN</button>`}</li>`}).join("");
- pb.innerHTML=`<div class="pen" id="hwEn" lang="en">…</div><div class="pm">Platz ${nf(i+1)} der häufigsten Wörter</div><div class="box"><b>Beispielsätze · B1</b><ul class="hws">${li}</ul></div>`;
+ /* the bar is the share of the 10 000 that are rarer than this word */
+ const rarer=(HW.w.length-i-1)/HW.w.length*100,base=hwBase(i);
+ pb.innerHTML=`<div class="pen" id="hwEn" lang="en">…</div>
+  <div class="hw-meta">${ty&&ty[2]?`<span class="ty" style="--tc:${hwCol(HW.c[i])}">${esc(ty[2])}</span>`:""}<span>Platz ${nf(i+1)}</span><span>${esc(band[1])}</span></div>
+  ${base?`<div class="hw-base" lang="de">${base}</div>`:""}
+  <div class="hw-freq"><div><i style="width:${Math.max(rarer,2)}%"></i></div><span>häufiger als ${rarer.toLocaleString("de-DE",{maximumFractionDigits:1})} % der ${nf(HW.w.length)} Wörter</span></div>
+  <div class="hw-sh">Beispielsätze · B1</div><ul class="hws">${li}</ul>`;
  /* the meaning comes from the translator, so it needs a connection; the sentences do not */
  const en=document.getElementById("hwEn");
  if(!window.dlTranslate){en.textContent="";return}
@@ -648,7 +762,7 @@ try{if(localStorage.getItem("wd:view")==="hw")setView("hw")}catch(e){}
 /* press and hold a button to see what it does; a short tour on the first visit (hilfe.js) */
 if(window.Hilfe)Hilfe.setup({tab:"woerter",tours:[{id:"page",steps:[
  {sel:".fc-open",t:"Karten",de:"Eine Aufgabe pro Bildschirm – gut fürs Handy. ‹ › blättern, zweimal schnell tippen = erste bzw. letzte.",en:"Cards: one per screen; ‹ › to move."},
- {sel:'.view button[data-view="hw"]',t:"Häufig",de:"Die häufigsten deutschen Wörter: die ersten 50 bis 10.000. Tippe ein Wort an und du siehst Beispielsätze auf B1-Niveau. „Texte“ bringt dich zurück.",en:"The most frequent words, with sample sentences."},
+ {sel:'.view button[data-view="hw"]',t:"Häufig",de:"Die häufigsten deutschen Wörter: die ersten 50 bis 10.000, auch nach Wortart (Nomen, Verben …). Tippe ein Wort an und du siehst Beispielsätze auf B1-Niveau. „Texte“ bringt dich zurück.",en:"The most frequent words, with sample sentences."},
  {sel:".seg button[data-mode]",t:"Farben nach",de:"Was die Farben zeigen: Wortart, Unterart, Kasus, Satzglied oder TeKaMoLo (wann, warum, wie, wo).",en:"What the colours show."},
  {sel:"#fill",t:"Alle färben",de:"Färbt den ganzen Text auf einmal.",en:"Colour the whole text."},
  {sel:"#clear",t:"Leeren",de:"Macht den Text wieder neutral.",en:"Remove the colours."},
