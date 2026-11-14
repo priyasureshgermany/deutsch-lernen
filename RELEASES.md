@@ -1,5 +1,8 @@
 # Releases
 
+## 1.59.1 — 2026-11-14
+- Updating no longer clears the expense tracker's and the barcode scanner's offline copies: the three apps share one website, and the Update button and the offline worker now touch only Deutsch lernen's own cache and worker
+
 ## 1.59.0 — 2026-11-14
 - New tab „Üben“ (🎯, last in the bar) with four parts: 🎙️ Aussprache · ✍️ Diktat · 🔁 Verben · 📒 Fehlerheft
 - 🎙️ Aussprache: a sentence from the Alltagssätze or the Satzbau sentences (A1 / A2 / B1) with its English; ▶ Anhören and 🐢 Langsam, then 🎙️ Sprechen – the browser's speech recognition (de-DE) listens and every word turns green (understood) or red (with what was heard under it); loose about capitals, punctuation, ä/ae, ß/ss, numbers as digits and compounds heard as two words. Where the browser has no speech recognition (often Chrome on the iPhone) or it is refused, a box for the keyboard's 🎙 dictation takes its place, and the page says so

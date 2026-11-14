@@ -2,7 +2,7 @@
    Every page is served from one cache, which nothing replaces on its own:
    installing a newer worker only adds files that are missing. The Update
    button in the top bar clears the cache and reloads. */
-const VERSION = "1.59.0";
+const VERSION = "1.59.1";
 const CACHE = "deutsch-lernen-shell";
 
 const FILES = [
@@ -65,7 +65,11 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      /* Only this app's own old caches. The expense tracker and the barcode
+         scanner are on the same site (priyasureshgermany.github.io) and share
+         this cache storage; deleting every other name took their offline
+         copies with it. */
+      .then((keys) => Promise.all(keys.filter((k) => k.startsWith("deutsch-lernen-") && k !== CACHE).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
