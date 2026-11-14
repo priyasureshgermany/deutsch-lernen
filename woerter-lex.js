@@ -212,7 +212,8 @@ VERBS_SRC.trim().split("\n").forEach(line => {
   const [lemma, rest] = line.split(": ");
   const [pres, praet, perf] = rest.split("; ");
   let forms;
-  if (pres === "R") { const st = lemma.replace(/e?n$/, ""); forms = [st+"e", st+"st", st+"t", lemma, st+"t", lemma]; }
+  /* du verpasst, du benutzt: after s, ß, z, x only -t */
+  if (pres === "R") { const st = lemma.replace(/e?n$/, ""); forms = [st+"e", st+(/(s|ß|z|x)$/.test(st) ? "t" : "st"), st+"t", lemma, st+"t", lemma]; }
   else forms = pres.split(",");
   VERBS[lemma] = { forms, praet, perf, part: perf.split(" ").slice(1).join(" ") };
 });

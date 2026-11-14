@@ -8,6 +8,7 @@ Live: https://priyasureshgermany.github.io/deutsch-lernen/
 - Read-aloud (▶) with a slow tempo, using the device's German voice
 - Tap a word (or several with *Mehrere Wörter*) for its translation right in the popup: meaning, base form, article and plural for nouns, and the sentence in English
 - Wörter erkennen: tap to colour by word type, subtype, case, sentence role or TeKaMoLo; tap again to see what it is, why, and all its forms; Satzbau shows each sentence in its parts; practice mode to guess type, subtype and case
+- Üben: pronunciation check, dictation, a verb drill, and a Fehlerheft that collects every wrong answer until it is right twice
 - Search in German or English
 - Installable (Add to Home Screen) and works offline; it only updates when you press the version button in the top bar
 
@@ -24,6 +25,9 @@ Live: https://priyasureshgermany.github.io/deutsch-lernen/
 | `tools/make-haeufig.mjs` | `node tools/make-haeufig.mjs <de_50k.txt> <deu_sentences.tsv> <german.dict>` — rebuilds `haeufig-data.js` from the three downloads (not kept in the repository) |
 | `tools/list-tekamolo.mjs` | Prints every adverbial phrase with its TeKaMoLo label, for review |
 | `tools/check-woerter.mjs` | `node tools/check-woerter.mjs` — fails unless every text has every word type and all four cases |
+| `ueben.html`, `ueben-lib.js` | Üben: Aussprache (speech recognition, keyboard dictation where there is none), Diktat, Verben and the Fehlerheft; the comparing and the verb tables live in `ueben-lib.js` |
+| `fehler.js` | The Fehlerheft store (`dl:fehler`), filled by `test.js`, `satzbau.js` and `ueben.html` |
+| `tools/check-ueben.mjs` | `node tools/check-ueben.mjs` — fails if a Diktat or Aussprache comparison or a verb form goes wrong |
 | `sw.js` | Offline cache; replaced only through the Update button |
 | `tools/make-icons.py` | Redraws `icons/` (needs Pillow) |
 | `tools/import-modules.py` | Re-imports the sections from saved Claude artifact sources |

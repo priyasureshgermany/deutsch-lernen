@@ -209,9 +209,22 @@ function Pruefung(o){
   if(j<0){finishSection(msg);return}
   run.cur=j;run.t0=Date.now();save();drawPart();if(msg)note(msg)}
  function note(msg){body.insertAdjacentHTML("afterbegin",`<div class="tz-pad tz-msg"><div class="tz-card warn"><b>${esc(msg)}</b></div></div>`)}
- function finishSection(msg){stopAudio();clearInterval(timer);const sec=test(run.tid).sections[run.si];run.secDone[run.si]=true;run.si=null;run.t0=null;save();
+ function finishSection(msg){stopAudio();clearInterval(timer);const sec=test(run.tid).sections[run.si];toFehler(test(run.tid),run.si);run.secDone[run.si]=true;run.si=null;run.t0=null;save();
   const t=test(run.tid);if(t.sections.every((_,i)=>run.secDone[i])){finish();return}
   record();choose((msg?msg+" ":"")+`✓ ${short(sec)} ist fertig und gespeichert.`)}
+ /* every wrong answer of a finished Prüfungsteil goes to the Fehlerheft (fehler.js), as a
+    question to answer again: a choice (a/b/c, Richtig/Falsch, the list) or a word to write */
+ function toFehler(t,si){if(!window.Fehler)return;try{const sec=t.sections[si];
+  sec.parts.forEach((p0,j)=>{if(!p0.items||p0.type==="write"||p0.type==="speak")return;
+   p0.items.forEach((it,i)=>{const p=p0.type==="mix"?one(p0,it):p0,v=run.ans[si+"."+j+"."+i];if(correct(p0,it,v))return;
+    const gap=it.n!=null&&p.text?((String(fill(p.text)).match(/[^.!?\n]+[.!?]*/g)||[]).find(x=>x.includes("("+it.n+")"))||"").trim():"";
+    const e={src:"Modelltest "+o.level+" · "+short(sec)+" · "+tabName(p0),q:fill(it.q||gap||p.intro||"Lücke ("+it.n+")"),g:given(p,it,v),why:it.why?fill(it.why):"",
+     say:it.audio||p0.audio?fill(it.audio||p0.audio):"",ctx:it.text||(!gap&&p0.text)?fill(it.text||p0.text):""};
+    if(p.type==="rf")Object.assign(e,{k:"mc",o:["Richtig","Falsch"],a:it.a?0:1});
+    else if(p.type==="form"&&!it.o)Object.assign(e,{k:"text",m:"form",a:it.a.map(fill)});
+    else if(p.type==="match"||p.type==="gapbank"){const o2=p.list.map(fill).concat(p.x?["x – keine passt"]:[]);Object.assign(e,{k:"mc",o:o2,a:it.a===-1?o2.length-1:it.a})}
+    else Object.assign(e,{k:"mc",o:it.o.map(fill),a:it.a});
+    Fehler.add(e)})})}catch(err){}}
  function switchPart(j){if(j===run.cur||run.done[pk(run.si,j)])return;tick();if(run.si==null)return;stopAudio();run.cur=j;run.t0=Date.now();save();drawPart()}
  function pause(silent){if(rec)stopRec();if(!run||run.si==null||run.t0==null)return;tick();if(run.si==null)return;
   run.t0=null;run.paused=true;save();stopAudio();clearInterval(timer);if(!silent)showPause()}

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<script>/* Darstellung: the theme chosen at the top of the app (index.html) – light, dark or like the phone */
+(function(){const set=t=>{const r=document.documentElement;if(t==="light"||t==="dark")r.dataset.theme=t;else delete r.dataset.theme};
+try{set(localStorage.getItem("dl:theme"))}catch(e){}
+addEventListener("message",e=>{if(e.origin===location.origin&&e.data&&"dlTheme" in e.data)set(e.data.dlTheme)})})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Üben</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#ffffff;--surface:#eef1f6;--ink:#1b2230;--muted:#5b6475;--line:#d9dee8;--b1:#2f5bd3;--a2:#b87d00;--a1:#1b8a6b;--hl:#2f5bd3;--hlbg:#e7edfc;
+ --c:#c62828;--ok:#1b8a6b;--okbg:#e3f4ee;--bad:#c62f45;--badbg:#fde8eb;--warn:#b87d00;--warnbg:#fdf3dc}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--hl:#9db3ff;--hlbg:#232c47;
+ --c:#d94848;--ok:#4cc79f;--okbg:#17332b;--bad:#ff8796;--badbg:#3a1d24;--warn:#e8b33c;--warnbg:#3a2f14}}
+:root[data-theme="dark"]{--paper:#141821;--surface:#1d2230;--ink:#e8ebf2;--muted:#9aa3b5;--line:#2c3344;--b1:#7e9dff;--a2:#e8b33c;--a1:#4cc79f;--hl:#9db3ff;--hlbg:#232c47;
+ --c:#d94848;--ok:#4cc79f;--okbg:#17332b;--bad:#ff8796;--badbg:#3a1d24;--warn:#e8b33c;--warnbg:#3a2f14}
+*,*::before,*::after{box-sizing:border-box;touch-action:manipulation}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
+button{font:inherit;color:inherit}
+header.hero{padding:20px 16px 8px;max-width:760px;margin:0 auto}
+h1{font-size:clamp(26px,5.5vw,40px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
+.sub{color:var(--muted);margin:6px 0 0;font-size:15px}
+.en{display:block;color:var(--muted);font-size:13px;font-style:italic}
+.bar{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:8px 16px}
+.seg{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--surface);border-radius:14px;padding:4px}
+.seg button{border:0;background:transparent;border-radius:10px;padding:6px 2px;font-size:13px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.15;position:relative;color:var(--muted)}
+.seg button .ic{font-size:19px}
+.seg button[aria-selected="true"]{background:var(--paper);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.seg .cnt{position:absolute;top:2px;right:6px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--c);color:#fff;font-size:11px;line-height:18px}
+.seg .cnt:empty{display:none}
+main{max-width:760px;margin:0 auto;padding:12px 16px 120px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.chip{border:1.5px solid var(--line);background:var(--paper);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:700;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip small{font-weight:400;opacity:.75}
+.lab{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:0 0 6px}
+.card{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 12px;background:var(--paper)}
+.card.soft{background:var(--surface);border-color:transparent}
+.target{font-size:22px;font-weight:700;line-height:1.35;margin:2px 0 4px}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:13px;margin-bottom:6px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.btn{border:1.5px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 14px;font-size:15px;font-weight:700;cursor:pointer}
+.btn.go{background:var(--c);border-color:var(--c);color:#fff}
+.btn.big{padding:12px 20px;font-size:17px}
+.btn.on{background:var(--hlbg);border-color:var(--hl);color:var(--hl)}
+.btn:disabled{opacity:.45;cursor:default}
+.mic{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:16px;padding:16px;font-size:18px;font-weight:800;background:var(--c);color:#fff;cursor:pointer;margin-top:12px}
+.mic.on{animation:pulse 1.2s infinite}
+@keyframes pulse{50%{opacity:.7}}
+textarea,input.in{width:100%;font:inherit;font-size:18px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);resize:vertical}
+textarea:focus,input.in:focus{outline:3px solid var(--hl);outline-offset:1px}
+.keys{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap}
+.keys button{min-width:38px;border:1.5px solid var(--line);background:var(--paper);border-radius:9px;padding:5px 0;font-size:17px;font-weight:700;cursor:pointer}
+.note{background:var(--warnbg);border-radius:12px;padding:10px 12px;font-size:14px;margin:10px 0}
+.note b{color:var(--ink)}
+.words{font-size:21px;line-height:1.9;margin:4px 0}
+.w{display:inline-block;padding:0 4px;border-radius:6px;margin:0 1px}
+.w.ok{background:var(--okbg);color:var(--ok)}
+.w.no{background:var(--badbg);color:var(--bad);text-decoration:underline wavy;text-underline-offset:4px}
+.w small{display:block;font-size:12px;line-height:1.1;text-align:center;margin-top:-4px;font-weight:400;color:var(--muted);text-decoration:none}
+.score{font-size:15px;font-weight:700;margin:6px 0}
+.score.good{color:var(--ok)}.score.bad{color:var(--bad)}
+.heardtx{color:var(--muted);font-size:14px}
+/* Diktat result */
+.dk{font-size:20px;line-height:2.1}
+.dk .d{border-radius:5px}.dk .err,.dk .extra{padding:1px 3px}
+.dk .pn{padding-left:0;padding-right:0}
+.dk .err{background:var(--badbg)}
+.dk .err s{color:var(--bad);font-size:15px;margin-right:3px}
+.dk .err b{color:var(--ok)}
+.dk .miss{border-bottom:2.5px dashed var(--bad);color:var(--bad);font-weight:700}
+.dk .extra{color:var(--bad);text-decoration:line-through;font-size:16px}
+.diffs{margin:10px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.diffs li{background:var(--surface);border-radius:10px;padding:7px 10px;font-size:15px}
+.diffs li .k{display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;padding:1px 7px;border-radius:999px;color:#fff;background:var(--bad);margin-right:6px;vertical-align:1px}
+.diffs li .k.uml{background:#8a3fa8}.diffs li .k.case{background:#c25e00}.diffs li .k.punct{background:#00838f}.diffs li .k.miss,.diffs li .k.extra{background:#6d4c41}
+.diffs li small{display:block;color:var(--muted);font-size:13px}
+.good{background:var(--okbg);color:var(--ok);border-radius:12px;padding:10px 12px;font-weight:700}
+.bad{background:var(--badbg);color:var(--bad);border-radius:12px;padding:10px 12px;font-weight:700}
+.good small,.bad small{display:block;font-weight:400;color:var(--ink);font-size:14px;margin-top:3px}
+.entr{color:var(--b1);font-style:italic;font-size:15px;margin-top:6px}
+/* Verben */
+.vq{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:6px 0 10px}
+.vq .p{font-size:24px;font-weight:800}
+.vq .inf{font-size:16px;color:var(--muted)}
+.tag{display:inline-block;font-size:12px;font-weight:800;padding:2px 9px;border-radius:999px;background:var(--hlbg);color:var(--hl)}
+.tag.perf{background:var(--warnbg);color:var(--warn)}.tag.praet{background:var(--okbg);color:var(--ok)}
+.prog{height:6px;border-radius:3px;background:var(--surface);overflow:hidden;margin:4px 0 10px}
+.prog i{display:block;height:100%;background:var(--c);transition:width .3s}
+.miss-list{margin:8px 0 0;padding:0;list-style:none}
+.miss-list li{border-bottom:1px solid var(--line);padding:7px 0;font-size:15px}
+.miss-list li s{color:var(--bad)}
+.big-n{font-size:44px;font-weight:800;font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1}
+/* Fehlerheft */
+.fe{border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;margin:0 0 8px;display:grid;grid-template-columns:1fr auto;gap:2px 8px}
+.fe .src{font-size:12px;color:var(--muted);font-weight:700}
+.fe .q{font-weight:700}
+.fe .a{color:var(--ok);font-size:15px}
+.fe .g{color:var(--bad);font-size:14px}
+.fe .x{grid-row:1/span 4;grid-column:2;align-self:start;border:0;background:transparent;font-size:18px;cursor:pointer;color:var(--muted);padding:2px 4px}
+.dots{display:inline-flex;gap:3px;vertical-align:middle;margin-left:4px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--ok)}
+.opts{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.opt{text-align:left;border:1.5px solid var(--line);background:var(--paper);border-radius:12px;padding:10px 12px;font-size:16px;cursor:pointer}
+.opt.right{border-color:var(--ok);background:var(--okbg)}
+.opt.wrongp{border-color:var(--bad);background:var(--badbg)}
+.tiles{display:flex;flex-wrap:wrap;gap:6px;min-height:46px;padding:6px;border-radius:12px;margin-top:8px}
+.tiles.ans{border:2px dashed var(--line)}
+.tile{border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:6px 10px;font-size:16px;font-weight:700;cursor:pointer}
+details.ctx{margin-top:8px;font-size:14px;background:var(--surface);border-radius:10px;padding:6px 10px;white-space:pre-line}
+details.ctx summary{cursor:pointer;font-weight:700}
+.empty{text-align:center;color:var(--muted);border:1.5px dashed var(--line);border-radius:16px;padding:28px 16px}
+.empty b{display:block;color:var(--ink);font-size:18px;margin-bottom:4px}
+.link{border:0;background:transparent;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:14px;padding:4px}
+@media (max-width:600px){header.hero{padding:12px 16px 6px}.sub{font-size:14px}.sub .en{display:none}}
+@media (max-width:420px){.target{font-size:20px}.words,.dk{font-size:19px}.seg button{font-size:12px}}
+</style>
+</head>
+<body>
+<header class="hero"><h1>Üben</h1><p class="sub">Sprechen, Hören und Schreiben, Verben – und alles, was du falsch hattest, im Fehlerheft.<span class="en">Pronunciation, dictation, verb drill and your mistake notebook.</span></p></header>
+<div class="bar"><div class="seg" role="tablist" aria-label="Üben">
+ <button role="tab" data-v="aus" aria-selected="false"><span class="ic" aria-hidden="true">🎙️</span>Aussprache</button>
+ <button role="tab" data-v="dik" aria-selected="false"><span class="ic" aria-hidden="true">✍️</span>Diktat</button>
+ <button role="tab" data-v="verb" aria-selected="false"><span class="ic" aria-hidden="true">🔁</span>Verben</button>
+ <button role="tab" data-v="fehl" aria-selected="false"><span class="ic" aria-hidden="true">📒</span>Fehlerheft<span class="cnt" id="cnt"></span></button>
+</div></div>
+<main id="main"></main>
+<script src="speak.js"></script>
+<script src="fehler.js"></script>
+<script src="woerter-lex.js"></script>
+<script src="satzbau-data.js"></script>
+<script src="saetze-data.js"></script>
+<script src="ueben-lib.js"></script>
+<script src="hilfe.js"></script>
+<script>
+/* Üben: four ways to practise, one tab.
+   Aussprache – read a sentence aloud; the browser's speech recognition (de-DE)
+     listens and every word is marked heard or different. Where the browser has
+     none (Chrome on the iPhone), the keyboard's dictation does the listening.
+   Diktat – hear a sentence (normal or slow), type it, and see every difference:
+     ä ö ü ß, capital letters, missing words, punctuation.
+   Verben – rounds of 10: Präsens, Perfekt (haben/sein + Partizip II),
+     Präteritum, regular, irregular and separable verbs.
+   Fehlerheft – every wrong answer from the Modelltests, Satzbau, the Grammatik
+     tests, Diktat and Verben (fehler.js); the review asks each one again until it
+     is right twice.
+   On this device: dl:ueben:view, dl:ueben:aus, dl:ueben:dik, dl:ueben:verb,
+   dl:fehler. The Tagesplan hears about sentences spoken ("hoeren") and verb
+   rounds and Fehlerheft answers ("satz"). */
+(function(){
+const main=document.getElementById("main"),seg=[...document.querySelectorAll(".seg button")],cntEl=document.getElementById("cnt");
+const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const st=(k,d)=>{try{const v=JSON.parse(localStorage.getItem("dl:ueben:"+k)||"null");return v==null?d:v}catch(e){return d}};
+const sv=(k,v)=>{try{localStorage.setItem("dl:ueben:"+k,JSON.stringify(v))}catch(e){}};
+const toPlan=(k,n)=>{try{if(parent!==window)parent.postMessage({dlDo:k,n:n||1},location.origin)}catch(e){}};
+const rnd=n=>Math.floor(Math.random()*n);
+let rate=1;try{if(localStorage.getItem("dl:rate")==="0.75")rate=.75}catch(e){}
+addEventListener("message",e=>{if(e.origin!==location.origin||!e.data)return;
+ if(e.data.dlRate)rate=e.data.dlRate;
+ if("dlShown" in e.data&&!e.data.dlShown)quiet();
+ if(e.data.dlView)go(e.data.dlView)});
+
+/* ---- read aloud: ▶ normal (the app's Tempo) and 🐢 slow ---- */
+let playing=null;
+function say(text,slow,btn){if(!window.Speak)return;
+ if(playing===btn&&btn){quiet();return}quiet();
+ playing=btn||null;if(btn)btn.classList.add("on");
+ Speak.run([{text,rate:slow?.6:rate}],{onend:ok=>{if(btn)btn.classList.remove("on");if(playing===btn)playing=null;
+  if(ok===false&&btn){const n=btn.closest(".card");if(n&&!n.querySelector(".nosound"))n.insertAdjacentHTML("beforeend",`<p class="note nosound">Kein Ton? Prüfe, ob das Handy stumm ist, und ob eine deutsche Stimme installiert ist (iPhone: Einstellungen › Bedienungshilfen › Gesprochene Inhalte › Stimmen › Deutsch).</p>`)}}})}
+function quiet(){if(window.Speak)Speak.stop();if(playing)playing.classList.remove("on");playing=null;if(A&&A.rec)stopRec(true)}
+/* umlaut keys for keyboards without them */
+const KEYS=`<div class="keys" aria-label="Sonderzeichen">${["ä","ö","ü","ß","Ä","Ö","Ü"].map(c=>`<button type="button" data-key="${c}" tabindex="-1">${c}</button>`).join("")}</div>`;
+main.addEventListener("pointerdown",e=>{if(e.target.closest("[data-key]"))e.preventDefault()});
+function typeKey(c){const el=main.querySelector("textarea,input.in");if(!el)return;const s=el.selectionStart??el.value.length,t=el.selectionEnd??s;
+ el.value=el.value.slice(0,s)+c+el.value.slice(t);el.selectionStart=el.selectionEnd=s+c.length;el.focus();el.dispatchEvent(new Event("input",{bubbles:true}))}
+
+/* ---- views ---- */
+let view=null;
+function go(v){if(!["aus","dik","verb","fehl"].includes(v))v="aus";quiet();view=v;sv("view",v);
+ seg.forEach(b=>b.setAttribute("aria-selected",String(b.dataset.v===v)));draw();scrollTo(0,0)}
+function draw(){count();({aus:drawAus,dik:drawDik,verb:drawVerb,fehl:drawFehl})[view]()}
+function count(){const n=Fehler.all().length;cntEl.textContent=n?String(n>99?"99+":n):""}
+addEventListener("storage",e=>{if(e.key===Fehler.KEY){count();if(view==="fehl"&&!R)drawFehl()}});
+seg.forEach(b=>b.onclick=()=>go(b.dataset.v));
+
+/* ================= Aussprache ================= */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const IOS=/iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Macintosh/.test(navigator.userAgent));
+const LV_A=[["Alltag","Alltag"],["A1","A1"],["A2","A2"],["B1","B1"]];
+const pools={};const pool=lv=>pools[lv]||(pools[lv]=UL.sentences(lv));
+/* a sentence not among the last ones you had */
+function pick(lv,key){const p=pool(lv),seen=st(key+":seen",[]);let s,k=0;do{s=p[rnd(p.length)];k++}while(seen.includes(s.id)&&k<40);
+ seen.push(s.id);sv(key+":seen",seen.slice(-60));return s}
+let A=null;
+function aState(){if(!A){const lv=st("aus:lv","Alltag");A={lv,s:pick(lv,"aus"),res:null,rec:null,typed:"",noSR:!SR,why:"",done:0,full:0}}return A}
+function drawAus(){const a=aState(),s=a.s;
+ let h=`<div class="chips" role="group" aria-label="Sätze">${LV_A.map(([k,l])=>`<button class="chip" data-alv="${k}" aria-pressed="${a.lv===k}">${l}</button>`).join("")}</div>
+ <div class="card"><div class="meta"><span>${a.lv==="Alltag"?"Alltagssatz":"Satz · "+a.lv}</span><span>${a.done?`${a.full} von ${a.done} ganz richtig`:""}</span></div>
+ <div class="target" lang="de">${esc(s.de)}</div>${s.en?`<div class="entr">${esc(s.en)}</div>`:""}
+ <div class="row"><button class="btn" data-say="n" type="button">▶ Anhören</button><button class="btn" data-say="s" type="button">🐢 Langsam</button><button class="btn" data-anext type="button">Anderer Satz ›</button></div></div>`;
+ if(a.res)h+=ausResult(a);
+ else if(a.rec)h+=`<div class="card soft"><div class="lab">Ich höre zu …</div><div class="heardtx" id="live">${esc(a.rec.view)||"Sprich jetzt den Satz."}</div><button class="mic on" data-stop type="button">■ Fertig</button></div>`;
+ else if(a.noSR)h+=`<div class="card soft">${a.why?`<p class="note">${esc(a.why)}</p>`:`<p class="note"><b>Dieser Browser hat keine Spracherkennung</b>${IOS?" – so ist es oft bei Chrome auf dem iPhone":""}. So geht es trotzdem: Tippe ins Feld, dann auf das <b>🎙 Mikrofon der Tastatur</b>, sprich den Satz und tippe „Prüfen“.<span class="en">No speech recognition here – use the keyboard's dictation microphone instead.</span></p>`}
+  <textarea id="atx" rows="3" lang="de" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Hier diktieren …">${esc(a.typed)}</textarea>
+  <div class="row"><button class="btn go big" data-acheck type="button">Prüfen</button></div></div>`;
+ else h+=`<button class="mic" data-listen type="button">🎙️ Sprechen</button><p class="heardtx" style="text-align:center">Erst ▶ anhören, dann laut vorlesen.<span class="en">Listen first, then read it aloud.</span></p>`;
+ main.innerHTML=h}
+function ausResult(a){const r=a.res,ok=r.filter(x=>x.ok).length,all=ok===r.length;
+ return `<div class="card"><div class="lab">So wurde es verstanden</div>
+ <div class="words" lang="de">${r.map(x=>`<span class="w ${x.ok?"ok":"no"}">${esc(x.t)}${!x.ok?`<small>${x.h?esc(x.h):"–"}</small>`:""}</span>`).join(" ")}</div>
+ <div class="score ${all?"good":ok/r.length>=.7?"":"bad"}">${all?"🎉 Perfekt – jedes Wort verstanden!":`${ok} von ${r.length} Wörtern verstanden`}</div>
+ <div class="heardtx">Gehört: „${esc(a.heardTx)||"…"}“</div>
+ ${all?"":`<p class="heardtx">Die roten Wörter noch einmal: anhören (🐢), langsam und deutlich nachsprechen. Darunter steht, was verstanden wurde.<span class="en">Red = not understood as written; below it what was heard.</span></p>`}
+ <div class="row"><button class="btn" data-again type="button">↺ Nochmal</button><button class="btn go" data-anext type="button">Nächster Satz ›</button></div></div>`}
+function ausCheck(tx){const a=A;a.heardTx=tx;a.res=UL.heard(a.s.de,tx);a.rec=null;a.done++;if(a.res.every(x=>x.ok))a.full++;toPlan("hoeren");drawAus()}
+function listen(){const a=A;let r;try{r=new SR()}catch(e){a.noSR=true;drawAus();return}
+ r.lang="de-DE";r.interimResults=true;r.continuous=false;r.maxAlternatives=3;
+ const rec={r,fin:"",im:"",view:"",ended:false};a.rec=rec;drawAus();
+ /* of the alternatives, the one closest to the sentence */
+ const bestAlt=res=>{let b=res[0].transcript,bs=-1;for(let k=0;k<res.length;k++){const t=res[k].transcript,sc=UL.heard(a.s.de,t).filter(x=>x.ok).length;if(sc>bs){bs=sc;b=t}}return b};
+ r.onresult=e=>{let fin="",im="";for(let i=0;i<e.results.length;i++){const x=e.results[i];if(x.isFinal)fin+=" "+bestAlt(x);else im+=" "+x[0].transcript}
+  rec.fin=fin.trim();rec.im=im.trim();rec.view=(rec.fin+" "+rec.im).trim();const el=document.getElementById("live");if(el)el.textContent=rec.view||"Sprich jetzt den Satz."};
+ r.onerror=e=>{const c=e&&e.error;if(a.rec!==rec)return;
+  if(c==="not-allowed"||c==="service-not-allowed"){a.rec=null;a.noSR=true;a.why=IOS?"Die Spracherkennung ist hier nicht erlaubt. In Safari: Einstellungen › Allgemein › Tastatur › „Diktierfunktion“ einschalten und das Mikrofon erlauben. Oder hier mit dem 🎙 der Tastatur diktieren:":"Das Mikrofon ist nicht erlaubt – erlaube es für diese Seite, oder diktiere hier mit dem 🎙 der Tastatur:";drawAus()}
+  else if(c==="audio-capture"){a.rec=null;a.noSR=true;a.why="Kein Mikrofon gefunden – diktiere mit dem 🎙 der Tastatur:";drawAus()}
+  else if(c==="network"){a.rec=null;a.noSR=true;a.why="Die Spracherkennung braucht hier Internet. Ohne Internet: mit dem 🎙 der Tastatur diktieren (am iPhone geht das oft auch offline).";drawAus()}};
+ r.onend=()=>{if(a.rec!==rec)return;rec.ended=true;clearTimeout(rec.t);const tx=(rec.fin||rec.im).trim();
+  if(tx)ausCheck(tx);else{a.rec=null;drawAus();main.insertAdjacentHTML("beforeend",`<p class="note">Nichts gehört. Tippe auf 🎙️ und sprich gleich los – laut und nah am Handy.</p>`)}};
+ /* a phone that never ends by itself */
+ rec.t=setTimeout(()=>{if(a.rec===rec)try{r.stop()}catch(e){}},20000);
+ try{r.start()}catch(e){a.rec=null;a.noSR=true;drawAus()}}
+function stopRec(silent){const a=A;if(!a||!a.rec)return;const rec=a.rec;try{rec.r.stop()}catch(e){}
+ if(silent){try{rec.r.abort()}catch(e){}a.rec=null;return}
+ /* the last words arrive with the end: wait for it, at most 2 s */
+ setTimeout(()=>{if(a.rec===rec&&!rec.ended){const tx=(rec.fin||rec.im).trim();a.rec=null;if(tx)ausCheck(tx);else drawAus()}},2000)}
+
+/* ================= Diktat ================= */
+let D=null;
+function dState(){if(!D){const lv=st("dik:lv","A1");D={lv,s:pick(lv,"dik"),typed:"",res:null,n:0,clean:0}}return D}
+const KIND={uml:["ä ö ü ß","Umlaut oder ß"],case:["Groß/klein","capital letter"],spell:["Schreibung","spelling"],miss:["fehlt","missing"],extra:["zu viel","extra"],punct:["Satzzeichen","punctuation"],xpunct:["Satzzeichen","punctuation"]};
+function why(x,first){const t=esc(x.t),g=esc(x.g);switch(x.kind){
+ case "uml":return `<b>${t}</b> – du hast „${g}“ geschrieben.<small>${/ae|oe|ue/i.test(x.g)&&!/ae|oe|ue/i.test(x.t)?"Schreib ä, ö, ü statt ae, oe, ue – die Tasten stehen unter dem Feld.":/ß/.test(x.t)?"ß nach langem Vokal oder au/ei (Straße, groß, heißen).":/ss/.test(x.t)?"ss nach kurzem Vokal (muss, Wasser) – hier kein ß.":"Die Pünktchen gehören dazu: a/ä, o/ö, u/ü sind andere Laute und andere Wörter (schon – schön)."}</small>`;
+ case "case":return /^[A-ZÄÖÜ]/.test(x.t)?`<b>${t}</b> schreibt man groß.<small>${first?"Am Satzanfang immer groß.":x.t==="Sie"||x.t==="Ihnen"||x.t==="Ihr"||x.t==="Ihre"?"Die höfliche Anrede Sie / Ihnen / Ihr schreibt man groß.":"Nomen schreibt man im Deutschen immer groß – auch mitten im Satz."} <i>Capital letter.</i></small>`
+  :`<b>${t}</b> schreibt man klein.<small>Nur Nomen, Namen, die Anrede Sie und der Satzanfang sind groß. <i>Lower case.</i></small>`;
+ case "spell":return `<b>${t}</b> – du hast „${g}“ geschrieben.<small>Hör das Wort noch einmal langsam (🐢).</small>`;
+ case "miss":return `<b>${t}</b> fehlt.<small>Missing word.</small>`;
+ case "extra":return `„${g}“ ist zu viel.<small>Not in the sentence.</small>`;
+ case "punct":return x.g?`<b>${t}</b> statt „${g}“.<small>${x.t==="?"?"Eine Frage endet mit ?":x.t===","?"Vor weil, dass, wenn, ob, aber … und zwischen zwei Sätzen steht ein Komma.":"Punctuation."}</small>`
+  :`<b>${t}</b> fehlt.<small>${x.t===","?"Vor weil, dass, wenn, ob, aber … und zwischen zwei Sätzen steht ein Komma.":x.t==="?"?"Eine Frage endet mit ?":"Satzzeichen fehlt – missing punctuation."}</small>`;
+ case "xpunct":return `„${g}“ ist zu viel.<small>Extra punctuation.</small>`}}
+function dkHtml(res){let firstWord=true;return res.map(x=>{let h;const sp=x.t&&/^[.,!?;:]$/.test(x.t)||!x.t&&/^[.,!?;:]$/.test(x.g)?"":" ";
+ const pn=/^[.,!?;:]$/.test(x.t||x.g)?" pn":"";
+ if(x.kind==="ok")h=`<span class="d${pn}">${esc(x.t)}</span>`;
+ else if(x.kind==="miss"||x.kind==="punct"&&!x.g)h=`<span class="d miss${pn}">${esc(x.t)}</span>`;
+ else if(x.kind==="extra"||x.kind==="xpunct")h=`<span class="d extra${pn}">${esc(x.g)}</span>`;
+ else h=`<span class="d err"><s>${esc(x.g)}</s><b>${esc(x.t)}</b></span>`;
+ if(x.t&&!/^[.,!?;:]$/.test(x.t))firstWord=false;return sp+h}).join("").trim()}
+function diffList(res){let i=0,seenWord=false;const out=[];res.forEach(x=>{const first=!seenWord&&x.t&&!/^[.,!?;:]$/.test(x.t);if(x.t&&!/^[.,!?;:]$/.test(x.t))seenWord=true;
+ if(x.kind!=="ok")out.push(`<li><span class="k ${x.kind==="xpunct"?"punct":x.kind}">${KIND[x.kind][0]}</span>${why(x,first)}</li>`)});return out}
+function drawDik(){const d=dState();
+ let h=`<div class="chips" role="group" aria-label="Niveau">${["A1","A2","B1"].map(l=>`<button class="chip" data-dlv="${l}" aria-pressed="${d.lv===l}">${l}</button>`).join("")}</div>
+ <div class="card"><div class="meta"><span>Diktat · ${d.lv}</span><span>${d.n?`${d.clean} von ${d.n} fehlerfrei`:""}</span></div>
+ <p style="margin:0">Hör zu und schreib den Satz. Achte auf <b>Groß/klein</b>, <b>ä ö ü ß</b> und <b>Satzzeichen</b>.<span class="en">Listen and type the sentence.</span></p>
+ <div class="row"><button class="btn go" data-dsay="n" type="button">▶ Anhören</button><button class="btn" data-dsay="s" type="button">🐢 Langsam</button></div></div>`;
+ if(!d.res)h+=`<div class="card"><textarea id="dtx" rows="3" lang="de" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Schreib hier, was du hörst …">${esc(d.typed)}</textarea>${KEYS}
+  <div class="row"><button class="btn go big" data-dcheck type="button">Prüfen</button><button class="link" data-dskip type="button">Anderer Satz</button></div></div>`;
+ else{const errs=diffList(d.res);
+  h+=`<div class="card">${errs.length?`<div class="bad">${errs.length===1?"1 Fehler":errs.length+" Fehler"}<small>Durchgestrichen = deins, grün = richtig, gestrichelt = fehlt.</small></div>`:`<div class="good">🎉 Fehlerfrei!</div>`}
+  <div class="dk" lang="de" style="margin-top:8px">${dkHtml(d.res)}</div>
+  ${errs.length?`<ul class="diffs">${errs.join("")}</ul>`:""}
+  <div class="target" lang="de" style="font-size:18px;margin-top:12px">${esc(d.s.de)}</div>${d.s.en?`<div class="entr">${esc(d.s.en)}</div>`:""}
+  ${errs.length?`<p class="heardtx">Steht jetzt im 📒 Fehlerheft.</p>`:""}
+  <div class="row"><button class="btn go" data-dnext type="button">Nächster Satz ›</button></div></div>`}
+ main.innerHTML=h}
+function dikCheck(){const d=D,ta=document.getElementById("dtx");d.typed=ta?ta.value:d.typed;
+ if(!d.typed.trim()){ta&&ta.focus();return}
+ d.res=UL.diktat(d.s.de,d.typed);d.n++;const ok=d.res.every(x=>x.kind==="ok");if(ok)d.clean++;
+ else Fehler.add({src:"Diktat "+d.lv,k:"text",m:"diktat",q:"Hör zu und schreib den Satz.",a:[d.s.de],say:d.s.de,g:d.typed.trim(),en:d.s.en});
+ quiet();count();drawDik();scrollTo(0,0)}
+
+/* ================= Verben ================= */
+const TENSE={praes:["Präsens","present"],perf:["Perfekt","perfect"],praet:["Präteritum","simple past"]};
+const KINDV={reg:"regelmäßig",irr:"unregelmäßig",sep:"trennbar"};
+let V=null;
+function vSet(){return Object.assign({t:["praes","perf","praet"],k:["reg","irr","sep"]},st("verb",{}))}
+const MODAL=new Set(["müssen","können","dürfen","sollen","wollen","mögen","möchten"]);
+const vKind=v=>v.sep?"sep":v.reg?"reg":"irr";
+const cleanV=s=>String(s).toLowerCase().replace(/[.!?,;]+/g," ").replace(/^\s*(ich|du|er|sie|es|man|wir|ihr)\s+/,"").replace(/\s+/g," ").trim();
+function verbOk(given,acc){const g=cleanV(given);return acc.some(a=>cleanV(a)===g)}
+function newRound(only){const s=vSet(),list=UL.verbs().filter(v=>s.k.includes(vKind(v)));const qs=[],used=new Set();
+ if(only)only.forEach(q=>qs.push(Object.assign({},q,{g:"",ok:null})));
+ else for(let i=0;i<10&&list.length;i++){let v,k=0;do{v=list[rnd(list.length)];k++}while(used.has(v.inf)&&k<30);used.add(v.inf);
+  /* modal verbs in the Perfekt (hat gemusst) are rare – they get another tense */
+  const ts=MODAL.has(v.inf)&&s.t.length>1?s.t.filter(x=>x!=="perf"):s.t,t=ts[rnd(ts.length)],p=rnd(6),acc=[v[t][p]].concat(t==="praet"&&v.alt.praet[p]?[v.alt.praet[p]]:[]);
+  qs.push({inf:v.inf,t,p,a:acc,aux:v.aux,sep:v.sep,kind:vKind(v),g:"",ok:null})}
+ V={qs,i:0,score:0,streak:0,best:0,answered:false};drawVerb()}
+function drawVerb(){if(!V||!V.qs.length){drawVerbStart();return}if(V.i>=V.qs.length){drawVerbEnd();return}
+ const q=V.qs[V.i],T=TENSE[q.t];
+ let h=`<div class="meta"><span>Frage ${V.i+1} von ${V.qs.length}</span><span>✓ ${V.score}${V.streak>=2?` · 🔥 ${V.streak}`:""}</span></div><div class="prog"><i style="width:${V.i/V.qs.length*100}%"></i></div>
+ <div class="card"><span class="tag ${q.t}">${T[0]}</span> <span class="heardtx">${KINDV[q.kind]}</span>
+ <div class="vq"><span class="p">${UL.PRON[q.p]}</span><span class="inf">(${esc(q.inf)})</span></div>
+ <input class="in" id="vin" type="text" lang="de" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="${q.t==="perf"?"haben/sein + Partizip II":q.sep?"z. B. rufe an":"Verbform"}" value="${esc(q.g)}"${V.answered?" disabled":""}>${V.answered?"":KEYS}`;
+ if(V.answered)h+=q.ok?`<div class="good" style="margin-top:10px">✓ Richtig${V.streak>=3?` – 🔥 ${V.streak} in Folge!`:""}<small>${UL.PRON[q.p]} ${esc(q.a[0])}</small></div>`
+  :`<div class="bad" style="margin-top:10px">✗ Richtig: ${UL.PRON[q.p]} ${esc(q.a[0])}<small>${verbHint(q)}</small></div>`;
+ h+=`<div class="row">${V.answered?`<button class="btn go big" data-vnext type="button">${V.i+1<V.qs.length?"Weiter ›":"Ergebnis"}</button>`:`<button class="btn go big" data-vcheck type="button">Prüfen</button><button class="link" data-vshow type="button">Weiß ich nicht</button>`}<button class="link" data-vquit type="button">Runde beenden</button></div></div>`;
+ main.innerHTML=h;const inp=document.getElementById("vin");if(!V.answered&&inp&&matchMedia("(hover:hover)").matches)inp.focus();
+ if(V.answered){const b=main.querySelector("[data-vnext]");b&&b.focus({preventScroll:true})}}
+function verbHint(q){const g=cleanV(q.g),a=cleanV(q.a[0]);
+ if(q.t==="perf"){const [ga]=g.split(" "),[aa]=a.split(" ");const S=["bin","bist","ist","sind","seid"],H=["habe","hast","hat","haben","habt"];
+  if(q.aux==="sein"&&H.includes(ga))return `${esc(q.inf)} bildet das Perfekt mit <b>sein</b> – Bewegung von A nach B oder eine Veränderung (gehen, fahren, aufstehen, werden), dazu sein und bleiben.`;
+  if(q.aux==="haben"&&S.includes(ga))return `${esc(q.inf)} bildet das Perfekt mit <b>haben</b> – wie die meisten Verben.`;
+  if(ga===aa)return `Hilfsverb richtig – das Partizip II heißt <b>${esc(a.split(" ").slice(1).join(" "))}</b>.${q.sep?" Bei trennbaren Verben steht ge- in der Mitte (an<b>ge</b>rufen).":/^(be|ver|er|ent|emp|zer|über|unter)/.test(q.inf)||/ieren$/.test(q.inf)?" Ohne ge-: be-, ver-, er-, ent- … und -ieren.":""}`;
+  return `Perfekt = <b>${q.aux==="sein"?"sein":"haben"}</b> (konjugiert) + Partizip II.`}
+ if(g&&UL.fold(g)===UL.fold(a))return "Fast – achte auf ä ö ü ß.";
+ if(q.sep)return "Trennbares Verb: die Vorsilbe steht am Ende (ich rufe … an).";
+ if(q.t==="praet"&&/te(st|n|t)?$/.test(q.a[0].split(" ")[0]))return "Präteritum mit -te: ich/er "+esc(q.a[0].split(" ")[0].replace(/(st|n|t)$/,"").replace(/e?$/,"e"))+", du …-test, wir/sie …-ten, ihr …-tet.";
+ if(q.t==="praet")return q.kind==="reg"?"Regelmäßig: Stamm + -te + Endung (machte, machtest, machten).":"Unregelmäßig: eigener Stamm (fahren → fuhr) – ich und er/sie/es ohne Endung.";
+ if(q.kind==="irr"&&(q.p===1||q.p===2))return "Bei du und er/sie/es ändert sich oft der Vokal: e → i/ie, a → ä (geben → gibst, fahren → fährt).";
+ return "Präsens: Stamm + -e, -st, -t, -en, -t, -en (ich mache, du machst, er macht …)."}
+function verbCheck(show){const q=V.qs[V.i],inp=document.getElementById("vin");q.g=show?"":(inp?inp.value:"");
+ if(!show&&!q.g.trim()){inp&&inp.focus();return}
+ q.ok=!show&&verbOk(q.g,q.a);V.answered=true;
+ if(q.ok){V.score++;V.streak++;V.best=Math.max(V.best,V.streak)}
+ else{V.streak=0;Fehler.add({src:"Verben · "+TENSE[q.t][0],k:"text",m:"verb",q:`${UL.PRON[q.p]} … (${q.inf}, ${TENSE[q.t][0]})`,a:q.a,g:q.g.trim()||"weiß ich nicht",why:verbHint(q).replace(/<[^>]+>/g,"")})}
+ count();drawVerb()}
+function drawVerbStart(){const s=vSet(),best=st("verb:best",null),list=UL.verbs().filter(v=>s.k.includes(vKind(v)));
+ main.innerHTML=`<div class="card"><h2 style="font-size:22px">Verben konjugieren</h2>
+ <p style="margin:6px 0 0">10 schnelle Fragen: Person + Verb → die richtige Form.<span class="en">Ten quick conjugation questions.</span></p></div>
+ <p class="lab">Zeiten</p><div class="chips">${Object.entries(TENSE).map(([k,[de,en]])=>`<button class="chip" data-vt="${k}" aria-pressed="${s.t.includes(k)}">${de} <small>${en}</small></button>`).join("")}</div>
+ <p class="lab">Verben</p><div class="chips">${Object.entries(KINDV).map(([k,de])=>`<button class="chip" data-vk="${k}" aria-pressed="${s.k.includes(k)}">${de} <small>${UL.verbs().filter(v=>vKind(v)===k).length}</small></button>`).join("")}</div>
+ <div class="card soft" style="font-size:14px"><b>Perfekt</b> = haben/sein + Partizip II (ich <b>habe</b> gegessen, ich <b>bin</b> gefahren). <b>Präteritum</b>: regelmäßig -te (machte), unregelmäßig eigener Stamm (fuhr). <b>Trennbar</b>: ich rufe … <b>an</b>.</div>
+ <div class="row"><button class="btn go big" data-vstart type="button"${list.length&&s.t.length?"":" disabled"}>Runde starten (10)</button>${best?`<span class="heardtx">Bestes: ${best.s}/10 · 🔥 ${best.b}</span>`:""}</div>`}
+function drawVerbEnd(){const miss=V.qs.filter(q=>!q.ok),b=st("verb:best",null);
+ if(!V.saved){V.saved=true;toPlan("satz",5);if(V.qs.length===10&&(!b||V.score>b.s||V.score===b.s&&V.best>b.b))sv("verb:best",{s:V.score,b:V.best})}
+ main.innerHTML=`<div class="card" style="text-align:center"><div class="big-n">${V.score} / ${V.qs.length}</div>
+ <p style="margin:4px 0">${V.score===V.qs.length?"🎉 Alles richtig!":V.score>=V.qs.length*.7?"Gut gemacht!":"Weiter üben – das wird!"} · beste Serie 🔥 ${V.best}</p></div>
+ ${miss.length?`<div class="card"><div class="lab">Deine Fehler (${miss.length}) – stehen im 📒 Fehlerheft</div><ul class="miss-list">${miss.map(q=>`<li><span class="tag ${q.t}">${TENSE[q.t][0]}</span> ${UL.PRON[q.p]} <b>${esc(q.a[0])}</b> <span class="heardtx">(${esc(q.inf)})</span>${q.g?` – <s>${esc(q.g)}</s>`:""}</li>`).join("")}</ul></div>`:""}
+ <div class="row">${miss.length?`<button class="btn go" data-vmiss type="button">Nur die Fehler nochmal</button>`:""}<button class="btn${miss.length?"":" go"}" data-vstart type="button">Neue Runde</button><button class="btn" data-vmenu type="button">Einstellungen</button></div>`}
+
+/* ================= Fehlerheft ================= */
+const GROUPS=[["all","Alle"],["Modelltest","Modelltests"],["Satzbau","Satzbau"],["Grammatik","Grammatik"],["Diktat","Diktat"],["Verben","Verben"]];
+const groupOf=e=>(GROUPS.find(([k])=>k!=="all"&&String(e.src).startsWith(k))||["all"])[0];
+let fGroup="all",R=null;
+const answerOf=e=>e.k==="mc"?e.o[e.a]:e.k==="order"?e.show[0]:(e.a||[])[0];
+const dots=n=>`<span class="dots" title="${n} von 2 richtig">${[0,1].map(i=>`<i class="${i<n?"on":""}"></i>`).join("")}</span>`;
+function drawFehl(){if(R){drawReview();return}
+ const all=Fehler.all(),list=all.filter(e=>fGroup==="all"||groupOf(e)===fGroup).slice().reverse(),learned=Fehler.learned();
+ if(!all.length){main.innerHTML=`<div class="empty"><b>📒 Dein Fehlerheft ist leer</b>Jede falsche Antwort aus den Modelltests, dem Satzbau, den Grammatik-Tests, dem Diktat und den Verben landet hier – mit der richtigen Lösung.${learned?`<br><br>🎉 Schon <b style="display:inline;font-size:inherit">${learned}</b> Fehler gelernt.`:""}<span class="en">Every wrong answer lands here. Answer it right twice and it leaves.</span></div>`;return}
+ const n=k=>all.filter(e=>k==="all"||groupOf(e)===k).length;
+ main.innerHTML=`<div class="card"><div style="display:flex;align-items:center;gap:14px"><div class="big-n">${all.length}</div><div>${all.length===1?"Fehler wartet":"Fehler warten"} auf dich${learned?`<br><span class="heardtx">🎉 ${learned} schon gelernt</span>`:""}</div></div>
+ <p class="heardtx" style="margin:8px 0 0">Jeder Fehler kommt wieder, bis du ihn <b>zweimal richtig</b> hast – dann ist er raus.<span class="en">Answer each one right twice and it leaves the notebook.</span></p>
+ <button class="mic" data-rstart type="button">▶ Wiederholen (${Math.min(list.length,12)})</button></div>
+ <div class="chips">${GROUPS.filter(([k])=>n(k)).map(([k,l])=>`<button class="chip" data-fg="${k}" aria-pressed="${fGroup===k}">${l} <small>${n(k)}</small></button>`).join("")}</div>
+ ${list.map(e=>`<div class="fe"><span class="src">${esc(e.src)}${e.n>1?` · ${e.n}× falsch`:""} ${dots(e.ok||0)}</span><span class="q">${esc(e.k==="order"&&e.en?e.en:e.q)}</span>
+  <span class="a">✓ ${esc(answerOf(e))}</span>${e.g?`<span class="g">✗ ${esc(e.g)}</span>`:""}<button class="x" data-fdel="${e.id}" type="button" aria-label="Löschen" title="Aus dem Heft löschen">🗑</button></div>`).join("")}
+ <div class="row"><button class="link" data-fclear type="button">Alle löschen</button></div>`}
+/* the review: up to 12, oldest first; right once → back later in the round (with at least two others in between,
+   else next time), right twice → out; wrong → once more at the end */
+function startReview(){const list=Fehler.all().filter(e=>fGroup==="all"||groupOf(e)===fGroup).slice(0,12);if(!list.length)return;
+ R={q:list.map(e=>e.id),i:0,seen:{},right:0,wrong:0,out:0,a:null};drawReview();scrollTo(0,0)}
+function curE(){return Fehler.all().find(e=>e.id===R.q[R.i])}
+function drawReview(){while(R.i<R.q.length&&!curE())R.i++;
+ if(R.i>=R.q.length){const left=Fehler.all().length;
+  main.innerHTML=`<div class="card" style="text-align:center"><div class="big-n">${R.right} ✓ · ${R.wrong} ✗</div><p>${R.out?`🎉 <b>${R.out}</b> ${R.out===1?"Fehler gelernt":"Fehler gelernt"} – raus aus dem Heft!`:"Weiter so – jeder kommt wieder, bis er sitzt."}</p><p class="heardtx">Noch ${left} im Heft.</p></div>
+  <div class="row">${left?`<button class="btn go" data-rstart type="button">Weiter wiederholen</button>`:""}<button class="btn" data-rend type="button">Zum Fehlerheft</button></div>`;R=null;return}
+ const e=curE(),a=R.a;
+ let h=`<div class="meta"><span>${R.i+1} von ${R.q.length}</span><span>${esc(e.src)} ${dots(e.ok||0)}</span></div><div class="prog"><i style="width:${R.i/R.q.length*100}%"></i></div><div class="card">`;
+ if(e.k==="order"){h+=`<div class="lab">Bau den Satz</div><div class="target" style="font-size:18px">${esc(e.en||e.q)}</div>`;
+  if(!a){if(!R.tiles){R.tiles=e.blocks.map((t,i)=>({t,i})).sort(()=>Math.random()-.5);R.ans=[]}
+   h+=`<div class="tiles ans" id="tans">${R.ans.map(i=>`<button class="tile" data-tback="${i}" type="button">${esc(R.tiles[i].t.replace(/^,\s*/,", "))}</button>`).join("")}</div>
+   <div class="tiles">${R.tiles.map((x,i)=>R.ans.includes(i)?"":`<button class="tile" data-tput="${i}" type="button">${esc(x.t.replace(/^,\s*/,", "))}</button>`).join("")}</div>
+   <div class="row"><button class="btn go" data-rcheck type="button"${R.ans.length===R.tiles.length?"":" disabled"}>Prüfen</button><button class="link" data-rshow type="button">Lösung zeigen</button></div>`}}
+ else if(e.m==="diktat"){h+=`<div class="lab">Diktat – hör zu und schreib</div><div class="row" style="margin-top:0"><button class="btn go" data-rsay="n" type="button">▶ Anhören</button><button class="btn" data-rsay="s" type="button">🐢 Langsam</button></div>`;
+  if(!a)h+=`<textarea id="rtx" rows="3" lang="de" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="margin-top:10px" placeholder="Schreib hier, was du hörst …"></textarea>${KEYS}<div class="row"><button class="btn go" data-rcheck type="button">Prüfen</button><button class="link" data-rshow type="button">Lösung zeigen</button></div>`}
+ else{h+=`<div class="target" style="font-size:19px">${esc(e.q)}</div>`;
+  if(e.say)h+=`<div class="row" style="margin-top:4px"><button class="btn" data-rsay="n" type="button">▶ Hörtext</button></div>`;
+  if(e.ctx)h+=`<details class="ctx"><summary>Text zur Aufgabe</summary>${esc(e.ctx)}</details>`;
+  if(e.k==="mc")h+=`<div class="opts">${e.o.map((o,i)=>`<button class="opt${a?i===e.a?" right":i===a.pick?" wrongp":"":""}" data-ropt="${i}" type="button"${a?" disabled":""}>${esc(o)}</button>`).join("")}</div>`;
+  else if(!a)h+=`<input class="in" id="rin" type="text" lang="de" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" style="margin-top:10px">${KEYS}<div class="row"><button class="btn go" data-rcheck type="button">Prüfen</button><button class="link" data-rshow type="button">Lösung zeigen</button></div>`}
+ if(a){const msg=a.ok?(a.out?`🎉 Gelernt – raus aus dem Heft!`:`✓ Richtig – noch einmal richtig, dann ist er raus.`):`✗ Noch nicht – er kommt wieder.`;
+  h+=`<div class="${a.ok?"good":"bad"}" style="margin-top:10px">${msg}<small>Richtig: <b>${esc(answerOf(e)||"")}</b>${a.given?`<br>Deine Antwort: ${esc(a.given)}`:""}${e.why?`<br>💡 ${esc(e.why)}`:""}${e.en&&e.k!=="order"?`<br><i>${esc(e.en)}</i>`:""}</small></div>
+  ${a.diff?`<div class="dk" style="margin-top:6px">${a.diff}</div>`:""}
+  <div class="row"><button class="btn go big" data-rnext type="button">Weiter ›</button></div>`}
+ h+=`</div><div class="row"><button class="link" data-rend type="button">Wiederholen beenden</button></div>`;
+ main.innerHTML=h;const inp=document.getElementById("rin")||document.getElementById("rtx");if(inp&&matchMedia("(hover:hover)").matches)inp.focus()}
+const formNorm=s=>String(s).toLowerCase().replace(/[.!?,;:]+$/,"").replace(/ae/g,"ä").replace(/oe/g,"ö").replace(/ue/g,"ü").replace(/\s+/g," ").trim();
+function reviewAnswer(given,show){const e=curE();if(!e)return;let ok=false,diff="";
+ if(show)ok=false;
+ else if(e.k==="mc")ok=given===e.a;
+ else if(e.k==="order"){const k=R.ans.map(i=>R.tiles[i].t.replace(/^,\s*/,"").toLowerCase()).join("|");ok=e.sols.some(s=>s.join("|")===k);given=null}
+ else if(e.m==="diktat"){const r=UL.diktat(e.a[0],given||"");ok=r.every(x=>x.kind==="ok");if(!ok&&given)diff=dkHtml(r)}
+ else if(e.m==="verb")ok=verbOk(given,e.a);
+ else ok=e.a.some(x=>formNorm(x)===formNorm(given));
+ R.seen[e.id]=(R.seen[e.id]||0)+1;let out=false;
+ if(ok){R.right++;out=Fehler.right(e.id);if(out)R.out++;else if(R.seen[e.id]<3&&R.q.length-R.i-1>=2)R.q.push(e.id);toPlan("satz")}
+ else{R.wrong++;Fehler.wrong(e.id);if(R.seen[e.id]<3)R.q.push(e.id)}
+ R.a={ok,out,pick:e.k==="mc"?given:null,given:e.k==="mc"||e.k==="order"||show?"":given,diff};
+ /* the entry is still needed to show the answer once it has left */
+ R.last=e;drawReviewKeep(e)}
+function drawReviewKeep(e){const real=Fehler.all;Fehler.all=()=>real().some(x=>x.id===e.id)?real():real().concat([e]);try{drawReview()}finally{Fehler.all=real}}
+function nextReview(){R.i++;R.a=null;R.tiles=null;R.ans=null;quiet();drawReview();scrollTo(0,0)}
+
+/* ---- taps ---- */
+main.addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;const d=t.dataset;
+ if(d.key){typeKey(d.key);return}
+ /* Aussprache */
+ if(d.alv){A.lv=d.alv;sv("aus:lv",d.alv);A.s=pick(d.alv,"aus");A.res=null;A.typed="";drawAus();return}
+ if(d.say){say(A.s.de,d.say==="s",t);return}
+ if("anext" in d){quiet();A.s=pick(A.lv,"aus");A.res=null;A.typed="";drawAus();return}
+ if("again" in d){A.res=null;A.typed="";drawAus();return}
+ if("listen" in d){quiet();listen();return}
+ if("stop" in d){stopRec(false);t.disabled=true;t.textContent="Einen Moment …";return}
+ if("acheck" in d){const ta=document.getElementById("atx");A.typed=ta.value;if(!A.typed.trim()){ta.focus();return}ausCheck(A.typed);return}
+ /* Diktat */
+ if(d.dlv){D.lv=d.dlv;sv("dik:lv",d.dlv);D.s=pick(d.dlv,"dik");D.res=null;D.typed="";drawDik();return}
+ if(d.dsay){say(D.s.de,d.dsay==="s",t);return}
+ if("dcheck" in d){dikCheck();return}
+ if("dnext" in d||"dskip" in d){quiet();D.s=pick(D.lv,"dik");D.res=null;D.typed="";drawDik();return}
+ /* Verben */
+ if(d.vt||d.vk){const s=vSet(),k=d.vt?"t":"k",v=d.vt||d.vk;s[k]=s[k].includes(v)?s[k].filter(x=>x!==v):s[k].concat([v]);if(!s[k].length)s[k]=[v];sv("verb",s);drawVerbStart();return}
+ if("vstart" in d){newRound();return}
+ if("vmenu" in d||"vquit" in d){V=null;drawVerb();return}
+ if("vmiss" in d){newRound(V.qs.filter(q=>!q.ok));return}
+ if("vcheck" in d){verbCheck(false);return}
+ if("vshow" in d){verbCheck(true);return}
+ if("vnext" in d){V.i++;V.answered=false;drawVerb();return}
+ /* Fehlerheft */
+ if(d.fg){fGroup=d.fg;drawFehl();return}
+ if(d.fdel){Fehler.remove(d.fdel);drawFehl();count();return}
+ if("fclear" in d){if(confirm("Alle Fehler aus dem Heft löschen? Das geht nicht rückgängig."))Fehler.clear();drawFehl();count();return}
+ if("rstart" in d){startReview();return}
+ if("rend" in d){R=null;quiet();drawFehl();count();return}
+ if(d.rsay){const ex=(R&&R.last&&R.a?R.last:curE());if(ex)say(ex.m==="diktat"?ex.say:String(ex.say).replace(/^[^:\n]{1,24}:\s*/gm,""),d.rsay==="s",t);return}
+ if(d.tput!=null){R.ans.push(+d.tput);drawReview();return}
+ if(d.tback!=null){R.ans=R.ans.filter(i=>i!==+d.tback);drawReview();return}
+ if(d.ropt!=null){reviewAnswer(+d.ropt);return}
+ if("rcheck" in d){const inp=document.getElementById("rin")||document.getElementById("rtx");if(inp&&!inp.value.trim()){inp.focus();return}reviewAnswer(inp?inp.value:null);return}
+ if("rshow" in d){reviewAnswer("",true);return}
+ if("rnext" in d){count();nextReview();return}
+});
+main.addEventListener("keydown",e=>{if(e.key!=="Enter"||e.shiftKey)return;
+ if(e.target.id==="vin"){e.preventDefault();verbCheck(false)}
+ else if(e.target.id==="rin"){e.preventDefault();main.querySelector("[data-rcheck]").click()}});
+main.addEventListener("input",e=>{if(e.target.id==="dtx")D.typed=e.target.value;if(e.target.id==="atx")A.typed=e.target.value});
+
+go((location.hash.slice(1)||st("view","aus")));
+if(window.Hilfe)Hilfe.setup({tab:"ueben",tours:[{id:"page",steps:[
+ {sel:'.seg [data-v="aus"]',t:"🎙️ Aussprache",de:"Lies einen Satz laut vor – die App zeigt, welche Wörter sie verstanden hat.",en:"Read aloud; see which words were understood."},
+ {sel:'.seg [data-v="dik"]',t:"✍️ Diktat",de:"Hör einen Satz und schreib ihn – jeder Fehler wird erklärt: ä ö ü ß, groß/klein, Komma.",en:"Hear it, type it, see every difference."},
+ {sel:'.seg [data-v="verb"]',t:"🔁 Verben",de:"10 schnelle Fragen: Präsens, Perfekt, Präteritum.",en:"Quick conjugation rounds."},
+ {sel:'.seg [data-v="fehl"]',t:"📒 Fehlerheft",de:"Alle deine Fehler aus Tests, Satzbau, Diktat und Verben – wiederholen, bis jeder zweimal sitzt.",en:"Your mistakes, until each is right twice."}]}]});
+})();
+</script>
+</body>
+</html>

@@ -39,7 +39,7 @@ header{flex:none;position:relative;z-index:30;padding:calc(env(safe-area-inset-t
 nav{display:flex;gap:4px;background:var(--surface);border-radius:999px;padding:3px;max-width:100%;overflow-x:auto;scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
 nav button{--c:var(--b1);font:inherit;font-size:14px;font-weight:700;border:none;border-radius:999px;padding:6px 12px;background:transparent;color:var(--ink);cursor:pointer;white-space:nowrap}
-nav button[data-m="a1"]{--c:var(--a1)}nav button[data-m="themen"]{--c:var(--a2)}nav button[data-m="woerter"]{--c:#8a3fa8}nav button[data-m="grammatik"]{--c:#c25e00}nav button[data-m="gespraeche"]{--c:#00838f}nav button[data-m="briefe"]{--c:#ad1457}nav button[data-m="hoeren"]{--c:#6d4c41}nav button[data-m="saetze"]{--c:#2e7d32}
+nav button[data-m="a1"]{--c:var(--a1)}nav button[data-m="themen"]{--c:var(--a2)}nav button[data-m="woerter"]{--c:#8a3fa8}nav button[data-m="grammatik"]{--c:#c25e00}nav button[data-m="gespraeche"]{--c:#00838f}nav button[data-m="briefe"]{--c:#ad1457}nav button[data-m="hoeren"]{--c:#6d4c41}nav button[data-m="saetze"]{--c:#2e7d32}nav button[data-m="ueben"]{--c:#c62828}
 nav .s{display:none}
 nav button[aria-selected="true"]{background:var(--c);color:#fff}
 #upd{font:inherit;font-size:12px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap}
@@ -78,6 +78,8 @@ nav button[aria-selected="true"]{background:var(--c);color:#fff}
 .plbar i{display:block;height:100%;background:var(--a1);border-radius:3px}
 .plgo{font:inherit;font-size:13px;font-weight:700;border:1px solid var(--b1);border-radius:999px;padding:5px 13px;background:var(--b1);color:#fff;cursor:pointer}
 .plgo.again{background:transparent;color:var(--b1)}
+.plfehl{display:grid;grid-template-columns:32px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.plfehl .ic{font-size:20px;text-align:center}.plfehl b{display:block;font-size:15px}.plfehl small{color:var(--muted);font-size:12.5px}
 .pltip{margin:10px 0 0;font-size:13.5px;line-height:1.45;color:var(--muted);background:var(--surface);border-radius:12px;padding:9px 12px}
 .pltip b{color:var(--ink)}
 .plnote{font-size:12px;color:var(--muted);margin:8px 0 0}
@@ -190,12 +192,14 @@ nav .i{display:none}
  header{padding-top:calc(env(safe-area-inset-top,0px) + 6px);padding-bottom:6px}
  .brand{font-size:18px}
  main{margin-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
- nav{position:fixed;left:0;right:0;bottom:0;z-index:10;display:grid;grid-template-columns:repeat(9,1fr);gap:0;border-radius:0;
+ nav{position:fixed;left:0;right:0;bottom:0;z-index:10;display:grid;grid-template-columns:repeat(10,1fr);gap:0;border-radius:0;
   padding:4px 2px calc(4px + env(safe-area-inset-bottom,0px));background:var(--paper);border-top:1px solid var(--line);overflow:visible}
  nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:0;padding:4px 0;border-radius:10px;
   font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:-.01em}
  nav button .i{display:flex;align-items:center;justify-content:center;width:40px;height:26px;border-radius:13px}
  nav button .i svg{width:20px;height:20px}
+ /* ten tabs on a small phone */
+ @media (max-width:400px){nav button{font-size:9.5px;letter-spacing:-.02em}nav button .i{width:34px}}
  nav button[aria-selected="true"]{background:transparent;color:var(--ink)}
  nav button[aria-selected="true"] .i{background:var(--c);color:#fff}
 }
@@ -218,6 +222,7 @@ nav .i{display:none}
   <button role="tab" data-m="briefe" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg></span><span class="l">Briefe</span><span class="s">Briefe</span></button>
   <button role="tab" data-m="hoeren" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4.5" height="6.5" rx="1.5"/><rect x="16.5" y="14" width="4.5" height="6.5" rx="1.5"/></svg></span><span class="l">Hören</span><span class="s">Hören</span></button>
   <button role="tab" data-m="saetze" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"/><path d="M9 10.5h6M9 13.5h4"/></svg></span><span class="l">Alltagssätze</span><span class="s">Sätze</span></button>
+  <button role="tab" data-m="ueben" aria-selected="false"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></span><span class="l">Üben</span><span class="s">Üben</span></button>
  </nav>
 </div>
 <div id="offNote" class="offnote" hidden role="status"><b>Offline.</b> Üben, Spiele und Modelltests funktionieren weiter. Internet brauchen nur: Übersetzen, die LanguageTool-Prüfung beim Schreiben, oft die Spracherkennung beim Sprechen und Updates.</div>
@@ -288,8 +293,8 @@ nav .i{display:none}
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.58.1";
-const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren", saetze: "grammatik.html?t=saetze" };
+const APP_VERSION = "1.59.0";
+const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren", saetze: "grammatik.html?t=saetze", ueben: "ueben.html" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
 const frames = {};
@@ -298,13 +303,17 @@ function store(k, v){ try{ if(v === undefined) return localStorage.getItem(k); l
 
 /* Each section keeps its own frame once opened, so switching back returns to
    the same scroll position, search and practice state. */
+/* "ueben:fehl" opens a section at one of its views (Üben › Fehlerheft) */
 function show(m){
+  let sub = "";
+  if(m && m.includes(":")) [m, sub] = m.split(":");
   if(!MODULES[m]) m = "a1";
+  if(frames[m] && sub){ try{ frames[m].contentWindow.postMessage({ dlView: sub }, location.origin); }catch(e){} }
   if(!frames[m]){
     const f = document.createElement("iframe");
-    /* the pages may use the microphone (Sprechen) – iPhones ask for it only when the frame allows it */
+    /* the pages may use the microphone (Sprechen, Aussprache) – iPhones ask for it only when the frame allows it */
     f.allow = "microphone; autoplay";
-    f.src = MODULES[m];
+    f.src = MODULES[m] + (sub ? "#" + sub : "");
     f.title = tabs.find(t => t.dataset.m === m).querySelector(".l").textContent;
     stage.appendChild(f);
     frames[m] = f;
@@ -375,7 +384,7 @@ if(!net()) checkLive();
 const PLAN = [
   { k: "karte", n: 20, min: 8, i: "🃏", t: "Wiederholen", u: n => n + " / 20 Karten · erst laut antworten, dann umdrehen", go: "woerter" },
   { k: "hoeren", n: 15, min: 10, i: "🎧", t: "Hören und nachsprechen", u: n => n + " / 15 Sätze · hören, Pause, laut nachsagen", go: "gespraeche" },
-  { k: "satz", n: 10, min: 7, i: "🧩", t: "Grammatik anwenden", u: n => n + " / 10 Sätze im Satzbau-Spiel", go: "saetze" },
+  { k: "satz", n: 10, min: 7, i: "🧩", t: "Grammatik anwenden", u: n => n + " / 10 · Satzbau-Spiel, Verben oder Fehlerheft", go: "saetze" },
   { k: "mein", n: 3, min: 5, i: "🗣️", t: "Dein Deutsch", u: n => Math.min(n, 3) + " / 3 eigene Sätze über deinen Tag", go: "mein" }
 ];
 /* by getDay(): 0 = Sonntag */
@@ -490,12 +499,18 @@ function drawPlan(){
   const diary = json("dl:diary", {}), past = Object.keys(diary).filter(d => d !== today && diary[d].trim()).sort().reverse();
   plbody.innerHTML = '<div class="plst"><span class="f" aria-hidden="true">🔥</span><div><b>' + s + "</b> " + (s === 1 ? "Tag" : "Tage") + " in Folge<small>Rekord: " + bestRun(days) + (bestRun(days) === 1 ? " Tag" : " Tage") + '</small></div><div class="plwk" aria-label="Woche – Tag antippen zum Nachholen oder Vorarbeiten">' + wk + "</div></div>"
     + bar + '<p class="pltopic">📅 Thema: <b>' + W.th + "</b>" + (W.sub ? " – " + W.sub : "") + "</p>"
-    + msg + PLAN.map(row).join("")
+    + msg + PLAN.map(row).join("") + fehlRow()
     + '<div class="plmine"><p class="q">💬 ' + W.q + '</p><textarea id="plmein" lang="de" rows="4" placeholder="Heute habe ich … Morgen will ich … Ich finde …, weil …" aria-label="Dein Deutsch: Sätze über deinen Tag">' + esc(diary[today] || "") + "</textarea>"
     + '<div class="row"><small id="plcount"></small><button type="button" class="chipb" id="plsay">▶ Vorlesen</button></div></div>'
     + (past.length ? '<details class="pldiary"' + (diaryOpen ? " open" : "") + "><summary>📔 Mein Tagebuch · " + past.length + (past.length === 1 ? " Eintrag" : " Einträge") + "</summary>" + past.slice(0, 60).map(d => "<p><b>" + nice(d) + (rel(d) ? " · " + rel(d) : "") + "</b>" + esc(diary[d]) + "</p>").join("") + "</details>" : "")
     + '<p class="pltip">💡 ' + TIPS[Math.floor(Date.parse(today) / 864e5) % TIPS.length] + "</p>";
   countMine();
+}
+/* Üben › Fehlerheft: what is waiting there (a reminder – it is not a block of its own) */
+function fehlRow(){
+  const n = json("dl:fehler", []).length; if(!n) return "";
+  return '<div class="plfehl"><span class="ic" aria-hidden="true">📒</span><div><b>Fehlerheft</b><small>' + n + (n === 1 ? " Fehler wartet" : " Fehler warten") + " – wiederholen zählt für 🧩 Grammatik</small></div>"
+    + '<button type="button" class="plgo again" data-go="ueben:fehl">Wiederholen</button></div>';
 }
 function countMine(){
   const el = document.getElementById("plcount"), ta = document.getElementById("plmein"); if(!el || !ta) return;
@@ -504,6 +519,7 @@ function countMine(){
 }
 function cheer(){ planB.classList.remove("pop"); void planB.offsetWidth; planB.classList.add("pop"); }
 addEventListener("message", e => {
+  if(e.origin === location.origin && e.data && "dlFehler" in e.data){ drawPlan(); return; }
   if(e.origin !== location.origin || !e.data || !e.data.dlDo) return;
   const k = e.data.dlDo;
   if(!PLAN.some(T => T.k === k) || k === "mein") return;

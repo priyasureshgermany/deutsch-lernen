@@ -1,5 +1,15 @@
 # Releases
 
+## 1.59.0 — 2026-11-14
+- New tab „Üben“ (🎯, last in the bar) with four parts: 🎙️ Aussprache · ✍️ Diktat · 🔁 Verben · 📒 Fehlerheft
+- 🎙️ Aussprache: a sentence from the Alltagssätze or the Satzbau sentences (A1 / A2 / B1) with its English; ▶ Anhören and 🐢 Langsam, then 🎙️ Sprechen – the browser's speech recognition (de-DE) listens and every word turns green (understood) or red (with what was heard under it); loose about capitals, punctuation, ä/ae, ß/ss, numbers as digits and compounds heard as two words. Where the browser has no speech recognition (often Chrome on the iPhone) or it is refused, a box for the keyboard's 🎙 dictation takes its place, and the page says so
+- ✍️ Diktat, A1 / A2 / B1 from the Satzbau sentences: hear it (normal or slow), type it, „Prüfen“ – every difference word by word: ä ö ü ß (also „ue“ for ü), capital letters (nouns, Sie, the start), wrong spelling, missing and extra words, missing or wrong punctuation, each with a short reason; keys ä ö ü ß Ä Ö Ü under the box for keyboards without them
+- 🔁 Verben: rounds of 10 – person + verb → the form in Präsens, Perfekt (haben/sein + Partizip II) or Präteritum; choose tenses and regular / irregular / separable; score, streak, the misses at the end and „Nur die Fehler nochmal“; a hint for each miss (sein for movement and change, ge- in the middle of separable verbs, -te endings, vowel change with du and er). 125 verbs: those of Wörter erkennen plus 15 everyday ones (aufstehen, ankommen, einkaufen, fernsehen …)
+- 📒 Fehlerheft: every wrong answer from the Modelltests (Hören, Lesen, Sprachbausteine, the Formular), the Satzbau-Spiel, the Grammatik Satzbau-Tests, Diktat and Verben, with the right answer, your answer, the reason and where it came from (recordings and texts included). „Wiederholen“ asks up to 12 again – as a choice, a word, a sentence to build from its blocks, or a dictation; right twice and it leaves the notebook. Filter by source, delete single ones; on this device only (dl:fehler)
+- Tagesplan: a verb round counts 5 for 🧩 Grammatik anwenden, each right answer in the Fehlerheft 1; every sentence checked in Aussprache counts for 🎧 Hören und nachsprechen; a 📒 row shows how many mistakes wait, with „Wiederholen“
+- Wörter erkennen: regular verbs on -s/-z had a wrong du-form in the table (du verpassst, du benutzst) – now du verpasst, du benutzt
+- tools/check-ueben.mjs checks the Diktat and Aussprache comparisons, the sentences and the verb tables
+
 ## 1.58.1 — 2026-11-11
 - Wörter › Häufig: the sample sentences use the word as the list writes it – „Leben“ gets sentences with das Leben, no longer ones with the verb leben, and „essen“ ones with the verb – wherever such a sentence exists (all but 46 of the 10.000 words)
 

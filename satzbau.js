@@ -315,7 +315,7 @@ const lvBadge=l=>l?`<span class="sb-lvb ${l}" title="Niveau ${l}">${l}</span>`:"
 function topicLevels(id){const rows=(window.SBT&&SBT[id])||[],seen=new Set(rows.map(r=>levelOf(Object.assign(parse(r),{topic:id}))));const l=LVN.filter(x=>seen.has(x));return l.length>1?l[0]+"–"+l[l.length-1]:l[0]||""}
 const tipOf=S=>TIP[ruleKey(S)];
 const whyHtml=S=>{const L=why(S),T=tipOf(S);return `${L.length?`<div class="sb-why"><b>Warum diese Reihenfolge?</b><ul>${L.map(([de,en])=>`<li>${de}<small>${en}</small></li>`).join("")}</ul></div>`:""}<div class="sb-tip2">💡 <b>Tipp:</b> ${esc(T[0])}<small>${esc(T[1])}</small></div>`};
-function finishOne(p,ok){halt();toPlan("satz");const S=cur(),R=ruleOf(S);G.score+=p;G.res[G.i]=p;G.done=true;G.times=G.times||[];G.times[G.i]=el()-(G.sStart||0);
+function finishOne(p,ok){halt();toPlan("satz");const S=cur(),R=ruleOf(S);toFehler(S,p,ok);G.score+=p;G.res[G.i]=p;G.done=true;G.times=G.times||[];G.times[G.i]=el()-(G.sStart||0);
  G.streak=p===1?G.streak+1:0;G.bestStreak=Math.max(G.bestStreak,G.streak);
  /* two wrong tries: your sentence stays in the box (green = right place, red = wrong), the right one is shown below it */
  if(!ok){const b=best();G.failed=true;G.fixB=b;G.marks=G.ans.map((id,j)=>G.tiles[id].k===S.sols[b][j]);G.pool=[]}
@@ -326,6 +326,10 @@ function finishOne(p,ok){halt();toPlan("satz");const S=cur(),R=ruleOf(S);G.score
   ${ok&&S.show.length>1?`<div class="sb-sol"><small>Auch richtig: ${S.show.filter(x=>x!==built()).map(esc).join(" · ")}</small></div>`:""}
   <div class="sb-rule">📏 ${esc(R[0])}${R[1]?`<span>${esc(R[1])}</span>`:""}</div>${whyHtml(S)}</div>`;
  draw();say(built())}
+/* not right at once: into the Fehlerheft (fehler.js) – to build again from the blocks */
+function toFehler(S,p,ok){if(p>=1||!window.Fehler)return;
+ try{Fehler.add({src:G.topic?"Grammatik-Test · "+(G.title||G.topic):"Satzbau "+G.lv,k:"order",q:S.show[0],en:S.en,blocks:S.blocks.slice(),sols:S.sols,show:S.show,end:S.end,
+  g:ok?"erst im zweiten Versuch oder mit Tipp":sentence(G.ans.map(id=>G.tiles[id].t),S.end),why:(ruleOf(S)||[])[0]||""})}catch(e){}}
 /* the sentence as built – after two wrong tries the right one (for the paragraph and ▶ Anhören) */
 function built(){const S=cur();if(G.failed)return S.show[G.fixB||0];const a=G.ans.map(id=>G.tiles[id].k).join("|"),i=S.sols.findIndex(x=>x.join("|")===a);return i>=0?S.show[i]:sentence(G.ans.map(id=>G.tiles[id].t),S.end)}
 /* the right order as blocks, under a wrong answer */
