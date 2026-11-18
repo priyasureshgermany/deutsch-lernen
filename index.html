@@ -204,6 +204,8 @@ nav .i{display:none}
  nav button[aria-selected="true"] .i{background:var(--c);color:#fff}
 }
 </style>
+<!-- GoatCounter: counts page views anonymously, no cookies, nothing personal (deutsch-lernen.goatcounter.com) -->
+<script data-goatcounter="https://deutsch-lernen.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 <header><div class="top">
@@ -239,7 +241,7 @@ nav .i{display:none}
 <main id="stage"></main>
 <dialog id="med" aria-labelledby="meh">
  <div class="trhead"><b id="meh">Meine Angaben</b><button id="mex" class="fsb" type="button" aria-label="Schließen">✕</button></div>
- <p class="menote">Damit stehen in Briefen, Gesprächen und Antworten deine echten Angaben statt [Platzhalter]. Sie bleiben <b>nur auf diesem Gerät</b> – nicht im Internet, nicht auf GitHub. Leere Felder bleiben Platzhalter; Daten (Datum) setzt die App selbst.</p>
+ <p class="menote">Damit stehen in Briefen, Gesprächen und Antworten deine echten Angaben statt [Platzhalter]. Sie bleiben <b>nur auf diesem Gerät</b> – nicht im Internet, nicht auf GitHub. Leere Felder bleiben Platzhalter; Daten (Datum) setzt die App selbst. Die App zählt nur anonym, wie oft ihre Seiten geöffnet werden (GoatCounter, ohne Cookies) – deine Angaben gehören nicht dazu.</p>
  <form id="mef" class="mef" method="dialog"></form>
  <div class="meact"><button type="button" id="meclr">Alles löschen</button><button type="button" id="mego" class="go">Speichern</button></div>
 </dialog>
@@ -293,13 +295,23 @@ nav .i{display:none}
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.61.0";
+const APP_VERSION = "1.62.0";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren", saetze: "grammatik.html?t=saetze", ueben: "ueben.html" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
 const frames = {};
 
 function store(k, v){ try{ if(v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); }catch(e){ return null; } }
+
+/* GoatCounter counts the app once per opening; the sections run in frames,
+   which it skips. So each section counts as an event the first time it is
+   opened in a session ("Bereich: B1 · DTZ" …) – anonymous, no cookies.
+   count.js loads async; until it is there the counts wait for the page load. */
+function countSection(m, title){
+  const go = () => { try{ window.goatcounter.count({ path: "bereich-" + m, title: "Bereich: " + title, event: true }); }catch(e){} };
+  if(window.goatcounter && window.goatcounter.count) go();
+  else window.addEventListener("load", () => setTimeout(go, 0), { once: true });
+}
 
 /* Each section keeps its own frame once opened, so switching back returns to
    the same scroll position, search and practice state. */
@@ -317,6 +329,7 @@ function show(m){
     f.title = tabs.find(t => t.dataset.m === m).querySelector(".l").textContent;
     stage.appendChild(f);
     frames[m] = f;
+    countSection(m, f.title);
     f.addEventListener("load", () => sendRate(f));
   }
   for(const k in frames) frames[k].hidden = k !== m;

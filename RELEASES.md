@@ -1,5 +1,10 @@
 # Releases
 
+## 1.62.0 — 2026-11-18
+- Visitor numbers with GoatCounter (deutsch-lernen.goatcounter.com): every page counts its views anonymously – no cookies, no personal data, nothing from Meine Angaben; not counted on localhost or while offline
+- the sections run in frames inside the app, which GoatCounter skips, so the app counts each section as an event the first time it is opened in a session („Bereich: B1 · DTZ“ …) – you see which parts are used
+- Meine Angaben says so in one sentence
+
 ## 1.61.0 — 2026-11-18
 - B1 Modelltests: four more schwer tests on the topics that come up again and again in the DTZ – Modelltest 13 (Ausländerbehörde, Integrationskurs, Einbürgerung · Termin bei der Ausländerbehörde / Fehlzeiten im Kurs), Modelltest 14 (Krankenhaus, Pflege, Apotheke · Beschwerde an ein Krankenhaus / Bitte an den Pflegedienst), Modelltest 15 (Wohnungssuche, Nebenkosten, Reparaturen · Nebenkostenabrechnung / Antwort auf eine Wohnungsanzeige) and Modelltest 16 (Bahn, Reisen, Freizeit · Entschädigung für eine Verspätung / Abmeldung vom Sportverein); 16 B1 tests now, 10 of them schwer
 - original texts in the DTZ format, not copies of real exam papers; the facts in the reading texts (Einbürgerung, elektronische Patientenakte, Mieterhöhung, Fahrgastrechte, Deutschlandticket) are as of 2026
