@@ -220,6 +220,8 @@ nav .i{display:none}
 }
 </style>
 <!-- GoatCounter: counts page views anonymously, no cookies, nothing personal (deutsch-lernen.goatcounter.com) -->
+<!-- the website (/deutsch-lernen/) and the installed app (/deutsch-lernen/index.html, its start_url) count as one address; no ?u= or other query -->
+<script>window.goatcounter={path:function(p){return p.split("?")[0].replace(/\/index\.html$/,"").replace(/\/$/,"")||"/"}};</script>
 <script data-goatcounter="https://deutsch-lernen.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -318,7 +320,7 @@ nav .i{display:none}
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.66.1";
+const APP_VERSION = "1.66.2";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren", saetze: "grammatik.html?t=saetze", ueben: "ueben.html" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -875,14 +877,30 @@ async function loadVisits(){
   if(visTried || navigator.onLine === false) return;
   visTried = true;
   try{
-    /* no-store: never an old number – or an old 403 from before the counter was allowed – from the browser's cache */
-    const r = await fetch("https://deutsch-lernen.goatcounter.com/counter/" + encodeURIComponent("/deutsch-lernen") + ".json", { cache: "no-store" });
-    if(!r.ok) throw r.status;
-    const n = parseInt(String((await r.json()).count).replace(/\D/g, ""), 10);
-    if(!(n >= 0)) throw "no count";
-    const txt = n.toLocaleString("de-DE") + (n === 1 ? " Aufruf" : " Aufrufe");
+    /* App openings were counted under two addresses: /deutsch-lernen (the website) and
+       /deutsch-lernen/index.html (the installed app starts there). Since 1.66.2 both count
+       as /deutsch-lernen, but the older ones stay where they are – so both are added up.
+       start=YYYY-MM-01 gives this calendar month. GoatCounter keeps each answer up to
+       4 hours, so new openings show up with that delay; no-store keeps the browser from
+       adding its own. */
+    const now = new Date(), month = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0") + "-01";
+    const one = async (path, start) => {
+      const r = await fetch("https://deutsch-lernen.goatcounter.com/counter/" + encodeURIComponent(path) + ".json" + (start ? "?start=" + start : ""), { cache: "no-store" });
+      if(r.status === 404) return 0;   /* no visit under this address yet */
+      if(!r.ok) throw r.status;
+      const n = parseInt(String((await r.json()).count).replace(/\D/g, ""), 10);
+      return n >= 0 ? n : 0;
+    };
+    const PATHS = ["/deutsch-lernen", "/deutsch-lernen/index.html"];
+    const sum = async start => (await Promise.all(PATHS.map(p => one(p, start)))).reduce((a, b) => a + b, 0);
+    /* each answer is cached on its own, so the all-time one can be older than the month's –
+       but never really smaller */
+    const [all, m] = await Promise.all([sum(""), sum(month)]), n = Math.max(all, m);
+    const mon = now.toLocaleDateString("de-DE", { month: "long" });
+    const txt = n.toLocaleString("de-DE") + (n === 1 ? " Aufruf" : " Aufrufe") + " · " + m.toLocaleString("de-DE") + " im " + mon;
     document.getElementById("visN").textContent = txt;
-    document.getElementById("vis").setAttribute("aria-label", "Die App wurde " + txt.replace("Aufrufe", "mal").replace("Aufruf", "mal") + " geöffnet");
+    document.getElementById("vis").title = "So oft wurde die App geöffnet – insgesamt und in diesem Monat (GoatCounter, anonym; neue Aufrufe erscheinen nach bis zu 4 Stunden)";
+    document.getElementById("vis").setAttribute("aria-label", "Die App wurde insgesamt " + n.toLocaleString("de-DE") + " mal geöffnet, im " + mon + " " + m.toLocaleString("de-DE") + " mal");
     document.getElementById("visR").hidden = false;
     if(more.classList.contains("open")) moreOpen(true);   /* wider now: keep it inside the screen */
   }catch(e){ visTried = false; }

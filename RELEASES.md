@@ -1,5 +1,10 @@
 # Releases
 
+## 1.66.2 — 2026-11-18
+- 👁 Aufrufe counted too few: the installed app starts at index.html, so its openings went to /deutsch-lernen/index.html, and the counter read only /deutsch-lernen. Now every opening – website or installed app, with or without ?u= – is counted as /deutsch-lernen, and the counter adds the older ones from both addresses
+- the pill also shows this month: „1.234 Aufrufe · 56 im November“ – the month number starts again at 0 on the 1st
+- GoatCounter keeps each counter answer for up to 4 hours, so new openings appear with that delay; the total is never shown smaller than the month
+
 ## 1.66.1 — 2026-11-18
 - The update popup could lock the app: „Jetzt aktualisieren“ sometimes reloaded the old page from the browser's short-term cache (GitHub Pages allows 10 minutes), so the popup came straight back and no tab could be tapped. The update now loads the new page from the server every time (a one-off address, cleaned up at once), and a second try also restarts the offline worker
 - never a dead end: if the new version still does not arrive after two tries in a session (no connection, a stubborn cache), the popup offers „Später – die App jetzt weiter benutzen“ and stays away for the rest of that session
