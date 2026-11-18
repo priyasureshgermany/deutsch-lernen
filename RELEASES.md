@@ -1,5 +1,11 @@
 # Releases
 
+## 1.66.0 — 2026-11-18
+- A1 Modelltests: three more schwer tests in the telc Start Deutsch 1 format – Modelltest 10 (Umzug, Arbeit, Bank · Bitte um Hilfe beim Umzug), Modelltest 11 (Schule, Supermarkt, Bus und Bahn · Nachricht: Ich komme später) and Modelltest 12 (Amt, Arzt, Freizeit · Nachricht an den Chef); 12 A1 tests now, 6 of them schwer
+- hard the A1 way: a time, day, room or price that is corrected in the same sentence, a phone number said wrong first, two options mentioned and both ruled out, ads that differ only in one detail (gebraucht / neu, Wochenende / werktags); every answer explained
+- each with a form (Bürgerbüro, Sportverein, Volkshochschule), a short message with its three points checked automatically, and Sprechen with Tom and Lea (Wohnen, Einkaufen, Freizeit)
+- tools/check-tests.mjs: A1 expects 3 leicht, 3 mittel, 6 schwer
+
 ## 1.65.2 — 2026-11-18
 - „Test“ sits in the right corner of the label row; on a phone, where the labels need the whole width, it moves to the right end of the next line, and the labels are never broken in the middle
 

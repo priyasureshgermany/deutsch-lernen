@@ -10,8 +10,8 @@ const SIZE = { A1: [[6, 4, 5], [5, 5, 5], [5, "w"], ["s", "s", "s"]], B1: [[4, 5
 const PTS = { A1: [15, 15, 15, 15], B1: [20, 25, 45, 100] };
 const SPK = { A1: [3, 6, 6], B1: [20, 40, 40] };
 for (const [lv, tests] of [["A1", window.TESTS_A1], ["B1", window.TESTS_B1]]) {
-  /* leicht, mittel, schwer – in that order; A1 three each, B1 three leicht, three mittel, ten schwer */
-  const LV = { A1: ["leicht", 3, "mittel", 3, "schwer", 3], B1: ["leicht", 3, "mittel", 3, "schwer", 10] }[lv];
+  /* leicht, mittel, schwer – in that order; A1 three leicht, three mittel, six schwer; B1 three leicht, three mittel, ten schwer */
+  const LV = { A1: ["leicht", 3, "mittel", 3, "schwer", 6], B1: ["leicht", 3, "mittel", 3, "schwer", 10] }[lv];
   const want = []; for (let i = 0; i < LV.length; i += 2) for (let n = 0; n < LV[i + 1]; n++) want.push(LV[i]);
   if (tests.length !== want.length) fail(lv, `needs ${want.length} tests, has ${tests.length}`);
   tests.forEach((t, i) => { if (t.level !== want[i]) fail(t.id, `level ${t.level}, expected ${want[i]} at position ${i + 1}`); });
