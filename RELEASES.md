@@ -1,5 +1,9 @@
 # Releases
 
+## 1.63.0 — 2026-11-18
+- 👁 Aufrufe in the ⋯ menu: how often the app has been opened, from GoatCounter's public counter – loaded when the menu first opens; hidden offline or while the counter is switched off in GoatCounter
+- on a phone the counter gets its own line under the icons, so the menu stays inside the screen
+
 ## 1.62.0 — 2026-11-18
 - Visitor numbers with GoatCounter (deutsch-lernen.goatcounter.com): every page counts its views anonymously – no cookies, no personal data, nothing from Meine Angaben; not counted on localhost or while offline
 - the sections run in frames inside the app, which GoatCounter skips, so the app counts each section as an event the first time it is opened in a session („Bereich: B1 · DTZ“ …) – you see which parts are used
