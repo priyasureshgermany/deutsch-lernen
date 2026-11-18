@@ -817,7 +817,8 @@ async function loadVisits(){
   if(visTried || navigator.onLine === false) return;
   visTried = true;
   try{
-    const r = await fetch("https://deutsch-lernen.goatcounter.com/counter/" + encodeURIComponent("/deutsch-lernen") + ".json");
+    /* no-store: never an old number – or an old 403 from before the counter was allowed – from the browser's cache */
+    const r = await fetch("https://deutsch-lernen.goatcounter.com/counter/" + encodeURIComponent("/deutsch-lernen") + ".json", { cache: "no-store" });
     if(!r.ok) throw r.status;
     const n = parseInt(String((await r.json()).count).replace(/\D/g, ""), 10);
     if(!(n >= 0)) throw "no count";
