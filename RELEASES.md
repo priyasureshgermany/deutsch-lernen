@@ -1,5 +1,11 @@
 # Releases
 
+## 1.65.2 — 2026-11-18
+- „Test“ sits in the right corner of the label row; on a phone, where the labels need the whole width, it moves to the right end of the next line, and the labels are never broken in the middle
+
+## 1.65.1 — 2026-11-18
+- „Test“ is a button again: the colourful pill with the exam sheet and the gold star, next to the labels, which stay plain coloured words
+
 ## 1.65.0 — 2026-11-18
 - The labels at the top of each section (A1 · telc · Start Deutsch 1, B1 · telc · DTZ, A1 · A2 · B1 …) are now coloured words with a dot between them instead of coloured boxes that looked like buttons; „Test“ is coloured text with a small outlined exam sheet too – still a tap opens the Modelltests
 - A new version is no longer a button in the top bar: a popup „Neue Version verfügbar“ appears with one button, „Jetzt aktualisieren“, and cannot be closed (Escape, the back gesture or a tap beside it bring it straight back). Progress, Meine Angaben and a paused Modelltest stay. The app looks for a new version at start, when the connection comes back, and when it is brought to the front again after an hour
