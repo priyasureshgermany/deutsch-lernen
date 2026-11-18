@@ -11241,9 +11241,9 @@ window.TESTS_B1 = [
         "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
         "photo": {
          "src": "fotos/b1-13.jpg",
-         "alt": "Ein langer Flur in einem Amt: Auf beiden Seiten sitzen viele Menschen auf Stühlen und warten. Einige lesen, hinten steht ein Rollstuhl. Das Foto ist schwarz-weiß.",
-         "by": "Navy Medicine",
-         "link": "https://unsplash.com/photos/menschen-die-in-einem-flur-mit-stuhlen-und-stuhlen-warten-rqdWlkRzerg"
+         "alt": "Ein Büro, vielleicht in einem Amt: Eine Frau und ein Mann sitzen auf Stühlen und warten. Die Frau liest ein Formular, der Mann schaut auf sein Handy. Hinten arbeiten zwei Mitarbeiter an Computern.",
+         "by": "Vitaly Gariev",
+         "link": "https://unsplash.com/photos/zwei-personen-warten-in-einer-burolobby-c6XeKLniqPw"
         },
         "min": 25,
         "key": [
@@ -11252,7 +11252,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "flur|warte|warten|amt|behörde|stühle|menschen|leute|lesen|rollstuhl|lange",
+          "warte|warten|amt|behörde|büro|frau|mann|stühle|formular|papier|handy|mitarbeiter|computer|termin",
           "was zu sehen ist"
          ],
          [
@@ -11260,7 +11260,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich einen langen Flur, vielleicht in einem Amt. Auf beiden Seiten sitzen viele Menschen auf Stühlen und warten. Einige lesen, andere schauen einfach geradeaus. Das Foto ist schwarz-weiß, vielleicht ist es schon älter. Ich glaube, die Leute warten schon sehr lange auf ihren Termin."
+        "model": "Auf dem Foto sehe ich ein Büro, vielleicht in einem Amt. Eine Frau und ein Mann sitzen auf Stühlen und warten. Die Frau liest ein Formular, und der Mann schaut auf sein Handy. Hinten arbeiten zwei Mitarbeiter an Computern. Ich glaube, die beiden warten auf ihren Termin, und die Frau prüft noch einmal ihre Unterlagen."
        },
        {
         "who": "Anna",
@@ -12118,9 +12118,9 @@ window.TESTS_B1 = [
         "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
         "photo": {
          "src": "fotos/b1-14.jpg",
-         "alt": "Ein Krankenhausflur: Pflegekräfte schieben einen Patienten im Bett durch den Flur, an einem Ständer hängt eine Infusion. Oben steht ein Schild zum Operationssaal. Das Foto ist schwarz-weiß.",
+         "alt": "Ein Krankenhauszimmer: Ein junger Mann im Krankenhaushemd liegt im Bett und lächelt. Eine Krankenschwester in blauer Kleidung mit einer bunten Haube steht neben ihm und zeigt ihm etwas in einer orangen Mappe.",
          "by": "Navy Medicine",
-         "link": "https://unsplash.com/photos/medizinisches-personal-transportiert-den-patienten-den-krankenhausflur-entlang-OLO28JXWv98"
+         "link": "https://unsplash.com/photos/krankenschwester-spricht-mit-dem-patienten-im-krankenhausbett-0Cc92_aPs3A"
         },
         "min": 25,
         "key": [
@@ -12129,7 +12129,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "krankenhaus|flur|pflege|pfleger|krankenschwester|patient|bett|schieben|infusion|operation|op",
+          "krankenhaus|zimmer|bett|patient|mann|krankenschwester|pflegerin|schwester|mappe|haube|lächelt|operation",
           "was zu sehen ist"
          ],
          [
@@ -12137,7 +12137,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich einen Flur in einem Krankenhaus. Mehrere Pflegekräfte schieben einen Patienten im Bett, an einem Ständer hängt eine Infusion. Über der Tür steht ein Schild zum Operationssaal. Ich glaube, der Patient wird gleich operiert. Die Pflegekräfte sehen sehr beschäftigt aus."
+        "model": "Auf dem Foto sehe ich ein Zimmer in einem Krankenhaus. Ein junger Mann im Krankenhaushemd liegt im Bett. Eine Krankenschwester in blauer Kleidung steht neben ihm und zeigt ihm etwas in einer Mappe. Beide lächeln. Ich glaube, sie erklärt ihm, wie es nach seiner Operation weitergeht, und es geht ihm schon besser."
        },
        {
         "who": "Anna",

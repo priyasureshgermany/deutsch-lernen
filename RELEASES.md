@@ -1,5 +1,8 @@
 # Releases
 
+## 1.64.2 — 2026-11-18
+- Sprechen Teil 2, colour photos instead of old black-and-white ones: Modelltest 13 (Behörden) – a woman with a form and a man wait in an office (Vitaly Gariev / Unsplash); Modelltest 14 (Gesundheit und Pflege) – a nurse shows a young patient in bed something in a folder (Navy Medicine / Unsplash); descriptions, model answers and rating words to match
+
 ## 1.64.1 — 2026-11-18
 - Modelltest 3 (Feste feiern), Sprechen Teil 2: a real party now – friends in party hats help blow out the candles on a birthday cake (Vitaly Gariev / Unsplash) instead of a family meal; description, model answer and rating words to match
 
