@@ -1,5 +1,10 @@
 # Releases
 
+## 1.61.0 — 2026-11-18
+- B1 Modelltests: four more schwer tests on the topics that come up again and again in the DTZ – Modelltest 13 (Ausländerbehörde, Integrationskurs, Einbürgerung · Termin bei der Ausländerbehörde / Fehlzeiten im Kurs), Modelltest 14 (Krankenhaus, Pflege, Apotheke · Beschwerde an ein Krankenhaus / Bitte an den Pflegedienst), Modelltest 15 (Wohnungssuche, Nebenkosten, Reparaturen · Nebenkostenabrechnung / Antwort auf eine Wohnungsanzeige) and Modelltest 16 (Bahn, Reisen, Freizeit · Entschädigung für eine Verspätung / Abmeldung vom Sportverein); 16 B1 tests now, 10 of them schwer
+- original texts in the DTZ format, not copies of real exam papers; the facts in the reading texts (Einbürgerung, elektronische Patientenakte, Mieterhöhung, Fahrgastrechte, Deutschlandticket) are as of 2026
+- tools/check-tests.mjs: B1 expects 3 leicht, 3 mittel, 10 schwer
+
 ## 1.60.0 — 2026-11-18
 - B1 Modelltests: three more schwer tests – Modelltest 10 (Verträge, Bank, Versicherung · Handyvertrag kündigen / Wasserschaden an die Nachbarin), Modelltest 11 (Kita, Ehrenamt, Umzug · Abholzeit an die Kita / Bewerbung für ein Ehrenamt) and Modelltest 12 (Arbeitsrecht, Weiterbildung, Umwelt · Überstunden an den Arbeitgeber / Spielplatz an die Stadt); 12 B1 tests now, 6 of them schwer
 - the new ones are the hardest yet: longer recordings and texts, answers in other words, and traps – a date or time that changes in the message, an option that is said but then corrected, a word from the text in the wrong answer; Sprachbausteine with sondern, sodass, ob, Relativpronomen and fixed phrases (zur Verfügung stehen, aus betrieblichen Gründen)
