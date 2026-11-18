@@ -1,5 +1,11 @@
 # Releases
 
+## 1.64.0 — 2026-11-18
+- Sprechen Teil 2 (B1 Modelltests): a real photo to describe instead of a sentence about it – 16 free photos from Unsplash (fotos/, 800 px, about 0,9 MB together), each with the photographer's name and a link under it
+- the description of each photo is now only its alt text (for screen readers), so you find the words yourself, as in the exam; the model answer and the words the rating looks for were rewritten to fit what each photo really shows
+- the photos are in the offline cache; fotos/README.md lists every photo with its source
+- tools/check-tests.mjs: every photo file exists and has a description, a photographer and a link
+
 ## 1.63.0 — 2026-11-18
 - 👁 Aufrufe in the ⋯ menu: how often the app has been opened, from GoatCounter's public counter – loaded when the menu first opens; hidden offline or while the counter is switched off in GoatCounter
 - on a phone the counter gets its own line under the icons, so the menu stays inside the screen

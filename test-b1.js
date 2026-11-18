@@ -714,7 +714,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: ⚽ ein Park im Sommer: eine Familie macht ein Picknick, Kinder spielen Fußball, ein Hund läuft – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-4.jpg",
+         "alt": "Ein Park im Sommer: Ein Vater spielt mit zwei Mädchen, eine Frau sitzt mit einem Hund auf der Wiese, daneben steht ein rosa Kinderfahrrad. Im Hintergrund parken Autos.",
+         "by": "Francisco Rioseco",
+         "link": "https://unsplash.com/photos/menschen-die-tagsuber-auf-der-wiese-sitzen-31HS1aQ1tMw"
+        },
         "min": 25,
         "key": [
          [
@@ -722,7 +728,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "park|familie|picknick|kinder|fußball|hund|sommer",
+          "park|wiese|gras|familie|vater|mann|mädchen|kinder|frau|hund|fahrrad|bäume|sommer|sonne",
           "was zu sehen ist"
          ],
          [
@@ -730,7 +736,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich einen Park im Sommer. Eine Familie sitzt auf einer Decke und macht ein Picknick. Die Kinder spielen Fußball, und ein Hund läuft herum. Ich glaube, es ist Sonntag, und alle haben frei."
+        "model": "Auf dem Foto sehe ich einen Park im Sommer. Ein Vater spielt mit zwei Mädchen, und eine Frau sitzt mit einem Hund auf der Wiese. Daneben steht ein rosa Kinderfahrrad. Ich glaube, das ist eine Familie, die am Wochenende zusammen im Park ist. Alle sehen fröhlich aus."
        },
        {
         "who": "Anna",
@@ -1585,7 +1591,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: 🩺 ein Wartezimmer beim Arzt: viele Leute warten, ein Kind weint, eine Frau liest eine Zeitschrift – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-2.jpg",
+         "alt": "Eine Arztpraxis: Eine Ärztin mit Brille und Stethoskop sitzt am Schreibtisch und hört einem Patienten zu. Neben ihr steht ein Computer, hinten Regale mit Ordnern.",
+         "by": "Vitaly Gariev",
+         "link": "https://unsplash.com/photos/der-arzt-berat-sich-mit-dem-patienten-in-der-arztpraxis-iyeUwItlIPk"
+        },
         "min": 25,
         "key": [
          [
@@ -1593,7 +1605,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "warte|arzt|leute|kind|frau|zeitschrift|praxis",
+          "ärztin|arzt|praxis|patient|mann|schreibtisch|computer|stethoskop|brille|regal|ordner",
           "was zu sehen ist"
          ],
          [
@@ -1601,7 +1613,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich ein Wartezimmer in einer Arztpraxis. Viele Leute sitzen und warten. Ein kleines Kind weint, und eine Frau liest eine Zeitschrift. Ich glaube, sie warten schon lange, weil alle müde aussehen."
+        "model": "Auf dem Foto sehe ich eine Arztpraxis. Eine Ärztin mit Brille und Stethoskop sitzt am Schreibtisch. Ein junger Mann sitzt ihr gegenüber und erzählt etwas. Ich glaube, er ist krank und erklärt ihr seine Beschwerden. Die Ärztin hört gut zu."
        },
        {
         "who": "Anna",
@@ -2456,7 +2468,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: 🎉 eine große Familie an einem langen Tisch, viel Essen, Kinder mit Luftballons, eine Torte mit Kerzen – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-7.jpg",
+         "alt": "Eine Familie am Tisch: Eine Mutter, ein Vater und zwei kleine Mädchen essen zusammen. Auf dem Tisch stehen Schüsseln mit Essen, Wassermelone, Gläser und eine Sonnenblume.",
+         "by": "Tyson",
+         "link": "https://unsplash.com/photos/familie-isst-zu-hause-zu-abend-gorbBYbo6KM"
+        },
         "min": 25,
         "key": [
          [
@@ -2464,7 +2482,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "familie|tisch|essen|kinder|luftballon|torte|kerzen|geburtstag|fest",
+          "familie|tisch|essen|mutter|vater|kinder|mädchen|schüssel|melone|blume|lachen|zusammen",
           "was zu sehen ist"
          ],
          [
@@ -2472,7 +2490,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich eine große Familie an einem langen Tisch. Es gibt viel Essen, und auf dem Tisch steht eine Torte mit Kerzen. Die Kinder haben Luftballons. Ich glaube, jemand hat Geburtstag."
+        "model": "Auf dem Foto sehe ich eine Familie am Tisch: eine Mutter, einen Vater und zwei kleine Mädchen. Auf dem Tisch stehen viele Schüsseln mit Essen und eine Wassermelone. Alle lachen und sehen glücklich aus. Vielleicht feiern sie etwas Kleines, oder es ist einfach ein schöner Sonntag zu Hause."
        },
        {
         "who": "Anna",
@@ -3327,7 +3345,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: 🚲 eine Straße in der Stadt: viele Fahrräder, ein Bus an der Haltestelle, Autos im Stau – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-3.jpg",
+         "alt": "Eine Straße in einer Stadt: Viele Leute fahren auf dem Radweg Fahrrad, eine Frau hat einen Korb am Rad. Auf der Straße fahren ein Lieferwagen und ein Reisebus, ein Schild zeigt Tempo 40.",
+         "by": "Alain ROUILLER",
+         "link": "https://unsplash.com/photos/menschen-fahren-auf-einer-stadtstrasse-mit-gebauden-und-bus-2UMFiSh27cs"
+        },
         "min": 25,
         "key": [
          [
@@ -3335,7 +3359,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "fahrrad|bus|auto|stau|straße|haltestelle|stadt",
+          "fahrrad|rad|radweg|bus|auto|lieferwagen|straße|stadt|leute|schild|häuser",
           "was zu sehen ist"
          ],
          [
@@ -3343,7 +3367,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sieht man eine Straße in einer großen Stadt. Viele Leute fahren Fahrrad, und an der Haltestelle steht ein Bus. Die Autos stehen im Stau. Vielleicht ist es morgens, und alle fahren zur Arbeit."
+        "model": "Auf dem Foto sieht man eine Straße in einer großen Stadt. Viele Leute fahren auf einem Radweg Fahrrad, eine Frau hat einen Korb am Rad. Auf der Straße fahren ein Lieferwagen und ein Bus. Vielleicht ist es morgens, und die Leute fahren mit dem Rad zur Arbeit."
        },
        {
         "who": "Anna",
@@ -4198,7 +4222,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: ♻️ Mülltonnen in verschiedenen Farben im Hof, ein Mann wirft eine Flasche in den Glascontainer, daneben liegen Säcke – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-6.jpg",
+         "alt": "Vier Mülltonnen an einer grauen Wand: eine gelbe, eine blaue, eine rote und eine grüne. Sie stehen ordentlich nebeneinander auf dem Gehweg.",
+         "by": "Pawel Czerwinski",
+         "link": "https://unsplash.com/photos/four-assorted-color-trash-bins-beside-gray-wall-RkIsyD_AVvc"
+        },
         "min": 25,
         "key": [
          [
@@ -4206,7 +4236,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "müll|tonne|container|flasche|glas|mann|säcke|hof",
+          "müll|tonne|mülltonne|gelb|blau|rot|grün|farbe|wand|trennen|recycling",
           "was zu sehen ist"
          ],
          [
@@ -4214,7 +4244,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich viele Mülltonnen in verschiedenen Farben. Ein Mann wirft eine Flasche in den Glascontainer. Daneben liegen Müllsäcke. Ich glaube, das ist im Hof von einem Wohnhaus."
+        "model": "Auf dem Foto sehe ich vier Mülltonnen in verschiedenen Farben: gelb, blau, rot und grün. Sie stehen ordentlich nebeneinander an einer grauen Wand. Ich glaube, sie sind für die Mülltrennung – zum Beispiel blau für Papier und gelb für Plastik. Vielleicht stehen sie vor einem Wohnhaus oder einer Schule."
        },
        {
         "who": "Anna",
@@ -5069,7 +5099,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: 💼 ein Büro: eine Frau arbeitet am Computer, ein Mann telefoniert, auf dem Tisch stehen Kaffeetassen und Akten – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-5.jpg",
+         "alt": "Ein Großraumbüro: Zwei Frauen und zwei Männer arbeiten an vielen Bildschirmen und Laptops. Auf dem Tisch stehen Tassen, hinten ist ein großes Fenster.",
+         "by": "Compagnons",
+         "link": "https://unsplash.com/photos/menschen-die-in-sonnenbeschienenen-buroraumen-arbeiten-AQTA5E6mCNU"
+        },
         "min": 25,
         "key": [
          [
@@ -5077,7 +5113,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "büro|computer|telefon|frau|mann|kaffee|akten|arbeit",
+          "büro|computer|bildschirm|laptop|frau|frauen|mann|männer|kollegen|tassen|kaffee|fenster|arbeit",
           "was zu sehen ist"
          ],
          [
@@ -5085,7 +5121,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich ein Büro. Eine Frau arbeitet am Computer, und ein Mann telefoniert. Auf dem Tisch stehen Kaffeetassen und viele Akten. Ich glaube, sie haben viel Stress, weil sie so viel Arbeit haben."
+        "model": "Auf dem Foto sehe ich ein Großraumbüro. Zwei Frauen und zwei Männer sitzen an einem langen Tisch und arbeiten an Computern und Laptops. Eine Frau schaut sehr konzentriert auf ihren Bildschirm. Ich glaube, sie arbeiten in einer IT-Firma und haben gerade viel zu tun."
        },
        {
         "who": "Anna",
@@ -5940,7 +5976,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: 🧺 ein Wochenmarkt: Stände mit Obst und Gemüse, eine Frau mit Kind kauft Äpfel, viele Leute – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-1.jpg",
+         "alt": "Ein Wochenmarkt: Unter grünen Zelten stehen Kisten mit Orangen und Zitronen, eine Frau packt Orangen in eine Tüte. Viele Leute gehen über den Markt, die Bäume haben noch keine Blätter.",
+         "by": "Remy Gieling",
+         "link": "https://unsplash.com/photos/eine-gruppe-von-menschen-die-um-einen-obststand-herum-stehen-H0v6g8FGvFQ"
+        },
         "min": 25,
         "key": [
          [
@@ -5948,7 +5990,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "markt|obst|gemüse|stand|äpfel|leute|frau|kind",
+          "markt|wochenmarkt|stand|zelt|obst|orangen|zitronen|kisten|frau|leute|bäume",
           "was zu sehen ist"
          ],
          [
@@ -5956,7 +5998,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich einen Wochenmarkt. Es gibt viele Stände mit Obst und Gemüse. Eine Frau kauft mit ihrem Kind Äpfel. Ich glaube, es ist Samstagvormittag, weil so viele Leute da sind."
+        "model": "Auf dem Foto sehe ich einen Wochenmarkt. Unter grünen Zelten gibt es Stände mit Obst, zum Beispiel Orangen und Zitronen. Eine Frau packt Orangen in eine Tüte. Die Bäume haben keine Blätter, also ist es vielleicht Frühling oder Winter. Ich glaube, es ist Samstagvormittag, weil viele Leute da sind."
        },
        {
         "who": "Anna",
@@ -6811,7 +6853,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: 🚲 eine Straße im Regen: eine Frau fährt mit dem Fahrrad zur Arbeit, neben ihr stehen viele Autos im Stau, sie trägt eine Regenjacke – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-9.jpg",
+         "alt": "Eine Straße im Regen: Eine Person fährt mit dem Fahrrad und hält einen rosa Regenschirm. Die Straße ist nass, hinten sind Geschäfte und ein Mann geht vorbei.",
+         "by": "Jules Kassas",
+         "link": "https://unsplash.com/photos/eine-person-die-mit-einem-regenschirm-fahrrad-fahrt-mKtzkINfsEo"
+        },
         "min": 25,
         "key": [
          [
@@ -6819,7 +6867,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "fahrrad|frau|regen|stau|auto|straße|jacke|arbeit",
+          "fahrrad|rad|regen|regenschirm|schirm|nass|straße|person|frau|stadt|geschäft",
           "was zu sehen ist"
          ],
          [
@@ -6827,7 +6875,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sieht man eine Straße in der Stadt. Es regnet, und viele Autos stehen im Stau. Eine Frau fährt mit dem Fahrrad an den Autos vorbei, sie trägt eine Regenjacke. Ich glaube, sie fährt morgens zur Arbeit und ist schneller als die Autos."
+        "model": "Auf dem Foto sieht man eine Straße in der Stadt. Es regnet, und die Straße ist nass. Eine Person fährt mit dem Fahrrad und hält dabei einen rosa Regenschirm. Das ist ziemlich gefährlich, finde ich. Ich glaube, sie fährt zur Arbeit und will trotz Regen nicht mit dem Bus fahren."
        },
        {
         "who": "Anna",
@@ -7682,7 +7730,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: 💻 ein Büro: ein Mann sitzt krumm vor dem Bildschirm und hält sich den Rücken, auf dem Tisch stehen Kaffeetassen, draußen ist es dunkel – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-8.jpg",
+         "alt": "Ein Büro: Eine junge Frau mit Brille sitzt am Schreibtisch vor einem Laptop. Sie stützt den Kopf in die Hand und schaut müde zur Seite. Vor ihr liegen ein Heft und Stifte, an der Wand kleben bunte Zettel.",
+         "by": "Vitaly Gariev",
+         "link": "https://unsplash.com/photos/frau-die-vom-laptop-am-schreibtisch-wegschaut-aotrm-bpAAk"
+        },
         "min": 25,
         "key": [
          [
@@ -7690,7 +7744,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "büro|mann|bildschirm|computer|rücken|kaffee|dunkel|abend|schreibtisch",
+          "frau|büro|schreibtisch|laptop|computer|müde|kopf|hand|brille|heft|zettel|pause",
           "was zu sehen ist"
          ],
          [
@@ -7698,7 +7752,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich einen Mann in einem Büro. Er sitzt vor einem Computer und hält sich den Rücken – ich glaube, er hat Schmerzen. Auf dem Tisch stehen viele Kaffeetassen, und draußen ist es schon dunkel. Wahrscheinlich arbeitet er schon sehr lange und macht keine Pausen."
+        "model": "Auf dem Foto sehe ich eine junge Frau in einem Büro. Sie sitzt vor einem Laptop und stützt den Kopf in die Hand. Sie sieht sehr müde aus und schaut aus dem Fenster. Ich glaube, sie arbeitet schon lange ohne Pause, vielleicht hat sie auch Kopfschmerzen."
        },
        {
         "who": "Anna",
@@ -8553,7 +8607,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: 💳 ein junges Paar sitzt am Küchentisch, vor ihnen liegen viele Rechnungen und ein Taschenrechner, die Frau sieht besorgt aus – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-10.jpg",
+         "alt": "Ein Paar in der Küche: Der Mann sitzt am Tisch, liest einen Brief und hält die Hand vor den Mund. Die Frau steht neben ihm mit einer Tasse und liest mit. Auf dem Tisch steht eine Schale mit Obst.",
+         "by": "Vitaly Gariev",
+         "link": "https://unsplash.com/photos/paar-schaut-gestresst-uber-rechnungen-am-kuchentisch-uwinmIQD8nU"
+        },
         "min": 25,
         "key": [
          [
@@ -8561,7 +8621,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "paar|frau|mann|tisch|küche|rechnung|taschenrechner|papier|besorgt|geld",
+          "paar|frau|mann|küche|tisch|brief|rechnung|papier|besorgt|sorgen|tasse|obst|geld",
           "was zu sehen ist"
          ],
          [
@@ -8569,7 +8629,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich ein junges Paar am Küchentisch. Vor ihnen liegen viele Rechnungen und ein Taschenrechner. Die Frau sieht besorgt aus. Ich glaube, sie rechnen, ob ihr Geld bis zum Ende des Monats reicht. Vielleicht haben sie Schulden."
+        "model": "Auf dem Foto sehe ich ein Paar in der Küche. Der Mann sitzt am Tisch und liest einen Brief, er hält die Hand vor den Mund. Die Frau steht neben ihm und liest mit. Beide sehen besorgt aus. Ich glaube, das ist eine hohe Rechnung, und sie wissen nicht, wie sie sie bezahlen sollen."
        },
        {
         "who": "Anna",
@@ -9424,7 +9484,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: 🧓 ein junger Mann und eine alte Frau sitzen auf einer Parkbank, er zeigt ihr etwas auf einem Tablet, beide lachen – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-11.jpg",
+         "alt": "Zwei Frauen auf einem Sofa: Eine junge Frau und eine ältere Frau mit Brille schauen zusammen auf ein Tablet. Die ältere Frau hält es in der Hand, und beide lachen.",
+         "by": "Centre for Ageing Better",
+         "link": "https://unsplash.com/photos/ein-mann-und-eine-frau-sitzen-auf-einer-couch-und-schauen-auf-ein-tablet-UWZNnNQjraI"
+        },
         "min": 25,
         "key": [
          [
@@ -9432,7 +9498,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "mann|frau|alt|jung|park|bank|tablet|handy|lachen|zeigt|computer",
+          "frau|frauen|alt|ältere|jung|sofa|couch|tablet|handy|lachen|zeigt|computer",
           "was zu sehen ist"
          ],
          [
@@ -9440,7 +9506,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich einen jungen Mann und eine alte Frau auf einer Parkbank. Er zeigt ihr etwas auf einem Tablet, und beide lachen. Vielleicht erklärt er ihr, wie man Videos anruft. Ich glaube, er ist kein Enkel, sondern ein Ehrenamtlicher, der ältere Menschen besucht."
+        "model": "Auf dem Foto sehe ich zwei Frauen auf einem Sofa, eine junge und eine ältere mit Brille. Die ältere Frau hält ein Tablet, und die junge Frau zeigt ihr etwas darauf. Beide lachen. Vielleicht erklärt sie ihr, wie man Fotos anschaut oder mit der Familie telefoniert. Ich glaube, sie ist eine Ehrenamtliche, die ältere Menschen besucht."
        },
        {
         "who": "Anna",
@@ -10295,7 +10361,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: 🚲 eine Frau fährt mit einem Lastenrad durch die Stadt, vorne sitzen zwei Kinder, daneben steht ein Stau mit vielen Autos – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-12.jpg",
+         "alt": "Eine ruhige Straße: Ein Mann mit Helm fährt Fahrrad, hinten sitzt ein kleines Kind in einem Kindersitz mit Dach, vorne im Korb ist eine Tasche.",
+         "by": "Kenny",
+         "link": "https://unsplash.com/photos/mann-fahrt-ein-lastenrad-mit-einem-kind-im-schlepptau-G4tKo_nv1Wo"
+        },
         "min": 25,
         "key": [
          [
@@ -10303,7 +10375,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "frau|fahrrad|rad|lastenrad|kinder|stadt|stau|auto|straße|fährt",
+          "mann|fahrrad|rad|kind|kindersitz|helm|korb|tasche|straße|fährt|kita",
           "was zu sehen ist"
          ],
          [
@@ -10311,7 +10383,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sieht man eine Frau auf einem Lastenrad. Vorne in der Kiste sitzen zwei kleine Kinder. Neben ihr stehen viele Autos im Stau. Ich glaube, sie bringt die Kinder morgens in die Kita. Sie ist mit dem Rad wahrscheinlich schneller als die Autos."
+        "model": "Auf dem Foto sieht man einen Mann auf einem Fahrrad. Er trägt einen Helm, und hinten sitzt ein kleines Kind in einem Kindersitz. Vorne im Korb ist eine Tasche. Ich glaube, er bringt das Kind morgens in die Kita und fährt dann weiter zur Arbeit – ganz ohne Auto."
        },
        {
         "who": "Anna",
@@ -11166,7 +11238,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: 📄 ein Wartezimmer in einem Amt: viele Menschen sitzen auf Stühlen, eine Anzeige zeigt Nummern, eine Frau füllt auf dem Schoß ein Formular aus, ein Kind schläft – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-13.jpg",
+         "alt": "Ein langer Flur in einem Amt: Auf beiden Seiten sitzen viele Menschen auf Stühlen und warten. Einige lesen, hinten steht ein Rollstuhl. Das Foto ist schwarz-weiß.",
+         "by": "Navy Medicine",
+         "link": "https://unsplash.com/photos/menschen-die-in-einem-flur-mit-stuhlen-und-stuhlen-warten-rqdWlkRzerg"
+        },
         "min": 25,
         "key": [
          [
@@ -11174,7 +11252,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "warte|amt|behörde|stühle|menschen|nummer|formular|frau|kind|schläft",
+          "flur|warte|warten|amt|behörde|stühle|menschen|leute|lesen|rollstuhl|lange",
           "was zu sehen ist"
          ],
          [
@@ -11182,7 +11260,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich ein Wartezimmer in einem Amt. Viele Menschen sitzen auf Stühlen und warten. Oben an der Wand zeigt eine Anzeige Nummern. Eine Frau füllt ein Formular aus, und neben ihr schläft ein Kind. Ich glaube, sie warten schon sehr lange."
+        "model": "Auf dem Foto sehe ich einen langen Flur, vielleicht in einem Amt. Auf beiden Seiten sitzen viele Menschen auf Stühlen und warten. Einige lesen, andere schauen einfach geradeaus. Das Foto ist schwarz-weiß, vielleicht ist es schon älter. Ich glaube, die Leute warten schon sehr lange auf ihren Termin."
        },
        {
         "who": "Anna",
@@ -12037,7 +12115,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: 🏥 ein Krankenhausflur: eine Pflegerin schiebt ein Bett, im Hintergrund schauen zwei Ärzte auf ein Tablet, auf einem Stuhl sitzt ein alter Mann mit Rollator – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-14.jpg",
+         "alt": "Ein Krankenhausflur: Pflegekräfte schieben einen Patienten im Bett durch den Flur, an einem Ständer hängt eine Infusion. Oben steht ein Schild zum Operationssaal. Das Foto ist schwarz-weiß.",
+         "by": "Navy Medicine",
+         "link": "https://unsplash.com/photos/medizinisches-personal-transportiert-den-patienten-den-krankenhausflur-entlang-OLO28JXWv98"
+        },
         "min": 25,
         "key": [
          [
@@ -12045,7 +12129,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "krankenhaus|flur|pflegerin|bett|arzt|ärzte|tablet|mann|alt|rollator|stuhl",
+          "krankenhaus|flur|pflege|pfleger|krankenschwester|patient|bett|schieben|infusion|operation|op",
           "was zu sehen ist"
          ],
          [
@@ -12053,7 +12137,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich einen Flur in einem Krankenhaus. Eine Pflegerin schiebt ein Bett, und sie sieht gestresst aus. Hinten schauen zwei Ärzte auf ein Tablet. Auf einem Stuhl sitzt ein alter Mann mit einem Rollator. Wahrscheinlich wartet er schon lange, weil alle so viel zu tun haben."
+        "model": "Auf dem Foto sehe ich einen Flur in einem Krankenhaus. Mehrere Pflegekräfte schieben einen Patienten im Bett, an einem Ständer hängt eine Infusion. Über der Tür steht ein Schild zum Operationssaal. Ich glaube, der Patient wird gleich operiert. Die Pflegekräfte sehen sehr beschäftigt aus."
        },
        {
         "who": "Anna",
@@ -12908,7 +12992,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: 🏢 eine lange Schlange von Menschen vor einem Wohnhaus, alle halten Mappen in der Hand, ein Mann mit Anzug steht an der Tür und schaut auf eine Liste – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-15.jpg",
+         "alt": "Eine lange Schlange vor einem Gebäude: Viele Menschen stehen auf dem Gehweg und warten, vorne stehen mehrere Frauen mit Taschen und schauen nach oben.",
+         "by": "Josh",
+         "link": "https://unsplash.com/photos/menschen-die-auf-dem-burgersteig-in-der-schlange-stehen-wS9Jno42DGI"
+        },
         "min": 25,
         "key": [
          [
@@ -12916,7 +13006,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "schlange|menschen|leute|haus|wohnhaus|mappe|mann|anzug|tür|liste|warten",
+          "schlange|menschen|leute|warten|gebäude|haus|gehweg|frauen|taschen|lang",
           "was zu sehen ist"
          ],
          [
@@ -12924,7 +13014,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich viele Menschen vor einem Wohnhaus. Sie stehen in einer langen Schlange und halten Mappen in der Hand. An der Tür steht ein Mann im Anzug mit einer Liste. Ich glaube, das ist eine Wohnungsbesichtigung, und der Mann ist der Makler. Die Leute haben ihre Unterlagen dabei, weil sie die Wohnung unbedingt haben wollen."
+        "model": "Auf dem Foto sehe ich eine lange Schlange vor einem Gebäude. Viele Menschen stehen auf dem Gehweg und warten. Vorne stehen ein paar Frauen mit Taschen und schauen nach oben. Ich glaube, das ist eine Wohnungsbesichtigung, und alle wollen dieselbe Wohnung. Sie warten wahrscheinlich schon lange."
        },
        {
         "who": "Anna",
@@ -13779,7 +13869,13 @@ window.TESTS_B1 = [
         "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
        },
        {
-        "you": "Dein Foto: 🚉 ein voller Bahnsteig: viele Menschen mit Koffern, auf der Anzeigetafel steht „Zug fällt aus“, ein Mann telefoniert aufgeregt, eine Familie sitzt auf dem Boden – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
+        "photo": {
+         "src": "fotos/b1-16.jpg",
+         "alt": "Ein großer Bahnhof mit Glasdach: Viele Reisende mit Koffern und Rucksäcken gehen auf dem Bahnsteig neben einem Zug entlang.",
+         "by": "Christian Lue",
+         "link": "https://unsplash.com/photos/eine-gruppe-von-menschen-mit-gepack-geht-auf-einen-zug-zu-HNQVmX1ztKM"
+        },
         "min": 25,
         "key": [
          [
@@ -13787,7 +13883,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "bahnsteig|bahnhof|zug|menschen|koffer|anzeige|tafel|fällt aus|mann|telefon|familie|boden",
+          "bahnhof|bahnsteig|zug|gleis|menschen|reisende|leute|koffer|rucksack|dach|voll",
           "was zu sehen ist"
          ],
          [
@@ -13795,7 +13891,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich einen vollen Bahnsteig. Viele Menschen stehen mit Koffern da, und auf der Anzeigetafel steht „Zug fällt aus“. Ein Mann telefoniert und sieht wütend aus. Eine Familie sitzt sogar auf dem Boden. Wahrscheinlich warten sie schon lange und wissen nicht, wie sie weiterkommen."
+        "model": "Auf dem Foto sehe ich einen großen Bahnhof mit einem Glasdach. Auf dem Bahnsteig gehen viele Reisende mit Koffern und Rucksäcken neben einem Zug entlang. Es ist ziemlich voll. Ich glaube, es ist Ferienzeit, und viele Leute fahren in den Urlaub."
        },
        {
         "who": "Anna",

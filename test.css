@@ -134,6 +134,10 @@ body.testing{overflow:hidden}
 .tz-live{display:block;font-size:12px;color:var(--muted)}
 .tz-you{align-self:stretch;padding:10px 12px;border-radius:14px;border:1.5px dashed var(--acc);margin:6px 0}
 .tz-task{font-weight:700;font-size:15px;margin-bottom:6px}
+.tz-photo{margin:4px 0 10px}
+.tz-photo img{display:block;width:auto;height:auto;max-width:min(100%,520px);max-height:60vh;border-radius:12px}
+.tz-photo figcaption{font-size:11px;color:var(--muted,#888);margin-top:4px}
+.tz-photo figcaption a{color:inherit}
 .tz-tx{font-size:16px;padding:8px 10px;border-radius:10px;background:color-mix(in srgb,var(--acc) 10%,var(--paper));margin:6px 0}
 .tz-tx.live{color:var(--muted)}
 .tz-you audio{width:100%;height:36px;margin:4px 0}

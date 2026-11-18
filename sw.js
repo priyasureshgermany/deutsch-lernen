@@ -2,7 +2,7 @@
    Every page is served from one cache, which nothing replaces on its own:
    installing a newer worker only adds files that are missing. The Update
    button in the top bar clears the cache and reloads. */
-const VERSION = "1.63.0";
+const VERSION = "1.64.0";
 const CACHE = "deutsch-lernen-shell";
 
 const FILES = [
@@ -47,7 +47,24 @@ const FILES = [
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/icon-maskable-512.png",
-  "./icons/apple-touch-icon.png"
+  "./icons/apple-touch-icon.png",
+  /* Sprechen Teil 2 photos (B1 Modelltests) */
+  "./fotos/b1-1.jpg",
+  "./fotos/b1-2.jpg",
+  "./fotos/b1-3.jpg",
+  "./fotos/b1-4.jpg",
+  "./fotos/b1-5.jpg",
+  "./fotos/b1-6.jpg",
+  "./fotos/b1-7.jpg",
+  "./fotos/b1-8.jpg",
+  "./fotos/b1-9.jpg",
+  "./fotos/b1-10.jpg",
+  "./fotos/b1-11.jpg",
+  "./fotos/b1-12.jpg",
+  "./fotos/b1-13.jpg",
+  "./fotos/b1-14.jpg",
+  "./fotos/b1-15.jpg",
+  "./fotos/b1-16.jpg"
 ];
 
 self.addEventListener("install", (event) => {

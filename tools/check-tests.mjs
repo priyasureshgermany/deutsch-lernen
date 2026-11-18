@@ -1,7 +1,7 @@
 // Checks test-a1.js / test-b1.js:  node tools/check-tests.mjs
 // Exam sizes and points as in the real exam, every answer key valid, each ad
 // or word used once, every gap in its text, every recording there.
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 const window = {};
 for (const f of ["../test-a1.js", "../test-b1.js"]) new Function("window", readFileSync(new URL(f, import.meta.url), "utf8"))(window);
 let bad = 0;
@@ -31,6 +31,8 @@ for (const [lv, tests] of [["A1", window.TESTS_A1], ["B1", window.TESTS_B1]]) {
           const you = (p.turns || []).filter(x => x.you);
           if (!you.length) fail(w, "no turns for you");
           (p.turns || []).forEach((x, i) => { if (x.you) { if (!x.model || !Array.isArray(x.key)) fail(w + " #" + i, "you-turn needs model and key"); x.key.forEach(k => { try { new RegExp(k[0], "i"); } catch (e) { fail(w + " #" + i, "bad regex " + k[0]); } }); } else if (!x.who || !x.say) fail(w + " #" + i, "partner turn needs who and say"); });
+          /* a photo to describe: the file is there, with a description (alt) and the credit */
+          (p.turns || []).forEach((x, i) => { if (x.photo) { const f = x.photo; if (!f.src || !existsSync(new URL("../" + f.src, import.meta.url))) fail(w + " #" + i, "photo missing: " + f.src); if (!f.alt || !f.by || !String(f.link || "").startsWith("https://")) fail(w + " #" + i, "photo needs alt, by and link"); } });
           pts += p.max; return;
         }
         if (p.type === "write") { if (want !== "w") fail(w, "unexpected writing part"); if (!p.task || !p.model || !p.points || !p.points.length) fail(w, "writing part incomplete"); if (lv === "B1" && (p.points.length !== 4 || !p.alt || !p.alt.task || !p.alt.model || (p.alt.points || []).length !== 4)) fail(w, "DTZ: Aufgabe A and B, each with 4 Leitpunkte"); pts += lv === "A1" ? 10 : 45; return; }

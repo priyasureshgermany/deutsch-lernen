@@ -273,6 +273,8 @@ function Pruefung(o){
 
 
  /* ---- Sprechen: virtual partners and your recorded answers ---- */
+ /* Teil 2 (B1): the photo to describe – a free Unsplash photo in fotos/, with credit; its description is the alt text only, so the learner finds the words */
+ const photoH=tn=>{const f=tn.photo;if(!f)return "";const q=x=>esc(x).replace(/"/g,"&quot;");return `<figure class="tz-photo"><img src="${q(f.src)}" alt="${q(f.alt)}" loading="lazy" decoding="async"><figcaption>Foto: <a href="${q(f.link)}" target="_blank" rel="noopener">${esc(f.by)}</a> / Unsplash</figcaption></figure>`};
  const AUD={};let rec=null;
  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
  const MIC=!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia);
@@ -280,7 +282,7 @@ function Pruefung(o){
   p.turns.forEach((tn,i)=>{if(i>at)return;
    if(tn.say)h+=`<div class="tz-say"><b>${esc(tn.who)}</b><span>${T(tn.say)}</span>${i===at?`<i class="tz-live">spricht …</i>`:""}</div>`;
    else{const tx=ans(si,pi,i)||"",key=k+"."+i;
-    h+=`<div class="tz-you"><div class="tz-task">🎙 ${T(tn.you)}</div>`;
+    h+=`<div class="tz-you"><div class="tz-task">🎙 ${T(tn.you)}</div>${photoH(tn)}`;
     if(i<at)h+=`<div class="tz-tx">${tx?esc(tx):"<i>keine Aufnahme</i>"}</div>${AUD[key]?`<audio controls src="${AUD[key]}"></audio>`:""}`;
     else if(rec&&rec.key===key)h+=`<div class="tz-tx live" id="tzLive">${esc((rec.tx||"")+(rec.im||""))||"Sprich jetzt …"}</div><div class="tz-row"><button type="button" class="tz-btn rec on" data-rec="stop">■ Stopp</button></div>`;
     else h+=`${tx?`<div class="tz-tx">${esc(tx)}</div>`:""}${AUD[key]?`<audio controls src="${AUD[key]}"></audio>`:""}
@@ -471,7 +473,7 @@ function Pruefung(o){
      if(p.type==="speak"){const k=si+"."+j,sa=(r.sa||{})[k]||{},au=(r.auto||{})[k]||{};
       p.turns.forEach((tn,i)=>{if(tn.say){h+=`<div class="tz-say small"><b>${esc(tn.who)}</b><span>${T(tn.say)}</span></div>`;return}
        const tx=r.ans[k+"."+i]||"",v=sa[i]!=null?+sa[i]:au[i],found=(tn.key||[]).filter(([rx])=>new RegExp(rx,"i").test(tx)).map(x=>x[1]),miss=(tn.key||[]).filter(([rx])=>!new RegExp(rx,"i").test(tx)).map(x=>x[1]);
-       h+=`<div class="tz-you"><div class="tz-task">🎙 ${T(tn.you)}</div><div class="tz-lab">Du hast gesagt</div><div class="tz-tx">${tx?esc(tx):"<i>kein Text erkannt</i>"}</div>${AUD[k+"."+i]?`<audio controls src="${AUD[k+"."+i]}"></audio>`:""}
+       h+=`<div class="tz-you"><div class="tz-task">🎙 ${T(tn.you)}</div>${photoH(tn)}<div class="tz-lab">Du hast gesagt</div><div class="tz-tx">${tx?esc(tx):"<i>kein Text erkannt</i>"}</div>${AUD[k+"."+i]?`<audio controls src="${AUD[k+"."+i]}"></audio>`:""}
         ${tn.key&&tn.key.length?`<div class="tz-why">${found.length?`✓ ${esc(found.join(", "))}`:""}${found.length&&miss.length?" · ":""}${miss.length?`fehlt: ${esc(miss.join(", "))}`:""}</div>`:""}
         <div class="tz-lab">So könntest du es sagen</div><div class="tz-text model small">${T(tn.model||"")}</div>
         <div class="tz-opts">${[[1,"gut"],[.5,"teilweise"],[0,"fehlt"]].map(([x,l])=>`<button type="button" class="tz-opt" data-sa="${k}" data-id="${i}" data-v="${x}" aria-pressed="${v!=null&&v===x}">${l}</button>`).join("")}${sa[i]==null&&au[i]!=null?`<span class="tz-sub">automatisch bewertet</span>`:""}</div></div>`});
