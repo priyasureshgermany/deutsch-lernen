@@ -23,8 +23,10 @@ body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Atkinson H
 h1,h2{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
 header.hero{padding:28px 20px 20px;max-width:1280px;margin:0 auto}
 .ladder{display:flex;gap:6px;margin-bottom:14px}
-.ladder span{font-weight:700;font-size:13px;padding:3px 10px;border-radius:4px;color:#fff}
-.ladder .l1{background:var(--a1)}.ladder .l2{background:var(--a2)}.ladder .l3{background:var(--b1)}
+.ladder span{font-weight:800;font-size:13px;letter-spacing:.02em;line-height:1.6}
+/* the labels are plain coloured words, not buttons: a dot between them */
+.ladder span+span::before{content:"·";margin-right:6px;color:var(--muted);font-weight:400}
+.ladder .l1{color:var(--a1)}.ladder .l2{color:var(--a2)}.ladder .l3{color:var(--b1)}
 h1{font-size:clamp(30px,6vw,52px);font-weight:800;line-height:1.02;letter-spacing:-.02em;max-width:18ch}
 .sub{color:var(--muted);max-width:62ch;margin:12px 0 0}
 .bar{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 20px 8px}

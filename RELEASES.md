@@ -1,5 +1,9 @@
 # Releases
 
+## 1.65.0 — 2026-11-18
+- The labels at the top of each section (A1 · telc · Start Deutsch 1, B1 · telc · DTZ, A1 · A2 · B1 …) are now coloured words with a dot between them instead of coloured boxes that looked like buttons; „Test“ is coloured text with a small outlined exam sheet too – still a tap opens the Modelltests
+- A new version is no longer a button in the top bar: a popup „Neue Version verfügbar“ appears with one button, „Jetzt aktualisieren“, and cannot be closed (Escape, the back gesture or a tap beside it bring it straight back). Progress, Meine Angaben and a paused Modelltest stay. The app looks for a new version at start, when the connection comes back, and when it is brought to the front again after an hour
+
 ## 1.64.2 — 2026-11-18
 - Sprechen Teil 2, colour photos instead of old black-and-white ones: Modelltest 13 (Behörden) – a woman with a form and a man wait in an office (Vitaly Gariev / Unsplash); Modelltest 14 (Gesundheit und Pflege) – a nurse shows a young patient in bed something in a folder (Navy Medicine / Unsplash); descriptions, model answers and rating words to match
 

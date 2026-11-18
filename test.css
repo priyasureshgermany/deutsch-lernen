@@ -1,14 +1,18 @@
 /* Modelltests (test.js). Uses the section's colour tokens. */
-/* The entry: a small, colourful pill next to the exam's name (the hero's label row). */
-.tz-entry{touch-action:manipulation;font:inherit;font-size:13px;font-weight:800;letter-spacing:.01em;display:inline-flex;align-items:center;gap:4px;padding:3px 10px 3px 5px;border:none;border-radius:999px;cursor:pointer;line-height:1;color:#fff;
- background:linear-gradient(120deg,#7c3aed,#db2777,#f97316,#db2777,#7c3aed);background-size:300% 100%;box-shadow:0 2px 8px rgba(219,39,119,.38),inset 0 1px 0 rgba(255,255,255,.35);
- text-shadow:0 1px 1px rgba(0,0,0,.18);animation:tzGlow 8s ease-in-out infinite alternate}
-@keyframes tzGlow{from{background-position:0% 50%}to{background-position:100% 50%}}
-@media (prefers-reduced-motion:reduce){.tz-entry{animation:none}}
-.tz-entry>svg{width:18px;height:18px;flex:none;filter:drop-shadow(0 1px 1px rgba(0,0,0,.2))}
+/* The entry: the word "Test" in its own colour next to the exam's name, like the other labels –
+   no pill, no shadow; a small outlined exam sheet with a gold star says it opens the tests. */
+.tz-entry{touch-action:manipulation;font:inherit;font-size:13px;font-weight:800;letter-spacing:.02em;line-height:1.6;display:inline-flex;align-items:center;gap:3px;padding:0;border:none;border-radius:4px;background:none;cursor:pointer;color:#c026d3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tz-entry{color:#e879f9}}
+:root[data-theme="dark"] .tz-entry{color:#e879f9}
+.tz-entry:hover span{text-decoration:underline;text-underline-offset:3px}
+.tz-entry:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+.tz-entry>svg{width:17px;height:17px;flex:none}
+.tz-entry>svg rect{fill:none;stroke:currentColor;stroke-width:1.7}
+.tz-entry>svg path:first-of-type{stroke:currentColor}
+.ladder span+.tz-entry::before{content:"·";margin-right:3px;color:var(--muted);font-weight:400}
 .ladder .tz-entry span{padding:0;border-radius:0;background:none;color:inherit;font-size:inherit}
-/* a paused test: a soft white dot that pulses */
-.tz-entry.paused::after{content:"";width:7px;height:7px;border-radius:50%;background:#fff;animation:tzDot 1.4s ease-in-out infinite}
+/* a paused test: a soft dot in the same colour that pulses */
+.tz-entry.paused::after{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;animation:tzDot 1.4s ease-in-out infinite}
 @keyframes tzDot{50%{opacity:.35}}
 .tz-open{touch-action:manipulation;font:inherit;font-size:13px;font-weight:800;display:inline-flex;align-items:center;gap:4px;flex:none;height:34px;padding:0 11px 0 8px;border:2px solid var(--acc);border-radius:999px;background:var(--acc);color:#fff;cursor:pointer}
 .tz-open svg{width:18px;height:18px}

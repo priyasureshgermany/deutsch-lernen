@@ -20,7 +20,9 @@ body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Atkinson H
 h1,h2,h3{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
 header.hero{padding:24px 20px 12px;max-width:1100px;margin:0 auto}
 .ladder{display:flex;gap:6px;margin-bottom:12px}
-.ladder span{font-weight:700;font-size:13px;padding:3px 10px;border-radius:4px;color:#fff}
+.ladder span{font-weight:800;font-size:13px;letter-spacing:.02em;line-height:1.6}
+/* the labels are plain coloured words, not buttons: a dot between them */
+.ladder span+span::before{content:"·";margin-right:6px;color:var(--muted);font-weight:400}
 h1{font-size:clamp(28px,5.5vw,46px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
 .sub{color:var(--muted);max-width:70ch;margin:10px 0 0}
 .bar{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 20px 8px}
@@ -183,7 +185,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--b1);outline-off
 </head>
 <body>
 <header class="hero">
- <div class="ladder"><span style="background:var(--b1)">B1</span><span style="background:var(--a2)" id="kind"></span></div>
+ <div class="ladder"><span style="color:var(--b1)">B1</span><span style="color:var(--a2)" id="kind"></span></div>
  <h1 id="h1"></h1>
  <p class="sub" id="sub"></p>
 </header>

@@ -36,7 +36,9 @@ body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Atkinson H
 h1,h2{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
 header.hero{padding:28px 20px 16px;max-width:1100px;margin:0 auto}
 .ladder{display:flex;gap:6px;margin-bottom:14px}
-.ladder span{font-weight:700;font-size:13px;padding:3px 10px;border-radius:4px;color:#fff}
+.ladder span{font-weight:800;font-size:13px;letter-spacing:.02em;line-height:1.6}
+/* the labels are plain coloured words, not buttons: a dot between them */
+.ladder span+span::before{content:"·";margin-right:6px;color:var(--muted);font-weight:400}
 h1{font-size:clamp(30px,6vw,52px);font-weight:800;line-height:1.02;letter-spacing:-.02em}
 .sub{color:var(--muted);max-width:66ch;margin:12px 0 0}
 .bar{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 20px 8px}
@@ -292,7 +294,7 @@ body.hw #hw{display:block}
 </head>
 <body class="m-pos">
 <header class="hero">
- <div class="ladder"><span style="background:var(--a1)">A1</span><span style="background:var(--b1)">B1</span><span style="background:var(--a2)">Grammatik</span></div>
+ <div class="ladder"><span style="color:var(--a1)">A1</span><span style="color:var(--b1)">B1</span><span style="color:var(--a2)">Grammatik</span></div>
  <h1>Wörter erkennen</h1>
  <p class="sub">Fünfzehn Themen, je ein Text auf A1- und B1-Niveau. Tippe ein Wort einmal an – es bekommt seine Farbe nach <b>Wortart</b>, <b>Unterart</b>, <b>Kasus</b>, <b>Satzglied</b> oder <b>TeKaMoLo</b>. Tippe noch einmal: Du siehst, was es genau ist, warum es diese Form hat, und alle Formen. <b>Alle färben</b> färbt alles, <b>Leeren</b> macht den Text wieder neutral. Mit <b>Satzbau</b> siehst du jeden Satz in seinen Teilen. Im <b>Übungsmodus</b> rätst du selbst.</p>
 </header>
