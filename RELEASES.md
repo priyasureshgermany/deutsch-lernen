@@ -1,5 +1,9 @@
 # Releases
 
+## 1.66.1 — 2026-11-18
+- The update popup could lock the app: „Jetzt aktualisieren“ sometimes reloaded the old page from the browser's short-term cache (GitHub Pages allows 10 minutes), so the popup came straight back and no tab could be tapped. The update now loads the new page from the server every time (a one-off address, cleaned up at once), and a second try also restarts the offline worker
+- never a dead end: if the new version still does not arrive after two tries in a session (no connection, a stubborn cache), the popup offers „Später – die App jetzt weiter benutzen“ and stays away for the rest of that session
+
 ## 1.66.0 — 2026-11-18
 - A1 Modelltests: three more schwer tests in the telc Start Deutsch 1 format – Modelltest 10 (Umzug, Arbeit, Bank · Bitte um Hilfe beim Umzug), Modelltest 11 (Schule, Supermarkt, Bus und Bahn · Nachricht: Ich komme später) and Modelltest 12 (Amt, Arzt, Freizeit · Nachricht an den Chef); 12 A1 tests now, 6 of them schwer
 - hard the A1 way: a time, day, room or price that is corrected in the same sentence, a phone number said wrong first, two options mentioned and both ruled out, ads that differ only in one detail (gebraucht / neu, Wochenende / werktags); every answer explained

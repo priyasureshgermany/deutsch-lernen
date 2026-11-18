@@ -2,7 +2,9 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<script>try{const t=localStorage.getItem("dl:theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>try{const t=localStorage.getItem("dl:theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}
+/* after an update the address carries ?u=… (to get the new page from the server) – take it off again */
+if(/[?&]u=\d/.test(location.search))try{history.replaceState(null,"",location.pathname+location.hash)}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Deutsch lernen</title>
 <meta name="description" content="telc A1 und B1 Prüfungstraining, 25 Gesprächsthemen Wörter erkennen und B1 Grammatik – mit Übersetzung, Lösungen und Vorlesen.">
@@ -55,6 +57,8 @@ nav button[aria-selected="true"]{background:var(--c);color:#fff}
 #updd p{margin:0 0 16px;color:var(--muted);font-size:14px;line-height:1.5}
 #updd button{font:inherit;font-size:15px;font-weight:700;width:100%;padding:12px 16px;border:0;border-radius:12px;background:var(--b1);color:#fff;cursor:pointer}
 #updd button:disabled{opacity:.7;cursor:progress}
+#updd button.later{margin-top:8px;background:transparent;color:var(--muted);font-size:13px;font-weight:600;padding:8px}
+#updd button[hidden]{display:none}
 /* shown only while the phone has no internet; a tap says what still works */
 #off{font:inherit;font-size:12px;font-weight:700;border:1px solid var(--a2);border-radius:999px;padding:4px 10px;background:transparent;color:var(--a2);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
 #off[hidden]{display:none}
@@ -256,6 +260,7 @@ nav .i{display:none}
  <h2 id="upddh">Neue Version verfügbar</h2>
  <p id="upddp">Version <b id="upddv"></b> ist da – mit neuen Inhalten und Korrekturen. Bitte aktualisiere die App jetzt. Dein Fortschritt und deine Angaben bleiben erhalten.</p>
  <button id="upddb" type="button">Jetzt aktualisieren</button>
+ <button id="updlater" class="later" type="button" hidden>Später – die App jetzt weiter benutzen</button>
 </dialog>
 <dialog id="med" aria-labelledby="meh">
  <div class="trhead"><b id="meh">Meine Angaben</b><button id="mex" class="fsb" type="button" aria-label="Schließen">✕</button></div>
@@ -313,7 +318,7 @@ nav .i{display:none}
 <script src="translate.js"></script>
 <script src="me.js"></script>
 <script>
-const APP_VERSION = "1.66.0";
+const APP_VERSION = "1.66.1";
 const MODULES = { a1: "a1.html", b1: "b1.html", themen: "themen.html", woerter: "woerter.html", grammatik: "grammatik.html", gespraeche: "alltag.html?t=dialog", briefe: "alltag.html?t=brief", hoeren: "alltag.html?t=hoeren", saetze: "grammatik.html?t=saetze", ueben: "ueben.html" };
 const stage = document.getElementById("stage");
 const tabs = [...document.querySelectorAll("nav button")];
@@ -385,20 +390,38 @@ async function checkLive(){
    localStorage and stay; a paused Modelltest continues after the reload. */
 const updd = document.getElementById("updd"), upddb = document.getElementById("upddb");
 let lastCheck = 0;
+/* Update tries in this session (sessionStorage): which version, how often.
+   Never a dead end – if the new version still does not arrive after two
+   tries (no connection, a stubborn cache), the popup gets a „Später“ and
+   the app stays usable. */
+const UPD = { get(){ try{ return JSON.parse(sessionStorage.getItem("dl:upd") || "null"); }catch(e){ return null; } },
+  set(v){ try{ v ? sessionStorage.setItem("dl:upd", JSON.stringify(v)) : sessionStorage.removeItem("dl:upd"); }catch(e){} } };
+let later = false;
+{ const u = UPD.get(); if(u && u.v === APP_VERSION) UPD.set(null); }   /* the update arrived */
 function askUpdate(){
+  if(later) return;
+  const u = UPD.get(), tried = u && u.v === live ? u.n : 0;
   document.getElementById("upddv").textContent = live;
+  document.getElementById("updlater").hidden = tried < 2;
   if(!updd.open){ try{ updd.showModal(); }catch(e){ updd.setAttribute("open", ""); } upddb.focus(); }
 }
 updd.addEventListener("cancel", (e) => e.preventDefault());
 /* browsers let Escape / the back gesture close a dialog anyway after one blocked try: it comes straight back */
-updd.addEventListener("close", () => { if(live) setTimeout(askUpdate, 0); });
+updd.addEventListener("close", () => { if(live && !later) setTimeout(askUpdate, 0); });
+document.getElementById("updlater").onclick = () => { later = true; updd.close(); };
 async function doUpdate(){
   upddb.disabled = true; upddb.textContent = "Wird aktualisiert …";
+  const u = UPD.get(), n = (u && u.v === live ? u.n : 0) + 1;
+  UPD.set({ v: live, n });
   /* This app's cache and worker only: the other apps on the same site share
      the cache storage and the list of workers, and must keep theirs. */
   try{ for(const k of await caches.keys()) if(k.startsWith("deutsch-lernen-")) await caches.delete(k); }catch(e){}
-  try{ const r = await navigator.serviceWorker.getRegistration(); if(r) await r.update(); }catch(e){}
-  location.reload();
+  try{ const r = await navigator.serviceWorker.getRegistration(); if(r){ if(n > 1) await r.unregister(); else await r.update(); } }catch(e){}
+  /* A plain reload may come from the browser's own short-term cache (GitHub
+     Pages allows 10 minutes) and bring the old page – and the popup – back.
+     A new address always comes from the server; the marker is removed again
+     at the top of the page. */
+  location.replace(location.pathname + "?u=" + Date.now() + location.hash);
 }
 upddb.onclick = doUpdate;
 upd.onclick = async (e) => {
