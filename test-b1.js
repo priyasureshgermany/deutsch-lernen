@@ -1,9 +1,9 @@
-/* Modelltests B1 for test.js: nine whole exams in the format of the
+/* Modelltests B1 for test.js: twelve whole exams in the format of the
    telc Deutsch-Test für Zuwanderer (DTZ, A2–B1): Hören 4 Teile (20 Aufgaben),
    Lesen 5 Teile (25), Schreiben (Aufgabe A oder B), Sprechen 3 Teile.
    Each question with its answer key (a = index into o / list, -1 = x;
    rf and mix items with true/false: true = richtig) and why.
-   level: leicht / mittel / schwer – three each, in that order (measured: text
+   level: leicht / mittel / schwer – three leicht, three mittel, six schwer, in that order (measured: text
    length, sentence length, paraphrase and traps in Hören and Lesen).
    tools/check-tests.mjs checks sizes and keys. */
 window.TESTS_B1 = [
@@ -7835,6 +7835,2619 @@ window.TESTS_B1 = [
          ]
         ],
         "model": "Also, wir feiern am letzten Freitag in der Mittagspause im Büro. Jeder bringt etwas zu essen mit, die Getränke bezahlen wir zusammen. Ich kaufe einen Gutschein als Geschenk, und du hältst eine kurze Rede."
+       },
+       {
+        "who": "Anna",
+        "say": "Prima, so machen wir das!"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "b1-10",
+  "title": "Modelltest 10",
+  "level": "schwer",
+  "sub": "Verträge, Bank, Versicherung · Handyvertrag kündigen / Wasserschaden an die Nachbarin",
+  "sections": [
+   {
+    "id": "hoeren",
+    "de": "Hören",
+    "en": "Listening",
+    "time": 25,
+    "parts": [
+     {
+      "t": "Teil 1 – Ansagen",
+      "tab": "Teil 1",
+      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text zweimal.",
+      "type": "mc",
+      "per": 1,
+      "plays": 2,
+      "time": 5,
+      "items": [
+       {
+        "q": "Was soll Herr Mensah mitbringen?",
+        "o": [
+         "Seinen Arbeitsvertrag.",
+         "Einen Nachweis über seine Adresse.",
+         "Ein Foto für die Bankkarte."
+        ],
+        "a": 1,
+        "why": "Den Arbeitsvertrag braucht die Bank doch nicht mehr; es fehlt eine Meldebescheinigung, also ein Nachweis über die Adresse. Ein Foto braucht man für die Karte nicht.",
+        "audio": "Guten Tag, Herr Mensah, hier spricht Frau Albers von der Sparkasse. Es geht um Ihr neues Girokonto. Ich hatte Ihnen ja gesagt, dass wir eine Kopie Ihres Arbeitsvertrags brauchen – das ist doch nicht nötig, weil Ihr Gehalt sowieso aufs Konto kommt. Was uns aber noch fehlt, ist eine aktuelle Meldebescheinigung, denn auf Ihrem Ausweis steht noch die alte Adresse. Bringen Sie die bitte zu Ihrem Termin am Mittwoch mit."
+       },
+       {
+        "q": "Was ist mit der Lieferung?",
+        "o": [
+         "Sie kommt am selben Tag, aber später.",
+         "Sie kommt einen Tag später.",
+         "Sie wurde storniert."
+        ],
+        "a": 0,
+        "why": "Der Tag bleibt (Donnerstag), nur die Zeit ändert sich: nachmittags statt vormittags.",
+        "audio": "Hallo, hier ist das Möbelhaus Wohnwelt mit einer Nachricht für Frau Szabo. Ihr Kleiderschrank wird wie geplant am Donnerstag geliefert. Allerdings kommen unsere Monteure nicht wie besprochen am Vormittag, sondern erst zwischen 14 und 17 Uhr, weil ein anderer Kunde vor Ihnen dran ist. Falls Ihnen das nicht passt, können wir auch einen neuen Termin in der nächsten Woche machen. Rufen Sie uns dann bitte an."
+       },
+       {
+        "q": "Warum soll Frau Ivanova zurückrufen?",
+        "o": [
+         "Ihre Versicherung wird teurer.",
+         "Die Versicherung braucht noch Informationen.",
+         "Der Schaden wird nicht bezahlt."
+        ],
+        "a": 1,
+        "why": "Die Versicherung zahlt wahrscheinlich, braucht aber noch die Rechnung und Fotos – deshalb der Rückruf. Teurer wird nichts.",
+        "audio": "Guten Tag, Frau Ivanova, hier ist Herr Brandt von der Hausrat-Versicherung Merkur. Wir haben Ihre Schadensmeldung wegen des Fahrraddiebstahls erhalten. Nach dem ersten Eindruck sieht es gut aus, dass wir den Schaden übernehmen können. Damit wir das prüfen können, brauchen wir aber noch die Kaufrechnung und die Anzeige von der Polizei. Bitte rufen Sie mich kurz an, dann erkläre ich Ihnen, wie Sie die Unterlagen hochladen können."
+       },
+       {
+        "q": "Was passiert ab dem 1. März?",
+        "o": [
+         "Die Filiale schließt ganz.",
+         "Man kann am Automaten kein Geld mehr einzahlen.",
+         "Die Filiale hat nur noch vormittags geöffnet."
+        ],
+        "a": 2,
+        "why": "Die Filiale bleibt, aber Beratung nur noch vormittags; der Automat bleibt rund um die Uhr. „Ganz geschlossen“ ist eine Falle.",
+        "audio": "Liebe Kundinnen und Kunden der Volksbank am Marktplatz. Ab dem 1. März ändern sich unsere Öffnungszeiten. Die Filiale bleibt erhalten, ist aber nur noch montags bis freitags von 9 bis 12:30 Uhr geöffnet. Am Nachmittag erreichen Sie unsere Beraterinnen und Berater telefonisch. Der Geldautomat und das Gerät für Einzahlungen im Vorraum stehen Ihnen weiterhin rund um die Uhr zur Verfügung."
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Radio",
+      "tab": "Teil 2",
+      "intro": "Sie hören fünf Ansagen aus dem Radio. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text einmal.",
+      "type": "mc",
+      "per": 1,
+      "plays": 1,
+      "time": 6,
+      "items": [
+       {
+        "q": "Worum geht es in der Sendung?",
+        "o": [
+         "Um Tipps zum Sparen bei Verträgen.",
+         "Um neue Handys.",
+         "Um Probleme mit dem Internet auf dem Land."
+        ],
+        "a": 0,
+        "why": "Die Sendung erklärt, wie man alte, zu teure Verträge findet und kündigt – also Geld spart.",
+        "audio": "Sie zahlen jeden Monat für ein Fitnessstudio, in das Sie nie gehen? Oder für einen Handyvertrag mit viel zu viel Datenvolumen? Dann bleiben Sie dran: Heute bei „Geld & Alltag“ erklären wir, wie Sie alte Verträge finden, die Sie nicht mehr brauchen, und wie Sie richtig kündigen."
+       },
+       {
+        "q": "Was gilt am Montag?",
+        "o": [
+         "Alle Busse fallen aus.",
+         "Die Busse fahren nur am Morgen.",
+         "Die Straßenbahnen fahren wie immer."
+        ],
+        "a": 2,
+        "why": "Nur die Busfahrer streiken; „Die Straßenbahnen sind nicht betroffen“ = sie fahren normal.",
+        "audio": "Hinweis für alle, die am Montag mit Bus und Bahn unterwegs sind: Die Busfahrerinnen und Busfahrer der Stadtwerke streiken von drei Uhr morgens bis Betriebsschluss. Es fahren nur einzelne Schulbusse. Die Straßenbahnen sind vom Streik nicht betroffen und fahren nach dem normalen Fahrplan."
+       },
+       {
+        "q": "Was empfiehlt die Verbraucherzentrale?",
+        "o": [
+         "Am Telefon nie einen Vertrag abschließen.",
+         "Keine Fragen am Telefon mit „Ja“ beantworten.",
+         "Sofort die Polizei anrufen."
+        ],
+        "a": 1,
+        "why": "Betrüger schneiden das „Ja“ mit; man soll „Ja“ vermeiden und auflegen. Die Polizei wird nicht genannt.",
+        "audio": "Die Verbraucherzentrale warnt vor einer neuen Masche am Telefon. Anrufer fragen zum Beispiel: „Können Sie mich gut hören?“ Wenn Sie mit „Ja“ antworten, wird das aufgenommen und später als Zustimmung zu einem Vertrag benutzt. Der Rat der Experten: Antworten Sie auf solche Fragen nicht mit „Ja“, sondern legen Sie einfach auf."
+       },
+       {
+        "q": "Wie wird das Wetter am Dienstag?",
+        "o": [
+         "Kalt und glatt.",
+         "Mild und regnerisch.",
+         "Sonnig und warm."
+        ],
+        "a": 0,
+        "why": "Montag noch mild und Regen; ab Dienstag Frost und Glätte – Autofahrer sollen Zeit einplanen.",
+        "audio": "Zum Wetter: Der Montag bleibt noch mild mit bis zu zehn Grad, dazu kommt am Nachmittag Regen. In der Nacht zum Dienstag wird es dann deutlich kälter. Am Dienstag erwarten wir Temperaturen um null Grad, und auf vielen Straßen kann es glatt werden. Planen Sie also mehr Zeit für den Weg zur Arbeit ein."
+       },
+       {
+        "q": "Wer darf beim Gewinnspiel mitmachen?",
+        "o": [
+         "Nur Hörer aus der Stadt.",
+         "Nur Erwachsene.",
+         "Alle Hörer, Kinder mit Erlaubnis der Eltern."
+        ],
+        "a": 2,
+        "why": "„Mitmachen darf jeder, egal woher Sie uns hören“ – Kinder unter 14 auch, aber nur mit Erlaubnis der Eltern.",
+        "audio": "Und jetzt unser Gewinnspiel! Wir verlosen zwei Karten für das Konzert im Stadtpark. Beantworten Sie einfach unsere Frage: Wie viele Bundesländer hat Deutschland? Rufen Sie an unter 0800 123 450. Mitmachen darf jeder, egal woher Sie uns hören – Kinder unter 14 Jahren aber bitte nur mit Erlaubnis der Eltern."
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Gespräche",
+      "tab": "Teil 3",
+      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch zweimal.",
+      "type": "mix",
+      "per": 1,
+      "plays": 2,
+      "time": 9,
+      "items": [
+       {
+        "q": "Der Mann möchte seinen Vertrag sofort beenden.",
+        "a": true,
+        "why": "Er möchte kündigen, weil er umzieht – so schnell wie möglich.",
+        "audio": "Frau: Kundenservice Mobilfunk Plus, mein Name ist Krüger. Was kann ich für Sie tun?\nMann: Guten Tag, ich möchte meinen Handyvertrag kündigen, so schnell wie möglich. Ich ziehe nächsten Monat nach Spanien.\nFrau: Ihr Vertrag läuft noch bis Oktober. Normalerweise geht eine Kündigung erst zum Ende der Laufzeit. Bei einem Umzug ins Ausland gibt es aber ein Sonderkündigungsrecht.\nMann: Was brauchen Sie dafür?\nFrau: Schicken Sie uns bitte die Abmeldebescheinigung vom Bürgeramt. Dann endet der Vertrag einen Monat später."
+       },
+       {
+        "same": true,
+        "q": "Was muss der Mann schicken?",
+        "o": [
+         "Seinen neuen spanischen Vertrag.",
+         "Ein Dokument vom Bürgeramt.",
+         "Eine Kopie seines Passes."
+        ],
+        "a": 1,
+        "why": "„Schicken Sie uns bitte die Abmeldebescheinigung vom Bürgeramt.“"
+       },
+       {
+        "q": "Die Frau hat die Kaution schon zurückbekommen.",
+        "a": false,
+        "why": "Sie wartet seit vier Monaten darauf.",
+        "audio": "Mann: Hallo Lena, du siehst ärgerlich aus. Was ist los?\nFrau: Ach, meine alte Vermieterin. Ich bin vor vier Monaten ausgezogen und habe meine Kaution immer noch nicht zurück. Dabei war die Wohnung tipptopp.\nMann: Hast du ihr schon geschrieben?\nFrau: Zweimal, per E-Mail. Sie antwortet einfach nicht.\nMann: Dann schick ihr einen Brief per Einschreiben mit einer Frist von zwei Wochen. Und wenn dann nichts kommt, geh zum Mieterverein. Bei mir hat das damals sofort geholfen."
+       },
+       {
+        "same": true,
+        "q": "Was rät der Mann zuerst?",
+        "o": [
+         "Sofort zum Mieterverein zu gehen.",
+         "Noch eine E-Mail zu schreiben.",
+         "Einen Brief mit Frist zu schicken."
+        ],
+        "a": 2,
+        "why": "Zuerst ein Einschreiben mit Frist – der Mieterverein kommt erst, „wenn dann nichts kommt“."
+       },
+       {
+        "q": "Frau Yilmaz möchte einen Kredit für ein Auto.",
+        "a": false,
+        "why": "Sie will einen Kredit für eine Küche, kein Auto.",
+        "audio": "Mann: Frau Yilmaz, schön, dass Sie da sind. Sie interessieren sich für einen Kredit?\nFrau: Ja. Unsere Küche ist sehr alt, und wir möchten eine neue kaufen. Sie kostet ungefähr 8.000 Euro. Das Auto haben wir gerade erst abbezahlt, deshalb haben wir nicht viel gespart.\nMann: Ich verstehe. Bei dieser Summe und einer Laufzeit von vier Jahren wären das etwa 190 Euro im Monat. Ich brauche von Ihnen aber noch die letzten drei Gehaltsabrechnungen.\nFrau: Die habe ich leider nicht dabei. Ich schicke sie Ihnen morgen per E-Mail."
+       },
+       {
+        "same": true,
+        "q": "Was macht Frau Yilmaz morgen?",
+        "o": [
+         "Sie schickt Unterlagen.",
+         "Sie kauft die Küche.",
+         "Sie kommt noch einmal in die Bank."
+        ],
+        "a": 0,
+        "why": "„Ich schicke sie Ihnen morgen per E-Mail.“ – die Gehaltsabrechnungen"
+       },
+       {
+        "q": "Der Mann bezahlt den Schaden aus eigener Tasche.",
+        "a": false,
+        "why": "Er bezahlt nicht selbst – seine Haftpflichtversicherung übernimmt den Schaden.",
+        "audio": "Mann: Guten Tag, Frau Hoffmann. Es tut mir furchtbar leid, aber mein Sohn hat beim Fußballspielen Ihr Kellerfenster kaputt gemacht.\nFrau: Oh je. Na ja, so etwas passiert. Ist jemand verletzt?\nMann: Nein, zum Glück nicht. Ich habe eine Haftpflichtversicherung, die bezahlt das. Ich melde den Schaden heute noch.\nFrau: Gut. Dann rufe ich morgen den Glaser an und schicke Ihnen die Rechnung.\nMann: Am besten schicken Sie sie direkt an mich, dann leite ich sie weiter."
+       },
+       {
+        "same": true,
+        "q": "Wer bekommt die Rechnung vom Glaser?",
+        "o": [
+         "Die Versicherung direkt.",
+         "Der Mann.",
+         "Frau Hoffmann."
+        ],
+        "a": 1,
+        "why": "„Am besten schicken Sie sie direkt an mich, dann leite ich sie weiter.“"
+       }
+      ]
+     },
+     {
+      "t": "Teil 4 – Meinungen",
+      "tab": "Teil 4",
+      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage zweimal. Thema: Bargeld oder Karte?",
+      "type": "match",
+      "listName": "Sätze",
+      "per": 1,
+      "plays": 2,
+      "time": 5,
+      "list": [
+       "Mit Bargeld behält man einen besseren Überblick über sein Geld.",
+       "Kartenzahlung ist schneller und bequemer.",
+       "Bargeld ist sicherer, wenn die Technik nicht funktioniert.",
+       "Kleine Geschäfte wollen lieber Bargeld.",
+       "Man sollte immer mit dem Handy bezahlen.",
+       "Man weiß nicht, wer die Daten sieht."
+      ],
+      "items": [
+       {
+        "q": "Aussage 1",
+        "a": 0,
+        "why": "Er nimmt Bargeld mit, damit er sieht, wie viel noch übrig ist – Überblick über das Geld.",
+        "audio": "Ich nehme am Montag immer 100 Euro für die ganze Woche mit. Dann sehe ich jeden Tag im Portemonnaie, wie viel noch übrig ist. Mit der Karte habe ich früher am Ende des Monats oft gestaunt, wofür ich alles bezahlt habe."
+       },
+       {
+        "q": "Aussage 2",
+        "a": 2,
+        "why": "Als die Kassen ausgefallen sind, konnte nur zahlen, wer Bargeld hatte – sicherer bei Technikproblemen.",
+        "audio": "Letztes Jahr gab es in unserem Supermarkt einen Stromausfall, und die Kartenterminals gingen eine Stunde lang nicht. Wer kein Bargeld dabeihatte, musste seine Sachen stehen lassen. Seitdem habe ich immer etwas Geld in der Tasche."
+       },
+       {
+        "q": "Aussage 3",
+        "a": 1,
+        "why": "An der Kasse nur kurz die Karte hinhalten, kein Kleingeld suchen – schnell und bequem.",
+        "audio": "Ich verstehe nicht, warum manche Leute an der Kasse noch Münzen zählen. Ich halte meine Karte kurz an das Gerät, und fertig. Das dauert zwei Sekunden, und ich muss nie überlegen, ob ich genug Kleingeld habe."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "lesen",
+    "de": "Lesen",
+    "en": "Reading",
+    "time": 45,
+    "parts": [
+     {
+      "t": "Teil 1 – Wegweiser",
+      "tab": "Teil 1",
+      "intro": "Lesen Sie die Aufgaben und den Wegweiser. Wo (a, b oder c) finden Sie die passende Information?",
+      "type": "mc",
+      "per": 1,
+      "time": 8,
+      "text": "Bürgeramt Nord – Wegweiser\nErdgeschoss: Information · Wartemarken · Fundbüro · Kasse\n1. Stock: Meldewesen (An-, Um- und Abmeldung) · Führungszeugnis · Beglaubigungen\n2. Stock: Pass- und Ausweisstelle · Führerscheinstelle (Umtausch, internationaler Führerschein)\n3. Stock: Ausländerbehörde (Aufenthaltstitel, Einbürgerung – nur mit Termin)\n4. Stock: Gewerbeamt (Gewerbe an- und abmelden) · Wohngeldstelle",
+      "items": [
+       {
+        "q": "Sie haben im Bus Ihren Schlüssel verloren.",
+        "o": [
+         "Erdgeschoss",
+         "1. Stock",
+         "3. Stock"
+        ],
+        "a": 0,
+        "why": "Fundbüro – Erdgeschoss"
+       },
+       {
+        "q": "Ihr Aufenthaltstitel läuft in zwei Monaten ab.",
+        "o": [
+         "2. Stock",
+         "3. Stock",
+         "1. Stock"
+        ],
+        "a": 1,
+        "why": "Ausländerbehörde – Aufenthaltstitel (nicht die Passstelle)"
+       },
+       {
+        "q": "Für eine neue Stelle in einer Kita brauchen Sie ein Dokument, dass Sie keine Straftaten begangen haben.",
+        "o": [
+         "4. Stock",
+         "2. Stock",
+         "1. Stock"
+        ],
+        "a": 2,
+        "why": "Das ist das Führungszeugnis – 1. Stock"
+       },
+       {
+        "q": "Sie möchten sich als Friseurin selbstständig machen.",
+        "o": [
+         "4. Stock",
+         "3. Stock",
+         "Erdgeschoss"
+        ],
+        "a": 0,
+        "why": "ein Gewerbe anmelden – Gewerbeamt"
+       },
+       {
+        "q": "Sie verdienen wenig und brauchen Hilfe bei der Miete.",
+        "o": [
+         "1. Stock",
+         "Erdgeschoss",
+         "4. Stock"
+        ],
+        "a": 2,
+        "why": "Wohngeld – Zuschuss zur Miete"
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Anzeigen und Texte",
+      "tab": "Teil 2",
+      "intro": "Lesen Sie die Situationen und die Texte a–h. Finden Sie für jede Situation den passenden Text. Für eine Aufgabe gibt es keine Lösung – wählen Sie dann x.",
+      "type": "match",
+      "listName": "Texte",
+      "x": true,
+      "per": 1,
+      "time": 10,
+      "list": [
+       "Bank am Ring: Girokonto ohne Gebühren für Auszubildende und Studierende bis 27 Jahre.",
+       "Verbraucherzentrale: Beratung zu Handy-, Strom- und Internetverträgen, 20 Minuten für 15 Euro.",
+       "Versicherungsbüro Kaya: Haftpflicht, Hausrat und Kfz – Beratung auf Deutsch und Türkisch.",
+       "Gebrauchtwagen Müller: über 200 Autos, Finanzierung ohne Anzahlung möglich.",
+       "Steuerbüro Nowak: Ihre Steuererklärung schnell und günstig, auch für Rentner.",
+       "Geldtransfer Express: Geld in über 100 Länder schicken – in Minuten.",
+       "Schuldnerberatung der Diakonie: kostenlose Hilfe bei Schulden, Termin nach Anmeldung.",
+       "Mietkautionsbürgschaft MieteSicher: statt Kaution eine Bürgschaft für wenige Euro im Monat."
+      ],
+      "items": [
+       {
+        "q": "Ihre Familie in Ghana braucht dringend Geld für eine Operation.",
+        "a": 5,
+        "why": "Geld schnell ins Ausland schicken – Geldtransfer"
+       },
+       {
+        "q": "Sie wollen eine Wohnung mieten, haben aber nicht genug Geld für die Kaution.",
+        "a": 7,
+        "why": "Bürgschaft statt Kaution"
+       },
+       {
+        "q": "Ihr Internetanbieter verlangt plötzlich mehr Geld, und Sie wissen nicht, ob das erlaubt ist.",
+        "a": 1,
+        "why": "Beratung zu Internetverträgen – Verbraucherzentrale"
+       },
+       {
+        "q": "Sie sind 35 und suchen ein Konto ohne Gebühren.",
+        "a": -1,
+        "why": "Das kostenlose Konto gibt es nur bis 27 Jahre – keine Anzeige passt."
+       },
+       {
+        "q": "Ihr Kind hat bei Freunden aus Versehen einen teuren Fernseher kaputt gemacht.",
+        "a": 2,
+        "why": "Haftpflichtversicherung – Versicherungsbüro"
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Kurze Texte",
+      "tab": "Teil 3",
+      "intro": "Lesen Sie die drei Texte. Zu jedem Text gibt es zwei Aufgaben. Entscheiden Sie, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt.",
+      "type": "mix",
+      "per": 1,
+      "time": 10,
+      "items": [
+       {
+        "q": "Ohne Online-Banking kann man bei der Bank keine Überweisungen mehr machen.",
+        "a": false,
+        "why": "Doch: am Überweisungsterminal in der Filiale oder telefonisch.",
+        "text": "Wichtige Information für unsere Kundinnen und Kunden\nAb dem 1. Januar nehmen wir keine Überweisungsformulare auf Papier mehr an. Bitte nutzen Sie stattdessen das Online-Banking oder das Überweisungsterminal in unserer Filiale. Wenn Sie kein Online-Banking haben, können Sie Überweisungen auch telefonisch beauftragen. Für Kundinnen und Kunden über 70 Jahre bleibt der Papierweg bis Ende des Jahres kostenlos möglich, danach kostet er 2 Euro pro Überweisung.\nIhre Stadtbank"
+       },
+       {
+        "same": true,
+        "q": "Was gilt für Kunden über 70?",
+        "o": [
+         "Sie dürfen noch eine Zeit lang Papier benutzen.",
+         "Sie müssen Online-Banking lernen.",
+         "Sie zahlen ab sofort 2 Euro."
+        ],
+        "a": 0,
+        "why": "„Für Kundinnen und Kunden über 70 Jahre bleibt der Papierweg bis Ende des Jahres kostenlos“ – eine Ausnahme für eine gewisse Zeit."
+       },
+       {
+        "q": "Man kann den Vertrag jeden Monat kündigen.",
+        "a": true,
+        "why": "„monatlich kündbar“ = man kann jeden Monat kündigen.",
+        "text": "Strom zum Festpreis – nur bis Ende März!\nWechseln Sie jetzt zu Stadtwerke Grün und bezahlen Sie 12 Monate lang garantiert denselben Preis pro Kilowattstunde. Der Vertrag ist monatlich kündbar, eine Mindestlaufzeit gibt es nicht. Den Wechsel organisieren wir für Sie: Sie brauchen nur Ihre Zählernummer und den Namen Ihres alten Anbieters. Neukunden bekommen außerdem einen Bonus von 50 Euro, der mit der ersten Jahresrechnung verrechnet wird."
+       },
+       {
+        "same": true,
+        "q": "Wann bekommen Neukunden den Bonus?",
+        "o": [
+         "Sofort nach dem Wechsel.",
+         "Mit der Jahresrechnung.",
+         "Wenn sie bis Ende März kündigen."
+        ],
+        "a": 1,
+        "why": "„mit der ersten Jahresrechnung verrechnet“ – also erst mit der Jahresrechnung, nicht sofort."
+       },
+       {
+        "q": "Herr Petrović hat seine Karte im Automaten vergessen.",
+        "a": false,
+        "why": "Der Automat hat die Karte eingezogen, weil die PIN dreimal falsch war – er hat sie nicht vergessen.",
+        "text": "Sehr geehrter Herr Petrović,\nam 14. Mai wurde Ihre Bankkarte von einem unserer Geldautomaten eingezogen, weil dreimal die falsche PIN eingegeben wurde. Aus Sicherheitsgründen haben wir die Karte gesperrt und vernichtet. Eine neue Karte haben wir bereits bestellt; sie kommt in etwa sieben Tagen mit der Post. Die neue PIN schicken wir Ihnen getrennt davon in einem zweiten Brief. Bis dahin können Sie am Schalter mit Ihrem Personalausweis Geld abheben.\nMit freundlichen Grüßen\nIhre Kreissparkasse"
+       },
+       {
+        "same": true,
+        "q": "Wie kann Herr Petrović bis zur neuen Karte an Geld kommen?",
+        "o": [
+         "Mit der alten Karte.",
+         "Am Automaten mit einer neuen PIN.",
+         "Mit seinem Ausweis am Schalter."
+        ],
+        "a": 2,
+        "why": "„Bis dahin können Sie am Schalter mit Ihrem Personalausweis Geld abheben.“"
+       }
+      ]
+     },
+     {
+      "t": "Teil 4 – Ein längerer Text",
+      "tab": "Teil 4",
+      "intro": "Lesen Sie den Text. Entscheiden Sie, ob die Aussagen richtig oder falsch sind.",
+      "type": "rf",
+      "per": 1,
+      "time": 7,
+      "text": "Verträge im Internet – was Verbraucher wissen sollten\nWer im Internet einen Vertrag abschließt – zum Beispiel für ein Zeitschriften-Abo, einen Handyvertrag oder einen Streamingdienst –, hat in der Regel ein Widerrufsrecht von 14 Tagen. Innerhalb dieser Zeit kann man den Vertrag ohne Angabe von Gründen widerrufen. Die Frist beginnt aber nicht immer am Tag der Bestellung: Bei Waren beginnt sie erst, wenn die Ware angekommen ist. Hat der Anbieter nicht korrekt über das Widerrufsrecht informiert, verlängert sich die Frist sogar auf bis zu ein Jahr und 14 Tage.\nSeit 2022 müssen Anbieter auf ihrer Internetseite außerdem einen „Kündigungsbutton“ haben. Damit kann man Verträge, die man online abgeschlossen hat, auch online mit wenigen Klicks kündigen. Ein Brief oder ein Fax ist dafür nicht mehr nötig.\nVerträge, die automatisch verlängert werden, kann man nach der ersten Laufzeit jederzeit mit einer Frist von einem Monat kündigen. Früher verlängerten sich viele Verträge um ein ganzes Jahr, wenn man die Kündigung vergessen hatte.",
+      "items": [
+       {
+        "q": "Wer etwas online bestellt, hat ab dem Tag der Bestellung 14 Tage Zeit für den Widerruf.",
+        "a": false,
+        "why": "Bei Waren beginnt die Frist erst, wenn die Ware angekommen ist."
+       },
+       {
+        "q": "Online-Verträge kann man heute auch online kündigen.",
+        "a": true,
+        "why": "der Kündigungsbutton – „mit wenigen Klicks“, kein Brief nötig"
+       },
+       {
+        "q": "Wenn man die Kündigung vergisst, verlängert sich der Vertrag heute um ein Jahr.",
+        "a": false,
+        "why": "Das war früher so; heute kann man nach der ersten Laufzeit mit einem Monat Frist kündigen."
+       }
+      ]
+     },
+     {
+      "t": "Teil 5 – Brief mit Lücken",
+      "tab": "Teil 5",
+      "intro": "Lesen Sie den Text und schließen Sie die Lücken. Welche Lösung (a, b oder c) passt am besten?",
+      "type": "gapmc",
+      "per": 1,
+      "time": 10,
+      "text": "Sehr geehrte Damen und Herren,\nhiermit kündige ich meinen Handyvertrag mit der Kundennummer 4471-882 (1) nächstmöglichen Zeitpunkt. Ich habe den Vertrag vor zwei Jahren abgeschlossen, (2) ich damals viel für meine Arbeit telefonieren musste. Inzwischen habe ich eine neue Stelle und bekomme ein Diensthandy, (3) brauche ich meinen privaten Vertrag nicht mehr. Bitte schicken Sie mir eine schriftliche Bestätigung der Kündigung (4) teilen Sie mir mit, bis wann ich noch bezahlen muss. Außerdem möchte ich meine Rufnummer zu meinem neuen Anbieter mitnehmen. Ich wäre Ihnen dankbar, (5) Sie das vorbereiten könnten. Sollten Sie noch Fragen haben, erreichen Sie mich (6) der Nummer 0151 2233445.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "items": [
+       {
+        "n": 1,
+        "o": [
+         "am",
+         "zum",
+         "im"
+        ],
+        "a": 1,
+        "why": "zum nächstmöglichen Zeitpunkt kündigen"
+       },
+       {
+        "n": 2,
+        "o": [
+         "weil",
+         "obwohl",
+         "damit"
+        ],
+        "a": 0,
+        "why": "Grund für den Vertrag damals → weil"
+       },
+       {
+        "n": 3,
+        "o": [
+         "trotzdem",
+         "deshalb",
+         "sondern"
+        ],
+        "a": 1,
+        "why": "Folge: ein Diensthandy, also brauche ich den Vertrag nicht → deshalb"
+       },
+       {
+        "n": 4,
+        "o": [
+         "und",
+         "oder",
+         "aber"
+        ],
+        "a": 0,
+        "why": "zwei Bitten nebeneinander → und"
+       },
+       {
+        "n": 5,
+        "o": [
+         "dass",
+         "ob",
+         "wenn"
+        ],
+        "a": 2,
+        "why": "Ich wäre Ihnen dankbar, wenn Sie … könnten (Konjunktiv II)"
+       },
+       {
+        "n": 6,
+        "o": [
+         "unter",
+         "bei",
+         "mit"
+        ],
+        "a": 0,
+        "why": "erreichbar unter der Nummer …"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "schreiben",
+    "de": "Schreiben",
+    "en": "Writing",
+    "time": 30,
+    "parts": [
+     {
+      "t": "Brief oder E-Mail",
+      "intro": "Wählen Sie Aufgabe A oder Aufgabe B. Zeigen Sie, was Sie können. Schreiben Sie möglichst viel. Vergessen Sie nicht die Anrede und den Gruß. Schreiben Sie etwas zu allen vier Punkten.",
+      "type": "write",
+      "crit": "b1",
+      "words": 80,
+      "time": 30,
+      "task": "Aufgabe A: Sie haben einen Handyvertrag. Seit drei Monaten ist die Rechnung viel höher als vereinbart, obwohl Sie nicht mehr telefoniert haben. Schreiben Sie an den Kundenservice.",
+      "points": [
+       "Grund für Ihr Schreiben",
+       "Was ist das Problem mit der Rechnung?",
+       "Was haben Sie schon unternommen?",
+       "Was soll die Firma jetzt tun?"
+      ],
+      "model": "Sehr geehrte Damen und Herren,\nich schreibe Ihnen, weil ich mit meinen letzten drei Handyrechnungen nicht einverstanden bin. Meine Kundennummer ist 4471-882.\nIn meinem Vertrag steht, dass ich jeden Monat 19,99 Euro bezahle. Seit Februar sind die Rechnungen aber immer über 45 Euro hoch. Auf der Rechnung stehen Kosten für einen Musikdienst, den ich nie bestellt habe.\nIch habe schon zweimal bei Ihrer Hotline angerufen. Man hat mir versprochen, dass sich jemand meldet, aber bis heute habe ich keine Antwort bekommen.\nIch bitte Sie deshalb, den Musikdienst sofort zu kündigen und mir das zu viel bezahlte Geld zurückzuüberweisen. Bitte bestätigen Sie mir das schriftlich bis Ende des Monats.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "keys": [
+       [
+        "schreibe|rechnung|nicht einverstanden|beschwer|reklam",
+        "Ich schreibe Ihnen, weil meine Handyrechnung seit drei Monaten zu hoch ist."
+       ],
+       [
+        "euro|€|zu hoch|höher|kosten|dienst|abo|bestellt|vertrag",
+        "Statt 20 Euro muss ich jeden Monat über 45 Euro bezahlen."
+       ],
+       [
+        "angerufen|hotline|telefon|geschrieben|e-mail|schon|bereits",
+        "Ich habe schon zweimal bei Ihrer Hotline angerufen, aber nichts ist passiert."
+       ],
+       [
+        "zurück|erstatt|überweis|korrigier|kündig|bitte|bestätig",
+        "Bitte überweisen Sie mir das Geld zurück und korrigieren Sie die Rechnung."
+       ]
+      ],
+      "alt": {
+       "task": "Aufgabe B: Sie waren eine Woche im Urlaub. Als Sie zurückkommen, sehen Sie: Aus der Wohnung über Ihnen ist Wasser in Ihr Badezimmer gelaufen. Schreiben Sie an Ihre Nachbarin, Frau Lehmann.",
+       "points": [
+        "Was ist passiert?",
+        "Welche Schäden gibt es?",
+        "Was haben Sie schon gemacht?",
+        "Wie soll es weitergehen?"
+       ],
+       "model": "Liebe Frau Lehmann,\nich bin gestern aus dem Urlaub zurückgekommen und habe einen großen Schreck bekommen: An der Decke in meinem Badezimmer ist ein großer Wasserfleck, und es tropft immer noch ein bisschen. Ich glaube, das Wasser kommt aus Ihrer Wohnung.\nDie Farbe an der Decke ist kaputt, und mein Schrank im Bad ist nass geworden. Auch ein paar Handtücher sind schmutzig.\nIch habe schon die Hausverwaltung angerufen und Fotos gemacht. Leider waren Sie nicht zu Hause, als ich bei Ihnen geklingelt habe.\nKönnten Sie bitte so schnell wie möglich nachsehen, ob bei Ihnen ein Rohr kaputt ist? Wir sollten den Schaden auch unseren Versicherungen melden. Bitte rufen Sie mich an, damit wir alles besprechen können.\nViele Grüße\nSuresh [Nachname]",
+       "keys": [
+        [
+         "wasser|nass|tropf|fleck|decke|urlaub|passiert",
+         "Während meines Urlaubs ist Wasser aus Ihrer Wohnung in mein Bad gelaufen."
+        ],
+        [
+         "schaden|kaputt|farbe|schrank|möbel|handtücher|schimmel",
+         "Die Decke ist fleckig und mein Schrank ist kaputt."
+        ],
+        [
+         "angerufen|hausverwaltung|vermieter|foto|geklingelt|schon|versicherung",
+         "Ich habe schon Fotos gemacht und die Hausverwaltung informiert."
+        ],
+        [
+         "bitte|könnten|sollten|versicherung|melden|anrufen|besprechen|nachsehen|handwerker",
+         "Bitte melden Sie den Schaden Ihrer Versicherung und rufen Sie mich an."
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "id": "sprechen",
+    "de": "Sprechen",
+    "en": "Speaking",
+    "time": 16,
+    "oral": true,
+    "parts": [
+     {
+      "t": "Teil 1 – Über sich sprechen",
+      "tab": "Teil 1",
+      "intro": "Stellen Sie sich vor: Name, Geburtsort, Wohnort, Arbeit/Beruf, Familie, Sprachen. Danach fragt die Prüferin nach.",
+      "type": "speak",
+      "max": 20,
+      "time": 4,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Guten Tag. Wir möchten Sie gern kennenlernen. Würden Sie sich bitte vorstellen? Hier sind einige Stichpunkte: Name, Geburtsort, Wohnort, Arbeit oder Beruf, Familie und Sprachen."
+       },
+       {
+        "you": "Stell dich vor: Name, Geburtsort, Wohnort, Arbeit/Beruf, Familie, Sprachen.",
+        "min": 30,
+        "key": [
+         [
+          "heiße|name ist|ich bin [A-ZÄÖÜ]",
+          "Name"
+         ],
+         [
+          "geboren|komme aus",
+          "Geburtsort"
+         ],
+         [
+          "wohne",
+          "Wohnort"
+         ],
+         [
+          "arbeite|beruf|bin .*(ingenieur|lehrer|student|entwickler|koch|verkäufer|pfleger)",
+          "Arbeit/Beruf"
+         ],
+         [
+          "verheiratet|kinder|frau|mann|familie|ledig|tochter|sohn",
+          "Familie"
+         ],
+         [
+          "spreche|sprache",
+          "Sprachen"
+         ]
+        ],
+        "model": "Ich heiße Suresh [Nachname]. Ich bin in Indien geboren, in Chennai. Jetzt wohne ich in Frankfurt. Ich arbeite als Ingenieur in einer IT-Firma. Ich bin verheiratet und habe [Familie]. Ich spreche Tamil, Englisch und ein bisschen Deutsch."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Vielen Dank. Und jetzt Sie, bitte."
+       },
+       {
+        "who": "Anna",
+        "say": "Ich heiße Anna Kowalska und bin in Polen geboren, in Danzig. Seit vier Jahren wohne ich in Offenbach. Ich arbeite als Verkäuferin in einer Bäckerei. Ich bin verheiratet und habe einen Sohn. Ich spreche Polnisch, Deutsch und ein bisschen Englisch."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Sie haben gesagt, Sie arbeiten als Ingenieur. Was genau machen Sie bei Ihrer Arbeit?"
+       },
+       {
+        "you": "Erzähl genauer, was du bei der Arbeit machst.",
+        "min": 15,
+        "key": [
+         [
+          "arbeite|projekt|kunden|software|programm|team|aufgabe|verantwortlich|entwickle|teste",
+          "Tätigkeit"
+         ],
+         [
+          "jeden tag|meistens|oft|manchmal|zum beispiel",
+          "Beispiel"
+         ]
+        ],
+        "model": "Ich arbeite in einem Team mit acht Kolleginnen und Kollegen. Wir entwickeln Software für Banken. Meistens schreibe ich Programme, aber manchmal habe ich auch Besprechungen mit Kunden."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Und was möchten Sie in den nächsten Jahren beruflich erreichen?"
+       },
+       {
+        "you": "Sag, was du beruflich planst – mit Grund.",
+        "min": 12,
+        "key": [
+         [
+          "möchte|will|plane|würde gern|hoffe|ziel",
+          "Plan"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da|wenn)\\b",
+          "Begründung"
+         ]
+        ],
+        "model": "In den nächsten Jahren möchte ich Teamleiter werden, weil ich gern mit Menschen arbeite. Dafür muss ich aber mein Deutsch noch verbessern."
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Über Erfahrungen sprechen",
+      "tab": "Teil 2",
+      "intro": "Thema: Geld und Sparen. Beschreiben Sie Ihr Foto. Dann erzählen Sie von Ihren Erfahrungen und sagen Ihre Meinung.",
+      "type": "speak",
+      "max": 40,
+      "time": 6,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
+       },
+       {
+        "you": "Dein Foto: 💳 ein junges Paar sitzt am Küchentisch, vor ihnen liegen viele Rechnungen und ein Taschenrechner, die Frau sieht besorgt aus – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "min": 25,
+        "key": [
+         [
+          "auf dem foto|auf dem bild|ich sehe|man sieht|es gibt",
+          "Foto beschreiben"
+         ],
+         [
+          "paar|frau|mann|tisch|küche|rechnung|taschenrechner|papier|besorgt|geld",
+          "was zu sehen ist"
+         ],
+         [
+          "vielleicht|ich glaube|wahrscheinlich|situation|sieht .* aus",
+          "Situation vermuten"
+         ]
+        ],
+        "model": "Auf dem Foto sehe ich ein junges Paar am Küchentisch. Vor ihnen liegen viele Rechnungen und ein Taschenrechner. Die Frau sieht besorgt aus. Ich glaube, sie rechnen, ob ihr Geld bis zum Ende des Monats reicht. Vielleicht haben sie Schulden."
+       },
+       {
+        "who": "Anna",
+        "say": "Auf meinem Foto sieht man ein Kind, das Münzen in ein Sparschwein steckt. Es lacht und sieht sehr stolz aus."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Danke. Erzählen Sie bitte: Wie planen Sie Ihr Geld? Sparen Sie für etwas Bestimmtes?"
+       },
+       {
+        "you": "Erzähl von deinen Erfahrungen (2–3 Sätze).",
+        "min": 15,
+        "key": [
+         [
+          "\\bich\\b|\\bwir\\b",
+          "persönlich"
+         ],
+         [
+          "spar|geld|konto|monat|ausgaben|plan|app|euro|kaufe|urlaub",
+          "zum Thema"
+         ]
+        ],
+        "model": "Ich schreibe alle meine Ausgaben in eine App. So sehe ich, wie viel ich für Essen und Freizeit ausgebe. Jeden Monat spare ich etwas Geld, weil ich nächstes Jahr meine Familie in Indien besuchen möchte."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Wie ist das in Ihrem Heimatland? Wie gehen die Menschen dort mit Geld um? Was ist Ihre Meinung?"
+       },
+       {
+        "you": "Vergleiche mit deinem Heimatland und sag deine Meinung – mit Grund.",
+        "min": 20,
+        "key": [
+         [
+          "in meinem (heimat)?land|bei uns|in indien|in deutschland|dort|hier",
+          "Vergleich"
+         ],
+         [
+          "meiner meinung|ich finde|ich denke|ich glaube|für mich|mir gefällt",
+          "Meinung"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da|wenn)\\b",
+          "Begründung"
+         ]
+        ],
+        "model": "In Indien bezahlen viele Menschen inzwischen fast alles mit dem Handy, sogar auf dem Markt. In Deutschland benutzen noch viele Leute Bargeld. Ich finde das Bezahlen mit dem Handy praktischer, weil es schnell geht, aber Bargeld ist gut, wenn die Technik nicht funktioniert."
+       },
+       {
+        "who": "Anna",
+        "say": "Interessant. In Polen zahlt man auch fast überall mit Karte."
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Gemeinsam etwas planen",
+      "tab": "Teil 3",
+      "intro": "Situation: Ihr Deutschkurs hat einen gemeinsamen Spendenlauf für ein Kinderheim organisiert. Jetzt möchten Sie zusammen das gesammelte Geld feierlich übergeben. Planen Sie zusammen mit Ihrer Partnerin. Ideen: Wann und wo? · Wer wird eingeladen? · Programm? · Wer übernimmt welche Aufgabe?.",
+      "type": "speak",
+      "max": 40,
+      "time": 6,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil drei. Ihr Deutschkurs hat einen gemeinsamen Spendenlauf für ein Kinderheim organisiert. Jetzt möchten Sie zusammen das gesammelte Geld feierlich übergeben. Planen Sie, was Sie tun möchten. Hier sind einige Ideen: Wann und wo? · Wer wird eingeladen? · Programm? · Wer übernimmt welche Aufgabe?. Anna, bitte beginnen Sie."
+       },
+       {
+        "who": "Anna",
+        "say": "Wir haben 1.200 Euro gesammelt! Wollen wir das Geld nächsten Samstag im Kinderheim übergeben?"
+       },
+       {
+        "you": "Reagiere auf Annas Vorschlag – stimm zu oder schlag etwas anderes vor, mit Grund.",
+        "min": 10,
+        "key": [
+         [
+          "gute idee|einverstanden|okay|lieber|das finde ich|ja|nein|das passt|super|toll|klingt gut|genau",
+          "Reaktion"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da|wenn)\\b",
+          "Begründung"
+         ]
+        ],
+        "model": "Das ist eine gute Idee, aber am Samstag arbeiten einige aus dem Kurs. Ich würde lieber am Freitagnachmittag hingehen, weil dann alle Zeit haben."
+       },
+       {
+        "who": "Anna",
+        "say": "Okay, Freitag ist besser. Und wen laden wir ein?"
+       },
+       {
+        "you": "Mach einen eigenen Vorschlag.",
+        "min": 8,
+        "key": [
+         [
+          "wie wäre|wir könnten|ich schlage vor|lass uns|was hältst|vielleicht|sollen wir|hast du lust|wollen wir",
+          "Vorschlag"
+         ],
+         [
+          "übergabe|scheck|kinderheim|spende|geld|feier|einladen|leiterin|presse|zeitung|kuchen|programm|rede|foto",
+          "zum Plan"
+         ]
+        ],
+        "model": "Wir könnten die Leiterin vom Kinderheim und unsere Lehrerin einladen. Was hältst du davon, auch die Lokalzeitung zu fragen? Dann spenden vielleicht noch mehr Leute."
+       },
+       {
+        "who": "Anna",
+        "say": "Gute Idee. Und wer macht was?"
+       },
+       {
+        "you": "Antworte und kläre, wer was macht.",
+        "min": 8,
+        "key": [
+         [
+          "ich kann|ich mache|ich kümmere|ich bringe|ich übernehme|ich rufe|ich frage|ich schreibe|du kannst|du machst|kannst du",
+          "Aufgaben verteilen"
+         ]
+        ],
+        "model": "Ich rufe bei der Zeitung an und frage, ob jemand kommen kann. Kannst du mit dem Kinderheim einen Termin ausmachen? Den Scheck kann unsere Lehrerin übergeben."
+       },
+       {
+        "who": "Anna",
+        "say": "Gut. Fassen wir zusammen – was haben wir jetzt geplant?"
+       },
+       {
+        "you": "Fass euren Plan kurz zusammen.",
+        "min": 15,
+        "key": [
+         [
+          "also|zusammengefasst|dann|wir",
+          "Zusammenfassung"
+         ],
+         [
+          "übergabe|scheck|kinderheim|spende|geld|feier|einladen|leiterin|presse|zeitung|kuchen|programm|rede|foto",
+          "Plan"
+         ]
+        ],
+        "model": "Also, wir übergeben das Geld am Freitagnachmittag im Kinderheim. Wir laden die Leiterin, unsere Lehrerin und die Zeitung ein. Ich rufe bei der Zeitung an, du machst den Termin, und unsere Lehrerin übergibt den Scheck."
+       },
+       {
+        "who": "Anna",
+        "say": "Prima, so machen wir das!"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "b1-11",
+  "title": "Modelltest 11",
+  "level": "schwer",
+  "sub": "Kita, Ehrenamt, Umzug · Abholzeit an die Kita / Bewerbung für ein Ehrenamt",
+  "sections": [
+   {
+    "id": "hoeren",
+    "de": "Hören",
+    "en": "Listening",
+    "time": 25,
+    "parts": [
+     {
+      "t": "Teil 1 – Ansagen",
+      "tab": "Teil 1",
+      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text zweimal.",
+      "type": "mc",
+      "per": 1,
+      "plays": 2,
+      "time": 5,
+      "items": [
+       {
+        "q": "Was soll Frau Rahimi tun?",
+        "o": [
+         "Ihr Kind morgen früher abholen.",
+         "Etwas für das Fest mitbringen.",
+         "Die Erzieherin anrufen."
+        ],
+        "a": 0,
+        "why": "Morgen schließt die Kita schon um 13 Uhr – sie muss früher kommen. Zum Fest muss man nichts mitbringen; anrufen nur, wenn es nicht geht.",
+        "audio": "Hallo Frau Rahimi, hier ist Frau Becker von der Kita Sonnenblume. Ich wollte Sie nur erinnern: Morgen ist unsere Teamfortbildung, deshalb schließen wir schon um 13 Uhr. Bitte holen Sie Leyla also bis spätestens eins ab. Und noch eine gute Nachricht: Für das Sommerfest am Samstag brauchen Sie doch nichts mitzubringen, der Elternbeirat kümmert sich ums Essen. Nur wenn es morgen mit der Abholung nicht klappt, rufen Sie mich bitte an."
+       },
+       {
+        "q": "Wann kommen die Umzugshelfer?",
+        "o": [
+         "Um 7 Uhr.",
+         "Um 8 Uhr.",
+         "Um 9 Uhr."
+        ],
+        "a": 1,
+        "why": "Geplant war 7 Uhr, neu ist eine Stunde später, also 8 Uhr; um 9 Uhr braucht der Wagen die Halteverbotszone.",
+        "audio": "Guten Tag, Herr Kowalski, hier ist Umzüge Schmidt. Wegen einer Baustelle auf der Autobahn müssen wir Ihren Umzug am Samstag eine Stunde später beginnen als geplant. Unsere Leute sind also nicht um sieben, sondern um acht Uhr bei Ihnen. Das Halteverbotsschild für den Lkw steht ab neun Uhr – das passt dann gut. Bis Samstag!"
+       },
+       {
+        "q": "Was ist das Problem?",
+        "o": [
+         "Der Kurs fällt aus.",
+         "Es gibt nicht genug Helfer.",
+         "Der Raum ist nicht frei."
+        ],
+        "a": 1,
+        "why": "Der Termin bleibt, aber es fehlen noch Freiwillige – deshalb der Anruf. Vom Raum oder Ausfall ist keine Rede.",
+        "audio": "Hallo Herr Ahmadi, hier ist Petra von der Tafel. Danke noch mal, dass Sie sich als Helfer gemeldet haben! Die Lebensmittelausgabe am Dienstag findet ganz normal statt. Allerdings sind zwei Leute krank geworden, und jetzt sind wir nur zu dritt. Hätten Sie vielleicht Zeit, schon um 14 Uhr statt um 16 Uhr zu kommen? Bitte schreiben Sie mir kurz eine SMS."
+       },
+       {
+        "q": "Warum ruft Frau Wolf an?",
+        "o": [
+         "Die Schule hat Probleme mit Ali.",
+         "Ali hat seine Jacke vergessen.",
+         "Ali soll eine Klasse wiederholen."
+        ],
+        "a": 1,
+        "why": "Ali hat seine Jacke in der Sporthalle liegen lassen – kein Problem in der Schule. Das Gespräch über die Noten war schon gut.",
+        "audio": "Guten Tag, Herr Demir, hier ist Frau Wolf, die Klassenlehrerin von Ali. Keine Sorge, es ist nichts passiert. Nach dem Sportunterricht heute hat Ali seine Winterjacke in der Turnhalle vergessen. Ich habe sie mit ins Sekretariat genommen. Ali kann sie morgen in der ersten Pause abholen. Und noch einmal danke für das gute Gespräch beim Elternsprechtag!"
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Radio",
+      "tab": "Teil 2",
+      "intro": "Sie hören fünf Ansagen aus dem Radio. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text einmal.",
+      "type": "mc",
+      "per": 1,
+      "plays": 1,
+      "time": 6,
+      "items": [
+       {
+        "q": "Für wen ist die Sendung heute?",
+        "o": [
+         "Für Menschen, die umziehen wollen.",
+         "Für Menschen, die anderen helfen möchten.",
+         "Für Menschen, die eine Arbeit suchen."
+        ],
+        "a": 1,
+        "why": "Es geht um Ehrenamt: Wo kann man sich engagieren und anderen helfen? Bezahlt wird nicht – also keine Jobsuche.",
+        "audio": "Guten Abend und herzlich willkommen bei „Stadtgespräch“. Jede dritte Person in Deutschland engagiert sich ehrenamtlich – im Sportverein, bei der Feuerwehr oder in der Nachbarschaftshilfe. Bezahlt wird man dafür nicht, aber man bekommt viel zurück. Wir zeigen Ihnen heute, wo in unserer Stadt Helferinnen und Helfer gesucht werden."
+       },
+       {
+        "q": "Was müssen Eltern bis Ende Januar tun?",
+        "o": [
+         "Ihr Kind für die Schule anmelden.",
+         "Einen Kitaplatz online beantragen.",
+         "Zu einem Infoabend gehen."
+        ],
+        "a": 1,
+        "why": "Kitaplätze für August müssen bis 31. Januar online beantragt werden; der Infoabend ist freiwillig.",
+        "audio": "Eltern aufgepasst: Wer ab August einen Kitaplatz für sein Kind braucht, muss den Antrag bis zum 31. Januar online stellen. Später eingegangene Anträge können nur noch berücksichtigt werden, wenn Plätze frei bleiben. Wer Fragen hat, kann am 15. Januar zu einem freiwilligen Infoabend ins Rathaus kommen."
+       },
+       {
+        "q": "Was gilt ab heute in der Goethestraße?",
+        "o": [
+         "Man darf nicht mehr parken.",
+         "Autos dürfen nur in eine Richtung fahren.",
+         "Die Straße ist ganz gesperrt."
+        ],
+        "a": 1,
+        "why": "Einbahnstraße = nur eine Richtung. Parken bleibt erlaubt, Fußgänger und Räder dürfen weiter durch – also nicht ganz gesperrt.",
+        "audio": "Verkehrshinweis für die Innenstadt: Wegen Bauarbeiten an der Wasserleitung ist die Goethestraße ab heute für vier Wochen eine Einbahnstraße. Autos dürfen nur noch in Richtung Bahnhof fahren. Die Parkplätze auf der rechten Seite bleiben erhalten, Fußgänger und Radfahrer kommen weiter in beide Richtungen durch."
+       },
+       {
+        "q": "Was bekommen Neubürger im Rathaus?",
+        "o": [
+         "Ein kostenloses Busticket.",
+         "Einen Gutschein für das Schwimmbad.",
+         "Eine Tasche mit Informationen."
+        ],
+        "a": 2,
+        "why": "„eine Begrüßungstasche mit Stadtplan … und Infos“; Gutscheine für Museen gibt es auch, aber kein Busticket und nichts zum Schwimmbad.",
+        "audio": "Neu in unserer Stadt? Dann kommen Sie zum Neubürgerempfang am Sonntag um elf Uhr im Rathaus! Die Bürgermeisterin begrüßt Sie persönlich, und Sie bekommen eine Begrüßungstasche mit Stadtplan, Infos zu Vereinen und Gutscheinen für die städtischen Museen. Für Kinder gibt es ein Spielprogramm."
+       },
+       {
+        "q": "Wie wird das Wetter am Wochenende?",
+        "o": [
+         "Am Samstag warm, am Sonntag Gewitter.",
+         "Das ganze Wochenende Regen.",
+         "Am Samstag Gewitter, am Sonntag Sonne."
+        ],
+        "a": 0,
+        "why": "Samstag sonnig und bis 30 Grad, am Sonntagnachmittag kommen die Gewitter.",
+        "audio": "Und nun das Wetter für das Wochenende: Der Samstag wird ein echter Sommertag mit viel Sonne und bis zu 30 Grad – ideal für einen Ausflug an den See. Am Sonntag ist es am Vormittag noch freundlich, am Nachmittag ziehen aber von Westen kräftige Gewitter auf."
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Gespräche",
+      "tab": "Teil 3",
+      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch zweimal.",
+      "type": "mix",
+      "per": 1,
+      "plays": 2,
+      "time": 9,
+      "items": [
+       {
+        "q": "Ab der zweiten Woche lässt die Mutter Daniel den ganzen Vormittag allein in der Gruppe.",
+        "a": false,
+        "why": "Ab der zweiten Woche geht sie nur kurz raus, zuerst nur zehn Minuten.",
+        "audio": "Mann: Kita Regenbogen, Hartmann am Apparat.\nFrau: Guten Tag, hier ist Okafor. Mein Sohn Daniel bekommt bei Ihnen ab dem 1. September einen Platz. Ich wollte fragen, wie die Eingewöhnung funktioniert.\nMann: Gern. In der ersten Woche bleiben Sie jeden Tag eine Stunde mit Daniel zusammen in der Gruppe. Ab der zweiten Woche gehen Sie dann kurz raus, zuerst nur zehn Minuten.\nFrau: Ich muss ab Mitte September wieder arbeiten. Reicht das?\nMann: Meistens ja. Planen Sie aber besser drei bis vier Wochen ein."
+       },
+       {
+        "same": true,
+        "q": "Was rät der Mann?",
+        "o": [
+         "Erst ab Mitte September zu kommen.",
+         "Drei bis vier Wochen für die Eingewöhnung einzuplanen.",
+         "Daniel gleich den ganzen Tag dazulassen."
+        ],
+        "a": 1,
+        "why": "„Planen Sie aber besser drei bis vier Wochen ein.“"
+       },
+       {
+        "q": "Herr Nguyen braucht einen Transporter für seinen Umzug.",
+        "a": true,
+        "why": "Er möchte einen Transporter für Samstag mieten.",
+        "audio": "Frau: Autovermietung City, guten Tag.\nMann: Guten Tag, Nguyen. Ich ziehe am Samstag um und brauche einen Transporter. Was kostet das?\nFrau: Ein kleiner Transporter kostet 89 Euro pro Tag, 100 Kilometer sind inklusive. Für den Führerschein Klasse B ist das kein Problem.\nMann: Und wenn ich ihn schon Freitagabend abhole?\nFrau: Dann bezahlen Sie nur 20 Euro mehr, wenn Sie ihn am Samstagabend bis 20 Uhr zurückbringen.\nMann: Super, dann mache ich das so."
+       },
+       {
+        "same": true,
+        "q": "Wie viel bezahlt Herr Nguyen?",
+        "o": [
+         "89 Euro.",
+         "109 Euro.",
+         "178 Euro."
+        ],
+        "a": 1,
+        "why": "89 Euro für den Tag plus 20 Euro, weil er ihn schon Freitagabend abholt = 109 Euro."
+       },
+       {
+        "q": "Die beiden Frauen arbeiten zusammen in einem Verein.",
+        "a": true,
+        "why": "Beide helfen im Repair-Café – das ist ihr gemeinsames Ehrenamt.",
+        "audio": "Frau 1: Hallo Marta, kommst du am Samstag wieder ins Repair-Café?\nFrau 2: Eigentlich ja, aber meine Nähmaschine ist kaputt. Ich kann also keine Kleidung reparieren.\nFrau 1: Das ist doch kein Problem. Der Verein hat letzte Woche zwei neue Nähmaschinen bekommen, eine Spende vom Stoffladen in der Hauptstraße.\nFrau 2: Ach, wirklich? Dann komme ich natürlich! Ich bringe auch Kaffee mit.\nFrau 1: Kaffee haben wir genug. Bring lieber Garn mit, das ist fast alle."
+       },
+       {
+        "same": true,
+        "q": "Was soll Marta mitbringen?",
+        "o": [
+         "Ihre Nähmaschine.",
+         "Kaffee.",
+         "Garn."
+        ],
+        "a": 2,
+        "why": "„Kaffee haben wir genug. Bring lieber Garn mit.“"
+       },
+       {
+        "q": "Der Mann kann sich ohne Probleme ummelden.",
+        "a": false,
+        "why": "Ihm fehlt die Wohnungsgeberbestätigung vom Vermieter – heute klappt es nicht.",
+        "audio": "Frau: Der Nächste, bitte. Was kann ich für Sie tun?\nMann: Ich bin vor einer Woche umgezogen und möchte mich ummelden.\nFrau: Haben Sie Ihren Ausweis und die Wohnungsgeberbestätigung?\nMann: Den Ausweis ja. Was ist eine Wohnungsgeberbestätigung?\nFrau: Das ist ein Formular, das Ihr Vermieter ausfüllt. Ohne das kann ich Sie leider nicht ummelden. Sie haben aber noch eine Woche Zeit, denn man muss sich innerhalb von zwei Wochen ummelden.\nMann: Gut, dann frage ich heute noch meinen Vermieter."
+       },
+       {
+        "same": true,
+        "q": "Was macht der Mann als Nächstes?",
+        "o": [
+         "Er füllt ein Formular im Amt aus.",
+         "Er spricht mit seinem Vermieter.",
+         "Er macht einen neuen Termin."
+        ],
+        "a": 1,
+        "why": "„dann frage ich heute noch meinen Vermieter“ – der Vermieter füllt die Bestätigung aus."
+       }
+      ]
+     },
+     {
+      "t": "Teil 4 – Meinungen",
+      "tab": "Teil 4",
+      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage zweimal. Thema: Ehrenamt – lohnt sich das?",
+      "type": "match",
+      "listName": "Sätze",
+      "per": 1,
+      "plays": 2,
+      "time": 5,
+      "list": [
+       "Durch ein Ehrenamt lernt man neue Leute kennen.",
+       "Neben Arbeit und Familie bleibt keine Zeit dafür.",
+       "Im Ehrenamt kann man Erfahrungen für den Beruf sammeln.",
+       "Ehrenamtliche Arbeit sollte bezahlt werden.",
+       "Man bekommt viel Dankbarkeit zurück.",
+       "Vereine finden keine jungen Mitglieder mehr."
+      ],
+      "items": [
+       {
+        "q": "Aussage 1",
+        "a": 2,
+        "why": "Durch die Hausaufgabenhilfe hat sie gemerkt, dass sie Erzieherin werden möchte, und die Erfahrung half bei der Bewerbung – Erfahrung für den Beruf.",
+        "audio": "Ich habe zwei Jahre lang bei der Hausaufgabenhilfe mitgemacht. Dort habe ich gemerkt, wie gern ich mit Kindern arbeite. Jetzt mache ich eine Ausbildung zur Erzieherin – und im Bewerbungsgespräch hat man mich genau danach gefragt."
+       },
+       {
+        "q": "Aussage 2",
+        "a": 1,
+        "why": "Vollzeitjob, zwei Kinder, Pflege der Mutter – er schafft es zeitlich nicht.",
+        "audio": "Ich finde es toll, wenn sich Menschen engagieren. Aber ich arbeite Vollzeit, habe zwei kleine Kinder, und am Wochenende kümmere ich mich um meine Mutter. Wann soll ich da noch ins Vereinsheim gehen? Vielleicht später, wenn ich in Rente bin."
+       },
+       {
+        "q": "Aussage 3",
+        "a": 0,
+        "why": "Als sie neu in der Stadt war, kannte sie niemanden; im Chor hat sie ihre besten Freundinnen gefunden.",
+        "audio": "Als ich vor drei Jahren hierhergezogen bin, kannte ich niemanden. Dann habe ich angefangen, im Chor der Gemeinde zu singen und bei Festen zu helfen. Heute sind zwei Frauen aus dem Chor meine besten Freundinnen."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "lesen",
+    "de": "Lesen",
+    "en": "Reading",
+    "time": 45,
+    "parts": [
+     {
+      "t": "Teil 1 – Wegweiser",
+      "tab": "Teil 1",
+      "intro": "Lesen Sie die Aufgaben und den Wegweiser. Wo (a, b oder c) finden Sie die passende Information?",
+      "type": "mc",
+      "per": 1,
+      "time": 8,
+      "text": "Familienzentrum Westend – Wer hilft wo?\nErdgeschoss: Elterncafé · Krabbelgruppe (0–3 Jahre) · Kleiderbörse\n1. Stock: Beratung für Schwangere · Hebammensprechstunde · Stillgruppe\n2. Stock: Erziehungsberatung · Hilfe bei Anträgen (Kindergeld, Elterngeld, Kitaplatz)\n3. Stock: Deutschkurse mit Kinderbetreuung · Computerkurs für Eltern\nUntergeschoss: Fahrradwerkstatt · Lager für Spenden",
+      "items": [
+       {
+        "q": "Ihr Sohn ist aus seinen Winterschuhen herausgewachsen. Sie möchten günstig neue kaufen.",
+        "o": [
+         "Erdgeschoss",
+         "Untergeschoss",
+         "2. Stock"
+        ],
+        "a": 0,
+        "why": "Kleiderbörse – Erdgeschoss (im Untergeschoss werden Spenden nur gelagert)"
+       },
+       {
+        "q": "Ihre Tochter ist drei Jahre alt und Sie haben noch keinen Kitaplatz beantragt.",
+        "o": [
+         "1. Stock",
+         "Erdgeschoss",
+         "2. Stock"
+        ],
+        "a": 2,
+        "why": "Hilfe bei Anträgen (Kitaplatz) – 2. Stock"
+       },
+       {
+        "q": "Sie möchten Deutsch lernen, haben aber niemanden, der auf Ihr Baby aufpasst.",
+        "o": [
+         "3. Stock",
+         "Erdgeschoss",
+         "1. Stock"
+        ],
+        "a": 0,
+        "why": "Deutschkurse mit Kinderbetreuung"
+       },
+       {
+        "q": "Sie sind im vierten Monat schwanger und haben Fragen.",
+        "o": [
+         "2. Stock",
+         "1. Stock",
+         "Erdgeschoss"
+        ],
+        "a": 1,
+        "why": "Beratung für Schwangere – 1. Stock"
+       },
+       {
+        "q": "Sie haben gute Kinderkleidung, die Sie nicht mehr brauchen, und möchten sie abgeben.",
+        "o": [
+         "Erdgeschoss",
+         "2. Stock",
+         "Untergeschoss"
+        ],
+        "a": 2,
+        "why": "Spenden bringt man ins Lager im Untergeschoss – die Kleiderbörse verkauft nur."
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Anzeigen und Texte",
+      "tab": "Teil 2",
+      "intro": "Lesen Sie die Situationen und die Texte a–h. Finden Sie für jede Situation den passenden Text. Für eine Aufgabe gibt es keine Lösung – wählen Sie dann x.",
+      "type": "match",
+      "listName": "Texte",
+      "x": true,
+      "per": 1,
+      "time": 10,
+      "list": [
+       "Umzugsfirma Blitz: Umzüge in ganz Deutschland, kostenlose Besichtigung, Möbelmontage inklusive.",
+       "Lesepaten gesucht! Die Grundschule am Park sucht Erwachsene, die einmal pro Woche mit Kindern lesen.",
+       "Möbelbörse der Caritas: gut erhaltene gebrauchte Möbel – Abholung bei Ihnen kostenlos.",
+       "Freiwillige Feuerwehr Nordstadt: Wir suchen Mitglieder ab 16 Jahren. Ausbildung kostenlos.",
+       "Babysitterbörse: geprüfte Babysitter für Ihre Kinder, Vermittlung über unsere Website.",
+       "Malerbetrieb Farbe & Co.: Wände streichen und tapezieren – schnell und sauber.",
+       "Seniorenbesuchsdienst: Ehrenamtliche besuchen einsame ältere Menschen zu Hause.",
+       "Transporter-Verleih: Kleintransporter ab 49 Euro am Tag."
+      ],
+      "items": [
+       {
+        "q": "Sie haben vormittags Zeit und möchten gern ehrenamtlich etwas mit Kindern machen.",
+        "a": 1,
+        "why": "Lesepaten = ehrenamtlich mit Kindern lesen (der Babysitterdienst ist bezahlte Arbeit)"
+       },
+       {
+        "q": "Ihr altes Sofa ist noch gut, aber es passt nicht in Ihre neue Wohnung.",
+        "a": 2,
+        "why": "Die Möbelbörse holt gebrauchte Möbel ab."
+       },
+       {
+        "q": "Sie ziehen in eine andere Stadt und wollen nicht alles selbst tragen.",
+        "a": 0,
+        "why": "Umzugsfirma – macht den Umzug für Sie"
+       },
+       {
+        "q": "Sie brauchen einen Kindergartenplatz für Ihre Tochter.",
+        "a": -1,
+        "why": "Keine Anzeige vermittelt Kitaplätze – die Babysitterbörse ist etwas anderes."
+       },
+       {
+        "q": "Ihr Nachbar ist 85, lebt allein und spricht seit Wochen mit niemandem.",
+        "a": 6,
+        "why": "Besuchsdienst für einsame ältere Menschen"
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Kurze Texte",
+      "tab": "Teil 3",
+      "intro": "Lesen Sie die drei Texte. Zu jedem Text gibt es zwei Aufgaben. Entscheiden Sie, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt.",
+      "type": "mix",
+      "per": 1,
+      "time": 10,
+      "items": [
+       {
+        "q": "Die Eltern müssen den Ausflug selbst bezahlen.",
+        "a": false,
+        "why": "Der Förderverein übernimmt die Kosten – die Eltern zahlen nichts.",
+        "text": "Liebe Eltern der Klasse 3b,\nam Donnerstag, dem 12. Juni, machen wir einen Ausflug in den Zoo. Wir treffen uns um 8:00 Uhr an der Schule und kommen gegen 15:00 Uhr zurück. Die Kosten für Bus und Eintritt übernimmt in diesem Jahr der Förderverein. Bitte geben Sie Ihrem Kind ein Lunchpaket, etwas zu trinken und eine Regenjacke mit. Geld für Süßigkeiten oder Souvenirs bitte nicht mitgeben.\nViele Grüße\nIhre Klassenlehrerin Frau Stein"
+       },
+       {
+        "same": true,
+        "q": "Was sollen die Kinder nicht mitbringen?",
+        "o": [
+         "Eine Regenjacke.",
+         "Taschengeld.",
+         "Essen."
+        ],
+        "a": 1,
+        "why": "„Geld für Süßigkeiten oder Souvenirs bitte nicht mitgeben.“"
+       },
+       {
+        "q": "Man kann sich bis zum Tag des Festes anmelden.",
+        "a": false,
+        "why": "Anmeldung nur bis 20. Mai beim Hausmeister – nicht bis zum Festtag.",
+        "text": "Hoffest in der Lindenstraße 12–16!\nAm Samstag, dem 31. Mai, feiern wir ab 15 Uhr im Innenhof unser erstes Nachbarschaftsfest. Jeder Haushalt bringt bitte etwas zu essen für das Buffet mit. Grill und Getränke stellt die Hausverwaltung. Damit wir besser planen können, melden Sie sich bitte bis zum 20. Mai beim Hausmeister an – am besten mit der Zahl der Personen. Bei Regen feiern wir im Gemeinschaftsraum im Keller."
+       },
+       {
+        "same": true,
+        "q": "Was passiert, wenn es regnet?",
+        "o": [
+         "Das Fest fällt aus.",
+         "Es wird verschoben.",
+         "Man feiert drinnen."
+        ],
+        "a": 2,
+        "why": "„Bei Regen feiern wir im Gemeinschaftsraum im Keller.“"
+       },
+       {
+        "q": "Die Tafel sucht vor allem Helfer mit Führerschein.",
+        "a": true,
+        "why": "Besonders gesucht: Fahrerinnen und Fahrer mit Führerschein Klasse B.",
+        "text": "Die Tafel braucht Ihre Hilfe!\nJede Woche holen wir in Supermärkten Lebensmittel ab, die nicht mehr verkauft werden, und geben sie an Menschen mit wenig Geld weiter. Dafür brauchen wir Ehrenamtliche, die sortieren, verteilen oder Fahrten übernehmen. Besonders dringend suchen wir Fahrerinnen und Fahrer mit Führerschein Klasse B für unseren Kühlwagen. Sie bestimmen selbst, wie oft Sie helfen möchten – schon zwei Stunden im Monat sind eine große Hilfe."
+       },
+       {
+        "same": true,
+        "q": "Wie oft müssen Helfer kommen?",
+        "o": [
+         "Mindestens jede Woche.",
+         "So oft, wie sie möchten.",
+         "Zwei Stunden pro Woche."
+        ],
+        "a": 1,
+        "why": "„Sie bestimmen selbst, wie oft Sie helfen möchten“ – zwei Stunden im Monat ist nur ein Beispiel."
+       }
+      ]
+     },
+     {
+      "t": "Teil 4 – Ein längerer Text",
+      "tab": "Teil 4",
+      "intro": "Lesen Sie den Text. Entscheiden Sie, ob die Aussagen richtig oder falsch sind.",
+      "type": "rf",
+      "per": 1,
+      "time": 7,
+      "text": "Umzug – an alles gedacht?\nWer umzieht, hat viel zu tun. Neben Kisten und Möbeln gibt es auch einige Pflichten. Die wichtigste: Innerhalb von zwei Wochen nach dem Einzug muss man sich beim Bürgeramt anmelden. Dafür braucht man eine Bestätigung des Vermieters. Wer zu spät kommt, muss im schlimmsten Fall ein Bußgeld bezahlen.\nAuch wer ein Auto hat, muss die neue Adresse melden. Innerhalb derselben Stadt reicht es, das beim Bürgeramt zu sagen – dann wird der Fahrzeugschein gleich mit geändert. Zieht man in einen anderen Landkreis, darf man das alte Kennzeichen inzwischen behalten.\nArbeitnehmer haben übrigens nicht automatisch einen freien Tag für den Umzug. Ob es Sonderurlaub gibt, steht im Arbeits- oder Tarifvertrag. Wer aber vom Arbeitgeber für eine neue Stelle in eine andere Stadt geschickt wird, kann die Umzugskosten oft bei der Steuer angeben.",
+      "items": [
+       {
+        "q": "Wer sich zu spät anmeldet, muss vielleicht Geld bezahlen.",
+        "a": true,
+        "why": "„im schlimmsten Fall ein Bußgeld“ – also vielleicht"
+       },
+       {
+        "q": "Nach einem Umzug in einen anderen Landkreis braucht man ein neues Kennzeichen.",
+        "a": false,
+        "why": "Man darf das alte Kennzeichen inzwischen behalten."
+       },
+       {
+        "q": "Jeder Arbeitnehmer bekommt für den Umzug einen Tag frei.",
+        "a": false,
+        "why": "nicht automatisch – das hängt vom Arbeits- oder Tarifvertrag ab"
+       }
+      ]
+     },
+     {
+      "t": "Teil 5 – Brief mit Lücken",
+      "tab": "Teil 5",
+      "intro": "Lesen Sie den Text und schließen Sie die Lücken. Welche Lösung (a, b oder c) passt am besten?",
+      "type": "gapmc",
+      "per": 1,
+      "time": 10,
+      "text": "Liebe Frau Schulz,\nwie Sie wissen, ist unsere Tochter Mira seit März bei Ihnen in der Gruppe. Sie geht sehr gern in die Kita, (1) sind wir sehr froh. Ab nächstem Monat ändert sich leider meine Arbeitszeit: Ich arbeite dann nicht mehr bis 15 Uhr wie bisher, (2) bis 16:30 Uhr. Deshalb möchte ich fragen, (3) Mira länger in der Kita bleiben kann. Ich weiß, dass die Spätgruppe (4) voll ist. Falls es keinen Platz gibt, könnte mein Mann sie zweimal pro Woche abholen. An den anderen Tagen (5) eine Nachbarin Mira abholen, wenn Sie damit einverstanden sind. Ich würde mich freuen, (6) wir bald einen Termin für ein Gespräch finden könnten.\nViele Grüße\nPriya [Nachname]",
+      "items": [
+       {
+        "n": 1,
+        "o": [
+         "darüber",
+         "davon",
+         "dafür"
+        ],
+        "a": 0,
+        "why": "froh sein über etwas → darüber"
+       },
+       {
+        "n": 2,
+        "o": [
+         "aber",
+         "sondern",
+         "oder"
+        ],
+        "a": 1,
+        "why": "nicht mehr bis 15 Uhr, sondern bis 16:30 Uhr – nach „nicht“ korrigiert man mit sondern"
+       },
+       {
+        "n": 3,
+        "o": [
+         "dass",
+         "wenn",
+         "ob"
+        ],
+        "a": 2,
+        "why": "indirekte Ja/Nein-Frage → ob"
+       },
+       {
+        "n": 4,
+        "o": [
+         "sehr",
+         "viel",
+         "mehr"
+        ],
+        "a": 0,
+        "why": "vor einem Adjektiv: sehr voll – „viel voll“ und „mehr voll“ gibt es nicht"
+       },
+       {
+        "n": 5,
+        "o": [
+         "würde",
+         "hätte",
+         "wäre"
+        ],
+        "a": 0,
+        "why": "Konjunktiv II: würde … abholen"
+       },
+       {
+        "n": 6,
+        "o": [
+         "ob",
+         "wenn",
+         "weil"
+        ],
+        "a": 1,
+        "why": "Ich würde mich freuen, wenn … (Konjunktiv II: könnten)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "schreiben",
+    "de": "Schreiben",
+    "en": "Writing",
+    "time": 30,
+    "parts": [
+     {
+      "t": "Brief oder E-Mail",
+      "intro": "Wählen Sie Aufgabe A oder Aufgabe B. Zeigen Sie, was Sie können. Schreiben Sie möglichst viel. Vergessen Sie nicht die Anrede und den Gruß. Schreiben Sie etwas zu allen vier Punkten.",
+      "type": "write",
+      "crit": "b1",
+      "words": 80,
+      "time": 30,
+      "task": "Aufgabe A: Ihr Kind geht in die Kita. Ab nächstem Monat arbeiten Sie länger und können Ihr Kind erst später abholen. Schreiben Sie an die Erzieherin, Frau Schulz.",
+      "points": [
+       "Grund für Ihr Schreiben",
+       "Was ändert sich bei Ihrer Arbeit?",
+       "Ihre Bitte an die Kita",
+       "Andere Lösung, wenn es nicht geht"
+      ],
+      "model": "Liebe Frau Schulz,\nich schreibe Ihnen, weil ich eine Frage zu den Abholzeiten von Mira habe.\nAb dem 1. Oktober ändert sich meine Arbeitszeit. Ich arbeite dann nicht mehr bis 15 Uhr, sondern bis 16:30 Uhr, weil meine Firma ein neues Projekt hat.\nDeshalb möchte ich Sie fragen, ob Mira ab Oktober bis 17 Uhr in der Kita bleiben kann. Ich weiß, dass die Spätgruppe sehr voll ist, aber für uns wäre das eine große Hilfe.\nWenn das nicht möglich ist, kann mein Mann Mira dienstags und donnerstags früher abholen. An den anderen Tagen würde unsere Nachbarin, Frau Berger, sie abholen. Ich gebe Ihnen gern eine schriftliche Erlaubnis dafür.\nVielen Dank und viele Grüße\nSuresh [Nachname]",
+      "keys": [
+       [
+        "schreibe|frage|abhol|kita",
+        "Ich schreibe Ihnen, weil ich eine Frage zur Abholzeit habe."
+       ],
+       [
+        "arbeit|arbeite|uhr|länger|projekt|stelle|schicht",
+        "Ab nächstem Monat arbeite ich bis 16:30 Uhr."
+       ],
+       [
+        "bleiben|länger|spätgruppe|später|bitte|möglich|könnte",
+        "Kann mein Kind bitte bis 17 Uhr in der Kita bleiben?"
+       ],
+       [
+        "wenn (das|es) nicht|falls|sonst|mann|frau|oma|nachbar|abholen|erlaubnis",
+        "Wenn das nicht geht, holt mein Mann sie zweimal pro Woche ab."
+       ]
+      ],
+      "alt": {
+       "task": "Aufgabe B: In der Zeitung haben Sie gelesen, dass das Seniorenheim „Haus am See“ Ehrenamtliche sucht, die mit den Bewohnern Zeit verbringen. Schreiben Sie an die Leiterin, Frau Krause.",
+       "points": [
+        "Grund für Ihr Schreiben",
+        "Etwas über Sie",
+        "Was möchten Sie gern machen?",
+        "Wann haben Sie Zeit?"
+       ],
+       "model": "Sehr geehrte Frau Krause,\nin der Zeitung habe ich gelesen, dass Sie Ehrenamtliche für Ihr Seniorenheim suchen. Ich würde gern bei Ihnen mithelfen.\nIch heiße Suresh, komme aus Indien und lebe seit drei Jahren in Frankfurt. Ich arbeite als Ingenieur. In Indien habe ich lange mit meinen Großeltern zusammengewohnt, deshalb verbringe ich gern Zeit mit älteren Menschen.\nIch könnte mit den Bewohnern spazieren gehen, Karten spielen oder aus der Zeitung vorlesen. Außerdem koche ich gern und könnte einmal indisches Essen mit ihnen zusammen kochen.\nZeit habe ich am Samstagnachmittag und an einem Abend in der Woche, zum Beispiel mittwochs ab 18 Uhr.\nIch freue mich auf Ihre Antwort.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+       "keys": [
+        [
+         "zeitung|gelesen|anzeige|ehrenamt|helfen|mithelfen|interess",
+         "In der Zeitung habe ich gelesen, dass Sie Ehrenamtliche suchen."
+        ],
+        [
+         "heiße|komme aus|wohne|lebe|arbeite|bin \\d|jahre alt|familie",
+         "Ich heiße Suresh, komme aus Indien und arbeite als Ingenieur."
+        ],
+        [
+         "spazieren|spielen|vorlesen|kochen|singen|erzählen|gespräch|begleiten|könnte",
+         "Ich könnte mit den Bewohnern spazieren gehen oder Karten spielen."
+        ],
+        [
+         "montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|wochenende|abend|nachmittag|vormittag|uhr|zeit|\\d",
+         "Ich habe am Samstagnachmittag Zeit."
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "id": "sprechen",
+    "de": "Sprechen",
+    "en": "Speaking",
+    "time": 16,
+    "oral": true,
+    "parts": [
+     {
+      "t": "Teil 1 – Über sich sprechen",
+      "tab": "Teil 1",
+      "intro": "Stellen Sie sich vor: Name, Geburtsort, Wohnort, Arbeit/Beruf, Familie, Sprachen. Danach fragt die Prüferin nach.",
+      "type": "speak",
+      "max": 20,
+      "time": 4,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Guten Tag. Wir möchten Sie gern kennenlernen. Würden Sie sich bitte vorstellen? Hier sind einige Stichpunkte: Name, Geburtsort, Wohnort, Arbeit oder Beruf, Familie und Sprachen."
+       },
+       {
+        "you": "Stell dich vor: Name, Geburtsort, Wohnort, Arbeit/Beruf, Familie, Sprachen.",
+        "min": 30,
+        "key": [
+         [
+          "heiße|name ist|ich bin [A-ZÄÖÜ]",
+          "Name"
+         ],
+         [
+          "geboren|komme aus",
+          "Geburtsort"
+         ],
+         [
+          "wohne",
+          "Wohnort"
+         ],
+         [
+          "arbeite|beruf|bin .*(ingenieur|lehrer|student|entwickler|koch|verkäufer|pfleger)",
+          "Arbeit/Beruf"
+         ],
+         [
+          "verheiratet|kinder|frau|mann|familie|ledig|tochter|sohn",
+          "Familie"
+         ],
+         [
+          "spreche|sprache",
+          "Sprachen"
+         ]
+        ],
+        "model": "Ich heiße Suresh [Nachname]. Ich bin in Indien geboren, in Chennai. Jetzt wohne ich in Frankfurt. Ich arbeite als Ingenieur in einer IT-Firma. Ich bin verheiratet und habe [Familie]. Ich spreche Tamil, Englisch und ein bisschen Deutsch."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Vielen Dank. Und jetzt Sie, bitte."
+       },
+       {
+        "who": "Anna",
+        "say": "Ich heiße Anna Kowalska und bin in Polen geboren, in Danzig. Seit vier Jahren wohne ich in Offenbach. Ich arbeite als Verkäuferin in einer Bäckerei. Ich bin verheiratet und habe einen Sohn. Ich spreche Polnisch, Deutsch und ein bisschen Englisch."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Sie wohnen in Frankfurt. Sind Sie schon einmal in Deutschland umgezogen? Wie war das?"
+       },
+       {
+        "you": "Erzähl von einem Umzug.",
+        "min": 15,
+        "key": [
+         [
+          "umgezogen|umzug|gewohnt|wohnung|eingezogen|kisten|möbel",
+          "Umzug"
+         ],
+         [
+          "war|hat|habe|haben",
+          "Vergangenheit"
+         ]
+        ],
+        "model": "Ja, letztes Jahr sind wir von einer kleinen Wohnung in eine größere umgezogen. Freunde haben uns geholfen, die Kisten zu tragen. Das war anstrengend, aber am Abend haben wir zusammen Pizza gegessen."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Was machen Sie gern in Ihrer Freizeit? Engagieren Sie sich vielleicht in einem Verein?"
+       },
+       {
+        "you": "Sag, was du in deiner Freizeit machst – mit Grund.",
+        "min": 12,
+        "key": [
+         [
+          "freizeit|verein|gern|spiele|sport|lese|koche|helfe|mitglied",
+          "Freizeit"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da|wenn)\\b",
+          "Begründung"
+         ]
+        ],
+        "model": "In meiner Freizeit spiele ich Cricket in einem Verein. Das macht mir Spaß, weil ich dort viele Leute aus anderen Ländern treffe."
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Über Erfahrungen sprechen",
+      "tab": "Teil 2",
+      "intro": "Thema: Ehrenamt. Beschreiben Sie Ihr Foto. Dann erzählen Sie von Ihren Erfahrungen und sagen Ihre Meinung.",
+      "type": "speak",
+      "max": 40,
+      "time": 6,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
+       },
+       {
+        "you": "Dein Foto: 🧓 ein junger Mann und eine alte Frau sitzen auf einer Parkbank, er zeigt ihr etwas auf einem Tablet, beide lachen – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "min": 25,
+        "key": [
+         [
+          "auf dem foto|auf dem bild|ich sehe|man sieht|es gibt",
+          "Foto beschreiben"
+         ],
+         [
+          "mann|frau|alt|jung|park|bank|tablet|handy|lachen|zeigt|computer",
+          "was zu sehen ist"
+         ],
+         [
+          "vielleicht|ich glaube|wahrscheinlich|situation|sieht .* aus",
+          "Situation vermuten"
+         ]
+        ],
+        "model": "Auf dem Foto sehe ich einen jungen Mann und eine alte Frau auf einer Parkbank. Er zeigt ihr etwas auf einem Tablet, und beide lachen. Vielleicht erklärt er ihr, wie man Videos anruft. Ich glaube, er ist kein Enkel, sondern ein Ehrenamtlicher, der ältere Menschen besucht."
+       },
+       {
+        "who": "Anna",
+        "say": "Auf meinem Foto sieht man junge Leute, die im Wald Müll sammeln. Sie tragen Handschuhe und haben große Säcke dabei."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Danke. Erzählen Sie bitte: Haben Sie schon einmal anderen Menschen geholfen, ohne Geld dafür zu bekommen?"
+       },
+       {
+        "you": "Erzähl von deinen Erfahrungen (2–3 Sätze).",
+        "min": 15,
+        "key": [
+         [
+          "\\bich\\b|\\bwir\\b",
+          "persönlich"
+         ],
+         [
+          "geholfen|helfe|ehrenamt|verein|nachbar|freunde|spende|kostenlos|mitgemacht",
+          "zum Thema"
+         ]
+        ],
+        "model": "Ja, als ich nach Deutschland gekommen bin, habe ich einem neuen Kollegen bei der Wohnungssuche geholfen. Außerdem helfe ich manchmal meiner älteren Nachbarin beim Einkaufen."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Wie ist das in Ihrem Heimatland? Gibt es dort auch Ehrenamt und Vereine? Was ist Ihre Meinung?"
+       },
+       {
+        "you": "Vergleiche mit deinem Heimatland und sag deine Meinung – mit Grund.",
+        "min": 20,
+        "key": [
+         [
+          "in meinem (heimat)?land|bei uns|in indien|in deutschland|dort|hier",
+          "Vergleich"
+         ],
+         [
+          "meiner meinung|ich finde|ich denke|ich glaube|für mich|mir gefällt",
+          "Meinung"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da|wenn)\\b",
+          "Begründung"
+         ]
+        ],
+        "model": "In Indien gibt es nicht so viele Vereine wie hier. Dort hilft vor allem die Familie oder die Nachbarschaft. Ich finde das Ehrenamt in Deutschland sehr gut, weil auch Menschen ohne Familie Hilfe bekommen."
+       },
+       {
+        "who": "Anna",
+        "say": "Das ist in Polen ähnlich. Viele helfen in der Kirchengemeinde."
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Gemeinsam etwas planen",
+      "tab": "Teil 3",
+      "intro": "Situation: Ihre Nachbarin, Frau Novak, zieht am Samstag in eine neue Wohnung im Nachbarort. Sie ist allein und hat kein Auto. Sie möchten ihr zusammen beim Umzug helfen. Planen Sie zusammen mit Ihrer Partnerin. Ideen: Transport? · Wer hilft noch? · Essen für die Helfer? · Was ist mit der alten Wohnung?.",
+      "type": "speak",
+      "max": 40,
+      "time": 6,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil drei. Ihre Nachbarin, Frau Novak, zieht am Samstag in eine neue Wohnung im Nachbarort. Sie ist allein und hat kein Auto. Sie möchten ihr zusammen beim Umzug helfen. Planen Sie, was Sie tun möchten. Hier sind einige Ideen: Transport? · Wer hilft noch? · Essen für die Helfer? · Was ist mit der alten Wohnung?. Anna, bitte beginnen Sie."
+       },
+       {
+        "who": "Anna",
+        "say": "Frau Novak hat keinen Wagen. Sollen wir einen großen Transporter mieten?"
+       },
+       {
+        "you": "Reagiere auf Annas Vorschlag – stimm zu oder schlag etwas anderes vor, mit Grund.",
+        "min": 10,
+        "key": [
+         [
+          "gute idee|einverstanden|okay|lieber|das finde ich|ja|nein|das passt|super|toll|klingt gut|genau",
+          "Reaktion"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da|wenn)\\b",
+          "Begründung"
+         ]
+        ],
+        "model": "Ein Transporter ist gut, aber ein großer ist teuer und schwer zu fahren. Ich würde lieber einen kleinen Transporter nehmen und zweimal fahren, weil es ja nicht weit ist."
+       },
+       {
+        "who": "Anna",
+        "say": "Okay. Und wer hilft uns beim Tragen?"
+       },
+       {
+        "you": "Mach einen eigenen Vorschlag.",
+        "min": 8,
+        "key": [
+         [
+          "wie wäre|wir könnten|ich schlage vor|lass uns|was hältst|vielleicht|sollen wir|hast du lust|wollen wir",
+          "Vorschlag"
+         ],
+         [
+          "umzug|transporter|auto|kisten|möbel|helfen|helfer|pizza|essen|wohnung|putzen|schlüssel|samstag|nachbar",
+          "zum Plan"
+         ]
+        ],
+        "model": "Wir könnten Herrn Rossi aus dem dritten Stock fragen, er ist stark. Wie wäre es, wenn wir für alle Helfer Pizza bestellen?"
+       },
+       {
+        "who": "Anna",
+        "say": "Gute Idee. Und die alte Wohnung muss sie ja auch noch putzen."
+       },
+       {
+        "you": "Antworte und kläre, wer was macht.",
+        "min": 8,
+        "key": [
+         [
+          "ich kann|ich mache|ich kümmere|ich bringe|ich übernehme|ich rufe|ich frage|ich schreibe|du kannst|du machst|kannst du",
+          "Aufgaben verteilen"
+         ]
+        ],
+        "model": "Ich kümmere mich um den Transporter und frage Herrn Rossi. Kannst du am Sonntag mit Frau Novak die alte Wohnung putzen? Dann kann sie am Montag den Schlüssel abgeben."
+       },
+       {
+        "who": "Anna",
+        "say": "Gut. Fassen wir zusammen – was haben wir jetzt geplant?"
+       },
+       {
+        "you": "Fass euren Plan kurz zusammen.",
+        "min": 15,
+        "key": [
+         [
+          "also|zusammengefasst|dann|wir",
+          "Zusammenfassung"
+         ],
+         [
+          "umzug|transporter|auto|kisten|möbel|helfen|helfer|pizza|essen|wohnung|putzen|schlüssel|samstag|nachbar",
+          "Plan"
+         ]
+        ],
+        "model": "Also, wir mieten einen kleinen Transporter und fahren zweimal. Herr Rossi hilft beim Tragen, und mittags bestellen wir Pizza. Ich organisiere den Transporter, und du putzt am Sonntag mit Frau Novak die alte Wohnung."
+       },
+       {
+        "who": "Anna",
+        "say": "Prima, so machen wir das!"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "b1-12",
+  "title": "Modelltest 12",
+  "level": "schwer",
+  "sub": "Arbeitsrecht, Weiterbildung, Umwelt · Überstunden an den Arbeitgeber / Spielplatz an die Stadt",
+  "sections": [
+   {
+    "id": "hoeren",
+    "de": "Hören",
+    "en": "Listening",
+    "time": 25,
+    "parts": [
+     {
+      "t": "Teil 1 – Ansagen",
+      "tab": "Teil 1",
+      "intro": "Sie hören vier Ansagen. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text zweimal.",
+      "type": "mc",
+      "per": 1,
+      "plays": 2,
+      "time": 5,
+      "items": [
+       {
+        "q": "Was soll Herr Tran tun?",
+        "o": [
+         "Seinen Lohnzettel prüfen.",
+         "Ein Formular unterschreiben.",
+         "Sich krankmelden."
+        ],
+        "a": 1,
+        "why": "Die Überstunden werden bezahlt, aber erst nach Unterschrift auf dem Formular bei der Personalabteilung. Der Fehler auf dem Lohnzettel wird ja schon korrigiert.",
+        "audio": "Hallo Herr Tran, hier ist Frau Wagner aus der Personalabteilung. Sie hatten nach Ihren Überstunden aus dem letzten Monat gefragt. Sie haben recht, auf Ihrer Abrechnung fehlen zwölf Stunden. Wir korrigieren das mit dem nächsten Gehalt. Dafür brauchen wir aber noch Ihre Unterschrift auf dem Stundenzettel. Kommen Sie bitte diese Woche kurz bei mir im Büro vorbei, Zimmer 204."
+       },
+       {
+        "q": "Wann beginnt der Kurs?",
+        "o": [
+         "Am 3. März.",
+         "Am 10. März.",
+         "Am 17. März."
+        ],
+        "a": 2,
+        "why": "Der 3. März ist ausgefallen, der 10. März ist nur der Infoabend – Kursbeginn ist der 17.",
+        "audio": "Guten Tag, hier ist die Volkshochschule. Sie haben sich für den Kurs „Buchhaltung mit dem Computer“ angemeldet. Leider waren für den Start am 3. März zu wenige Teilnehmer da. Wir haben aber jetzt genug Anmeldungen. Am 10. März gibt es einen Infoabend, und am 17. März geht der Kurs dann los. Den Infoabend müssen Sie nicht besuchen."
+       },
+       {
+        "q": "Was ändert sich bei der Müllabfuhr?",
+        "o": [
+         "Die Biotonne wird seltener geleert.",
+         "Gelbe Säcke gibt es nicht mehr.",
+         "Der Restmüll kommt an einem anderen Tag."
+        ],
+        "a": 0,
+        "why": "Ab November nur alle zwei Wochen = seltener; der Restmüll bleibt am Dienstag, von gelben Säcken ist keine Rede.",
+        "audio": "Liebe Bürgerinnen und Bürger, hier ist der Abfallservice der Stadt. Ab November wird die Biotonne nur noch alle zwei Wochen geleert, ab April dann wieder jede Woche. Der Restmüll wird weiter am Dienstag abgeholt. Und eine Bitte: Stellen Sie die Tonnen bis sieben Uhr morgens an die Straße."
+       },
+       {
+        "q": "Warum kann Frau Lopez am Freitag nicht kommen?",
+        "o": [
+         "Der Arzt ist im Urlaub.",
+         "Die Praxis hat einen Termin verschoben.",
+         "Die Untersuchung muss nüchtern sein."
+        ],
+        "a": 1,
+        "why": "Die Praxis hat den Termin auf Montag verlegt, weil das Gerät repariert wird. Nüchtern sein muss sie trotzdem – das ist kein Grund.",
+        "audio": "Guten Morgen, Frau Lopez, hier ist die Praxis Dr. Krämer. Ihre Untersuchung am Freitag müssen wir leider auf Montag um 8 Uhr verlegen, weil unser Ultraschallgerät am Freitag repariert wird. Bitte denken Sie daran, auch am Montag nüchtern zu kommen, also ohne Frühstück. Wenn Montag nicht passt, rufen Sie uns bitte an."
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Radio",
+      "tab": "Teil 2",
+      "intro": "Sie hören fünf Ansagen aus dem Radio. Zu jeder Ansage gibt es eine Aufgabe. Welche Lösung (a, b oder c) passt am besten? Sie hören jeden Text einmal.",
+      "type": "mc",
+      "per": 1,
+      "plays": 1,
+      "time": 6,
+      "items": [
+       {
+        "q": "Worum geht es in der Sendung?",
+        "o": [
+         "Um Rechte von Arbeitnehmern.",
+         "Um freie Stellen in der Region.",
+         "Um Ausbildung im Ausland."
+        ],
+        "a": 0,
+        "why": "Fragen zu Urlaub, Überstunden und Kündigung – also Arbeitnehmerrechte.",
+        "audio": "Darf mein Chef mir den Urlaub einfach streichen? Muss ich Überstunden machen? Und was passiert, wenn ich während der Probezeit krank werde? Diese Fragen beantwortet heute bei „Arbeit und Recht“ ein Anwalt für Arbeitsrecht. Sie können live anrufen."
+       },
+       {
+        "q": "Was sollen die Bürger tun?",
+        "o": [
+         "Weniger Auto fahren.",
+         "Bäume in der Stadt gießen.",
+         "Wasser sparen."
+        ],
+        "a": 1,
+        "why": "Die Stadt bittet, Straßenbäume vor dem Haus mit ein paar Eimern zu gießen; Wassersparen wird nicht verlangt.",
+        "audio": "Die Hitze hält an: Seit drei Wochen hat es in der Region nicht geregnet. Die Stadt bittet alle Bürgerinnen und Bürger, die jungen Straßenbäume vor ihrem Haus mit zwei oder drei Eimern Wasser zu gießen. Die städtischen Gärtner schaffen das zurzeit nicht allein. Das Trinkwasser ist übrigens nicht knapp."
+       },
+       {
+        "q": "Was gilt für die Fahrradstraße?",
+        "o": [
+         "Autos dürfen dort nicht fahren.",
+         "Radfahrer haben Vorrang.",
+         "Sie ist nur am Wochenende geöffnet."
+        ],
+        "a": 1,
+        "why": "Autos dürfen noch fahren, aber nur 30 km/h, und Radfahrer haben Vorrang – auch nebeneinander.",
+        "audio": "Ab Montag ist die Uferstraße offiziell eine Fahrradstraße. Was heißt das? Autos dürfen dort weiter fahren, aber höchstens 30 Kilometer pro Stunde. Radfahrerinnen und Radfahrer haben Vorrang und dürfen auch nebeneinander fahren. Die Stadt hofft, dass so mehr Menschen mit dem Rad zur Arbeit kommen."
+       },
+       {
+        "q": "Was bekommt man im Repair-Café?",
+        "o": [
+         "Ein neues Gerät zum halben Preis.",
+         "Hilfe beim Reparieren.",
+         "Geld für alte Geräte."
+        ],
+        "a": 1,
+        "why": "Ehrenamtliche helfen beim Reparieren; man bezahlt nur Ersatzteile. Es wird nichts verkauft oder angekauft.",
+        "audio": "Ihr Toaster geht nicht mehr, oder die Lampe flackert? Werfen Sie sie nicht weg! Jeden ersten Samstag im Monat öffnet im Bürgerhaus das Repair-Café. Ehrenamtliche Technikerinnen und Techniker reparieren mit Ihnen zusammen Ihre Geräte. Die Hilfe ist kostenlos, nur Ersatzteile müssen Sie bezahlen."
+       },
+       {
+        "q": "Wie wird das Wetter morgen?",
+        "o": [
+         "Nebel am Morgen, dann sonnig.",
+         "Den ganzen Tag Regen.",
+         "Sonnig am Morgen, abends Regen."
+        ],
+        "a": 0,
+        "why": "Morgens dichter Nebel, ab Mittag Sonne; Regen erst übermorgen.",
+        "audio": "Das Wetter für morgen: Am Morgen gibt es vor allem in den Tälern dichten Nebel, Autofahrer sollten also vorsichtig fahren. Ab Mittag löst sich der Nebel auf, und es wird sonnig bei bis zu 16 Grad. Regen kommt erst übermorgen."
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Gespräche",
+      "tab": "Teil 3",
+      "intro": "Sie hören vier Gespräche. Zu jedem Gespräch gibt es zwei Aufgaben. Entscheiden Sie bei jedem Gespräch, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt. Sie hören jedes Gespräch zweimal.",
+      "type": "mix",
+      "per": 1,
+      "plays": 2,
+      "time": 9,
+      "items": [
+       {
+        "q": "Der Mann soll am Wochenende arbeiten.",
+        "a": true,
+        "why": "Der Chef bittet ihn, am Samstag zu arbeiten, weil ein großer Auftrag fertig werden muss.",
+        "audio": "Frau: Herr Popescu, haben Sie kurz Zeit? Wir haben einen großen Auftrag, der bis Montag fertig sein muss. Könnten Sie am Samstag arbeiten?\nMann: Diesen Samstag? Eigentlich hat meine Tochter Geburtstag.\nFrau: Oh, das verstehe ich. Es wären nur vier Stunden, von acht bis zwölf. Sie bekommen dafür einen Zuschlag von 25 Prozent, oder Sie nehmen nächste Woche einen Tag frei.\nMann: Dann komme ich am Vormittag. Die Feier ist erst am Nachmittag. Und ich nehme lieber den freien Tag.\nFrau: Wunderbar, vielen Dank!"
+       },
+       {
+        "same": true,
+        "q": "Was bekommt Herr Popescu für den Samstag?",
+        "o": [
+         "Mehr Geld.",
+         "Einen freien Tag.",
+         "Ein Geschenk für die Tochter."
+        ],
+        "a": 1,
+        "why": "Er hat die Wahl zwischen Zuschlag und freiem Tag – „Ich nehme lieber den freien Tag.“"
+       },
+       {
+        "q": "Die Frau hat die Weiterbildung schon begonnen.",
+        "a": false,
+        "why": "Sie möchte sie erst machen und fragt nach der Bezahlung.",
+        "audio": "Frau: Herr Klein, ich würde gern eine Weiterbildung zur Pflegefachkraft machen. Ich habe gehört, dass die Firma manchmal Kurse bezahlt.\nMann: Das stimmt. Wir übernehmen die Kursgebühren, wenn Sie danach mindestens zwei Jahre bei uns bleiben.\nFrau: Und die Arbeitszeit?\nMann: Die Kurstage gelten als Arbeitszeit. Sie müssen aber das Formular bis Ende des Monats bei der Personalabteilung abgeben.\nFrau: Das mache ich gleich morgen."
+       },
+       {
+        "same": true,
+        "q": "Welche Bedingung gibt es?",
+        "o": [
+         "Sie muss die Kurse selbst bezahlen.",
+         "Sie muss mindestens zwei Jahre bleiben.",
+         "Sie muss die Kurse in ihrer Freizeit machen."
+        ],
+        "a": 1,
+        "why": "„wenn Sie danach mindestens zwei Jahre bei uns bleiben“"
+       },
+       {
+        "q": "Die beiden Männer finden die neue Mülltrennung gut.",
+        "a": false,
+        "why": "Nur einer findet sie gut; der andere ärgert sich über die vielen Tonnen.",
+        "audio": "Mann 1: Hast du gesehen? Im Hof stehen jetzt fünf verschiedene Mülltonnen.\nMann 2: Ja, und ich verstehe das System überhaupt nicht. Wohin kommt denn ein Joghurtbecher?\nMann 1: In die gelbe Tonne, aber leer, nicht gespült. Ich finde das gut, so wird mehr recycelt.\nMann 2: Mir ist das zu kompliziert. Und die Tonnen nehmen den ganzen Platz für die Fahrräder weg.\nMann 1: Frag doch die Hausverwaltung, ob die Fahrräder in den Keller dürfen."
+       },
+       {
+        "same": true,
+        "q": "Was schlägt der erste Mann vor?",
+        "o": [
+         "Die Hausverwaltung zu fragen.",
+         "Die Tonnen in den Keller zu stellen.",
+         "Den Joghurtbecher zu spülen."
+        ],
+        "a": 0,
+        "why": "„Frag doch die Hausverwaltung, ob die Fahrräder in den Keller dürfen.“ – die Tonnen bleiben; spülen muss man nicht."
+       },
+       {
+        "q": "Die Frau hat einen befristeten Vertrag.",
+        "a": true,
+        "why": "Ihr Vertrag endet im Juni – er ist befristet.",
+        "audio": "Mann: Na, Sevgi, wie geht es dir in der neuen Firma?\nFrau: Gut eigentlich. Aber mein Vertrag ist nur bis Juni befristet, und ich weiß nicht, ob er verlängert wird.\nMann: Hast du schon mit deinem Chef gesprochen?\nFrau: Noch nicht. Ich habe Angst, dass das einen schlechten Eindruck macht.\nMann: Im Gegenteil! Wenn du jetzt fragst, zeigst du, dass du bleiben willst. Mach doch einen Termin für ein Gespräch aus.\nFrau: Hm, du hast recht. Ich schreibe ihm heute eine E-Mail."
+       },
+       {
+        "same": true,
+        "q": "Was macht Sevgi heute?",
+        "o": [
+         "Sie sucht eine neue Stelle.",
+         "Sie spricht mit dem Chef.",
+         "Sie bittet um einen Termin."
+        ],
+        "a": 2,
+        "why": "Sie schreibt dem Chef eine E-Mail – für einen Gesprächstermin. Gesprochen hat sie noch nicht mit ihm."
+       }
+      ]
+     },
+     {
+      "t": "Teil 4 – Meinungen",
+      "tab": "Teil 4",
+      "intro": "Sie hören Aussagen zu einem Thema. Welcher der Sätze a–f passt zu den Aussagen? Lesen Sie zuerst die Sätze a–f. Sie hören jede Aussage zweimal. Thema: Plastik vermeiden – geht das im Alltag?",
+      "type": "match",
+      "listName": "Sätze",
+      "per": 1,
+      "plays": 2,
+      "time": 5,
+      "list": [
+       "Ohne Plastik einzukaufen kostet zu viel Zeit.",
+       "Kleine Schritte sind besser als gar nichts.",
+       "Die Industrie muss das Problem lösen, nicht die Kunden.",
+       "Kinder lernen das in der Schule am besten.",
+       "Verpackungsfreie Läden sind zu teuer.",
+       "Mehrweg-Flaschen sind schon ein guter Anfang."
+      ],
+      "items": [
+       {
+        "q": "Aussage 1",
+        "a": 2,
+        "why": "Er sagt, er kann nichts tun, wenn alles schon verpackt ist – die Firmen müssen etwas ändern.",
+        "audio": "Ich gebe mir ja Mühe. Aber gehen Sie mal in einen Supermarkt: Die Gurke ist in Plastik eingeschweißt, die Äpfel liegen in einer Schale mit Folie. Was soll ich als Kunde da machen? Die Hersteller müssen endlich anders verpacken."
+       },
+       {
+        "q": "Aussage 2",
+        "a": 1,
+        "why": "Sie macht nicht alles perfekt, aber Stoffbeutel und eigene Dose – kleine Schritte.",
+        "audio": "Ich bin keine Umwelt-Heldin. Aber ich habe immer einen Stoffbeutel in der Tasche, und beim Bäcker lasse ich mir die Brötchen in meinen eigenen Beutel geben. Wenn jeder nur ein paar kleine Dinge ändert, ist schon viel gewonnen."
+       },
+       {
+        "q": "Aussage 3",
+        "a": 4,
+        "why": "Sie war im Unverpackt-Laden, aber Nudeln und Reis kosten dort fast das Doppelte – zu teuer.",
+        "audio": "Bei uns in der Nähe hat ein Unverpackt-Laden aufgemacht. Die Idee finde ich super. Ich war zweimal da, aber für Nudeln und Reis habe ich dort fast das Doppelte bezahlt. Mit drei Kindern kann ich mir das leider nicht leisten."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "lesen",
+    "de": "Lesen",
+    "en": "Reading",
+    "time": 45,
+    "parts": [
+     {
+      "t": "Teil 1 – Wegweiser",
+      "tab": "Teil 1",
+      "intro": "Lesen Sie die Aufgaben und den Wegweiser. Wo (a, b oder c) finden Sie die passende Information?",
+      "type": "mc",
+      "per": 1,
+      "time": 8,
+      "text": "Stadtwerke – Kundencenter\nErdgeschoss: Empfang · Kasse · Fundsachen aus Bus und Bahn · Verkauf von Monatskarten\n1. Stock: Strom und Gas (Verträge, Zählerstand, Rechnungen) · Energieberatung\n2. Stock: Wasser und Abwasser · Abfallwirtschaft (Tonnen bestellen, Sperrmüll anmelden)\n3. Stock: Personal und Bewerbungen · Ausbildung\n4. Stock: Geschäftsführung · Presse",
+      "items": [
+       {
+        "q": "Sie möchten Ihren alten Schrank wegwerfen lassen.",
+        "o": [
+         "1. Stock",
+         "2. Stock",
+         "Erdgeschoss"
+        ],
+        "a": 1,
+        "why": "Sperrmüll anmelden – Abfallwirtschaft, 2. Stock"
+       },
+       {
+        "q": "Sie möchten wissen, wie Sie zu Hause weniger Heizkosten haben.",
+        "o": [
+         "1. Stock",
+         "4. Stock",
+         "2. Stock"
+        ],
+        "a": 0,
+        "why": "Energieberatung – 1. Stock"
+       },
+       {
+        "q": "Ihr Sohn sucht nach der Schule eine Lehrstelle.",
+        "o": [
+         "4. Stock",
+         "3. Stock",
+         "Erdgeschoss"
+        ],
+        "a": 1,
+        "why": "Ausbildung – 3. Stock"
+       },
+       {
+        "q": "Sie haben Ihren Regenschirm in der Straßenbahn vergessen.",
+        "o": [
+         "2. Stock",
+         "3. Stock",
+         "Erdgeschoss"
+        ],
+        "a": 2,
+        "why": "Fundsachen aus Bus und Bahn – Erdgeschoss"
+       },
+       {
+        "q": "Ihre letzte Gasrechnung ist viel zu hoch.",
+        "o": [
+         "Erdgeschoss",
+         "1. Stock",
+         "4. Stock"
+        ],
+        "a": 1,
+        "why": "Strom und Gas – Rechnungen (nicht die Kasse)"
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Anzeigen und Texte",
+      "tab": "Teil 2",
+      "intro": "Lesen Sie die Situationen und die Texte a–h. Finden Sie für jede Situation den passenden Text. Für eine Aufgabe gibt es keine Lösung – wählen Sie dann x.",
+      "type": "match",
+      "listName": "Texte",
+      "x": true,
+      "per": 1,
+      "time": 10,
+      "list": [
+       "Gewerkschaftsbüro Mitte: Beratung für Mitglieder bei Problemen mit dem Arbeitgeber.",
+       "Berufsschule Nord: Abendkurse für den Realschulabschluss, Unterricht montags bis donnerstags.",
+       "Anerkennungsberatung IQ: Wir helfen, Ihren ausländischen Berufsabschluss in Deutschland anerkennen zu lassen.",
+       "Zeitarbeit Flex: sofort Jobs in Lager und Produktion, auch ohne Deutschkenntnisse.",
+       "Fahrradladen Kette: Dienstfahrräder für Firmen und ihre Mitarbeiter – Beratung kostenlos.",
+       "Energiesparberatung der Verbraucherzentrale: Ein Experte kommt zu Ihnen nach Hause – 40 Euro.",
+       "Sprachschule Wort: Deutsch für den Beruf (B2), Kurs abends und am Wochenende.",
+       "Rechtsanwältin Dr. Yıldız: Familienrecht – Scheidung, Unterhalt, Sorgerecht."
+      ],
+      "items": [
+       {
+        "q": "Sie sind Krankenpfleger aus Kolumbien und möchten auch in Deutschland in Ihrem Beruf arbeiten.",
+        "a": 2,
+        "why": "Anerkennung des ausländischen Abschlusses"
+       },
+       {
+        "q": "Ihr Chef zahlt Ihnen seit zwei Monaten keine Überstunden. Sie sind Gewerkschaftsmitglied.",
+        "a": 0,
+        "why": "Gewerkschaft – Beratung für Mitglieder bei Problemen mit dem Arbeitgeber"
+       },
+       {
+        "q": "Sie haben in Ihrem Heimatland keinen Schulabschluss gemacht und wollen das nachholen, haben aber tagsüber Arbeit.",
+        "a": 1,
+        "why": "Abendkurse für den Schulabschluss"
+       },
+       {
+        "q": "Sie wollen wissen, wie Ihre Firma Ihnen einen Firmenwagen bezahlen kann.",
+        "a": -1,
+        "why": "Ein Firmenwagen ist ein Auto – der Fahrradladen bietet nur Diensträder an; keine Anzeige passt."
+       },
+       {
+        "q": "Ihre Stromrechnung ist sehr hoch, und Sie möchten wissen, welche Geräte in Ihrer Wohnung zu viel verbrauchen.",
+        "a": 5,
+        "why": "Energieberatung bei Ihnen zu Hause"
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Kurze Texte",
+      "tab": "Teil 3",
+      "intro": "Lesen Sie die drei Texte. Zu jedem Text gibt es zwei Aufgaben. Entscheiden Sie, ob die Aussage richtig oder falsch ist und welche Antwort (a, b oder c) am besten passt.",
+      "type": "mix",
+      "per": 1,
+      "time": 10,
+      "items": [
+       {
+        "q": "Alle Mitarbeiter müssen an der Schulung teilnehmen.",
+        "a": false,
+        "why": "Nur die Mitarbeiter, die mit Kunden telefonieren – nicht alle.",
+        "text": "An alle Mitarbeiterinnen und Mitarbeiter im Kundenservice\nAb dem 1. April arbeiten wir mit einem neuen Computerprogramm. Deshalb gibt es im März für alle, die am Telefon mit Kunden sprechen, eine Pflichtschulung von drei Stunden. Die Termine finden Sie im Intranet. Bitte tragen Sie sich bis zum 20. Februar ein. Die Schulung gilt als Arbeitszeit. Wer an keinem Termin kann, meldet sich bitte bei Frau Kühn.\nDie Abteilungsleitung"
+       },
+       {
+        "same": true,
+        "q": "Was sollen Mitarbeiter tun, die keinen Termin wahrnehmen können?",
+        "o": [
+         "Sich im Intranet eintragen.",
+         "Sich bei einer Kollegin melden.",
+         "Die Schulung zu Hause machen."
+        ],
+        "a": 1,
+        "why": "„Wer an keinem Termin kann, meldet sich bitte bei Frau Kühn.“"
+       },
+       {
+        "q": "Die Aktion findet nur bei schönem Wetter statt.",
+        "a": false,
+        "why": "„bei jedem Wetter“ – auch bei Regen.",
+        "text": "Mitmachen beim großen Frühjahrsputz!\nAm Samstag, dem 22. März, sammeln wir gemeinsam Müll in Parks, auf Spielplätzen und am Flussufer. Treffpunkt ist um 10 Uhr am Rathausplatz. Handschuhe, Zangen und Säcke bekommen Sie von uns. Die Aktion findet bei jedem Wetter statt – bitte denken Sie an passende Kleidung. Zum Abschluss lädt die Bürgermeisterin alle Helferinnen und Helfer um 13 Uhr zu einer Suppe ein. Kinder sind herzlich willkommen, wenn sie von einem Erwachsenen begleitet werden."
+       },
+       {
+        "same": true,
+        "q": "Was müssen die Helfer selbst mitbringen?",
+        "o": [
+         "Handschuhe und Säcke.",
+         "Kleidung für das Wetter.",
+         "Etwas zu essen."
+        ],
+        "a": 1,
+        "why": "Material bekommt man; mitbringen soll man nur „passende Kleidung“. Die Suppe gibt es von der Stadt."
+       },
+       {
+        "q": "Herr Ivanov hat zu viele Urlaubstage genommen.",
+        "a": false,
+        "why": "Er hat noch Resturlaub – er hat zu wenig genommen.",
+        "text": "Sehr geehrter Herr Ivanov,\nlaut unseren Unterlagen haben Sie aus dem letzten Jahr noch acht Tage Resturlaub. Nach Ihrem Arbeitsvertrag müssen Sie diese Tage bis zum 31. März nehmen, sonst verfallen sie. Bitte sprechen Sie mit Ihrer Teamleiterin und reichen Sie Ihren Urlaubsantrag bis Ende Januar ein. Wenn Sie die Tage aus betrieblichen Gründen nicht nehmen konnten, teilen Sie uns das bitte schriftlich mit.\nMit freundlichen Grüßen\nPersonalabteilung"
+       },
+       {
+        "same": true,
+        "q": "Was passiert, wenn Herr Ivanov den Urlaub nicht bis Ende März nimmt?",
+        "o": [
+         "Er bekommt Geld dafür.",
+         "Er kann die Tage nicht mehr nehmen.",
+         "Er bekommt eine Abmahnung."
+        ],
+        "a": 1,
+        "why": "„sonst verfallen sie“ = die Tage sind dann weg."
+       }
+      ]
+     },
+     {
+      "t": "Teil 4 – Ein längerer Text",
+      "tab": "Teil 4",
+      "intro": "Lesen Sie den Text. Entscheiden Sie, ob die Aussagen richtig oder falsch sind.",
+      "type": "rf",
+      "per": 1,
+      "time": 7,
+      "text": "Probezeit – was gilt?\nViele Arbeitsverträge in Deutschland beginnen mit einer Probezeit. Sie dauert meistens sechs Monate, länger ist normalerweise nicht erlaubt. In dieser Zeit können Arbeitgeber und Arbeitnehmer prüfen, ob sie gut zusammenpassen.\nDer wichtigste Unterschied zur Zeit danach: Die Kündigungsfrist ist kürzer. In der Probezeit können beide Seiten den Vertrag mit einer Frist von zwei Wochen kündigen, und der Arbeitgeber muss keinen Grund nennen. Nach der Probezeit beträgt die Frist mindestens vier Wochen.\nViele glauben, dass man in der Probezeit keinen Urlaub nehmen darf. Das stimmt nicht: Den vollen Urlaubsanspruch hat man zwar erst nach sechs Monaten, aber für jeden vollen Monat bekommt man schon einen Teil der Urlaubstage. Auch wer in der Probezeit krank wird, bekommt nach vier Wochen im Betrieb ganz normal Lohnfortzahlung.",
+      "items": [
+       {
+        "q": "In der Probezeit darf man überhaupt keinen Urlaub nehmen.",
+        "a": false,
+        "why": "Für jeden vollen Monat bekommt man schon einen Teil – „Das stimmt nicht“."
+       },
+       {
+        "q": "Der Arbeitgeber muss in der Probezeit nicht sagen, warum er kündigt.",
+        "a": true,
+        "why": "„der Arbeitgeber muss keinen Grund nennen“"
+       },
+       {
+        "q": "Nach der Probezeit kann man mit zwei Wochen Frist kündigen.",
+        "a": false,
+        "why": "nach der Probezeit mindestens vier Wochen"
+       }
+      ]
+     },
+     {
+      "t": "Teil 5 – Brief mit Lücken",
+      "tab": "Teil 5",
+      "intro": "Lesen Sie den Text und schließen Sie die Lücken. Welche Lösung (a, b oder c) passt am besten?",
+      "type": "gapmc",
+      "per": 1,
+      "time": 10,
+      "text": "Sehr geehrte Frau Berger,\nich arbeite seit zwei Jahren als Lagerist in Ihrer Firma und bin mit meiner Arbeit sehr zufrieden. In den letzten drei Monaten habe ich jedoch fast jede Woche zehn Überstunden gemacht, (1) zwei Kollegen krank waren. Diese Stunden stehen auch im Zeiterfassungssystem. Auf meinen Lohnabrechnungen tauchen sie aber nicht auf, (2) ich sie weder bezahlt bekommen noch als Freizeit genommen habe. Ich bitte Sie deshalb zu prüfen, (3) hier ein Fehler passiert ist. Am liebsten würde ich die Stunden als Freizeit nehmen, weil ich im Sommer meine Eltern in Vietnam besuchen möchte, (4) ich seit drei Jahren nicht gesehen habe. Falls das (5) betrieblichen Gründen nicht möglich ist, bitte ich um Auszahlung mit dem nächsten Gehalt. Für ein persönliches Gespräch stehe ich Ihnen jederzeit gern (6) Verfügung.\nMit freundlichen Grüßen\nMinh [Nachname]",
+      "items": [
+       {
+        "n": 1,
+        "o": [
+         "damit",
+         "weil",
+         "obwohl"
+        ],
+        "a": 1,
+        "why": "Grund für die Überstunden → weil"
+       },
+       {
+        "n": 2,
+        "o": [
+         "sodass",
+         "trotzdem",
+         "sondern"
+        ],
+        "a": 0,
+        "why": "Folge im Nebensatz (Verb am Ende) → sodass"
+       },
+       {
+        "n": 3,
+        "o": [
+         "dass",
+         "ob",
+         "wie"
+        ],
+        "a": 1,
+        "why": "prüfen, ob … – indirekte Ja/Nein-Frage"
+       },
+       {
+        "n": 4,
+        "o": [
+         "die",
+         "denen",
+         "deren"
+        ],
+        "a": 0,
+        "why": "Relativsatz: die Eltern – ich habe sie nicht gesehen (Akkusativ Plural) → die"
+       },
+       {
+        "n": 5,
+        "o": [
+         "aus",
+         "von",
+         "wegen"
+        ],
+        "a": 0,
+        "why": "aus betrieblichen Gründen – feste Wendung"
+       },
+       {
+        "n": 6,
+        "o": [
+         "in",
+         "zur",
+         "für"
+        ],
+        "a": 1,
+        "why": "jemandem zur Verfügung stehen"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "schreiben",
+    "de": "Schreiben",
+    "en": "Writing",
+    "time": 30,
+    "parts": [
+     {
+      "t": "Brief oder E-Mail",
+      "intro": "Wählen Sie Aufgabe A oder Aufgabe B. Zeigen Sie, was Sie können. Schreiben Sie möglichst viel. Vergessen Sie nicht die Anrede und den Gruß. Schreiben Sie etwas zu allen vier Punkten.",
+      "type": "write",
+      "crit": "b1",
+      "words": 80,
+      "time": 30,
+      "task": "Aufgabe A: Sie haben in den letzten Monaten viele Überstunden gemacht. Auf Ihrer Lohnabrechnung stehen sie aber nicht. Schreiben Sie an die Personalabteilung, Frau Berger.",
+      "points": [
+       "Grund für Ihr Schreiben",
+       "Warum haben Sie Überstunden gemacht?",
+       "Was ist das Problem?",
+       "Was möchten Sie: Geld oder Freizeit?"
+      ],
+      "model": "Sehr geehrte Frau Berger,\nich schreibe Ihnen, weil ich eine Frage zu meinen Überstunden habe.\nIn den letzten drei Monaten habe ich jede Woche etwa acht Stunden mehr gearbeitet, weil zwei Kollegen aus meinem Team lange krank waren und wir ein wichtiges Projekt fertig machen mussten.\nDie Stunden stehen im Zeiterfassungssystem, aber auf meinen Lohnabrechnungen für Februar, März und April finde ich sie nicht. Ich habe sie also weder bezahlt bekommen noch als Freizeit genommen.\nAm liebsten würde ich die Stunden als Freizeit nehmen, weil ich im Sommer meine Familie in Indien besuchen möchte. Wenn das nicht geht, bitte ich um Auszahlung mit dem nächsten Gehalt.\nIch freue mich auf Ihre Antwort.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+      "keys": [
+       [
+        "schreibe|frage|überstunden|lohnabrechnung|abrechnung",
+        "Ich schreibe Ihnen, weil ich eine Frage zu meinen Überstunden habe."
+       ],
+       [
+        "krank|projekt|kolleg|viel arbeit|personal|weil|denn|auftrag",
+        "Ich habe Überstunden gemacht, weil zwei Kollegen krank waren."
+       ],
+       [
+        "stehen nicht|fehlen|nicht bezahlt|abrechnung|lohn|gehalt|nicht drauf|finde",
+        "Auf meiner Lohnabrechnung stehen die Überstunden nicht."
+       ],
+       [
+        "freizeit|frei|urlaub|geld|auszahl|bezahl|lieber|am liebsten",
+        "Ich möchte die Stunden lieber als Freizeit nehmen."
+       ]
+      ],
+      "alt": {
+       "task": "Aufgabe B: Der Spielplatz in Ihrer Straße ist in einem schlechten Zustand. Schreiben Sie an das Grünflächenamt der Stadt.",
+       "points": [
+        "Grund für Ihr Schreiben",
+        "Was ist das Problem?",
+        "Warum ist das wichtig?",
+        "Was soll die Stadt tun?"
+       ],
+       "model": "Sehr geehrte Damen und Herren,\nich wohne in der Lindenstraße und schreibe Ihnen wegen des Spielplatzes vor unserem Haus.\nDer Spielplatz ist seit Monaten in einem sehr schlechten Zustand. Die Schaukel ist kaputt, im Sandkasten liegen oft Glasscherben, und abends ist es dort sehr dunkel, weil die Lampe nicht funktioniert.\nDas ist ein großes Problem, weil hier viele Familien mit kleinen Kindern wohnen und der nächste Spielplatz zwei Kilometer weit weg ist. Letzte Woche hat sich ein Kind an einer Scherbe verletzt.\nIch bitte Sie deshalb, die Schaukel und die Lampe so schnell wie möglich zu reparieren und den Sand zu wechseln. Vielleicht könnten Sie auch einen Mülleimer aufstellen.\nMit freundlichen Grüßen\nSuresh [Nachname]",
+       "keys": [
+        [
+         "schreibe|wegen|spielplatz|wohne",
+         "Ich schreibe Ihnen wegen des Spielplatzes in unserer Straße."
+        ],
+        [
+         "kaputt|scherben|glas|müll|schmutzig|dunkel|lampe|schaukel|gefährlich",
+         "Die Schaukel ist kaputt und im Sand liegen Glasscherben."
+        ],
+        [
+         "kinder|familien|verletzt|gefährlich|weil|denn|wichtig|nächste",
+         "Das ist wichtig, weil hier viele Kinder wohnen und es gefährlich ist."
+        ],
+        [
+         "reparier|erneuer|sauber|wechsel|aufstell|bitte|kontrollier|bald",
+         "Bitte reparieren Sie die Schaukel und machen Sie den Spielplatz sauber."
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "id": "sprechen",
+    "de": "Sprechen",
+    "en": "Speaking",
+    "time": 16,
+    "oral": true,
+    "parts": [
+     {
+      "t": "Teil 1 – Über sich sprechen",
+      "tab": "Teil 1",
+      "intro": "Stellen Sie sich vor: Name, Geburtsort, Wohnort, Arbeit/Beruf, Familie, Sprachen. Danach fragt die Prüferin nach.",
+      "type": "speak",
+      "max": 20,
+      "time": 4,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Guten Tag. Wir möchten Sie gern kennenlernen. Würden Sie sich bitte vorstellen? Hier sind einige Stichpunkte: Name, Geburtsort, Wohnort, Arbeit oder Beruf, Familie und Sprachen."
+       },
+       {
+        "you": "Stell dich vor: Name, Geburtsort, Wohnort, Arbeit/Beruf, Familie, Sprachen.",
+        "min": 30,
+        "key": [
+         [
+          "heiße|name ist|ich bin [A-ZÄÖÜ]",
+          "Name"
+         ],
+         [
+          "geboren|komme aus",
+          "Geburtsort"
+         ],
+         [
+          "wohne",
+          "Wohnort"
+         ],
+         [
+          "arbeite|beruf|bin .*(ingenieur|lehrer|student|entwickler|koch|verkäufer|pfleger)",
+          "Arbeit/Beruf"
+         ],
+         [
+          "verheiratet|kinder|frau|mann|familie|ledig|tochter|sohn",
+          "Familie"
+         ],
+         [
+          "spreche|sprache",
+          "Sprachen"
+         ]
+        ],
+        "model": "Ich heiße Suresh [Nachname]. Ich bin in Indien geboren, in Chennai. Jetzt wohne ich in Frankfurt. Ich arbeite als Ingenieur in einer IT-Firma. Ich bin verheiratet und habe [Familie]. Ich spreche Tamil, Englisch und ein bisschen Deutsch."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Vielen Dank. Und jetzt Sie, bitte."
+       },
+       {
+        "who": "Anna",
+        "say": "Ich heiße Anna Kowalska und bin in Polen geboren, in Danzig. Seit vier Jahren wohne ich in Offenbach. Ich arbeite als Verkäuferin in einer Bäckerei. Ich bin verheiratet und habe einen Sohn. Ich spreche Polnisch, Deutsch und ein bisschen Englisch."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Sie arbeiten in einer IT-Firma. Wie sieht ein normaler Arbeitstag bei Ihnen aus?"
+       },
+       {
+        "you": "Beschreib einen normalen Arbeitstag.",
+        "min": 15,
+        "key": [
+         [
+          "morgens|zuerst|dann|danach|mittags|nachmittag|abend|um \\d|uhr",
+          "Ablauf"
+         ],
+         [
+          "arbeite|besprechung|meeting|mails|kolleg|programm|pause",
+          "Arbeit"
+         ]
+        ],
+        "model": "Ich fange meistens um halb neun an. Zuerst lese ich meine E-Mails, dann haben wir ein kurzes Meeting im Team. Danach arbeite ich an meinem Projekt. Mittags esse ich mit Kollegen in der Kantine, und um fünf mache ich Feierabend."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Haben Sie in Deutschland schon eine Weiterbildung gemacht oder möchten Sie eine machen?"
+       },
+       {
+        "you": "Erzähl von einer Weiterbildung – gemacht oder geplant, mit Grund.",
+        "min": 12,
+        "key": [
+         [
+          "kurs|weiterbildung|schulung|seminar|lernen|zertifikat|fortbildung",
+          "Weiterbildung"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da|wenn)\\b",
+          "Begründung"
+         ]
+        ],
+        "model": "Letztes Jahr habe ich eine Schulung zum Projektmanagement gemacht. Jetzt möchte ich einen Deutschkurs B2 machen, weil ich im Beruf mehr Deutsch sprechen muss."
+       }
+      ]
+     },
+     {
+      "t": "Teil 2 – Über Erfahrungen sprechen",
+      "tab": "Teil 2",
+      "intro": "Thema: Umwelt im Alltag. Beschreiben Sie Ihr Foto. Dann erzählen Sie von Ihren Erfahrungen und sagen Ihre Meinung.",
+      "type": "speak",
+      "max": 40,
+      "time": 6,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil zwei. Sie haben in einer Zeitschrift ein Foto gefunden. Berichten Sie Ihrer Gesprächspartnerin kurz: Was sehen Sie auf dem Foto? Was für eine Situation zeigt dieses Bild?"
+       },
+       {
+        "you": "Dein Foto: 🚲 eine Frau fährt mit einem Lastenrad durch die Stadt, vorne sitzen zwei Kinder, daneben steht ein Stau mit vielen Autos – Beschreib es: Was siehst du? Was für eine Situation ist das?",
+        "min": 25,
+        "key": [
+         [
+          "auf dem foto|auf dem bild|ich sehe|man sieht|es gibt",
+          "Foto beschreiben"
+         ],
+         [
+          "frau|fahrrad|rad|lastenrad|kinder|stadt|stau|auto|straße|fährt",
+          "was zu sehen ist"
+         ],
+         [
+          "vielleicht|ich glaube|wahrscheinlich|situation|sieht .* aus",
+          "Situation vermuten"
+         ]
+        ],
+        "model": "Auf dem Foto sieht man eine Frau auf einem Lastenrad. Vorne in der Kiste sitzen zwei kleine Kinder. Neben ihr stehen viele Autos im Stau. Ich glaube, sie bringt die Kinder morgens in die Kita. Sie ist mit dem Rad wahrscheinlich schneller als die Autos."
+       },
+       {
+        "who": "Anna",
+        "say": "Auf meinem Foto sieht man einen Supermarkt, in dem die Leute ihre eigenen Dosen und Gläser mitbringen. Ein Mann füllt gerade Nudeln in ein Glas."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Danke. Erzählen Sie bitte: Was tun Sie im Alltag für die Umwelt?"
+       },
+       {
+        "you": "Erzähl von deinen Erfahrungen (2–3 Sätze).",
+        "min": 15,
+        "key": [
+         [
+          "\\bich\\b|\\bwir\\b",
+          "persönlich"
+         ],
+         [
+          "müll|trenne|fahrrad|rad|bus|bahn|plastik|strom|spare|tasche|beutel|auto",
+          "zum Thema"
+         ]
+        ],
+        "model": "Ich fahre fast jeden Tag mit der S-Bahn zur Arbeit, ein Auto habe ich nicht. Zu Hause trennen wir den Müll, und beim Einkaufen nehme ich immer eine Stofftasche mit."
+       },
+       {
+        "who": "Prüferin",
+        "say": "Wie ist das in Ihrem Heimatland? Spielt Umweltschutz dort eine große Rolle? Was ist Ihre Meinung?"
+       },
+       {
+        "you": "Vergleiche mit deinem Heimatland und sag deine Meinung – mit Grund.",
+        "min": 20,
+        "key": [
+         [
+          "in meinem (heimat)?land|bei uns|in indien|in deutschland|dort|hier",
+          "Vergleich"
+         ],
+         [
+          "meiner meinung|ich finde|ich denke|ich glaube|für mich|mir gefällt",
+          "Meinung"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da|wenn)\\b",
+          "Begründung"
+         ]
+        ],
+        "model": "In Indien ist die Luft in vielen Städten sehr schlecht, und es gibt viel Plastikmüll auf den Straßen. Inzwischen sind Plastiktüten in vielen Regionen verboten. Ich finde, dass Deutschland mit der Mülltrennung ein gutes Beispiel ist, weil hier viel recycelt wird."
+       },
+       {
+        "who": "Anna",
+        "say": "Ja, bei uns in Polen wird das auch langsam besser."
+       }
+      ]
+     },
+     {
+      "t": "Teil 3 – Gemeinsam etwas planen",
+      "tab": "Teil 3",
+      "intro": "Situation: Ihre Firma möchte umweltfreundlicher werden. Sie und eine Kollegin sollen für die nächste Teamsitzung drei konkrete Ideen vorbereiten. Planen Sie zusammen mit Ihrer Partnerin. Ideen: Weg zur Arbeit? · Papier und Strom sparen? · Kantine? · Wer stellt die Ideen vor?.",
+      "type": "speak",
+      "max": 40,
+      "time": 6,
+      "turns": [
+       {
+        "who": "Prüferin",
+        "say": "Teil drei. Ihre Firma möchte umweltfreundlicher werden. Sie und eine Kollegin sollen für die nächste Teamsitzung drei konkrete Ideen vorbereiten. Planen Sie, was Sie tun möchten. Hier sind einige Ideen: Weg zur Arbeit? · Papier und Strom sparen? · Kantine? · Wer stellt die Ideen vor?. Anna, bitte beginnen Sie."
+       },
+       {
+        "who": "Anna",
+        "say": "Viele Kollegen kommen mit dem Auto. Sollen wir vorschlagen, dass die Firma ein Jobticket bezahlt?"
+       },
+       {
+        "you": "Reagiere auf Annas Vorschlag – stimm zu oder schlag etwas anderes vor, mit Grund.",
+        "min": 10,
+        "key": [
+         [
+          "gute idee|einverstanden|okay|lieber|das finde ich|ja|nein|das passt|super|toll|klingt gut|genau",
+          "Reaktion"
+         ],
+         [
+          "\\b(weil|denn|deshalb|darum|da|wenn)\\b",
+          "Begründung"
+         ]
+        ],
+        "model": "Das finde ich gut, weil dann mehr Leute mit Bus und Bahn fahren. Ich würde aber auch Diensträder vorschlagen, weil viele nah an der Firma wohnen."
+       },
+       {
+        "who": "Anna",
+        "say": "Ja, beides. Was können wir im Büro selbst ändern?"
+       },
+       {
+        "you": "Mach einen eigenen Vorschlag.",
+        "min": 8,
+        "key": [
+         [
+          "wie wäre|wir könnten|ich schlage vor|lass uns|was hältst|vielleicht|sollen wir|hast du lust|wollen wir",
+          "Vorschlag"
+         ],
+         [
+          "rad|fahrrad|bus|bahn|jobticket|papier|drucken|strom|licht|computer|kantine|essen|vegetarisch|plastik|becher|sitzung|vorstellen|präsentation",
+          "zum Plan"
+         ]
+        ],
+        "model": "Wir könnten weniger drucken und abends alle Computer ganz ausschalten. Was hältst du davon, in der Kantine Plastikbecher durch Tassen zu ersetzen?"
+       },
+       {
+        "who": "Anna",
+        "say": "Super. Und wer stellt das in der Sitzung vor?"
+       },
+       {
+        "you": "Antworte und kläre, wer was macht.",
+        "min": 8,
+        "key": [
+         [
+          "ich kann|ich mache|ich kümmere|ich bringe|ich übernehme|ich rufe|ich frage|ich schreibe|du kannst|du machst|kannst du",
+          "Aufgaben verteilen"
+         ]
+        ],
+        "model": "Ich mache eine kurze Präsentation mit drei Folien. Kannst du vorher in der Personalabteilung fragen, was ein Jobticket kostet? Dann stellen wir es zusammen vor."
+       },
+       {
+        "who": "Anna",
+        "say": "Gut. Fassen wir zusammen – was haben wir jetzt geplant?"
+       },
+       {
+        "you": "Fass euren Plan kurz zusammen.",
+        "min": 15,
+        "key": [
+         [
+          "also|zusammengefasst|dann|wir",
+          "Zusammenfassung"
+         ],
+         [
+          "rad|fahrrad|bus|bahn|jobticket|papier|drucken|strom|licht|computer|kantine|essen|vegetarisch|plastik|becher|sitzung|vorstellen|präsentation",
+          "Plan"
+         ]
+        ],
+        "model": "Also, wir schlagen drei Dinge vor: ein Jobticket und Diensträder für den Weg zur Arbeit, weniger drucken und Computer abends ausschalten, und Tassen statt Plastikbecher in der Kantine. Ich mache die Präsentation, und du fragst nach den Kosten für das Jobticket."
        },
        {
         "who": "Anna",

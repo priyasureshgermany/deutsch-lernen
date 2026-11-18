@@ -10,10 +10,11 @@ const SIZE = { A1: [[6, 4, 5], [5, 5, 5], [5, "w"], ["s", "s", "s"]], B1: [[4, 5
 const PTS = { A1: [15, 15, 15, 15], B1: [20, 25, 45, 100] };
 const SPK = { A1: [3, 6, 6], B1: [20, 40, 40] };
 for (const [lv, tests] of [["A1", window.TESTS_A1], ["B1", window.TESTS_B1]]) {
-  if (tests.length !== 9) fail(lv, "needs 9 tests, has " + tests.length);
-  /* three each of leicht, mittel, schwer – in that order */
-  const LV = ["leicht", "mittel", "schwer"];
-  tests.forEach((t, i) => { if (t.level !== LV[Math.floor(i / 3)]) fail(t.id, `level ${t.level}, expected ${LV[Math.floor(i / 3)]} at position ${i + 1}`); });
+  /* leicht, mittel, schwer – in that order; A1 three each, B1 three leicht, three mittel, six schwer */
+  const LV = { A1: ["leicht", 3, "mittel", 3, "schwer", 3], B1: ["leicht", 3, "mittel", 3, "schwer", 6] }[lv];
+  const want = []; for (let i = 0; i < LV.length; i += 2) for (let n = 0; n < LV[i + 1]; n++) want.push(LV[i]);
+  if (tests.length !== want.length) fail(lv, `needs ${want.length} tests, has ${tests.length}`);
+  tests.forEach((t, i) => { if (t.level !== want[i]) fail(t.id, `level ${t.level}, expected ${want[i]} at position ${i + 1}`); });
   const ids = new Set();
   for (const t of tests) {
     if (ids.has(t.id)) fail(t.id, "duplicate id"); ids.add(t.id);

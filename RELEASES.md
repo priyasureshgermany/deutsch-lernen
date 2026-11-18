@@ -1,5 +1,11 @@
 # Releases
 
+## 1.60.0 — 2026-11-18
+- B1 Modelltests: three more schwer tests – Modelltest 10 (Verträge, Bank, Versicherung · Handyvertrag kündigen / Wasserschaden an die Nachbarin), Modelltest 11 (Kita, Ehrenamt, Umzug · Abholzeit an die Kita / Bewerbung für ein Ehrenamt) and Modelltest 12 (Arbeitsrecht, Weiterbildung, Umwelt · Überstunden an den Arbeitgeber / Spielplatz an die Stadt); 12 B1 tests now, 6 of them schwer
+- the new ones are the hardest yet: longer recordings and texts, answers in other words, and traps – a date or time that changes in the message, an option that is said but then corrected, a word from the text in the wrong answer; Sprachbausteine with sondern, sodass, ob, Relativpronomen and fixed phrases (zur Verfügung stehen, aus betrieblichen Gründen)
+- every Hören and Lesen answer explained, both letters with model and Leitpunkt check, Sprechen with partner and model answers as in the other tests
+- tools/check-tests.mjs: B1 expects 3 leicht, 3 mittel, 6 schwer
+
 ## 1.59.1 — 2026-11-14
 - Updating no longer clears the expense tracker's and the barcode scanner's offline copies: the three apps share one website, and the Update button and the offline worker now touch only Deutsch lernen's own cache and worker
 
