@@ -1,5 +1,8 @@
 # Releases
 
+## 1.64.1 — 2026-11-18
+- Modelltest 3 (Feste feiern), Sprechen Teil 2: a real party now – friends in party hats help blow out the candles on a birthday cake (Vitaly Gariev / Unsplash) instead of a family meal; description, model answer and rating words to match
+
 ## 1.64.0 — 2026-11-18
 - Sprechen Teil 2 (B1 Modelltests): a real photo to describe instead of a sentence about it – 16 free photos from Unsplash (fotos/, 800 px, about 0,9 MB together), each with the photographer's name and a link under it
 - the description of each photo is now only its alt text (for screen readers), so you find the words yourself, as in the exam; the model answer and the words the rating looks for were rewritten to fit what each photo really shows

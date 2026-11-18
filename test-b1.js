@@ -2471,9 +2471,9 @@ window.TESTS_B1 = [
         "you": "Beschreib dein Foto: Was siehst du? Was für eine Situation ist das?",
         "photo": {
          "src": "fotos/b1-7.jpg",
-         "alt": "Eine Familie am Tisch: Eine Mutter, ein Vater und zwei kleine Mädchen essen zusammen. Auf dem Tisch stehen Schüsseln mit Essen, Wassermelone, Gläser und eine Sonnenblume.",
-         "by": "Tyson",
-         "link": "https://unsplash.com/photos/familie-isst-zu-hause-zu-abend-gorbBYbo6KM"
+         "alt": "Eine Geburtstagsfeier zu Hause: Sechs junge Leute tragen bunte Partyhüte. Der Mann in der Mitte hält eine Torte mit brennenden Kerzen, und alle helfen ihm, die Kerzen auszupusten. Ein Mann hinten bläst in eine Tröte.",
+         "by": "Vitaly Gariev",
+         "link": "https://unsplash.com/photos/eine-gruppe-von-menschen-die-um-einen-kuchen-mit-kerzen-darauf-stehen-E1qHLWspl-k"
         },
         "min": 25,
         "key": [
@@ -2482,7 +2482,7 @@ window.TESTS_B1 = [
           "Foto beschreiben"
          ],
          [
-          "familie|tisch|essen|mutter|vater|kinder|mädchen|schüssel|melone|blume|lachen|zusammen",
+          "geburtstag|feier|party|fest|torte|kuchen|kerzen|hüte|hut|freunde|leute|pusten|tröte|wohnzimmer",
           "was zu sehen ist"
          ],
          [
@@ -2490,7 +2490,7 @@ window.TESTS_B1 = [
           "Situation vermuten"
          ]
         ],
-        "model": "Auf dem Foto sehe ich eine Familie am Tisch: eine Mutter, einen Vater und zwei kleine Mädchen. Auf dem Tisch stehen viele Schüsseln mit Essen und eine Wassermelone. Alle lachen und sehen glücklich aus. Vielleicht feiern sie etwas Kleines, oder es ist einfach ein schöner Sonntag zu Hause."
+        "model": "Auf dem Foto sehe ich eine Geburtstagsfeier zu Hause. Sechs junge Leute tragen bunte Partyhüte. Der Mann in der Mitte hält eine Torte mit Kerzen, und alle helfen ihm, die Kerzen auszupusten. Ich glaube, er hat heute Geburtstag, und seine Freunde haben ihn überrascht. Alle haben viel Spaß."
        },
        {
         "who": "Anna",
